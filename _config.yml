@@ -2,7 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: 21st Century Weather Software Wiki
-author: Software Engineering Team
+author: 21st Century Weather Software Engineering Team
+copyright: "2024"
 logo: logo.png
 
 # Force re-execution of notebooks on each build.

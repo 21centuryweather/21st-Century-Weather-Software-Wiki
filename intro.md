@@ -1,11 +1,26 @@
-# Welcome to your Jupyter Book
-
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
-Check out the content pages bundled with this sample book to see more.
+# Welcome to the 21st Century Weather Software Wiki
 
 ```{tableofcontents}
 ```
+
+## The Software Engineering Team
+
+The Software Engineering Team currently consists of 2 members:
+
+- [Paul Gregory](https://www.21centuryweather.org.au/profile/paul-gregory) @ University of Melbourne
+- [Sam Green](https://www.21centuryweather.org.au/profile/sam-green) @ UNSW
+
+## How to get help from the Software Engineering Team
+
+The Software Engineering team can be contacted for support through:
+
+- The Software Support Category on Cumulus ([Cumulus Software Categry](https://21centuryweather.discourse.group/c/software-support/32)).
+- One-on-one video call through Microsoft Teams or Zoom.
+- In person meetings with local Software Engineering team members.
+- Code Workshops (coming soon).
+
+The Software Support Category on Cumulus is the preferred contact method as it allows the whole team to see the query, then whoever is best equipped to answer will do as soon as they can. Just open a new ‘Topic’ in the Category and give as much detail about your problem/request/comment as you can. The benefit of using Cumulus means topics won’t disappear and you may find that your issue has already been asked and fixed. It also gives the chance of others in the 21st Century Weather community to give their response. There will inevitably be issues that can’t be solved within 21st Century Weather and these can be directed to the ACCESS-NRI/Hive forums if they are suitable for that platform.
+
+You can also request In-person or virtual meetings with any member of the Software team. Please email/message Paul Gregory (University of Melbourne) or Sam Green (UNSW) with your issue and we’ll set up a meeting, or just come find us!
+
+Coming Soon - Fortnightly Code Workshops. This will be an hour long session where you can bring your code in for help/ideas/review.
