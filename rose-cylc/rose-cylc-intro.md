@@ -64,7 +64,7 @@ https://cylc.github.io/cylc-doc/7.9.3/html/index.html
 
 Note the `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure 
 
-### Cylc tutorial ###
+### First cylc tutorial ###
 
 Let's run through the tutorial here: 
 
@@ -129,7 +129,33 @@ To view suite server program contact information:
 ```
 Congratulations! You've just run your first `cylc` suite. 
 
-Ok, let's move onto `rose`.
+### Second cylc tutorial ###
 
-## Wrapping Rose around cylc
+Let's move onto another `cylc` tutorial, which is located in the `rose` documentation. This tutorial deals with creating graphs, i.e. how we dictate the sequence in which tasks are run. The version of `rose` currently running supported on `gadi` for ACCESS-UM experiments is `2019.01.7` so make sure you using the following URL : 
 
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html
+
+Let's follow the instructions at the bottom of the page.
+
+**Remember!!** we have to use the `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are startingn this tutorial from a fresh login session.
+```
+module use /g/data/hr22/modulefiles
+module load cylc7/23.09
+```
+
+Back to the tutorial:
+```
+mkdir ~/cylc-run/graph-introduction
+cd ~/cylc-run/graph-introduction
+```
+Create a `suite.rc` file in this directory using the template provided, and then create a task graph using the necessary syntax. When you execute
+```
+cylc graph .
+```
+the results show match the below image.
+
+![Simple cylc graph](images/cylc-graph-tutorial.png)
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html
+
+What is the link wit
