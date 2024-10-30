@@ -135,7 +135,7 @@ Let's move onto another `cylc` tutorial, which is located in the `rose` document
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html
 
-Let's follow the instructions at the bottom of the page.
+Let's follow the Practical section at the bottom of that page.
 
 **Remember!!** we have to use the `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are startingn this tutorial from a fresh login session.
 ```
@@ -156,6 +156,92 @@ the results show match the below image.
 
 ![Simple cylc graph](images/cylc-graph-tutorial.png)
 
-https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html
+### Third cylc tutorial ###
+
+Read through the information available here : 
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/integer-cycling.html
+
+This is important as it describes how the same sequence of tasks can be easily repeated. For a weather or climate simulation, you will be running a set of `UM` tasks that will need to be repeated every hour, six hours, every day, or every few days, depending on your problem. You may need to repeat these tasks for weeks, months, years or decades depending on your application.
+
+Regardless of your application and temporal resolution, you will need to be acquainted with how `cylc` handles "cycling" or "repeating" workflows. This will help you understand how to diagnose errors in task flows should they arise, or how to add new tasks if required.
+
+Run through the steps in the practical until your graph resembles the below imgaes.
+
+![Simple cylc cylcing graph](images/cylc-cycle-tutorial.png)
+
+### Fourth cylc tutorial ###
+
+Let's move onto the next tutorial which looks at Date-time cycling, i.e. controlling task flow using real date-time objects. This is how your weather and climate `rose/cylc` suites will be controlled.
+
+Access the fourth tutorial here:
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html
+
+Remember to load the rose and cylc executables into your current `gadi` environment using the `module load` commands.
+
+> **_TIP:_**
+> You can use the `bash` `alias` function to write a simple macro to load the `rose/cylc` environment with a simple command.
+> e.g. in my `~/.bash_profile` file I declare the following:
+> 
+> ```alias start_rose="module use /g/data/hr22/modulefiles;module load cylc7/23.09"```
+> Then if I'm at the terminal and I want to use `rose/cylc` I can just type the following:
+> 
+> ```
+> $ start_rose
+>   Loading cylc7/23.09
+>      Loading requirement: mosrs-setup/1.0.1
+>```
+
+Work your way through the practical exercise, which in this case is a simple taskflow for weather forecasting.
+
+Your final `cylc` graph should include the following sections:
+
+![Simple cylc NWP graph 1](images/cylc-datetime1.png)
+![Simple cylc NWP graph 2](images/cylc-datetime2.png)
+![Simple cylc NWP graph 3](images/cylc-datetime3.png)
+
+### Fifth cylc tutorial ###
+
+Now that we understand how create a workflow in `cylc` where the workflow is defined as a sequence of tasks and dependencies, how do we determine what each task executes?
+
+In this section you will learn how to assign executables (e.g. `bash` scripts, python scripts, or `UM` binaries) to a task.
+
+Read through the following tutorial : 
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/introduction.html
+
+You will also learn many important tasks including:
+- How to run a complex suite 
+- How to use the cylc GUI to monitor task flows within a suite
+- Understand the `~/cylc-run/<suite-name>/` directory structure to find log files, temporary input and output files and ancillary data.
+
+When running this sample suite, your cylc GUI will resemble the following (assuming you have activate "graph view" in the second view using the buttons in the toolbar).
+
+![Simple cylc runtime](images/cylc-runtime-tutorial.png)
+
+You can inspect other job log files, e.g the `get_rainfall` task, e.g.
+```
+ more log/job/20000101T0600Z/get_rainfall/NN/job.out 
+Suite    : runtime-introduction
+Task Job : 20000101T0600Z/get_rainfall/01 (try 1)
+User@Host: pag548@pgregory.pag548.gb02.ps.gadi.nci.org.au
+
+2024-10-28T05:54:42Z INFO - started
+2024-10-28T05:54:43Z INFO - succeeded
+```
+> **_NOTE:_** In the `cylc` directory structure, the subdirectory `NN` will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error. 
+
+### Sixth cylc tutorial ###
+
+The next tutorial expands our `cylc` knowledge to include runtime configuration. How do we use `bash` environment variables to control the way the suite runs? E.g. can we use environment variables to specify the location of input data files?
+
+Work your way through the following exercises:
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/runtime-configuration.html
+
+As mentioned earlier in the section on [running jobs on Linux](#shell-scripts-and-running-jobs-on-Linux) running on gadi, `cylc` is configured to use the `PBS` batch system to schedule jobs.
+
+View the standard output from the 
 
 What is the link wit
