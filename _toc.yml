@@ -7,3 +7,5 @@ parts:
   - caption: Getting Started 
     chapters:
     - file: starting/nci
+    - file: rose-cylc/rose-cylc-intro
+    - file: mosrs/mosrs-intro

@@ -386,6 +386,3 @@ Have a quick read through the documentation available here : https://metomi.gith
 
 There is no need to complete the practical.  We will use `rosie` in the next exercise to interface with the UK Met Office Science Repository Services (MOSRS) to check-out our next exercise.
 
-## MOSRS ##
-
-The UK Met Office Science Repository Servie https://code.metoffice.gov.uk/self-service/
