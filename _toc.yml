@@ -8,5 +8,5 @@ parts:
     chapters:
     - file: starting/nci
   - caption: Running atmospheric simulations using ACCESS
-    chapter:
-    - file: rose-cylc-intro
+    chapters:
+    - file: rose-cylc/rose-cylc-intro
