@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Rose/Cylc &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'rose-cylc/rose-cylc-intro';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../starting/nci.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Rose/Cylc</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Frose-cylc/rose-cylc-intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/rose-cylc/rose-cylc-intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Rose/Cylc</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-scripts-and-running-jobs-on-linux">Shell scripts and running jobs on Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-scheduling-for-atmospheric-simulation">Task Scheduling for Atmospheric Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cylc-work-engine">The Cylc work engine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-cylc-tutorial">First cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-cylc-tutorial">Second cylc tutorial</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-rose-cylc">
+<h1>Introduction to Rose/Cylc<a class="headerlink" href="#introduction-to-rose-cylc" title="Link to this heading">#</a></h1>
+<p>Running an atmospheric simulation is a complex process which requires executing many separate tasks. In order to co-ordinate these tasks, we requirer a job scheduler, or a <strong>workflow engine</strong>.</p>
+<p>These tutorials assume:</p>
+<ol class="arabic simple">
+<li><p>You have an NCI account on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p></li>
+<li><p>You can access a command-line terminal on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> (either via an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session or using the <code class="docutils literal notranslate"><span class="pre">ARE</span></code> research environment)</p></li>
+<li><p>You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account.</p></li>
+<li><p>You have memberships to the following <code class="docutils literal notranslate"><span class="pre">gadi</span></code> projects:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hr22</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">access</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ki32</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ki32_mosrs</span></code></p></li>
+</ul>
+</li>
+</ol>
+<section id="shell-scripts-and-running-jobs-on-linux">
+<h2>Shell scripts and running jobs on Linux<a class="headerlink" href="#shell-scripts-and-running-jobs-on-linux" title="Link to this heading">#</a></h2>
+<p>Typically we run programs (or apps) on a linux computer using a shell scripts. We use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell to interpret input from the command-line to execute programs.</p>
+<p>For example, if you login to <code class="docutils literal notranslate"><span class="pre">gadi</span></code> and type <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code>, at the command-line you are executing the program <code class="docutils literal notranslate"><span class="pre">ls</span></code> with the additional arguments <code class="docutils literal notranslate"><span class="pre">la</span></code>. The output of the program is then directed via standard output to your terminal.</p>
+<p>We can then create bash ‘scripts’ which allows to us process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, which we give special permissions to which allow the Linux operating system to execute it as a program.</p>
+<p>If you want more familiarity with <code class="docutils literal notranslate"><span class="pre">bash</span></code>, there are many on-line tutorials and references available, e.g.:</p>
+<p><a class="reference external" href="https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/">https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/</a></p>
+<p>or</p>
+<p><a class="reference external" href="https://www.geeksforgeeks.org/bash-scripting-introduction-to-bash-and-bash-scripting/">https://www.geeksforgeeks.org/bash-scripting-introduction-to-bash-and-bash-scripting/</a></p>
+<p>You can follow those tutorials on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> but you will need to use a different text editor to <code class="docutils literal notranslate"><span class="pre">gedit</span></code> as it is not installed. You can use <code class="docutils literal notranslate"><span class="pre">vi</span></code> if you’re familiar with it, otherwise you can use <code class="docutils literal notranslate"><span class="pre">nano</span></code> which will run inside a terminal window, or type <code class="docutils literal notranslate"><span class="pre">nedit</span> <span class="pre">&amp;</span></code> to launch the <code class="docutils literal notranslate"><span class="pre">nedit</span></code> GUI text editor.  The <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> tells bash to run this job ‘in background’, which allows you to continue typing inputs via the command-line while the <code class="docutils literal notranslate"><span class="pre">nedit</span></code> window is active.</p>
+<p>A deeper <code class="docutils literal notranslate"><span class="pre">bash</span></code> reference can be found here:</p>
+<p><a class="reference external" href="https://learn.microsoft.com/en-us/training/modules/bash-introduction/">https://learn.microsoft.com/en-us/training/modules/bash-introduction/</a></p>
+<p>Depending on your prior experience with Linux and <code class="docutils literal notranslate"><span class="pre">bash</span></code>, you may want to spend a few days working through these tutorials and examples to gain a better understanding of how <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands and <code class="docutils literal notranslate"><span class="pre">bash</span></code> <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> variables work and familiarise yourself with the Linux directory structures on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<p>Typically you will use <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the UM itself), python scripts for pre-processing or post-processing, or bash commands themselves.</p>
+<p>When we execute programs from the command-line, we are using an ‘interactive’ session. Typically this is used for small programs that require very few resources (memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.</p>
+<p>The NCI supercomputer <code class="docutils literal notranslate"><span class="pre">gadi</span></code> uses the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job scheduler. Documentation is available here:</p>
+<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=236880320">https://opus.nci.org.au/pages/viewpage.action?pageId=236880320</a></p>
+<p>But, what if we have a complex set of tasks that must run in a particular sequence? Can we create programs which process <code class="docutils literal notranslate"><span class="pre">PBS</span></code> jobs in a user-specified workflow?</p>
+</section>
+<section id="task-scheduling-for-atmospheric-simulation">
+<h2>Task Scheduling for Atmospheric Simulation<a class="headerlink" href="#task-scheduling-for-atmospheric-simulation" title="Link to this heading">#</a></h2>
+<p>A good example of a complex tasks that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:</p>
+<ol class="arabic simple">
+<li><p>Reading the previous weather forecast data initialised some six hours ago</p></li>
+<li><p>Collect observations valid from three hours ago, to three hours in the future</p></li>
+<li><p>Running a perturbation forecast model with an optimisation tool to determine the initial condition which minimises the error between short-term forecasts and observations over a six hour period.</p></li>
+<li><p>Use the optimal initial condition computed earlier to run another short term forecast. These short term forecasts which have been computed against observations are known as ‘analysis’ or ‘analyses’. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time.</p></li>
+<li><p>Repeat the analysis computation every six hours.</p></li>
+<li><p>Every 12 hours, run a longer forecast (e.g. 7 days into future)</p></li>
+</ol>
+<p>Repeating this process in realtime 24/7 requires the interaction of many separate tasks. We need a system which submits programs, monitors their progress, keeps track of the current time and executes each task according to an ordered set of dependencies (i.e some tasks cannot run until some upstream tasks have finished).</p>
+<p>In order to do this, we require what is known as a workflow engine, which is a fancy name for a task scheduler.</p>
+</section>
+<section id="the-cylc-work-engine">
+<h2>The Cylc work engine<a class="headerlink" href="#the-cylc-work-engine" title="Link to this heading">#</a></h2>
+<p>Recently, the New Zealand National Institute of Water and Atmospheric Research (NIWA) developed its own task scheduler to handle its operational workflows - <strong>cylc</strong>. This scheduler was so elegant, powerful and (relatively) simple to use that it was adopted by the UK Met Office, who wrapped an external software layer - <strong>rose</strong> - around the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> engine.</p>
+<p>Every time you run an atmospheric simulation using the UK Met Office <code class="docutils literal notranslate"><span class="pre">Unifed</span> <span class="pre">Model</span></code> (<code class="docutils literal notranslate"><span class="pre">UM</span></code>), you will be using <code class="docutils literal notranslate"><span class="pre">cylc</span></code>.</p>
+<p>When we refer to <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code>, we are referring to a <code class="docutils literal notranslate"><span class="pre">rose</span></code> framework (which constitutes various GUI tools, scripts and namelists) which launch the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> workflow engine.</p>
+<p>To understand how <code class="docutils literal notranslate"><span class="pre">cylc</span></code> works, visit the documentation here:</p>
+<p><a class="reference external" href="https://cylc.github.io/cylc-doc/7.9.3/html/index.html">https://cylc.github.io/cylc-doc/7.9.3/html/index.html</a></p>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> is still using an earlier version of <code class="docutils literal notranslate"><span class="pre">cylc</span></code> (7.9.3) so make sure you select the correct version. The latest version of <code class="docutils literal notranslate"><span class="pre">cylc</span></code> (8.3.4) contains some significant differences.</p>
+<section id="first-cylc-tutorial">
+<h3>First cylc tutorial<a class="headerlink" href="#first-cylc-tutorial" title="Link to this heading">#</a></h3>
+<p>Let’s run through the tutorial here:</p>
+<p><a class="reference external" href="https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html">https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html</a></p>
+<p>To launch <code class="docutils literal notranslate"><span class="pre">cylc</span></code> on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> you need to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software into your interactive command-line session. Execute the following commands from your <code class="docutils literal notranslate"><span class="pre">gadi</span></code> terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">modulefiles</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
+</pre></div>
+</div>
+<p>This should generate the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
+  <span class="n">Loading</span> <span class="n">requirement</span><span class="p">:</span> <span class="n">mosrs</span><span class="o">-</span><span class="n">setup</span><span class="o">/</span><span class="mf">1.0.1</span>
+</pre></div>
+</div>
+<p>Follow the instructions in section 7.6 - 7.9 of the tutorial. Begin with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc import-examples /tmp
+</pre></div>
+</div>
+<p>This will create a list of cylc examples files in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">examples</span>
+</pre></div>
+</div>
+<p>Remember <code class="docutils literal notranslate"><span class="pre">~</span></code> is a short-cut which refers to your home directory on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<p>All your future <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> tasks to run the <code class="docutils literal notranslate"><span class="pre">UM</span></code> will also be deployed in your <code class="docutils literal notranslate"><span class="pre">~/cylc-run</span></code> directory.</p>
+<p>Let’s run the ‘Hello World’ example. Go to the following path in <code class="docutils literal notranslate"><span class="pre">~/cylc-run</span></code> directory (the path is actually different to the official documentation):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="mf">7.9.7</span><span class="o">/</span><span class="n">tutorial</span><span class="o">/</span><span class="n">oneoff</span><span class="o">/</span><span class="n">basic</span>
+</pre></div>
+</div>
+<p>Using a text editor of your choice (<code class="docutils literal notranslate"><span class="pre">vi</span></code>, <code class="docutils literal notranslate"><span class="pre">nedit</span></code>, <code class="docutils literal notranslate"><span class="pre">nano</span></code>, <code class="docutils literal notranslate"><span class="pre">emacs</span></code>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">VS</span> <span class="pre">Code</span></code>), copy the contents from the tutorial into a file named <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code>.</p>
+<p>Once complete, if you examine the contents of this file using the bash command-line program <code class="docutils literal notranslate"><span class="pre">more</span></code>, it should resemble this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> $ more suite.rc 
+[meta]
+    title = &quot;The cylc Hello World! suite&quot;
+[scheduling]
+    [[dependencies]]
+        graph = &quot;hello&quot;
+[runtime]
+    [[hello]]
+        script = &quot;sleep 10; echo Hello World!&quot;
+</pre></div>
+</div>
+<p>Ok, let’s run this from the command line. Your output should contain the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc run
+
+Loading cylc7/23.09
+  Loading requirement: mosrs-setup/1.0.1
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.9.7]         
+._____._. ._| |_____.           Copyright (C) 2008-2019 NIWA          
+| .___| | | | | .___|   &amp; British Crown (Met Office) &amp; Contributors.  
+| !___| !_! | | !___.  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+!_____!___. |_!_____!  This program comes with ABSOLUTELY NO WARRANTY;
+      .___! |          see `cylc warranty`.  It is free software, you 
+      !_____!           are welcome to redistribute it under certain  
+
+*** listening on https://pgregory.pag548.gb02.ps.gadi.nci.org.au:43080/ ***
+
+To view suite server program contact information:
+ $ cylc get-suite-contact basic
+</pre></div>
+</div>
+<p>Congratulations! You’ve just run your first <code class="docutils literal notranslate"><span class="pre">cylc</span></code> suite.</p>
+</section>
+<section id="second-cylc-tutorial">
+<h3>Second cylc tutorial<a class="headerlink" href="#second-cylc-tutorial" title="Link to this heading">#</a></h3>
+<p>Let’s move onto another <code class="docutils literal notranslate"><span class="pre">cylc</span></code> tutorial, which is located in the <code class="docutils literal notranslate"><span class="pre">rose</span></code> documentation. This tutorial deals with creating graphs, i.e. how we dictate the sequence in which tasks are run. The version of <code class="docutils literal notranslate"><span class="pre">rose</span></code> currently running supported on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> for ACCESS-UM experiments is <code class="docutils literal notranslate"><span class="pre">2019.01.7</span></code> so make sure you using the following URL :</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html</a></p>
+<p>Let’s follow the instructions at the bottom of the page.</p>
+<p><strong>Remember!!</strong> we have to use the following <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands to add <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to our paths on gadi, in case you are starting this tutorial from a fresh login session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">modulefiles</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
+</pre></div>
+</div>
+<p>Back to the tutorial:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">graph</span><span class="o">-</span><span class="n">introduction</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">graph</span><span class="o">-</span><span class="n">introduction</span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file in this directory using the template provided, and then create a task graph using the necessary syntax. When you execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cylc</span> <span class="n">graph</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>the results show match the below image.</p>
+<p><img alt="Simple cylc graph" src="../_images/cylc-graph-tutorial.png" /></p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html</a></p>
+<p>What is the link wit</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./rose-cylc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../starting/nci.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-scripts-and-running-jobs-on-linux">Shell scripts and running jobs on Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-scheduling-for-atmospheric-simulation">Task Scheduling for Atmospheric Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cylc-work-engine">The Cylc work engine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-cylc-tutorial">First cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-cylc-tutorial">Second cylc tutorial</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
