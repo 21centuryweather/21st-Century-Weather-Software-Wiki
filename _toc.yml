@@ -10,3 +10,4 @@ parts:
   - caption: Running atmospheric simulations using ACCESS
     chapters:
     - file: rose-cylc/rose-cylc-intro
+    - file: mosrs/mosrs-intro

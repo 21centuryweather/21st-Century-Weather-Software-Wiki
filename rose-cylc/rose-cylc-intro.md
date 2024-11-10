@@ -151,7 +151,7 @@ Let's move onto another `cylc` tutorial, which is located in the `rose` document
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html
 
-Let's follow the instructions at the bottom of the page.
+Let's follow the Practical section at the bottom of that page.
 
 **Remember!!** we have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are starting this tutorial from a fresh login session.
 ```
@@ -172,6 +172,233 @@ the results show match the below image.
 
 ![Simple cylc graph](images/cylc-graph-tutorial.png)
 
+### Third cylc tutorial ###
+
+Read through the information available here : 
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/integer-cycling.html
+
+This is important as it describes how the same sequence of tasks can be easily repeated. For a weather or climate simulation, you will be running a set of `UM` tasks that will need to be repeated every hour, six hours, every day, or every few days, depending on your problem. You may need to repeat these tasks for weeks, months, years or decades depending on your application.
+
+Regardless of your application and temporal resolution, you will need to be acquainted with how `cylc` handles "cycling" or "repeating" workflows. This will help you understand how to diagnose errors in task flows should they arise, or how to add new tasks if required.
+
+Run through the steps in the practical until your graph resembles the below imgaes.
+
+![Simple cylc cylcing graph](images/cylc-cycle-tutorial.png)
+
+### Fourth cylc tutorial ###
+
+Let's move onto the next tutorial which looks at Date-time cycling, i.e. controlling task flow using real date-time objects. This is how your weather and climate `rose/cylc` suites will be controlled.
+
+Access the fourth tutorial here:
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html
+
+Remember to load the rose and cylc executables into your current `gadi` environment using the `module load` commands.
+
+> **_TIP:_**
+> You can use the `bash` `alias` function to write a simple macro to load the `rose/cylc` environment with a simple command.
+> e.g. in my `~/.bash_profile` file I declare the following:
+> 
+> ```alias start_rose="module use /g/data/hr22/modulefiles;module load cylc7/23.09"```
+> Then if I'm at the terminal and I want to use `rose/cylc` I can just type the following:
+> 
+> ```
+> $ start_rose
+>   Loading cylc7/23.09
+>      Loading requirement: mosrs-setup/1.0.1
+>```
+
+Work your way through the practical exercise, which in this case is a simple taskflow for weather forecasting.
+
+Your final `cylc` graph should include the following sections:
+
+![Simple cylc NWP graph 1](images/cylc-datetime1.png)
+![Simple cylc NWP graph 2](images/cylc-datetime2.png)
+![Simple cylc NWP graph 3](images/cylc-datetime3.png)
+
+### Fifth cylc tutorial ###
+
+Now that we understand how define a workflow in `cylc` as a sequence of tasks and dependencies, how do we determine what each task actually comprises?
+
+In this section you will learn how to assign executables (e.g. `bash` scripts, python scripts, or `UM` binaries) to a task.
+
+Read through the following tutorial : 
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/introduction.html
+
+You will also learn many important tasks including:
+- How to run a complex suite 
+- How to use the cylc GUI to monitor task flows within a suite
+- Understand the `~/cylc-run/<suite-name>/` directory structure to find log files, temporary input and output files and ancillary data.
+
+When running this sample suite, your cylc GUI will resemble the following (assuming you have activate "graph view" in the second view using the buttons in the toolbar).
+
+![Simple cylc runtime](images/cylc-runtime-tutorial.png)
+
+You can inspect other job log files, e.g the `get_rainfall` task, e.g.
+```
+ more log/job/20000101T0600Z/get_rainfall/NN/job.out 
+Suite    : runtime-introduction
+Task Job : 20000101T0600Z/get_rainfall/01 (try 1)
+User@Host: pag548@pgregory.pag548.gb02.ps.gadi.nci.org.au
+
+2024-10-28T05:54:42Z INFO - started
+2024-10-28T05:54:43Z INFO - succeeded
+```
+> **_NOTE:_** In the `cylc` directory structure, the subdirectory `NN` will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error. 
+
+### Sixth cylc tutorial ###
+
+The next tutorial expands our `cylc` knowledge to include runtime configuration. How do we use `bash` environment variables to control the way the suite runs? E.g. can we use environment variables to specify the location of input data files?
+
+Have a read through the following exercises, but **DO NOT** attempt the practicals.
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/runtime-configuration.html
+
+This tutorial is broken and will not run under `cylc7`. 
+
+As mentioned earlier in the section on [running jobs on Linux](#shell-scripts-and-running-jobs-on-Linux) running on gadi, `cylc` is configured to use the `PBS` batch system to schedule jobs.
+
+This tutorial describes how we can pass `PBS` job directives using `cylc` and discusses how to start, stop and restart `cylc` suites and individual `cycl` tasks. 
+
+## First Rose tutorial ##
+
+Rose was created as a way to harness `cylc` to run the `UM`. Typically, it creates a directory `app` which contains `rose-application files` (e.g. `rose-app.conf`) which is a way to prescribe large amounts of input configuration data, e.g.
+- Fortran namelists 
+- `bash` environment variables
+
+See https://cylc.discourse.group/t/dealing-with-long-list-of-environmental-variables/993/4 for an example.
+
+Now we will construct our first `rose` suite to learn how `rose` uses configuration files to pass parameters (typically `bash` environment variables or `fortan` namelists) to tasks controlled by `cylc`.
+
+A `rose` "application" is a rose configuration which executes a defined command.
+
+Let's run through the exercises available here:
+
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html
 
-What is the link wit
+Once your `rose` application has been complete, you should be able to execute it and generate outputs similar to those below.
+```
+$ rose app-run -C ../
+[INFO] export CYLC_TASK_CYCLE_POINT=20171101T0000Z
+[INFO] export DOMAIN=-12,48,5,61
+[INFO] export INTERVAL=60
+[INFO] export MAP_FILE=map.html
+[INFO] export MAP_TEMPLATE=map-template.html
+[INFO] export N_FORECASTS=5
+[INFO] export PATH=/home/548/pag548/rose-tutorial/application-tutorial/bin:/g/data/hr22/apps/cylc7/rose_2019.01.7/bin:/g/data/hr22/apps/cylc7/23.09/bin:/g/data/hr22/apps/mosrs-setup/1.0.1/bin:/home/548/pag548/.local/bin:/home/548/pag548/bin:/opt/pbs/default/bin:/opt/nci/bin:/opt/bin:/opt/Modules/v4.3.0/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/default/bin
+[INFO] export RAINFALL_FILE=test-data/rainfall.csv
+[INFO] export RESOLUTION=0.2
+[INFO] export WEIGHTING=1
+[INFO] export WIND_CYCLES=0
+[INFO] export WIND_FILE_TEMPLATE=test-data/wind_{cycle}_{xy}.csv
+[INFO] install: map-template.html
+[INFO]     source: /home/548/pag548/rose-tutorial/application-tutorial/file/map-template.html
+[INFO] create: test-data
+[INFO] install: test-data
+[INFO]     source: /home/548/pag548/rose-tutorial/application-tutorial/file/test-data
+[INFO] command: forecast $INTERVAL $N_FORECASTS
+Plotting diasbled
+```
+If you plot the file `~/rose-tutorial/application-tutorial/run/map.html` it should resemble this:
+
+![Map](images/map_html.png)
+
+## Second Rose tutorial ##
+
+In the next `rose` tutorial you will learn how to add metadata to a rose suite. Metadata has a variety of uses in a `rose` suite. Follow the exercises located below to find out what they are.
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html
+
+> **__NOTE__** In this tutorial the command `rose config-edit &` is used to edit the rose suite. In most of the 21st Century Weather and ACCESS-NRI documentation, the short-cut `rose edit &` is used instead.
+
+At the conclusion of this tutorial, your `rose edit` window should look like this.
+
+![meta](images/rose-metadata.png)
+
+## Third Rose tutorial ##
+
+In this tutorial you will bring all of your knowledge of `rose` and `cylc` together to start, stop and restart a fully integrated `rose/cylc` suite.
+
+You will learn how to control the overall configuration of a `rose/cylc` suite using the `rose-suit.conf` file.
+
+Follow the exercises contained in this link:
+
+https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html
+
+> **__NOTE__** This exercise refers to `Jinja2`. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using a logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:
+> 
+> https://jinja.palletsprojects.com/en/stable/
+>
+> There is short review of how `Jinja` works here : https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html. You don't have to do the tutorials, but just be conscious that whenever you see braces such as `{{ }}` in a `suite.rc` file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as `{% if ... %}` or `{% for ... }` within the `suite.rc` will be processed to produce the final `suite.rc.processed` file which is the actual file executed by `cylc` which is created in your `~/cylc-run/<rose-id>` directory.
+> In conclusion, Jinja is a way for us to create very long `suite.rc` files by looping over input parameters.
+
+
+I had to make the following changes to `suite.rc` to make the tutorial work. 
+```
+[jinja2:suite.rc]
+    station="camborne", "heathrow", "shetland", "aldergrove","belmullet"
+ ```
+ Otherwise the suite will not run It will fail will the following errors:
+```
+[INFO] install: suite.rc
+[INFO] REGISTERED rose-suite-tutorial -> /home/548/pag548/cylc-run/rose-suite-tutorial
+[FAIL] cylc validate -o /scratch/gb02/pag548/tmp/tmp45a3jD --strict rose-suite-tutorial # return-code=1, stderr=
+[FAIL] ERROR, parameter station out of range: station=belmullet
+```
+I tracked down the error using the `bash` command `grep` which searches for strings in ASCII (text) files.
+```
+$ grep belmullet *
+grep: app: Is a directory
+grep: bin: Is a directory
+grep: lib: Is a directory
+grep: meta: Is a directory
+suite.rc:    [[get_observations<station=belmullet>]]
+```
+This told me that one of the tasks in `suite.rc` expects a station value of `belmullet`. So I added it to the list of station variables defined in `rose-app.conf`. Another solution would be to remove the task `[[get_observations<station=belmullet>]]` from the `suite.rc` file.
+
+To check the suite has been installed correctly, your `~/cylc-run/rose-suite-tutorial/` directory should contain the following:
+```
+$ ls ~/cylc-run/rose-suite-tutorial/
+app  bin  lib  log  meta  share  suite.rc  work
+```
+Note the `suite.rc` file installed in your `~/cylc-run/rose-suite-tutorial/` directory now contains `jinja` directives appended to the beginning of the file.
+```
+$ more ~/cylc-run/rose-suite-tutorial/suite.rc 
+#!jinja2
+{# Rose Configuration Insertion: Init #}
+{% set CYLC_VERSION="7.9.7" %}
+{% set ROSE_ORIG_HOST="gadi-login-09.gadi.nci.org.au" %}
+{% set ROSE_SITE="nci" %}
+{% set ROSE_VERSION="2019.01.7" %}
+{% set station="camborne", "heathrow", "shetland", "aldergrove","belmullet" %}
+{% set ROSE_SUITE_VARIABLES={
+    'CYLC_VERSION': CYLC_VERSION,
+    'ROSE_ORIG_HOST': ROSE_ORIG_HOST,
+    'ROSE_SITE': ROSE_SITE,
+    'ROSE_VERSION': ROSE_VERSION,
+    'station': station,
+} %}
+[cylc]
+    [[environment]]
+        CYLC_VERSION=7.9.7
+        DOMAIN=-12,48,5,61
+        RESOLUTION=0.2
+        ROSE_ORIG_HOST=gadi-login-09.gadi.nci.org.au
+```
+
+You can skip the section about **Rose Bush** as this software is no longer available on `gadi`.
+
+In the practical section complete section 1) but do note attempt section 2) as it the suite is missing a list of UK Met Office station data and will fail.
+
+## Rosie ##
+
+A few words about **Rosie**. Rosie is a tool for managing `rose` suites. You will use `rosie` commands to check-out existing `rose` suites (or "roses") to run your weather and climate experiments. 
+
+If you are making major modifications and building new `rose` suites, you will be committing your new suites to the central "roses" repository using `rosie`.
+
+Have a quick read through the documentation available here : https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/rosie.html
+
+There is no need to complete the practical.  We will use `rosie` in the next exercise to interface with the UK Met Office Science Repository Services (MOSRS) to check-out our next exercise.
+
