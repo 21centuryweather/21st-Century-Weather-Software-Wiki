@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'rose-cylc/rose-cylc-intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MOSRS" href="../mosrs/mosrs-intro.html" />
     <link rel="prev" title="&lt;no title&gt;" href="../starting/nci.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,6 +171,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 </ul>
 
     </div>
@@ -362,8 +364,16 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cylc-work-engine">The Cylc work engine</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-cylc-tutorial">First cylc tutorial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-cylc-tutorial">Second cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-cylc-tutorial">Third cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourth-cylc-tutorial">Fourth cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fifth-cylc-tutorial">Fifth cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sixth-cylc-tutorial">Sixth cylc tutorial</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-rose-tutorial">First Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-rose-tutorial">Second Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#third-rose-tutorial">Third Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rosie">Rosie</a></li>
 </ul>
             </nav>
         </div>
@@ -500,7 +510,7 @@ To view suite server program contact information:
 <h3>Second cylc tutorial<a class="headerlink" href="#second-cylc-tutorial" title="Link to this heading">#</a></h3>
 <p>Let’s move onto another <code class="docutils literal notranslate"><span class="pre">cylc</span></code> tutorial, which is located in the <code class="docutils literal notranslate"><span class="pre">rose</span></code> documentation. This tutorial deals with creating graphs, i.e. how we dictate the sequence in which tasks are run. The version of <code class="docutils literal notranslate"><span class="pre">rose</span></code> currently running supported on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> for ACCESS-UM experiments is <code class="docutils literal notranslate"><span class="pre">2019.01.7</span></code> so make sure you using the following URL :</p>
 <p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html</a></p>
-<p>Let’s follow the instructions at the bottom of the page.</p>
+<p>Let’s follow the Practical section at the bottom of that page.</p>
 <p><strong>Remember!!</strong> we have to use the following <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands to add <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to our paths on gadi, in case you are starting this tutorial from a fresh login session.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">modulefiles</span>
 <span class="n">module</span> <span class="n">load</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
@@ -517,9 +527,198 @@ To view suite server program contact information:
 </div>
 <p>the results show match the below image.</p>
 <p><img alt="Simple cylc graph" src="../_images/cylc-graph-tutorial.png" /></p>
-<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html</a></p>
-<p>What is the link wit</p>
 </section>
+<section id="third-cylc-tutorial">
+<h3>Third cylc tutorial<a class="headerlink" href="#third-cylc-tutorial" title="Link to this heading">#</a></h3>
+<p>Read through the information available here :</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/integer-cycling.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/integer-cycling.html</a></p>
+<p>This is important as it describes how the same sequence of tasks can be easily repeated. For a weather or climate simulation, you will be running a set of <code class="docutils literal notranslate"><span class="pre">UM</span></code> tasks that will need to be repeated every hour, six hours, every day, or every few days, depending on your problem. You may need to repeat these tasks for weeks, months, years or decades depending on your application.</p>
+<p>Regardless of your application and temporal resolution, you will need to be acquainted with how <code class="docutils literal notranslate"><span class="pre">cylc</span></code> handles “cycling” or “repeating” workflows. This will help you understand how to diagnose errors in task flows should they arise, or how to add new tasks if required.</p>
+<p>Run through the steps in the practical until your graph resembles the below imgaes.</p>
+<p><img alt="Simple cylc cylcing graph" src="../_images/cylc-cycle-tutorial.png" /></p>
+</section>
+<section id="fourth-cylc-tutorial">
+<h3>Fourth cylc tutorial<a class="headerlink" href="#fourth-cylc-tutorial" title="Link to this heading">#</a></h3>
+<p>Let’s move onto the next tutorial which looks at Date-time cycling, i.e. controlling task flow using real date-time objects. This is how your weather and climate <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suites will be controlled.</p>
+<p>Access the fourth tutorial here:</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html</a></p>
+<p>Remember to load the rose and cylc executables into your current <code class="docutils literal notranslate"><span class="pre">gadi</span></code> environment using the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands.</p>
+<blockquote>
+<div><p><strong><em>TIP:</em></strong>
+You can use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> <code class="docutils literal notranslate"><span class="pre">alias</span></code> function to write a simple macro to load the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> environment with a simple command.
+e.g. in my <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file I declare the following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">start_rose=&quot;module</span> <span class="pre">use</span> <span class="pre">/g/data/hr22/modulefiles;module</span> <span class="pre">load</span> <span class="pre">cylc7/23.09&quot;</span></code>
+Then if I’m at the terminal and I want to use <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> I can just type the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ start_rose
+  Loading cylc7/23.09
+     Loading requirement: mosrs-setup/1.0.1
+</pre></div>
+</div>
+</div></blockquote>
+<p>Work your way through the practical exercise, which in this case is a simple taskflow for weather forecasting.</p>
+<p>Your final <code class="docutils literal notranslate"><span class="pre">cylc</span></code> graph should include the following sections:</p>
+<p><img alt="Simple cylc NWP graph 1" src="../_images/cylc-datetime1.png" />
+<img alt="Simple cylc NWP graph 2" src="../_images/cylc-datetime2.png" />
+<img alt="Simple cylc NWP graph 3" src="../_images/cylc-datetime3.png" /></p>
+</section>
+<section id="fifth-cylc-tutorial">
+<h3>Fifth cylc tutorial<a class="headerlink" href="#fifth-cylc-tutorial" title="Link to this heading">#</a></h3>
+<p>Now that we understand how define a workflow in <code class="docutils literal notranslate"><span class="pre">cylc</span></code> as a sequence of tasks and dependencies, how do we determine what each task actually comprises?</p>
+<p>In this section you will learn how to assign executables (e.g. <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts, python scripts, or <code class="docutils literal notranslate"><span class="pre">UM</span></code> binaries) to a task.</p>
+<p>Read through the following tutorial :</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/introduction.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/introduction.html</a></p>
+<p>You will also learn many important tasks including:</p>
+<ul class="simple">
+<li><p>How to run a complex suite</p></li>
+<li><p>How to use the cylc GUI to monitor task flows within a suite</p></li>
+<li><p>Understand the <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-name&gt;/</span></code> directory structure to find log files, temporary input and output files and ancillary data.</p></li>
+</ul>
+<p>When running this sample suite, your cylc GUI will resemble the following (assuming you have activate “graph view” in the second view using the buttons in the toolbar).</p>
+<p><img alt="Simple cylc runtime" src="../_images/cylc-runtime-tutorial.png" /></p>
+<p>You can inspect other job log files, e.g the <code class="docutils literal notranslate"><span class="pre">get_rainfall</span></code> task, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">more</span> <span class="n">log</span><span class="o">/</span><span class="n">job</span><span class="o">/</span><span class="mi">20000101</span><span class="n">T0600Z</span><span class="o">/</span><span class="n">get_rainfall</span><span class="o">/</span><span class="n">NN</span><span class="o">/</span><span class="n">job</span><span class="o">.</span><span class="n">out</span> 
+<span class="n">Suite</span>    <span class="p">:</span> <span class="n">runtime</span><span class="o">-</span><span class="n">introduction</span>
+<span class="n">Task</span> <span class="n">Job</span> <span class="p">:</span> <span class="mi">20000101</span><span class="n">T0600Z</span><span class="o">/</span><span class="n">get_rainfall</span><span class="o">/</span><span class="mi">01</span> <span class="p">(</span><span class="k">try</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">User</span><span class="nd">@Host</span><span class="p">:</span> <span class="n">pag548</span><span class="nd">@pgregory</span><span class="o">.</span><span class="n">pag548</span><span class="o">.</span><span class="n">gb02</span><span class="o">.</span><span class="n">ps</span><span class="o">.</span><span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+
+<span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span><span class="n">T05</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">42</span><span class="n">Z</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">started</span>
+<span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span><span class="n">T05</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">43</span><span class="n">Z</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">succeeded</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong> In the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> directory structure, the subdirectory <code class="docutils literal notranslate"><span class="pre">NN</span></code> will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error.</p>
+</div></blockquote>
+</section>
+<section id="sixth-cylc-tutorial">
+<h3>Sixth cylc tutorial<a class="headerlink" href="#sixth-cylc-tutorial" title="Link to this heading">#</a></h3>
+<p>The next tutorial expands our <code class="docutils literal notranslate"><span class="pre">cylc</span></code> knowledge to include runtime configuration. How do we use <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables to control the way the suite runs? E.g. can we use environment variables to specify the location of input data files?</p>
+<p>Have a read through the following exercises, but <strong>DO NOT</strong> attempt the practicals.</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/runtime-configuration.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/runtime-configuration.html</a></p>
+<p>This tutorial is broken and will not run under <code class="docutils literal notranslate"><span class="pre">cylc7</span></code>.</p>
+<p>As mentioned earlier in the section on <a class="reference internal" href="#shell-scripts-and-running-jobs-on-Linux"><span class="xref myst">running jobs on Linux</span></a> running on gadi, <code class="docutils literal notranslate"><span class="pre">cylc</span></code> is configured to use the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> batch system to schedule jobs.</p>
+<p>This tutorial describes how we can pass <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job directives using <code class="docutils literal notranslate"><span class="pre">cylc</span></code> and discusses how to start, stop and restart <code class="docutils literal notranslate"><span class="pre">cylc</span></code> suites and individual <code class="docutils literal notranslate"><span class="pre">cycl</span></code> tasks.</p>
+</section>
+</section>
+<section id="first-rose-tutorial">
+<h2>First Rose tutorial<a class="headerlink" href="#first-rose-tutorial" title="Link to this heading">#</a></h2>
+<p>Rose was created as a way to harness <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to run the <code class="docutils literal notranslate"><span class="pre">UM</span></code>. Typically, it creates a directory <code class="docutils literal notranslate"><span class="pre">app</span></code> which contains <code class="docutils literal notranslate"><span class="pre">rose-application</span> <span class="pre">files</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">rose-app.conf</span></code>) which is a way to prescribe large amounts of input configuration data, e.g.</p>
+<ul class="simple">
+<li><p>Fortran namelists</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables</p></li>
+</ul>
+<p>See <a class="reference external" href="https://cylc.discourse.group/t/dealing-with-long-list-of-environmental-variables/993/4">https://cylc.discourse.group/t/dealing-with-long-list-of-environmental-variables/993/4</a> for an example.</p>
+<p>Now we will construct our first <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite to learn how <code class="docutils literal notranslate"><span class="pre">rose</span></code> uses configuration files to pass parameters (typically <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables or <code class="docutils literal notranslate"><span class="pre">fortan</span></code> namelists) to tasks controlled by <code class="docutils literal notranslate"><span class="pre">cylc</span></code>.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">rose</span></code> “application” is a rose configuration which executes a defined command.</p>
+<p>Let’s run through the exercises available here:</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/applications.html</a></p>
+<p>Once your <code class="docutils literal notranslate"><span class="pre">rose</span></code> application has been complete, you should be able to execute it and generate outputs similar to those below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose app-run -C ../
+[INFO] export CYLC_TASK_CYCLE_POINT=20171101T0000Z
+[INFO] export DOMAIN=-12,48,5,61
+[INFO] export INTERVAL=60
+[INFO] export MAP_FILE=map.html
+[INFO] export MAP_TEMPLATE=map-template.html
+[INFO] export N_FORECASTS=5
+[INFO] export PATH=/home/548/pag548/rose-tutorial/application-tutorial/bin:/g/data/hr22/apps/cylc7/rose_2019.01.7/bin:/g/data/hr22/apps/cylc7/23.09/bin:/g/data/hr22/apps/mosrs-setup/1.0.1/bin:/home/548/pag548/.local/bin:/home/548/pag548/bin:/opt/pbs/default/bin:/opt/nci/bin:/opt/bin:/opt/Modules/v4.3.0/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/default/bin
+[INFO] export RAINFALL_FILE=test-data/rainfall.csv
+[INFO] export RESOLUTION=0.2
+[INFO] export WEIGHTING=1
+[INFO] export WIND_CYCLES=0
+[INFO] export WIND_FILE_TEMPLATE=test-data/wind_{cycle}_{xy}.csv
+[INFO] install: map-template.html
+[INFO]     source: /home/548/pag548/rose-tutorial/application-tutorial/file/map-template.html
+[INFO] create: test-data
+[INFO] install: test-data
+[INFO]     source: /home/548/pag548/rose-tutorial/application-tutorial/file/test-data
+[INFO] command: forecast $INTERVAL $N_FORECASTS
+Plotting diasbled
+</pre></div>
+</div>
+<p>If you plot the file <code class="docutils literal notranslate"><span class="pre">~/rose-tutorial/application-tutorial/run/map.html</span></code> it should resemble this:</p>
+<p><img alt="Map" src="../_images/map_html.png" /></p>
+</section>
+<section id="second-rose-tutorial">
+<h2>Second Rose tutorial<a class="headerlink" href="#second-rose-tutorial" title="Link to this heading">#</a></h2>
+<p>In the next <code class="docutils literal notranslate"><span class="pre">rose</span></code> tutorial you will learn how to add metadata to a rose suite. Metadata has a variety of uses in a <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite. Follow the exercises located below to find out what they are.</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html</a></p>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> In this tutorial the command <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">config-edit</span> <span class="pre">&amp;</span></code> is used to edit the rose suite. In most of the 21st Century Weather and ACCESS-NRI documentation, the short-cut <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span> <span class="pre">&amp;</span></code> is used instead.</p>
+</div></blockquote>
+<p>At the conclusion of this tutorial, your <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> window should look like this.</p>
+<p><img alt="meta" src="../_images/rose-metadata.png" /></p>
+</section>
+<section id="third-rose-tutorial">
+<h2>Third Rose tutorial<a class="headerlink" href="#third-rose-tutorial" title="Link to this heading">#</a></h2>
+<p>In this tutorial you will bring all of your knowledge of <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> together to start, stop and restart a fully integrated <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite.</p>
+<p>You will learn how to control the overall configuration of a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite using the <code class="docutils literal notranslate"><span class="pre">rose-suit.conf</span></code> file.</p>
+<p>Follow the exercises contained in this link:</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html</a></p>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> This exercise refers to <code class="docutils literal notranslate"><span class="pre">Jinja2</span></code>. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using a logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:</p>
+<p><a class="reference external" href="https://jinja.palletsprojects.com/en/stable/">https://jinja.palletsprojects.com/en/stable/</a></p>
+<p>There is short review of how <code class="docutils literal notranslate"><span class="pre">Jinja</span></code> works here : <a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html</a>. You don’t have to do the tutorials, but just be conscious that whenever you see braces such as <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">}}</span></code> in a <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">if</span> <span class="pre">...</span> <span class="pre">%}</span></code> or <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">for</span> <span class="pre">...</span> <span class="pre">}</span></code> within the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> will be processed to produce the final <code class="docutils literal notranslate"><span class="pre">suite.rc.processed</span></code> file which is the actual file executed by <code class="docutils literal notranslate"><span class="pre">cylc</span></code> which is created in your <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;rose-id&gt;</span></code> directory.
+In conclusion, Jinja is a way for us to create very long <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> files by looping over input parameters.</p>
+</div></blockquote>
+<p>I had to make the following changes to <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> to make the tutorial work.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">jinja2</span><span class="p">:</span><span class="n">suite</span><span class="o">.</span><span class="n">rc</span><span class="p">]</span>
+    <span class="n">station</span><span class="o">=</span><span class="s2">&quot;camborne&quot;</span><span class="p">,</span> <span class="s2">&quot;heathrow&quot;</span><span class="p">,</span> <span class="s2">&quot;shetland&quot;</span><span class="p">,</span> <span class="s2">&quot;aldergrove&quot;</span><span class="p">,</span><span class="s2">&quot;belmullet&quot;</span>
+</pre></div>
+</div>
+<p>Otherwise the suite will not run It will fail will the following errors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">install</span><span class="p">:</span> <span class="n">suite</span><span class="o">.</span><span class="n">rc</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">REGISTERED</span> <span class="n">rose</span><span class="o">-</span><span class="n">suite</span><span class="o">-</span><span class="n">tutorial</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">rose</span><span class="o">-</span><span class="n">suite</span><span class="o">-</span><span class="n">tutorial</span>
+<span class="p">[</span><span class="n">FAIL</span><span class="p">]</span> <span class="n">cylc</span> <span class="n">validate</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">gb02</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tmp45a3jD</span> <span class="o">--</span><span class="n">strict</span> <span class="n">rose</span><span class="o">-</span><span class="n">suite</span><span class="o">-</span><span class="n">tutorial</span> <span class="c1"># return-code=1, stderr=</span>
+<span class="p">[</span><span class="n">FAIL</span><span class="p">]</span> <span class="n">ERROR</span><span class="p">,</span> <span class="n">parameter</span> <span class="n">station</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span><span class="p">:</span> <span class="n">station</span><span class="o">=</span><span class="n">belmullet</span>
+</pre></div>
+</div>
+<p>I tracked down the error using the <code class="docutils literal notranslate"><span class="pre">bash</span></code> command <code class="docutils literal notranslate"><span class="pre">grep</span></code> which searches for strings in ASCII (text) files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep belmullet *
+grep: app: Is a directory
+grep: bin: Is a directory
+grep: lib: Is a directory
+grep: meta: Is a directory
+suite.rc:    [[get_observations&lt;station=belmullet&gt;]]
+</pre></div>
+</div>
+<p>This told me that one of the tasks in <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> expects a station value of <code class="docutils literal notranslate"><span class="pre">belmullet</span></code>. So I added it to the list of station variables defined in <code class="docutils literal notranslate"><span class="pre">rose-app.conf</span></code>. Another solution would be to remove the task <code class="docutils literal notranslate"><span class="pre">[[get_observations&lt;station=belmullet&gt;]]</span></code> from the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file.</p>
+<p>To check the suite has been installed correctly, your <code class="docutils literal notranslate"><span class="pre">~/cylc-run/rose-suite-tutorial/</span></code> directory should contain the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls ~/cylc-run/rose-suite-tutorial/
+app  bin  lib  log  meta  share  suite.rc  work
+</pre></div>
+</div>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file installed in your <code class="docutils literal notranslate"><span class="pre">~/cylc-run/rose-suite-tutorial/</span></code> directory now contains <code class="docutils literal notranslate"><span class="pre">jinja</span></code> directives appended to the beginning of the file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/cylc-run/rose-suite-tutorial/suite.rc 
+#!jinja2
+{# Rose Configuration Insertion: Init #}
+{% set CYLC_VERSION=&quot;7.9.7&quot; %}
+{% set ROSE_ORIG_HOST=&quot;gadi-login-09.gadi.nci.org.au&quot; %}
+{% set ROSE_SITE=&quot;nci&quot; %}
+{% set ROSE_VERSION=&quot;2019.01.7&quot; %}
+{% set station=&quot;camborne&quot;, &quot;heathrow&quot;, &quot;shetland&quot;, &quot;aldergrove&quot;,&quot;belmullet&quot; %}
+{% set ROSE_SUITE_VARIABLES={
+    &#39;CYLC_VERSION&#39;: CYLC_VERSION,
+    &#39;ROSE_ORIG_HOST&#39;: ROSE_ORIG_HOST,
+    &#39;ROSE_SITE&#39;: ROSE_SITE,
+    &#39;ROSE_VERSION&#39;: ROSE_VERSION,
+    &#39;station&#39;: station,
+} %}
+[cylc]
+    [[environment]]
+        CYLC_VERSION=7.9.7
+        DOMAIN=-12,48,5,61
+        RESOLUTION=0.2
+        ROSE_ORIG_HOST=gadi-login-09.gadi.nci.org.au
+</pre></div>
+</div>
+<p>You can skip the section about <strong>Rose Bush</strong> as this software is no longer available on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<p>In the practical section complete section 1) but do note attempt section 2) as it the suite is missing a list of UK Met Office station data and will fail.</p>
+</section>
+<section id="rosie">
+<h2>Rosie<a class="headerlink" href="#rosie" title="Link to this heading">#</a></h2>
+<p>A few words about <strong>Rosie</strong>. Rosie is a tool for managing <code class="docutils literal notranslate"><span class="pre">rose</span></code> suites. You will use <code class="docutils literal notranslate"><span class="pre">rosie</span></code> commands to check-out existing <code class="docutils literal notranslate"><span class="pre">rose</span></code> suites (or “roses”) to run your weather and climate experiments.</p>
+<p>If you are making major modifications and building new <code class="docutils literal notranslate"><span class="pre">rose</span></code> suites, you will be committing your new suites to the central “roses” repository using <code class="docutils literal notranslate"><span class="pre">rosie</span></code>.</p>
+<p>Have a quick read through the documentation available here : <a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/rosie.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/rosie.html</a></p>
+<p>There is no need to complete the practical.  We will use <code class="docutils literal notranslate"><span class="pre">rosie</span></code> in the next exercise to interface with the UK Met Office Science Repository Services (MOSRS) to check-out our next exercise.</p>
 </section>
 </section>
 
@@ -562,6 +761,15 @@ To view suite server program contact information:
         <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../mosrs/mosrs-intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MOSRS</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -584,8 +792,16 @@ To view suite server program contact information:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cylc-work-engine">The Cylc work engine</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-cylc-tutorial">First cylc tutorial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-cylc-tutorial">Second cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-cylc-tutorial">Third cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourth-cylc-tutorial">Fourth cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fifth-cylc-tutorial">Fifth cylc tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sixth-cylc-tutorial">Sixth cylc tutorial</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-rose-tutorial">First Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-rose-tutorial">Second Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#third-rose-tutorial">Third Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rosie">Rosie</a></li>
 </ul>
   </nav></div>
 

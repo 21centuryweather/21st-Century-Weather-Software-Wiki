@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; 21st Century Weather Software Wiki</title>
+    <title>Using MOSRS and Rose &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -171,6 +171,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 </ul>
 
     </div>
@@ -348,7 +349,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Using MOSRS and Rose</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -357,9 +358,11 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -370,7 +373,77 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="using-mosrs-and-rose">
+<h1>Using MOSRS and Rose<a class="headerlink" href="#using-mosrs-and-rose" title="Link to this heading">#</a></h1>
+<p>Let’s run a very small <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite via the UK Met Office <code class="docutils literal notranslate"><span class="pre">MOSRS</span></code> service.</p>
+<p>Before doing so, we will start what is called a ‘persistent session’ on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<section id="persistent-sessions">
+<h2>Persistent sessions<a class="headerlink" href="#persistent-sessions" title="Link to this heading">#</a></h2>
+<p>What is a persistent session and why do we need it?  Because <code class="docutils literal notranslate"><span class="pre">gadi</span></code> <code class="docutils literal notranslate"><span class="pre">ARE</span></code> sessions have strict time limits, as does the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job scheduler. Individual <code class="docutils literal notranslate"><span class="pre">PBS</span></code> jobs on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> have a time limit of 48 hours, see</p>
+<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=236881198">https://opus.nci.org.au/pages/viewpage.action?pageId=236881198</a></p>
+<p>If we are running a weather or climate session that will take days (or weeks, or months!) to run, we need an ability to co-ordinate all these sub-tasks for an extended period of item.</p>
+<p>Hence, NCI has created the persistent sessions capability. It creates a temporary virtual machine which runs indefinitely. This allows us to launch a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite without any time limits.</p>
+<p>NCI has the following documentation describing how to setup and configure persistent sessions:</p>
+<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=241927941">https://opus.nci.org.au/pages/viewpage.action?pageId=241927941</a></p>
+<p><a class="reference external" href="https://opus.nci.org.au/display/Help/Persistent+Sessions">https://opus.nci.org.au/display/Help/Persistent+Sessions</a></p>
+<p><a class="reference external" href="https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs">https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs</a></p>
+<p>ACCESS-Hive also has the following:</p>
+<p><a class="reference external" href="https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session">https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session</a></p>
+<p>As you can see, there are a few ways to configure a persistent session. My preferred way is via an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> terminal session.</p>
+<p>After starting a session - e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ persistent-sessions start &lt;session-name&gt; -p &lt;project&gt;
+session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
+  ssh &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+<p>I make sure the file <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/cylc-session</span></code> contains the session name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/.persistent-sessions/cylc-session 
+&lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+<p>Then I log into the session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+</section>
+<section id="mosrs-authentication">
+<h2>MOSRS authentication<a class="headerlink" href="#mosrs-authentication" title="Link to this heading">#</a></h2>
+<p>Once you have connected to your persistent-session, you will have to load the required <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> modules and then authenticate with the central MOSRS repository.</p>
+<p>A successful authentication will look like.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">mosrs</span><span class="o">-</span><span class="n">auth</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">You</span> <span class="n">need</span> <span class="n">to</span> <span class="n">enter</span> <span class="n">your</span> <span class="n">MOSRS</span> <span class="n">credentials</span> <span class="n">here</span> <span class="n">so</span> <span class="n">that</span> <span class="n">GPG</span> <span class="n">can</span> <span class="n">cache</span> <span class="n">your</span> <span class="n">password</span><span class="o">.</span>
+<span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">MOSRS</span> <span class="n">password</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;&gt;</span><span class="p">:</span> 
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">Subversion</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">Subversion</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">rosie</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">rosie</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-out-a-suite">
+<h2>Checking out a suite<a class="headerlink" href="#checking-out-a-suite" title="Link to this heading">#</a></h2>
+<p>Let’s run a tiny test suite developed by Paul Leopardi at ACCESS-NRI. You can find the full documentation here :</p>
+<p><a class="github reference external" href="https://github.com/ACCESS-NRI/training-day-2024-regional_model/blob/main/access_rose_cylc/rose_cylc_example.md">ACCESS-NRI/training-day-2024-regional_model</a></p>
+<p>You can check out Martin’s suite using the rosie <code class="docutils literal notranslate"><span class="pre">check</span> <span class="pre">out</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">cq161</span>
+</pre></div>
+</div>
+<p>Which creates a local copy of the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite to <code class="docutils literal notranslate"><span class="pre">~/roses/u-cq161</span></code>.</p>
+<p>Let’s walk through the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file to see what this suite will do.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[scheduling]</span></code> section tells us which tasks will run, and in which order. This suite only contains three tasks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_stream</span> <span class="o">=&gt;</span> <span class="n">build_stream</span> <span class="o">=&gt;</span> <span class="n">run_stream</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">[runtime]</span></code> section tells us <strong>how</strong> these tasks will run.</p>
+<p>Firstly there are three sections (or namespaces) which define the local environment: <code class="docutils literal notranslate"><span class="pre">[[root]]</span></code>, <code class="docutils literal notranslate"><span class="pre">[[local]]</span></code> and <code class="docutils literal notranslate"><span class="pre">[[HPC]]</span></code>, where the suite will run and in this instance, the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job specifications.</p>
+<p>There each task has its own namespace: <code class="docutils literal notranslate"><span class="pre">[[get_stream]]</span></code>, <code class="docutils literal notranslate"><span class="pre">[[build_stream]]</span></code> and <code class="docutils literal notranslate"><span class="pre">[[run_stream]]</span></code>.</p>
+<p>The first task <code class="docutils literal notranslate"><span class="pre">[[get_stream]]</span></code> inherits the <code class="docutils literal notranslate"><span class="pre">[[local]]</span></code> namespace and runs the <code class="docutils literal notranslate"><span class="pre">get_stream</span></code> script after some preliminary <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands.</p>
+<p>The second task <code class="docutils literal notranslate"><span class="pre">[[build_stream]]</span></code> inherits the <code class="docutils literal notranslate"><span class="pre">[[HPC]]</span></code> namespace and executes the <code class="docutils literal notranslate"><span class="pre">build_stream</span></code> script.</p>
+<p>The last task <code class="docutils literal notranslate"><span class="pre">[[run_stream]]</span></code> inherits the same namespace and executes the <code class="docutils literal notranslate"><span class="pre">run_stream</span></code> script.</p>
+<p>NOTE. You will have to restart your sessions after quarterly maintenance.</p>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -417,9 +490,11 @@
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
