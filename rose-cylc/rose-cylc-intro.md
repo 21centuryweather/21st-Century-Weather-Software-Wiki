@@ -1,6 +1,16 @@
 # Introduction to Rose/Cylc
 
-Running an atmospheric simulation is a complex process which requires the completion of many separate tasks. In order to co-ordinate these tasks, we requirer a job scheduler, or a **workflow engine**.
+Running an atmospheric simulation is a complex process which requires executing many separate tasks. In order to co-ordinate these tasks, we requirer a job scheduler, or a **workflow engine**.
+
+These tutorials assume:
+1. You have an NCI account on `gadi`.
+2. You can access a command-line terminal on `gadi` (either via an `ssh` session or using the `ARE` research environment)
+3. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account.
+4. You have memberships to the following `gadi` projects:
+    - `hr22`
+    - `access`
+    - `ki32`
+    - `ki32_mosrs`
 
 ## Shell scripts and running jobs on Linux
 
@@ -24,25 +34,25 @@ A deeper `bash` reference can be found here:
 
 https://learn.microsoft.com/en-us/training/modules/bash-introduction/
 
-Depending on your prior experience with Linux and `bash`, you may want to spend a few days working through these tutorials and examples to gain a better understanding of how `bash` commands and `bash` ENVIRONMENT work and familiarise yourself with the Linux directory structures on `gadi`.
+Depending on your prior experience with Linux and `bash`, you may want to spend a few days working through these tutorials and examples to gain a better understanding of how `bash` commands and `bash` `ENVIRONMENT` variables work and familiarise yourself with the Linux directory structures on `gadi`.
 
 Typically you will use `bash` scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the UM itself), python scripts for pre-processing or post-processing, or bash commands themselves.
 
-When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash' scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.
+When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.
 
 The NCI supercomputer `gadi` uses the `PBS` job scheduler. Documentation is available here:
 
 https://opus.nci.org.au/pages/viewpage.action?pageId=236880320
 
-But, what if we have a complex set of tasks that must run in a particular sequence? Can we create programs which processes `PBS` jobs in a user-specified workflow?  
+But, what if we have a complex set of tasks that must run in a particular sequence? Can we create programs which process `PBS` jobs in a user-specified workflow?  
 
 ## Task Scheduling for Atmospheric Simulation
 
 A good example of a complex tasks that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:
-1. Reading the previous weather forecast data initialised some three hours ago
+1. Reading the previous weather forecast data initialised some six hours ago
 2. Collect observations valid from three hours ago, to three hours in the future
-3. Running a perturbation forecast model which uses an optimisation method to determine the initial condition which minimises the error between the short-term forecasts and observations over a six hour period. 
-4. Use the optimal initial condition which minimises short-term error growth to run another short term forecast. These short term forecasts which have been computed against observations are known as 'analysis' or 'analyses'. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time. 
+3. Running a perturbation forecast model with an optimisation tool to determine the initial condition which minimises the error between short-term forecasts and observations over a six hour period. 
+4. Use the optimal initial condition computed earlier to run another short term forecast. These short term forecasts which have been computed against observations are known as 'analysis' or 'analyses'. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time. 
 5. Repeat the analysis computation every six hours.
 5. Every 12 hours, run a longer forecast (e.g. 7 days into future)
 
@@ -54,15 +64,15 @@ In order to do this, we require what is known as a workflow engine, which is a f
 
 Recently, the New Zealand National Institute of Water and Atmospheric Research (NIWA) developed its own task scheduler to handle its operational workflows - **cylc**. This scheduler was so elegant, powerful and (relatively) simple to use that it was adopted by the UK Met Office, who wrapped an external software layer - **rose** - around the `cylc` engine. 
 
-Every time you run an atmospheric simulation using the UK Met Office `Unifed Model` (`UM`), 
+Every time you run an atmospheric simulation using the UK Met Office `Unifed Model` (`UM`), you will be using `cylc`.
 
-When we refer to `rose/cylc`, we are referring to a `rose` framework (which constitutes various GUI tools and scripts) which launch the `cylc` workflow engine.
+When we refer to `rose/cylc`, we are referring to a `rose` framework (which constitutes various GUI tools, scripts and namelists) which launch the `cylc` workflow engine.
 
 To understand how `cylc` works, visit the documentation here:
 
 https://cylc.github.io/cylc-doc/7.9.3/html/index.html
 
-Note the `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure 
+Note the `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure you select the correct version. The latest version of `cylc` (8.3.4) contains some significant differences.
 
 ### First cylc tutorial ###
 
@@ -70,12 +80,18 @@ Let's run through the tutorial here:
 
 https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html
 
-To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session.
+To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session. Execute the following commands from your `gadi` terminal:
 ```
 module use /g/data/hr22/modulefiles
 module load cylc7/23.09
 ```
-Follow the instructions in section 7.6 - 7.9 of the tutorial.
+This should generate the following output:
+```
+Loading cylc7/23.09
+  Loading requirement: mosrs-setup/1.0.1
+```
+
+Follow the instructions in section 7.6 - 7.9 of the tutorial. Begin with
 
 ```
 $ cylc import-examples /tmp
@@ -137,7 +153,7 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.h
 
 Let's follow the Practical section at the bottom of that page.
 
-**Remember!!** we have to use the `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are startingn this tutorial from a fresh login session.
+**Remember!!** we have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are starting this tutorial from a fresh login session.
 ```
 module use /g/data/hr22/modulefiles
 module load cylc7/23.09
