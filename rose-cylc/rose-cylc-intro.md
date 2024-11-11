@@ -262,13 +262,15 @@ As mentioned earlier in the section on [running jobs on Linux](#shell-scripts-an
 
 This tutorial describes how we can pass `PBS` job directives using `cylc` and discusses how to start, stop and restart `cylc` suites and individual `cycl` tasks. 
 
-## First Rose tutorial ##
+## Rose ##
 
 Rose was created as a way to harness `cylc` to run the `UM`. Typically, it creates a directory `app` which contains `rose-application files` (e.g. `rose-app.conf`) which is a way to prescribe large amounts of input configuration data, e.g.
 - Fortran namelists 
 - `bash` environment variables
 
 See https://cylc.discourse.group/t/dealing-with-long-list-of-environmental-variables/993/4 for an example.
+
+### First Rose tutorial ###
 
 Now we will construct our first `rose` suite to learn how `rose` uses configuration files to pass parameters (typically `bash` environment variables or `fortan` namelists) to tasks controlled by `cylc`.
 
@@ -305,7 +307,7 @@ If you plot the file `~/rose-tutorial/application-tutorial/run/map.html` it shou
 
 ![Map](images/map_html.png)
 
-## Second Rose tutorial ##
+### Second Rose tutorial ###
 
 In the next `rose` tutorial you will learn how to add metadata to a rose suite. Metadata has a variety of uses in a `rose` suite. Follow the exercises located below to find out what they are.
 
@@ -317,7 +319,7 @@ At the conclusion of this tutorial, your `rose edit` window should look like thi
 
 ![meta](images/rose-metadata.png)
 
-## Third Rose tutorial ##
+### Third Rose tutorial ###
 
 In this tutorial you will bring all of your knowledge of `rose` and `cylc` together to start, stop and restart a fully integrated `rose/cylc` suite.
 
