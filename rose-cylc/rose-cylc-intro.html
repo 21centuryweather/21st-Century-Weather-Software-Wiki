@@ -370,9 +370,12 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sixth-cylc-tutorial">Sixth cylc tutorial</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-rose-tutorial">First Rose tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-rose-tutorial">Second Rose tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#third-rose-tutorial">Third Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rose">Rose</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-rose-tutorial">First Rose tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-rose-tutorial">Second Rose tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-rose-tutorial">Third Rose tutorial</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rosie">Rosie</a></li>
 </ul>
             </nav>
@@ -599,14 +602,16 @@ Then if I’m at the terminal and I want to use <code class="docutils literal no
 <p>This tutorial describes how we can pass <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job directives using <code class="docutils literal notranslate"><span class="pre">cylc</span></code> and discusses how to start, stop and restart <code class="docutils literal notranslate"><span class="pre">cylc</span></code> suites and individual <code class="docutils literal notranslate"><span class="pre">cycl</span></code> tasks.</p>
 </section>
 </section>
-<section id="first-rose-tutorial">
-<h2>First Rose tutorial<a class="headerlink" href="#first-rose-tutorial" title="Link to this heading">#</a></h2>
+<section id="rose">
+<h2>Rose<a class="headerlink" href="#rose" title="Link to this heading">#</a></h2>
 <p>Rose was created as a way to harness <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to run the <code class="docutils literal notranslate"><span class="pre">UM</span></code>. Typically, it creates a directory <code class="docutils literal notranslate"><span class="pre">app</span></code> which contains <code class="docutils literal notranslate"><span class="pre">rose-application</span> <span class="pre">files</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">rose-app.conf</span></code>) which is a way to prescribe large amounts of input configuration data, e.g.</p>
 <ul class="simple">
 <li><p>Fortran namelists</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables</p></li>
 </ul>
 <p>See <a class="reference external" href="https://cylc.discourse.group/t/dealing-with-long-list-of-environmental-variables/993/4">https://cylc.discourse.group/t/dealing-with-long-list-of-environmental-variables/993/4</a> for an example.</p>
+<section id="first-rose-tutorial">
+<h3>First Rose tutorial<a class="headerlink" href="#first-rose-tutorial" title="Link to this heading">#</a></h3>
 <p>Now we will construct our first <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite to learn how <code class="docutils literal notranslate"><span class="pre">rose</span></code> uses configuration files to pass parameters (typically <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables or <code class="docutils literal notranslate"><span class="pre">fortan</span></code> namelists) to tasks controlled by <code class="docutils literal notranslate"><span class="pre">cylc</span></code>.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">rose</span></code> “application” is a rose configuration which executes a defined command.</p>
 <p>Let’s run through the exercises available here:</p>
@@ -638,7 +643,7 @@ Plotting diasbled
 <p><img alt="Map" src="../_images/map_html.png" /></p>
 </section>
 <section id="second-rose-tutorial">
-<h2>Second Rose tutorial<a class="headerlink" href="#second-rose-tutorial" title="Link to this heading">#</a></h2>
+<h3>Second Rose tutorial<a class="headerlink" href="#second-rose-tutorial" title="Link to this heading">#</a></h3>
 <p>In the next <code class="docutils literal notranslate"><span class="pre">rose</span></code> tutorial you will learn how to add metadata to a rose suite. Metadata has a variety of uses in a <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite. Follow the exercises located below to find out what they are.</p>
 <p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html</a></p>
 <blockquote>
@@ -648,7 +653,7 @@ Plotting diasbled
 <p><img alt="meta" src="../_images/rose-metadata.png" /></p>
 </section>
 <section id="third-rose-tutorial">
-<h2>Third Rose tutorial<a class="headerlink" href="#third-rose-tutorial" title="Link to this heading">#</a></h2>
+<h3>Third Rose tutorial<a class="headerlink" href="#third-rose-tutorial" title="Link to this heading">#</a></h3>
 <p>In this tutorial you will bring all of your knowledge of <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> together to start, stop and restart a fully integrated <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite.</p>
 <p>You will learn how to control the overall configuration of a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite using the <code class="docutils literal notranslate"><span class="pre">rose-suit.conf</span></code> file.</p>
 <p>Follow the exercises contained in this link:</p>
@@ -712,6 +717,7 @@ app  bin  lib  log  meta  share  suite.rc  work
 </div>
 <p>You can skip the section about <strong>Rose Bush</strong> as this software is no longer available on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
 <p>In the practical section complete section 1) but do note attempt section 2) as it the suite is missing a list of UK Met Office station data and will fail.</p>
+</section>
 </section>
 <section id="rosie">
 <h2>Rosie<a class="headerlink" href="#rosie" title="Link to this heading">#</a></h2>
@@ -798,9 +804,12 @@ app  bin  lib  log  meta  share  suite.rc  work
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sixth-cylc-tutorial">Sixth cylc tutorial</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-rose-tutorial">First Rose tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-rose-tutorial">Second Rose tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#third-rose-tutorial">Third Rose tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rose">Rose</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-rose-tutorial">First Rose tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-rose-tutorial">Second Rose tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-rose-tutorial">Third Rose tutorial</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rosie">Rosie</a></li>
 </ul>
   </nav></div>

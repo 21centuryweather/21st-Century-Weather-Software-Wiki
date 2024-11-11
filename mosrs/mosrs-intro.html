@@ -335,7 +335,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -351,6 +353,16 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -362,11 +374,153 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mosrs">
 <h1>MOSRS<a class="headerlink" href="#mosrs" title="Link to this heading">#</a></h1>
-<p>The UK Met Office Science Repository Service (MOSRS) is located at: <a class="reference external" href="https://code.metoffice.gov.uk/self-service/">https://code.metoffice.gov.uk/self-service/</a>. The repository contains all the files and documentation required for the UK Met Office to co-ordinate co-operative research between itself, partner meteorological agencies (e.g. Australia’s Bureau of Meteorology, Meteorological Service Singapore, New Zealand’s NIWA etc.) and research partners (e.g. University of Reading, University of Melbourne, ANU etc.)</p>
+<p>The UK Met Office Science Repository Service (MOSRS) is located at: <a class="reference external" href="https://code.metoffice.gov.uk/self-service/">https://code.metoffice.gov.uk/self-service/</a>. The repository contains all the files and documentation required for the UK Met Office to co-ordinate co-operative research between itself, partner meteorological agencies (e.g. Australia’s Bureau of Meteorology, Meteorological Service Singapore, New Zealand’s NIWA etc.) and research partners (e.g. University of Reading, ACCESS-NRI, University of Melbourne, ANU etc.)</p>
 <p>Once you have access to MOSRS you will be able to download <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suites onto <code class="docutils literal notranslate"><span class="pre">gadi</span></code> and begin performing your weather and climate simulations.</p>
-<p>How to
-mosrs-auth</p>
-<p>check out martin’s suite. run it.</p>
+<p>Let’s run a very small <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite via the UK Met Office <code class="docutils literal notranslate"><span class="pre">MOSRS</span></code> service.</p>
+<p>Before doing so, we will start what is called a ‘persistent session’ on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<section id="persistent-sessions">
+<h2>Persistent sessions<a class="headerlink" href="#persistent-sessions" title="Link to this heading">#</a></h2>
+<p>What is a persistent session and why do we need it?  Because <code class="docutils literal notranslate"><span class="pre">gadi</span></code> <code class="docutils literal notranslate"><span class="pre">ARE</span></code> sessions have strict time limits, as does the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job scheduler. Individual <code class="docutils literal notranslate"><span class="pre">PBS</span></code> jobs on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> have a time limit of 48 hours, see</p>
+<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=236881198">https://opus.nci.org.au/pages/viewpage.action?pageId=236881198</a></p>
+<p>If we are running a weather or climate session that will take days (or weeks, or months!) to run, we need an ability to co-ordinate all these sub-tasks for an extended period of item.</p>
+<p>Hence, NCI has created the persistent sessions capability. It creates a temporary virtual machine which runs indefinitely. This allows us to launch a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite without any time limits.</p>
+<p>NCI has the following documentation describing how to setup and configure persistent sessions:</p>
+<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=241927941">https://opus.nci.org.au/pages/viewpage.action?pageId=241927941</a></p>
+<p><a class="reference external" href="https://opus.nci.org.au/display/Help/Persistent+Sessions">https://opus.nci.org.au/display/Help/Persistent+Sessions</a></p>
+<p><a class="reference external" href="https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs">https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs</a></p>
+<p>ACCESS-Hive also has the following:</p>
+<p><a class="reference external" href="https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session">https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session</a></p>
+<p>As you can see, there are a few ways to configure a persistent session. My preferred way is via an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> terminal session.</p>
+<p>After starting a session - e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ persistent-sessions start &lt;session-name&gt; -p &lt;project&gt;
+session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
+  ssh &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+<p>where you substitute your own values of <code class="docutils literal notranslate"><span class="pre">&lt;session-name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;user-id&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;</span></code>.</p>
+<p>I make sure the file <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/cylc-session</span></code> contains the session name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/.persistent-sessions/cylc-session 
+&lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+<p>Then I log into the session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+<p>As part of my <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> alias, I export the value of the <code class="docutils literal notranslate"><span class="pre">CYLC_SESSION</span></code> environment variable via the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># User specific aliases and functions</span>
+<span class="n">alias</span> <span class="n">start_rose</span><span class="o">=</span><span class="s2">&quot;export CYLC_SESSION=&lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au;module use /g/data/hr22/modulefiles;module load cylc7/23.09&quot;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong> You will have to restart your sessions after quarterly maintenance.</p>
+</div></blockquote>
+</section>
+<section id="mosrs-authentication">
+<h2>MOSRS authentication<a class="headerlink" href="#mosrs-authentication" title="Link to this heading">#</a></h2>
+<p>Once you have connected to your persistent-session, you will have to load the required <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> modules and then authenticate with the central MOSRS repository.</p>
+<p>A successful authentication will look like.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">mosrs</span><span class="o">-</span><span class="n">auth</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">You</span> <span class="n">need</span> <span class="n">to</span> <span class="n">enter</span> <span class="n">your</span> <span class="n">MOSRS</span> <span class="n">credentials</span> <span class="n">here</span> <span class="n">so</span> <span class="n">that</span> <span class="n">GPG</span> <span class="n">can</span> <span class="n">cache</span> <span class="n">your</span> <span class="n">password</span><span class="o">.</span>
+<span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">MOSRS</span> <span class="n">password</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;&gt;</span><span class="p">:</span> 
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">Subversion</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">Subversion</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">rosie</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">rosie</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>If you are having trouble authenticating, have a look through this thread:</p>
+<p><a class="reference external" href="https://forum.access-hive.org.au/t/mosrs-authentication-error-checking-password/3665">https://forum.access-hive.org.au/t/mosrs-authentication-error-checking-password/3665</a></p>
+</section>
+<section id="checking-out-a-suite">
+<h2>Checking out a suite<a class="headerlink" href="#checking-out-a-suite" title="Link to this heading">#</a></h2>
+<p>Let’s run a tiny test suite developed by Paul Leopardi at ACCESS-NRI. You can find the full documentation here :</p>
+<p><a class="github reference external" href="https://github.com/ACCESS-NRI/training-day-2024-regional_model/blob/main/access_rose_cylc/rose_cylc_example.md">ACCESS-NRI/training-day-2024-regional_model</a></p>
+<p>You can check out Martin’s suite using the rosie <code class="docutils literal notranslate"><span class="pre">check</span> <span class="pre">out</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">cq161</span>
+</pre></div>
+</div>
+<p>Which creates a local copy of the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite to <code class="docutils literal notranslate"><span class="pre">~/roses/u-cq161</span></code>.</p>
+<p>If you launch <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> from your <code class="docutils literal notranslate"><span class="pre">roses/u-cq161</span></code> directory, you should see this:</p>
+<p><img alt="Simple rose suite" src="../_images/u-cq161.png" /></p>
+<p>Let’s walk through the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file using your favourite text editor (or even using the <code class="docutils literal notranslate"><span class="pre">bash</span></code> command-line tool <code class="docutils literal notranslate"><span class="pre">more</span></code>) to see what this suite will do.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[scheduling]</span></code> section tells us which tasks will run, and in which order. This suite only contains three tasks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_stream</span> <span class="o">=&gt;</span> <span class="n">build_stream</span> <span class="o">=&gt;</span> <span class="n">run_stream</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">[runtime]</span></code> section tells us <strong>how</strong> these tasks will run.</p>
+<p>Firstly there are three sections (or namespaces) which define the local environment: <code class="docutils literal notranslate"><span class="pre">[[root]]</span></code>, <code class="docutils literal notranslate"><span class="pre">[[local]]</span></code> and <code class="docutils literal notranslate"><span class="pre">[[HPC]]</span></code>, where the suite will run and in this instance, the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job specifications.</p>
+<p>There each task has its own namespace: <code class="docutils literal notranslate"><span class="pre">[[get_stream]]</span></code>, <code class="docutils literal notranslate"><span class="pre">[[build_stream]]</span></code> and <code class="docutils literal notranslate"><span class="pre">[[run_stream]]</span></code>.</p>
+<p>The first task <code class="docutils literal notranslate"><span class="pre">[[get_stream]]</span></code> inherits the <code class="docutils literal notranslate"><span class="pre">[[local]]</span></code> namespace and runs the <code class="docutils literal notranslate"><span class="pre">get_stream</span></code> script after some preliminary <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands.</p>
+<p>The second task <code class="docutils literal notranslate"><span class="pre">[[build_stream]]</span></code> inherits the <code class="docutils literal notranslate"><span class="pre">[[HPC]]</span></code> namespace and executes the <code class="docutils literal notranslate"><span class="pre">build_stream</span></code> script.</p>
+<p>The last task <code class="docutils literal notranslate"><span class="pre">[[run_stream]]</span></code> inherits the same namespace and executes the <code class="docutils literal notranslate"><span class="pre">run_stream</span></code> script.</p>
+<p>To see what each script does, we can view the contents of each script which are located in <code class="docutils literal notranslate"><span class="pre">~/roses/u-cd161/bin</span></code>.</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">get_stream</span></code> downloads code from</p>
+<p><a class="github reference external" href="https://github.com/jeffhammond/STREAM.git">jeffhammond/STREAM.git</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">README</span></code> file on the website shows that <code class="docutils literal notranslate"><span class="pre">STREAM</span></code> is a standard package used to benchmark sustained memory bandwidth on supercomputers.  It consists of some <code class="docutils literal notranslate"><span class="pre">fortran</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> source files and a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> which can compile these source files using <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> and <code class="docutils literal notranslate"><span class="pre">gcc</span></code> compilers.</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">build_stream</span></code> simply runs the <code class="docutils literal notranslate"><span class="pre">make</span></code> command to build the executables. Note the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> contain logic to ensure we are in the correct directory to build the source files.</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">run_stream</span></code> executes the <code class="docutils literal notranslate"><span class="pre">C</span></code> based executable <code class="docutils literal notranslate"><span class="pre">stream_c.exe</span></code>.</p>
+<p>Let’s run the suite from <code class="docutils literal notranslate"><span class="pre">~/roses/u-cd161/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rose</span> <span class="n">suite</span><span class="o">-</span><span class="n">run</span>
+</pre></div>
+</div>
+<p>This will launch the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI, which should resemble the following upon completion. You will have to click on the <code class="docutils literal notranslate"><span class="pre">local</span></code> and <code class="docutils literal notranslate"><span class="pre">HPC</span></code> namespaces to expand the task lists.</p>
+<p><img alt="Simple rose suite running" src="../_images/u-cq161-cylc-gui.png" /></p>
+<p>Note how the PBS job submission details (where relevant) are included in the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI.</p>
+<p>Let’s examine the suite output by viewing the contents of the run directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">cq161</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Let’s examine the <code class="docutils literal notranslate"><span class="pre">log</span></code> files, noting that <code class="docutils literal notranslate"><span class="pre">log</span></code> is a symbolic link that links to the latest version of the <code class="docutils literal notranslate"><span class="pre">log.YYYYMMDDTHHMMSSZ</span></code> directory - i.e. the timestamp of directory creation is appended to the <code class="docutils literal notranslate"><span class="pre">log</span></code> directory name in GMT or ‘Zulu’ time, hence the ‘Z’.</p>
+<p>You can view the contents of the actual <code class="docutils literal notranslate"><span class="pre">run_stream</span></code> <code class="docutils literal notranslate"><span class="pre">cylc</span></code> job, i.e. what the persistent session submitted to the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job queue by examining : <code class="docutils literal notranslate"><span class="pre">~cylc-run/u-cq161/log/job/1/run_stream/NN/job</span></code>.</p>
+<p>You can also see how this script wraps the contents of the <code class="docutils literal notranslate"><span class="pre">rose</span></code> task app (from <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code>) inside a <code class="docutils literal notranslate"><span class="pre">bash</span></code> function called <code class="docutils literal notranslate"><span class="pre">cylc__job_inst__script</span></code>.</p>
+<p>The job then sources a file called <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">&quot;${CYLC_DIR}/lib/cylc/job.sh&quot;</span></code>. This file can be found at <code class="docutils literal notranslate"><span class="pre">/g/data/hr22/apps/cylc7/cylc_7.9.7/lib/cylc/job.sh</span></code>.</p>
+<p>The job then calls the <code class="docutils literal notranslate"><span class="pre">bash</span></code> function <code class="docutils literal notranslate"><span class="pre">cylc__job__main</span></code>.</p>
+<p>If you are curious about how these <code class="docutils literal notranslate"><span class="pre">bash</span></code> functions are executed, you can examine : <code class="docutils literal notranslate"><span class="pre">/g/data/hr22/apps/cylc7/cylc_7.9.7/lib/cylc/job.sh</span></code>.</p>
+<p>To view the output of <code class="docutils literal notranslate"><span class="pre">run_stream</span></code>, you can view : <code class="docutils literal notranslate"><span class="pre">~cylc-run/u-cq161/log/job/1/run_stream/NN/job.out</span></code>.</p>
+<p>The output will show the job successfully completed and it will include the following summary of <code class="docutils literal notranslate"><span class="pre">gadi</span></code> resources used to run this task.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------------</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">Threads</span> <span class="n">requested</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">Threads</span> <span class="n">counted</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">-------------------------------------------------------------</span>
+<span class="n">Your</span> <span class="n">clock</span> <span class="n">granularity</span><span class="o">/</span><span class="n">precision</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="mi">1</span> <span class="n">microseconds</span><span class="o">.</span>
+<span class="n">Each</span> <span class="n">test</span> <span class="n">below</span> <span class="n">will</span> <span class="n">take</span> <span class="n">on</span> <span class="n">the</span> <span class="n">order</span> <span class="n">of</span> <span class="mi">11507</span> <span class="n">microseconds</span><span class="o">.</span>
+   <span class="p">(</span><span class="o">=</span> <span class="mi">11507</span> <span class="n">clock</span> <span class="n">ticks</span><span class="p">)</span>
+<span class="n">Increase</span> <span class="n">the</span> <span class="n">size</span> <span class="n">of</span> <span class="n">the</span> <span class="n">arrays</span> <span class="k">if</span> <span class="n">this</span> <span class="n">shows</span> <span class="n">that</span>
+<span class="n">you</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">getting</span> <span class="n">at</span> <span class="n">least</span> <span class="mi">20</span> <span class="n">clock</span> <span class="n">ticks</span> <span class="n">per</span> <span class="n">test</span><span class="o">.</span>
+<span class="o">-------------------------------------------------------------</span>
+<span class="n">WARNING</span> <span class="o">--</span> <span class="n">The</span> <span class="n">above</span> <span class="ow">is</span> <span class="n">only</span> <span class="n">a</span> <span class="n">rough</span> <span class="n">guideline</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">best</span> <span class="n">results</span><span class="p">,</span> <span class="n">please</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">know</span> <span class="n">the</span>
+<span class="n">precision</span> <span class="n">of</span> <span class="n">your</span> <span class="n">system</span> <span class="n">timer</span><span class="o">.</span>
+<span class="o">-------------------------------------------------------------</span>
+<span class="n">Function</span>    <span class="n">Best</span> <span class="n">Rate</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>  <span class="n">Avg</span> <span class="n">time</span>     <span class="n">Min</span> <span class="n">time</span>     <span class="n">Max</span> <span class="n">time</span>
+<span class="n">Copy</span><span class="p">:</span>           <span class="mf">14388.7</span>     <span class="mf">0.021873</span>     <span class="mf">0.011120</span>     <span class="mf">0.041481</span>
+<span class="n">Scale</span><span class="p">:</span>           <span class="mf">9595.8</span>     <span class="mf">0.020599</span>     <span class="mf">0.016674</span>     <span class="mf">0.028780</span>
+<span class="n">Add</span><span class="p">:</span>            <span class="mf">12793.9</span>     <span class="mf">0.029634</span>     <span class="mf">0.018759</span>     <span class="mf">0.044448</span>
+<span class="n">Triad</span><span class="p">:</span>          <span class="mf">10577.8</span>     <span class="mf">0.029515</span>     <span class="mf">0.022689</span>     <span class="mf">0.053290</span>
+<span class="o">-------------------------------------------------------------</span>
+<span class="n">Solution</span> <span class="n">Validates</span><span class="p">:</span> <span class="n">avg</span> <span class="n">error</span> <span class="n">less</span> <span class="n">than</span> <span class="mf">1.000000e-13</span> <span class="n">on</span> <span class="nb">all</span> <span class="n">three</span> <span class="n">arrays</span>
+<span class="o">-------------------------------------------------------------</span>
+<span class="mi">2024</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">42</span><span class="o">+</span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">succeeded</span>
+
+<span class="o">======================================================================================</span>
+                  <span class="n">Resource</span> <span class="n">Usage</span> <span class="n">on</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span>
+   <span class="n">Job</span> <span class="n">Id</span><span class="p">:</span>             <span class="mf">128377483.</span><span class="n">gadi</span><span class="o">-</span><span class="n">pbs</span>
+   <span class="n">Project</span><span class="p">:</span>            <span class="n">gb02</span>
+   <span class="n">Exit</span> <span class="n">Status</span><span class="p">:</span>        <span class="mi">0</span>
+   <span class="n">Service</span> <span class="n">Units</span><span class="p">:</span>      <span class="mf">0.00</span>
+   <span class="n">NCPUs</span> <span class="n">Requested</span><span class="p">:</span>    <span class="mi">1</span>                      <span class="n">NCPUs</span> <span class="n">Used</span><span class="p">:</span> <span class="mi">1</span>               
+                                           <span class="n">CPU</span> <span class="n">Time</span> <span class="n">Used</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span>        
+   <span class="n">Memory</span> <span class="n">Requested</span><span class="p">:</span>   <span class="mf">1.0</span><span class="n">GB</span>                 <span class="n">Memory</span> <span class="n">Used</span><span class="p">:</span> <span class="mf">253.33</span><span class="n">MB</span>        
+   <span class="n">Walltime</span> <span class="n">requested</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">00</span>            <span class="n">Walltime</span> <span class="n">Used</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">03</span>        
+   <span class="n">JobFS</span> <span class="n">requested</span><span class="p">:</span>    <span class="mf">100.0</span><span class="n">MB</span>                <span class="n">JobFS</span> <span class="n">used</span><span class="p">:</span> <span class="mi">0</span><span class="n">B</span>              
+<span class="o">======================================================================================</span>
+</pre></div>
+</div>
+<p>This was quite a small task. We only request 1 GB of memory using one CPU. We only used 253 MB and the task took less than one second to complete.</p>
+<p>Any errors that occurred during the task will be output via standard error to <code class="docutils literal notranslate"><span class="pre">~cylc-run/u-cq161/log/job/1/run_stream/NN/job.err</span></code>.</p>
+<p>There are no error messages, only the outputs of loading your <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> module environment.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -414,6 +568,24 @@ mosrs-auth</p>
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
