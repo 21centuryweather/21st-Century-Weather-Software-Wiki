@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>An Introduction to Fast Data Analysis with the Polars Library in Python &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/polars-intro';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data" href="file_formats.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fpython/polars-intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/polars-intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>An Introduction to Fast Data Analysis with the Polars Library in Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-choose-polars-for-big-data-analysis">Why Choose Polars for Big Data Analysis?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-polars">Installing Polars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-large-datasets-from-parquet">Loading Large Datasets from Parquet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-manipulation-with-polars">Data Manipulation with Polars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison-polars-vs-pandas">Performance Comparison: Polars vs Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-fast-data-analysis-with-the-polars-library-in-python">
+<h1>An Introduction to Fast Data Analysis with the Polars Library in Python<a class="headerlink" href="#an-introduction-to-fast-data-analysis-with-the-polars-library-in-python" title="Link to this heading">#</a></h1>
+<p>Handling large datasets efficiently is a key challenge in data science, especially when working with traditional libraries like pandas that struggle with scalability. Enter Polars, a high-performance DataFrame library in Python designed for processing large datasets quickly and with low memory usage. In this blog, we’ll dive into Polars, showcase its main features, and demonstrate how to use it with a large dataset saved in Parquet format, a popular columnar data storage format optimized for high-speed analytics.</p>
+<section id="why-choose-polars-for-big-data-analysis">
+<h2>Why Choose Polars for Big Data Analysis?<a class="headerlink" href="#why-choose-polars-for-big-data-analysis" title="Link to this heading">#</a></h2>
+<p>Polars is designed to address the limitations of traditional Python data libraries when handling large data volumes. Some reasons to consider Polars include:</p>
+<ul class="simple">
+<li><p><strong>Speed</strong>: Polars is built in Rust, a highly performant language, making it significantly faster than pandas.</p></li>
+<li><p><strong>Low Memory Usage</strong>: Polars uses a columnar format, which allows for efficient memory usage, especially beneficial when working with large datasets.</p></li>
+<li><p><strong>Lazy Evaluation</strong>: Polars provides lazy evaluation, allowing users to defer computation until the final result is needed. This feature is crucial for optimizing complex query performance.</p></li>
+<li><p><strong>Multi-threaded</strong>: Polars automatically takes advantage of multiple CPU cores, enabling parallel processing for faster computation.</p></li>
+</ul>
+<p>These features make Polars an excellent choice when working with large datasets, especially those stored in Parquet format, which is also optimized for columnar storage.</p>
+</section>
+<section id="installing-polars">
+<h2>Installing Polars<a class="headerlink" href="#installing-polars" title="Link to this heading">#</a></h2>
+<p>You can install Polars via pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>polars
+</pre></div>
+</div>
+<p>Make sure you also have pyarrow installed if you are working with Parquet files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pyarrow
+</pre></div>
+</div>
+</section>
+<section id="loading-large-datasets-from-parquet">
+<h2>Loading Large Datasets from Parquet<a class="headerlink" href="#loading-large-datasets-from-parquet" title="Link to this heading">#</a></h2>
+<p>Let’s start by creating a large dataset and saving it in Parquet format. The Parquet format’s columnar structure complements Polars’ design, allowing for fast reading and optimized storage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="c1"># Generate a large dataset</span>
+<span class="n">num_rows</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Column1&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">),</span>
+    <span class="s2">&quot;Column2&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_rows</span><span class="p">),</span>
+    <span class="s2">&quot;Column3&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">],</span> <span class="n">num_rows</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Save the DataFrame as Parquet</span>
+<span class="n">df</span><span class="o">.</span><span class="n">write_parquet</span><span class="p">(</span><span class="s2">&quot;large_dataset.parquet&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;snappy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s open the Parquet file</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a large Parquet file into a Polars DataFrame</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;large_dataset.parquet&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+<span class="c1"># Display the first few rows and column names</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of rows:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of columns:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>| Column1 | Column2   | Column3 |
+|---------|-----------|---------|
+| 41      | 0.656287  | A       |
+| 72      | 0.861548  | E       |
+| 18      | 0.888267  | A       |
+| 37      | 0.666067  | A       |
+| 53      | 0.726323  | B       |
+
+Number of rows: 10000000
+Number of columns: 3
+</pre></div>
+</div>
+<p>Polars can load data directly from Parquet files, which is particularly efficient for large datasets due to its optimized format. You’ll immediately notice that loading a Parquet file with Polars is fast and consumes less memory compared to other libraries like pandas.</p>
+</section>
+<section id="data-manipulation-with-polars">
+<h2>Data Manipulation with Polars<a class="headerlink" href="#data-manipulation-with-polars" title="Link to this heading">#</a></h2>
+<p>Polars provides an extensive set of methods for data manipulation. Let’s walk through some common operations with examples using our large dataset.</p>
+<ol class="arabic simple">
+<li><p><strong>Selecting Columns:</strong></p></li>
+</ol>
+<p>Selecting specific columns from a large dataset can be done quickly, as Polars only loads the required columns into memory.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select specific columns</span>
+<span class="n">selected_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;Column1&quot;</span><span class="p">,</span> <span class="s2">&quot;Column2&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selected_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>| Column1 | Column2   |
+|---------|-----------|
+| 41      | 0.656287  |
+| 72      | 0.861548  |
+| 18      | 0.888267  |
+| 37      | 0.666067  |
+| 53      | 0.726323  |
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Filtering Rows:</strong></p></li>
+</ol>
+<p>Polars allows you to filter rows based on conditions with its <code class="docutils literal notranslate"><span class="pre">.filter()</span></code> method, making it efficient for data wrangling.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter rows where Column1 is greater than a certain value</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column1&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filtered_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>| Column1 | Column2   | Column3 |
+|---------|-----------|---------|
+| 72      | 0.861548  | E       |
+| 53      | 0.726323  | B       |
+| 70      | 0.68528   | A       |
+| 71      | 0.429749  | C       |
+| 95      | 0.916151  | E       |
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Grouping and Aggregation:</strong></p></li>
+</ol>
+<p>Polars excels at grouping and aggregation, a common bottleneck for larger datasets. Here’s an example of grouping by a categorical column (Column3) and calculating the mean of another column (Column2).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by &quot;Column3&quot; and calculate the mean of &quot;Column2&quot;</span>
+<span class="n">grouped_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;Column3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Average_Column2&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grouped_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>| Column3 | Average_Column2 |
+|---------|------------------|
+| E       | 0.499956        |
+| A       | 0.499943        |
+| D       | 0.500039        |
+| C       | 0.499648        |
+| B       | 0.499614        |
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Adding and Modifying Columns:</strong></p></li>
+</ol>
+<p>Polars also supports adding new columns or modifying existing ones. Let’s say we want to add a new column that’s the result of an arithmetic operation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a new column that is the square of &quot;NumericColumn&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">((</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column2&quot;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Column2_squared&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>| Column1 | Column2  | Column3 | Column2_squared |
+|---------|----------|---------|-----------------|
+| 41      | 0.656287 | A       | 0.430712       |
+| 72      | 0.861548 | E       | 0.742265       |
+| 18      | 0.888267 | A       | 0.789018       |
+| 37      | 0.666067 | A       | 0.443645       |
+| 53      | 0.726323 | B       | 0.527546       |
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Lazy Evaluation for Complex Pipelines:</strong></p></li>
+</ol>
+<p>Lazy evaluation defers computation until the final result is needed, optimizing the query for efficiency. Here’s an example of building a complex query with lazy evaluation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable lazy evaluation</span>
+<span class="n">lazy_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">lazy</span><span class="p">()</span>
+
+<span class="c1"># Perform a series of transformations</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">lazy_df</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column1&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">with_columns</span><span class="p">((</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column2&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Column2_percentage&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;Column3&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column2_percentage&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Avg_Percentage&quot;</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1"># Execute the lazy query</span>
+<span class="n">final_result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>| Column3 | Avg_Percentage |
+|---------|-----------------|
+| A       | 49.979991      |
+| D       | 50.016197      |
+| B       | 49.934186      |
+| E       | 49.993116      |
+| C       | 49.957459      |
+</pre></div>
+</div>
+<p>This method builds the pipeline without immediate execution, allowing Polars to optimize the query plan and execute it efficiently in one go when .collect() is called. For those who are familiar with Xarray this is similar to what that library does.</p>
+</section>
+<section id="performance-comparison-polars-vs-pandas">
+<h2>Performance Comparison: Polars vs Pandas<a class="headerlink" href="#performance-comparison-polars-vs-pandas" title="Link to this heading">#</a></h2>
+<p>Let’s compare Polars and Pandas to understand the performance benefits. We’ll measure the time to read a large Parquet file and filter rows based on a condition.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Measure Polars read and filter performance</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">polars_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;large_dataset.parquet&quot;</span><span class="p">)</span>
+<span class="n">filtered_polars</span> <span class="o">=</span> <span class="n">polars_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Column1&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Polars Time:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
+
+<span class="c1"># Measure Pandas read and filter performance</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">pandas_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;large_dataset.parquet&quot;</span><span class="p">)</span>
+<span class="n">filtered_pandas</span> <span class="o">=</span> <span class="n">pandas_df</span><span class="p">[</span><span class="n">pandas_df</span><span class="p">[</span><span class="s2">&quot;Column1&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pandas Time:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-plaintxt notranslate"><div class="highlight"><pre><span></span>Polars Time: 0.0274350643157959 seconds
+Pandas Time: 0.20871400833129883 seconds
+</pre></div>
+</div>
+<p>That’s a <code class="docutils literal notranslate"><span class="pre">x10</span></code> speedup!</p>
+<p>In most cases, you should see that Polars is significantly faster than Pandas, especially for larger datasets. Polars’ performance benefits become even more pronounced with more complex data transformations and aggregations.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Polars is a powerful library that shines when working with large datasets. It’s optimized for performance, using multi-threading, lazy evaluation, and low memory usage to handle data-intensive tasks quickly and efficiently. When combined with Parquet files, Polars offers a highly performant solution for reading, analyzing, and transforming big data in Python.</p>
+<p>For data scientists working with big data, Polars is a game-changer that can make your data pipelines faster and more efficient. Whether you’re performing simple filtering or complex transformations, Polars provides the tools you need for effective large-scale data manipulation.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="file_formats.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-choose-polars-for-big-data-analysis">Why Choose Polars for Big Data Analysis?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-polars">Installing Polars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-large-datasets-from-parquet">Loading Large Datasets from Parquet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-manipulation-with-polars">Data Manipulation with Polars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison-polars-vs-pandas">Performance Comparison: Polars vs Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
