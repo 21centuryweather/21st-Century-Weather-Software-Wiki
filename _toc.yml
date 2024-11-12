@@ -14,3 +14,4 @@ parts:
   - caption: Python
     chapters:
     - file: python/file_formats
+    - file: python/polars-intro

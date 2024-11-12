@@ -206,8 +206,8 @@ print(f"Parquet Load Time: {parquet_load_time:.2f} seconds")
 **Output:**
 
 ```plaintext
-CSV Load Time: 12.34 seconds
-Parquet Load Time: 2.56 seconds
+CSV Load Time: 1.10 seconds
+Parquet Load Time: 0.17 seconds
 ```
 
 Note: The exact results will depend on your machine and dataset. In most cases, Parquet will be significantly faster, especially with large datasets and selective column loading.
