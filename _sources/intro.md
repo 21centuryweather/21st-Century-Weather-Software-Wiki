@@ -26,5 +26,7 @@ The Software Support Category on Cumulus is the preferred contact method as it a
 
 Coming Soon - Fortnightly Code Workshops. This will be an hour long session where you can bring your code in for help/ideas/review.
 
+## WIKI Table of Contents
+
 ```{tableofcontents}
 ```
