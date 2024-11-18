@@ -80,13 +80,27 @@ Let's run through the tutorial here:
 
 https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html
 
-To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session. Execute the following commands from your `gadi` terminal:
+To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session. You will also need to specify a `cylc` session in order to load the `cylc` module. The best way to do this to to execute the following command from a
+`gadi` terminal:
+```
+mkdir -p ~/.persistent-sessions
+cat > ~/.persistent-sessions/cylc-session <<< DUMMY
+```
+These commands use the `bash` program `cat` (short for 'catalogue') to create a text file called `cylc-session` in the directory `~/.persistent-sessions/` which will contain the text `DUMMY`.
+
+Remember `~` is a short-cut which refers to your home directory on `gadi`.
+
+You will learn more about 'persistent-sessions' in the later section [Persistent session](../mosrs/mosrs-intro.md##Persistent-sessions). For now, this test 'DUMMY' file will allow us to run through the tutorials.
+
+Then you can load the `cylc` software.
 ```
 module use /g/data/hr22/modulefiles
 module load cylc7/23.09
 ```
 This should generate the following output:
 ```
+Using the cylc session DUMMY
+
 Loading cylc7/23.09
   Loading requirement: mosrs-setup/1.0.1
 ```
@@ -101,7 +115,6 @@ This will create a list of cylc examples files in
 ```
 ~/cylc-run/examples
 ```
-Remember `~` is a short-cut which refers to your home directory on `gadi`.
 
 All your future `rose/cylc` tasks to run the `UM` will also be deployed in your `~/cylc-run` directory.
 
@@ -110,6 +123,10 @@ Let's run the 'Hello World' example. Go to the following path in `~/cylc-run` di
 cd ~/cylc-run/examples/7.9.7/tutorial/oneoff/basic
 ```
 Using a text editor of your choice (`vi`, `nedit`, `nano`, `emacs`, `Microsoft VS Code`), copy the contents from the tutorial into a file named `suite.rc`.
+
+You will need to copy the 'hello world' `suite.rc` file from tutorial section 7.9 available here:
+
+https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html#hello-world-in-cylc
 
 Once complete, if you examine the contents of this file using the bash command-line program `more`, it should resemble this:
 ```
@@ -123,7 +140,14 @@ Once complete, if you examine the contents of this file using the bash command-l
     [[hello]]
         script = "sleep 10; echo Hello World!"
 ```
-Ok, let's run this from the command line. Your output should contain the following.
+Ok, let's run this from the command line by executing the following: 
+```
+$ cylc run
+```
+> **__NOTE__** Make sure you are in the current working directory containing your `suite.rc` file, i.e. `~/cylc-run/examples/7.9.7/tutorial/oneoff/basic` to run a `cylc` suite.
+
+
+Your output should contain the following.
 ```
 $ cylc run
 
