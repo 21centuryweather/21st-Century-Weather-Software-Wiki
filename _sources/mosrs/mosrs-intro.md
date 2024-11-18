@@ -58,7 +58,6 @@ alias start_rose="export CYLC_SESSION=<session-name>.<user-id>.<project>.ps.gadi
 
 > **_NOTE:_** You will have to restart your sessions after quarterly maintenance.
 
-
 ## MOSRS authentication ##
 
 Once you have connected to your persistent-session, you will have to load the required `rose/cylc` modules and then authenticate with the central MOSRS repository.
@@ -124,6 +123,8 @@ The `README` file on the website shows that `STREAM` is a standard package used 
 The script `build_stream` simply runs the `make` command to build the executables. Note the `suite.rc` contain logic to ensure we are in the correct directory to build the source files.
 
 The script `run_stream` executes the `C` based executable `stream_c.exe`.
+
+## Running the suite ##
 
 Let's run the suite from `~/roses/u-cd161/` directory:
 ```

@@ -368,6 +368,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-suite">Running the suite</a></li>
 </ul>
             </nav>
         </div>
@@ -467,6 +468,9 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <p>The <code class="docutils literal notranslate"><span class="pre">README</span></code> file on the website shows that <code class="docutils literal notranslate"><span class="pre">STREAM</span></code> is a standard package used to benchmark sustained memory bandwidth on supercomputers.  It consists of some <code class="docutils literal notranslate"><span class="pre">fortran</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> source files and a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> which can compile these source files using <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> and <code class="docutils literal notranslate"><span class="pre">gcc</span></code> compilers.</p>
 <p>The script <code class="docutils literal notranslate"><span class="pre">build_stream</span></code> simply runs the <code class="docutils literal notranslate"><span class="pre">make</span></code> command to build the executables. Note the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> contain logic to ensure we are in the correct directory to build the source files.</p>
 <p>The script <code class="docutils literal notranslate"><span class="pre">run_stream</span></code> executes the <code class="docutils literal notranslate"><span class="pre">C</span></code> based executable <code class="docutils literal notranslate"><span class="pre">stream_c.exe</span></code>.</p>
+</section>
+<section id="running-the-suite">
+<h2>Running the suite<a class="headerlink" href="#running-the-suite" title="Link to this heading">#</a></h2>
 <p>Let’s run the suite from <code class="docutils literal notranslate"><span class="pre">~/roses/u-cd161/</span></code> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rose</span> <span class="n">suite</span><span class="o">-</span><span class="n">run</span>
 </pre></div>
@@ -598,6 +602,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-suite">Running the suite</a></li>
 </ul>
   </nav></div>
 
