@@ -19,7 +19,6 @@ The Software Engineering team can be contacted for support through:
 
 The Software Support Category on Cumulus is the preferred contact method as it allows the whole team to see the query, then whoever is best equipped to answer will do as soon as they can. 
 - Just open a new ‘Topic’ in the Category and give as much detail about your problem/request/comment as you can. 
-- An in-person or virtual meetings with any member of the Software team if required.
 - The benefit of using Cumulus means topics won’t disappear and you may find that your issue has already been asked and fixed. 
 - It also gives the chance of others in the 21st Century Weather community to give their response. 
 - There will inevitably be issues that can’t be solved within 21st Century Weather and these can be directed to the ACCESS-NRI/Hive forums if they are suitable for that platform.
