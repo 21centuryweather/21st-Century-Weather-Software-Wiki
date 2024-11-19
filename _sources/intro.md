@@ -17,7 +17,7 @@ The Software Engineering team can be contacted for support through:
 - In person meetings with local Software Engineering team members.
 - Code Workshops (coming soon).
 
-The Software Support Category on Cumulus is the preferred contact method as it allows the whole team to see the query, then whoever is best equipped to answer will do as soon as they can. 
+The Software Support Category on Cumulus is the *preferred contact method* as it allows the whole team to see the query, then whoever is best equipped to answer will do as soon as they can. 
 - Just open a new ‘Topic’ in the Category and give as much detail about your problem/request/comment as you can. 
 - The benefit of using Cumulus means topics won’t disappear and you may find that your issue has already been asked and fixed. 
 - It also gives the chance of others in the 21st Century Weather community to give their response. 
