@@ -5,8 +5,20 @@ Running an atmospheric simulation is a complex process which requires executing 
 These tutorials assume:
 1. You have an NCI account on `gadi`.
 2. You can access a command-line terminal on `gadi` (either via an `ssh` session or using the `ARE` research environment)
-3. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account.
-4. You have memberships to the following `gadi` projects:
+3. If using an `ssh` session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on `gadi` using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of 'Xquartz'. Windows users have a variety of options. It's also suggested your `ssh` `.config` file contains the following entries:
+```
+Host *
+  ServerAliveInterval 60
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  TCPKeepAlive no
+
+Host gadi.nci.org.au
+  HostName gadi.nci.org.au
+  User <insert your username here>
+```
+4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account.
+5. You have memberships to the following `gadi` projects:
     - `hr22`
     - `access`
     - `ki32`
@@ -88,7 +100,7 @@ cat > ~/.persistent-sessions/cylc-session <<< DUMMY
 ```
 These commands use the `bash` program `cat` (short for 'catalogue') to create a text file called `cylc-session` in the directory `~/.persistent-sessions/` which will contain the text `DUMMY`.
 
-Remember `~` is a short-cut which refers to your home directory on `gadi`.
+Remember `~` is a `bash` short-cut which refers to your home directory on `gadi`.
 
 You will learn more about 'persistent-sessions' in the later section [Persistent session](../mosrs/mosrs-intro.md##Persistent-sessions). For now, this test 'DUMMY' file will allow us to run through the tutorials.
 
@@ -195,6 +207,13 @@ cylc graph .
 the results show match the below image.
 
 ![Simple cylc graph](images/cylc-graph-tutorial.png)
+
+Remember the '.' in a `bash` command means 'the current directory'. So the above command means `create a graph of the suite that exists in the current directory'.  
+
+> **_TIP:_**
+> Here is a web-link containing a review of all 'special characters' in `bash`:
+> https://www.howtogeek.com/439199/15-special-characters-you-need-to-know-for-bash/
+
 
 ### Third cylc tutorial ###
 
@@ -357,7 +376,9 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html
 > 
 > https://jinja.palletsprojects.com/en/stable/
 >
-> There is short review of how `Jinja` works here : https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html. You don't have to do the tutorials, but just be conscious that whenever you see braces such as `{{ }}` in a `suite.rc` file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as `{% if ... %}` or `{% for ... }` within the `suite.rc` will be processed to produce the final `suite.rc.processed` file which is the actual file executed by `cylc` which is created in your `~/cylc-run/<rose-id>` directory.
+> There is short review of how `Jinja` works here : https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html. 
+>
+>You don't have to do the tutorials, but just be conscious that whenever you see braces such as `{{ }}` in a `suite.rc` file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as `{% if ... %}` or `{% for ... }` within the `suite.rc` will be processed to produce the final `suite.rc.processed` file which is the actual file executed by `cylc` which is created in your `~/cylc-run/<rose-id>` directory.
 > In conclusion, Jinja is a way for us to create very long `suite.rc` files by looping over input parameters.
 
 
@@ -416,7 +437,7 @@ $ more ~/cylc-run/rose-suite-tutorial/suite.rc
 
 You can skip the section about **Rose Bush** as this software is no longer available on `gadi`.
 
-In the practical section complete section 1) but do note attempt section 2) as it the suite is missing a list of UK Met Office station data and will fail.
+In the practical section complete section 1 but **DO NOT** attempt section 2 as the suite is missing a list of UK Met Office station data and will fail.
 
 ## Rosie ##
 
@@ -427,4 +448,28 @@ If you are making major modifications and building new `rose` suites, you will b
 Have a quick read through the documentation available here : https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/rosie.html
 
 There is no need to complete the practical.  We will use `rosie` in the next exercise to interface with the UK Met Office Science Repository Services (MOSRS) to check-out our next exercise.
+
+## Other sources of information
+
+The British National Centre for Atmospheric Science contains some useful hints, tips and trouble shooting for `rose/cylc`.
+
+https://cms.ncas.ac.uk/rose-cylc-hints/
+
+It also contains a searchable forum : 
+
+https://cms-helpdesk.ncas.ac.uk
+
+Documentation for an older `rose` version (2018.02.0) can be found here:
+
+https://metomi.github.io/rose/2018.02.0/html/rose-single-page.html
+
+That link contains a lot of good `rose` and `cylc` information in a single location. Some of the information is out-of-date.
+
+It also contains some useful `rosie` information, e.g.
+
+https://metomi.github.io/rose/2018.02.0/html/rose-rosie-advice.html
+
+You can also search and post to the ACCESS-Hive forums.
+
+https://forum.access-hive.org.au
 
