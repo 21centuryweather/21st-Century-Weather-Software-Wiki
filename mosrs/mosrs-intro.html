@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'mosrs/mosrs-intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="next" title="The Unified Model" href="../UM/UM-intro.html" />
     <link rel="prev" title="Introduction to Rose/Cylc" href="../rose-cylc/rose-cylc-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,6 +172,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -421,6 +422,12 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 </pre></div>
 </div>
 <blockquote>
+<div><p><strong><em>WARNING:</em></strong> If you have the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> module loaded, you <strong>WILL NOT</strong> be able to <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to your persistent session, due to a conflict between the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> installation contained in that module and the global <code class="docutils literal notranslate"><span class="pre">ssh</span></code> configuration used at NCI. The <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> installation cannot access any of the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> options that are needed to access the persistent sessions (such as the port and which <code class="docutils literal notranslate"><span class="pre">SSHkey</span></code> to use). You will need to unload the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module from you current environment using</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">unload</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span>
+</pre></div>
+</div>
+<blockquote>
 <div><p><strong><em>NOTE:</em></strong> You will have to restart your sessions after quarterly maintenance.</p>
 </div></blockquote>
 </section>
@@ -471,7 +478,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 </section>
 <section id="running-the-suite">
 <h2>Running the suite<a class="headerlink" href="#running-the-suite" title="Link to this heading">#</a></h2>
-<p>Let’s run the suite from <code class="docutils literal notranslate"><span class="pre">~/roses/u-cd161/</span></code> directory:</p>
+<p>Let’s run the suite from <code class="docutils literal notranslate"><span class="pre">~/roses/u-cq161/</span></code> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rose</span> <span class="n">suite</span><span class="o">-</span><span class="n">run</span>
 </pre></div>
 </div>
@@ -531,6 +538,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <p>This was quite a small task. We only request 1 GB of memory using one CPU. We only used 253 MB and the task took less than one second to complete.</p>
 <p>Any errors that occurred during the task will be output via standard error to <code class="docutils literal notranslate"><span class="pre">~cylc-run/u-cq161/log/job/1/run_stream/NN/job.err</span></code>.</p>
 <p>There are no error messages, only the outputs of loading your <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> module environment.</p>
+<p>Now, let’s move onto running an atmospheric simulation using the UK Met Offices’ `Unified Model’.</p>
 </section>
 </section>
 
@@ -574,11 +582,11 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
       </div>
     </a>
     <a class="right-next"
-       href="../python/intro-python.html"
+       href="../UM/UM-intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Intro to Python for Climate Science</p>
+        <p class="prev-next-title">The Unified Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

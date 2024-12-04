@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Using MOSRS and Rose &#8212; 21st Century Weather Software Wiki</title>
+    <title>The Unified Model &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -60,9 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'rose-cylc/mosrs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/UM-intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="prev" title="MOSRS" href="../mosrs/mosrs-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -169,10 +169,10 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Unified Model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -250,7 +250,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Frose-cylc/mosrs.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FUM/UM-intro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -280,7 +280,7 @@
       
       
       
-      <li><a href="../_sources/rose-cylc/mosrs.md" target="_blank"
+      <li><a href="../_sources/UM/UM-intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,7 +356,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Using MOSRS and Rose</h1>
+    <h1>The Unified Model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -366,9 +366,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-um-suite">Checking out a UM suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-suite">Examining the suite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#master-configuration">Master configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-flow">Task flow</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -380,74 +383,87 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="using-mosrs-and-rose">
-<h1>Using MOSRS and Rose<a class="headerlink" href="#using-mosrs-and-rose" title="Link to this heading">#</a></h1>
-<p>Let’s run a very small <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite via the UK Met Office <code class="docutils literal notranslate"><span class="pre">MOSRS</span></code> service.</p>
-<p>Before doing so, we will start what is called a ‘persistent session’ on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
-<section id="persistent-sessions">
-<h2>Persistent sessions<a class="headerlink" href="#persistent-sessions" title="Link to this heading">#</a></h2>
-<p>What is a persistent session and why do we need it?  Because <code class="docutils literal notranslate"><span class="pre">gadi</span></code> <code class="docutils literal notranslate"><span class="pre">ARE</span></code> sessions have strict time limits, as does the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job scheduler. Individual <code class="docutils literal notranslate"><span class="pre">PBS</span></code> jobs on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> have a time limit of 48 hours, see</p>
-<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=236881198">https://opus.nci.org.au/pages/viewpage.action?pageId=236881198</a></p>
-<p>If we are running a weather or climate session that will take days (or weeks, or months!) to run, we need an ability to co-ordinate all these sub-tasks for an extended period of item.</p>
-<p>Hence, NCI has created the persistent sessions capability. It creates a temporary virtual machine which runs indefinitely. This allows us to launch a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite without any time limits.</p>
-<p>NCI has the following documentation describing how to setup and configure persistent sessions:</p>
-<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=241927941">https://opus.nci.org.au/pages/viewpage.action?pageId=241927941</a></p>
-<p><a class="reference external" href="https://opus.nci.org.au/display/Help/Persistent+Sessions">https://opus.nci.org.au/display/Help/Persistent+Sessions</a></p>
-<p><a class="reference external" href="https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs">https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs</a></p>
-<p>ACCESS-Hive also has the following:</p>
-<p><a class="reference external" href="https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session">https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session</a></p>
-<p>As you can see, there are a few ways to configure a persistent session. My preferred way is via an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> terminal session.</p>
-<p>After starting a session - e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ persistent-sessions start &lt;session-name&gt; -p &lt;project&gt;
-session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
-  ssh &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+  <section class="tex2jax_ignore mathjax_ignore" id="the-unified-model">
+<h1>The Unified Model<a class="headerlink" href="#the-unified-model" title="Link to this heading">#</a></h1>
+<p>The ACCESS modeling suite is reliant on the UK Met Office’s Unified Model (UM) for atmospheric simulations.</p>
+<p>The UM is a collection of Fortran-based executables built to simulate the future state of the atmosphere. It is designed to interface with land/surface and sea-surface data.</p>
+<p>The model is so named (i.e. “Unified”) because it contains a single set of code that can be applied across a diverse range of length and timescales; from urban weather forecasts at grid resolutions of a few hundred metres, to global climate model projections extending into next century at grid resolutions of hundreds of kilometres.</p>
+<p>You can access more detailed information about the UM here :
+<a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/introduction.html">https://21centuryweather.github.io/UM_summary_docs/introduction.html</a></p>
+<p>For now, let’s concentrate on running a very simple test suite, a ‘minimal working example’ to demonstrate how we can run the UM on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> using a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite.</p>
+<section id="checking-out-a-um-suite">
+<h2>Checking out a UM suite<a class="headerlink" href="#checking-out-a-um-suite" title="Link to this heading">#</a></h2>
+<p>If you need to, repeat the steps of the previous tutorial to authenticate your MOSRS credentials. Then, checkout suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">dl058</span>
 </pre></div>
 </div>
-<p>I make sure the file <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/cylc-session</span></code> contains the session name:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/.persistent-sessions/cylc-session 
-&lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
-</pre></div>
-</div>
-<p>Then I log into the session.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
-</pre></div>
-</div>
+<p>This suite was initially developed by scientists at the Bureau of Meteorology to research ‘coupled’ Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> logic related to coupling so the suite performs a simple atmospheric-only global simulation at low resolution.</p>
 </section>
-<section id="mosrs-authentication">
-<h2>MOSRS authentication<a class="headerlink" href="#mosrs-authentication" title="Link to this heading">#</a></h2>
-<p>Once you have connected to your persistent-session, you will have to load the required <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> modules and then authenticate with the central MOSRS repository.</p>
-<p>A successful authentication will look like.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">mosrs</span><span class="o">-</span><span class="n">auth</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">You</span> <span class="n">need</span> <span class="n">to</span> <span class="n">enter</span> <span class="n">your</span> <span class="n">MOSRS</span> <span class="n">credentials</span> <span class="n">here</span> <span class="n">so</span> <span class="n">that</span> <span class="n">GPG</span> <span class="n">can</span> <span class="n">cache</span> <span class="n">your</span> <span class="n">password</span><span class="o">.</span>
-<span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">MOSRS</span> <span class="n">password</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;&gt;</span><span class="p">:</span> 
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">Subversion</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">Subversion</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">rosie</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">rosie</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
-</pre></div>
-</div>
+<section id="examining-the-suite">
+<h2>Examining the suite<a class="headerlink" href="#examining-the-suite" title="Link to this heading">#</a></h2>
+<p>The suite contains all the usual files you’ve become accustomed too inside a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">rose-app.conf</span></code> file to control the master configuration of the suite.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file to control the task flow</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">app</span></code> directory to house <code class="docutils literal notranslate"><span class="pre">.conf</span></code> files for each application task.</p></li>
+</ul>
+<p>Let’s step through each task within this suite so we understand at a basic level, how the UM works on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<section id="master-configuration">
+<h3>Master configuration<a class="headerlink" href="#master-configuration" title="Link to this heading">#</a></h3>
+<p>Let’s quickly run through the master configuration file : <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl085/rose-suite.conf</span></code></p>
+<p>This contains a list of <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables which describe the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ANCILDATA</span></code> : Ancillary data directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> : Output archive directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARCHIVE_6HR</span></code> : Archiving temporal frequency</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ATM_PPN</span></code> : Number of processors for atmospheric tasks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_UM</span></code> : Flag to compile our own UM executable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CALENDAR</span></code> : Calendar type (important for long climate simulations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CASEDATA</span></code> : Directory of case study input files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_ACCOUNT</span></code> : Your gadi <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> used for resouce allocation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_HOST</span></code> : Name of supercomputer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_QUEUE</span></code> : PBS job queue used for simulations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MODULE_NAME</span></code> : Extra module configuration data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE</span></code> : Type of CPU used in supercomputer environment</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATES</span></code> : List of dates to run simulations for</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXTRACT_HOST</span></code> : operating system type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HOUSEKEEP</span></code>: Flag to set housekeeping tasks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OCEANDIR</span></code> : Location of Ocean data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PPN</span></code> : Number of processors (generic)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_PARALLEL</span></code> : PBS job queue type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RUNTYPE</span></code> : Flag for ‘coupled’ (modeling both the ocean and atmosphere) or ‘uncoupled’ (atmosphere only) simulation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RUN_METDB_ODB</span></code> : Option to use the UK Met Office Observation Database</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SITE</span></code> : String to denote the supercomputer type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STOCHASTIC</span></code>: Flag for stochastic atmospheric physics</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TASKLENGTH</span></code> : Data for UM task control</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TASK_RUN</span></code> : Data for UM task control</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TASK_TESTS</span></code> : Flag for UM task control</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UMDIR</span></code> : Master directory for UM files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UM_RESOLUTION</span></code> : Global atmospheric resolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">USE_COMORPH</span></code> : Flag for CoMorph convection scheme</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">USE_DOUBLE_PREC</span></code> : Flag for numerical precision</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XIOS_NPROC</span></code> : Processors used for XIOS source-code compilation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xios_path</span></code> : Directory of <code class="docutils literal notranslate"><span class="pre">xios</span></code> libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.</p></li>
+</ul>
 </section>
-<section id="checking-out-a-suite">
-<h2>Checking out a suite<a class="headerlink" href="#checking-out-a-suite" title="Link to this heading">#</a></h2>
-<p>Let’s run a tiny test suite developed by Paul Leopardi at ACCESS-NRI. You can find the full documentation here :</p>
-<p><a class="github reference external" href="https://github.com/ACCESS-NRI/training-day-2024-regional_model/blob/main/access_rose_cylc/rose_cylc_example.md">ACCESS-NRI/training-day-2024-regional_model</a></p>
-<p>You can check out Martin’s suite using the rosie <code class="docutils literal notranslate"><span class="pre">check</span> <span class="pre">out</span></code> command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">cq161</span>
-</pre></div>
-</div>
-<p>Which creates a local copy of the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite to <code class="docutils literal notranslate"><span class="pre">~/roses/u-cq161</span></code>.</p>
-<p>Let’s walk through the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file to see what this suite will do.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">[scheduling]</span></code> section tells us which tasks will run, and in which order. This suite only contains three tasks:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_stream</span> <span class="o">=&gt;</span> <span class="n">build_stream</span> <span class="o">=&gt;</span> <span class="n">run_stream</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">[runtime]</span></code> section tells us <strong>how</strong> these tasks will run.</p>
-<p>Firstly there are three sections (or namespaces) which define the local environment: <code class="docutils literal notranslate"><span class="pre">[[root]]</span></code>, <code class="docutils literal notranslate"><span class="pre">[[local]]</span></code> and <code class="docutils literal notranslate"><span class="pre">[[HPC]]</span></code>, where the suite will run and in this instance, the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job specifications.</p>
-<p>There each task has its own namespace: <code class="docutils literal notranslate"><span class="pre">[[get_stream]]</span></code>, <code class="docutils literal notranslate"><span class="pre">[[build_stream]]</span></code> and <code class="docutils literal notranslate"><span class="pre">[[run_stream]]</span></code>.</p>
-<p>The first task <code class="docutils literal notranslate"><span class="pre">[[get_stream]]</span></code> inherits the <code class="docutils literal notranslate"><span class="pre">[[local]]</span></code> namespace and runs the <code class="docutils literal notranslate"><span class="pre">get_stream</span></code> script after some preliminary <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands.</p>
-<p>The second task <code class="docutils literal notranslate"><span class="pre">[[build_stream]]</span></code> inherits the <code class="docutils literal notranslate"><span class="pre">[[HPC]]</span></code> namespace and executes the <code class="docutils literal notranslate"><span class="pre">build_stream</span></code> script.</p>
-<p>The last task <code class="docutils literal notranslate"><span class="pre">[[run_stream]]</span></code> inherits the same namespace and executes the <code class="docutils literal notranslate"><span class="pre">run_stream</span></code> script.</p>
-<p>NOTE. You will have to restart your sessions after quarterly maintenance.</p>
+<section id="task-flow">
+<h3>Task flow<a class="headerlink" href="#task-flow" title="Link to this heading">#</a></h3>
+<p>Let’s walk through the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file to determine the task flow.</p>
+<p>Before we get to the <code class="docutils literal notranslate"><span class="pre">graph</span></code> section, there are several <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macros (defined using <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">%}</span></code> constructs) the do the following:</p>
+<ul class="simple">
+<li><p>Set an alias for the rose <code class="docutils literal notranslate"><span class="pre">TASK_RUN_COMMAND</span></code></p></li>
+<li><p>load the required <code class="docutils literal notranslate"><span class="pre">modules</span></code> on gadi</p></li>
+<li><p>Set some run-time options based on entries in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, including:</p>
+<ul>
+<li><p>Numerical precision</p></li>
+<li><p>Archiving frequency</p></li>
+<li><p>‘CoMorph’ convection scheme</p></li>
+<li><p>Stochastic physics settings</p></li>
+</ul>
+</li>
+<li><p>Set aliases for dates based on the input <code class="docutils literal notranslate"><span class="pre">DATES</span></code></p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -464,7 +480,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
         },
         kernelOptions: {
             name: "python3",
-            path: "./rose-cylc"
+            path: "./UM"
         },
         predefinedOutput: true
     }
@@ -481,6 +497,24 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../mosrs/mosrs-intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MOSRS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../python/intro-python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Intro to Python for Climate Science</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -498,9 +532,12 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-sessions">Persistent sessions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mosrs-authentication">MOSRS authentication</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-suite">Checking out a suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-um-suite">Checking out a UM suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-suite">Examining the suite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#master-configuration">Master configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-flow">Task flow</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

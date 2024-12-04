@@ -56,6 +56,12 @@ As part of my `start_rose` alias, I export the value of the `CYLC_SESSION` envir
 alias start_rose="export CYLC_SESSION=<session-name>.<user-id>.<project>.ps.gadi.nci.org.au;module use /g/data/hr22/modulefiles;module load cylc7/23.09"
 ```
 
+> **_WARNING:_** If you have the `conda/analysis3` module loaded, you **WILL NOT** be able to `ssh` to your persistent session, due to a conflict between the `ssh` installation contained in that module and the global `ssh` configuration used at NCI. The `analysis3` installation cannot access any of the `ssh` options that are needed to access the persistent sessions (such as the port and which `SSHkey` to use). You will need to unload the `analysis3` module from you current environment using 
+```
+module unload conda/analysis3
+```
+
+
 > **_NOTE:_** You will have to restart your sessions after quarterly maintenance.
 
 ## MOSRS authentication ##
@@ -126,7 +132,7 @@ The script `run_stream` executes the `C` based executable `stream_c.exe`.
 
 ## Running the suite ##
 
-Let's run the suite from `~/roses/u-cd161/` directory:
+Let's run the suite from `~/roses/u-cq161/` directory:
 ```
 rose suite-run
 ```
@@ -198,3 +204,5 @@ This was quite a small task. We only request 1 GB of memory using one CPU. We on
 Any errors that occurred during the task will be output via standard error to `~cylc-run/u-cq161/log/job/1/run_stream/NN/job.err`.
 
 There are no error messages, only the outputs of loading your `rose/cylc` module environment.
+
+Now, let's move onto running an atmospheric simulation using the UK Met Offices' `Unified Model'.
