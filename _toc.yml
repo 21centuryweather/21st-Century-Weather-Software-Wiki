@@ -4,11 +4,17 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Getting Started 
-    chapters:
-    - file: starting/nci
+#  - caption: Getting Started 
+#    chapters:
+#    - file: starting/nci
   - caption: Running atmospheric simulations using ACCESS
     chapters:
     - file: rose-cylc/rose-cylc-intro
     - file: mosrs/mosrs-intro
     - file: UM/UM-intro
+  - caption: Python
+    chapters:
+    - file: python/intro-python
+    - file: python/file_formats
+    - file: python/polars-intro
+
