@@ -204,3 +204,5 @@ This was quite a small task. We only request 1 GB of memory using one CPU. We on
 Any errors that occurred during the task will be output via standard error to `~cylc-run/u-cq161/log/job/1/run_stream/NN/job.err`.
 
 There are no error messages, only the outputs of loading your `rose/cylc` module environment.
+
+Now, let's move onto running an atmospheric simulation using the UK Met Offices' `Unified Model'.

@@ -11,3 +11,4 @@ parts:
     chapters:
     - file: rose-cylc/rose-cylc-intro
     - file: mosrs/mosrs-intro
+    - file: UM/UM-intro
