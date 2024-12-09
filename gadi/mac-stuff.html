@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The Unified Model &#8212; 21st Century Weather Software Wiki</title>
+    <title>Working with gadi via your Mac &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -60,11 +60,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/UM-intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/mac-stuff';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
-    <link rel="prev" title="MOSRS" href="../mosrs/mosrs-intro.html" />
+    <link rel="prev" title="An Introduction to Fast Data Analysis with the Polars Library in Python" href="../python/polars-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,10 +168,10 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -181,8 +180,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with gadi via your Mac</a></li>
 </ul>
 
     </div>
@@ -254,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FUM/UM-intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgadi/mac-stuff.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -284,7 +283,7 @@
       
       
       
-      <li><a href="../_sources/UM/UM-intro.md" target="_blank"
+      <li><a href="../_sources/gadi/mac-stuff.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -360,7 +359,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The Unified Model</h1>
+    <h1>Working with gadi via your Mac</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,12 +369,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-um-suite">Checking out a UM suite</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-suite">Examining the suite</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#master-configuration">Master configuration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-flow">Task flow</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-connection-via-ssh">Direct connection via ssh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-windows-support">X-windows support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-tricks-with-mac">Command-line tricks with Mac</a></li>
 </ul>
             </nav>
         </div>
@@ -387,87 +383,79 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-unified-model">
-<h1>The Unified Model<a class="headerlink" href="#the-unified-model" title="Link to this heading">#</a></h1>
-<p>The ACCESS modeling suite is reliant on the UK Met Office’s Unified Model (UM) for atmospheric simulations.</p>
-<p>The UM is a collection of Fortran-based executables built to simulate the future state of the atmosphere. It is designed to interface with land/surface and sea-surface data.</p>
-<p>The model is so named (i.e. “Unified”) because it contains a single set of code that can be applied across a diverse range of length and timescales; from urban weather forecasts at grid resolutions of a few hundred metres, to global climate model projections extending into next century at grid resolutions of hundreds of kilometres.</p>
-<p>You can access more detailed information about the UM here :
-<a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/introduction.html">https://21centuryweather.github.io/UM_summary_docs/introduction.html</a></p>
-<p>For now, let’s concentrate on running a very simple test suite, a ‘minimal working example’ to demonstrate how we can run the UM on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> using a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite.</p>
-<section id="checking-out-a-um-suite">
-<h2>Checking out a UM suite<a class="headerlink" href="#checking-out-a-um-suite" title="Link to this heading">#</a></h2>
-<p>If you need to, repeat the steps of the previous tutorial to authenticate your MOSRS credentials. Then, checkout suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> using</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">dl058</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-gadi-via-your-mac">
+<h1>Working with gadi via your Mac<a class="headerlink" href="#working-with-gadi-via-your-mac" title="Link to this heading">#</a></h1>
+<p>Mac OS interfaces very well with Unix/Linux systems (like gadi), because Mac OS is itself based on an old version of Unix called ‘BSD’.</p>
+<p>However, there are a few tricks you need to know before you can seamlessly work with gadi on your Mac desktop.</p>
+<section id="direct-connection-via-ssh">
+<h2>Direct connection via ssh<a class="headerlink" href="#direct-connection-via-ssh" title="Link to this heading">#</a></h2>
+<p>You can access a gadi login node directly from your Mac OS Terminal with the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
 </pre></div>
 </div>
-<p>This suite was initially developed by scientists at the Bureau of Meteorology to research ‘coupled’ Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> logic related to coupling so the suite performs a simple atmospheric-only global simulation at low resolution.</p>
+<p>To avoid typing in your gadi username and password every time you login, you will want to append the local ssh ‘public key’ from your Mac to your remote ‘authorized keys’ file on gadi.</p>
+<p>This can be done in three easy steps by following the instructions:</p>
+<p><a class="reference external" href="https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/</a></p>
+<p>In those instructions, you will need to include your gadi username, because those instructions assume your local and remote usernames are the same (which is highly unlikely in our case.)</p>
+<p>So in Step 2, you will need to type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+</pre></div>
+</div>
+<p>where ‘username’ is your actual gadi username, e.g. ‘ab1234’.</p>
+<p>If you want to access graphical applications on gadi remotely (e.g. <code class="docutils literal notranslate"><span class="pre">emacs</span></code>, <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">GUI</span></code>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">VS</span> <span class="pre">Code</span></code> etc) you will need to allow ‘X windows forwarding’ between your local terminal session and gadi. You activate this using the <code class="docutils literal notranslate"><span class="pre">-X</span></code> flag, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+</pre></div>
+</div>
+<p><strong>BUT</strong> : You will <strong>NOT</strong> be able to interact with graphical apps on gadi until you complete the steps below.</p>
 </section>
-<section id="examining-the-suite">
-<h2>Examining the suite<a class="headerlink" href="#examining-the-suite" title="Link to this heading">#</a></h2>
-<p>The suite contains all the usual files you’ve become accustomed too inside a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite:</p>
-<ul class="simple">
-<li><p>A <code class="docutils literal notranslate"><span class="pre">rose-app.conf</span></code> file to control the master configuration of the suite.</p></li>
-<li><p>A <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file to control the task flow</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">app</span></code> directory to house <code class="docutils literal notranslate"><span class="pre">.conf</span></code> files for each application task.</p></li>
-</ul>
-<p>Let’s step through each task within this suite so we understand at a basic level, how the UM works on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
-<section id="master-configuration">
-<h3>Master configuration<a class="headerlink" href="#master-configuration" title="Link to this heading">#</a></h3>
-<p>Let’s quickly run through the master configuration file : <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl085/rose-suite.conf</span></code></p>
-<p>This contains a list of <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variables which describe the following:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ANCILDATA</span></code> : Ancillary data directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> : Output archive directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ARCHIVE_6HR</span></code> : Archiving temporal frequency</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ATM_PPN</span></code> : Number of processors for atmospheric tasks</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_UM</span></code> : Flag to compile our own UM executable</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CALENDAR</span></code> : Calendar type (important for long climate simulations)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CASEDATA</span></code> : Directory of case study input files</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_ACCOUNT</span></code> : Your gadi <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> used for resouce allocation</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_HOST</span></code> : Name of supercomputer</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_QUEUE</span></code> : PBS job queue used for simulations</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MODULE_NAME</span></code> : Extra module configuration data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CORE</span></code> : Type of CPU used in supercomputer environment</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DATES</span></code> : List of dates to run simulations for</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">EXTRACT_HOST</span></code> : operating system type</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HOUSEKEEP</span></code>: Flag to set housekeeping tasks</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">OCEANDIR</span></code> : Location of Ocean data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PPN</span></code> : Number of processors (generic)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_PARALLEL</span></code> : PBS job queue type</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RUNTYPE</span></code> : Flag for ‘coupled’ (modeling both the ocean and atmosphere) or ‘uncoupled’ (atmosphere only) simulation.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RUN_METDB_ODB</span></code> : Option to use the UK Met Office Observation Database</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">SITE</span></code> : String to denote the supercomputer type</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">STOCHASTIC</span></code>: Flag for stochastic atmospheric physics</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TASKLENGTH</span></code> : Data for UM task control</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TASK_RUN</span></code> : Data for UM task control</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TASK_TESTS</span></code> : Flag for UM task control</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">UMDIR</span></code> : Master directory for UM files</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">UM_RESOLUTION</span></code> : Global atmospheric resolution</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">USE_COMORPH</span></code> : Flag for CoMorph convection scheme</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">USE_DOUBLE_PREC</span></code> : Flag for numerical precision</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">XIOS_NPROC</span></code> : Processors used for XIOS source-code compilation</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">xios_path</span></code> : Directory of <code class="docutils literal notranslate"><span class="pre">xios</span></code> libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.</p></li>
-</ul>
+<section id="x-windows-support">
+<h2>X-windows support<a class="headerlink" href="#x-windows-support" title="Link to this heading">#</a></h2>
+<p>The native Mac OS uses ‘Quartz’ to generate Mac Graphical-User-Interface ‘Aqua’. Unix uses the <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">Windows</span></code> protocol :</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/X_Window_System">https://en.wikipedia.org/wiki/X_Window_System</a></p>
+<p>Mac OS used to natively support X windows out-of-the-box, but this support was removed in 2012. Nowadays you have to install <code class="docutils literal notranslate"><span class="pre">Xquartz</span></code> to support X windows on a Mac.</p>
+<p><a class="reference external" href="https://www.xquartz.org">https://www.xquartz.org</a></p>
+<p>You can install this manually if you have sys-admin privileges, otherwise your site sys-admin will have to do it for you.</p>
+<p>To check that X-windows support is working correctly, try the following after you have installed <code class="docutils literal notranslate"><span class="pre">Xquartz</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh -X username@gadi.nci.org.au
+
+$ xeyes
+</pre></div>
+</div>
+<p>A small window of two ‘eyeballs’ should pop-up which will track the movement of your cursor across your desktop.</p>
+<p><img alt="xeyes on Mac" src="../_images/xeyes.png" /></p>
+<p>This means that X window forwarding is now allowed between gadi and your Mac.</p>
+<p>In order to maintain your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session without gadi closing your connection after small periods of inactivity, it is suggested you enter the following in the <code class="docutils literal notranslate"><span class="pre">~/ssh/.config</span></code> file on your Mac:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="o">*</span>
+  <span class="n">ServerAliveInterval</span> <span class="mi">60</span>
+  <span class="n">ForwardX11</span> <span class="n">yes</span>
+  <span class="n">ForwardX11Trusted</span> <span class="n">yes</span>
+  <span class="n">TCPKeepAlive</span> <span class="n">no</span>
+
+<span class="n">Host</span> <span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+  <span class="n">HostName</span> <span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+  <span class="n">User</span> <span class="o">&lt;</span><span class="n">insert</span> <span class="n">your</span> <span class="n">username</span> <span class="n">here</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 </section>
-<section id="task-flow">
-<h3>Task flow<a class="headerlink" href="#task-flow" title="Link to this heading">#</a></h3>
-<p>Let’s walk through the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file to determine the task flow.</p>
-<p>Before we get to the <code class="docutils literal notranslate"><span class="pre">graph</span></code> section, there are several <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macros (defined using <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">%}</span></code> constructs) the do the following:</p>
-<ul class="simple">
-<li><p>Set an alias for the rose <code class="docutils literal notranslate"><span class="pre">TASK_RUN_COMMAND</span></code></p></li>
-<li><p>load the required <code class="docutils literal notranslate"><span class="pre">modules</span></code> on gadi</p></li>
-<li><p>Set some run-time options based on entries in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, including:</p>
-<ul>
-<li><p>Numerical precision</p></li>
-<li><p>Archiving frequency</p></li>
-<li><p>‘CoMorph’ convection scheme</p></li>
-<li><p>Stochastic physics settings</p></li>
-</ul>
-</li>
-<li><p>Set aliases for dates based on the input <code class="docutils literal notranslate"><span class="pre">DATES</span></code></p></li>
-</ul>
-</section>
+<section id="command-line-tricks-with-mac">
+<h2>Command-line tricks with Mac<a class="headerlink" href="#command-line-tricks-with-mac" title="Link to this heading">#</a></h2>
+<p>While Gadi uses the <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell, Mac OS uses the <code class="docutils literal notranslate"><span class="pre">zsh</span></code> shell by default. When using command-line tools like <code class="docutils literal notranslate"><span class="pre">scp</span></code> to copy files from gadi to your local Mac, you will need to be aware of the following when using ‘wildcard’ characters to glob files.</p>
+<p>For example, this how to list all <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files in your Mac’s home directory directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">ls</span> <span class="o">~/*.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The same command will work on gadi once you have created an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session. But, what if I want to retrieve all <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files form gadi to my Mac using the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command? Normally you would try this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">scp</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span><span class="p">:</span><span class="o">~/*.</span><span class="n">txt</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This <strong>WILL NOT</strong> work, because <code class="docutils literal notranslate"><span class="pre">zsh</span></code> interprets wildcard characters differently to <code class="docutils literal notranslate"><span class="pre">bash</span></code> when using multiple command-line arguments. To make the above command work, you need to place quotes around the command, i.e.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">scp</span> <span class="s1">&#39;username@gadi.nci.org.au:~/*.txt&#39;</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>See here for more info
+<a class="reference external" href="https://superuser.com/questions/584249/using-wildcards-in-commands-with-zsh">https://superuser.com/questions/584249/using-wildcards-in-commands-with-zsh</a></p>
+<p><a class="reference external" href="https://unix.stackexchange.com/questions/130958/scp-wildcard-not-working-in-zsh">https://unix.stackexchange.com/questions/130958/scp-wildcard-not-working-in-zsh</a></p>
+<p><a class="reference external" href="https://superuser.com/questions/420525/scp-with-zsh-no-matches-found">https://superuser.com/questions/420525/scp-with-zsh-no-matches-found</a></p>
 </section>
 </section>
 
@@ -484,7 +472,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./UM"
+            path: "./gadi"
         },
         predefinedOutput: true
     }
@@ -502,22 +490,13 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../mosrs/mosrs-intro.html"
+       href="../python/polars-intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">MOSRS</p>
+        <p class="prev-next-title">An Introduction to Fast Data Analysis with the Polars Library in Python</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../python/intro-python.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Intro to Python for Climate Science</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -536,12 +515,9 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-um-suite">Checking out a UM suite</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-suite">Examining the suite</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#master-configuration">Master configuration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-flow">Task flow</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-connection-via-ssh">Direct connection via ssh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-windows-support">X-windows support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-tricks-with-mac">Command-line tricks with Mac</a></li>
 </ul>
   </nav></div>
 
