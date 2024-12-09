@@ -17,4 +17,7 @@ parts:
     - file: python/intro-python
     - file: python/file_formats
     - file: python/polars-intro
+  - caption: Working with Gadi
+    chapters:
+    - file: gadi/mac-stuff
 
