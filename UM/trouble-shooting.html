@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Trouble Shooting &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/trouble-shooting';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UM-intro.html">The Unified Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FUM/trouble-shooting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/UM/trouble-shooting.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Trouble Shooting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broken-tasks">Broken tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-rose-cylc-problems">Common rose/cylc problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="trouble-shooting">
+<h1>Trouble Shooting<a class="headerlink" href="#trouble-shooting" title="Link to this heading">#</a></h1>
+<p>Running the UM can be fraught. Tasks often fail. Let’s break a task on purpose with our test suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> and learn how to diagnose problems and re-start suites.</p>
+<section id="broken-tasks">
+<h2>Broken tasks<a class="headerlink" href="#broken-tasks" title="Link to this heading">#</a></h2>
+<p>Let’s break the suite on purpose so we can practise dealing with problems. Let’s break the <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> task.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">app/install_ancil/rose-app.conf</span></code> let’s change the environment variable <code class="docutils literal notranslate"><span class="pre">LEVELS</span></code> from 70 to 73.
+i.e. change this section of the file from</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">env</span><span class="p">]</span>
+<span class="n">CALENDAR</span><span class="o">=</span><span class="n">gregorian</span>
+<span class="n">LEVELS</span><span class="o">=</span><span class="mi">70</span>
+<span class="n">OCEAN</span><span class="o">=</span><span class="n">orca025_lakes</span>
+</pre></div>
+</div>
+<p>to this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">env</span><span class="p">]</span>
+<span class="n">CALENDAR</span><span class="o">=</span><span class="n">gregorian</span>
+<span class="n">LEVELS</span><span class="o">=</span><span class="mi">73</span> 
+<span class="n">OCEAN</span><span class="o">=</span><span class="n">orca025_lakes</span>
+</pre></div>
+</div>
+<p>Now, let’s run the suite.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-run
+</pre></div>
+</div>
+<p>That task will fail, while the <code class="docutils literal notranslate"><span class="pre">fcm_make</span></code> tasks will continue.</p>
+<p><img alt="fail" src="../_images/fail.png" /></p>
+<p>Let’s look a the <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file for this task.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Suite</span>    <span class="p">:</span> <span class="n">u</span><span class="o">-</span><span class="n">dl058</span>
+<span class="n">Task</span> <span class="n">Job</span> <span class="p">:</span> <span class="mi">20200116</span><span class="n">T0000Z</span><span class="o">/</span><span class="n">install_ancil</span><span class="o">/</span><span class="mi">01</span> <span class="p">(</span><span class="k">try</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">User</span><span class="nd">@Host</span><span class="p">:</span> <span class="n">pag548</span><span class="nd">@gadi</span><span class="o">-</span><span class="n">cpu</span><span class="o">-</span><span class="n">clx</span><span class="o">-</span><span class="mf">1296.</span><span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+
+<span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="n">T07</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="n">Z</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">started</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">Configuration</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">install_ancil</span><span class="o">/</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span>     <span class="n">file</span><span class="p">:</span> <span class="n">rose</span><span class="o">-</span><span class="n">app</span><span class="o">.</span><span class="n">conf</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span>     <span class="n">optional</span> <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="n">nci_gadi</span><span class="p">)</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">export</span> <span class="n">CALENDAR</span><span class="o">=</span><span class="n">gregorian</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">export</span> <span class="n">LEVELS</span><span class="o">=</span><span class="mi">73</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">export</span> <span class="n">OCEAN</span><span class="o">=</span><span class="n">orca025_lakes</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">export</span> <span class="n">PATH</span><span class="o">=/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">cylc7</span><span class="o">/</span><span class="n">rose_2019</span><span class="mf">.01.7</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fcm_make_um</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">recon</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fcm_make_um</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">atmos</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fcm_make_surf</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fcm_make_drivers</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fcm_make_cice_to_si3</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">cice_to_si3</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">cylc7</span><span class="o">/</span><span class="n">cylc_7</span><span class="mf">.9.7</span><span class="o">/../</span><span class="mf">23.09</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">mosrs</span><span class="o">-</span><span class="n">setup</span><span class="o">/</span><span class="mf">1.0.1</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">cylc7</span><span class="o">/</span><span class="n">cylc_7</span><span class="mf">.9.7</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">pbs</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">nci</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Modules</span><span class="o">/</span><span class="n">v4</span><span class="mf">.3.0</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pbs</span><span class="o">/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pbs</span><span class="o">/</span><span class="nb">bin</span>
+
+<span class="o">======================================================================================</span>
+                  <span class="n">Resource</span> <span class="n">Usage</span> <span class="n">on</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">18</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span>
+   <span class="n">Job</span> <span class="n">Id</span><span class="p">:</span>             <span class="mf">130549459.</span><span class="n">gadi</span><span class="o">-</span><span class="n">pbs</span>
+   <span class="n">Project</span><span class="p">:</span>            <span class="n">gb02</span>
+   <span class="n">Exit</span> <span class="n">Status</span><span class="p">:</span>        <span class="mi">1</span>
+   <span class="n">Service</span> <span class="n">Units</span><span class="p">:</span>      <span class="mf">0.00</span>
+   <span class="n">NCPUs</span> <span class="n">Requested</span><span class="p">:</span>    <span class="mi">1</span>                      <span class="n">NCPUs</span> <span class="n">Used</span><span class="p">:</span> <span class="mi">1</span>               
+                                           <span class="n">CPU</span> <span class="n">Time</span> <span class="n">Used</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">03</span>        
+   <span class="n">Memory</span> <span class="n">Requested</span><span class="p">:</span>   <span class="mf">4.0</span><span class="n">GB</span>                 <span class="n">Memory</span> <span class="n">Used</span><span class="p">:</span> <span class="mf">34.09</span><span class="n">MB</span>         
+   <span class="n">Walltime</span> <span class="n">requested</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span>            <span class="n">Walltime</span> <span class="n">Used</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">05</span>        
+   <span class="n">JobFS</span> <span class="n">requested</span><span class="p">:</span>    <span class="mf">100.0</span><span class="n">MB</span>                <span class="n">JobFS</span> <span class="n">used</span><span class="p">:</span> <span class="mi">0</span><span class="n">B</span>              
+<span class="o">======================================================================================</span>
+</pre></div>
+</div>
+<p>Often, you won’t find any useful messages in <code class="docutils literal notranslate"><span class="pre">job.out</span></code>. Let’s look at the <code class="docutils literal notranslate"><span class="pre">job.err</span></code> file. This file is where <code class="docutils literal notranslate"><span class="pre">cylc</span></code> pipes all standard error (or stderr) message from the PBS scheduler.</p>
+<blockquote>
+<div><p><strong><em>TIP:</em></strong> If you using the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI to look at the output files, you can select <code class="docutils literal notranslate"><span class="pre">job.err</span></code> from a pull-down menu on the bottom right after you’ve looked at <code class="docutils literal notranslate"><span class="pre">job.out</span></code>.</p>
+</div></blockquote>
+<p><img alt="stderr" src="../_images/stderr.png" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">job.err</span></code> file contains the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">FAIL</span><span class="p">]</span> <span class="n">file</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ancil_gl</span><span class="o">/</span><span class="n">qrclim</span><span class="o">.</span><span class="n">aeroclim</span><span class="o">=</span><span class="n">source</span><span class="o">=/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">umdir</span><span class="o">/</span><span class="n">ancil</span><span class="o">/</span><span class="n">atmos</span><span class="o">/</span><span class="n">GC5</span><span class="o">/</span><span class="n">n320e</span><span class="o">/</span><span class="n">aerosol_clims</span><span class="o">/</span><span class="n">glomap</span><span class="o">/</span><span class="n">gregorian</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">qrclim</span><span class="o">.</span><span class="n">aerosols73</span><span class="o">.</span><span class="n">nc</span><span class="p">:</span> <span class="p">[</span><span class="n">Errno</span> <span class="mi">2</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span><span class="p">:</span> <span class="s1">&#39;/g/data/access/projects/access/umdir/ancil/atmos/GC5/n320e/aerosol_clims/glomap/gregorian/v1/qrclim.aerosols73.nc&#39;</span>
+<span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="n">T07</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">29</span><span class="n">Z</span> <span class="n">CRITICAL</span> <span class="o">-</span> <span class="n">failed</span><span class="o">/</span><span class="n">EXIT</span>
+</pre></div>
+</div>
+<p>That is a useful error message. It tells us the task failed because it is trying to link to a file which doesn’t exist. No ancillary files in the <code class="docutils literal notranslate"><span class="pre">UM_ANCIL_DIR</span></code> exist with 73 levels.</p>
+<p>Lets change levels back to 70 and save the file. This has updated the file <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl058/app/install_ancil/rose-app.conf</span></code>.</p>
+<p>But how do we update the actual file in the <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058</span></code> directory?</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">rose</span></code> <code class="docutils literal notranslate"><span class="pre">reload</span></code> functionality by typing from <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl058</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-run --reload
+</pre></div>
+</div>
+<p>The last outputs of this command should say</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="p">:</span> <span class="n">reload</span> <span class="n">complete</span><span class="o">.</span> <span class="s2">&quot;suite.rc&quot;</span> <span class="n">unchanged</span>
+</pre></div>
+</div>
+<p>This tells us the suite definition in <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058</span></code> has been updated, although we didn’t make any changes to <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code>.</p>
+<p>You can manually check the suite file has been updated by executing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -lt ~/cylc-run/u-dl058/app/install_ancil/
+</pre></div>
+</div>
+<p>The modified time of the <code class="docutils literal notranslate"><span class="pre">rose-app.conf</span></code> file should now be updated.</p>
+<p>We can view this file from the command line using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/cylc-run/u-dl058/app/install_ancil/rose-app.conf 
+[command]
+default=true
+
+[env]
+CALENDAR=gregorian
+LEVELS=70
+OCEAN=orca025_lakes
+</pre></div>
+</div>
+<p>So our changes have correctly reloaded.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">reload</span></code> command while the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> suite is still running. Note your suite IS still running. It is just paused and is waiting for the next dependency to be fulfilled before the next task can be executed. If you type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc scan
+</pre></div>
+</div>
+<p>You should see the suite <code class="docutils literal notranslate"><span class="pre">u-dl085</span></code> along with your username an persistent session name.</p>
+<p>Now with the correct value of <code class="docutils literal notranslate"><span class="pre">LEVEL</span></code>, we can execute the failed job by right-clicking on <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> and selecting <code class="docutils literal notranslate"><span class="pre">trigger</span> <span class="pre">now</span></code>.</p>
+<p><img alt="stderr" src="../_images/trigger.png" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> task will now succeed, and the rest of the suite will now continue as normal.</p>
+<p>When running a suite, you’ll find the above very useful when having to deal with failed tasks, without having to re-start the suite from scratch. The <code class="docutils literal notranslate"><span class="pre">cylc</span></code> workflow engine is clever enough to pick-up from where you left off. You won’t have to restart the entire suite every time you hit a problem.</p>
+</section>
+<section id="common-rose-cylc-problems">
+<h2>Common rose/cylc problems<a class="headerlink" href="#common-rose-cylc-problems" title="Link to this heading">#</a></h2>
+<p>This will be a maintained list of problems encountered (and fixed) with running <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> ACCESS tasks.</p>
+<section id="jobs-submitted-but-not-running">
+<h3>Jobs submitted but not running<a class="headerlink" href="#jobs-submitted-but-not-running" title="Link to this heading">#</a></h3>
+<p>A common issue is that you start your <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite, which submits various jobs, but they never run.</p>
+<p>i.e. the job state in the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI is ‘submitted’ and the job colour is bright green, but the job never begins running and never turns deep green.</p>
+<p>This is often caused by disk quota issues. If you have insufficient disk space, either in your home directory, your <code class="docutils literal notranslate"><span class="pre">/g/data/</span></code> or <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> directories, your PBS job will not be allowed to run and will be held indefinitely.</p>
+<p>PBS jobs will also be held if there are insufficient project allocations (e.g. you’ve run out of ‘kSU’).</p>
+<p>See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/230490410/Why+are+my+jobs+not+running+">https://opus.nci.org.au/spaces/Help/pages/230490410/Why+are+my+jobs+not+running+</a>…</p>
+<p>for more details.</p>
+<p>To help manage your disk quota, use some of the commands in this link:</p>
+<p><a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation">https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation</a>…</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./UM"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broken-tasks">Broken tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-rose-cylc-problems">Common rose/cylc problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
