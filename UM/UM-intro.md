@@ -348,4 +348,3 @@ which deletes the directory `/cylc-run/u-dl058/share/cycle/20200116T0000Z/`.
 
 Congratulations! You've just run your first UM suite using `rose/cylc`
 
-## What if something goes wrong?
