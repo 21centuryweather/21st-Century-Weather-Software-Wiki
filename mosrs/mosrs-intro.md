@@ -1,6 +1,6 @@
 # MOSRS #
 
-The UK Met Office Science Repository Service (MOSRS) is located at: https://code.metoffice.gov.uk/self-service/. The repository contains all the files and documentation required for the UK Met Office to co-ordinate co-operative research between itself, partner meteorological agencies (e.g. Australia's Bureau of Meteorology, Meteorological Service Singapore, New Zealand's NIWA etc.) and research partners (e.g. University of Reading, ACCESS-NRI, University of Melbourne, ANU etc.)
+The UK Met Office Science Repository Service (MOSRS) is located at: https://code.metoffice.gov.uk/self-service/. The repository contains all the files and documentation required for the UK Met Office to co-ordinate research between itself, partner meteorological agencies (e.g. Australia's Bureau of Meteorology, Meteorological Service Singapore, New Zealand's NIWA etc.) and research partners (e.g. University of Reading, ACCESS-NRI, University of Melbourne, ANU etc.)
 
 Once you have access to MOSRS you will be able to download `rose/cylc` suites onto `gadi` and begin performing your weather and climate simulations.
 
@@ -89,11 +89,11 @@ Let's run a tiny test suite developed by Paul Leopardi at ACCESS-NRI. You can fi
 
 https://github.com/ACCESS-NRI/training-day-2024-regional_model/blob/main/access_rose_cylc/rose_cylc_example.md
 
-You can check out Martin's suite using the rosie `check out` command
+You can check out Paul's suite using the rosie `check out` command,
 ```
 rosie co u-cq161
 ```
-Which creates a local copy of the `rose/cylc` suite to `~/roses/u-cq161`.
+which creates a local copy of the `rose/cylc` suite at `~/roses/u-cq161`.
 
 If you launch `rose edit` from your `roses/u-cq161` directory, you should see this:
 
@@ -108,25 +108,25 @@ get_stream => build_stream => run_stream
 
 The `[runtime]` section tells us **how** these tasks will run.
 
-Firstly there are three sections (or namespaces) which define the local environment: `[[root]]`, `[[local]]` and `[[HPC]]`, where the suite will run and in this instance, the `PBS` job specifications.
+Firstly there are three sections (or namespaces) which define the local environment: `[[root]]`, `[[local]]` and `[[HPC]]`. These sections define where the suite will run and the necessary PBS job specifications.
 
-There each task has its own namespace: `[[get_stream]]`, `[[build_stream]]` and `[[run_stream]]`.
+Each task is defined by its own namespace: `[[get_stream]]`, `[[build_stream]]` and `[[run_stream]]`.
 
-The first task ``[[get_stream]]`` inherits the `[[local]]` namespace and runs the `get_stream` script after some preliminary `bash` commands.
+The first task ``[[get_stream]]`` inherits the `[[local]]` namespace and runs the `get_stream` script after executing some preliminary `bash` commands.
 
 The second task `[[build_stream]]` inherits the `[[HPC]]` namespace and executes the `build_stream` script. 
 
 The last task `[[run_stream]]` inherits the same namespace and executes the `run_stream` script.
 
-To see what each script does, we can view the contents of each script which are located in `~/roses/u-cd161/bin`.
+To see what each script does, you can view the contents of each script which are located in `~/roses/u-cd161/bin`.
 
 The script `get_stream` downloads code from 
 
 https://github.com/jeffhammond/STREAM.git
 
-The `README` file on the website shows that `STREAM` is a standard package used to benchmark sustained memory bandwidth on supercomputers.  It consists of some `fortran` and `C` source files and a `Makefile` which can compile these source files using `gfortran` and `gcc` compilers.
+The `README` file on the website shows that `STREAM` is a standard package used to benchmark sustained memory bandwidth on supercomputers.  It consists of `fortran` and `C` source files and a `Makefile` which compiles these source files using `gfortran` and `gcc` compilers.
 
-The script `build_stream` simply runs the `make` command to build the executables. Note the `suite.rc` contain logic to ensure we are in the correct directory to build the source files.
+The script `build_stream` runs the `make` command to build the executables. The `suite.rc` contain logic to ensure we are in the correct directory to build the source files.
 
 The script `run_stream` executes the `C` based executable `stream_c.exe`.
 
@@ -134,7 +134,7 @@ The script `run_stream` executes the `C` based executable `stream_c.exe`.
 
 Let's run the suite from `~/roses/u-cq161/` directory:
 ```
-rose suite-run
+$ rose suite-run
 ```
 This will launch the `cylc` GUI, which should resemble the following upon completion. You will have to click on the `local` and `HPC` namespaces to expand the task lists.
 
@@ -146,7 +146,7 @@ Let's examine the suite output by viewing the contents of the run directory.
 ```
 cd ~/cylc-run/u-cq161/
 ```
-Let's examine the `log` files, noting that `log` is a symbolic link that links to the latest version of the `log.YYYYMMDDTHHMMSSZ` directory - i.e. the timestamp of directory creation is appended to the `log` directory name in GMT or 'Zulu' time, hence the 'Z'.
+Let's examine the `log` files, noting that `log` is a symbolic link that links to the latest version of the `log.YYYYMMDDTHHMMSSZ` directory - i.e. the timestamp of the directory creation time is appended to the `log` directory name in GMT or 'Zulu' time, hence the 'Z'.
 
 You can view the contents of the actual `run_stream` `cylc` job, i.e. what the persistent session submitted to the `gadi` `PBS` job queue by examining : `~cylc-run/u-cq161/log/job/1/run_stream/NN/job`.
 
@@ -158,7 +158,7 @@ The job then calls the `bash` function `cylc__job__main`.
 
 If you are curious about how these `bash` functions are executed, you can examine : `/g/data/hr22/apps/cylc7/cylc_7.9.7/lib/cylc/job.sh`.
 
-To view the output of `run_stream`, you can view : `~cylc-run/u-cq161/log/job/1/run_stream/NN/job.out`.
+To view the output of `run_stream`, you can view : `~/cylc-run/u-cq161/log/job/1/run_stream/NN/job.out`.
 
 The output will show the job successfully completed and it will include the following summary of `gadi` resources used to run this task.
 ```
@@ -199,10 +199,10 @@ Solution Validates: avg error less than 1.000000e-13 on all three arrays
    JobFS requested:    100.0MB                JobFS used: 0B              
 ======================================================================================
 ```
-This was quite a small task. We only request 1 GB of memory using one CPU. We only used 253 MB and the task took less than one second to complete.
+This was quite a small task. We only requested 1 GB of memory using one CPU. We only used 253 MB of memory and the task took less than one second to complete.
 
-Any errors that occurred during the task will be output via standard error to `~cylc-run/u-cq161/log/job/1/run_stream/NN/job.err`.
+Any errors that occurred during the task will be output via standard error to `~/cylc-run/u-cq161/log/job/1/run_stream/NN/job.err`.
 
 There are no error messages, only the outputs of loading your `rose/cylc` module environment.
 
-Now, let's move onto running an atmospheric simulation using the UK Met Offices' `Unified Model'.
+Now, let's move onto running an atmospheric simulation using the UK Met Offices' 'Unified Model'.
