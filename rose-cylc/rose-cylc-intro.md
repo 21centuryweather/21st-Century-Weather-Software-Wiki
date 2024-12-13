@@ -1,11 +1,15 @@
 # Introduction to Rose/Cylc
 
-Running an atmospheric simulation is a complex process which requires executing many separate tasks. In order to co-ordinate these tasks, we requirer a job scheduler, or a **workflow engine**.
+Running an atmospheric simulation is a complex process, requiring co-ordination of many separate tasks. To co-ordinate these tasks, we requirer a job scheduler, or a **workflow engine**.
 
 These tutorials assume:
 1. You have an NCI account on `gadi`.
 2. You can access a command-line terminal on `gadi` (either via an `ssh` session or using the `ARE` research environment)
-3. If using an `ssh` session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on `gadi` using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of 'Xquartz'. Windows users have a variety of options. It's also suggested your `ssh` `.config` file contains the following entries:
+3. If using an `ssh` session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on `gadi` using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of 'Xquartz'. 
+
+See [here](../gadi/mac-stuff.md) for more information for Mac users.
+
+Windows users have a variety of options. It's also suggested your `ssh` `.config` file contains the following entries:
 ```
 Host *
   ServerAliveInterval 60
@@ -30,7 +34,7 @@ Typically we run programs (or apps) on a linux computer using a shell scripts. W
 
 For example, if you login to `gadi` and type `ls -la`, at the command-line you are executing the program `ls` with the additional arguments `la`. The output of the program is then directed via standard output to your terminal.
 
-We can then create bash 'scripts' which allows to us process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, which we give special permissions to which allow the Linux operating system to execute it as a program.
+We can then create bash 'scripts' which allows to us process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, that we give special permissions to, that allow the Linux operating system to execute it as a program.
 
 If you want more familiarity with `bash`, there are many on-line tutorials and references available, e.g.:
 
@@ -48,23 +52,23 @@ https://learn.microsoft.com/en-us/training/modules/bash-introduction/
 
 Depending on your prior experience with Linux and `bash`, you may want to spend a few days working through these tutorials and examples to gain a better understanding of how `bash` commands and `bash` `ENVIRONMENT` variables work and familiarise yourself with the Linux directory structures on `gadi`.
 
-Typically you will use `bash` scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the UM itself), python scripts for pre-processing or post-processing, or bash commands themselves.
+Typically you will use `bash` scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the Unified Model itself), python scripts for pre-processing or post-processing, or bash commands themselves.
 
-When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.
+When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.
 
 The NCI supercomputer `gadi` uses the `PBS` job scheduler. Documentation is available here:
 
 https://opus.nci.org.au/pages/viewpage.action?pageId=236880320
 
-But, what if we have a complex set of tasks that must run in a particular sequence? Can we create programs which process `PBS` jobs in a user-specified workflow?  
+But, what if we have a complex set of tasks that must run in a particular sequence? Can we create a scheduler which processes `PBS` jobs in a user-specified workflow?  
 
 ## Task Scheduling for Atmospheric Simulation
 
 A good example of a complex tasks that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:
 1. Reading the previous weather forecast data initialised some six hours ago
 2. Collect observations valid from three hours ago, to three hours in the future
-3. Running a perturbation forecast model with an optimisation tool to determine the initial condition which minimises the error between short-term forecasts and observations over a six hour period. 
-4. Use the optimal initial condition computed earlier to run another short term forecast. These short term forecasts which have been computed against observations are known as 'analysis' or 'analyses'. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time. 
+3. Running a perturbation forecast model with an optimisation tool to determine the best initial condition which minimises the forecast error compared against these observations.
+4. Use this optimal initial condition to run another short term forecast. These short term forecasts which have been computed against observations are known as 'analysis' or 'analyses'. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time. 
 5. Repeat the analysis computation every six hours.
 5. Every 12 hours, run a longer forecast (e.g. 7 days into future)
 
@@ -76,7 +80,7 @@ In order to do this, we require what is known as a workflow engine, which is a f
 
 Recently, the New Zealand National Institute of Water and Atmospheric Research (NIWA) developed its own task scheduler to handle its operational workflows - **cylc**. This scheduler was so elegant, powerful and (relatively) simple to use that it was adopted by the UK Met Office, who wrapped an external software layer - **rose** - around the `cylc` engine. 
 
-Every time you run an atmospheric simulation using the UK Met Office `Unifed Model` (`UM`), you will be using `cylc`.
+Every time you run an atmospheric simulation using the UK Met Office's Unified Model ('UM'), you will be using `cylc`. All ACCESS simulations use the UM as its atmospheric model.
 
 When we refer to `rose/cylc`, we are referring to a `rose` framework (which constitutes various GUI tools, scripts and namelists) which launch the `cylc` workflow engine.
 
@@ -174,7 +178,7 @@ Loading cylc7/23.09
       .___! |          see `cylc warranty`.  It is free software, you 
       !_____!           are welcome to redistribute it under certain  
 
-*** listening on https://pgregory.pag548.gb02.ps.gadi.nci.org.au:43080/ ***
+*** listening on https://<your persistent session>:<port number>/***
 
 To view suite server program contact information:
  $ cylc get-suite-contact basic
@@ -187,13 +191,14 @@ Let's move onto another `cylc` tutorial, which is located in the `rose` document
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html
 
-Let's follow the Practical section at the bottom of that page.
+Let's follow the practical section at the bottom of that page.
 
-**Remember!!** we have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are starting this tutorial from a fresh login session.
-```
-module use /g/data/hr22/modulefiles
-module load cylc7/23.09
-```
+> __**REMEMBER**__ we have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are starting this tutorial from a fresh login session.
+>```
+>module use /g/data/hr22/modulefiles
+>module load cylc7/23.09
+>```
+> We also have to ensure we have specified a persistent session.
 
 Back to the tutorial:
 ```
@@ -221,23 +226,23 @@ Read through the information available here :
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/integer-cycling.html
 
-This is important as it describes how the same sequence of tasks can be easily repeated. For a weather or climate simulation, you will be running a set of `UM` tasks that will need to be repeated every hour, six hours, every day, or every few days, depending on your problem. You may need to repeat these tasks for weeks, months, years or decades depending on your application.
+This tutorial is important as it explains how to build a suite that repeats the same sequence of tasks. For a weather or climate simulation, you will be running a set of 'UM' tasks that will need to be repeated every hour, six hours, every day, or every few days, depending on your problem. You may need to repeat these tasks for weeks, months, years or decades depending on your application.
 
 Regardless of your application and temporal resolution, you will need to be acquainted with how `cylc` handles "cycling" or "repeating" workflows. This will help you understand how to diagnose errors in task flows should they arise, or how to add new tasks if required.
 
-Run through the steps in the practical until your graph resembles the below imgaes.
+Run through the steps in the practical until your graph resembles the below images.
 
 ![Simple cylc cylcing graph](images/cylc-cycle-tutorial.png)
 
 ### Fourth cylc tutorial ###
 
-Let's move onto the next tutorial which looks at Date-time cycling, i.e. controlling task flow using real date-time objects. This is how your weather and climate `rose/cylc` suites will be controlled.
+Let's move onto the next tutorial which looks at date-time cycling, i.e. controlling task flow using real date-time objects. This is how your weather and climate `rose/cylc` suites will be controlled.
 
 Access the fourth tutorial here:
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html
 
-Remember to load the rose and cylc executables into your current `gadi` environment using the `module load` commands.
+Remember to load the `rose` and `cylc` executables into your current `gadi` environment using the `module load` commands.
 
 > **_TIP:_**
 > You can use the `bash` `alias` function to write a simple macro to load the `rose/cylc` environment with a simple command.
@@ -264,7 +269,7 @@ Your final `cylc` graph should include the following sections:
 
 Now that we understand how define a workflow in `cylc` as a sequence of tasks and dependencies, how do we determine what each task actually comprises?
 
-In this section you will learn how to assign executables (e.g. `bash` scripts, python scripts, or `UM` binaries) to a task.
+In this section you will learn how to assign executables (e.g. `bash` scripts, python scripts, or UM binaries) to a task.
 
 Read through the following tutorial : 
 
@@ -275,7 +280,7 @@ You will also learn many important tasks including:
 - How to use the cylc GUI to monitor task flows within a suite
 - Understand the `~/cylc-run/<suite-name>/` directory structure to find log files, temporary input and output files and ancillary data.
 
-When running this sample suite, your cylc GUI will resemble the following (assuming you have activate "graph view" in the second view using the buttons in the toolbar).
+When running this sample suite, your cylc GUI will resemble the following (assuming you have activated "graph view" in the second view using the buttons in the toolbar).
 
 ![Simple cylc runtime](images/cylc-runtime-tutorial.png)
 
@@ -303,11 +308,11 @@ This tutorial is broken and will not run under `cylc7`.
 
 As mentioned earlier in the section on [running jobs on Linux](#shell-scripts-and-running-jobs-on-Linux) running on gadi, `cylc` is configured to use the `PBS` batch system to schedule jobs.
 
-This tutorial describes how we can pass `PBS` job directives using `cylc` and discusses how to start, stop and restart `cylc` suites and individual `cycl` tasks. 
+This tutorial describes how we can pass `PBS` job directives using `cylc` and discusses how to start, stop and restart `cylc` suites and individual `cylc` tasks. 
 
 ## Rose ##
 
-Rose was created as a way to harness `cylc` to run the `UM`. Typically, it creates a directory `app` which contains `rose-application files` (e.g. `rose-app.conf`) which is a way to prescribe large amounts of input configuration data, e.g.
+Rose was created as a way to harness `cylc` to run the UM. Typically, it creates a directory `app` which contains `rose-application files` (e.g. `rose-app.conf`) which is a way to prescribe large amounts of input configuration data, e.g.
 - Fortran namelists 
 - `bash` environment variables
 
@@ -356,7 +361,7 @@ In the next `rose` tutorial you will learn how to add metadata to a rose suite. 
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html
 
-> **__NOTE__** In this tutorial the command `rose config-edit &` is used to edit the rose suite. In most of the 21st Century Weather and ACCESS-NRI documentation, the short-cut `rose edit &` is used instead.
+> **__NOTE__** In this tutorial the command `rose config-edit &` is used to edit the rose suite. In most of the 21stCenturyWeather and ACCESS-NRI documentation, the short-cut `rose edit &` is used instead.
 
 At the conclusion of this tutorial, your `rose edit` window should look like this.
 
@@ -378,7 +383,7 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html
 >
 > There is short review of how `Jinja` works here : https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html. 
 >
->You don't have to do the tutorials, but just be conscious that whenever you see braces such as `{{ }}` in a `suite.rc` file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as `{% if ... %}` or `{% for ... }` within the `suite.rc` will be processed to produce the final `suite.rc.processed` file which is the actual file executed by `cylc` which is created in your `~/cylc-run/<rose-id>` directory.
+>You don't have to do the tutorials, but just be conscious that whenever you see braces such as `{{ }}` in a `suite.rc` file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as `{% if ... %}` or `{% for ... }` within the `suite.rc` will be processed to produce the final `suite.rc.processed` file executed by `cylc` which is created in your `~/cylc-run/<rose-id>` runtime directory.
 > In conclusion, Jinja is a way for us to create very long `suite.rc` files by looping over input parameters.
 
 
@@ -387,7 +392,7 @@ I had to make the following changes to `suite.rc` to make the tutorial work.
 [jinja2:suite.rc]
     station="camborne", "heathrow", "shetland", "aldergrove","belmullet"
  ```
- Otherwise the suite will not run It will fail will the following errors:
+ Otherwise the suite will not run. It will fail will the following errors:
 ```
 [INFO] install: suite.rc
 [INFO] REGISTERED rose-suite-tutorial -> /home/548/pag548/cylc-run/rose-suite-tutorial

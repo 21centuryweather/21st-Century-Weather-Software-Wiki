@@ -77,23 +77,23 @@ Before we get to the `graph` section, there are several `jinja` macros (defined 
     - 'CoMorph' convection scheme
     - Stochastic physics settings
 - Set aliases for dates based on the input `DATES`
-- Set the ensemble number to zero. This suite was originally designed to handle ensemble forecasting and there is ensemble logic embedded in my tasks and scripts. For simplicity's sake, we have removed all the ensemble looping logic and just run for the control forecast, i.e `I = 000`.
+- Set the ensemble number to zero. This suite was originally designed to handle ensemble forecasting and there is ensemble logic embedded in many tasks and scripts. For simplicity's sake, we have removed all the ensemble looping logic and just run the control forecast, i.e `I = 000`.
 
-The `[cylc]` namespace is for all non task-related configurations. Here we set `UTC` ode to true. The `[events]` namespace allows us to sent notification emails after shutdown.
+The `[cylc]` namespace is for all non task-related configurations. Here we set `UTC` mode to true. The `[events]` namespace allows us to sent notification emails after shutdown.
 
-In the `[scheduling]` namespace we define the number of cycle points based on the input dates. In this example, we will only run for a single forecast date : "20200116T00"
+In the `[scheduling]` namespace we define the number of cycle points based on the input dates. In this example, we only run a single forecast date : "20200116T00"
 
 In the `[dependencies]` namespace, we first define the graph to tasks that occur only once : `fcm_make_um`, `install_ancil`, `install_cold`, `fcm_make_drivers` and `fc_make2_drivers`.
 
-We then use a `jinja` macro to loop over all possible to dates to define the tasks that run every every forecast date: `um_recon`, `um_forecast`, `convpp`, `rose_arch` and `housekeep`.
+We then use a `jinja` macro to loop over all possible to dates to define the tasks that run for every forecast date: `um_recon`, `um_forecast`, `convpp`, `rose_arch` and `housekeep`.
 
 The `[^]` syntax is `cylc` shorthand for 'the initial cycle point', see https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points
 
-The `[runtime]` namespace then defines the environment variables and `PBS` job parameters for each task.  The `[root]` namespace defines variables and parameters used by most scripts.  
+The `[runtime]` namespace then defines the environment variables and `PBS` job parameters for each task.  The `[root]` namespace defines common variables and parameters used by most scripts.  
 
-Next, there are namespaces for each seperate family of tasks. The `[ARCHIVE]` namespace defines the value for `ARCHDIR` from that defined in `rose-suite.conf`.
+Next, there are namespaces for each separate family of tasks. The `[ARCHIVE]` namespace defines the value for `ARCHDIR` defined in `rose-suite.conf`.
 
-Below that, there are several dictionaries and macros used to define `PBS` queue and resource requirements for a given resolution. The two main computational tasks in the suite are the `UM` 'Reconfiguration' task, and the `UM` atmospheric forecast task. By default, this suite runs at the lowest available resolution (n320e). The `jinja` dictionary `UM_RES` will return a 10-minute PBS job walltime (`"PT10M"`) to the `cylc` variable `RCF_WALL` and a 4-hour job walltime (`"PT4H"`)to the variable `ATM_WALL`. Other variables are used with the `jinja` macro `node` to provide the number of compute nodes for the reconfiguration (`NODE_RCF`) and atmospheric forecast (`NODE_ATM`) tasks respectively.
+Below that, there are several dictionaries and macros used to define `PBS` queue and resource requirements for a given resolution. The two main computational tasks in the suite are the UM 'Reconfiguration' task, and the UM atmospheric forecast task. By default, this suite runs at the lowest available resolution (n320e). The `jinja` dictionary `UM_RES` will return a 10-minute PBS job walltime (`"PT10M"`) to the `cylc` variable `RCF_WALL` and a 4-hour job walltime (`"PT4H"`)to the variable `ATM_WALL`. Other variables are used with the `jinja` macro `node` to provide the number of compute nodes for the reconfiguration (`NODE_RCF`) and atmospheric forecast (`NODE_ATM`) tasks respectively.
 
 The `[UM]` and `[RECONFIGURE]` namespaces then specify the resources fore each task. Below this, there are separate namespaces (in lower case) for each specific task. Each task will inherit environmental parameters defined in the earlier sections.
 
