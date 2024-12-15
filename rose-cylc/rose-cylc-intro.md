@@ -9,7 +9,7 @@ These tutorials assume:
 
 See [here](../gadi/mac-stuff.md) for more information for Mac users.
 
-Windows users have a variety of options. It's also suggested your `ssh` `.config` file contains the following entries:
+Windows users have a variety of options. It's also suggested [clv:suggested or necessary?] your `ssh` `.config` file contains the following entries:
 ```
 Host *
   ServerAliveInterval 60
@@ -21,7 +21,7 @@ Host gadi.nci.org.au
   HostName gadi.nci.org.au
   User <insert your username here>
 ```
-4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account.
+4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account [clv: some instructions on how to get an account if you don't have one?].
 5. You have memberships to the following `gadi` projects:
     - `hr22`
     - `access`
@@ -34,7 +34,7 @@ Typically we run programs (or apps) on a linux computer using a shell scripts. W
 
 For example, if you login to `gadi` and type `ls -la`, at the command-line you are executing the program `ls` with the additional arguments `la`. The output of the program is then directed via standard output to your terminal.
 
-We can then create bash 'scripts' which allows to us process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, that we give special permissions to, that allow the Linux operating system to execute it as a program.
+We can then create bash 'scripts' which allows us to process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, that we give special permissions to, that allows the Linux operating system to execute it as a program.
 
 If you want more familiarity with `bash`, there are many on-line tutorials and references available, e.g.:
 
@@ -54,7 +54,7 @@ Depending on your prior experience with Linux and `bash`, you may want to spend 
 
 Typically you will use `bash` scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the Unified Model itself), python scripts for pre-processing or post-processing, or bash commands themselves.
 
-When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.
+When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available. [clv: some guidance on how to know when to submit your job and when it's ok to run on the command line? Also, when to use an interactive job?]
 
 The NCI supercomputer `gadi` uses the `PBS` job scheduler. Documentation is available here:
 
@@ -63,8 +63,8 @@ https://opus.nci.org.au/pages/viewpage.action?pageId=236880320
 But, what if we have a complex set of tasks that must run in a particular sequence? Can we create a scheduler which processes `PBS` jobs in a user-specified workflow?  
 
 ## Task Scheduling for Atmospheric Simulation
-
-A good example of a complex tasks that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:
+[clv: Is this bit of a complicated example, given that most people running ACCESS won't be interacting with DA?]
+A good example of a complex task that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:
 1. Reading the previous weather forecast data initialised some six hours ago
 2. Collect observations valid from three hours ago, to three hours in the future
 3. Running a perturbation forecast model with an optimisation tool to determine the best initial condition which minimises the forecast error compared against these observations.
@@ -82,13 +82,13 @@ Recently, the New Zealand National Institute of Water and Atmospheric Research (
 
 Every time you run an atmospheric simulation using the UK Met Office's Unified Model ('UM'), you will be using `cylc`. All ACCESS simulations use the UM as its atmospheric model.
 
-When we refer to `rose/cylc`, we are referring to a `rose` framework (which constitutes various GUI tools, scripts and namelists) which launch the `cylc` workflow engine.
+When we refer to `rose/cylc`, we are referring to a `rose` framework (which constitutes various GUI tools, scripts and namelists) which launches the `cylc` workflow engine.
 
 To understand how `cylc` works, visit the documentation here:
 
 https://cylc.github.io/cylc-doc/7.9.3/html/index.html
 
-Note the `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure you select the correct version. The latest version of `cylc` (8.3.4) contains some significant differences.
+Note that `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure you select the correct version of the documentation. The latest version of `cylc` (8.3.4) contains some significant differences. [clv: How do you make sure you're using the correct version]
 
 ### First cylc tutorial ###
 
@@ -144,7 +144,7 @@ You will need to copy the 'hello world' `suite.rc` file from tutorial section 7.
 
 https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html#hello-world-in-cylc
 
-Once complete, if you examine the contents of this file using the bash command-line program `more`, it should resemble this:
+Once complete, if you examine the contents of this file using the bash command-line program `more`, it should resemble this: [clv: Why suddenly use 'more' now, rather than one of the next editors you just mentioned? swap cat for more]
 ```
  $ more suite.rc 
 [meta]
