@@ -9,7 +9,7 @@ These tutorials assume:
 
 See [here](../gadi/mac-stuff.md) for more information for Mac users.
 
-Windows users have a variety of options. It's also suggested [clv:suggested or necessary?] your `ssh` `.config` file contains the following entries:
+Windows users have a variety of options. It's also suggested your `ssh` `.config` file contains the following entries:
 ```
 Host *
   ServerAliveInterval 60
@@ -21,7 +21,9 @@ Host gadi.nci.org.au
   HostName gadi.nci.org.au
   User <insert your username here>
 ```
-4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account [clv: some instructions on how to get an account if you don't have one?].
+This will help keep your X-windows session active in short periods when you are away from your keyboard.
+
+4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account. If you haven't started this, please contact Martin Dix at ACCESS-NRI (martin.dix@anu.edu.au) or Holger Wolff at CLEX (holger.wolff@monash.edu).
 5. You have memberships to the following `gadi` projects:
     - `hr22`
     - `access`
@@ -31,6 +33,11 @@ Host gadi.nci.org.au
 ## Shell scripts and running jobs on Linux
 
 Typically we run programs (or apps) on a linux computer using a shell scripts. We use the `bash` shell to interpret input from the command-line to execute programs.
+
+If you are unfamiliar with the linux command command line, click below.
+
+<details>
+<summary>Click to expand</summary>
 
 For example, if you login to `gadi` and type `ls -la`, at the command-line you are executing the program `ls` with the additional arguments `la`. The output of the program is then directed via standard output to your terminal.
 
@@ -52,27 +59,45 @@ https://learn.microsoft.com/en-us/training/modules/bash-introduction/
 
 Depending on your prior experience with Linux and `bash`, you may want to spend a few days working through these tutorials and examples to gain a better understanding of how `bash` commands and `bash` `ENVIRONMENT` variables work and familiarise yourself with the Linux directory structures on `gadi`.
 
+</details>
+<br />
+
 Typically you will use `bash` scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the Unified Model itself), python scripts for pre-processing or post-processing, or bash commands themselves.
 
-When we execute programs from the command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available. [clv: some guidance on how to know when to submit your job and when it's ok to run on the command line? Also, when to use an interactive job?]
+When we execute programs from the gadi command-line, we are using an 'interactive' session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. The gadi login nodes (i.e. the external servers you connect to via `ssh`) are designed to support small tasks such as:
+- Editing files, build programs, install software in your home/project space, etc.
+- Download/upload small amount of data (a few GB)
+- Run/test/debug programs:
+  - Not exceeding 30-minute CPU cumulative time limit
+  - Not exceeding 4GiB memory
+- Submit and monitor PBS jobs
+
+These guidelines are sourced from [Introduction to Gadi](https://opus.nci.org.au/spaces/Help/pages/144277624/Introduction+to+Gadi?preview=%2F144277624%2F363135031%2FNCI_i2g_202411.pdf)
+
+For larger tasks, a super-computer uses a batch-scheduling system whereby `bash` scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available. 
 
 The NCI supercomputer `gadi` uses the `PBS` job scheduler. Documentation is available here:
 
 https://opus.nci.org.au/pages/viewpage.action?pageId=236880320
 
+Note that documentation contains information on how to run an 'interactive' PBS job session on a gadi compute node, which will allow you to interactively edit files and run programs that exceed the capacity of the gadi login nodes. 
+
+>**_TIP_** : The gadi compute nodes are not externally connected to the internet, so you won't be able to connect to gitlab or copy files from external sources when logged into a compute note.
+
 But, what if we have a complex set of tasks that must run in a particular sequence? Can we create a scheduler which processes `PBS` jobs in a user-specified workflow?  
 
 ## Task Scheduling for Atmospheric Simulation
-[clv: Is this bit of a complicated example, given that most people running ACCESS won't be interacting with DA?]
-A good example of a complex task that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:
-1. Reading the previous weather forecast data initialised some six hours ago
-2. Collect observations valid from three hours ago, to three hours in the future
-3. Running a perturbation forecast model with an optimisation tool to determine the best initial condition which minimises the forecast error compared against these observations.
-4. Use this optimal initial condition to run another short term forecast. These short term forecasts which have been computed against observations are known as 'analysis' or 'analyses'. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time. 
-5. Repeat the analysis computation every six hours.
-5. Every 12 hours, run a longer forecast (e.g. 7 days into future)
 
-Repeating this process in realtime 24/7 requires the interaction of many separate tasks. We need a system which submits programs, monitors their progress, keeps track of the current time and executes each task according to an ordered set of dependencies (i.e some tasks cannot run until some upstream tasks have finished). 
+A good example of a complex task that must run in a particular sequence is a historical atmospheric simulation.  Typically for a longer, multi-day simulation, the sequence of tasks involves:
+1. Reading in global or regional atmospheric analysis with the correct valid time.
+2. Read in ocean and land data for the same valid times.
+3. Read in atmospheric and land ancillary data (e.g. topography, soil types, vegetation fields, aerosols, rivers etc.)
+4. (optional) - create 'lateral boundary conditions' by slicing an area of interest from a global or regional analysis.
+5. Regrid the input data onto our domain of interest.
+6. Run a short-term atmospheric forecast model using the above inputs.
+7. Repeat this process for as many hours or days (or weeks, months or years!) that are required.
+
+Continual repetition of this process requires the interaction of many separate tasks. We need a system which submits programs, monitors their progress, keeps track of the current time and executes each task according to an ordered set of dependencies (i.e some tasks cannot run until some upstream tasks have finished). 
 
 In order to do this, we require what is known as a workflow engine, which is a fancy name for a task scheduler.  
 
@@ -88,7 +113,7 @@ To understand how `cylc` works, visit the documentation here:
 
 https://cylc.github.io/cylc-doc/7.9.3/html/index.html
 
-Note that `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure you select the correct version of the documentation. The latest version of `cylc` (8.3.4) contains some significant differences. [clv: How do you make sure you're using the correct version]
+Note that `gadi` is still using an earlier version of `cylc` (7.9.3) so make sure you select the correct version of the documentation. Check the URL and the headers/banners on the pages themselves. The latest version of `cylc` (8.3.4) contains some significant differences. 
 
 ### First cylc tutorial ###
 
@@ -144,7 +169,7 @@ You will need to copy the 'hello world' `suite.rc` file from tutorial section 7.
 
 https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html#hello-world-in-cylc
 
-Once complete, if you examine the contents of this file using the bash command-line program `more`, it should resemble this: [clv: Why suddenly use 'more' now, rather than one of the next editors you just mentioned? swap cat for more]
+Once complete, if you examine the contents of this file using the bash command-line program `more`, it should resemble this: 
 ```
  $ more suite.rc 
 [meta]
@@ -156,6 +181,8 @@ Once complete, if you examine the contents of this file using the bash command-l
     [[hello]]
         script = "sleep 10; echo Hello World!"
 ```
+The program `more` is similar to `cat` but it uses the space bar to quickly step through a file contents in the terminal, whereas `cat` dumps it all in one go.
+
 Ok, let's run this from the command line by executing the following: 
 ```
 $ cylc run

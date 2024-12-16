@@ -1,10 +1,10 @@
 # Trouble Shooting
 
-Running the UM can be fraught. Tasks often fail. Let's break a task on purpose with our test suite `u-dl058` and learn how to diagnose problems and re-start suites.
+The power and complexity of the UM means things can be wrong. Even if the UM installation is perfect, human errors can sometimes creep in (e.g. someone accidentally moved the wrong files). Even if the UM and people were all perfect, sometimes gadi itself has problems. So, UM tasks will often fail. Let's break a task on purpose with our test suite `u-dl058` and learn how to diagnose problems and re-start suites.
 
 ## Broken tasks
 
-Let's break the suite on purpose so we can practise dealing with problems. Let's break the `install_ancil` task.
+Let's break the `install_ancil` task.
 
 In `app/install_ancil/rose-app.conf` let's change the environment variable `LEVELS` from 70 to 73.
 i.e. change this section of the file from
@@ -109,7 +109,7 @@ $ cylc scan
 ```
 You should see the suite `u-dl085` along with your username an persistent session name.
 
-Now with the correct value of `LEVEL`, we can execute the failed job by right-clicking on `install_ancil` and selecting `trigger now`.
+Now with the correct value of `LEVEL`, we can execute the failed job by right-clicking on `install_ancil` and selecting `trigger (run now)`.
 
 ![stderr](images/trigger.png)
 
