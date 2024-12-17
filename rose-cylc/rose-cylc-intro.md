@@ -5,7 +5,7 @@ Running an atmospheric simulation is a complex process which requires executing 
 These tutorials assume:
 1. You have an NCI account on `gadi`.
 2. You can access a command-line terminal on `gadi` (either via an `ssh` session or using the `ARE` research environment)
-3. If using an `ssh` session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on `gadi` using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of 'Xquartz'. Windows users have a variety of options. It's also suggested your `ssh` `.config` file contains the following entries:
+3. If using an `ssh` session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on `gadi` using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of 'Xquartz'. Windows users have a variety of options. It's also suggested your `~/ssh.config` file contains the following entries:
 ```
 Host *
   ServerAliveInterval 60
