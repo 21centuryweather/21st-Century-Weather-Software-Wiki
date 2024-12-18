@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'UM/trouble-shooting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="next" title="Common rose/cylc problems" href="common_problems.html" />
     <link rel="prev" title="The Unified Model" href="UM-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -174,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_problems.html">Common rose/cylc problems</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -192,9 +193,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -372,11 +378,6 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broken-tasks">Broken tasks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-rose-cylc-problems">Common rose/cylc problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-log-into-a-persistent-session">Cannot log into a persistent session</a></li>
-</ul>
-</li>
 </ul>
             </nav>
         </div>
@@ -390,10 +391,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="trouble-shooting">
 <h1>Trouble Shooting<a class="headerlink" href="#trouble-shooting" title="Link to this heading">#</a></h1>
-<p>Running the UM can be fraught. Tasks often fail. Let’s break a task on purpose with our test suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> and learn how to diagnose problems and re-start suites.</p>
+<p>The power and complexity of the UM leaves lots of scope for things to go wrong. Even if the UM installation is perfect, human errors can sometimes creep in (e.g. someone accidentally deleted some necessary files). Even if the UM and people were all perfect, sometimes gadi itself has problems. So, UM tasks will often fail. Let’s break a task on purpose with our test suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> and learn how to diagnose problems and re-start suites.</p>
 <section id="broken-tasks">
 <h2>Broken tasks<a class="headerlink" href="#broken-tasks" title="Link to this heading">#</a></h2>
-<p>Let’s break the suite on purpose so we can practise dealing with problems. Let’s break the <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> task.</p>
+<p>Let’s break the <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> task.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">app/install_ancil/rose-app.conf</span></code> let’s change the environment variable <code class="docutils literal notranslate"><span class="pre">LEVELS</span></code> from 70 to 73.
 i.e. change this section of the file from</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">env</span><span class="p">]</span>
@@ -487,30 +488,10 @@ OCEAN=orca025_lakes
 </pre></div>
 </div>
 <p>You should see the suite <code class="docutils literal notranslate"><span class="pre">u-dl085</span></code> along with your username an persistent session name.</p>
-<p>Now with the correct value of <code class="docutils literal notranslate"><span class="pre">LEVEL</span></code>, we can execute the failed job by right-clicking on <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> and selecting <code class="docutils literal notranslate"><span class="pre">trigger</span> <span class="pre">now</span></code>.</p>
+<p>Now with the correct value of <code class="docutils literal notranslate"><span class="pre">LEVEL</span></code>, we can execute the failed job by right-clicking on <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> and selecting <code class="docutils literal notranslate"><span class="pre">trigger</span> <span class="pre">(run</span> <span class="pre">now)</span></code>.</p>
 <p><img alt="stderr" src="../_images/trigger.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code> task will now succeed, and the rest of the suite will now continue as normal.</p>
 <p>When running a suite, you’ll find the above very useful when having to deal with failed tasks, without having to re-start the suite from scratch. The <code class="docutils literal notranslate"><span class="pre">cylc</span></code> workflow engine is clever enough to pick-up from where you left off. You won’t have to restart the entire suite every time you hit a problem.</p>
-</section>
-<section id="common-rose-cylc-problems">
-<h2>Common rose/cylc problems<a class="headerlink" href="#common-rose-cylc-problems" title="Link to this heading">#</a></h2>
-<p>This will be a maintained list of problems encountered (and fixed) with running <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> ACCESS tasks.</p>
-<section id="jobs-submitted-but-not-running">
-<h3>Jobs submitted but not running<a class="headerlink" href="#jobs-submitted-but-not-running" title="Link to this heading">#</a></h3>
-<p>A common issue is that you start your <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite, which submits various jobs, but they never run.</p>
-<p>i.e. the job state in the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI is ‘submitted’ and the job colour is bright green, but the job never begins running and never turns deep green.</p>
-<p>This is often caused by disk quota issues. If you have insufficient disk space, either in your home directory, your <code class="docutils literal notranslate"><span class="pre">/g/data/</span></code> or <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> directories, your PBS job will not be allowed to run and will be held indefinitely.</p>
-<p>PBS jobs will also be held if there are insufficient project allocations (e.g. you’ve run out of ‘kSU’).</p>
-<p>See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/230490410/Why+are+my+jobs+not+running+">https://opus.nci.org.au/spaces/Help/pages/230490410/Why+are+my+jobs+not+running+</a>…</p>
-<p>for more details.</p>
-<p>To help manage your disk quota, use some of the commands in this link:</p>
-<p><a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation">https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation</a>…</p>
-</section>
-<section id="cannot-log-into-a-persistent-session">
-<h3>Cannot log into a persistent session<a class="headerlink" href="#cannot-log-into-a-persistent-session" title="Link to this heading">#</a></h3>
-<p>If you can’t log into your persistent session, you may have conflicting modules which don’t use the standard <code class="docutils literal notranslate"><span class="pre">ssh</span></code> environment at NCI. Often the cause of this conflict is the <code class="docutils literal notranslate"><span class="pre">conda/analysis</span></code> module developed by CLEX and maintained by ACCESS-NRI.  You will have to unload any conflicting modules.</p>
-<p>See <a class="reference internal" href="../mosrs/mosrs-intro.html#persistent-sessions"><span class="std std-ref">this link</span></a> for more information.</p>
-</section>
 </section>
 </section>
 
@@ -554,11 +535,11 @@ OCEAN=orca025_lakes
       </div>
     </a>
     <a class="right-next"
-       href="../python/intro-python.html"
+       href="common_problems.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Intro to Python for Climate Science</p>
+        <p class="prev-next-title">Common rose/cylc problems</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -580,11 +561,6 @@ OCEAN=orca025_lakes
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broken-tasks">Broken tasks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-rose-cylc-problems">Common rose/cylc problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-log-into-a-persistent-session">Cannot log into a persistent session</a></li>
-</ul>
-</li>
 </ul>
   </nav></div>
 
@@ -633,8 +609,8 @@ By 21st Century Weather Software Engineering Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -39,8 +39,7 @@ This contains a list of `bash` environment variables which describe the followin
 - `ATM_PPN` : Number of processors for atmospheric tasks
 - `BUILD_UM` : Flag to compile our own UM executable
 - `CALENDAR` : Calendar type (important for long climate simulations)
-- `CASEDATA` : Directory of case study input files
-- `COMPUTE_ACCOUNT` : Your gadi `PROJECT` used for resouce allocation
+- `COMPUTE_ACCOUNT` : Your gadi `PROJECT` used for resource allocation
 - `COMPUTE_HOST` : Name of supercomputer 
 - `COMPUTE_QUEUE` : PBS job queue used for simulations
 - `CONFIG_MODULE_NAME` : Extra module configuration data
@@ -52,7 +51,6 @@ This contains a list of `bash` environment variables which describe the followin
 - `PPN` : Number of processors (generic)
 - `QUEUE_PARALLEL` : PBS job queue type
 - `RUNTYPE` : Flag for 'coupled' (modeling both the ocean and atmosphere) or 'uncoupled' (atmosphere only) simulation. 
-- `RUN_METDB_ODB` : Option to use the UK Met Office Observation Database
 - `SITE` : String to denote the supercomputer type
 - `STOCHASTIC`: Flag for stochastic atmospheric physics
 - `TASKLENGTH` : Data for UM task control
@@ -63,6 +61,9 @@ This contains a list of `bash` environment variables which describe the followin
 - `USE_COMORPH` : Flag for CoMorph convection scheme
 - `USE_DOUBLE_PREC` : Flag for numerical precision
 - `xios_path` : Directory of `xios` libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.
+- `oasis3_mct_path` : Directory of intel libraries to compile this version of the UM which supports the `oasis3` coupler.
+
+> **__IMPORTANT__** The default value of `ARCHDIR` is `/scratch/gb02/${USER}/GC5_runs`. If you are NOT a member of the gadi project `gb02`, you will have to swap the value of `gb02` for another gadi project that you have membership of.
 
 ### Task flow ###
 
@@ -87,15 +88,19 @@ In the `[dependencies]` namespace, we first define the graph to tasks that occur
 
 We then use a `jinja` macro to loop over all possible to dates to define the tasks that run for every forecast date: `um_recon`, `um_forecast`, `convpp`, `rose_arch` and `housekeep`.
 
-The `[^]` syntax is `cylc` shorthand for 'the initial cycle point', see https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points
+The `jinja` macro is defined using `{%- for date in SDATES : %}` and `{%- endfor %}`.
 
-The `[runtime]` namespace then defines the environment variables and `PBS` job parameters for each task.  The `[root]` namespace defines common variables and parameters used by most scripts.  
+Within this loop, the `[^]` syntax is `cylc` shorthand for 'the initial cycle point', see:
+
+https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points
+
+The `[runtime]` namespace then defines the environment variables and PBS job parameters for each task.  The `[root]` namespace defines common variables and parameters used by most scripts.  
 
 Next, there are namespaces for each separate family of tasks. The `[ARCHIVE]` namespace defines the value for `ARCHDIR` defined in `rose-suite.conf`.
 
-Below that, there are several dictionaries and macros used to define `PBS` queue and resource requirements for a given resolution. The two main computational tasks in the suite are the UM 'Reconfiguration' task, and the UM atmospheric forecast task. By default, this suite runs at the lowest available resolution (n320e). The `jinja` dictionary `UM_RES` will return a 10-minute PBS job walltime (`"PT10M"`) to the `cylc` variable `RCF_WALL` and a 4-hour job walltime (`"PT4H"`)to the variable `ATM_WALL`. Other variables are used with the `jinja` macro `node` to provide the number of compute nodes for the reconfiguration (`NODE_RCF`) and atmospheric forecast (`NODE_ATM`) tasks respectively.
+Below that, there are several dictionaries and macros used to define PBS queue and resource requirements for a given resolution. The two main computational tasks in the suite are the UM 'Reconfiguration' task, and the UM atmospheric forecast task. By default, this suite runs at the lowest available resolution (n320e). The `jinja` dictionary `UM_RES` will return a 10-minute PBS job walltime (`"PT10M"`) to the `cylc` variable `RCF_WALL` and a 4-hour job walltime (`"PT4H"`)to the variable `ATM_WALL`. Other variables are used with the `jinja` macro `node` to provide the number of compute nodes for the reconfiguration (`NODE_RCF`) and atmospheric forecast (`NODE_ATM`) tasks respectively.
 
-The `[UM]` and `[RECONFIGURE]` namespaces then specify the resources fore each task. Below this, there are separate namespaces (in lower case) for each specific task. Each task will inherit environmental parameters defined in the earlier sections.
+The `[UM]` and `[RECONFIGURE]` namespaces then specify the resources for each task. Below this, there are separate namespaces (in lower case) for each specific task. Each task will inherit environmental parameters defined in the earlier sections.
 
 This `suite.rc` file uses an include statement `%include site/nci_gadi.rc` to include information specific to gadi. When the suite is run, the contents of `site/nci_gadi.rc` will be included in the overall `suite.rc` file that is copied to the run directory `~/cylc-run/u-dl058`. 
 
@@ -103,6 +108,7 @@ For brevity's sake, we won't examine the contents of every namespace within `sit
 - PBS walltime limits
 - PBS compute queue
 - PBS memory requirements
+- PBS storage requiremetns
 - Lists of modules to be loaded
 - location of ancillary files
 for each task environment.
@@ -128,10 +134,11 @@ where `TASK_RUN_COMMAND` is defined using the `jinja` macro
 ```
 {% set TASK_RUN_COMMAND = "rose task-run --verbose -O '(" + SITE + ")'" %}
 ```
-The use of `rose task-run` was covered in the third rose tutorial we covered earlier. To referesh your memory, from:
+The use of `rose task-run` was covered in the third rose tutorial we covered earlier. If you need refresh your memory, you can review the tutorial here:
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html
-"When run, rose task-run searches for an application with the same name as the Cylc task in the app/ directory."
+
+which states "When run, rose task-run searches for an application with the same name as the Cylc task in the app/ directory."
 
 ## Running the suite
 
@@ -152,6 +159,8 @@ Now right-click on `install_ancil` and then left-click `Trigger -> Run now`.
 
 This task is run from the `app/install_ancil/` directory. It builds symbolic links between the ancillary files located in the `${UM_ANCIL_DIR}/${GL_UM_RES}` directory on gadi and your local `cylc` working directory `$ROSE_DATA/etc/ancil_gl/`.
 
+The full list of ancillary files required is contained in `app/install_ancil/rose-app.conf`.
+
 When this task completes, the directory `~/cylc-run/u-dl058/share/data/etc/ancil_gl/`will be populated with symbolic links to all the ancillary files.
 
 You can right-click on the task again (which will turn grey after it has successfully) and view the `job.out` file. The `cylc` scheduler will nicely capture all the PBS standard output and collate it into the `job.out` file.
@@ -168,13 +177,10 @@ Let's follow the same method and trigger all the remaining tasks in sequence.
 
 #### install_cold
 
-This task uses the `bash` script `app/install_cold/bin/install_ver.sh`. It will populate the following directories with symbolic links to initial conditions for the ocean and atmosphere:
-- `~/cylc-run/u-dl058/share/data/etc/elements`
-- `~/cylc-run/u-dl058/share/data/etc/ocean_startdumps`
-- `~/cylc-run/u-dl058/share/data/etc/elements/RMP_DIR_n320e`
-- `~/cylc-run/u-dl058/share/data/etc/elements/surf`
+This task uses the `bash` script `app/install_cold/bin/install_ver.sh`. It will install 
+`~/cylc-run/u-dl058/share/data/etc/um_vertlevs` to define the vertical levels of our grid.
 
-There are other directories and files related to verification but they won't be used in this simple suite.
+It will also link the directory `~/cylc-run/u-dl058/share/fcm_make_surf` to a directory on gadi with files associated with the UM's land-surface model 'JULES'.
 
 #### fcm_make_drivers
 
@@ -191,7 +197,7 @@ This repeats the same script but with different environment variables to create 
 
 This task is launched using `bin/retrieve_atmos_startdumps.sh`. It will copy a 'UM' atmospheric start-dump to `~/cylc-run/u-dl058/share/cycle/20200116T0000Z/`
 
-The start dump file `20200116T0000Z_engl_t+3_000` is a 'UM' 'PP' file, i.e. a Fortran binary record file created by the 'UM' itself. You will not be able to view it with a netCDF reader, but you can use the `xconv` utility to view it on gadi.
+The start dump file `20200116T0000Z_engl_t+3_000` is a 'UM' 'PP' file, i.e. a fortran binary record file created by the 'UM' itself. You will not be able to view it with a netCDF reader, but you can use the `xconv` utility to view it on gadi.
 ```
 $ module use /g/data/access/modules/
 $ module load xconv
@@ -235,7 +241,7 @@ https://21centuryweather.github.io/UM_summary_docs/code.html#compilation
 
 #### um_recon
 
-This task uses the UM reconfigure executables to take all the input information already assembled (start dumps, ancillary data) and 'reconfigure' it for the required target grid. Most of the time the reconfigure step is just a fancy name for regridding. The task uses the files in `app/um`. Note the `app/um/rose-app.conf` file has two `command` entries:
+This task uses the UM reconfigure executables to take all the input information already assembled (start-dumps, ancillary data) and 'reconfigure' it for the required target grid. Most of the time the reconfigure step is just a fancy name for regridding. The task uses the files in `app/um`. Note the `app/um/rose-app.conf` file has two `command` entries:
 ```
 [command]
 default=run_model
@@ -251,7 +257,7 @@ So the same configuration file can be used to run two different executables depe
 If you want to know more about the UM reconfiguration process, you click here: https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration
 
 The standard output (or 'stdout' for short) of the UM reconfigure executable is long and rather interesting. You can scroll through the stdout contained in the `um_recon` by accessing the `um_recon` `job.out` file, either via the `cylc` gui or using a file editor of choice. It is very common for `um_recon` to fail when running a new suite configuration for the first time. 
-> **__TIP__** Knowing where to find error messages in the `um_recon` task is very important, as reconfiguration errors are one of the most common sources of problems when running the UM.
+> **__TIP__** Knowing where to find error messages in the `um_recon` task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.
 
 Note how the reconfigure executable:
 - Splits itself across various 'PEs' or 'Processing Elements'.
@@ -275,20 +281,22 @@ CLOSE: File /home/548/pag548/cylc-run/u-dl058/share/data/etc/ancil_gl/qrparm.mas
 - It computes (on the new grid) all the required fields to begin an atmospheric forecast.
 - It outputs these fields to `~/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart'.
 
-Note the resolution of this `.astart` file is 640x480, i.e. all input fields have been regridded to a much coarser grid which corresponds to the specified `n320` resolution.
+Note the resolution of this `.astart` file is 640x480, i.e. all input fields have been regridded from the higher resolution start-dump grid to a much coarser grid which corresponds to the specified `n320` resolution.
 
 Note `n320` refers to a spectral representation of global resolution. Some data in the UM is computed using spectral fields. See https://www.ecmwf.int/sites/default/files/elibrary/2016/17262-new-grid-ifs.pdf for more information. 
 
 #### um_forecast
 
 This task initialises the atmospheric forecast, using the same `app/um` files used by `um_recon`. Let's look through the stdout of the atmospheric forecast task, either via the `cylc` gui or using a file editor. It is very common when running a new suite configuration for the first time that the atmospheric forecast task may fail.
-> **__TIP__** Knowing where to find error messages in the `um_forecast` task is very important, as forecast errors are the most common sources of problems when running the UM. 
+> **__TIP__** Knowing where to find error messages in the `um_forecast` task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM. 
 
 Note the atmospheric executable:
 -  opens the `.astart` file.
-> OPEN: File /home/548/pag548/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart to be Opened on Unit 19 Exists
+```
+OPEN: File /home/548/pag548/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart to be Opened on Unit 19 Exists
 IO: Open: /home/548/pag548/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart on unit  19
 loadHeader: Model Version: 13.2
+```
 - Begins the first timestep
 ```Atm_Step: Timestep        1   Model time:   2020-01-16 03:12:00
 EG_SISL_Resetcon: calculate reference profile
@@ -301,13 +309,13 @@ Level     3:    160 x    194 x   70 =        2172800
 grid complexity =   1.4292 [ lower bound =   1.3125 ]
 ...Done
 ```
-- Outputs the maximum vertical velocity at this timestep. Often the forecast model will fail with large, unphysical maximum vertical velocities. Sometimes they can approach the speed of sound ;)  These 'grid-point storms' are often caused by incorrect or discontinuous data in regions of high orography. The lat/long co-ordinates of the maximum vertical velocity will help you located bugs. The output of the minimum theta value may also be useful. For high resolution models of Australian region, the Papua New Guinea highlands is often a source of error. 
+- Outputs the maximum vertical velocity at this timestep. Often the forecast model will fail with large, unphysical maximum vertical velocities. Sometimes they can approach the speed of sound ;)  These 'grid-point storms' are often caused by incorrect or discontinuous data in regions of high orography. The lat/long co-ordinates of the maximum vertical velocity will help you locate bugs. The output of the minimum theta value may also be useful. For high resolution models of Australian region, the Papua New Guinea highlands is often a source of error. 
 ```
 1 Maximum vertical velocity at timestep                      0       Max w this run
 w_max   level  proc         position             run w_max level timestep
 0.225E+01  40    139   64.1deg W    -23.8deg S    0.225E+01   40     0
 ```
-- The output of the The atmospheric model in this suite integrates forward in time in 12 minute intervals. 
+- The output of the the atmospheric model in this suite integrates forward in time in 12 minute intervals. 
 - You can use the `bash` app `grep` to search for all the maximum timesteps in `job.out` and then extract the digits of the subsequent line, e.g.
 ```
 $ grep -A 1 w_max job.out | grep -P '(^\d+)'
@@ -328,7 +336,8 @@ This task ends by writing the following files in `~/cylc-run/u-dl058/share/cycle
 - `en000_umgla.espec`
 - `en000_umgla.trmm`
 - `en000_umgla.toarad`
-There are all UM binary 'pp' files containing a variety of atmospheric variables on various grids. The STASH settings in the UM namelists will determine which variables are output and at what frequency.
+
+These are all UM binary 'pp' files containing a variety of atmospheric variables on various grids. The STASH settings in the UM namelists will determine which variables are output and at what frequency.
 
 #### convpp
 
@@ -348,3 +357,13 @@ which deletes the directory `/cylc-run/u-dl058/share/cycle/20200116T0000Z/`.
 
 Congratulations! You've just run your first UM suite using `rose/cylc`
 
+## Viewing the outputs
+
+The suite will output the netCDF files to the location defined in `ARCHDIR` in the `rose-suite.conf` file, which be default is equal to
+```
+ARCHDIR='/scratch/gb02/${USER}/GC5_runs'
+```
+
+A simple python notebook to load the data in this and compare it other suite output is available at
+
+https://github.com/21centuryweather/UM_configuration_tools/blob/main/GC5_compare.ipynb

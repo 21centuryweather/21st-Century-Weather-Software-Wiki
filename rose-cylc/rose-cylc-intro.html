@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -174,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -192,9 +193,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -423,8 +429,9 @@
   <span class="n">User</span> <span class="o">&lt;</span><span class="n">insert</span> <span class="n">your</span> <span class="n">username</span> <span class="n">here</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+<p>This will help keep your X-windows session active in short periods when you are away from your keyboard.</p>
 <ol class="arabic simple" start="4">
-<li><p>You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account.</p></li>
+<li><p>You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account. If you haven’t started this, please contact Martin Dix at ACCESS-NRI (<a class="reference external" href="mailto:martin&#46;dix&#37;&#52;&#48;anu&#46;edu&#46;au">martin<span>&#46;</span>dix<span>&#64;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a>) or Holger Wolff at CLEX (<a class="reference external" href="mailto:holger&#46;wolff&#37;&#52;&#48;monash&#46;edu">holger<span>&#46;</span>wolff<span>&#64;</span>monash<span>&#46;</span>edu</a>).</p></li>
 <li><p>You have memberships to the following <code class="docutils literal notranslate"><span class="pre">gadi</span></code> projects:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">hr22</span></code></p></li>
@@ -437,8 +444,11 @@
 <section id="shell-scripts-and-running-jobs-on-linux">
 <h2>Shell scripts and running jobs on Linux<a class="headerlink" href="#shell-scripts-and-running-jobs-on-linux" title="Link to this heading">#</a></h2>
 <p>Typically we run programs (or apps) on a linux computer using a shell scripts. We use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell to interpret input from the command-line to execute programs.</p>
+<p>If you are unfamiliar with the linux command command line, click below.</p>
+<details>
+<summary>Click to expand</summary>
 <p>For example, if you login to <code class="docutils literal notranslate"><span class="pre">gadi</span></code> and type <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code>, at the command-line you are executing the program <code class="docutils literal notranslate"><span class="pre">ls</span></code> with the additional arguments <code class="docutils literal notranslate"><span class="pre">la</span></code>. The output of the program is then directed via standard output to your terminal.</p>
-<p>We can then create bash ‘scripts’ which allows to us process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, that we give special permissions to, that allow the Linux operating system to execute it as a program.</p>
+<p>We can then create bash ‘scripts’ which allows us to process multiple inputs and to automate tasks from the command line instead of having to type everything manually.  A bash script is simply a text file with a list of commands, that we give special permissions to, that allows the Linux operating system to execute it as a program.</p>
 <p>If you want more familiarity with <code class="docutils literal notranslate"><span class="pre">bash</span></code>, there are many on-line tutorials and references available, e.g.:</p>
 <p><a class="reference external" href="https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/">https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/</a></p>
 <p>or</p>
@@ -447,34 +457,54 @@
 <p>A deeper <code class="docutils literal notranslate"><span class="pre">bash</span></code> reference can be found here:</p>
 <p><a class="reference external" href="https://learn.microsoft.com/en-us/training/modules/bash-introduction/">https://learn.microsoft.com/en-us/training/modules/bash-introduction/</a></p>
 <p>Depending on your prior experience with Linux and <code class="docutils literal notranslate"><span class="pre">bash</span></code>, you may want to spend a few days working through these tutorials and examples to gain a better understanding of how <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands and <code class="docutils literal notranslate"><span class="pre">bash</span></code> <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> variables work and familiarise yourself with the Linux directory structures on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+</details>
+<br />
 <p>Typically you will use <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts to execute programs required to simulate the atmosphere, whether these programs are pre-compiled executables (e.g. the Unified Model itself), python scripts for pre-processing or post-processing, or bash commands themselves.</p>
-<p>When we execute programs from the command-line, we are using an ‘interactive’ session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. For larger tasks, a super-computer uses a batch-scheduling system whereby <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.</p>
+<p>When we execute programs from the gadi command-line, we are using an ‘interactive’ session. Typically this is used for small programs that require very few resources (i.e. memory, processors, disk space) and can be executed in a few seconds or minutes. The gadi login nodes (i.e. the external servers you connect to via <code class="docutils literal notranslate"><span class="pre">ssh</span></code>) are designed to support small tasks such as:</p>
+<ul class="simple">
+<li><p>Editing files, build programs, install software in your home/project space, etc.</p></li>
+<li><p>Download/upload small amount of data (a few GB)</p></li>
+<li><p>Run/test/debug programs:</p>
+<ul>
+<li><p>Not exceeding 30-minute CPU cumulative time limit</p></li>
+<li><p>Not exceeding 4GiB memory</p></li>
+</ul>
+</li>
+<li><p>Submit and monitor PBS jobs</p></li>
+</ul>
+<p>These guidelines are sourced from <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/144277624/Introduction+to+Gadi?preview=%2F144277624%2F363135031%2FNCI_i2g_202411.pdf">Introduction to Gadi</a></p>
+<p>For larger tasks, a super-computer uses a batch-scheduling system whereby <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts are submitted to a job scheduler queue with requests for memory, processors and storage. The job scheduler then processes each jobs when resources become available.</p>
 <p>The NCI supercomputer <code class="docutils literal notranslate"><span class="pre">gadi</span></code> uses the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job scheduler. Documentation is available here:</p>
 <p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=236880320">https://opus.nci.org.au/pages/viewpage.action?pageId=236880320</a></p>
+<p>Note that documentation contains information on how to run an ‘interactive’ PBS job session on a gadi compute node, which will allow you to interactively edit files and run programs that exceed the capacity of the gadi login nodes.</p>
+<blockquote>
+<div><p><strong><em>TIP</em></strong> : The gadi compute nodes are not externally connected to the internet, so you won’t be able to connect to gitlab or copy files from external sources when logged into a compute note.</p>
+</div></blockquote>
 <p>But, what if we have a complex set of tasks that must run in a particular sequence? Can we create a scheduler which processes <code class="docutils literal notranslate"><span class="pre">PBS</span></code> jobs in a user-specified workflow?</p>
 </section>
 <section id="task-scheduling-for-atmospheric-simulation">
 <h2>Task Scheduling for Atmospheric Simulation<a class="headerlink" href="#task-scheduling-for-atmospheric-simulation" title="Link to this heading">#</a></h2>
-<p>A good example of a complex tasks that must run in a particular sequence is a  realtime atmospheric simulation (i.e. a weather forecasts).  Typically for a longer, multi-day forecast, the sequence of tasks involves:</p>
+<p>A good example of a complex task that must run in a particular sequence is a historical atmospheric simulation.  Typically for a longer, multi-day simulation, the sequence of tasks involves:</p>
 <ol class="arabic simple">
-<li><p>Reading the previous weather forecast data initialised some six hours ago</p></li>
-<li><p>Collect observations valid from three hours ago, to three hours in the future</p></li>
-<li><p>Running a perturbation forecast model with an optimisation tool to determine the best initial condition which minimises the forecast error compared against these observations.</p></li>
-<li><p>Use this optimal initial condition to run another short term forecast. These short term forecasts which have been computed against observations are known as ‘analysis’ or ‘analyses’. They are our best estimate of the three-dimensional structure of the atmosphere at any point in time.</p></li>
-<li><p>Repeat the analysis computation every six hours.</p></li>
-<li><p>Every 12 hours, run a longer forecast (e.g. 7 days into future)</p></li>
+<li><p>Reading in global or regional atmospheric analysis with the correct valid time.</p></li>
+<li><p>Read in ocean and land data for the same valid times.</p></li>
+<li><p>Read in atmospheric and land ancillary data (e.g. topography, soil types, vegetation fields, aerosols, rivers etc.)</p></li>
+<li><p>(optional) - create ‘lateral boundary conditions’ by slicing an area of interest from a global or regional analysis.</p></li>
+<li><p>Regrid the input data onto our domain of interest.</p></li>
+<li><p>Run a short-term atmospheric forecast model using the above inputs.</p></li>
+<li><p>Repeat this process for as many hours or days (or weeks, months or years!) that are required.</p></li>
 </ol>
-<p>Repeating this process in realtime 24/7 requires the interaction of many separate tasks. We need a system which submits programs, monitors their progress, keeps track of the current time and executes each task according to an ordered set of dependencies (i.e some tasks cannot run until some upstream tasks have finished).</p>
+<p>Continual repetition of this process requires the interaction of many separate tasks. We need a system which submits programs, monitors their progress, keeps track of the current time and executes each task according to an ordered set of dependencies (i.e some tasks cannot run until some upstream tasks have finished).</p>
 <p>In order to do this, we require what is known as a workflow engine, which is a fancy name for a task scheduler.</p>
 </section>
 <section id="the-cylc-work-engine">
 <h2>The Cylc work engine<a class="headerlink" href="#the-cylc-work-engine" title="Link to this heading">#</a></h2>
 <p>Recently, the New Zealand National Institute of Water and Atmospheric Research (NIWA) developed its own task scheduler to handle its operational workflows - <strong>cylc</strong>. This scheduler was so elegant, powerful and (relatively) simple to use that it was adopted by the UK Met Office, who wrapped an external software layer - <strong>rose</strong> - around the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> engine.</p>
 <p>Every time you run an atmospheric simulation using the UK Met Office’s Unified Model (‘UM’), you will be using <code class="docutils literal notranslate"><span class="pre">cylc</span></code>. All ACCESS simulations use the UM as its atmospheric model.</p>
-<p>When we refer to <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code>, we are referring to a <code class="docutils literal notranslate"><span class="pre">rose</span></code> framework (which constitutes various GUI tools, scripts and namelists) which launch the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> workflow engine.</p>
+<p>When we refer to <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code>, we are referring to a <code class="docutils literal notranslate"><span class="pre">rose</span></code> framework (which constitutes various GUI tools, scripts and namelists) which launches the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> workflow engine.</p>
 <p>To understand how <code class="docutils literal notranslate"><span class="pre">cylc</span></code> works, visit the documentation here:</p>
 <p><a class="reference external" href="https://cylc.github.io/cylc-doc/7.9.3/html/index.html">https://cylc.github.io/cylc-doc/7.9.3/html/index.html</a></p>
-<p>Note the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> is still using an earlier version of <code class="docutils literal notranslate"><span class="pre">cylc</span></code> (7.9.3) so make sure you select the correct version. The latest version of <code class="docutils literal notranslate"><span class="pre">cylc</span></code> (8.3.4) contains some significant differences.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">gadi</span></code> is still using an earlier version of <code class="docutils literal notranslate"><span class="pre">cylc</span></code> (7.9.3) so make sure you select the correct version of the documentation. Check the URL and the headers/banners on the pages themselves. The latest version of <code class="docutils literal notranslate"><span class="pre">cylc</span></code> (8.3.4) contains some significant differences.</p>
 <section id="first-cylc-tutorial">
 <h3>First cylc tutorial<a class="headerlink" href="#first-cylc-tutorial" title="Link to this heading">#</a></h3>
 <p>Let’s run through the tutorial here:</p>
@@ -528,6 +558,7 @@
         script = &quot;sleep 10; echo Hello World!&quot;
 </pre></div>
 </div>
+<p>The program <code class="docutils literal notranslate"><span class="pre">more</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">cat</span></code> but it uses the space bar to quickly step through a file contents in the terminal, whereas <code class="docutils literal notranslate"><span class="pre">cat</span></code> dumps it all in one go.</p>
 <p>Ok, let’s run this from the command line by executing the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc run
 </pre></div>
@@ -932,8 +963,8 @@ By 21st Century Weather Software Engineering Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

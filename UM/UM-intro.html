@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -174,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_problems.html">Common rose/cylc problems</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -192,9 +193,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -392,6 +398,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#housekeep">housekeep</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-the-outputs">Viewing the outputs</a></li>
 </ul>
             </nav>
         </div>
@@ -439,8 +446,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">ATM_PPN</span></code> : Number of processors for atmospheric tasks</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_UM</span></code> : Flag to compile our own UM executable</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CALENDAR</span></code> : Calendar type (important for long climate simulations)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CASEDATA</span></code> : Directory of case study input files</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_ACCOUNT</span></code> : Your gadi <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> used for resouce allocation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_ACCOUNT</span></code> : Your gadi <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> used for resource allocation</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_HOST</span></code> : Name of supercomputer</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">COMPUTE_QUEUE</span></code> : PBS job queue used for simulations</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MODULE_NAME</span></code> : Extra module configuration data</p></li>
@@ -452,7 +458,6 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">PPN</span></code> : Number of processors (generic)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_PARALLEL</span></code> : PBS job queue type</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">RUNTYPE</span></code> : Flag for ‘coupled’ (modeling both the ocean and atmosphere) or ‘uncoupled’ (atmosphere only) simulation.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RUN_METDB_ODB</span></code> : Option to use the UK Met Office Observation Database</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SITE</span></code> : String to denote the supercomputer type</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">STOCHASTIC</span></code>: Flag for stochastic atmospheric physics</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">TASKLENGTH</span></code> : Data for UM task control</p></li>
@@ -463,7 +468,11 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">USE_COMORPH</span></code> : Flag for CoMorph convection scheme</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">USE_DOUBLE_PREC</span></code> : Flag for numerical precision</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">xios_path</span></code> : Directory of <code class="docutils literal notranslate"><span class="pre">xios</span></code> libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oasis3_mct_path</span></code> : Directory of intel libraries to compile this version of the UM which supports the <code class="docutils literal notranslate"><span class="pre">oasis3</span></code> coupler.</p></li>
 </ul>
+<blockquote>
+<div><p><strong><strong>IMPORTANT</strong></strong> The default value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> is <code class="docutils literal notranslate"><span class="pre">/scratch/gb02/${USER}/GC5_runs</span></code>. If you are NOT a member of the gadi project <code class="docutils literal notranslate"><span class="pre">gb02</span></code>, you will have to swap the value of <code class="docutils literal notranslate"><span class="pre">gb02</span></code> for another gadi project that you have membership of.</p>
+</div></blockquote>
 </section>
 <section id="task-flow">
 <h3>Task flow<a class="headerlink" href="#task-flow" title="Link to this heading">#</a></h3>
@@ -487,17 +496,20 @@
 <p>In the <code class="docutils literal notranslate"><span class="pre">[scheduling]</span></code> namespace we define the number of cycle points based on the input dates. In this example, we only run a single forecast date : “20200116T00”</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">[dependencies]</span></code> namespace, we first define the graph to tasks that occur only once : <code class="docutils literal notranslate"><span class="pre">fcm_make_um</span></code>, <code class="docutils literal notranslate"><span class="pre">install_ancil</span></code>, <code class="docutils literal notranslate"><span class="pre">install_cold</span></code>, <code class="docutils literal notranslate"><span class="pre">fcm_make_drivers</span></code> and <code class="docutils literal notranslate"><span class="pre">fc_make2_drivers</span></code>.</p>
 <p>We then use a <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro to loop over all possible to dates to define the tasks that run for every forecast date: <code class="docutils literal notranslate"><span class="pre">um_recon</span></code>, <code class="docutils literal notranslate"><span class="pre">um_forecast</span></code>, <code class="docutils literal notranslate"><span class="pre">convpp</span></code>, <code class="docutils literal notranslate"><span class="pre">rose_arch</span></code> and <code class="docutils literal notranslate"><span class="pre">housekeep</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">[^]</span></code> syntax is <code class="docutils literal notranslate"><span class="pre">cylc</span></code> shorthand for ‘the initial cycle point’, see <a class="reference external" href="https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points">https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points</a></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">[runtime]</span></code> namespace then defines the environment variables and <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job parameters for each task.  The <code class="docutils literal notranslate"><span class="pre">[root]</span></code> namespace defines common variables and parameters used by most scripts.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro is defined using <code class="docutils literal notranslate"><span class="pre">{%-</span> <span class="pre">for</span> <span class="pre">date</span> <span class="pre">in</span> <span class="pre">SDATES</span> <span class="pre">:</span> <span class="pre">%}</span></code> and <code class="docutils literal notranslate"><span class="pre">{%-</span> <span class="pre">endfor</span> <span class="pre">%}</span></code>.</p>
+<p>Within this loop, the <code class="docutils literal notranslate"><span class="pre">[^]</span></code> syntax is <code class="docutils literal notranslate"><span class="pre">cylc</span></code> shorthand for ‘the initial cycle point’, see:</p>
+<p><a class="reference external" href="https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points">https://cylc.github.io/cylc-doc/7.8.8/html/suite-config.html#referencing-the-initial-and-final-cycle-points</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[runtime]</span></code> namespace then defines the environment variables and PBS job parameters for each task.  The <code class="docutils literal notranslate"><span class="pre">[root]</span></code> namespace defines common variables and parameters used by most scripts.</p>
 <p>Next, there are namespaces for each separate family of tasks. The <code class="docutils literal notranslate"><span class="pre">[ARCHIVE]</span></code> namespace defines the value for <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> defined in <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code>.</p>
-<p>Below that, there are several dictionaries and macros used to define <code class="docutils literal notranslate"><span class="pre">PBS</span></code> queue and resource requirements for a given resolution. The two main computational tasks in the suite are the UM ‘Reconfiguration’ task, and the UM atmospheric forecast task. By default, this suite runs at the lowest available resolution (n320e). The <code class="docutils literal notranslate"><span class="pre">jinja</span></code> dictionary <code class="docutils literal notranslate"><span class="pre">UM_RES</span></code> will return a 10-minute PBS job walltime (<code class="docutils literal notranslate"><span class="pre">&quot;PT10M&quot;</span></code>) to the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> variable <code class="docutils literal notranslate"><span class="pre">RCF_WALL</span></code> and a 4-hour job walltime (<code class="docutils literal notranslate"><span class="pre">&quot;PT4H&quot;</span></code>)to the variable <code class="docutils literal notranslate"><span class="pre">ATM_WALL</span></code>. Other variables are used with the <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro <code class="docutils literal notranslate"><span class="pre">node</span></code> to provide the number of compute nodes for the reconfiguration (<code class="docutils literal notranslate"><span class="pre">NODE_RCF</span></code>) and atmospheric forecast (<code class="docutils literal notranslate"><span class="pre">NODE_ATM</span></code>) tasks respectively.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">[UM]</span></code> and <code class="docutils literal notranslate"><span class="pre">[RECONFIGURE]</span></code> namespaces then specify the resources fore each task. Below this, there are separate namespaces (in lower case) for each specific task. Each task will inherit environmental parameters defined in the earlier sections.</p>
+<p>Below that, there are several dictionaries and macros used to define PBS queue and resource requirements for a given resolution. The two main computational tasks in the suite are the UM ‘Reconfiguration’ task, and the UM atmospheric forecast task. By default, this suite runs at the lowest available resolution (n320e). The <code class="docutils literal notranslate"><span class="pre">jinja</span></code> dictionary <code class="docutils literal notranslate"><span class="pre">UM_RES</span></code> will return a 10-minute PBS job walltime (<code class="docutils literal notranslate"><span class="pre">&quot;PT10M&quot;</span></code>) to the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> variable <code class="docutils literal notranslate"><span class="pre">RCF_WALL</span></code> and a 4-hour job walltime (<code class="docutils literal notranslate"><span class="pre">&quot;PT4H&quot;</span></code>)to the variable <code class="docutils literal notranslate"><span class="pre">ATM_WALL</span></code>. Other variables are used with the <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro <code class="docutils literal notranslate"><span class="pre">node</span></code> to provide the number of compute nodes for the reconfiguration (<code class="docutils literal notranslate"><span class="pre">NODE_RCF</span></code>) and atmospheric forecast (<code class="docutils literal notranslate"><span class="pre">NODE_ATM</span></code>) tasks respectively.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[UM]</span></code> and <code class="docutils literal notranslate"><span class="pre">[RECONFIGURE]</span></code> namespaces then specify the resources for each task. Below this, there are separate namespaces (in lower case) for each specific task. Each task will inherit environmental parameters defined in the earlier sections.</p>
 <p>This <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file uses an include statement <code class="docutils literal notranslate"><span class="pre">%include</span> <span class="pre">site/nci_gadi.rc</span></code> to include information specific to gadi. When the suite is run, the contents of <code class="docutils literal notranslate"><span class="pre">site/nci_gadi.rc</span></code> will be included in the overall <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file that is copied to the run directory <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058</span></code>.</p>
 <p>For brevity’s sake, we won’t examine the contents of every namespace within <code class="docutils literal notranslate"><span class="pre">site/nci_gadi.rc</span></code>. But we will note the contents of this file which provides information such as:</p>
 <ul class="simple">
 <li><p>PBS walltime limits</p></li>
 <li><p>PBS compute queue</p></li>
 <li><p>PBS memory requirements</p></li>
+<li><p>PBS storage requiremetns</p></li>
 <li><p>Lists of modules to be loaded</p></li>
 <li><p>location of ancillary files
 for each task environment.</p></li>
@@ -521,9 +533,9 @@ script = {{TASK_RUN_COMMAND}}
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">TASK_RUN_COMMAND</span> <span class="o">=</span> <span class="s2">&quot;rose task-run --verbose -O &#39;(&quot;</span> <span class="o">+</span> <span class="n">SITE</span> <span class="o">+</span> <span class="s2">&quot;)&#39;&quot;</span> <span class="o">%</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>The use of <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">task-run</span></code> was covered in the third rose tutorial we covered earlier. To referesh your memory, from:</p>
-<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html</a>
-“When run, rose task-run searches for an application with the same name as the Cylc task in the app/ directory.”</p>
+<p>The use of <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">task-run</span></code> was covered in the third rose tutorial we covered earlier. If you need refresh your memory, you can review the tutorial here:</p>
+<p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html</a></p>
+<p>which states “When run, rose task-run searches for an application with the same name as the Cylc task in the app/ directory.”</p>
 </section>
 </section>
 <section id="running-the-suite">
@@ -540,6 +552,7 @@ script = {{TASK_RUN_COMMAND}}
 <section id="install-ancil">
 <h3>install_ancil<a class="headerlink" href="#install-ancil" title="Link to this heading">#</a></h3>
 <p>This task is run from the <code class="docutils literal notranslate"><span class="pre">app/install_ancil/</span></code> directory. It builds symbolic links between the ancillary files located in the <code class="docutils literal notranslate"><span class="pre">${UM_ANCIL_DIR}/${GL_UM_RES}</span></code> directory on gadi and your local <code class="docutils literal notranslate"><span class="pre">cylc</span></code> working directory <code class="docutils literal notranslate"><span class="pre">$ROSE_DATA/etc/ancil_gl/</span></code>.</p>
+<p>The full list of ancillary files required is contained in <code class="docutils literal notranslate"><span class="pre">app/install_ancil/rose-app.conf</span></code>.</p>
 <p>When this task completes, the directory <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/ancil_gl/</span></code>will be populated with symbolic links to all the ancillary files.</p>
 <p>You can right-click on the task again (which will turn grey after it has successfully) and view the <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file. The <code class="docutils literal notranslate"><span class="pre">cylc</span></code> scheduler will nicely capture all the PBS standard output and collate it into the <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file.</p>
 <p><img alt="Job output" src="../_images/job.png" /></p>
@@ -551,14 +564,9 @@ script = {{TASK_RUN_COMMAND}}
 </section>
 <section id="install-cold">
 <h3>install_cold<a class="headerlink" href="#install-cold" title="Link to this heading">#</a></h3>
-<p>This task uses the <code class="docutils literal notranslate"><span class="pre">bash</span></code> script <code class="docutils literal notranslate"><span class="pre">app/install_cold/bin/install_ver.sh</span></code>. It will populate the following directories with symbolic links to initial conditions for the ocean and atmosphere:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/elements</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/ocean_startdumps</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/elements/RMP_DIR_n320e</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/elements/surf</span></code></p></li>
-</ul>
-<p>There are other directories and files related to verification but they won’t be used in this simple suite.</p>
+<p>This task uses the <code class="docutils literal notranslate"><span class="pre">bash</span></code> script <code class="docutils literal notranslate"><span class="pre">app/install_cold/bin/install_ver.sh</span></code>. It will install
+<code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/um_vertlevs</span></code> to define the vertical levels of our grid.</p>
+<p>It will also link the directory <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/fcm_make_surf</span></code> to a directory on gadi with files associated with the UM’s land-surface model ‘JULES’.</p>
 </section>
 <section id="fcm-make-drivers">
 <h3>fcm_make_drivers<a class="headerlink" href="#fcm-make-drivers" title="Link to this heading">#</a></h3>
@@ -578,7 +586,7 @@ script = {{TASK_RUN_COMMAND}}
 <section id="retrieve-atmos">
 <h3>retrieve_atmos<a class="headerlink" href="#retrieve-atmos" title="Link to this heading">#</a></h3>
 <p>This task is launched using <code class="docutils literal notranslate"><span class="pre">bin/retrieve_atmos_startdumps.sh</span></code>. It will copy a ‘UM’ atmospheric start-dump to <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/cycle/20200116T0000Z/</span></code></p>
-<p>The start dump file <code class="docutils literal notranslate"><span class="pre">20200116T0000Z_engl_t+3_000</span></code> is a ‘UM’ ‘PP’ file, i.e. a Fortran binary record file created by the ‘UM’ itself. You will not be able to view it with a netCDF reader, but you can use the <code class="docutils literal notranslate"><span class="pre">xconv</span></code> utility to view it on gadi.</p>
+<p>The start dump file <code class="docutils literal notranslate"><span class="pre">20200116T0000Z_engl_t+3_000</span></code> is a ‘UM’ ‘PP’ file, i.e. a fortran binary record file created by the ‘UM’ itself. You will not be able to view it with a netCDF reader, but you can use the <code class="docutils literal notranslate"><span class="pre">xconv</span></code> utility to view it on gadi.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module use /g/data/access/modules/
 $ module load xconv
 $ xconv 20200116T0000Z_engl_t+3_000 &amp;
@@ -619,7 +627,7 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 </section>
 <section id="um-recon">
 <h3>um_recon<a class="headerlink" href="#um-recon" title="Link to this heading">#</a></h3>
-<p>This task uses the UM reconfigure executables to take all the input information already assembled (start dumps, ancillary data) and ‘reconfigure’ it for the required target grid. Most of the time the reconfigure step is just a fancy name for regridding. The task uses the files in <code class="docutils literal notranslate"><span class="pre">app/um</span></code>. Note the <code class="docutils literal notranslate"><span class="pre">app/um/rose-app.conf</span></code> file has two <code class="docutils literal notranslate"><span class="pre">command</span></code> entries:</p>
+<p>This task uses the UM reconfigure executables to take all the input information already assembled (start-dumps, ancillary data) and ‘reconfigure’ it for the required target grid. Most of the time the reconfigure step is just a fancy name for regridding. The task uses the files in <code class="docutils literal notranslate"><span class="pre">app/um</span></code>. Note the <code class="docutils literal notranslate"><span class="pre">app/um/rose-app.conf</span></code> file has two <code class="docutils literal notranslate"><span class="pre">command</span></code> entries:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">command</span><span class="p">]</span>
 <span class="n">default</span><span class="o">=</span><span class="n">run_model</span>
 <span class="n">recon</span><span class="o">=</span><span class="n">um</span><span class="o">-</span><span class="n">recon</span>
@@ -634,7 +642,7 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 <p>If you want to know more about the UM reconfiguration process, you click here: <a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration">https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration</a></p>
 <p>The standard output (or ‘stdout’ for short) of the UM reconfigure executable is long and rather interesting. You can scroll through the stdout contained in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> by accessing the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file, either via the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> gui or using a file editor of choice. It is very common for <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> to fail when running a new suite configuration for the first time.</p>
 <blockquote>
-<div><p><strong><strong>TIP</strong></strong> Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> task is very important, as reconfiguration errors are one of the most common sources of problems when running the UM.</p>
+<div><p><strong><strong>TIP</strong></strong> Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.</p>
 </div></blockquote>
 <p>Note how the reconfigure executable:</p>
 <ul class="simple">
@@ -663,24 +671,24 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 <li><p>It computes (on the new grid) all the required fields to begin an atmospheric forecast.</p></li>
 <li><p>It outputs these fields to `~/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart’.</p></li>
 </ul>
-<p>Note the resolution of this <code class="docutils literal notranslate"><span class="pre">.astart</span></code> file is 640x480, i.e. all input fields have been regridded to a much coarser grid which corresponds to the specified <code class="docutils literal notranslate"><span class="pre">n320</span></code> resolution.</p>
+<p>Note the resolution of this <code class="docutils literal notranslate"><span class="pre">.astart</span></code> file is 640x480, i.e. all input fields have been regridded from the higher resolution start-dump grid to a much coarser grid which corresponds to the specified <code class="docutils literal notranslate"><span class="pre">n320</span></code> resolution.</p>
 <p>Note <code class="docutils literal notranslate"><span class="pre">n320</span></code> refers to a spectral representation of global resolution. Some data in the UM is computed using spectral fields. See <a class="reference external" href="https://www.ecmwf.int/sites/default/files/elibrary/2016/17262-new-grid-ifs.pdf">https://www.ecmwf.int/sites/default/files/elibrary/2016/17262-new-grid-ifs.pdf</a> for more information.</p>
 </section>
 <section id="um-forecast">
 <h3>um_forecast<a class="headerlink" href="#um-forecast" title="Link to this heading">#</a></h3>
 <p>This task initialises the atmospheric forecast, using the same <code class="docutils literal notranslate"><span class="pre">app/um</span></code> files used by <code class="docutils literal notranslate"><span class="pre">um_recon</span></code>. Let’s look through the stdout of the atmospheric forecast task, either via the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> gui or using a file editor. It is very common when running a new suite configuration for the first time that the atmospheric forecast task may fail.</p>
 <blockquote>
-<div><p><strong><strong>TIP</strong></strong> Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_forecast</span></code> task is very important, as forecast errors are the most common sources of problems when running the UM.</p>
+<div><p><strong><strong>TIP</strong></strong> Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_forecast</span></code> task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM.</p>
 </div></blockquote>
 <p>Note the atmospheric executable:</p>
 <ul class="simple">
 <li><p>opens the <code class="docutils literal notranslate"><span class="pre">.astart</span></code> file.</p></li>
 </ul>
-<blockquote>
-<div><p>OPEN: File /home/548/pag548/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart to be Opened on Unit 19 Exists
-IO: Open: /home/548/pag548/cylc-run/u-dl058/share/cycle/20200116T0000Z/umgla000.astart on unit  19
-loadHeader: Model Version: 13.2</p>
-</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OPEN</span><span class="p">:</span> <span class="n">File</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">cycle</span><span class="o">/</span><span class="mi">20200116</span><span class="n">T0000Z</span><span class="o">/</span><span class="n">umgla000</span><span class="o">.</span><span class="n">astart</span> <span class="n">to</span> <span class="n">be</span> <span class="n">Opened</span> <span class="n">on</span> <span class="n">Unit</span> <span class="mi">19</span> <span class="n">Exists</span>
+<span class="n">IO</span><span class="p">:</span> <span class="n">Open</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">dl058</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">cycle</span><span class="o">/</span><span class="mi">20200116</span><span class="n">T0000Z</span><span class="o">/</span><span class="n">umgla000</span><span class="o">.</span><span class="n">astart</span> <span class="n">on</span> <span class="n">unit</span>  <span class="mi">19</span>
+<span class="n">loadHeader</span><span class="p">:</span> <span class="n">Model</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">13.2</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Begins the first timestep</p></li>
 </ul>
@@ -696,7 +704,7 @@ grid complexity =   1.4292 [ lower bound =   1.3125 ]
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Outputs the maximum vertical velocity at this timestep. Often the forecast model will fail with large, unphysical maximum vertical velocities. Sometimes they can approach the speed of sound ;)  These ‘grid-point storms’ are often caused by incorrect or discontinuous data in regions of high orography. The lat/long co-ordinates of the maximum vertical velocity will help you located bugs. The output of the minimum theta value may also be useful. For high resolution models of Australian region, the Papua New Guinea highlands is often a source of error.</p></li>
+<li><p>Outputs the maximum vertical velocity at this timestep. Often the forecast model will fail with large, unphysical maximum vertical velocities. Sometimes they can approach the speed of sound ;)  These ‘grid-point storms’ are often caused by incorrect or discontinuous data in regions of high orography. The lat/long co-ordinates of the maximum vertical velocity will help you locate bugs. The output of the minimum theta value may also be useful. For high resolution models of Australian region, the Papua New Guinea highlands is often a source of error.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="n">Maximum</span> <span class="n">vertical</span> <span class="n">velocity</span> <span class="n">at</span> <span class="n">timestep</span>                      <span class="mi">0</span>       <span class="n">Max</span> <span class="n">w</span> <span class="n">this</span> <span class="n">run</span>
 <span class="n">w_max</span>   <span class="n">level</span>  <span class="n">proc</span>         <span class="n">position</span>             <span class="n">run</span> <span class="n">w_max</span> <span class="n">level</span> <span class="n">timestep</span>
@@ -704,7 +712,7 @@ grid complexity =   1.4292 [ lower bound =   1.3125 ]
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The output of the The atmospheric model in this suite integrates forward in time in 12 minute intervals.</p></li>
+<li><p>The output of the the atmospheric model in this suite integrates forward in time in 12 minute intervals.</p></li>
 <li><p>You can use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> app <code class="docutils literal notranslate"><span class="pre">grep</span></code> to search for all the maximum timesteps in <code class="docutils literal notranslate"><span class="pre">job.out</span></code> and then extract the digits of the subsequent line, e.g.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -A 1 w_max job.out | grep -P &#39;(^\d+)&#39;
@@ -726,9 +734,9 @@ This task ends by writing the following files in `~/cylc-run/u-dl058/share/cycle
 <li><p><code class="docutils literal notranslate"><span class="pre">en000_umgla.ecyc</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">en000_umgla.espec</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">en000_umgla.trmm</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">en000_umgla.toarad</span></code>
-There are all UM binary ‘pp’ files containing a variety of atmospheric variables on various grids. The STASH settings in the UM namelists will determine which variables are output and at what frequency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">en000_umgla.toarad</span></code></p></li>
 </ul>
+<p>These are all UM binary ‘pp’ files containing a variety of atmospheric variables on various grids. The STASH settings in the UM namelists will determine which variables are output and at what frequency.</p>
 </section>
 <section id="convpp">
 <h3>convpp<a class="headerlink" href="#convpp" title="Link to this heading">#</a></h3>
@@ -747,6 +755,15 @@ There are all UM binary ‘pp’ files containing a variety of atmospheric varia
 <p>which deletes the directory <code class="docutils literal notranslate"><span class="pre">/cylc-run/u-dl058/share/cycle/20200116T0000Z/</span></code>.</p>
 <p>Congratulations! You’ve just run your first UM suite using <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code></p>
 </section>
+</section>
+<section id="viewing-the-outputs">
+<h2>Viewing the outputs<a class="headerlink" href="#viewing-the-outputs" title="Link to this heading">#</a></h2>
+<p>The suite will output the netCDF files to the location defined in <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, which be default is equal to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHDIR</span><span class="o">=</span><span class="s1">&#39;/scratch/gb02/$</span><span class="si">{USER}</span><span class="s1">/GC5_runs&#39;</span>
+</pre></div>
+</div>
+<p>A simple python notebook to load the data in this and compare it other suite output is available at</p>
+<p><a class="github reference external" href="https://github.com/21centuryweather/UM_configuration_tools/blob/main/GC5_compare.ipynb">21centuryweather/UM_configuration_tools</a></p>
 </section>
 </section>
 
@@ -836,6 +853,7 @@ There are all UM binary ‘pp’ files containing a variety of atmospheric varia
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#housekeep">housekeep</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-the-outputs">Viewing the outputs</a></li>
 </ul>
   </nav></div>
 
@@ -884,8 +902,8 @@ By 21st Century Weather Software Engineering Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

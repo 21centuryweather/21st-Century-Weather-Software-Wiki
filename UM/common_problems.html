@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; 21st Century Weather Software Wiki</title>
+    <title>Common rose/cylc problems &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -60,9 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'starting/nci';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/common_problems';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="prev" title="Trouble Shooting" href="trouble-shooting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -169,12 +169,12 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Common rose/cylc problems</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -261,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fstarting/nci.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FUM/common_problems.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -291,7 +291,7 @@
       
       
       
-      <li><a href="../_sources/starting/nci.md" target="_blank"
+      <li><a href="../_sources/UM/common_problems.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +367,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Common rose/cylc problems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,9 +376,10 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-log-into-a-persistent-session">Cannot log into a persistent session</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -389,7 +390,27 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="common-rose-cylc-problems">
+<h1>Common rose/cylc problems<a class="headerlink" href="#common-rose-cylc-problems" title="Link to this heading">#</a></h1>
+<p>This will be a maintained list of problems encountered (and fixed) with running <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> ACCESS tasks.</p>
+<section id="jobs-submitted-but-not-running">
+<h2>Jobs submitted but not running<a class="headerlink" href="#jobs-submitted-but-not-running" title="Link to this heading">#</a></h2>
+<p>A common issue is that you start your <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite, which submits various jobs, but they never run.</p>
+<p>i.e. the job state in the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI is ‘submitted’ and the job colour is bright green, but the job never begins running and never turns deep green.</p>
+<p>This is often caused by disk quota issues. If you have insufficient disk space, either in your home directory, your <code class="docutils literal notranslate"><span class="pre">/g/data/</span></code> or <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> directories, your PBS job will not be allowed to run and will be held indefinitely.</p>
+<p>PBS jobs will also be held if there are insufficient project allocations (e.g. you’ve run out of ‘kSU’).</p>
+<p>See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/230490410/Why+are+my+jobs+not+running+">https://opus.nci.org.au/spaces/Help/pages/230490410/Why+are+my+jobs+not+running+</a>…</p>
+<p>for more details.</p>
+<p>To help manage your disk quota, use some of the commands in this link:</p>
+<p><a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation">https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation</a>…</p>
+</section>
+<section id="cannot-log-into-a-persistent-session">
+<h2>Cannot log into a persistent session<a class="headerlink" href="#cannot-log-into-a-persistent-session" title="Link to this heading">#</a></h2>
+<p>If you can’t log into your persistent session, you may have conflicting modules which don’t use the standard <code class="docutils literal notranslate"><span class="pre">ssh</span></code> environment at NCI. Often the cause of this conflict is the <code class="docutils literal notranslate"><span class="pre">conda/analysis</span></code> module developed by CLEX and maintained by ACCESS-NRI.  You will have to unload any conflicting modules.</p>
+<p>See <a class="reference internal" href="../mosrs/mosrs-intro.html#persistent-sessions"><span class="std std-ref">this link</span></a> for more information.</p>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -403,7 +424,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./starting"
+            path: "./UM"
         },
         predefinedOutput: true
     }
@@ -420,6 +441,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="trouble-shooting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Trouble Shooting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../python/intro-python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Intro to Python for Climate Science</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -436,9 +475,10 @@
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-log-into-a-persistent-session">Cannot log into a persistent session</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
