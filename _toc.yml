@@ -14,6 +14,7 @@ parts:
     - file: UM/UM-intro
     - file: UM/trouble-shooting
     - file: UM/common_problems
+    - file: aus2200/models-aus2200
   - caption: Python
     chapters:
     - file: python/intro-python
