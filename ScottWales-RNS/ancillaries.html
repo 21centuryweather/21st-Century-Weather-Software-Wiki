@@ -1,0 +1,800 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating Ancillaries &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ScottWales-RNS/ancillaries';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="prev" title="Regional Nesting Suite" href="setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Regional Nesting Suite</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating Ancillaries</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FScottWales-RNS/ancillaries.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ScottWales-RNS/ancillaries.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating Ancillaries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Creating Ancillaries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-domains">Defining Domains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regions">Regions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolutions">Resolutions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancillary-options">Ancillary Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rotated-poles">Rotated Poles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cap-and-ants">CAP and ANTS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ancil-files">Ancil files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-ancillaries">Editing Ancillaries</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="creating-ancillaries">
+<h1>Creating Ancillaries<a class="headerlink" href="#creating-ancillaries" title="Link to this heading">#</a></h1>
+<p>The <a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/RAS">Regional Ancillary Suite</a> is used to set domains and create ancillary data for regional models.</p>
+<p>Suite <strong>u-cy368</strong> has been set up to create ancillaries for our sample domain. Check out the suite with <code class="docutils literal notranslate"><span class="pre">rosie</span> <span class="pre">checkout</span> <span class="pre">u-cy368</span></code> and open it in <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code>. Make sure to set the SITE to <code class="docutils literal notranslate"><span class="pre">nci-gadi</span></code> in ‘General Run Options’.</p>
+<section id="defining-domains">
+<h2>Defining Domains<a class="headerlink" href="#defining-domains" title="Link to this heading">#</a></h2>
+<p>Domains are defined in two layers, regions and resolutions. This allows the domain to be relocatable by just changing the region centre, without having to change the model grid setups.</p>
+<p>At this stage we’re not worried about which nest is inside which, that will get defined in the Regional Nesting Suite.</p>
+<p>Aus2200 domains are named by their grid spacing in ten-thousandths of a degree - <code class="docutils literal notranslate"><span class="pre">d0198</span></code> represents a 0.0198 degree grid spacing in both latitude and longitude.</p>
+<section id="regions">
+<h3>Regions<a class="headerlink" href="#regions" title="Link to this heading">#</a></h3>
+<p><strong>Regions</strong> set the primary location of the domain. You can define this either as the domain centre or as the bottom left corner. Regions also control if a rotated grid is being used. Configuration options are prefixed with the region number, e.g. <code class="docutils literal notranslate"><span class="pre">rg01_name</span></code>.</p>
+<ul class="simple">
+<li><p><strong>name</strong>: A name for this region</p></li>
+<li><p><strong>use_centre</strong>: True if the location is for the region centre, false for the bottom left corner</p></li>
+<li><p><strong>centre</strong>: Region centre</p></li>
+<li><p><strong>rot_grid</strong>: True if using a rotated pole (useful at high latitudes)</p></li>
+</ul>
+<p>When rotated pole is enabled, the grid coordinates will be transformed so that the centre of your domain is at 0N 0E in the new coordinate system. At high latitudes this will give much more evenly spaced grid cells.</p>
+<p><img alt="Ancil region" src="../_images/ancil-region.png" /></p>
+</section>
+<section id="resolutions">
+<h3>Resolutions<a class="headerlink" href="#resolutions" title="Link to this heading">#</a></h3>
+<p><strong>Resolutions</strong> define actual grids, including the grid size and spacing. Configuration options are prefixed with the region and resolution number, e.g. <code class="docutils literal notranslate"><span class="pre">rg01_rs01_name</span></code>.</p>
+<ul class="simple">
+<li><p><strong>name</strong>: A name for this resolution</p></li>
+<li><p><strong>delta</strong>: Grid spacing in degrees</p></li>
+<li><p><strong>npts</strong>: Grid size</p></li>
+<li><p><strong>offset</strong>: Offset from the region location</p></li>
+<li><p><strong>levset</strong>: Vertical levels - RAL configurations should use L90_40km (90 vertical levels, max height 40 km)</p></li>
+</ul>
+<p><img alt="Ancil Resolution" src="../_images/ancil-resolution.png" /></p>
+</section>
+</section>
+<section id="ancillary-options">
+<h2>Ancillary Options<a class="headerlink" href="#ancillary-options" title="Link to this heading">#</a></h2>
+<p>There are a number of options for which ancillary files to create. Which you’ll need will depend on the model’s science settings. SRTM orography should be enabled when working at km-scale or finer resolutions.</p>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<p>Plan out creating ancillaries for your own domain (max 200x200 grid size)</p>
+<p>At the boundary of the regional domain the model is merged with the driving lateral boundary conditions. The driving data always has to be a bit larger than the target domain, you can’t for instance have an outer nest domain and an inner nest domain share the same edge.</p>
+<p>Boundary data can be saved as a ‘frame’, where the innermost part of the data is cut out leaving only data around the edge. In this case the frame has to cover from the domain’s ‘halo’ to the domain’s ‘rim’ (both configurable in the model’s LBC configuration).</p>
+<p>Here’s some Python code to plot out the region that may be helpful when planning your domain.</p>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> This code and some examples are now available at
+<a class="github reference external" href="https://github.com/21centuryweather/UM_configuration_tools/blob/main/UM_plot_domain.ipynb">21centuryweather/UM_configuration_tools</a></p>
+</div></blockquote>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">T</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">plot_region</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">centre</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">res</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">size</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">pole</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="mi">180</span><span class="p">),</span> <span class="n">rim</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">halo</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a LAM region, including its rim and halo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">draw_box_centre_size</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">pole</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+    <span class="n">rim_size</span> <span class="o">=</span> <span class="p">[</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">rim</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">rim</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">draw_box_centre_size</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_rim&#39;</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">rim_size</span><span class="p">,</span> <span class="n">pole</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+    <span class="n">halo_size</span> <span class="o">=</span> <span class="p">[</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">halo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">halo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">draw_box_centre_size</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_halo&#39;</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">halo_size</span><span class="p">,</span> <span class="n">pole</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">draw_box_centre_size</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">centre</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">res</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">size</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">pole</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="mi">180</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draws a box given its centre and size</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">size_lon</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">size_lat</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">draw_box_corners</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">corners</span><span class="o">=</span><span class="p">[</span><span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">size_lon</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">size_lon</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">centre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">size_lat</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">centre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">size_lat</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="n">pole</span><span class="o">=</span><span class="n">pole</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">draw_box_corners</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">corners</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">pole</span><span class="p">:</span> <span class="n">T</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="mi">180</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draws a box given its corners</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">y1</span> <span class="o">=</span> <span class="n">corners</span>
+    
+    <span class="n">lons</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span>
+    <span class="n">lats</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span><span class="n">y1</span><span class="p">)</span>
+        
+    <span class="n">crs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">RotatedGeodetic</span><span class="p">(</span><span class="n">pole</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pole</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="p">[</span><span class="n">y0</span><span class="p">]</span><span class="o">*</span><span class="n">lons</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="p">[</span><span class="n">y1</span><span class="p">]</span><span class="o">*</span><span class="n">lons</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x0</span><span class="p">]</span><span class="o">*</span><span class="n">lats</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x1</span><span class="p">]</span><span class="o">*</span><span class="n">lats</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">iris.plot</span>
+
+<span class="n">frames_se</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="s1">&#39;/scratch/nf33/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-se&#39;</span><span class="p">,</span> <span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="n">iris</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">frames_se</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plot_region</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;barra-se&#39;</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">36.96</span><span class="p">,</span><span class="mf">145.02</span><span class="p">],</span> <span class="n">res</span><span class="o">=</span><span class="p">[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">160</span><span class="p">,</span><span class="mi">180</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plot_region</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;d0198&#39;</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">34.43</span><span class="p">,</span><span class="mf">147.615</span><span class="p">],</span> <span class="n">res</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0198</span><span class="p">,</span><span class="mf">0.0198</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">450</span><span class="p">,</span><span class="mi">450</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;10m&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.04/lib/python3.9/site-packages/iris/coords.py:2070: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+  warnings.warn(
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.04/lib/python3.9/site-packages/iris/coords.py:2070: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/c52a566abfcbd1267d51b3843d589d4e9e7c1b0b66d70900d9e8ba3cf47e3a48.png" src="../_images/c52a566abfcbd1267d51b3843d589d4e9e7c1b0b66d70900d9e8ba3cf47e3a48.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="rotated-poles">
+<h1>Rotated Poles<a class="headerlink" href="#rotated-poles" title="Link to this heading">#</a></h1>
+<p>At high latitudes a regular lat-lon grid can become very distorted. In this case you can use a rotated pole to get more evenly sized grid cells.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">NearsidePerspective</span><span class="p">(</span><span class="n">central_latitude</span><span class="o">=-</span><span class="mi">68</span><span class="p">,</span> <span class="n">central_longitude</span><span class="o">=</span><span class="mi">78</span><span class="p">))</span>
+
+<span class="n">plot_region</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;ant&#39;</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">68</span><span class="p">,</span><span class="mi">78</span><span class="p">],</span> <span class="n">res</span><span class="o">=</span><span class="p">[</span><span class="mf">0.135</span><span class="p">,</span><span class="mf">0.135</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plot_region</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;ant_rot&#39;</span><span class="p">,</span> <span class="n">centre</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">res</span><span class="o">=</span><span class="p">[</span><span class="mf">0.135</span><span class="p">,</span><span class="mf">0.135</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">],</span> <span class="n">pole</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="o">+</span><span class="mi">68</span><span class="p">,</span><span class="mi">180</span><span class="o">+</span><span class="mi">78</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;10m&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/75231a0ea2910dc17d6b0450b5e283adb656b26ebaa2ef506a1708005877d9d1.png" src="../_images/75231a0ea2910dc17d6b0450b5e283adb656b26ebaa2ef506a1708005877d9d1.png" />
+</div>
+</div>
+</section>
+<section id="cap-and-ants">
+<h1>CAP and ANTS<a class="headerlink" href="#cap-and-ants" title="Link to this heading">#</a></h1>
+<p>Ancillary files are created from high-resolution source data using two tools, <a class="reference external" href="https://code.metoffice.gov.uk/doc/ancil/ancil9.1/index.html">CAP</a> and <a class="reference external" href="https://code.metoffice.gov.uk/doc/ancil/ants/latest/index.html">ANTS</a>. The Met Office are in the process of moving all of their ancillary generation to the python-based ANTS tool, however it doesn’t yet support all ancillary types.</p>
+</section>
+<section id="ancil-files">
+<h1>Ancil files<a class="headerlink" href="#ancil-files" title="Link to this heading">#</a></h1>
+<p>The RAS creates the following ancillary files under <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-cy368/share/data/ancils</span></code>. You can manually edit the data in the files if needed using <a class="reference external" href="https://code.metoffice.gov.uk/doc/ancil/ants/latest/index.html">ANTS</a>.</p>
+<ul class="simple">
+<li><p>orog_srtm: High-resolution orography</p></li>
+<li><p>qrclim.biog: Biogenic aerosol climatology</p></li>
+<li><p>qrclim.biom: Biomass burning aerosol climatology</p></li>
+<li><p>qrclim.blck: Black carbon (soot) aerosol climatology</p></li>
+<li><p>qrclim.dust: Dust aerosol climatology</p></li>
+<li><p>qrclim.land: Land-surface albedo</p></li>
+<li><p>qrclim.ocff: Organic carbon from fossil fuel climatology</p></li>
+<li><p>qrclim.ozone: Ozone climatology</p></li>
+<li><p>qrclim.sea: Chlorophyll climatology</p></li>
+<li><p>qrclim.seaice: Sea ice climatology</p></li>
+<li><p>qrclim.smow: Soil moisture and snow climatology</p></li>
+<li><p>qrclim.sslt: Sea salt aerosol climatology</p></li>
+<li><p>qrclim.sst: Sea surface temperature climatology</p></li>
+<li><p>qrclim.sulp: Sulphate aerosol climatology</p></li>
+<li><p>qrparm.MORUSES.morph: MORUSES data</p></li>
+<li><p>qrparm.hydtop: Large scale hydrology TOP-index</p></li>
+<li><p>qrparm.lake: Lake mask</p></li>
+<li><p>qrparm.mask: Land-sea mask</p></li>
+<li><p>qrparm.orog: Orography</p></li>
+<li><p><a class="reference external" href="http://qrparm.orog.mn">qrparm.orog.mn</a>: Mean orography</p></li>
+<li><p>qrparm.soil: Soil parameters</p></li>
+<li><p>qrparm.soil.dust: Soil dust</p></li>
+<li><p>qrparm.veg.dist: Disturbed fraction of vegetation</p></li>
+<li><p>qrparm.veg.frac: Vegetation fractions</p></li>
+<li><p>qrparm.veg.func: Vegetation functional types
+.veg.func
+qrparm.veg.func_igbp</p></li>
+</ul>
+</section>
+<section id="editing-ancillaries">
+<h1>Editing Ancillaries<a class="headerlink" href="#editing-ancillaries" title="Link to this heading">#</a></h1>
+<p>You can edit ancilliaries in Python using the ANTS package. ANTS is based on Iris, and represents ancillaries as Iris cubes.</p>
+<p>Load the most recent version of ANTS with</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>use<span class="w"> </span>/g/data/access/ngm/modules
+module<span class="w"> </span>load<span class="w"> </span>ants
+</pre></div>
+</div>
+<p>An example of editing the land-sea mask is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ants</span>
+
+<span class="n">cubes</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/home/562/saw562/cylc-run/u-cy368/share/data/ancils/aus2200/d0198/qrparm.mask&#39;</span><span class="p">)</span>
+<span class="n">cubes</span><span class="o">.</span><span class="n">extract_strict</span><span class="p">(</span><span class="s1">&#39;land_binary_mask&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">300</span><span class="p">:</span><span class="mi">350</span><span class="p">,</span><span class="mi">300</span><span class="p">:</span><span class="mi">350</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">cubes</span><span class="o">.</span><span class="n">extract_strict</span><span class="p">(</span><span class="s1">&#39;land_area_fraction&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">300</span><span class="p">:</span><span class="mi">350</span><span class="p">,</span><span class="mi">300</span><span class="p">:</span><span class="mi">350</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ants</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cubes</span><span class="p">,</span> <span class="s1">&#39;/home/562/saw562/cylc-run/u-cy368/share/data/ancils/aus2200/d0198/qrparm.mask.edited&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You should check the ancillary file to make sure the edit is what you wanted:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="s1">&#39;/home/562/saw562/cylc-run/u-cy368/share/data/ancils/aus2200/d0198/qrparm.mask.edited&#39;</span><span class="p">,</span> <span class="s1">&#39;land_binary_mask&#39;</span><span class="p">)</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.04/lib/python3.9/site-packages/iris/coords.py:2070: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+  warnings.warn(
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.04/lib/python3.9/site-packages/iris/coords.py:2070: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;cartopy.mpl.geocollection.GeoQuadMesh at 0x153f3a47e730&gt;
+</pre></div>
+</div>
+<img alt="../_images/67ff15a2ed58e1c00392b983f0f74db4756601f52b1651823d3646da1c22ca81.png" src="../_images/67ff15a2ed58e1c00392b983f0f74db4756601f52b1651823d3646da1c22ca81.png" />
+</div>
+</div>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> To check your ancillaries have been generated correctly, you can use the following notebook:</p>
+<p><a class="github reference external" href="https://github.com/21centuryweather/UM_configuration_tools/blob/main/Check_UM_ancillaries.ipynb">21centuryweather/UM_configuration_tools</a></p>
+<p>This notebook also contains logic to detect ancillary errors and it will identify missing ancillary data (i.e. ‘NaNs’ or ‘Not-a-Number’) in regions over land.</p>
+<p>Any UM forecast task will instantly fail if ‘NaNs’ are ingested into the forecast fields.</p>
+</div></blockquote>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-py"
+        },
+        kernelOptions: {
+            name: "conda-env-analysis3-py",
+            path: "./ScottWales-RNS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Regional Nesting Suite</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../python/intro-python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Intro to Python for Climate Science</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Creating Ancillaries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-domains">Defining Domains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regions">Regions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolutions">Resolutions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancillary-options">Ancillary Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rotated-poles">Rotated Poles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cap-and-ants">CAP and ANTS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ancil-files">Ancil files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-ancillaries">Editing Ancillaries</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

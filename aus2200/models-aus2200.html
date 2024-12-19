@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'aus2200/models-aus2200';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="next" title="Regional Nesting Suite" href="../ScottWales-RNS/setup.html" />
     <link rel="prev" title="Common rose/cylc problems" href="../UM/common_problems.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,6 +176,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ScottWales-RNS/setup.html">Regional Nesting Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ScottWales-RNS/ancillaries.html">Creating Ancillaries</a></li>
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
@@ -427,7 +433,7 @@
 <section class="tex2jax_ignore mathjax_ignore" id="aus2200-a-complete-guide">
 <h1>AUS2200 - A complete guide<a class="headerlink" href="#aus2200-a-complete-guide" title="Link to this heading">#</a></h1>
 <p>AUS2200 is a regional nested ACCESS suite which simulates the weather at 2.2 kilometre resolution over the whole of Australia. The model was developed primarily by Dale Roberts while working at CLEX - the Centre of Excellence for Climate Extremes.</p>
-<p>AUS2200 remains a valuable tool for Australian weather research and an important part of the 21stCenturyWeather toolkit. The suite is similar to the minimal working example (<code class="docutils literal notranslate"><span class="pre">u-dl058</span></code>) documented previously. However because it is a ‘regional’ suite - not global - it must create ‘lateral boundary conditions’ i.e. routinely extract information from a global atmospheric analysis (e.g. ERA5) or a larger regional analysis (e.g BARRA) to provide boundary conditions at the edges of the AUS2200 domain.</p>
+<p>AUS2200 remains a valuable component for Australian weather research and an important part of the 21stCenturyWeather toolkit. The suite is similar to the minimal working example (<code class="docutils literal notranslate"><span class="pre">u-dl058</span></code>) documented previously. However because it is a ‘regional’ suite - not global - it must create ‘lateral boundary conditions’ i.e. routinely extract information from a global atmospheric analysis (e.g. ERA5) or a larger regional analysis (e.g BARRA) to provide boundary conditions at the edges of the AUS2200 domain.</p>
 <p>The AUS2200 domain is shown below.</p>
 <p><img alt="AUS2200 domain" src="../_images/aus2200-domain.png" /></p>
 <p>The ‘halo’ and ‘rim’ sections refer to components of the boundary condition files that interface with the external domain. See here for more details:</p>
@@ -700,11 +706,11 @@ It is advisable to disable boundary condition archiving (the <code class="docuti
       </div>
     </a>
     <a class="right-next"
-       href="../python/intro-python.html"
+       href="../ScottWales-RNS/setup.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Intro to Python for Climate Science</p>
+        <p class="prev-next-title">Regional Nesting Suite</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

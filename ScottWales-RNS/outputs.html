@@ -1,0 +1,1246 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Model Outputs &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ScottWales-RNS/outputs';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Regional Nesting Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ancillaries.html">Creating Ancillaries</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FScottWales-RNS/outputs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ScottWales-RNS/outputs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Model Outputs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris">Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mule">Mule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray">Xarray</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="model-outputs">
+<h1>Model Outputs<a class="headerlink" href="#model-outputs" title="Link to this heading">#</a></h1>
+<p>UM outputs are written out in a propriotary format called ‘fieldsfile’, a description of which is in <a class="reference external" href="https://code.metoffice.gov.uk/doc/um/latest/papers/umdp_F03.pdf">UMDP F03</a>. The primary libraries for working with these files are Iris and Mule.</p>
+<p>Variables within a UM file are referred to by STASH code. STASH codes are split up into several different ‘sections’, for instance prognostic variables that the model is actually simulating are all in section 0. Codes can be referred to in a format like <code class="docutils literal notranslate"><span class="pre">m01s03i236</span></code> for section 3 item 236 (the <code class="docutils literal notranslate"><span class="pre">m</span></code> part is a legacy attribute and is always <code class="docutils literal notranslate"><span class="pre">01</span></code>), or as an integer <code class="docutils literal notranslate"><span class="pre">s*1000</span> <span class="pre">+</span> <span class="pre">i</span></code> like <code class="docutils literal notranslate"><span class="pre">3236</span></code>.</p>
+<p>Output from Aus2200 is based upon BARRA’s output fields. Output is split into the following streams:</p>
+<ul class="simple">
+<li><p><strong>cldrad</strong>: Cloud, precipitation and radar</p></li>
+<li><p><strong>mdl</strong>: Wind, temperature, pressure</p></li>
+<li><p><strong>slv</strong>: Surface variables</p></li>
+<li><p><strong>spec</strong>: Surface variables</p></li>
+</ul>
+<section id="iris">
+<h2>Iris<a class="headerlink" href="#iris" title="Link to this heading">#</a></h2>
+<p>Iris is a high-level library for working with climate and weather data, and includes fieldsfile support.</p>
+<p><a class="reference external" href="https://scitools-iris.readthedocs.io/en/stable/">https://scitools-iris.readthedocs.io/en/stable/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iris</span>
+
+<span class="c1"># Load a single &#39;cube&#39; from the file by stash code</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="s1">&#39;~/cylc-run/u-cy369/share/cycle/20200120T0000Z/aus2200/d0198/RA3/um/umnsaa_pvera000&#39;</span><span class="p">,</span> <span class="s1">&#39;m01s03i236&#39;</span><span class="p">)</span>
+<span class="n">cube</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+  a.iris {
+      text-decoration: none !important;
+  }
+  table.iris {
+      white-space: pre;
+      border: 1px solid;
+      border-color: #9c9c9c;
+      font-family: monaco, monospace;
+  }
+  th.iris {
+      background: #303f3f;
+      color: #e0e0e0;
+      border-left: 1px solid;
+      border-color: #9c9c9c;
+      font-size: 1.05em;
+      min-width: 50px;
+      max-width: 125px;
+  }
+  tr.iris :first-child {
+      border-right: 1px solid #9c9c9c !important;
+  }
+  td.iris-title {
+      background: #d5dcdf;
+      border-top: 1px solid #9c9c9c;
+      font-weight: bold;
+  }
+  .iris-word-cell {
+      text-align: left !important;
+      white-space: pre;
+  }
+  .iris-subheading-cell {
+      padding-left: 2em !important;
+  }
+  .iris-inclusion-cell {
+      padding-right: 1em !important;
+  }
+  .iris-panel-body {
+      padding-top: 0px;
+  }
+  .iris-panel-title {
+      padding-left: 3em;
+  }
+  .iris-panel-title {
+      margin-top: 7px;
+  }
+</style>
+<table class="iris" id="22891426686528">
+    <tr class="iris">
+<th class="iris iris-word-cell">Air Temperature (K)</th>
+<th class="iris iris-word-cell">time</th>
+<th class="iris iris-word-cell">latitude</th>
+<th class="iris iris-word-cell">longitude</th>
+</tr>
+    <tr class="iris">
+<td class="iris-word-cell iris-subheading-cell">Shape</td>
+<td class="iris iris-inclusion-cell">7</td>
+<td class="iris iris-inclusion-cell">450</td>
+<td class="iris iris-inclusion-cell">450</td>
+</tr>
+    <tr class="iris">
+    <td class="iris-title iris-word-cell">Dimension coordinates</td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	time</td>
+    <td class="iris-inclusion-cell">x</td>
+    <td class="iris-inclusion-cell">-</td>
+    <td class="iris-inclusion-cell">-</td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	latitude</td>
+    <td class="iris-inclusion-cell">-</td>
+    <td class="iris-inclusion-cell">x</td>
+    <td class="iris-inclusion-cell">-</td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	longitude</td>
+    <td class="iris-inclusion-cell">-</td>
+    <td class="iris-inclusion-cell">-</td>
+    <td class="iris-inclusion-cell">x</td>
+</tr>
+<tr class="iris">
+    <td class="iris-title iris-word-cell">Auxiliary coordinates</td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	forecast_period</td>
+    <td class="iris-inclusion-cell">x</td>
+    <td class="iris-inclusion-cell">-</td>
+    <td class="iris-inclusion-cell">-</td>
+</tr>
+<tr class="iris">
+    <td class="iris-title iris-word-cell">Scalar coordinates</td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	forecast_reference_time</td>
+    <td class="iris-word-cell" colspan="3">2020-01-19 18:00:00</td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	height</td>
+    <td class="iris-word-cell" colspan="3">1.5 m</td>
+</tr>
+<tr class="iris">
+    <td class="iris-title iris-word-cell">Attributes</td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+    <td class="iris-title"></td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	STASH</td>
+    <td class="iris-word-cell" colspan="3">m01s03i236</td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	source</td>
+    <td class="iris-word-cell" colspan="3">&#x27;Data from Met Office Unified Model&#x27;</td>
+</tr>
+<tr class="iris">
+    <td class="iris-word-cell iris-subheading-cell">	um_version</td>
+    <td class="iris-word-cell" colspan="3">&#x27;12.2&#x27;</td>
+</tr>
+</table>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iris.plot</span> <span class="k">as</span> <span class="nn">iplt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Iris cube has metadata for dimensions that gets used when plotting</span>
+<span class="n">iplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">coastlines</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9ea9df4b9172c43a73a2d89c27eed6e293a7e1b4a9016781c2dabc48eba55604.png" src="../_images/9ea9df4b9172c43a73a2d89c27eed6e293a7e1b4a9016781c2dabc48eba55604.png" />
+</div>
+</div>
+</section>
+<section id="mule">
+<h2>Mule<a class="headerlink" href="#mule" title="Link to this heading">#</a></h2>
+<p>Mule is a low-level library for working with UM related files, including fieldsfile, ancil files and PP files. Mule lets you directly look at the 2d slices stored in the file, it does not aggregate them into full fields.</p>
+<p><a class="reference external" href="https://code.metoffice.gov.uk/doc/um/mule/latest/">https://code.metoffice.gov.uk/doc/um/mule/latest/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">mule</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;UMDIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/g/data/access/umdir&#39;</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mule</span><span class="o">.</span><span class="n">load_umfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/cylc-run/u-cy369/share/cycle/20200120T0000Z/aus2200/d0198/RA3/um/umnsaa_pvera000&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">mf</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">lbuser4</span> <span class="o">==</span> <span class="mi">3236</span><span class="p">:</span> <span class="c1"># Stash code for 1.5m temperature</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span> <span class="c1"># 2d lat-lon slice of the data</span>
+        <span class="c1"># See UMDP F03 for the list of field attributes</span>
+        <span class="k">break</span>
+
+<span class="c1"># Mule just returns a numpy array, there is no metadata</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/mule/stashmaster.py:259: UserWarning: 
+Unable to load STASHmaster from version string, path does not exist
+Path: /g/data/access/umdir/vn12.2/ctldata/STASHmaster/STASHmaster_A
+Please check that the value of mule.stashmaster.STASHMASTER_PATH_PATTERN is correct for your site/configuration
+  warnings.warn(msg)
+</pre></div>
+</div>
+<img alt="../_images/67816e174c59da07e54611bef9e80e794794a181e36342ffdb68a03d20afce84.png" src="../_images/67816e174c59da07e54611bef9e80e794794a181e36342ffdb68a03d20afce84.png" />
+</div>
+</div>
+</section>
+<section id="xarray">
+<h2>Xarray<a class="headerlink" href="#xarray" title="Link to this heading">#</a></h2>
+<p>If you’re familiar with using Xarray with NetCDF data it’s possible to convert an Iris cube to an Xarray DataArray. Both libraries can do similar things but their interfaces are quite different. You may find it simpler to work with one or the other.</p>
+<p><a class="reference external" href="https://docs.xarray.dev/en/latest/index.html">https://docs.xarray.dev/en/latest/index.html</a></p>
+<p><a class="reference external" href="https://docs.xarray.dev/en/latest/generated/xarray.DataArray.from_iris.html">https://docs.xarray.dev/en/latest/generated/xarray.DataArray.from_iris.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
+
+<span class="n">da</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+<span class="n">da</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;air_temperature&#x27; (time: 7, latitude: 450, longitude: 450)&gt;
+dask.array&lt;filled, shape=(7, 450, 450), dtype=float32, chunksize=(1, 450, 450), chunktype=numpy.ndarray&gt;
+Coordinates:
+  * time                     (time) datetime64[ns] 2020-01-20T00:01:15 ... 20...
+  * latitude                 (latitude) float32 -38.88 -38.87 ... -30.01 -29.99
+  * longitude                (longitude) float32 143.2 143.2 ... 152.0 152.1
+    forecast_reference_time  datetime64[ns] ...
+    height                   float64 ...
+    forecast_period          (time) timedelta64[ns] ...
+Attributes:
+    standard_name:  air_temperature
+    units:          K
+    source:         Data from Met Office Unified Model
+    um_version:     12.2
+    STASH:          m01s03i236</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air_temperature'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 7</li><li><span class='xr-has-index'>latitude</span>: 450</li><li><span class='xr-has-index'>longitude</span>: 450</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-aac63bb3-5ec2-4250-b15f-b49ca4ded095' class='xr-array-in' type='checkbox' checked><label for='section-aac63bb3-5ec2-4250-b15f-b49ca4ded095' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1, 450, 450), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 5.41 MiB </td>
+                        <td> 791.02 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (7, 450, 450) </td>
+                        <td> (1, 450, 450) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 7 chunks in 16 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="196" height="186" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="26" y2="16" style="stroke-width:2" />
+  <line x1="10" y1="120" x2="26" y2="136" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="16" y1="6" x2="16" y2="126" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="21" y1="11" x2="21" y2="131" />
+  <line x1="23" y1="13" x2="23" y2="133" />
+  <line x1="26" y1="16" x2="26" y2="136" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 26.265636843088885,16.265636843088885 26.265636843088885,136.26563684308888 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="130" y2="0" style="stroke-width:2" />
+  <line x1="12" y1="2" x2="132" y2="2" />
+  <line x1="14" y1="4" x2="134" y2="4" />
+  <line x1="16" y1="6" x2="136" y2="6" />
+  <line x1="19" y1="9" x2="139" y2="9" />
+  <line x1="21" y1="11" x2="141" y2="11" />
+  <line x1="23" y1="13" x2="143" y2="13" />
+  <line x1="26" y1="16" x2="146" y2="16" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="26" y2="16" style="stroke-width:2" />
+  <line x1="130" y1="0" x2="146" y2="16" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 130.0,0.0 146.26563684308888,16.265636843088885 26.265636843088885,16.265636843088885" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="26" y1="16" x2="146" y2="16" style="stroke-width:2" />
+  <line x1="26" y1="136" x2="146" y2="136" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="26" y1="16" x2="26" y2="136" style="stroke-width:2" />
+  <line x1="146" y1="16" x2="146" y2="136" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="26.265636843088885,16.265636843088885 146.26563684308888,16.265636843088885 146.26563684308888,136.26563684308888 26.265636843088885,136.26563684308888" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="86.265637" y="156.265637" font-size="1.0rem" font-weight="100" text-anchor="middle" >450</text>
+  <text x="166.265637" y="76.265637" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,166.265637,76.265637)">450</text>
+  <text x="8.132818" y="148.132818" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,8.132818,148.132818)">7</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-38508ef9-5ee8-47cc-860e-5c891c1ea0c9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-38508ef9-5ee8-47cc-860e-5c891c1ea0c9' class='xr-section-summary' >Coordinates: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-01-20T00:01:15 ... 2020-01-...</div><input id='attrs-4e77b035-3d60-47c5-b3a1-155d469e8d9e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4e77b035-3d60-47c5-b3a1-155d469e8d9e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a71decf7-e203-43e2-a295-ce536e795bae' class='xr-var-data-in' type='checkbox'><label for='data-a71decf7-e203-43e2-a295-ce536e795bae' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2020-01-20T00:01:15.000000000&#x27;, &#x27;2020-01-20T01:00:00.000000000&#x27;,
+       &#x27;2020-01-20T02:00:00.000000000&#x27;, &#x27;2020-01-20T03:00:00.000000000&#x27;,
+       &#x27;2020-01-20T04:00:00.000000000&#x27;, &#x27;2020-01-20T05:00:00.000000000&#x27;,
+       &#x27;2020-01-20T06:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-38.88 -38.87 ... -30.01 -29.99</div><input id='attrs-b5cbd018-5063-4bff-a91e-15b436cb1c98' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b5cbd018-5063-4bff-a91e-15b436cb1c98' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-12611334-eada-4032-89cf-5388fdb57f95' class='xr-var-data-in' type='checkbox'><label for='data-12611334-eada-4032-89cf-5388fdb57f95' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees</dd></dl></div><div class='xr-var-data'><pre>array([-38.885   , -38.8652  , -38.845398, ..., -30.034397, -30.014599,
+       -29.994799], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>143.2 143.2 143.2 ... 152.0 152.1</div><input id='attrs-de4c8413-8304-456e-8e7d-4d73e25c2b7e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-de4c8413-8304-456e-8e7d-4d73e25c2b7e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-474547a0-7818-41b0-a955-e49ba03cd985' class='xr-var-data-in' type='checkbox'><label for='data-474547a0-7818-41b0-a955-e49ba03cd985' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees</dd></dl></div><div class='xr-var-data'><pre>array([143.16   , 143.17981, 143.1996 , ..., 152.0106 , 152.0304 , 152.0502 ],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>forecast_reference_time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-346f942e-60fa-40b9-9078-fb27436c86b7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-346f942e-60fa-40b9-9078-fb27436c86b7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0ff4fd8e-9b1e-489b-bcd9-5c97e0bea47e' class='xr-var-data-in' type='checkbox'><label for='data-0ff4fd8e-9b1e-489b-bcd9-5c97e0bea47e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>forecast_reference_time</dd></dl></div><div class='xr-var-data'><pre>[1 values with dtype=datetime64[ns]]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-ab927dac-b466-492e-b02a-c0181366fb75' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ab927dac-b466-492e-b02a-c0181366fb75' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fbabda6c-1805-4732-a781-8d9670400047' class='xr-var-data-in' type='checkbox'><label for='data-fbabda6c-1805-4732-a781-8d9670400047' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>height</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>positive :</span></dt><dd>up</dd></dl></div><div class='xr-var-data'><pre>[1 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>forecast_period</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>timedelta64[ns]</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-bc1d7ccf-bf77-45f1-8b85-60c58e71be32' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bc1d7ccf-bf77-45f1-8b85-60c58e71be32' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3463581-ebe3-4f74-9ab6-e8d20996aab9' class='xr-var-data-in' type='checkbox'><label for='data-a3463581-ebe3-4f74-9ab6-e8d20996aab9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>forecast_period</dd></dl></div><div class='xr-var-data'><pre>[7 values with dtype=timedelta64[ns]]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-13450716-1880-4530-95b2-87388bba0e34' class='xr-section-summary-in' type='checkbox'  ><label for='section-13450716-1880-4530-95b2-87388bba0e34' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0e039d82-b08f-48a0-8443-283e9a260d62' class='xr-index-data-in' type='checkbox'/><label for='index-0e039d82-b08f-48a0-8443-283e9a260d62' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2020-01-20 00:01:15&#x27;, &#x27;2020-01-20 01:00:00&#x27;,
+               &#x27;2020-01-20 02:00:00&#x27;, &#x27;2020-01-20 03:00:00&#x27;,
+               &#x27;2020-01-20 04:00:00&#x27;, &#x27;2020-01-20 05:00:00&#x27;,
+               &#x27;2020-01-20 06:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-6edeca4c-fb76-434e-9478-e7382541068d' class='xr-index-data-in' type='checkbox'/><label for='index-6edeca4c-fb76-434e-9478-e7382541068d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([  -38.8849983215332,  -38.86520004272461,  -38.84539794921875,
+              -38.825599670410156,   -38.8057975769043,   -38.7859992980957,
+              -38.766197204589844,  -38.74639892578125,  -38.72659683227539,
+                -38.7067985534668,
+              ...
+              -30.172998428344727,   -30.1531982421875, -30.133398056030273,
+              -30.113597869873047, -30.093799591064453, -30.073997497558594,
+                  -30.05419921875,  -30.03439712524414, -30.014598846435547,
+               -29.99479866027832],
+             dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=450))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-9980d4ac-d41f-4b06-9fdd-de19790613b7' class='xr-index-data-in' type='checkbox'/><label for='index-9980d4ac-d41f-4b06-9fdd-de19790613b7' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([143.16000366210938,  143.1798095703125, 143.19960021972656,
+               143.2194061279297, 143.23919677734375, 143.25900268554688,
+                 143.27880859375, 143.29859924316406,  143.3184051513672,
+               143.3382110595703,
+              ...
+              151.87200927734375,  151.8917999267578, 151.91160583496094,
+                151.931396484375, 151.95120239257812, 151.97100830078125,
+               151.9907989501953, 152.01060485839844,  152.0303955078125,
+              152.05020141601562],
+             dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=450))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-895c3b99-c077-49c7-ac2e-d20ed25bf0f9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-895c3b99-c077-49c7-ac2e-d20ed25bf0f9' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>K</dd><dt><span>source :</span></dt><dd>Data from Met Office Unified Model</dd><dt><span>um_version :</span></dt><dd>12.2</dd><dt><span>STASH :</span></dt><dd>m01s03i236</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d55f686f2b1f205ce5c5411f6d8633d4e02c7811672d99a20bdd2efa98241fc9.png" src="../_images/d55f686f2b1f205ce5c5411f6d8633d4e02c7811672d99a20bdd2efa98241fc9.png" />
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Make a plot from the output data</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-py"
+        },
+        kernelOptions: {
+            name: "conda-env-analysis3-py",
+            path: "./ScottWales-RNS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris">Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mule">Mule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray">Xarray</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

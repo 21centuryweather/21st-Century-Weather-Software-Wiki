@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Working with gadi via your Mac &#8212; 21st Century Weather Software Wiki</title>
+    <title>Regional Nesting Suite &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -60,10 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/mac-stuff';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ScottWales-RNS/setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="An Introduction to Fast Data Analysis with the Polars Library in Python" href="../python/polars-intro.html" />
+    <link rel="next" title="Creating Ancillaries" href="ancillaries.html" />
+    <link rel="prev" title="AUS2200 - A complete guide" href="../aus2200/models-aus2200.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -168,15 +169,15 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ScottWales-RNS/setup.html">Regional Nesting Suite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ScottWales-RNS/ancillaries.html">Creating Ancillaries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regional Nesting Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ancillaries.html">Creating Ancillaries</a></li>
 
 
 
@@ -189,8 +190,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with gadi via your Mac</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
 </ul>
 
     </div>
@@ -267,7 +268,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgadi/mac-stuff.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FScottWales-RNS/setup.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -297,7 +298,7 @@
       
       
       
-      <li><a href="../_sources/gadi/mac-stuff.md" target="_blank"
+      <li><a href="../_sources/ScottWales-RNS/setup.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -373,7 +374,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Working with gadi via your Mac</h1>
+    <h1>Regional Nesting Suite</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,9 +384,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-connection-via-ssh">Direct connection via ssh</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-windows-support">X-windows support</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-tricks-with-mac">Command-line tricks with Mac</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accounts">Accounts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vdi-session">VDI Session</a></li>
 </ul>
             </nav>
         </div>
@@ -397,79 +397,45 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="working-with-gadi-via-your-mac">
-<h1>Working with gadi via your Mac<a class="headerlink" href="#working-with-gadi-via-your-mac" title="Link to this heading">#</a></h1>
-<p>Mac OS interfaces very well with Unix/Linux systems (like gadi), because Mac OS is itself based on an old version of Unix called ‘BSD’.</p>
-<p>However, there are a few tricks you need to know before you can seamlessly work with gadi on your Mac desktop.</p>
-<section id="direct-connection-via-ssh">
-<h2>Direct connection via ssh<a class="headerlink" href="#direct-connection-via-ssh" title="Link to this heading">#</a></h2>
-<p>You can access a gadi login node directly from your Mac OS Terminal with the command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
-</pre></div>
-</div>
-<p>To avoid typing in your gadi username and password every time you login, you will want to append the local ssh ‘public key’ from your Mac to your remote ‘authorized keys’ file on gadi.</p>
-<p>This can be done in three easy steps by following the instructions:</p>
-<p><a class="reference external" href="https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/</a></p>
-<p>In those instructions, you will need to include your gadi username, because those instructions assume your local and remote usernames are the same (which is highly unlikely in our case.)</p>
-<p>So in Step 2, you will need to type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
-</pre></div>
-</div>
-<p>where ‘username’ is your actual gadi username, e.g. ‘ab1234’.</p>
-<p>If you want to access graphical applications on gadi remotely (e.g. <code class="docutils literal notranslate"><span class="pre">emacs</span></code>, <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">GUI</span></code>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">VS</span> <span class="pre">Code</span></code> etc) you will need to allow ‘X windows forwarding’ between your local terminal session and gadi. You activate this using the <code class="docutils literal notranslate"><span class="pre">-X</span></code> flag, e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
-</pre></div>
-</div>
-<p><strong>BUT</strong> : You will <strong>NOT</strong> be able to interact with graphical apps on gadi until you complete the steps below.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="regional-nesting-suite">
+<h1>Regional Nesting Suite<a class="headerlink" href="#regional-nesting-suite" title="Link to this heading">#</a></h1>
+<p>Another important component of Australian weather research is the ‘Regional Nesting Suite’ - RNS, designed to run high-resolution weather simulations for a relocatable domains over the Australian continent.</p>
+<p>The suite was developed primarily by Scott Wales while working at CLEX - the Centre of Excellence for Climate Extremes. The suite is very similar to AUS2200 except that it usually describes two layers of nesting and is designed from smaller (and less computationally demanding) domains.</p>
+<p>This documentation refers to earlier RNS suites <code class="docutils literal notranslate"><span class="pre">u-cy368</span></code> (for ancillary generation) and <code class="docutils literal notranslate"><span class="pre">u-cy369</span></code> (for atmospheric simulation). These suites are slightly older and have been replaced by <code class="docutils literal notranslate"><span class="pre">u-cy767</span></code> and <code class="docutils literal notranslate"><span class="pre">u-cy768</span></code>. These later suites are now maintained by Chermelle Engel at ACCESS-NRI, and updated documentation for these suites will be available soon.</p>
+<p>In the interim, Scott’s documentation will serve as a useful guide for those running high-resolution ACCESS atmospheric simulations using relocatable domains.</p>
+<p>The original documentation can downloaded from <a class="github reference external" href="https://github.com/scottwales/aus2200-training">scottwales/aus2200-training</a>.</p>
+<section id="accounts">
+<h2>Accounts<a class="headerlink" href="#accounts" title="Link to this heading">#</a></h2>
+<p>To run the tutorial suites you’ll need a MOSRS Account so that you can download the suites and source code. Request an account from your <a class="reference external" href="https://opus.nci.org.au/display/DAE/UK+Met+Office+environment+prerequisites">local sponsor</a></p>
+<p>You’ll also need to be a member of the following NCI projects:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/access"><code class="docutils literal notranslate"><span class="pre">access</span></code></a>: UM licensed software, modules and data</p></li>
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/hr22"><code class="docutils literal notranslate"><span class="pre">hr22</span></code></a>: Rose and Cylc software</p></li>
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/ki32"><code class="docutils literal notranslate"><span class="pre">ki32</span></code></a>: Source repository mirrors</p></li>
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/ki32_mosrs"><code class="docutils literal notranslate"><span class="pre">ki32_mosrs</span></code></a>: MOSRS mirrors (requires membership of <code class="docutils literal notranslate"><span class="pre">ki32</span></code> and a MOSRS account)</p></li>
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/hh5"><code class="docutils literal notranslate"><span class="pre">hh5</span></code></a>: Climate and Weather Conda environments</p></li>
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/rt52"><code class="docutils literal notranslate"><span class="pre">rt52</span></code></a>: ERA5 mirror</p></li>
+<li><p><a class="reference external" href="https://my.nci.org.au/mancini/project/zz93"><code class="docutils literal notranslate"><span class="pre">zz93</span></code></a>: ERA5-land mirror</p></li>
+</ul>
+<p>Cylc at NCI is managed centrally, see <a class="reference external" href="https://opus.nci.org.au/display/DAE/UK+Met+Office+Environment+on+NCI">NCI’s documentation</a> for instructions on setting it up. Contact <a class="reference external" href="mailto:help&#37;&#52;&#48;nci&#46;org&#46;au">help<span>&#64;</span>nci<span>&#46;</span>org<span>&#46;</span>au</a> for assistance with using Cylc or the ARE platform. If you have trouble with the model itself you can ask questions on the <a class="reference external" href="https://forum.access-hive.org.au/latest">ACCESS Hive Forum</a></p>
 </section>
-<section id="x-windows-support">
-<h2>X-windows support<a class="headerlink" href="#x-windows-support" title="Link to this heading">#</a></h2>
-<p>The native Mac OS uses ‘Quartz’ to generate Mac Graphical-User-Interface ‘Aqua’. Unix uses the <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">Windows</span></code> protocol :</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/X_Window_System">https://en.wikipedia.org/wiki/X_Window_System</a></p>
-<p>Mac OS used to natively support X windows out-of-the-box, but this support was removed in 2012. Nowadays you have to install <code class="docutils literal notranslate"><span class="pre">Xquartz</span></code> to support X windows on a Mac.</p>
-<p><a class="reference external" href="https://www.xquartz.org">https://www.xquartz.org</a></p>
-<p>You can install this manually if you have sys-admin privileges, otherwise your site sys-admin will have to do it for you.</p>
-<p>To check that X-windows support is working correctly, try the following after you have installed <code class="docutils literal notranslate"><span class="pre">Xquartz</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh -X username@gadi.nci.org.au
-
-$ xeyes
+<section id="vdi-session">
+<h2>VDI Session<a class="headerlink" href="#vdi-session" title="Link to this heading">#</a></h2>
+<p>Start up a VDI session at <a class="reference external" href="https://are.nci.org.au">https://are.nci.org.au</a>, using the settings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Walltime</span><span class="p">:</span>       <span class="mi">4</span>
+<span class="n">Queue</span><span class="p">:</span>          <span class="n">normalbw</span>
+<span class="n">Compute</span> <span class="n">Size</span><span class="p">:</span>   <span class="n">small</span>
+<span class="n">Project</span><span class="p">:</span>        <span class="n">nf33</span>
+<span class="n">Storage</span><span class="p">:</span>        <span class="n">gdata</span><span class="o">/</span><span class="n">access</span><span class="o">+</span><span class="n">gdata</span><span class="o">/</span><span class="n">hr22</span><span class="o">+</span><span class="n">gdata</span><span class="o">/</span><span class="n">ki32</span><span class="o">+</span><span class="n">gdata</span><span class="o">/</span><span class="n">hh5</span><span class="o">+</span><span class="n">gdata</span><span class="o">/</span><span class="n">rt52</span><span class="o">+</span><span class="n">gdata</span><span class="o">/</span><span class="n">zz93</span>
 </pre></div>
 </div>
-<p>A small window of two ‘eyeballs’ should pop-up which will track the movement of your cursor across your desktop.</p>
-<p><img alt="xeyes on Mac" src="../_images/xeyes.png" /></p>
-<p>This means that X window forwarding is now allowed between gadi and your Mac.</p>
-<p>In order to maintain your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session without gadi closing your connection after small periods of inactivity, it is suggested you enter the following in the <code class="docutils literal notranslate"><span class="pre">~/ssh/.config</span></code> file on your Mac:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="o">*</span>
-  <span class="n">ServerAliveInterval</span> <span class="mi">60</span>
-  <span class="n">ForwardX11</span> <span class="n">yes</span>
-  <span class="n">ForwardX11Trusted</span> <span class="n">yes</span>
-  <span class="n">TCPKeepAlive</span> <span class="n">no</span>
-
-<span class="n">Host</span> <span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
-  <span class="n">HostName</span> <span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
-  <span class="n">User</span> <span class="o">&lt;</span><span class="n">insert</span> <span class="n">your</span> <span class="n">username</span> <span class="n">here</span><span class="o">&gt;</span>
+<p>Once your VDI session has started open a terminal and load the Rose/Cylc environment with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">purge</span>
+<span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">modulefiles</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">pbs</span> <span class="n">cylc7</span>
+<span class="n">mosrs</span><span class="o">-</span><span class="n">auth</span>
 </pre></div>
 </div>
-</section>
-<section id="command-line-tricks-with-mac">
-<h2>Command-line tricks with Mac<a class="headerlink" href="#command-line-tricks-with-mac" title="Link to this heading">#</a></h2>
-<p>While Gadi uses the <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell, Mac OS uses the <code class="docutils literal notranslate"><span class="pre">zsh</span></code> shell by default. When using command-line tools like <code class="docutils literal notranslate"><span class="pre">scp</span></code> to copy files from gadi to your local Mac, you will need to be aware of the following when using ‘wildcard’ characters to glob files.</p>
-<p>For example, this how to list all <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files in your Mac’s home directory directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">ls</span> <span class="o">~/*.</span><span class="n">txt</span>
-</pre></div>
-</div>
-<p>The same command will work on gadi once you have created an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session. But, what if I want to retrieve all <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files form gadi to my Mac using the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command? Normally you would try this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">scp</span> <span class="n">username</span><span class="nd">@gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span><span class="p">:</span><span class="o">~/*.</span><span class="n">txt</span> <span class="o">.</span>
-</pre></div>
-</div>
-<p>This <strong>WILL NOT</strong> work, because <code class="docutils literal notranslate"><span class="pre">zsh</span></code> interprets wildcard characters differently to <code class="docutils literal notranslate"><span class="pre">bash</span></code> when using multiple command-line arguments. To make the above command work, you need to place quotes around the command, i.e.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">scp</span> <span class="s1">&#39;username@gadi.nci.org.au:~/*.txt&#39;</span> <span class="o">.</span>
-</pre></div>
-</div>
-<p>See here for more info
-<a class="reference external" href="https://superuser.com/questions/584249/using-wildcards-in-commands-with-zsh">https://superuser.com/questions/584249/using-wildcards-in-commands-with-zsh</a></p>
-<p><a class="reference external" href="https://unix.stackexchange.com/questions/130958/scp-wildcard-not-working-in-zsh">https://unix.stackexchange.com/questions/130958/scp-wildcard-not-working-in-zsh</a></p>
-<p><a class="reference external" href="https://superuser.com/questions/420525/scp-with-zsh-no-matches-found">https://superuser.com/questions/420525/scp-with-zsh-no-matches-found</a></p>
 </section>
 </section>
 
@@ -486,7 +452,7 @@ $ xeyes
         },
         kernelOptions: {
             name: "python3",
-            path: "./gadi"
+            path: "./ScottWales-RNS"
         },
         predefinedOutput: true
     }
@@ -504,13 +470,22 @@ $ xeyes
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../python/polars-intro.html"
+       href="../aus2200/models-aus2200.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">An Introduction to Fast Data Analysis with the Polars Library in Python</p>
+        <p class="prev-next-title">AUS2200 - A complete guide</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="ancillaries.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Creating Ancillaries</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -529,9 +504,8 @@ $ xeyes
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-connection-via-ssh">Direct connection via ssh</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-windows-support">X-windows support</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-tricks-with-mac">Command-line tricks with Mac</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accounts">Accounts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vdi-session">VDI Session</a></li>
 </ul>
   </nav></div>
 
