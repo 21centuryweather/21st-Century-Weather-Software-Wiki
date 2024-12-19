@@ -15,6 +15,7 @@ parts:
     - file: UM/trouble-shooting
     - file: UM/common_problems
     - file: aus2200/models-aus2200
+    - file: ScottWales-RNS/setup
   - caption: Python
     chapters:
     - file: python/intro-python

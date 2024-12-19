@@ -20,9 +20,9 @@ To help manage your disk quota, use some of the commands in this link:
 
 https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation...
 
-## Cannot log into a persistent session
+## Cannot login to a persistent session
 
-If you can't log into your persistent session, you may have conflicting modules which don't use the standard `ssh` environment at NCI. Often the cause of this conflict is the `conda/analysis` module developed by CLEX and maintained by ACCESS-NRI.  You will have to unload any conflicting modules.
+If you can't login to your persistent session, you may have conflicting modules which don't use the standard `ssh` environment at NCI. Often the cause of this conflict is the `conda/analysis` module developed by CLEX and maintained by ACCESS-NRI.  You will have to unload any conflicting modules.
 
 See [this link](../mosrs/mosrs-intro.md#persistent-sessions) for more information.
 

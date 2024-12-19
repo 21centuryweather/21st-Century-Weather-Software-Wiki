@@ -4,7 +4,7 @@
 
 AUS2200 is a regional nested ACCESS suite which simulates the weather at 2.2 kilometre resolution over the whole of Australia. The model was developed primarily by Dale Roberts while working at CLEX - the Centre of Excellence for Climate Extremes. 
 
-AUS2200 remains a valuable tool for Australian weather research and an important part of the 21stCenturyWeather toolkit. The suite is similar to the minimal working example (`u-dl058`) documented previously. However because it is a 'regional' suite - not global - it must create 'lateral boundary conditions' i.e. routinely extract information from a global atmospheric analysis (e.g. ERA5) or a larger regional analysis (e.g BARRA) to provide boundary conditions at the edges of the AUS2200 domain.
+AUS2200 remains a valuable component for Australian weather research and an important part of the 21stCenturyWeather toolkit. The suite is similar to the minimal working example (`u-dl058`) documented previously. However because it is a 'regional' suite - not global - it must create 'lateral boundary conditions' i.e. routinely extract information from a global atmospheric analysis (e.g. ERA5) or a larger regional analysis (e.g BARRA) to provide boundary conditions at the edges of the AUS2200 domain.
 
 The AUS2200 domain is shown below. 
 
