@@ -6,6 +6,16 @@ AUS2200 is a regional nested ACCESS suite which simulates the weather at 2.2 kil
 
 AUS2200 remains a valuable tool for Australian weather research and an important part of the 21stCenturyWeather toolkit. The suite is similar to the minimal working example (`u-dl058`) documented previously. However because it is a 'regional' suite - not global - it must create 'lateral boundary conditions' i.e. routinely extract information from a global atmospheric analysis (e.g. ERA5) or a larger regional analysis (e.g BARRA) to provide boundary conditions at the edges of the AUS2200 domain.
 
+The AUS2200 domain is shown below. 
+
+![AUS2200 domain](images/aus2200-domain.png)
+
+The 'halo' and 'rim' sections refer to components of the boundary condition files that interface with the external domain. See here for more details:
+
+https://21centuryweather.github.io/UM_summary_docs/using.html#obtaining-new-lateral-boundary-data
+
+https://21centuryweather.github.io/UM_summary_docs/lbc.html
+
 Another suite is required to generate all the necessary ancillaries (e.g. land/sea mask, soil types, vegetative cover) inside the AUS2200 domain.
 
 Dale created the following documentation to help run the suite.

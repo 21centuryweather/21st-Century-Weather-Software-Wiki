@@ -428,6 +428,11 @@
 <h1>AUS2200 - A complete guide<a class="headerlink" href="#aus2200-a-complete-guide" title="Link to this heading">#</a></h1>
 <p>AUS2200 is a regional nested ACCESS suite which simulates the weather at 2.2 kilometre resolution over the whole of Australia. The model was developed primarily by Dale Roberts while working at CLEX - the Centre of Excellence for Climate Extremes.</p>
 <p>AUS2200 remains a valuable tool for Australian weather research and an important part of the 21stCenturyWeather toolkit. The suite is similar to the minimal working example (<code class="docutils literal notranslate"><span class="pre">u-dl058</span></code>) documented previously. However because it is a ‘regional’ suite - not global - it must create ‘lateral boundary conditions’ i.e. routinely extract information from a global atmospheric analysis (e.g. ERA5) or a larger regional analysis (e.g BARRA) to provide boundary conditions at the edges of the AUS2200 domain.</p>
+<p>The AUS2200 domain is shown below.</p>
+<p><img alt="AUS2200 domain" src="../_images/aus2200-domain.png" /></p>
+<p>The ‘halo’ and ‘rim’ sections refer to components of the boundary condition files that interface with the external domain. See here for more details:</p>
+<p><a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/using.html#obtaining-new-lateral-boundary-data">https://21centuryweather.github.io/UM_summary_docs/using.html#obtaining-new-lateral-boundary-data</a></p>
+<p><a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/lbc.html">https://21centuryweather.github.io/UM_summary_docs/lbc.html</a></p>
 <p>Another suite is required to generate all the necessary ancillaries (e.g. land/sea mask, soil types, vegetative cover) inside the AUS2200 domain.</p>
 <p>Dale created the following documentation to help run the suite.</p>
 <section id="background">
