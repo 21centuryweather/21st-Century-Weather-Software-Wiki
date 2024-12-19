@@ -94,7 +94,7 @@ This task retrieves the sea-surface temperature from input dump file created by 
 
 Any of the large resolution pixels that the reconfiguration task has determined to contain more than some fraction of ocean is treated as an ocean point with a sea ice fraction of about 14%. This error is rectified by restoring the sea ice fraction from the ancillary files, however the UM cannot do this without also loading the sea surface temperature from an ancillary file. This task ensures the sea surface temperature is not modified. The addition of these ancillary files into the input dump is controlled by the `2` and `3` entries under 'Configure ancils and initialise dump fields' section of the rose suite configuration
 
-![recover sst](../Images/AUS2200/recover-sst.png)
+![recover sst](images/recover-sst.png)
 
 ### `create_soil_moisture_ancil`
 This task is used to carry over soil moisture from a previous run of the suite. When performing restart runs, it is advisable to carry the soil moisture through the entire run, as soil moisture has a much longer spin-up time than atmospheric processes. The restart run procedure is explained in more detail in the [Restart and Spinup](#restart-and-spinup) section below. This task is used to partially serialise restart runs, it can be submitted at any time and will wait until the correct dump file has been created from a previous run of the suite before creating the soil moisture ancillary file. The addition of this ancillary file into the input dump is controlled by the `1` entry under 'Configure ancils and initialise dump fields'.
