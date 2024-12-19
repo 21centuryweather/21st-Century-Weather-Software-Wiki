@@ -4,7 +4,7 @@ Another important component of Australian weather research is the 'Regional Nest
 
 The suite was developed primarily by Scott Wales while working at CLEX - the Centre of Excellence for Climate Extremes. The suite is very similar to AUS2200 except that it usually describes two layers of nesting and is designed from smaller (and less computationally demanding) domains.
 
-This documentation refers to earlier RNS suites `u-cy368` (for ancillary generation) and `u-cy369` (for atmospheric simulation). These suites are slightly older and have been replaced by `u-cy767` and `u-cy768` for running the latest version of the Australian RNS. The latest suites are now maintained by Chermelle Engel at ACCESS-NRI, and updated documentation for these suites will be available soon.
+This documentation refers to earlier RNS suites `u-cy368` (for ancillary generation) and `u-cy369` (for atmospheric simulation). These suites are slightly older and have been replaced by `u-cy767` and `u-cy768`. These later suites are now maintained by Chermelle Engel at ACCESS-NRI, and updated documentation for these suites will be available soon.
 
 In the interim, Scott's documentation will serve as a useful guide for those running high-resolution ACCESS atmospheric simulations using relocatable domains.
 
