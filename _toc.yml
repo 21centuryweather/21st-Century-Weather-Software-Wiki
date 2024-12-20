@@ -19,6 +19,9 @@ parts:
       sections:
       - file: ScottWales-RNS/ancillaries
       - file: ScottWales-RNS/running
+      - file: ScottWales-RNS/outputs
+      - file: ScottWales-RNS/evaluating
+      - file: ScottWales-RNS/further-considerations
   - caption: Python
     chapters:
     - file: python/intro-python
