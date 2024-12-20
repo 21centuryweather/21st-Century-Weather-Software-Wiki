@@ -60,7 +60,7 @@ alias start_rose="export CYLC_SESSION=<session-name>.<user-id>.<project>.ps.gadi
 ```
 module unload conda/analysis3
 ```
-
+> **_WARNING:_** If you are not yet a member of the `access` gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won't be able to complete the next one, or run any ACCESS suites. See [here](../UM/common_problems.md##Persistent-session-cannot-see-files-in-/g/data/access) for more information.
 
 > **_NOTE:_** You will have to restart your sessions after quarterly maintenance.
 

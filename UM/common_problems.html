@@ -392,6 +392,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-login-to-a-persistent-session">Cannot login to a persistent session</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-session-cannot-see-files-in-g-data-access">Persistent session cannot see files in /g/data/access</a></li>
 </ul>
             </nav>
         </div>
@@ -421,6 +422,11 @@
 <h2>Cannot login to a persistent session<a class="headerlink" href="#cannot-login-to-a-persistent-session" title="Link to this heading">#</a></h2>
 <p>If you can’t login to your persistent session, you may have conflicting modules which don’t use the standard <code class="docutils literal notranslate"><span class="pre">ssh</span></code> environment at NCI. Often the cause of this conflict is the <code class="docutils literal notranslate"><span class="pre">conda/analysis</span></code> module developed by CLEX and maintained by ACCESS-NRI.  You will have to unload any conflicting modules.</p>
 <p>See <a class="reference internal" href="../mosrs/mosrs-intro.html#persistent-sessions"><span class="std std-ref">this link</span></a> for more information.</p>
+</section>
+<section id="persistent-session-cannot-see-files-in-g-data-access">
+<h2>Persistent session cannot see files in /g/data/access<a class="headerlink" href="#persistent-session-cannot-see-files-in-g-data-access" title="Link to this heading">#</a></h2>
+<p>If you are using a persistent session created before you were a member of the <code class="docutils literal notranslate"><span class="pre">access</span></code> project, your ACCESS suite will be unable to locate any files on <code class="docutils literal notranslate"><span class="pre">/g/data/access</span></code> and hence will fail.</p>
+<p>The solution to his problem is to delete your persistent session and create a new one, after you have joined the <code class="docutils literal notranslate"><span class="pre">access</span></code> project.</p>
 </section>
 </section>
 
@@ -491,6 +497,7 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-login-to-a-persistent-session">Cannot login to a persistent session</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-session-cannot-see-files-in-g-data-access">Persistent session cannot see files in /g/data/access</a></li>
 </ul>
   </nav></div>
 

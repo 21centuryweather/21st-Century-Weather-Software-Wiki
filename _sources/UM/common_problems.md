@@ -26,3 +26,8 @@ If you can't login to your persistent session, you may have conflicting modules 
 
 See [this link](../mosrs/mosrs-intro.md#persistent-sessions) for more information.
 
+## Persistent session cannot see files in /g/data/access
+
+If you are using a persistent session created before you were a member of the `access` project, your ACCESS suite will be unable to locate any files on `/g/data/access` and hence will fail.
+
+The solution to his problem is to delete your persistent session and create a new one, after you have joined the `access` project.
