@@ -19,6 +19,8 @@ rosie co u-dl058
 ```
 This suite was initially developed by scientists at the Bureau of Meteorology to research 'coupled' Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all `rose/cylc` logic related to coupling so the suite performs a simple atmospheric-only global simulation at low resolution.
 
+> **NOTE** : You will need to join the `dp9` project to run this suite, as a crucial file is located on `/g/data/dp9` data disk. It is planned this dependency on the `dp9` project will removed in early 2025.
+
 ## Examining the suite ##
 
 The suite contains all the usual files you've become accustomed too inside a `rose/cylc` suite:
