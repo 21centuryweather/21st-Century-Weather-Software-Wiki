@@ -65,8 +65,6 @@ This contains a list of `bash` environment variables which describe the followin
 - `xios_path` : Directory of `xios` libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.
 - `oasis3_mct_path` : Directory of intel libraries to compile this version of the UM which supports the `oasis3` coupler.
 
-> **__IMPORTANT__** The default value of `ARCHDIR` is `/scratch/gb02/${USER}/GC5_runs`. If you are NOT a member of the gadi project `gb02`, you will have to swap the value of `gb02` for another gadi project that you have membership of.
-
 ### Task flow ###
 
 Let's walk through the `suite.rc` file to determine the task flow. 
