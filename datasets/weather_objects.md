@@ -11,10 +11,11 @@ For more indepth details about the following datasets, please see the files in `
 ERA5-based anticyclones are calculated based on sea-level pressure (SLP). more specifically, closed isobars are identified in the SLP field and labeled as anticyclone areas.
 To exclude artificial anticyclones over height topography (>1500 m), which can result from the pressure reduction to
 sea level, anticyclone centers (SLP minima) are omitted where the topography exceeds 1500 m.
-The most detailed description of the algorithm can be found in Sprenger et al. (2017). There, also differenc
+The most detailed description of the algorithm can be found in Sprenger et al. (2017). There, also differences
+between the current ERA5 algorithm and the original ERA-Interim one in Wernli and Schwierz (2006) is discussed.
 
 #### Data source:
-```/g/data/su28/weatherfeatures.era5/maxcl/cdf/{year}```
+**[1a]**```/g/data/su28/weatherfeatures.era5/maxcl/cdf/{year}```
 
 where {year} is 1950 - 2022.
 
@@ -41,7 +42,7 @@ The most detailed description of the algorithm can bei found in Sprenger et al. 
 between the current ERA5 algorithm and the original ERA-Interim one in Wernli and Schwierz (2006) is discussed.
 
 #### Data source:
-```/g/data/su28/weatherfeatures.era5/mincl/cdf/{year}```
+**[2a]**```/g/data/su28/weatherfeatures.era5/mincl/cdf/{year}```
 
 where {year} is 1950 - 2022.
 
@@ -49,7 +50,7 @@ where {year} is 1950 - 2022.
 
 - `INPUT` unfiltered cyclone masks (0/1 label), i.e., no lifetime filter applied
 - `LABEL` filtered cyclone masks; each cyclone mask gets a unique label that is consistent to
-the label in the cyclone track files (see [2c])
+the label in the cyclone track files (see [2a])
 - `AGE` age (in hours) of the cyclone attributed to LABEL
 - `LIFETIME` overall lifetime (in hours) of the cyclone attributed to LABEL
 - `PMIN` 0/1 field with 1 at the locations of SLP minima
@@ -65,10 +66,32 @@ resolution and separating regions affected by a WCB inflow, ascent and outflow. 
 available.
 
 #### Data source:
-```/g/data/su28/weatherfeatures.era5/wcb/```
+**[3a]**```/g/data/su28/weatherfeatures.era5/wcb/cdf.1hourly/{year}```
 
 where {year} is 1980 - 2022.
 
+`hit_YYYY_MM`: netCDF files with WCB masks. Each file is a month's worth of data at hourly frequency. A 100-km gridding radius is applied (except for `PRESSURE` and `TIME`). The following fields are available on the netCDF files:
+
+- `GT800` 0/1 label for grid points in WCB inflow (p > 800 hPa)
+- `MIDTROP` 0/1 label for grid points in WCB ascent (400 hPa < p < 800 hPa) 
+- `LT400` 0/1 labels for grid points in WCB outflow (p< 400 hPa, t <= 48 h)
+- `TOTAL` any of GT800, MIDTROP or LT400
+- `PRESSURE` pressure at WCB grid point (no 100-km radius applied)
+- `TIME` time (in h) at the WCB grid points (no 100-km radius applied)
+
+**[3b]**```/g/data/su28/weatherfeatures.era5/wcb/cdf.6hourly/{year}```
+
+where {year} is 1980 - 2022.
+
+`asc_YYYY_MM`: netCDF files with the time evolution of the WCB ascent from 00 to 96 h, in steps of 12 h. Time 00 corresponds to the time the trajectory starts ascending. The datetime in the file corresponds to the starting date of the WCB trajectories. A 100-km gridding radius is applied. The following fields are available on the netCDF files:
+
+- `FLAG` position (0/1 label) of the WCB trajectories
+
+`hit_YYYY_MM`: as in **[3a]**.
+
+#### Additional information:
+- WCB trajectories would be available on request
+- The cyclone masks used for the filtering can be found at ```/g/data/su28/weatherfeatures.era5/mincl/cdf/```
 
 ### References:
 
@@ -85,5 +108,5 @@ Madonna, E., Wernli, H., Joos, H., & Martius, O. (2014). Warm Conveyor Belts in 
 ### Contact:
 If there are any issues with these datasets please contact:
 
-[Sam Green](https://www.21centuryweather.org.au/profile/sam-green)
-
+[Sam Green](https://www.21centuryweather.org.au/profile/sam-green)  
+[Chenhui Jin](https://www.21centuryweather.org.au/profile/chenhui-jin)
