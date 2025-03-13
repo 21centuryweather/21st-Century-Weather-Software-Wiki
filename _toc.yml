@@ -34,9 +34,6 @@ parts:
     chapters:
     - file: datasets/weather_objects
     - file: datasets/mesaclip
-  - caption: Feedback
-    chapters:
-    - file: feedback.ipynb
-    - file: feedback.md
+
 
 
