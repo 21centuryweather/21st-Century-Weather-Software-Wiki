@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ERA5-based Weather Objects &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/weather_objects';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MESACLIP" href="mesaclip.html" />
+    <link rel="prev" title="Working with gadi via your Mac" href="../gadi/mac-stuff.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ScottWales-RNS/setup.html">Regional Nesting Suite</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/ancillaries.html">Creating Ancillaries</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/running.html">Running the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ERA5-based Weather Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesaclip.html">MESACLIP</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fdatasets/weather_objects.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/datasets/weather_objects.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ERA5-based Weather Objects</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anticyclones-maxcl">1. Anticyclones (MAXCL):</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-source">Data source:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cyclones-mincl">2. Cyclones (MINCL):</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data source:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-conveyor-belts-wcb">3. Warm-Conveyor Belts (WCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data source:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-information">Additional information:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="era5-based-weather-objects">
+<h1>ERA5-based Weather Objects<a class="headerlink" href="#era5-based-weather-objects" title="Link to this heading">#</a></h1>
+<p>There are 3 ERA5-based Weather Objects placed on Gadi in su28, located at:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/</span></code></p>
+<p>For more indepth details about the following datasets, please see the files in <code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/{model}/docu/</span></code></p>
+<section id="anticyclones-maxcl">
+<h2>1. Anticyclones (MAXCL):<a class="headerlink" href="#anticyclones-maxcl" title="Link to this heading">#</a></h2>
+<p>ERA5-based anticyclones are calculated based on sea-level pressure (SLP). more specifically, closed isobars are identified in the SLP field and labeled as anticyclone areas.
+To exclude artificial anticyclones over height topography (&gt;1500 m), which can result from the pressure reduction to
+sea level, anticyclone centers (SLP minima) are omitted where the topography exceeds 1500 m.
+The most detailed description of the algorithm can be found in Sprenger et al. (2017). There, also differences
+between the current ERA5 algorithm and the original ERA-Interim one in Wernli and Schwierz (2006) is discussed.</p>
+<section id="data-source">
+<h3>Data source:<a class="headerlink" href="#data-source" title="Link to this heading">#</a></h3>
+<p><strong>[1a]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/maxcl/cdf/{year}</span></code></p>
+<p>where {year} is 1950 - 2022.</p>
+<p><code class="docutils literal notranslate"><span class="pre">AYYYY_MM</span></code>: netCDF files with anticyclone masks (areas inside closed isobars). Each file is a month’s worth of data at hourly frequency. The following fields are available on the netCDF files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FLAG</span></code> unfiltered anticyclone masks (0/1 label)</p></li>
+</ul>
+</section>
+</section>
+<section id="cyclones-mincl">
+<h2>2. Cyclones (MINCL):<a class="headerlink" href="#cyclones-mincl" title="Link to this heading">#</a></h2>
+<p>ERA5-based cyclones are calculated based on sea-level pressure (SLP). more specifically, closed isobars are identified
+in the SLP field and labeled as cyclone areas. SLP minima within the cyclone areas are also identified and, by connecting the SLP positions (latitude/longitude) over consecutive times, cyclone tracks are determined. The first
+instance (time, lat/lon) of the tracks is saved as the cyclogenesis position, the last instance as the cyclolysis. The
+overall lifetime of a cyclone has to exceed 12 hours, otherwise the cyclone track and the corresponding cyclone area
+is omitted. A cylcone track is allowed to have two ERA5 time instances (2 hours) without SLP minimum, i.e. 2-h gaps
+in the cyclone tracks can be ‘bridged’.</p>
+<p>To exclude artificial cyclones over height topography (&gt;1500 m), which can result from the pressure reduction to sea
+level, cyclone centers (SLP minima) are omitted where the topography exceeds 1500 m. If there are several SLP
+minima located inside a cyclone area, i.e. the SLP minima are enclosed by a common SLP contour, the cyclone mask
+is split among all SLP minima, according to the SLP value (deeper SLP minima cover larger areas of the mask than
+weaker SLP minima).</p>
+<p>The most detailed description of the algorithm can bei found in Sprenger et al. (2017). There, also differences
+between the current ERA5 algorithm and the original ERA-Interim one in Wernli and Schwierz (2006) is discussed.</p>
+<section id="id1">
+<h3>Data source:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><strong>[2a]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/mincl/cdf/{year}</span></code></p>
+<p>where {year} is 1950 - 2022.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CYYYY_MM</span></code>: netCDF files with cyclone masks (areas inside closed isobars). Each file is a month’s worth of data at hourly frequency. The following fields are available on the netCDF files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">INPUT</span></code> unfiltered cyclone masks (0/1 label), i.e., no lifetime filter applied</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LABEL</span></code> filtered cyclone masks; each cyclone mask gets a unique label that is consistent to
+the label in the cyclone track files (see [2a])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AGE</span></code> age (in hours) of the cyclone attributed to LABEL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIFETIME</span></code> overall lifetime (in hours) of the cyclone attributed to LABEL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PMIN</span></code> 0/1 field with 1 at the locations of SLP minima</p></li>
+</ul>
+</section>
+</section>
+<section id="warm-conveyor-belts-wcb">
+<h2>3. Warm-Conveyor Belts (WCB)<a class="headerlink" href="#warm-conveyor-belts-wcb" title="Link to this heading">#</a></h2>
+<p>ERA5-based warm conveyor belts calculated as trajectories ascending from levels below 790 hPa within 48 h by at
+least 600 hPa. The starting positions are set equidistantly (80 km) over the whole globe, and the trajectories are
+started every 6 h. Trajectory positions are saved every hour. The ascent has to occur in the neighborhood of a
+cyclone. The trajectories are clustered into spatially coherent air streams, and if one of the cluster trajectories passes
+across a cyclone mask the whole cluster is kept. The main data sources are [2d], the WCB masks at hourly temporal
+resolution and separating regions affected by a WCB inflow, ascent and outflow. The ERA5 time period 1980-2020 is
+available.</p>
+<section id="id2">
+<h3>Data source:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><strong>[3a]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/wcb/cdf.1hourly/{year}</span></code></p>
+<p>where {year} is 1980 - 2022.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hit_YYYY_MM</span></code>: netCDF files with WCB masks. Each file is a month’s worth of data at hourly frequency. A 100-km gridding radius is applied (except for <code class="docutils literal notranslate"><span class="pre">PRESSURE</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span></code>). The following fields are available on the netCDF files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GT800</span></code> 0/1 label for grid points in WCB inflow (p &gt; 800 hPa)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MIDTROP</span></code> 0/1 label for grid points in WCB ascent (400 hPa &lt; p &lt; 800 hPa)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LT400</span></code> 0/1 labels for grid points in WCB outflow (p&lt; 400 hPa, t &lt;= 48 h)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOTAL</span></code> any of GT800, MIDTROP or LT400</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRESSURE</span></code> pressure at WCB grid point (no 100-km radius applied)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIME</span></code> time (in h) at the WCB grid points (no 100-km radius applied)</p></li>
+</ul>
+<p><strong>[3b]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/wcb/cdf.6hourly/{year}</span></code></p>
+<p>where {year} is 1980 - 2022.</p>
+<p><code class="docutils literal notranslate"><span class="pre">asc_YYYY_MM</span></code>: netCDF files with the time evolution of the WCB ascent from 00 to 96 h, in steps of 12 h. Time 00 corresponds to the time the trajectory starts ascending. The datetime in the file corresponds to the starting date of the WCB trajectories. A 100-km gridding radius is applied. The following fields are available on the netCDF files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FLAG</span></code> position (0/1 label) of the WCB trajectories</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">hit_YYYY_MM</span></code>: as in <strong>[3a]</strong>.</p>
+</section>
+<section id="additional-information">
+<h3>Additional information:<a class="headerlink" href="#additional-information" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>WCB trajectories would be available on request</p></li>
+<li><p>The cyclone masks used for the filtering can be found at <code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/mincl/cdf/</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="references">
+<h2>References:<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p>Wernli, H., and Schwierz, C. (2006). Surface Cyclones in the ERA-40 Dataset (1958–2001). Part I: Novel Identification
+Method and Global Climatology, Journal of the Atmospheric Sciences, 63(10), 2486-2507.</p>
+<p>Sprenger, M., Fragkoulidis, G., Binder, H., Croci-Maspoli, M., Graf, P., Grams, C. M., Knippertz, P., Madonna, E.,
+Schemm, S., Škerlak, B., &amp; Wernli, H. (2017). Global Climatologies of Eulerian and Lagrangian Flow Features based on
+ERA-Interim, Bulletin of the American Meteorological Society, 98(8), 1739-1748.</p>
+<p>Madonna, E., Wernli, H., Joos, H., &amp; Martius, O. (2014). Warm Conveyor Belts in the ERA-Interim Dataset (1979–
+2010). Part I: Climatology and Potential Vorticity Evolution, Journal of Climate, 27(1), 3-26.</p>
+</section>
+<section id="contact">
+<h2>Contact:<a class="headerlink" href="#contact" title="Link to this heading">#</a></h2>
+<p>If there are any issues with these datasets please contact:</p>
+<p><a class="reference external" href="https://www.21centuryweather.org.au/profile/sam-green">Sam Green</a><br />
+<a class="reference external" href="https://www.21centuryweather.org.au/profile/chenhui-jin">Chenhui Jin</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./datasets"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../gadi/mac-stuff.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Working with gadi via your Mac</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mesaclip.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MESACLIP</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anticyclones-maxcl">1. Anticyclones (MAXCL):</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-source">Data source:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cyclones-mincl">2. Cyclones (MINCL):</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data source:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-conveyor-belts-wcb">3. Warm-Conveyor Belts (WCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data source:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-information">Additional information:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

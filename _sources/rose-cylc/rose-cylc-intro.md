@@ -89,7 +89,7 @@ But, what if we have a complex set of tasks that must run in a particular sequen
 ## Task Scheduling for Atmospheric Simulation
 
 A good example of a complex task that must run in a particular sequence is a historical atmospheric simulation.  Typically for a longer, multi-day simulation, the sequence of tasks involves:
-1. Reading in global or regional atmospheric analysis with the correct valid time.
+1. Reading in a global or regional atmospheric analysis with the correct valid time.
 2. Read in ocean and land data for the same valid times.
 3. Read in atmospheric and land ancillary data (e.g. topography, soil types, vegetation fields, aerosols, rivers etc.)
 4. (optional) - create 'lateral boundary conditions' by slicing an area of interest from a global or regional analysis.
