@@ -12,7 +12,7 @@ The Software Engineering Team currently consists of 3 members:
 
 The Software Engineering team can be contacted for support through:
 
-- The Software Support Category on Cumulus ([Cumulus Software Categry](https://21centuryweather.discourse.group/c/software-support/32)).
+- The Software Support Category on Cumulus ([Cumulus Software Category](https://21centuryweather.discourse.group/c/software-support/32)).
 - One-on-one video call through Microsoft Teams or Zoom.
 - In person meetings with local Software Engineering team members.
 - Code Workshops (coming soon).
@@ -29,3 +29,7 @@ Coming Soon - Fortnightly Code Workshops. This will be an hour long session wher
 
 ```{tableofcontents}
 ```
+
+## Feedback
+
+[Click here to submit feedback](https://docs.google.com/forms/u/0/d/e/1FAIpQLSdBTq42YIlMNUbKvzDp4rl8XFpTAitjiMu1yB38ebY-7Tdebg/formResponse)
