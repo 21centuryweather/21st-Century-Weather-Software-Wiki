@@ -34,4 +34,7 @@ parts:
     chapters:
     - file: datasets/weather_objects
     - file: datasets/mesaclip
+  - caption: Git
+    chapters:
+    - file: git/git-intro
 
