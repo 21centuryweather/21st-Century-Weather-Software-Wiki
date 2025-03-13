@@ -30,4 +30,8 @@ parts:
   - caption: Working with Gadi
     chapters:
     - file: gadi/mac-stuff
+  - caption: Datasets
+    chapters:
+    - file: datasets/weather_objects
+    - file: datasets/mesaclip
 
