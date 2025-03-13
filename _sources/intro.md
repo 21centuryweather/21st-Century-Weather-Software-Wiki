@@ -29,7 +29,3 @@ Coming Soon - Fortnightly Code Workshops. This will be an hour long session wher
 
 ```{tableofcontents}
 ```
-
-## Feedback
-
-[Click here to submit feedback](https://docs.google.com/forms/u/0/d/e/1FAIpQLSdBTq42YIlMNUbKvzDp4rl8XFpTAitjiMu1yB38ebY-7Tdebg/formResponse)
