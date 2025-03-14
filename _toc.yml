@@ -37,4 +37,6 @@ parts:
   - caption: Git
     chapters:
     - file: git/git-intro
+    - file: git/git-alone
+    - file: git/git-team
 
