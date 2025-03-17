@@ -271,7 +271,7 @@ Go to the repo on GitHub and check if is now up to date.
 You can run `git push --set-upstream origin main` once to automatically push to "origin". After that, running only `git push` will be enough and you will save a few seconds next time!
 :::
 
-## Remote changes
+### Remote changes
 
 Let's come back to GitHub.
 
@@ -334,3 +334,20 @@ Fast-forward
 :::
 
 Now you know the main and most important command to work git. In the next section you can learn go to work with a team or maybe how to contribute to a project. This includes the concepts of branches, forks, pull request and more. 
+
+
+::: {warning}
+
+While you can put anything on a repo, there are limitations. 
+
+GitHub allows individual files of [up to 100 MB](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits), so for any file below that limit can be safely included in your repository. If you have many moderately big files, you might be reaching GitHub’s soft limit of around [5Gb per repository](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#repository-size-limits).
+
+Most important, adding big files to a commit can make things go slower. For that reason, we recommend that you don't add data files to the repository unless they are small.  
+
+:::
+
+::: {tip}
+
+To avoid adding file to a repository, maybe because they are to big, maybe because you don't have permission to share them, you can add a `.gitignore` file. This file will include the list of files and folders you want to ignore. [This repo](https://github.com/github/gitignore) includes a collection of gitignore templates you can use. 
+
+:::
