@@ -11,15 +11,24 @@ https://21centuryweather.github.io/UM_summary_docs/introduction.html
 
 For now, let's concentrate on running a very simple test suite, a 'minimal working example' to demonstrate how we can run the UM on `gadi` using a `rose/cylc` suite.
 
+## Quick Start Guide
+
+To run the UM quickly.
+- Start a persistent session on `gadi`
+- Pass MOSRS authentication
+- Load your `cylc` modules
+- `$ rosie co u-dl058`
+- `$ cd ~/roses/u-dl058`
+- In `~/roses/u-dl085/rose-suit.conf`, change the value of `ARCHDIR` if you don't have `gb02` permissions.
+- `$ rose suite-run`
+
 ## Checking out a UM suite ##
 
 If you need to, repeat the steps of the previous tutorial to authenticate your MOSRS credentials. Then, checkout suite `u-dl058` using
 ```
 rosie co u-dl058
 ```
-This suite was initially developed by scientists at the Bureau of Meteorology to research 'coupled' Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all `rose/cylc` logic related to coupling so the suite performs a simple atmospheric-only global simulation at low resolution.
-
-> **NOTE** : You will need to join the `dp9` project to run this suite, as a crucial file is located on `/g/data/dp9` data disk. It is planned this dependency on the `dp9` project will removed in early 2025.
+This suite was initially developed by scientists at the Bureau of Meteorology to research 'coupled' Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all `rose/cylc` logic related to ocean coupling so the suite performs a simple atmosphere/land simulation at low resolution.
 
 ## Examining the suite ##
 

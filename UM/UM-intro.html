@@ -208,6 +208,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on <code class="docutils literal notranslate"><span class="pre">gadi</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
@@ -419,6 +420,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-guide">Quick Start Guide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-um-suite">Checking out a UM suite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-suite">Examining the suite</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#master-configuration">Master configuration</a></li>
@@ -460,16 +462,26 @@ document.write(`
 <p>You can access more detailed information about the UM here :
 <a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/introduction.html">https://21centuryweather.github.io/UM_summary_docs/introduction.html</a></p>
 <p>For now, let’s concentrate on running a very simple test suite, a ‘minimal working example’ to demonstrate how we can run the UM on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> using a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite.</p>
+<section id="quick-start-guide">
+<h2>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading">#</a></h2>
+<p>To run the UM quickly.</p>
+<ul class="simple">
+<li><p>Start a persistent session on <code class="docutils literal notranslate"><span class="pre">gadi</span></code></p></li>
+<li><p>Pass MOSRS authentication</p></li>
+<li><p>Load your <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rosie</span> <span class="pre">co</span> <span class="pre">u-dl058</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">~/roses/u-dl058</span></code></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl085/rose-suit.conf</span></code>, change the value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> if you don’t have <code class="docutils literal notranslate"><span class="pre">gb02</span></code> permissions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rose</span> <span class="pre">suite-run</span></code></p></li>
+</ul>
+</section>
 <section id="checking-out-a-um-suite">
 <h2>Checking out a UM suite<a class="headerlink" href="#checking-out-a-um-suite" title="Link to this heading">#</a></h2>
 <p>If you need to, repeat the steps of the previous tutorial to authenticate your MOSRS credentials. Then, checkout suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">dl058</span>
 </pre></div>
 </div>
-<p>This suite was initially developed by scientists at the Bureau of Meteorology to research ‘coupled’ Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> logic related to coupling so the suite performs a simple atmospheric-only global simulation at low resolution.</p>
-<blockquote>
-<div><p><strong>NOTE</strong> : You will need to join the <code class="docutils literal notranslate"><span class="pre">dp9</span></code> project to run this suite, as a crucial file is located on <code class="docutils literal notranslate"><span class="pre">/g/data/dp9</span></code> data disk. It is planned this dependency on the <code class="docutils literal notranslate"><span class="pre">dp9</span></code> project will removed in early 2025.</p>
-</div></blockquote>
+<p>This suite was initially developed by scientists at the Bureau of Meteorology to research ‘coupled’ Numerical Weather Prediction using separate atmospheric and ocean models. For this tutorial, we have removed all <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> logic related to ocean coupling so the suite performs a simple atmosphere/land simulation at low resolution.</p>
 </section>
 <section id="examining-the-suite">
 <h2>Examining the suite<a class="headerlink" href="#examining-the-suite" title="Link to this heading">#</a></h2>
@@ -876,6 +888,7 @@ This task ends by writing the following files in `~/cylc-run/u-dl058/share/cycle
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-guide">Quick Start Guide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-a-um-suite">Checking out a UM suite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-suite">Examining the suite</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#master-configuration">Master configuration</a></li>

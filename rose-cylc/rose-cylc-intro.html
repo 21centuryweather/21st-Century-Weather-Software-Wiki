@@ -208,6 +208,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on <code class="docutils literal notranslate"><span class="pre">gadi</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
@@ -456,6 +457,9 @@ document.write(`
 <ol class="arabic simple">
 <li><p>You have an NCI account on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p></li>
 <li><p>You can access a command-line terminal on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> (either via an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session or using the <code class="docutils literal notranslate"><span class="pre">ARE</span></code> research environment)</p></li>
+</ol>
+<p>If you don’t have an any of the above, follow the links <a class="reference internal" href="../gadi/getting-started.html"><span class="std std-doc">here</span></a></p>
+<ol class="arabic simple" start="3">
 <li><p>If using an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of ‘Xquartz’.</p></li>
 </ol>
 <p>See <a class="reference internal" href="../gadi/mac-stuff.html"><span class="std std-doc">here</span></a> for more information for Mac users.</p>
@@ -473,7 +477,7 @@ document.write(`
 </div>
 <p>This will help keep your X-windows session active in short periods when you are away from your keyboard.</p>
 <ol class="arabic simple" start="4">
-<li><p>You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account. If you haven’t started this, please contact Martin Dix at ACCESS-NRI (<a class="reference external" href="mailto:martin&#46;dix&#37;&#52;&#48;anu&#46;edu&#46;au">martin<span>&#46;</span>dix<span>&#64;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a>) or Holger Wolff at CLEX (<a class="reference external" href="mailto:holger&#46;wolff&#37;&#52;&#48;monash&#46;edu">holger<span>&#46;</span>wolff<span>&#64;</span>monash<span>&#46;</span>edu</a>).</p></li>
+<li><p>You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account. If you haven’t started this, please contact Heidi Nettelbeck at ACCESS-NRI (<a class="reference external" href="mailto:heidi&#46;nettelbeck&#37;&#52;&#48;anu&#46;edu&#46;au">heidi<span>&#46;</span>nettelbeck<span>&#64;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a>).</p></li>
 <li><p>You have memberships to the following <code class="docutils literal notranslate"><span class="pre">gadi</span></code> projects:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">hr22</span></code></p></li>
@@ -483,6 +487,7 @@ document.write(`
 </ul>
 </li>
 </ol>
+<p>If you don’t have membership to these <code class="docutils literal notranslate"><span class="pre">gadi</span></code> projects, click <a class="reference external" href="https://opus.nci.org.au/spaces/DAE/pages/249495608/Prerequisites">here</a> to apply.</p>
 <section id="shell-scripts-and-running-jobs-on-linux">
 <h2>Shell scripts and running jobs on Linux<a class="headerlink" href="#shell-scripts-and-running-jobs-on-linux" title="Link to this heading">#</a></h2>
 <p>Typically we run programs (or apps) on a linux computer using a shell scripts. We use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell to interpret input from the command-line to execute programs.</p>
@@ -551,18 +556,24 @@ document.write(`
 <h3>First cylc tutorial<a class="headerlink" href="#first-cylc-tutorial" title="Link to this heading">#</a></h3>
 <p>Let’s run through the tutorial here:</p>
 <p><a class="reference external" href="https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html">https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html</a></p>
-<p>To launch <code class="docutils literal notranslate"><span class="pre">cylc</span></code> on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> you need to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software into your interactive command-line session. You will also need to specify a <code class="docutils literal notranslate"><span class="pre">cylc</span></code> session in order to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> module. The best way to do this to to execute the following command from a
+<p>To launch <code class="docutils literal notranslate"><span class="pre">cylc</span></code> on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> you need to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software into your interactive command-line session. You will also need to specify a <code class="docutils literal notranslate"><span class="pre">cylc</span></code> session in order to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> module. The best way to do this to to execute the following commands from a
 <code class="docutils literal notranslate"><span class="pre">gadi</span></code> terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">persistent</span><span class="o">-</span><span class="n">sessions</span>
-<span class="n">cat</span> <span class="o">&gt;</span> <span class="o">~/.</span><span class="n">persistent</span><span class="o">-</span><span class="n">sessions</span><span class="o">/</span><span class="n">cylc</span><span class="o">-</span><span class="n">session</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">DUMMY</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/.persistent-sessions
+$ cat &gt; ~/.persistent-sessions/cylc-session &lt;&lt;&lt; DUMMY
 </pre></div>
 </div>
+<blockquote>
+<div><p><strong><strong>NOTE</strong></strong> Type everything after the <code class="docutils literal notranslate"><span class="pre">$</span></code> into your terminal’s command line. In this document the <code class="docutils literal notranslate"><span class="pre">$</span></code> is used to distinguish commands you need to type from to contents of text files etc. You will notice that a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> command line usually ends with a <code class="docutils literal notranslate"><span class="pre">$</span></code>, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;username&gt;@gadi-login-01]$
+</pre></div>
+</div>
+</div></blockquote>
 <p>These commands use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> program <code class="docutils literal notranslate"><span class="pre">cat</span></code> (short for ‘catalogue’) to create a text file called <code class="docutils literal notranslate"><span class="pre">cylc-session</span></code> in the directory <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/</span></code> which will contain the text <code class="docutils literal notranslate"><span class="pre">DUMMY</span></code>.</p>
 <p>Remember <code class="docutils literal notranslate"><span class="pre">~</span></code> is a <code class="docutils literal notranslate"><span class="pre">bash</span></code> short-cut which refers to your home directory on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
 <p>You will learn more about ‘persistent-sessions’ in the later section <a class="reference internal" href="../mosrs/mosrs-intro.html##Persistent-sessions"><span class="std std-ref">Persistent session</span></a>. For now, this test ‘DUMMY’ file will allow us to run through the tutorials.</p>
 <p>Then you can load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">modulefiles</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module use /g/data/hr22/modulefiles
+$ module load cylc7/23.09
 </pre></div>
 </div>
 <p>This should generate the following output:</p>
@@ -582,7 +593,7 @@ document.write(`
 </div>
 <p>All your future <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> tasks to run the <code class="docutils literal notranslate"><span class="pre">UM</span></code> will also be deployed in your <code class="docutils literal notranslate"><span class="pre">~/cylc-run</span></code> directory.</p>
 <p>Let’s run the ‘Hello World’ example. Go to the following path in <code class="docutils literal notranslate"><span class="pre">~/cylc-run</span></code> directory (the path is actually different to the official documentation):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="mf">7.9.7</span><span class="o">/</span><span class="n">tutorial</span><span class="o">/</span><span class="n">oneoff</span><span class="o">/</span><span class="n">basic</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/cylc-run/examples/7.9.7/tutorial/oneoff/basic
 </pre></div>
 </div>
 <p>Using a text editor of your choice (<code class="docutils literal notranslate"><span class="pre">vi</span></code>, <code class="docutils literal notranslate"><span class="pre">nedit</span></code>, <code class="docutils literal notranslate"><span class="pre">nano</span></code>, <code class="docutils literal notranslate"><span class="pre">emacs</span></code>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">VS</span> <span class="pre">Code</span></code>), copy the contents from the tutorial into a file named <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code>.</p>
@@ -637,19 +648,19 @@ To view suite server program contact information:
 <p>Let’s follow the practical section at the bottom of that page.</p>
 <blockquote>
 <div><p><strong><strong>REMEMBER</strong></strong> we have to use the following <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands to add <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to our paths on gadi, in case you are starting this tutorial from a fresh login session.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hr22</span><span class="o">/</span><span class="n">modulefiles</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module use /g/data/hr22/modulefiles
+$ module load cylc7/23.09
 </pre></div>
 </div>
 <p>We also have to ensure we have specified a persistent session.</p>
 </div></blockquote>
 <p>Back to the tutorial:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">graph</span><span class="o">-</span><span class="n">introduction</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">graph</span><span class="o">-</span><span class="n">introduction</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/cylc-run/graph-introduction
+$ cd ~/cylc-run/graph-introduction
 </pre></div>
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file in this directory using the template provided, and then create a task graph using the necessary syntax. When you execute</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cylc</span> <span class="n">graph</span> <span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc graph .
 </pre></div>
 </div>
 <p>the results show match the below image.</p>

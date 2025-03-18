@@ -208,6 +208,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on <code class="docutils literal notranslate"><span class="pre">gadi</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
@@ -446,21 +447,17 @@ document.write(`
 <p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=236881198">https://opus.nci.org.au/pages/viewpage.action?pageId=236881198</a></p>
 <p>If we are running a weather or climate session that will take days (or weeks, or months!) to run, we need an ability to co-ordinate all these sub-tasks for an extended period of item.</p>
 <p>Hence, NCI has created the persistent sessions capability. It creates a temporary virtual machine which runs indefinitely. This allows us to launch a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite without any time limits.</p>
-<p>NCI has the following documentation describing how to setup and configure persistent sessions:</p>
-<p><a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=241927941">https://opus.nci.org.au/pages/viewpage.action?pageId=241927941</a></p>
-<p><a class="reference external" href="https://opus.nci.org.au/display/Help/Persistent+Sessions">https://opus.nci.org.au/display/Help/Persistent+Sessions</a></p>
+<p>NCI has the following documentation describing how to setup and configure persistent sessions for running <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suites:</p>
 <p><a class="reference external" href="https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs">https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs</a></p>
-<p>ACCESS-Hive also has the following:</p>
+<p>ACCESS-NRI also has the following guide:</p>
 <p><a class="reference external" href="https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session">https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session</a></p>
-<p>As you can see, there are a few ways to configure a persistent session. My preferred way is via an <code class="docutils literal notranslate"><span class="pre">ssh</span></code> terminal session.</p>
-<p>After starting a session - e.g.</p>
+<p>The above link refers to the ACCESS-CM3 model but it can be applied to any applications run with a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite. To follow the ACCESS-NRI guide, start a session at the command line, e.g.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ persistent-sessions start &lt;session-name&gt; -p &lt;project&gt;
 session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
   ssh &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
 </pre></div>
 </div>
-<p>where you substitute your own values of <code class="docutils literal notranslate"><span class="pre">&lt;session-name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;user-id&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;</span></code>.</p>
-<p>I make sure the file <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/cylc-session</span></code> contains the session name:</p>
+<p>where you will substitute your own values of <code class="docutils literal notranslate"><span class="pre">&lt;session-name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;user-id&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;</span></code>, make sure the file <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/cylc-session</span></code> contains the session name, i.e.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/.persistent-sessions/cylc-session 
 &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
 </pre></div>
@@ -469,15 +466,27 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y &lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
 </pre></div>
 </div>
-<p>As part of my <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> alias, I export the value of the <code class="docutils literal notranslate"><span class="pre">CYLC_SESSION</span></code> environment variable via the following:</p>
+<p>After logging in, the <code class="docutils literal notranslate"><span class="pre">bash</span></code> login prompt will change from <code class="docutils literal notranslate"><span class="pre">&lt;user-id.&#64;gadi-login</span></code> etc. to<code class="docutils literal notranslate"> <span class="pre">&lt;user-id&gt;&#64;&lt;session-name&gt;</span></code>.</p>
+<p>As part of my <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> alias defined inside my <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file, I export the value of the <code class="docutils literal notranslate"><span class="pre">CYLC_SESSION</span></code> environment variable via the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># User specific aliases and functions</span>
 <span class="n">alias</span> <span class="n">start_rose</span><span class="o">=</span><span class="s2">&quot;export CYLC_SESSION=&lt;session-name&gt;.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au;module use /g/data/hr22/modulefiles;module load cylc7/23.09&quot;</span>
+</pre></div>
+</div>
+<p>This allows me to execute multiple commands by typing <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> inside my persistent session</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ start_rose
+</pre></div>
+</div>
+<p>which will generate output similar to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">the</span> <span class="n">cylc</span> <span class="n">session</span> <span class="o">&lt;</span><span class="n">session</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;.&lt;</span><span class="n">user</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;.&lt;</span><span class="n">project</span><span class="o">&gt;.</span><span class="n">ps</span><span class="o">.</span><span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+
+<span class="n">Loading</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
+  <span class="n">Loading</span> <span class="n">requirement</span><span class="p">:</span> <span class="n">mosrs</span><span class="o">-</span><span class="n">setup</span><span class="o">/</span><span class="mf">1.0.1</span>
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong><em>WARNING:</em></strong> If you have the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> module loaded, you <strong>WILL NOT</strong> be able to <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to your persistent session, due to a conflict between the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> installation contained in that module and the global <code class="docutils literal notranslate"><span class="pre">ssh</span></code> configuration used at NCI. The <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> installation cannot access any of the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> options that are needed to access the persistent sessions (such as the port and which <code class="docutils literal notranslate"><span class="pre">SSHkey</span></code> to use). You will need to unload the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module from you current environment using</p>
 </div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">unload</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module unload conda/analysis3
 </pre></div>
 </div>
 <blockquote>
@@ -491,13 +500,13 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <h2>MOSRS authentication<a class="headerlink" href="#mosrs-authentication" title="Link to this heading">#</a></h2>
 <p>Once you have connected to your persistent-session, you will have to load the required <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> modules and then authenticate with the central MOSRS repository.</p>
 <p>A successful authentication will look like.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">mosrs</span><span class="o">-</span><span class="n">auth</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">You</span> <span class="n">need</span> <span class="n">to</span> <span class="n">enter</span> <span class="n">your</span> <span class="n">MOSRS</span> <span class="n">credentials</span> <span class="n">here</span> <span class="n">so</span> <span class="n">that</span> <span class="n">GPG</span> <span class="n">can</span> <span class="n">cache</span> <span class="n">your</span> <span class="n">password</span><span class="o">.</span>
-<span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">MOSRS</span> <span class="n">password</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;&gt;</span><span class="p">:</span> 
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">Subversion</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">Subversion</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Checking</span> <span class="n">your</span> <span class="n">credentials</span> <span class="n">using</span> <span class="n">rosie</span><span class="o">.</span> <span class="n">Please</span> <span class="n">wait</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Successfully</span> <span class="n">accessed</span> <span class="n">rosie</span> <span class="k">with</span> <span class="n">your</span> <span class="n">credentials</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mosrs-auth
+INFO: You need to enter your MOSRS credentials here so that GPG can cache your password.
+Please enter the MOSRS password for &lt;username&gt;&gt;: 
+INFO: Checking your credentials using Subversion. Please wait.
+INFO: Successfully accessed Subversion with your credentials.
+INFO: Checking your credentials using rosie. Please wait.
+INFO: Successfully accessed rosie with your credentials.
 </pre></div>
 </div>
 <p>If you are having trouble authenticating, have a look through this thread:</p>
@@ -508,7 +517,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <p>Let’s run a tiny test suite developed by Paul Leopardi at ACCESS-NRI. You can find the full documentation here :</p>
 <p><a class="github reference external" href="https://github.com/ACCESS-NRI/training-day-2024-regional_model/blob/main/access_rose_cylc/rose_cylc_example.md">ACCESS-NRI/training-day-2024-regional_model</a></p>
 <p>You can check out Paul’s suite using the rosie <code class="docutils literal notranslate"><span class="pre">check</span> <span class="pre">out</span></code> command,</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">cq161</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosie co u-cq161
 </pre></div>
 </div>
 <p>which creates a local copy of the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite at <code class="docutils literal notranslate"><span class="pre">~/roses/u-cq161</span></code>.</p>
@@ -542,7 +551,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <p><img alt="Simple rose suite running" src="../_images/u-cq161-cylc-gui.png" /></p>
 <p>Note how the PBS job submission details (where relevant) are included in the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> GUI.</p>
 <p>Let’s examine the suite output by viewing the contents of the run directory.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">cq161</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/cylc-run/u-cq161/
 </pre></div>
 </div>
 <p>Let’s examine the <code class="docutils literal notranslate"><span class="pre">log</span></code> files, noting that <code class="docutils literal notranslate"><span class="pre">log</span></code> is a symbolic link that links to the latest version of the <code class="docutils literal notranslate"><span class="pre">log.YYYYMMDDTHHMMSSZ</span></code> directory - i.e. the timestamp of the directory creation time is appended to the <code class="docutils literal notranslate"><span class="pre">log</span></code> directory name in GMT or ‘Zulu’ time, hence the ‘Z’.</p>
