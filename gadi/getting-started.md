@@ -1,6 +1,6 @@
 # Getting started on `gadi`
 
-The National Computing Infrastructure (NCI) hosts the supercomputer `gadi` where you will be conducting most of your modeling research.
+The National Computing Infrastructure (NCI) hosts the supercomputer `gadi` where you will be conducting most of your research.
 
 ## Accessing `gadi` via a terminal.
 
@@ -17,7 +17,7 @@ Thanks ACCESS-NRI!
 
 NCI have created a set of web-based graphical tools to help perform your computational research. These tools (including a Virtual Desktop and the `JupyterLab` environment) are made available via the 'Australian Research Environment' (ARE) on gadi.
 
-ACCESS-NRI have also created a quick tutorial to show you how to start an ARE session.
+ACCESS-NRI have created a quick tutorial to show you how to start an ARE session.
 
 Click [here](https://access-hive.org.au/pr-preview/pr-857/getting_started/are/) to find out how to 
 - create a Virtual Desktop Interface (VDI)

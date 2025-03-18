@@ -5,6 +5,9 @@ Running an atmospheric simulation is a complex process, requiring co-ordination 
 These tutorials assume:
 1. You have an NCI account on `gadi`.
 2. You can access a command-line terminal on `gadi` (either via an `ssh` session or using the `ARE` research environment)
+
+If you don't have an any of the above, follow the links [here](../gadi/getting-started.md)
+
 3. If using an `ssh` session, you have an X-Windows manager on your local client PC/laptop (either Windows, Mac or Linux) which allows you to interact with Graphical User Interfaces (GUIs) generated on `gadi` using the X-windows protocol.  Linux supports X-windows natively, Mac OS requires the installation of 'Xquartz'. 
 
 See [here](../gadi/mac-stuff.md) for more information for Mac users.
@@ -30,9 +33,7 @@ This will help keep your X-windows session active in short periods when you are 
     - `ki32`
     - `ki32_mosrs`
 
-If you don't have membership to these `gadi` projects, click this link to apply:
-
-https://opus.nci.org.au/spaces/DAE/pages/249495608/Prerequisites
+If you don't have membership to these `gadi` projects, click [here](https://opus.nci.org.au/spaces/DAE/pages/249495608/Prerequisites) to apply.
 
 ## Shell scripts and running jobs on Linux
 
@@ -125,12 +126,16 @@ Let's run through the tutorial here:
 
 https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html
 
-To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session. You will also need to specify a `cylc` session in order to load the `cylc` module. The best way to do this to to execute the following command from a
+To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session. You will also need to specify a `cylc` session in order to load the `cylc` module. The best way to do this to to execute the following commands from a
 `gadi` terminal:
 ```
-mkdir -p ~/.persistent-sessions
-cat > ~/.persistent-sessions/cylc-session <<< DUMMY
+$ mkdir -p ~/.persistent-sessions
+$ cat > ~/.persistent-sessions/cylc-session <<< DUMMY
 ```
+> **__NOTE__** Type everything after the `$` into your terminal's command line. In this document the `$` is used to distinguish commands you need to type from to contents of text files etc. You will notice that a `gadi` command line usually ends with a `$`, e.g.
+>```
+><username>@gadi-login-01]$
+>```
 These commands use the `bash` program `cat` (short for 'catalogue') to create a text file called `cylc-session` in the directory `~/.persistent-sessions/` which will contain the text `DUMMY`.
 
 Remember `~` is a `bash` short-cut which refers to your home directory on `gadi`.
@@ -139,8 +144,8 @@ You will learn more about 'persistent-sessions' in the later section [Persistent
 
 Then you can load the `cylc` software.
 ```
-module use /g/data/hr22/modulefiles
-module load cylc7/23.09
+$ module use /g/data/hr22/modulefiles
+$ module load cylc7/23.09
 ```
 This should generate the following output:
 ```
@@ -165,7 +170,7 @@ All your future `rose/cylc` tasks to run the `UM` will also be deployed in your 
 
 Let's run the 'Hello World' example. Go to the following path in `~/cylc-run` directory (the path is actually different to the official documentation):
 ```
-cd ~/cylc-run/examples/7.9.7/tutorial/oneoff/basic
+$ cd ~/cylc-run/examples/7.9.7/tutorial/oneoff/basic
 ```
 Using a text editor of your choice (`vi`, `nedit`, `nano`, `emacs`, `Microsoft VS Code`), copy the contents from the tutorial into a file named `suite.rc`.
 
@@ -226,19 +231,19 @@ Let's follow the practical section at the bottom of that page.
 
 > __**REMEMBER**__ we have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi, in case you are starting this tutorial from a fresh login session.
 >```
->module use /g/data/hr22/modulefiles
->module load cylc7/23.09
+>$ module use /g/data/hr22/modulefiles
+>$ module load cylc7/23.09
 >```
 > We also have to ensure we have specified a persistent session.
 
 Back to the tutorial:
 ```
-mkdir ~/cylc-run/graph-introduction
-cd ~/cylc-run/graph-introduction
+$ mkdir ~/cylc-run/graph-introduction
+$ cd ~/cylc-run/graph-introduction
 ```
 Create a `suite.rc` file in this directory using the template provided, and then create a task graph using the necessary syntax. When you execute
 ```
-cylc graph .
+$ cylc graph .
 ```
 the results show match the below image.
 
