@@ -38,13 +38,13 @@ in this case you don't need to use forks.
 In both scenarios we will assume that you will work with branches to separate
 your work from other people's before passing them to the main branch.
 
-### Scenario 1
+## Scenario 1
 
 This diagram shows the workflow when we **don't** need to do a fork.
 
 ```{figure} images/no_fork.png
 ---
-alt: "Concept model of the workflow in scenario 1. The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request."
+alt: 'Concept model of the workflow in scenario 1. The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request.'
 ---
 Collaborative workflow without a fork.
 ```
@@ -114,9 +114,9 @@ branch 'suggest-plot' set up to track 'origin/suggest-plot'.
 ```
 7. To open a pull request you need to go the repo on GitHub. You will see a big "Compare & pull request" green button. Click on that!
 
-```{figure} images/fork-1.png
-:width: 70%
-:alt:"Screenshot of a forked repo in GitHub.com/username/new-project with a new commit. It shows a button that says "Compare & pull request" on the top of the page"
+```{figure} images/pr-1.png
+:width: 95%
+:alt: 'Screenshot of repo in GitHub.com/username/new-project with a new commit in a branch that is not main. It shows a button that says "Compare & pull request" on the top of the page'
 
 ```
 
@@ -137,13 +137,13 @@ Here is a list of the new commands you just used:
 
 :::
 
-### Scenario 2
+## Scenario 2
 
 For fork-based workflows, the process is as follows:
 
 ```{figure} images/si_fork.png
 ---
-alt: "Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a "fork". The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request."
+alt: 'Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a "fork". The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request.'
 ---
 Collaborative workflow with a fork.
 ```
@@ -166,6 +166,13 @@ In this second scenario we assume you don't have write permission in the repo yo
 
 1. Go to [github.com/paocorrales/cadavre-exquis](https://github.com/paocorrales/cadavre-exquis)
 2. Fork the repository using the “Fork” button on the top right corner. This will create a copy of the repo into your GitHub account.
+
+
+```{figure} images/fork.jpeg
+:width: 95%
+:alt: 'Screenshot of a forked repo in GitHub.com/username/new-project'
+```
+
 3. Copy the url of the repo and clone it to your computer. On the terminal, run `git clone <repo URL>`. Remember to use the SSH option. 
 
 The repo is very small, it only have a README and a text file called `story.txt`. So, in this cadavre exquis, each collaborator adds a phrase to the story in a new line. The new phrase needs to be some how connected with the previous. 
@@ -176,9 +183,13 @@ The repo is very small, it only have a README and a text file called `story.txt`
 
 Now, if you go to the remote repo on GitHub, you will see something like this::
 
-TODO: add screenshot
+```{figure} images/pr-2.jpeg
+:width: 95%
+:alt: 'Screenshot of a forked repo in GitHub.com/username/new-project with a new commit. It shows a button that says "Contribute" on the top of the page'
 
-7. Click on “Open pull request”.
+```
+
+7. Click on “Contribute”.
 8. And click on “Create pull request”.
 10. We are almost there. Complete the pull request with a title and a message and then finish the PR
 

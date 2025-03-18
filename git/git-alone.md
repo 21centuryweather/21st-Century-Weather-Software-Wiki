@@ -17,7 +17,7 @@ With practice and depending on how do you work, you will find a comfortable midd
 
 ```{figure} images/file_cycle2.png
 ---
-alt: "The figure shows the states of a file: untracked or tracked. When it is tracked by the repository, the file can be staged, committed or modified. With the add action the file is "staged", with the commit action the file is "saved" to the repository. This cycles repeats teach time the file is modified."
+alt: 'The figure shows the states of a file: untracked or tracked. When it is tracked by the repository, the file can be staged, committed or modified. With the add action the file is "staged", with the commit action the file is "saved" to the repository. This cycles repeats teach time the file is modified.'
 ---
 States of a file in a repository.
 ```
