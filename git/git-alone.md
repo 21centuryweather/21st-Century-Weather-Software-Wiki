@@ -335,7 +335,7 @@ Fast-forward
 
 Now you know the main and most important command to work git. In the next section you can learn go to work with a team or maybe how to contribute to a project. This includes the concepts of branches, forks, pull request and more. 
 
-
+(content:git-alone:file-size)=
 ::: {warning}
 
 While you can put anything on a repo, there are limitations. 

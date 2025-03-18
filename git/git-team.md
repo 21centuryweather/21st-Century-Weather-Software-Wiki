@@ -1,3 +1,4 @@
+(content:git-team)=
 # Working with Git in a team
 
 In this section we are going to see what it looks like to use collaborative workflows to work with other people to do research and software development.
