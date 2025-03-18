@@ -29,6 +29,7 @@ parts:
     - file: python/polars-intro
   - caption: Working with Gadi
     chapters:
+    - file: gadi/getting-started
     - file: gadi/mac-stuff
   - caption: Datasets
     chapters:

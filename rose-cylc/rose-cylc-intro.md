@@ -23,12 +23,16 @@ Host gadi.nci.org.au
 ```
 This will help keep your X-windows session active in short periods when you are away from your keyboard.
 
-4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account. If you haven't started this, please contact Martin Dix at ACCESS-NRI (martin.dix@anu.edu.au) or Holger Wolff at CLEX (holger.wolff@monash.edu).
+4. You have, or in the process of obtaining, a UK Met Office Science Repository Service (MOSRS) account. If you haven't started this, please contact Heidi Nettelbeck at ACCESS-NRI (heidi.nettelbeck@anu.edu.au).
 5. You have memberships to the following `gadi` projects:
     - `hr22`
     - `access`
     - `ki32`
     - `ki32_mosrs`
+
+If you don't have membership to these `gadi` projects, click this link to apply:
+
+https://opus.nci.org.au/spaces/DAE/pages/249495608/Prerequisites
 
 ## Shell scripts and running jobs on Linux
 
