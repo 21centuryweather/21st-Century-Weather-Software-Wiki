@@ -3,7 +3,7 @@
 
 title: 21st Century Weather Software Wiki
 author: 21st Century Weather Software Engineering Team
-copyright: "2024"
+copyright: "2025"
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -31,3 +31,4 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
