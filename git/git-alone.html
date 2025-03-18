@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with Git alone &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'git/git-alone';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with Git in a team" href="git-team.html" />
+    <link rel="prev" title="Why git?" href="git-intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ScottWales-RNS/setup.html">Regional Nesting Suite</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/ancillaries.html">Creating Ancillaries</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/running.html">Running the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ScottWales-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="git-intro.html">Why git?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-team.html">Working with Git in a team</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../feedback/feedback.html">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgit/git-alone.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/git/git-alone.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Working with Git alone</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-version-control-works">How version control works?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-remote-repositories">What are remote repositories?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-local-new-repository">Creating a local new repository</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-changes">Local changes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-remote-repository">Creating the remote repository</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-changes">Remote changes</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-git-alone">
+<span id="content-git-alone"></span><h1>Working with Git alone<a class="headerlink" href="#working-with-git-alone" title="Link to this heading">#</a></h1>
+<p>It is a good idea to start using git in a project were your are working alone, that way you can practice the workflow without worrying about others’ people work.</p>
+<section id="how-version-control-works">
+<h2>How version control works?<a class="headerlink" href="#how-version-control-works" title="Link to this heading">#</a></h2>
+<p>Let’s imagine that we have a repository already working (<a class="reference internal" href="#content-git-alone-new-repo"><span class="std std-ref">later</span></a> we’ll see how to create one).
+When you create a new file as part of the repository (or <em>repo</em>), that file is <strong>untracked</strong> or unversioned.
+This means that git will ignore the file and any change you make to it until you <code class="docutils literal notranslate"><span class="pre">add</span></code> it to the repo.
+At that point the file is <strong>staged</strong>, meaning the changes in the file are ready to get into the repository.
+To do that you do a <code class="docutils literal notranslate"><span class="pre">commit</span></code> and <strong>save</strong> that version of the file to the repo with a message that explain what’s the commit about.</p>
+<p>This workflow <code class="docutils literal notranslate"><span class="pre">modify</span> <span class="pre">--&gt;</span> <span class="pre">add</span> <span class="pre">--&gt;</span> <span class="pre">commit</span></code> will repeat every time you want to save a version of the file.
+We don’t recommend making a commit every time you save the file or change a comma, and its also not a good idea to make a commit with a billion of changes.
+With practice and depending on how do you work, you will find a comfortable middle ground.</p>
+<figure class="align-default" id="id1">
+<img alt="The figure shows the states of a file: untracked or tracked. When it is tracked by the repository, the file can be staged, committed or modified. With the add action the file is &quot;staged&quot;, with the commit action the file is &quot;saved&quot; to the repository. This cycles repeats teach time the file is modified." src="../_images/file_cycle2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">States of a file in a repository.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Once you’ve made a commit, it’s set in stone:</p>
+<ul class="simple">
+<li><p>the files in it never change,</p></li>
+<li><p>its diff (the difference between the old and new version of the file) never changes,</p></li>
+<li><p>its history never changes</p></li>
+<li><p>the message and author never change</p></li>
+</ul>
+</div>
+<p>If you have experience working with the command line you could use git from there. When working locally in your laptop you can use the command line or use a GUI like <a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a> or <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.
+RStudio and VSCode also provides a basic GUI for git that you can use.</p>
+<p>So, we mentioned <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">commit</span></code> a lot, these are the git commands you will use all the time as part of the git workflow. Here is the way to use them:</p>
+<div class="tip admonition">
+<p class="admonition-title">Commands</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;file&gt;</span></code> to add a file to the staging area.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;A</span> <span class="pre">very</span> <span class="pre">descriptive</span> <span class="pre">message</span></code> to commit the files on the staging area.</p></li>
+</ul>
+</div>
+</section>
+<section id="what-are-remote-repositories">
+<h2>What are remote repositories?<a class="headerlink" href="#what-are-remote-repositories" title="Link to this heading">#</a></h2>
+<p>What we explained before is the <strong>local workflow</strong>.
+This is when the repo lives in your computer (or in Gadi) and that’s it.
+But you can also connect the <strong>local repository</strong> with a <strong>remote repository</strong>.
+Here we are going to use <a class="reference external" href="https://www.github.com">GitHub</a> to host remote repositories, but there are other options you can explore, such as <a class="reference external" href="https://about.gitlab.com/">GitLab</a>.</p>
+<p>Let’s imagine we have a local repository, we made some commits and we want to send those changes to the remote repository (we’ll how to create the remote repository later).
+For that we <code class="docutils literal notranslate"><span class="pre">push</span></code> the commits to the remote repository and the two repos are “up to date”. This will work if the local and the remote repository are <em>connected</em> and you have the correct permissions., we’ll talk about that in a little bit</p>
+<p>If a team-mate changes a file and pushes the changes it to the remote repository (your maybe is your from a different computer), your local repo will be <em>outdated</em>.
+To download those new commits from the remote repository into the local repo you <code class="docutils literal notranslate"><span class="pre">pull</span></code> the commits.</p>
+<figure class="align-default" id="id2">
+<img alt="Concept model of a workflow using git. Files are added to the staging area, and then commited to the local repository. You can push commits to the remote repository and pull new commits to your computer." src="../_images/local_remote.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Git workflow.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Tools like GitHub also include features that help you to collaborate and manage repositories.
+For example, you can modify files and commit those changes using the web interface.</p>
+<div class="tip admonition">
+<p class="admonition-title">Commands</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> to upload commits to the remote repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> to download commits from the remote repository to the local repo.</p></li>
+</ul>
+</div>
+</section>
+<section id="creating-a-local-new-repository">
+<span id="content-git-alone-new-repo"></span><h2>Creating a local new repository<a class="headerlink" href="#creating-a-local-new-repository" title="Link to this heading">#</a></h2>
+<p>There are many ways to start a new repository, locally in your computer using the command line or an interface, from GitHub or from any GUI!
+Here we’ll show you how to create a repo from the terminal, associate it to a GitHub repo and work with it.
+But keep in mind that there are many other ways to work with git.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Create a local repository</strong></p>
+<ol class="arabic simple">
+<li><p>Create the folder for the repo, for example</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir new-project
+$ cd new-project
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Initialise the repo</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git init
+</pre></div>
+</div>
+</div>
+<p>Now, the folder <code class="docutils literal notranslate"><span class="pre">new-project/</span></code> is a repository. Inf you run <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code>, you will see that the folder is not empty, there is a new hidden folder called <code class="docutils literal notranslate"><span class="pre">.git</span></code>. This folder will store all the information about the repository, including the tracked files. If you delete the folder, you lose the project’s history.</p>
+<section id="local-changes">
+<h3>Local changes<a class="headerlink" href="#local-changes" title="Link to this heading">#</a></h3>
+<p>It’s time to put into practice some of the thing we’ve been talking about.</p>
+<p>Let’s first check the status of the repo with:</p>
+<div class="tip admonition">
+<p class="admonition-title">Commands</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> tells you the status of the project.</p></li>
+</ul>
+</div>
+<p>This command will also list the changes and the options you have on what to do with those changes. If you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you will get this message</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+
+<span class="n">No</span> <span class="n">commits</span> <span class="n">yet</span>
+
+<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span> <span class="p">(</span><span class="n">create</span><span class="o">/</span><span class="n">copy</span> <span class="n">files</span> <span class="ow">and</span> <span class="n">use</span> <span class="s2">&quot;git add&quot;</span> <span class="n">to</span> <span class="n">track</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now is time to create a new file, for example <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code>.</p>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> again, the message changes to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>On<span class="w"> </span>branch<span class="w"> </span>main
+
+No<span class="w"> </span>commits<span class="w"> </span>yet
+
+Untracked<span class="w"> </span>files:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">	</span>read_era5.py
+
+nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span>but<span class="w"> </span>untracked<span class="w"> </span>files<span class="w"> </span>present<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
+</pre></div>
+</div>
+<p>…and is already telling you what to do next.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Add the file to the repository</strong></p>
+<ol class="arabic simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">add</span></code> to stage the file</p></li>
+</ol>
+</div>
+<p>If we check the repo status again, we get:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>On<span class="w"> </span>branch<span class="w"> </span>main
+
+No<span class="w"> </span>commits<span class="w"> </span>yet
+
+Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+<span class="w">	</span>new<span class="w"> </span>file:<span class="w">   </span>read_era5.py
+</pre></div>
+</div>
+<p>Now the <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> file is ready to be commited to the repo.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Commit the file to the repository</strong></p>
+<ol class="arabic simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&lt;&quot;message&quot;&gt;</span></code> to stage the file</p></li>
+</ol>
+<p>We use the -m flag (for “message”) to record a short and descriptive comment that will help us remember later on what we did and why. Your future you (and your colleges) will thank you later.</p>
+</div>
+<p>And again, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> returns:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>On<span class="w"> </span>branch<span class="w"> </span>main
+nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
+</pre></div>
+</div>
+<p>Next time you change something in <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> and wants to add it to the repo, you need to follow the same steps.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Practice the workflow</strong></p>
+<ol class="arabic simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> to include the imported libraries.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">add</span></code> to stage the file</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&lt;&quot;message&quot;&gt;</span></code> to stage the file</p></li>
+</ol>
+<p>It is not always necessary but you can check the status of the repo in between the steps.</p>
+</div>
+</section>
+</section>
+<section id="creating-the-remote-repository">
+<h2>Creating the remote repository<a class="headerlink" href="#creating-the-remote-repository" title="Link to this heading">#</a></h2>
+<p>Let’s create the remote repository that we’ll associated with the one we just created.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Create the remote repo on GitHub</strong></p>
+<ul class="simple">
+<li><p>Go to <a class="reference external" href="https://github.com">github.com</a> and log in.</p></li>
+<li><p>On the top right corner, click on the “+” bottom and then “New repository”</p></li>
+</ul>
+<p>Then complete the fields:</p>
+<ul class="simple">
+<li><p>Repository template: No template.</p></li>
+<li><p>Repository name: new-project or whatever you wish to name your new project.</p></li>
+<li><p>Description: Any short description of the project. Write this for humans.</p></li>
+<li><p>Public.</p></li>
+<li><p>Initialize this repository with: nothing</p></li>
+</ul>
+</div>
+<figure class="align-default" id="id3">
+<img alt="Screenshot of the new repository form on the GitHub webpage. You need to provide the repository name, and specify that neither a readme nor a license should be created" src="../_images/create-remote.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">GitHub interface.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>After doing that, GitHub will show you 3 different options to connect the new remote repo with a local one. Here we’ll use the first one.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Connect the repositories</strong></p>
+<p>On the “Quick setup — if you’ve done this kind of thing before” section:</p>
+<ol class="arabic simple">
+<li><p>Select SSH</p></li>
+<li><p>Copy the URL, it should looks like <code class="docutils literal notranslate"><span class="pre">git&#64;github.com:&lt;your</span> <span class="pre">username&gt;/new-project.git</span></code></p></li>
+<li><p>Go back to the terminal and run:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:&lt;your<span class="w"> </span>username&gt;/new-project.git
+</pre></div>
+</div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">origin</span></code> refers to the remote repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use SSH instead of HTTP because is more secure and works in Gadi.</p>
+</div>
+<p>Now that we have the repos connected we can update the remote repo by <em>pushing</em> the local changes.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Push changes to the remote repo</strong></p>
+<p>On the terminal:</p>
+<ol class="arabic simple">
+<li><p>Check the status of the repo, everything looks good?</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
+</ol>
+<p>Go to the repo on GitHub and check if is now up to date.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">main</span></code> once to automatically push to “origin”. After that, running only <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> will be enough and you will save a few seconds next time!</p>
+</div>
+<section id="remote-changes">
+<h3>Remote changes<a class="headerlink" href="#remote-changes" title="Link to this heading">#</a></h3>
+<p>Let’s come back to GitHub.</p>
+<p>Click on “Commits” to see the history of the repository.
+From this view, you can explore the repository at the “state” of each commit and look at the file differences.</p>
+<p>Now, we can try to make changes here.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Create a README</strong></p>
+<ol class="arabic simple">
+<li><p>On the main page of the repo on GitHub, click on the green bottom that says “Add a README”.</p></li>
+<li><p>Add something to the file. READMEs usually are written in Markdown and contain information about the repo.</p></li>
+<li><p>At the end of the page add a message on the first line and click on “Commit new file”.</p></li>
+<li><p>Come back to the main page to see the README.</p></li>
+</ol>
+</div>
+<p>The new file and the changes you do on GitHub are only on the remote repository until you make a pull from the local repo.
+If you make changes on the local repo while it not up to date, you may encounter merge conflicts, which lead to headaches.
+This happens when the version of a file on the local repo is not compatible with its version on the remote repo.
+In those cases, git cannot decide which version is the right one and you have to do it yourself.</p>
+<p>To avoid this problem (most of the time), you should do a pull before start doing anything else.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p><strong>Pull remote changes to the local repository</strong></p>
+<p>On the terminal:</p>
+<ol class="arabic simple">
+<li><p>Run:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>pull
+</pre></div>
+</div>
+<p>The remote changes will be compared with the local version and you will see something like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+Unpacking<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">967</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">967</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+From<span class="w"> </span>github.com:&lt;username&gt;/new-project
+<span class="w">   </span>c9cc95e..f42912c<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>origin/main
+Updating<span class="w"> </span>c9cc95e..f42912c
+Fast-forward
+<span class="w"> </span>README.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">3</span><span class="w"> </span>+++
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">3</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>
+<span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>README.md
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Try running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> again, if you get a “Already up to date.” it means that the local and remote repos have the same exact version of the files. You are ready to continue working on your project!</p></li>
+</ol>
+</div>
+<p>Now you know the main and most important command to work git. In the next section you can learn go to work with a team or maybe how to contribute to a project. This includes the concepts of branches, forks, pull request and more.</p>
+<div class="admonition warning" id="content-git-alone-file-size">
+<p class="admonition-title">Warning</p>
+<p>While you can put anything on a repo, there are limitations.</p>
+<p>GitHub allows individual files of <a class="reference external" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits">up to 100 MB</a>, so for any file below that limit can be safely included in your repository. If you have many moderately big files, you might be reaching GitHub’s soft limit of around <a class="reference external" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#repository-size-limits">5Gb per repository</a>.</p>
+<p>Most important, adding big files to a commit can make things go slower. For that reason, we recommend that you don’t add data files to the repository unless they are small.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To avoid adding file to a repository, maybe because they are to big, maybe because you don’t have permission to share them, you can add a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file. This file will include the list of files and folders you want to ignore. <a class="reference external" href="https://github.com/github/gitignore">This repo</a> includes a collection of gitignore templates you can use.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./git"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="git-intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Why git?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="git-team.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working with Git in a team</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-version-control-works">How version control works?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-remote-repositories">What are remote repositories?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-local-new-repository">Creating a local new repository</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-changes">Local changes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-remote-repository">Creating the remote repository</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-changes">Remote changes</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
