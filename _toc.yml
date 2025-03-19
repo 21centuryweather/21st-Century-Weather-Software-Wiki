@@ -15,13 +15,12 @@ parts:
     - file: UM/trouble-shooting
     - file: UM/common_problems
     - file: aus2200/models-aus2200
-    - file: ScottWales-RNS/setup
+    - file: NRI-RNS/intro
       sections:
-      - file: ScottWales-RNS/ancillaries
-      - file: ScottWales-RNS/running
-      - file: ScottWales-RNS/outputs
-      - file: ScottWales-RNS/evaluating
-      - file: ScottWales-RNS/further-considerations
+      - file: NRI-RNS/ancillaries
+      - file: NRI-RNS/outputs
+      - file: NRI-RNS/evaluating
+      - file: NRI-RNS/further-considerations
   - caption: Python
     chapters:
     - file: python/intro-python
