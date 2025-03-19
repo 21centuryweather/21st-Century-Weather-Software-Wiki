@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction &#8212; 21st Century Weather Software Wiki</title>
+    <title>Further Considerations &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ScottWales-RNS/introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NRI-RNS/further-considerations';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intro to Python for Climate Science" href="../python/intro-python.html" />
+    <link rel="prev" title="Evaluating the Model" href="evaluating.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,20 +180,20 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ancillaries.html">Ancillary tools</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Further Considerations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FScottWales-RNS/introduction.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FNRI-RNS/further-considerations.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +323,7 @@
       
       
       
-      <li><a href="../_sources/ScottWales-RNS/introduction.ipynb" target="_blank"
+      <li><a href="../_sources/NRI-RNS/further-considerations.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -333,7 +333,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -407,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>Further Considerations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,7 +417,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rmed">RMED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-to-change-with-resolution">Parameters to change with resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancillary-data-resolution">Ancillary Data Resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-effects">Boundary Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-resolution-grids">Variable Resolution Grids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposition-and-io-servers">Decomposition and IO servers</a></li>
 </ul>
             </nav>
         </div>
@@ -429,23 +433,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
-<p>Aus2200 is a regional configuration of the Unified Model. It simulates the Australian continent with a grid spacing of 0.0198 degrees (approx. 2200m), using RA3 science settings.</p>
-<p>In this tutorial we’ll run a subset of the domain covering the <a class="reference external" href="https://knowledge.aidr.org.au/resources/hailstorm-act-january-2020/">Canberra hail storms</a> in January 2020.</p>
-<p>The UM supports one-way nesting of models, where the inner domain gets initial and boundary conditions from an outer domain, but the outer domain is not affected by what’s happening in the inner domain. The driving data can come from either a previous UM run’s output or from <a class="reference external" href="https://code.metoffice.gov.uk/doc/um/latest/papers/umdp_303.pdf">GRIB-formatted data</a>.</p>
-<section id="rmed">
-<h2>RMED<a class="headerlink" href="#rmed" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed">RMED</a> is the Unified Model Regional Model Evaluation and Development project, and it is the basis for most regional workflows. RMED provides a number of workflows:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/RAS">Regional Ancillary Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/nesting">Regional Nesting Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/ensemble">Ensemble Nesting Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/coupl">Regional Coupled Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/eval">Regional Evaluation Suite</a></p></li>
-</ul>
-<p>Aus2200 makes use of the Regional Ancillary Suite for creating ancillary data (e.g. orography, vegetation) and the Regional Nesting Suite for running the model itself</p>
-<p>These suites are all relocatable to arbitrary domains. The general workflow of the RMED suites is ancillaries are created in the RAS, then one of RNS, ENS or RCS is used to run the model. The model can then be compared against observations using the RES.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="further-considerations">
+<h1>Further Considerations<a class="headerlink" href="#further-considerations" title="Link to this heading">#</a></h1>
+<section id="parameters-to-change-with-resolution">
+<h2>Parameters to change with resolution<a class="headerlink" href="#parameters-to-change-with-resolution" title="Link to this heading">#</a></h2>
+<p>When using RAL3 science the only parameters that need to change with resolution are the model timestep and the radiation timesteps, both in the ‘configs’ panel. The model timestep must evenly divide all other timesteps, including the radiation timestep, LBC cycle time and the cycle length.</p>
+</section>
+<section id="ancillary-data-resolution">
+<h2>Ancillary Data Resolution<a class="headerlink" href="#ancillary-data-resolution" title="Link to this heading">#</a></h2>
+<p>At very high resolutions the resolution of source ancillary datasets can start to become a concern. Check the output of the ancillary suite to make sure that there are no artifacts that could impact the model.</p>
+<p>Normally you want to use the SRTM orography for regional runs, the default orography dataset is very coarse.</p>
+</section>
+<section id="boundary-effects">
+<h2>Boundary Effects<a class="headerlink" href="#boundary-effects" title="Link to this heading">#</a></h2>
+<p>There will always be artifacts around the edge of a regional run where the LAM model merges with the lateral boundary conditions. These boundary effects need to be removed from any analysis. Consider a trial run to check the size of the effect with your configuration to make sure the boundary effects do not cover your area of interest.</p>
+</section>
+<section id="variable-resolution-grids">
+<h2>Variable Resolution Grids<a class="headerlink" href="#variable-resolution-grids" title="Link to this heading">#</a></h2>
+<p>It’s possible to define a grid where the outer rim is at a lower resolution than the inside, which can reduce the need for intermediate nests. This is used in the UKV and ACCESS-A grids. There is information on MOSRS for <a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/RAS/variablegrid">creating variable resolution grids</a>.</p>
+</section>
+<section id="decomposition-and-io-servers">
+<h2>Decomposition and IO servers<a class="headerlink" href="#decomposition-and-io-servers" title="Link to this heading">#</a></h2>
+<p>When setting up a new domain it’s important to consider the model performance. You should perform some trial experiments with different processor decompositions in order to find the most efficient setup. Generally more processors will make a job run faster, but the more you add the less effective each increase will be.</p>
+<p>Large grids will also take up a lot of time just writing out data. In this case you can enable the model’s IO servers, dedicated nodes for handling writing out data to disk.</p>
+<p>Further information can be found in the summary of the UM documentation available <a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/introduction.html">here</a></p>
 </section>
 </section>
 
@@ -458,16 +469,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-py"
+            mode: "python"
         },
         kernelOptions: {
-            name: "conda-env-analysis3-py",
-            path: "./ScottWales-RNS"
+            name: "python3",
+            path: "./NRI-RNS"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-py'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -479,6 +490,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="evaluating.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Evaluating the Model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../python/intro-python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Intro to Python for Climate Science</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -495,7 +524,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rmed">RMED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-to-change-with-resolution">Parameters to change with resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancillary-data-resolution">Ancillary Data Resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-effects">Boundary Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-resolution-grids">Variable Resolution Grids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposition-and-io-servers">Decomposition and IO servers</a></li>
 </ul>
   </nav></div>
 

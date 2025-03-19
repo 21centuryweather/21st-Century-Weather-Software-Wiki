@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction &#8212; 21st Century Weather Software Wiki</title>
+    <title>Evaluating the Model &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ScottWales-RNS/introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NRI-RNS/evaluating';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Further Considerations" href="further-considerations.html" />
+    <link rel="prev" title="Model Outputs" href="outputs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,20 +180,20 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ancillaries.html">Ancillary tools</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html">Model Outputs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="further-considerations.html">Further Considerations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FScottWales-RNS/introduction.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FNRI-RNS/evaluating.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +323,7 @@
       
       
       
-      <li><a href="../_sources/ScottWales-RNS/introduction.ipynb" target="_blank"
+      <li><a href="../_sources/NRI-RNS/evaluating.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>Evaluating the Model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,7 +417,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rmed">RMED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-options">General Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cycling-options">Cycling Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-trial-model-details">Control/Trial model details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-output">Viewing output</a></li>
 </ul>
             </nav>
         </div>
@@ -429,23 +432,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
-<p>Aus2200 is a regional configuration of the Unified Model. It simulates the Australian continent with a grid spacing of 0.0198 degrees (approx. 2200m), using RA3 science settings.</p>
-<p>In this tutorial we’ll run a subset of the domain covering the <a class="reference external" href="https://knowledge.aidr.org.au/resources/hailstorm-act-january-2020/">Canberra hail storms</a> in January 2020.</p>
-<p>The UM supports one-way nesting of models, where the inner domain gets initial and boundary conditions from an outer domain, but the outer domain is not affected by what’s happening in the inner domain. The driving data can come from either a previous UM run’s output or from <a class="reference external" href="https://code.metoffice.gov.uk/doc/um/latest/papers/umdp_303.pdf">GRIB-formatted data</a>.</p>
-<section id="rmed">
-<h2>RMED<a class="headerlink" href="#rmed" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed">RMED</a> is the Unified Model Regional Model Evaluation and Development project, and it is the basis for most regional workflows. RMED provides a number of workflows:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="evaluating-the-model">
+<h1>Evaluating the Model<a class="headerlink" href="#evaluating-the-model" title="Link to this heading">#</a></h1>
+<p>The <a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/eval">Regional Evaluation Suite</a> can compare a regional run against observations.</p>
+<p>Suite <strong>u-cy820</strong> has been set up to evaluate our sample regional run. Check out the suite with <code class="docutils literal notranslate"><span class="pre">rosie</span> <span class="pre">checkout</span></code> and open it in <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code>. Make sure to set the SITE to <code class="docutils literal notranslate"><span class="pre">nci</span></code> in ‘General Run Options’.</p>
+<p><img alt="MSLP Evaluation" src="../_images/res-mslp.png" /></p>
+<section id="general-options">
+<h2>General Options<a class="headerlink" href="#general-options" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/RAS">Regional Ancillary Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/nesting">Regional Nesting Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/ensemble">Ensemble Nesting Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/coupl">Regional Coupled Suite</a></p></li>
-<li><p><a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/eval">Regional Evaluation Suite</a></p></li>
+<li><p><strong>PLOT_DIR</strong>: Plot output directory</p></li>
+<li><p><strong>WEB_DIR</strong>: Website output directory</p></li>
+<li><p><strong>NUM_MODELS</strong>: How many models to compare</p></li>
 </ul>
-<p>Aus2200 makes use of the Regional Ancillary Suite for creating ancillary data (e.g. orography, vegetation) and the Regional Nesting Suite for running the model itself</p>
-<p>These suites are all relocatable to arbitrary domains. The general workflow of the RMED suites is ancillaries are created in the RAS, then one of RNS, ENS or RCS is used to run the model. The model can then be compared against observations using the RES.</p>
+</section>
+<section id="cycling-options">
+<h2>Cycling Options<a class="headerlink" href="#cycling-options" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>TRIAL_DATES</strong>: Start and end date of evaluation</p></li>
+</ul>
+</section>
+<section id="control-trial-model-details">
+<h2>Control/Trial model details<a class="headerlink" href="#control-trial-model-details" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>data_host</strong>: Set to <code class="docutils literal notranslate"><span class="pre">gadi</span></code></p></li>
+<li><p><strong>data_dir</strong>: RNS output directory</p></li>
+<li><p><strong>data_files</strong>: Set to <code class="docutils literal notranslate"><span class="pre">['umqvaa_pvera%N',</span> <span class="pre">'umqvaa_pverb%N',</span> <span class="pre">'umqvaa_pverc%N',</span> <span class="pre">'umqvaa_pverd%N']</span></code></p></li>
+<li><p><strong>data_format</strong>: Set to <code class="docutils literal notranslate"><span class="pre">Fieldsfile</span></code></p></li>
+</ul>
+</section>
+<section id="viewing-output">
+<h2>Viewing output<a class="headerlink" href="#viewing-output" title="Link to this heading">#</a></h2>
+<p>Go to the website output directory and launch a web server with python</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span>
+</pre></div>
+</div>
+<p>Right click on the link (looks like <code class="docutils literal notranslate"><span class="pre">http://0.0.0.0:8000</span></code>) and select ‘Open Link’</p>
+<p><img alt="Precip Evaluation" src="../_images/res-precip.png" /></p>
+<p>NCI are looking at how to make these visible in a web browser outside of ARE</p>
 </section>
 </section>
 
@@ -462,7 +485,7 @@ document.write(`
         },
         kernelOptions: {
             name: "conda-env-analysis3-py",
-            path: "./ScottWales-RNS"
+            path: "./NRI-RNS"
         },
         predefinedOutput: true
     }
@@ -479,6 +502,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="outputs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Model Outputs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="further-considerations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Further Considerations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -495,7 +536,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rmed">RMED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-options">General Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cycling-options">Cycling Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-trial-model-details">Control/Trial model details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-output">Viewing output</a></li>
 </ul>
   </nav></div>
 

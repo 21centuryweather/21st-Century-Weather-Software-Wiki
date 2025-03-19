@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating Ancillaries &#8212; 21st Century Weather Software Wiki</title>
+    <title>Ancillary tools &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ScottWales-RNS/ancillaries';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NRI-RNS/ancillaries';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Outputs" href="outputs.html" />
+    <link rel="prev" title="Regional Atmospheric Modeling" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,20 +180,20 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ancillary tools</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="further-considerations.html">Further Considerations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FScottWales-RNS/ancillaries.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2FNRI-RNS/ancillaries.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +323,7 @@
       
       
       
-      <li><a href="../_sources/ScottWales-RNS/ancillaries.ipynb" target="_blank"
+      <li><a href="../_sources/NRI-RNS/ancillaries.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Creating Ancillaries</h1>
+    <h1>Ancillary tools</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,19 +417,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Creating Ancillaries</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-domains">Defining Domains</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regions">Regions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolutions">Resolutions</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancillary-options">Ancillary Options</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Ancillary tools</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rotated-poles">Rotated Poles</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cap-and-ants">CAP and ANTS</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ancil-files">Ancil files</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-ancillaries">Editing Ancillaries</a></li>
 </ul>
 
@@ -443,44 +435,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="creating-ancillaries">
-<h1>Creating Ancillaries<a class="headerlink" href="#creating-ancillaries" title="Link to this heading">#</a></h1>
-<p>The <a class="reference external" href="https://code.metoffice.gov.uk/trac/rmed/wiki/suites/RAS">Regional Ancillary Suite</a> is used to set domains and create ancillary data for regional models.</p>
-<p>Suite <strong>u-cy368</strong> has been set up to create ancillaries for our sample domain. Check out the suite with <code class="docutils literal notranslate"><span class="pre">rosie</span> <span class="pre">checkout</span> <span class="pre">u-cy368</span></code> and open it in <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code>. Make sure to set the SITE to <code class="docutils literal notranslate"><span class="pre">nci-gadi</span></code> in ‘General Run Options’.</p>
-<section id="defining-domains">
-<h2>Defining Domains<a class="headerlink" href="#defining-domains" title="Link to this heading">#</a></h2>
-<p>Domains are defined in two layers, regions and resolutions. This allows the domain to be relocatable by just changing the region centre, without having to change the model grid setups.</p>
-<p>At this stage we’re not worried about which nest is inside which, that will get defined in the Regional Nesting Suite.</p>
-<p>Aus2200 domains are named by their grid spacing in ten-thousandths of a degree - <code class="docutils literal notranslate"><span class="pre">d0198</span></code> represents a 0.0198 degree grid spacing in both latitude and longitude.</p>
-<section id="regions">
-<h3>Regions<a class="headerlink" href="#regions" title="Link to this heading">#</a></h3>
-<p><strong>Regions</strong> set the primary location of the domain. You can define this either as the domain centre or as the bottom left corner. Regions also control if a rotated grid is being used. Configuration options are prefixed with the region number, e.g. <code class="docutils literal notranslate"><span class="pre">rg01_name</span></code>.</p>
-<ul class="simple">
-<li><p><strong>name</strong>: A name for this region</p></li>
-<li><p><strong>use_centre</strong>: True if the location is for the region centre, false for the bottom left corner</p></li>
-<li><p><strong>centre</strong>: Region centre</p></li>
-<li><p><strong>rot_grid</strong>: True if using a rotated pole (useful at high latitudes)</p></li>
-</ul>
-<p>When rotated pole is enabled, the grid coordinates will be transformed so that the centre of your domain is at 0N 0E in the new coordinate system. At high latitudes this will give much more evenly spaced grid cells.</p>
-<p><img alt="Ancil region" src="../_images/ancil-region.png" /></p>
-</section>
-<section id="resolutions">
-<h3>Resolutions<a class="headerlink" href="#resolutions" title="Link to this heading">#</a></h3>
-<p><strong>Resolutions</strong> define actual grids, including the grid size and spacing. Configuration options are prefixed with the region and resolution number, e.g. <code class="docutils literal notranslate"><span class="pre">rg01_rs01_name</span></code>.</p>
-<ul class="simple">
-<li><p><strong>name</strong>: A name for this resolution</p></li>
-<li><p><strong>delta</strong>: Grid spacing in degrees</p></li>
-<li><p><strong>npts</strong>: Grid size</p></li>
-<li><p><strong>offset</strong>: Offset from the region location</p></li>
-<li><p><strong>levset</strong>: Vertical levels - RAL configurations should use L90_40km (90 vertical levels, max height 40 km)</p></li>
-</ul>
-<p><img alt="Ancil Resolution" src="../_images/ancil-resolution.png" /></p>
-</section>
-</section>
-<section id="ancillary-options">
-<h2>Ancillary Options<a class="headerlink" href="#ancillary-options" title="Link to this heading">#</a></h2>
-<p>There are a number of options for which ancillary files to create. Which you’ll need will depend on the model’s science settings. SRTM orography should be enabled when working at km-scale or finer resolutions.</p>
-</section>
+  <section id="ancillary-tools">
+<h1>Ancillary tools<a class="headerlink" href="#ancillary-tools" title="Link to this heading">#</a></h1>
+<p>Scott Wales at CLEX created a few tools to help create ancillaries for regional nested suite.</p>
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
 <p>Plan out creating ancillaries for your own domain (max 200x200 grid size)</p>
@@ -613,43 +570,6 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="cap-and-ants">
-<h1>CAP and ANTS<a class="headerlink" href="#cap-and-ants" title="Link to this heading">#</a></h1>
-<p>Ancillary files are created from high-resolution source data using two tools, <a class="reference external" href="https://code.metoffice.gov.uk/doc/ancil/ancil9.1/index.html">CAP</a> and <a class="reference external" href="https://code.metoffice.gov.uk/doc/ancil/ants/latest/index.html">ANTS</a>. The Met Office are in the process of moving all of their ancillary generation to the python-based ANTS tool, however it doesn’t yet support all ancillary types.</p>
-</section>
-<section id="ancil-files">
-<h1>Ancil files<a class="headerlink" href="#ancil-files" title="Link to this heading">#</a></h1>
-<p>The RAS creates the following ancillary files under <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-cy368/share/data/ancils</span></code>. You can manually edit the data in the files if needed using <a class="reference external" href="https://code.metoffice.gov.uk/doc/ancil/ants/latest/index.html">ANTS</a>.</p>
-<ul class="simple">
-<li><p>orog_srtm: High-resolution orography</p></li>
-<li><p>qrclim.biog: Biogenic aerosol climatology</p></li>
-<li><p>qrclim.biom: Biomass burning aerosol climatology</p></li>
-<li><p>qrclim.blck: Black carbon (soot) aerosol climatology</p></li>
-<li><p>qrclim.dust: Dust aerosol climatology</p></li>
-<li><p>qrclim.land: Land-surface albedo</p></li>
-<li><p>qrclim.ocff: Organic carbon from fossil fuel climatology</p></li>
-<li><p>qrclim.ozone: Ozone climatology</p></li>
-<li><p>qrclim.sea: Chlorophyll climatology</p></li>
-<li><p>qrclim.seaice: Sea ice climatology</p></li>
-<li><p>qrclim.smow: Soil moisture and snow climatology</p></li>
-<li><p>qrclim.sslt: Sea salt aerosol climatology</p></li>
-<li><p>qrclim.sst: Sea surface temperature climatology</p></li>
-<li><p>qrclim.sulp: Sulphate aerosol climatology</p></li>
-<li><p>qrparm.MORUSES.morph: MORUSES data</p></li>
-<li><p>qrparm.hydtop: Large scale hydrology TOP-index</p></li>
-<li><p>qrparm.lake: Lake mask</p></li>
-<li><p>qrparm.mask: Land-sea mask</p></li>
-<li><p>qrparm.orog: Orography</p></li>
-<li><p><a class="reference external" href="http://qrparm.orog.mn">qrparm.orog.mn</a>: Mean orography</p></li>
-<li><p>qrparm.soil: Soil parameters</p></li>
-<li><p>qrparm.soil.dust: Soil dust</p></li>
-<li><p>qrparm.veg.dist: Disturbed fraction of vegetation</p></li>
-<li><p>qrparm.veg.frac: Vegetation fractions</p></li>
-<li><p>qrparm.veg.func: Vegetation functional types
-.veg.func
-qrparm.veg.func_igbp</p></li>
-</ul>
-</section>
 <section id="editing-ancillaries">
 <h1>Editing Ancillaries<a class="headerlink" href="#editing-ancillaries" title="Link to this heading">#</a></h1>
 <p>You can edit ancilliaries in Python using the ANTS package. ANTS is based on Iris, and represents ancillaries as Iris cubes.</p>
@@ -709,7 +629,7 @@ module<span class="w"> </span>load<span class="w"> </span>ants
         },
         kernelOptions: {
             name: "conda-env-analysis3-py",
-            path: "./ScottWales-RNS"
+            path: "./NRI-RNS"
         },
         predefinedOutput: true
     }
@@ -726,6 +646,24 @@ module<span class="w"> </span>load<span class="w"> </span>ants
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Regional Atmospheric Modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="outputs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Model Outputs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -742,19 +680,11 @@ module<span class="w"> </span>load<span class="w"> </span>ants
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Creating Ancillaries</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-domains">Defining Domains</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regions">Regions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolutions">Resolutions</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancillary-options">Ancillary Options</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Ancillary tools</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rotated-poles">Rotated Poles</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cap-and-ants">CAP and ANTS</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ancil-files">Ancil files</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-ancillaries">Editing Ancillaries</a></li>
 </ul>
 
