@@ -1,4 +1,4 @@
-# Getting started on `gadi`
+# Getting started on gadi
 
 The National Computing Infrastructure (NCI) hosts the supercomputer `gadi` where you will be conducting most of your research.
 
