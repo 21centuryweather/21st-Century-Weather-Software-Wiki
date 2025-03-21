@@ -30,6 +30,7 @@ parts:
     chapters:
     - file: gadi/getting-started
     - file: gadi/mac-stuff
+    - file: gadi/moving-data
   - caption: Datasets
     chapters:
     - file: datasets/weather_objects
