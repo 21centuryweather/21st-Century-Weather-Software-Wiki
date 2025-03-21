@@ -159,7 +159,7 @@ done
 ```
 This is one way to loop over all `.txt` files in our `md5_dir` directory and use the bash command `diff` to check the file contents are identical.
 
-If this command exits with no output, the files have been copied correctly.
+If this command exits with no output, the files have been copied correctly and you can be confident of their data integrity.
 
 The example scripts above are available [here](https://github.com/21centuryweather/software_engineering_demos/tree/main/file_transfers/md5sum_copyq_rsync)
 
