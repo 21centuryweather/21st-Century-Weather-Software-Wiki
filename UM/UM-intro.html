@@ -525,9 +525,9 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">xios_path</span></code> : Directory of <code class="docutils literal notranslate"><span class="pre">xios</span></code> libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">oasis3_mct_path</span></code> : Directory of intel libraries to compile this version of the UM which supports the <code class="docutils literal notranslate"><span class="pre">oasis3</span></code> coupler.</p></li>
 </ul>
-<blockquote>
-<div><p><strong><strong>IMPORTANT</strong></strong> The default value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> is <code class="docutils literal notranslate"><span class="pre">/scratch/gb02/${USER}/GC5_runs</span></code>. If you are NOT a member of the gadi project <code class="docutils literal notranslate"><span class="pre">gb02</span></code>, you will have to swap the value of <code class="docutils literal notranslate"><span class="pre">gb02</span></code> for another gadi project that you have membership of.</p>
-</div></blockquote>
+<div class="warning docutils">
+<p>The default value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> is <code class="docutils literal notranslate"><span class="pre">/scratch/gb02/${USER}/GC5_runs</span></code>. If you are NOT a member of the gadi project <code class="docutils literal notranslate"><span class="pre">gb02</span></code>, you will have to swap the value of <code class="docutils literal notranslate"><span class="pre">gb02</span></code> for another gadi project that you have membership of.</p>
+</div>
 </section>
 <section id="task-flow">
 <h3>Task flow<a class="headerlink" href="#task-flow" title="Link to this heading">#</a></h3>
@@ -696,9 +696,9 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 </div>
 <p>If you want to know more about the UM reconfiguration process, you click here: <a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration">https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration</a></p>
 <p>The standard output (or ‘stdout’ for short) of the UM reconfigure executable is long and rather interesting. You can scroll through the stdout contained in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> by accessing the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file, either via the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> gui or using a file editor of choice. It is very common for <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> to fail when running a new suite configuration for the first time.</p>
-<blockquote>
-<div><p><strong><strong>TIP</strong></strong> Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.</p>
-</div></blockquote>
+<div class="tip docutils">
+<p>Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.</p>
+</div>
 <p>Note how the reconfigure executable:</p>
 <ul class="simple">
 <li><p>Splits itself across various ‘PEs’ or ‘Processing Elements’.</p></li>
@@ -732,9 +732,9 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 <section id="um-forecast">
 <h3>um_forecast<a class="headerlink" href="#um-forecast" title="Link to this heading">#</a></h3>
 <p>This task initialises the atmospheric forecast, using the same <code class="docutils literal notranslate"><span class="pre">app/um</span></code> files used by <code class="docutils literal notranslate"><span class="pre">um_recon</span></code>. Let’s look through the stdout of the atmospheric forecast task, either via the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> gui or using a file editor. It is very common when running a new suite configuration for the first time that the atmospheric forecast task may fail.</p>
-<blockquote>
-<div><p><strong><strong>TIP</strong></strong> Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_forecast</span></code> task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM.</p>
-</div></blockquote>
+<div class="tip docutils">
+<p>Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_forecast</span></code> task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM.</p>
+</div>
 <p>Note the atmospheric executable:</p>
 <ul class="simple">
 <li><p>opens the <code class="docutils literal notranslate"><span class="pre">.astart</span></code> file.</p></li>

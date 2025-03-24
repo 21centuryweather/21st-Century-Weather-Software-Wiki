@@ -554,31 +554,52 @@ document.write(`
 <h3>First cylc tutorial<a class="headerlink" href="#first-cylc-tutorial" title="Link to this heading">#</a></h3>
 <p>Let’s run through the tutorial here:</p>
 <p><a class="reference external" href="https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html">https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html</a></p>
-<p>To launch <code class="docutils literal notranslate"><span class="pre">cylc</span></code> on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> you need to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software into your interactive command-line session. You will also need to specify a <code class="docutils literal notranslate"><span class="pre">cylc</span></code> session in order to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> module. The best way to do this to to execute the following commands from a
+<p>To launch <code class="docutils literal notranslate"><span class="pre">cylc</span></code> on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> you need to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software into your interactive command-line session. You will also need to specify a ‘persistent session’ in order to load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> module. The best way to do this to to execute the following commands from a
 <code class="docutils literal notranslate"><span class="pre">gadi</span></code> terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/.persistent-sessions
-$ cat &gt; ~/.persistent-sessions/cylc-session &lt;&lt;&lt; DUMMY
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ persistent-session start cylc-test
 </pre></div>
 </div>
-<blockquote>
-<div><p><strong><strong>NOTE</strong></strong> Type everything after the <code class="docutils literal notranslate"><span class="pre">$</span></code> into your terminal’s command line. In this document the <code class="docutils literal notranslate"><span class="pre">$</span></code> is used to distinguish commands you need to type from to contents of text files etc. You will notice that a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> command line usually ends with a <code class="docutils literal notranslate"><span class="pre">$</span></code>, e.g.</p>
+<div class="note docutils">
+<p>Type everything after the <code class="docutils literal notranslate"><span class="pre">$</span></code> into your terminal’s command line, i.e. don’t include the <code class="docutils literal notranslate"><span class="pre">$</span></code>. In this document the <code class="docutils literal notranslate"><span class="pre">$</span></code> is used to distinguish commands you need to type (or copy from your browser) from contents of text files etc. You will notice that a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> command line usually ends with a <code class="docutils literal notranslate"><span class="pre">$</span></code>, e.g.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;username&gt;@gadi-login-01]$
 </pre></div>
 </div>
-</div></blockquote>
+</div>
+<p>This should generate output containing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">session</span> <span class="o">&lt;</span><span class="n">random</span> <span class="n">text</span> <span class="n">string</span><span class="o">&gt;</span> <span class="n">running</span> <span class="o">-</span> <span class="n">connect</span> <span class="n">using</span>
+  <span class="n">ssh</span> <span class="n">cylc</span><span class="o">-</span><span class="n">test</span><span class="o">.&lt;</span><span class="n">user</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;.&lt;</span><span class="n">project</span><span class="o">&gt;.</span><span class="n">ps</span><span class="o">.</span><span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
+</pre></div>
+</div>
+<p>We then need to add the name of this session to the contents of a text file <code class="docutils literal notranslate"><span class="pre">/.persistent-sessions/cylc-session</span></code>. We can do this using the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command from the command line.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/.persistent-sessions
+$ cat &gt; ~/.persistent-sessions/cylc-session &lt;&lt;&lt; cylc-test.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
+<div class="warning docutils">
+<p>Make sure you insert your values of <code class="docutils literal notranslate"><span class="pre">&lt;user-id&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;project</span></code>&gt; into the above command. i.e replicate the output generated from your earlier <code class="docutils literal notranslate"><span class="pre">persistent-session</span> <span class="pre">start</span> <span class="pre">cylc-test</span></code> command.</p>
+</div>
 <p>These commands use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> program <code class="docutils literal notranslate"><span class="pre">cat</span></code> (short for ‘catalogue’) to create a text file called <code class="docutils literal notranslate"><span class="pre">cylc-session</span></code> in the directory <code class="docutils literal notranslate"><span class="pre">~/.persistent-sessions/</span></code> which will contain the text <code class="docutils literal notranslate"><span class="pre">DUMMY</span></code>.</p>
 <p>Remember <code class="docutils literal notranslate"><span class="pre">~</span></code> is a <code class="docutils literal notranslate"><span class="pre">bash</span></code> short-cut which refers to your home directory on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
-<p>You will learn more about ‘persistent-sessions’ in the later section <a class="reference internal" href="../mosrs/mosrs-intro.html##Persistent-sessions"><span class="std std-ref">Persistent session</span></a>. For now, this test ‘DUMMY’ file will allow us to run through the tutorials.</p>
+<p>Let’s check the contents of this file are correct by using <code class="docutils literal notranslate"><span class="pre">more</span></code> at the command line.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more ~/.persistent-sessions/cylc-session
+cylc-test.&lt;user-id&gt;.&lt;project&gt;.gadi.nci.org.au
+</pre></div>
+</div>
+<p>You will learn more about ‘persistent-sessions’ in a later  <a class="reference internal" href="../mosrs/mosrs-intro.html##Persistent-sessions"><span class="std std-ref">section</span></a>. When you are running UM jobs against specific <code class="docutils literal notranslate"><span class="pre">gadi</span></code> projects, you will need to specify more arguments for your when launching persistent sessions. But the session we have launched above (‘cylc-test’) will suffice for these tutorials.</p>
+<p>Let’s login to your new ‘persistent-session’ using <code class="docutils literal notranslate"><span class="pre">ssh</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y cylc-test.&lt;user-id&gt;.&lt;project&gt;.ps.gadi.nci.org.au
+</pre></div>
+</div>
 <p>Then you can load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> software.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module use /g/data/hr22/modulefiles
-$ module load cylc7/23.09
+$ module load cylc7
 </pre></div>
 </div>
 <p>This should generate the following output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">the</span> <span class="n">cylc</span> <span class="n">session</span> <span class="n">DUMMY</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">the</span> <span class="n">cylc</span> <span class="n">session</span> <span class="n">cylc</span><span class="o">-</span><span class="n">test</span><span class="o">&lt;</span><span class="n">etc</span><span class="o">&gt;</span>
 
-<span class="n">Loading</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">23.09</span>
-  <span class="n">Loading</span> <span class="n">requirement</span><span class="p">:</span> <span class="n">mosrs</span><span class="o">-</span><span class="n">setup</span><span class="o">/</span><span class="mf">1.0.1</span>
+<span class="n">Loading</span> <span class="n">cylc7</span><span class="o">/</span><span class="mf">24.03</span>
+  <span class="n">Loading</span> <span class="n">requirement</span><span class="p">:</span> <span class="n">mosrs</span><span class="o">-</span><span class="n">setup</span><span class="o">/</span><span class="mf">2.0.1</span>
 </pre></div>
 </div>
 <p>Follow the instructions in section 7.6 - 7.9 of the tutorial. Begin with</p>
@@ -614,16 +635,16 @@ $ module load cylc7/23.09
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc run
 </pre></div>
 </div>
-<blockquote>
-<div><p><strong><strong>NOTE</strong></strong> Make sure you are in the current working directory containing your <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file, i.e. <code class="docutils literal notranslate"><span class="pre">~/cylc-run/examples/7.9.7/tutorial/oneoff/basic</span></code> to run a <code class="docutils literal notranslate"><span class="pre">cylc</span></code> suite.</p>
-</div></blockquote>
+<div class="note docutils">
+<p>Make sure you are in the current working directory containing your <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file, i.e. <code class="docutils literal notranslate"><span class="pre">~/cylc-run/examples/7.9.7/tutorial/oneoff/basic</span></code> to run a <code class="docutils literal notranslate"><span class="pre">cylc</span></code> suite.</p>
+</div>
 <p>Your output should contain the following.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cylc run
 
-Loading cylc7/23.09
-  Loading requirement: mosrs-setup/1.0.1
+Loading cylc7/24.03
+  Loading requirement: mosrs-setup/2.0.1
             ._.                                                       
-            | |                 The Cylc Suite Engine [7.9.7]         
+            | |                 The Cylc Suite Engine [7.9.9]         
 ._____._. ._| |_____.           Copyright (C) 2008-2019 NIWA          
 | .___| | | | | .___|   &amp; British Crown (Met Office) &amp; Contributors.  
 | !___| !_! | | !___.  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -644,14 +665,13 @@ To view suite server program contact information:
 <p>Let’s move onto another <code class="docutils literal notranslate"><span class="pre">cylc</span></code> tutorial, which is located in the <code class="docutils literal notranslate"><span class="pre">rose</span></code> documentation. This tutorial deals with creating graphs, i.e. how we dictate the sequence in which tasks are run. The version of <code class="docutils literal notranslate"><span class="pre">rose</span></code> currently running supported on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> for ACCESS-UM experiments is <code class="docutils literal notranslate"><span class="pre">2019.01.7</span></code> so make sure you using the following URL :</p>
 <p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.html</a></p>
 <p>Let’s follow the practical section at the bottom of that page.</p>
-<blockquote>
-<div><p><strong><strong>REMEMBER</strong></strong> we have to use the following <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands to add <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to our paths on gadi, in case you are starting this tutorial from a fresh login session.</p>
+<div class="tip docutils">
+<p>In you are starting this tutorial from a fresh login session, remember to login to your specified ‘persistent session’. We have to use the following <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands to add <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> to our paths on gadi inside the specific session.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module use /g/data/hr22/modulefiles
-$ module load cylc7/23.09
+$ module load cylc7
 </pre></div>
 </div>
-<p>We also have to ensure we have specified a persistent session.</p>
-</div></blockquote>
+</div>
 <p>Back to the tutorial:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/cylc-run/graph-introduction
 $ cd ~/cylc-run/graph-introduction
@@ -664,11 +684,10 @@ $ cd ~/cylc-run/graph-introduction
 <p>the results show match the below image.</p>
 <p><img alt="Simple cylc graph" src="../_images/cylc-graph-tutorial.png" /></p>
 <p>Remember the ‘.’ in a <code class="docutils literal notranslate"><span class="pre">bash</span></code> command means ‘the current directory’. So the above command means `create a graph of the suite that exists in the current directory’.</p>
-<blockquote>
-<div><p><strong><em>TIP:</em></strong>
-Here is a web-link containing a review of all ‘special characters’ in <code class="docutils literal notranslate"><span class="pre">bash</span></code>:
+<div class="tip docutils">
+<p>Here is a web-link containing a review of all ‘special characters’ in <code class="docutils literal notranslate"><span class="pre">bash</span></code>:
 <a class="reference external" href="https://www.howtogeek.com/439199/15-special-characters-you-need-to-know-for-bash/">https://www.howtogeek.com/439199/15-special-characters-you-need-to-know-for-bash/</a></p>
-</div></blockquote>
+</div>
 </section>
 <section id="third-cylc-tutorial">
 <h3>Third cylc tutorial<a class="headerlink" href="#third-cylc-tutorial" title="Link to this heading">#</a></h3>
@@ -685,18 +704,17 @@ Here is a web-link containing a review of all ‘special characters’ in <code 
 <p>Access the fourth tutorial here:</p>
 <p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-cycling.html</a></p>
 <p>Remember to load the <code class="docutils literal notranslate"><span class="pre">rose</span></code> and <code class="docutils literal notranslate"><span class="pre">cylc</span></code> executables into your current <code class="docutils literal notranslate"><span class="pre">gadi</span></code> environment using the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands.</p>
-<blockquote>
-<div><p><strong><em>TIP:</em></strong>
-You can use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> <code class="docutils literal notranslate"><span class="pre">alias</span></code> function to write a simple macro to load the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> environment with a simple command.
+<div class="tip docutils">
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> <code class="docutils literal notranslate"><span class="pre">alias</span></code> function to write a simple macro to load the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> environment with a simple command.
 e.g. in my <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file I declare the following:</p>
-<p><code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">start_rose=&quot;module</span> <span class="pre">use</span> <span class="pre">/g/data/hr22/modulefiles;module</span> <span class="pre">load</span> <span class="pre">cylc7/23.09&quot;</span></code>
+<p><code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">start_rose=&quot;module</span> <span class="pre">use</span> <span class="pre">/g/data/hr22/modulefiles;module</span> <span class="pre">load</span> <span class="pre">cylc7&quot;</span></code>
 Then if I’m at the terminal and I want to use <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> I can just type the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ start_rose
-  Loading cylc7/23.09
-     Loading requirement: mosrs-setup/1.0.1
+  Loading cylc7
+     Loading requirement: mosrs-setup/2.0.1
 </pre></div>
 </div>
-</div></blockquote>
+</div>
 <p>Work your way through the practical exercise, which in this case is a simple taskflow for weather forecasting.</p>
 <p>Your final <code class="docutils literal notranslate"><span class="pre">cylc</span></code> graph should include the following sections:</p>
 <p><img alt="Simple cylc NWP graph 1" src="../_images/cylc-datetime1.png" />
@@ -727,9 +745,9 @@ Then if I’m at the terminal and I want to use <code class="docutils literal no
 <span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span><span class="n">T05</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">43</span><span class="n">Z</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">succeeded</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p><strong><em>NOTE:</em></strong> In the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> directory structure, the subdirectory <code class="docutils literal notranslate"><span class="pre">NN</span></code> will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error.</p>
-</div></blockquote>
+<div class="note docutils">
+<p>In the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> directory structure, the subdirectory <code class="docutils literal notranslate"><span class="pre">NN</span></code> will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error.</p>
+</div>
 </section>
 <section id="sixth-cylc-tutorial">
 <h3>Sixth cylc tutorial<a class="headerlink" href="#sixth-cylc-tutorial" title="Link to this heading">#</a></h3>
@@ -763,7 +781,7 @@ Then if I’m at the terminal and I want to use <code class="docutils literal no
 [INFO] export MAP_FILE=map.html
 [INFO] export MAP_TEMPLATE=map-template.html
 [INFO] export N_FORECASTS=5
-[INFO] export PATH=/home/548/pag548/rose-tutorial/application-tutorial/bin:/g/data/hr22/apps/cylc7/rose_2019.01.7/bin:/g/data/hr22/apps/cylc7/23.09/bin:/g/data/hr22/apps/mosrs-setup/1.0.1/bin:/home/548/pag548/.local/bin:/home/548/pag548/bin:/opt/pbs/default/bin:/opt/nci/bin:/opt/bin:/opt/Modules/v4.3.0/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/default/bin
+[INFO] export PATH=/home/548/pag548/rose-tutorial/application-tutorial/bin:/g/data/hr22/apps/cylc7/rose_2019.01.7/bin:/g/data/hr22/apps/cylc7/24.03/bin:/g/data/hr22/apps/mosrs-setup/1.0.1/bin:/home/548/pag548/.local/bin:/home/548/pag548/bin:/opt/pbs/default/bin:/opt/nci/bin:/opt/bin:/opt/Modules/v4.3.0/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/default/bin
 [INFO] export RAINFALL_FILE=test-data/rainfall.csv
 [INFO] export RESOLUTION=0.2
 [INFO] export WEIGHTING=1
@@ -785,9 +803,9 @@ Plotting diasbled
 <h3>Second Rose tutorial<a class="headerlink" href="#second-rose-tutorial" title="Link to this heading">#</a></h3>
 <p>In the next <code class="docutils literal notranslate"><span class="pre">rose</span></code> tutorial you will learn how to add metadata to a rose suite. Metadata has a variety of uses in a <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite. Follow the exercises located below to find out what they are.</p>
 <p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html</a></p>
-<blockquote>
-<div><p><strong><strong>NOTE</strong></strong> In this tutorial the command <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">config-edit</span> <span class="pre">&amp;</span></code> is used to edit the rose suite. In most of the 21stCenturyWeather and ACCESS-NRI documentation, the short-cut <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span> <span class="pre">&amp;</span></code> is used instead.</p>
-</div></blockquote>
+<div class="note docutils">
+<p>In this tutorial the command <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">config-edit</span> <span class="pre">&amp;</span></code> is used to edit the rose suite. In most of the 21stCenturyWeather and ACCESS-NRI documentation, the short-cut <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span> <span class="pre">&amp;</span></code> is used instead.</p>
+</div>
 <p>At the conclusion of this tutorial, your <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> window should look like this.</p>
 <p><img alt="meta" src="../_images/rose-metadata.png" /></p>
 </section>
@@ -797,13 +815,13 @@ Plotting diasbled
 <p>You will learn how to control the overall configuration of a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite using the <code class="docutils literal notranslate"><span class="pre">rose-suit.conf</span></code> file.</p>
 <p>Follow the exercises contained in this link:</p>
 <p><a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html</a></p>
-<blockquote>
-<div><p><strong><strong>NOTE</strong></strong> This exercise refers to <code class="docutils literal notranslate"><span class="pre">Jinja2</span></code>. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using a logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:</p>
+<div class="note docutils">
+<p>This exercise refers to <code class="docutils literal notranslate"><span class="pre">Jinja2</span></code>. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using a logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:</p>
 <p><a class="reference external" href="https://jinja.palletsprojects.com/en/stable/">https://jinja.palletsprojects.com/en/stable/</a></p>
 <p>There is short review of how <code class="docutils literal notranslate"><span class="pre">Jinja</span></code> works here : <a class="reference external" href="https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html">https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/configuration-consolidation/jinja2.html</a>.</p>
 <p>You don’t have to do the tutorials, but just be conscious that whenever you see braces such as <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">}}</span></code> in a <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">if</span> <span class="pre">...</span> <span class="pre">%}</span></code> or <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">for</span> <span class="pre">...</span> <span class="pre">}</span></code> within the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> will be processed to produce the final <code class="docutils literal notranslate"><span class="pre">suite.rc.processed</span></code> file executed by <code class="docutils literal notranslate"><span class="pre">cylc</span></code> which is created in your <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;rose-id&gt;</span></code> runtime directory.
 In conclusion, Jinja is a way for us to create very long <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> files by looping over input parameters.</p>
-</div></blockquote>
+</div>
 <p>I had to make the following changes to <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> to make the tutorial work.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">jinja2</span><span class="p">:</span><span class="n">suite</span><span class="o">.</span><span class="n">rc</span><span class="p">]</span>
     <span class="n">station</span><span class="o">=</span><span class="s2">&quot;camborne&quot;</span><span class="p">,</span> <span class="s2">&quot;heathrow&quot;</span><span class="p">,</span> <span class="s2">&quot;shetland&quot;</span><span class="p">,</span> <span class="s2">&quot;aldergrove&quot;</span><span class="p">,</span><span class="s2">&quot;belmullet&quot;</span>
