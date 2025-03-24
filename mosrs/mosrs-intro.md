@@ -37,18 +37,18 @@ where you will substitute your own values of `<session-name>`, `<user-id>` and `
 $ more ~/.persistent-sessions/cylc-session 
 <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
 ```
-Then I log into the session.
+Then login to the session.
 ```
 $ ssh -Y <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
 ```
 After logging in, the `bash` login prompt will change from `<user-id.@gadi-login` etc. to` <user-id>@<session-name>`.
 
-As part of my `start_rose` alias defined inside my `~/.bash_profile` file, I export the value of the `CYLC_SESSION` environment variable via the following:
+As part of my `start_rose` alias defined inside my `~/.bash_profile` file, you can use an `alias` to help load the `cylc` modules:
 ```
 # User specific aliases and functions
-alias start_rose="export CYLC_SESSION=<session-name>.<user-id>.<project>.ps.gadi.nci.org.au;module use /g/data/hr22/modulefiles;module load cylc7/23.09"
+alias start_rose="module use /g/data/hr22/modulefiles;module load cylc7"
 ```
-This allows me to execute multiple commands by typing `start_rose` inside my persistent session
+An `alias` allows you to execute multiple commands by typing `start_rose` inside my persistent session:
 ```
 $ start_rose
 ```
@@ -56,18 +56,22 @@ which will generate output similar to
 ```
 Using the cylc session <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
 
-Loading cylc7/23.09
-  Loading requirement: mosrs-setup/1.0.1
+Loading cylc7/24.03
+  Loading requirement: mosrs-setup/2.0.1
 ```
 
-> **_WARNING:_** If you have the `conda/analysis3` module loaded, you **WILL NOT** be able to `ssh` to your persistent session, due to a conflict between the `ssh` installation contained in that module and the global `ssh` configuration used at NCI. The `analysis3` installation cannot access any of the `ssh` options that are needed to access the persistent sessions (such as the port and which `SSHkey` to use). You will need to unload the `analysis3` module from you current environment using 
+:::danger 
+If you have the `conda/analysis3` module loaded, you **WILL NOT** be able to `ssh` to your persistent session, due to a conflict between the `ssh` installation contained in that module and the global `ssh` configuration used at NCI. The `analysis3` installation cannot access any of the `ssh` options that are needed to access the persistent sessions (such as the port and which `SSHkey` to use). You will need to unload the `analysis3` module from you current environment using 
 ```
 $ module unload conda/analysis3
 ```
-> **_WARNING:_** If you are not yet a member of the `access` gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won't be able to complete the next one, or run any ACCESS suites. See [here](../UM/common_problems.md##Persistent-session-cannot-see-files-in-/g/data/access) for more information.
-
-> **_NOTE:_** You will have to restart your sessions after quarterly maintenance.
-
+:::
+:::warning
+If you are not yet a member of the `access` gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won't be able to complete the next one, or run any ACCESS suites. See [here](../UM/common_problems.md##Persistent-session-cannot-see-files-in-/g/data/access) for more information.
+:::
+:::note
+You will have to restart your sessions after quarterly maintenance.
+:::
 ## MOSRS authentication ##
 
 Once you have connected to your persistent-session, you will have to load the required `rose/cylc` modules and then authenticate with the central MOSRS repository.

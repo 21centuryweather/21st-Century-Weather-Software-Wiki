@@ -74,7 +74,9 @@ This contains a list of `bash` environment variables which describe the followin
 - `xios_path` : Directory of `xios` libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.
 - `oasis3_mct_path` : Directory of intel libraries to compile this version of the UM which supports the `oasis3` coupler.
 
-> **__IMPORTANT__** The default value of `ARCHDIR` is `/scratch/gb02/${USER}/GC5_runs`. If you are NOT a member of the gadi project `gb02`, you will have to swap the value of `gb02` for another gadi project that you have membership of.
+:::warning
+The default value of `ARCHDIR` is `/scratch/gb02/${USER}/GC5_runs`. If you are NOT a member of the gadi project `gb02`, you will have to swap the value of `gb02` for another gadi project that you have membership of.
+:::
 
 ### Task flow ###
 
@@ -268,7 +270,9 @@ So the same configuration file can be used to run two different executables depe
 If you want to know more about the UM reconfiguration process, you click here: https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration
 
 The standard output (or 'stdout' for short) of the UM reconfigure executable is long and rather interesting. You can scroll through the stdout contained in the `um_recon` by accessing the `um_recon` `job.out` file, either via the `cylc` gui or using a file editor of choice. It is very common for `um_recon` to fail when running a new suite configuration for the first time. 
-> **__TIP__** Knowing where to find error messages in the `um_recon` task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.
+:::tip
+Knowing where to find error messages in the `um_recon` task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.
+:::
 
 Note how the reconfigure executable:
 - Splits itself across various 'PEs' or 'Processing Elements'.
@@ -299,8 +303,9 @@ Note `n320` refers to a spectral representation of global resolution. Some data 
 #### um_forecast
 
 This task initialises the atmospheric forecast, using the same `app/um` files used by `um_recon`. Let's look through the stdout of the atmospheric forecast task, either via the `cylc` gui or using a file editor. It is very common when running a new suite configuration for the first time that the atmospheric forecast task may fail.
-> **__TIP__** Knowing where to find error messages in the `um_forecast` task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM. 
-
+:::tip
+Knowing where to find error messages in the `um_forecast` task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM. 
+:::
 Note the atmospheric executable:
 -  opens the `.astart` file.
 ```
