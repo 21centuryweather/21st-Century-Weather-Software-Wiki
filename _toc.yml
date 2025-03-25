@@ -42,6 +42,6 @@ parts:
     - file: git/git-team
   - caption: Feedback
     chapters:
-    - file: feedback/feedback
-
+    - url: https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8
+      title: Feedback
 
