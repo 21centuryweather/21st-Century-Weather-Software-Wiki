@@ -464,18 +464,18 @@ document.write(`
 <h2>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading">#</a></h2>
 <p>To run the UM quickly.</p>
 <ul class="simple">
-<li><p>Start a persistent session on <code class="docutils literal notranslate"><span class="pre">gadi</span></code></p></li>
+<li><p>Start a persistent session on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> and login to it.</p></li>
 <li><p>Pass MOSRS authentication</p></li>
 <li><p>Load your <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rosie</span> <span class="pre">co</span> <span class="pre">u-dl058</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">~/roses/u-dl058</span></code></p></li>
-<li><p>In <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl085/rose-suit.conf</span></code>, change the value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> if you don’t have <code class="docutils literal notranslate"><span class="pre">gb02</span></code> permissions.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl085/rose-suit.conf</span></code>, check you have write permissions to the folder <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code>, defined as <code class="docutils literal notranslate"><span class="pre">/scratch/${PROJECT}/${USER}</span></code>. If you don’t know your default <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project, see <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/230490489/FAQ...#FAQ...-'Permissiondenied'messagewhenworkingonanewproject.1">here</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rose</span> <span class="pre">suite-run</span></code></p></li>
 </ul>
 </section>
 <section id="checking-out-a-um-suite">
 <h2>Checking out a UM suite<a class="headerlink" href="#checking-out-a-um-suite" title="Link to this heading">#</a></h2>
-<p>If you need to, repeat the steps of the previous tutorial to authenticate your MOSRS credentials. Then, checkout suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> using</p>
+<p>If you need to, repeat the steps of the previous tutorial to login to your persistent session and authenticate your MOSRS credentials. Then, checkout suite <code class="docutils literal notranslate"><span class="pre">u-dl058</span></code> using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">co</span> <span class="n">u</span><span class="o">-</span><span class="n">dl058</span>
 </pre></div>
 </div>
@@ -525,8 +525,10 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">xios_path</span></code> : Directory of <code class="docutils literal notranslate"><span class="pre">xios</span></code> libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">oasis3_mct_path</span></code> : Directory of intel libraries to compile this version of the UM which supports the <code class="docutils literal notranslate"><span class="pre">oasis3</span></code> coupler.</p></li>
 </ul>
-<div class="warning docutils">
-<p>The default value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> is <code class="docutils literal notranslate"><span class="pre">/scratch/gb02/${USER}/GC5_runs</span></code>. If you are NOT a member of the gadi project <code class="docutils literal notranslate"><span class="pre">gb02</span></code>, you will have to swap the value of <code class="docutils literal notranslate"><span class="pre">gb02</span></code> for another gadi project that you have membership of.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The default value of <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> is <code class="docutils literal notranslate"><span class="pre">/scratch/${PROJECT}/${USER}/GC5_runs</span></code>. This directory <code class="docutils literal notranslate"><span class="pre">/scratch/${PROJECT}/${USER}/</span></code> must exist and you must have write permissions to it, otherwise your outputs won’t be saved. The value of the <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment variable <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> is set in the <code class="docutils literal notranslate"><span class="pre">.config/gadi-login.conf</span></code> file in your home directory. This is your ‘default’ <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project. See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/230490489/FAQ...#FAQ...-'Permissiondenied'messagewhenworkingonanewproject.1">here</a> for more information.</p>
+<p>You can always manually edit the value of <code class="docutils literal notranslate"><span class="pre">ARCHIDIR</span></code> to override the value of <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> if you want. Just remember to <code class="docutils literal notranslate"><span class="pre">reload</span></code> the <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite again to update the definitions used in the <code class="docutils literal notranslate"><span class="pre">~/cylc-run</span></code> directory.</p>
 </div>
 </section>
 <section id="task-flow">
@@ -573,7 +575,11 @@ for each task environment.</p></li>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-run -- --mode=simulation
 </pre></div>
 </div>
-<p>from your <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl058</span></code> directory. This command will run through each task in a ‘simulated mode’ without actually submitting a PBS job. Make sure you log ito into your persistent session and load your <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules first!</p>
+<p>from your <code class="docutils literal notranslate"><span class="pre">~/roses/u-dl058</span></code> directory. This command will run through each task in a ‘simulated mode’ without actually submitting a PBS job.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure you log into into your persistent session and load your <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules first before trying to run a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite!</p>
+</div>
 <p>The graph of the suite looks like this.</p>
 <p><img alt="UM task graph " src="../_images/flow.png" /></p>
 </section>
@@ -611,10 +617,11 @@ script = {{TASK_RUN_COMMAND}}
 <p>When this task completes, the directory <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/share/data/etc/ancil_gl/</span></code>will be populated with symbolic links to all the ancillary files.</p>
 <p>You can right-click on the task again (which will turn grey after it has successfully) and view the <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file. The <code class="docutils literal notranslate"><span class="pre">cylc</span></code> scheduler will nicely capture all the PBS standard output and collate it into the <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file.</p>
 <p><img alt="Job output" src="../_images/job.png" /></p>
-<blockquote>
-<div><p><strong><strong>TIP</strong></strong> Remember you can also look at the job outputs manually. The latest output for this task will be located at</p>
-<p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/log/job/20200116T0000Z/install_ancil/NN/job.out</span> </code></p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember you can also look at the job outputs manually. The latest output for this task will be located at
+<code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-dl058/log/job/20200116T0000Z/install_ancil/NN/job.out</span> </code></p>
+</div>
 <p>Let’s follow the same method and trigger all the remaining tasks in sequence.</p>
 </section>
 <section id="install-cold">
@@ -696,7 +703,8 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 </div>
 <p>If you want to know more about the UM reconfiguration process, you click here: <a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration">https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration</a></p>
 <p>The standard output (or ‘stdout’ for short) of the UM reconfigure executable is long and rather interesting. You can scroll through the stdout contained in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> by accessing the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file, either via the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> gui or using a file editor of choice. It is very common for <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> to fail when running a new suite configuration for the first time.</p>
-<div class="tip docutils">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_recon</span></code> task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.</p>
 </div>
 <p>Note how the reconfigure executable:</p>
@@ -732,7 +740,8 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 <section id="um-forecast">
 <h3>um_forecast<a class="headerlink" href="#um-forecast" title="Link to this heading">#</a></h3>
 <p>This task initialises the atmospheric forecast, using the same <code class="docutils literal notranslate"><span class="pre">app/um</span></code> files used by <code class="docutils literal notranslate"><span class="pre">um_recon</span></code>. Let’s look through the stdout of the atmospheric forecast task, either via the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> gui or using a file editor. It is very common when running a new suite configuration for the first time that the atmospheric forecast task may fail.</p>
-<div class="tip docutils">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Knowing where to find error messages in the <code class="docutils literal notranslate"><span class="pre">um_forecast</span></code> task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM.</p>
 </div>
 <p>Note the atmospheric executable:</p>
@@ -813,8 +822,8 @@ This task ends by writing the following files in `~/cylc-run/u-dl058/share/cycle
 </section>
 <section id="viewing-the-outputs">
 <h2>Viewing the outputs<a class="headerlink" href="#viewing-the-outputs" title="Link to this heading">#</a></h2>
-<p>The suite will output the netCDF files to the location defined in <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, which be default is equal to</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHDIR</span><span class="o">=</span><span class="s1">&#39;/scratch/gb02/$</span><span class="si">{USER}</span><span class="s1">/GC5_runs&#39;</span>
+<p>The suite will output the netCDF files to the location defined in <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, which by default is equal to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHDIR</span><span class="o">=</span><span class="s1">&#39;/scratch/$</span><span class="si">{PROJECT}</span><span class="s1">/$</span><span class="si">{USER}</span><span class="s1">/GC5_runs&#39;</span>
 </pre></div>
 </div>
 <p>A simple python notebook to load the data in this and compare it other suite output is available at</p>

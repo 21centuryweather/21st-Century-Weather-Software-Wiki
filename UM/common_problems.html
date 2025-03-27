@@ -418,7 +418,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-for-running-rose-cylc">Checklist for running rose/cylc</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-run-suite-ip-and-key-verification-error">Cannot run suite - IP and key verification error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-fail-to-submit">Jobs fail to submit.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-suite-files-doesn-t-update-the-suite-behaviour">Editing suite files doesn’t update the suite behaviour</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-login-to-a-persistent-session">Cannot login to a persistent session</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-session-cannot-see-files-in-g-data-access">Persistent session cannot see files in /g/data/access</a></li>
 </ul>
@@ -435,6 +439,43 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="common-rose-cylc-problems">
 <h1>Common rose/cylc problems<a class="headerlink" href="#common-rose-cylc-problems" title="Link to this heading">#</a></h1>
 <p>This will be a maintained list of problems encountered (and fixed) with running <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> ACCESS tasks.</p>
+<section id="checklist-for-running-rose-cylc">
+<h2>Checklist for running rose/cylc<a class="headerlink" href="#checklist-for-running-rose-cylc" title="Link to this heading">#</a></h2>
+<p>Before diagnosing any <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> problems, check</p>
+<ul class="simple">
+<li><p>You are running <code class="docutils literal notranslate"><span class="pre">rose</span></code> on a persistent session</p></li>
+<li><p>Your <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project has available compute and storage</p></li>
+<li><p>Your home directory isn’t full.</p></li>
+<li><p>You have run through all the <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> tutorials.</p></li>
+</ul>
+</section>
+<section id="cannot-run-suite-ip-and-key-verification-error">
+<h2>Cannot run suite - IP and key verification error<a class="headerlink" href="#cannot-run-suite-ip-and-key-verification-error" title="Link to this heading">#</a></h2>
+<p>If your <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">suite-run</span></code> command fails with output similar to the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">WARN</span><span class="p">]</span> <span class="ne">Warning</span><span class="p">:</span> <span class="n">the</span> <span class="n">ED25519</span> <span class="n">host</span> <span class="n">key</span> <span class="k">for</span> <span class="s1">&#39;[&lt;your persistent session&gt;]:2222&#39;</span> <span class="n">differs</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">key</span> <span class="k">for</span> <span class="n">the</span> <span class="n">IP</span> <span class="n">address</span> <span class="s1">&#39; [&lt;IP address&gt;]:2222&#39;</span>
+<span class="p">[</span><span class="n">WARN</span><span class="p">]</span> <span class="n">Offending</span> <span class="n">key</span> <span class="k">for</span> <span class="n">IP</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">known_hosts</span> <span class="n">files</span><span class="o">&gt;</span> <span class="mi">1</span>
+<span class="p">[</span><span class="n">WARN</span><span class="p">]</span> <span class="n">Matching</span> <span class="n">host</span> <span class="n">key</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">known_hosts</span> <span class="n">file</span><span class="o">&gt;</span> <span class="mi">3</span>
+<span class="p">[</span><span class="n">WARN</span><span class="p">]</span> <span class="n">Exiting</span><span class="p">,</span> <span class="n">you</span> <span class="n">have</span> <span class="n">requested</span> <span class="n">strict</span> <span class="n">checking</span><span class="o">.</span>
+<span class="p">[</span><span class="n">WARN</span><span class="p">]</span> <span class="n">Host</span> <span class="n">key</span> <span class="n">verification</span> <span class="n">failed</span><span class="o">.</span>
+<span class="p">[</span><span class="n">FAIL</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">suite</span> <span class="nb">id</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">appear</span> <span class="n">to</span> <span class="n">be</span> <span class="n">running</span>
+</pre></div>
+</div>
+<p>You have tried to run a <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite from a login node. Please try to run the suite again from a persistent session.</p>
+</section>
+<section id="jobs-fail-to-submit">
+<h2>Jobs fail to submit.<a class="headerlink" href="#jobs-fail-to-submit" title="Link to this heading">#</a></h2>
+<p>If your suite runs, but jobs fail to submit to the PBS queue, your <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project may not be associated with any compute resources.</p>
+<p><img alt="submit failed" src="../_images/submit-failed.png" /></p>
+<p>In this example, the small jobs sent to the <code class="docutils literal notranslate"><span class="pre">background</span></code> queue have been submitted and succeeded. The <code class="docutils literal notranslate"><span class="pre">background</span></code> jobs require no compute resources and run on a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> login node. These can be simple tasks such as creating a symbolic link between an ancillary file in a central directory to your working directory in <code class="docutils literal notranslate"><span class="pre">~/cylc-run</span></code>.</p>
+<p>But any other job that requires compute resources will fail, because your default <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project doesn’t have any compute resources allocated to it.  (Some <code class="docutils literal notranslate"><span class="pre">gadi</span></code> projects are for storage only).</p>
+<p>To fix this, change the value of <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> in you <code class="docutils literal notranslate"><span class="pre">gadi</span></code> configuration file to a project that</p>
+<ol class="arabic simple">
+<li><p>You have membership of</p></li>
+<li><p>Has sufficient computational resources available</p></li>
+</ol>
+<p>See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/230490489/FAQ...#FAQ...-'Permissiondenied'messagewhenworkingonanewproject.1">here</a> for further information on how to change your default project code on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<p>Make sure the persistent session you are running is also linked to a project with computational resources.</p>
+</section>
 <section id="jobs-submitted-but-not-running">
 <h2>Jobs submitted but not running<a class="headerlink" href="#jobs-submitted-but-not-running" title="Link to this heading">#</a></h2>
 <p>A common issue is that you start your <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite, which submits various jobs, but they never run.</p>
@@ -445,6 +486,14 @@ document.write(`
 <p>for more details.</p>
 <p>To help manage your disk quota, use some of the commands in this link:</p>
 <p><a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation">https://opus.nci.org.au/spaces/Help/pages/236880003/Basic+Navigation</a>…</p>
+</section>
+<section id="editing-suite-files-doesn-t-update-the-suite-behaviour">
+<h2>Editing suite files doesn’t update the suite behaviour<a class="headerlink" href="#editing-suite-files-doesn-t-update-the-suite-behaviour" title="Link to this heading">#</a></h2>
+<p>If you are editing files within the <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite, but these edits aren’t being reflected at runtime, you may have forgotten to <code class="docutils literal notranslate"><span class="pre">reload</span></code> the suite.</p>
+<p>Remember, the <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite files that you checkout from the central MOSRS repository are stored in your <code class="docutils literal notranslate"><span class="pre">~/roses/&lt;suite-id&gt;</span></code> directory.</p>
+<p>But the files which control the suite at runtime are located in <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;</span></code>.</p>
+<p>You must execute <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rose</span> <span class="pre">suite-run</span> <span class="pre">--</span> <span class="pre">reload</span></code> to update the suite files that control runtime execution.</p>
+<p>See <a class="reference internal" href="trouble-shooting.html#broken-tasks"><span class="std std-ref">here</span></a> for an example.</p>
 </section>
 <section id="cannot-login-to-a-persistent-session">
 <h2>Cannot login to a persistent session<a class="headerlink" href="#cannot-login-to-a-persistent-session" title="Link to this heading">#</a></h2>
@@ -522,7 +571,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-for-running-rose-cylc">Checklist for running rose/cylc</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-run-suite-ip-and-key-verification-error">Cannot run suite - IP and key verification error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-fail-to-submit">Jobs fail to submit.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-suite-files-doesn-t-update-the-suite-behaviour">Editing suite files doesn’t update the suite behaviour</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-login-to-a-persistent-session">Cannot login to a persistent session</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-session-cannot-see-files-in-g-data-access">Persistent session cannot see files in /g/data/access</a></li>
 </ul>

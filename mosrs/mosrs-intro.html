@@ -465,7 +465,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 </pre></div>
 </div>
 <p>After logging in, the <code class="docutils literal notranslate"><span class="pre">bash</span></code> login prompt will change from <code class="docutils literal notranslate"><span class="pre">&lt;user-id.&#64;gadi-login</span></code> etc. to<code class="docutils literal notranslate"> <span class="pre">&lt;user-id&gt;&#64;&lt;session-name&gt;</span></code>.</p>
-<p>As part of my <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> alias defined inside my <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file, you can use an <code class="docutils literal notranslate"><span class="pre">alias</span></code> to help load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules:</p>
+<p>As mentioned <a class="reference internal" href="../rose-cylc/rose-cylc-intro.html#fourth-cylc-tutorial"><span class="std std-ref">here</span></a> in the  previous<code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> tutorials, you can use an <code class="docutils literal notranslate"><span class="pre">alias</span></code> to help load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules. You can define a <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> <code class="docutils literal notranslate"><span class="pre">alias</span></code> inside your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># User specific aliases and functions</span>
 <span class="n">alias</span> <span class="n">start_rose</span><span class="o">=</span><span class="s2">&quot;module use /g/data/hr22/modulefiles;module load cylc7&quot;</span>
 </pre></div>
@@ -481,16 +481,19 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
   <span class="n">Loading</span> <span class="n">requirement</span><span class="p">:</span> <span class="n">mosrs</span><span class="o">-</span><span class="n">setup</span><span class="o">/</span><span class="mf">2.0.1</span>
 </pre></div>
 </div>
-<div class="danger docutils">
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
 <p>If you have the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> module loaded, you <strong>WILL NOT</strong> be able to <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to your persistent session, due to a conflict between the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> installation contained in that module and the global <code class="docutils literal notranslate"><span class="pre">ssh</span></code> configuration used at NCI. The <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> installation cannot access any of the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> options that are needed to access the persistent sessions (such as the port and which <code class="docutils literal notranslate"><span class="pre">SSHkey</span></code> to use). You will need to unload the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module from you current environment using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module unload conda/analysis3
 </pre></div>
 </div>
 </div>
-<div class="warning docutils">
-<p>If you are not yet a member of the <code class="docutils literal notranslate"><span class="pre">access</span></code> gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won’t be able to complete the next one, or run any ACCESS suites. See <a class="reference internal" href="../UM/common_problems.html##Persistent-session-cannot-see-files-in-/g/data/access"><span class="std std-ref">here</span></a> for more information.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are not yet a member of the <code class="docutils literal notranslate"><span class="pre">access</span></code> gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won’t be able to complete the next one, or run any ACCESS suites. See <a class="reference internal" href="../UM/common_problems.html#persistent-session-cannot-see-files-in-gdataaccess"><span class="std std-ref">here</span></a> for more information.</p>
 </div>
-<div class="note docutils">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>You will have to restart your sessions after quarterly maintenance.</p>
 </div>
 </section>
