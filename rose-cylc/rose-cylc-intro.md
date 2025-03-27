@@ -87,7 +87,10 @@ https://opus.nci.org.au/pages/viewpage.action?pageId=236880320
 
 Note that documentation contains information on how to run an 'interactive' PBS job session on a gadi compute node, which will allow you to interactively edit files and run programs that exceed the capacity of the gadi login nodes. 
 
->**_TIP_** : The gadi compute nodes are not externally connected to the internet, so you won't be able to connect to gitlab or copy files from external sources when logged into a compute note.
+:::{tip}
+
+The gadi compute nodes are not externally connected to the internet, so you won't be able to connect to gitlab or copy files from external sources when logged into a compute note.
+:::
 
 But, what if we have a complex set of tasks that must run in a particular sequence? Can we create a scheduler which processes `PBS` jobs in a user-specified workflow?  
 
@@ -131,7 +134,8 @@ To launch `cylc` on `gadi` you need to load the `cylc` software into your intera
 ```
 $ persistent-session start cylc-test
 ```
-:::note 
+:::{note}
+
 Type everything after the `$` into your terminal's command line, i.e. don't include the `$`. In this document the `$` is used to distinguish commands you need to type (or copy from your browser) from contents of text files etc. You will notice that a `gadi` command line usually ends with a `$`, e.g.
 ```
 <username>@gadi-login-01]$
@@ -147,7 +151,8 @@ We then need to add the name of this session to the contents of a text file `/.p
 $ mkdir -p ~/.persistent-sessions
 $ cat > ~/.persistent-sessions/cylc-session <<< cylc-test.<user-id>.<project>.ps.gadi.nci.org.au
 ```
-:::warning
+:::{warning}
+
 Make sure you insert your values of `<user-id>` and `<project`> into the above command. i.e replicate the output generated from your earlier `persistent-session start cylc-test` command.
 :::
 
@@ -222,7 +227,9 @@ Ok, let's run this from the command line by executing the following:
 ```
 $ cylc run
 ```
-:::note
+
+:::{note}
+
 Make sure you are in the current working directory containing your `suite.rc` file, i.e. `~/cylc-run/examples/7.9.7/tutorial/oneoff/basic` to run a `cylc` suite.
 :::
 
@@ -256,7 +263,8 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.h
 
 Let's follow the practical section at the bottom of that page.
 
-:::tip
+:::{tip}
+
 In you are starting this tutorial from a fresh login session, remember to login to your specified 'persistent session'. We have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi inside the specific session.
 ```
 $ module use /g/data/hr22/modulefiles
@@ -278,7 +286,8 @@ the results show match the below image.
 
 Remember the '.' in a `bash` command means 'the current directory'. So the above command means `create a graph of the suite that exists in the current directory'.  
 
-:::tip
+:::{tip}
+
 Here is a web-link containing a review of all 'special characters' in `bash`:
 https://www.howtogeek.com/439199/15-special-characters-you-need-to-know-for-bash/
 :::
@@ -307,7 +316,8 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-c
 
 Remember to load the `rose` and `cylc` executables into your current `gadi` environment using the `module load` commands.
 
-:::tip
+:::{tip}
+
 You can use the `bash` `alias` function to write a simple macro to load the `rose/cylc` environment with a simple command.
  e.g. in my `~/.bash_profile` file I declare the following:
  
@@ -357,7 +367,8 @@ User@Host: pag548@pgregory.pag548.gb02.ps.gadi.nci.org.au
 2024-10-28T05:54:42Z INFO - started
 2024-10-28T05:54:43Z INFO - succeeded
 ```
-:::note
+:::{note}
+
 In the `cylc` directory structure, the subdirectory `NN` will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error. 
 :::
 
@@ -426,9 +437,11 @@ In the next `rose` tutorial you will learn how to add metadata to a rose suite. 
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html
 
-:::note
+:::{note}
+
 In this tutorial the command `rose config-edit &` is used to edit the rose suite. In most of the 21stCenturyWeather and ACCESS-NRI documentation, the short-cut `rose edit &` is used instead.
 :::
+
 At the conclusion of this tutorial, your `rose edit` window should look like this.
 
 ![meta](images/rose-metadata.png)
@@ -443,8 +456,9 @@ Follow the exercises contained in this link:
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html
 
-:::note
-This exercise refers to `Jinja2`. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using a logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:
+:::{note}
+
+This exercise refers to `Jinja2`. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:
  
 https://jinja.palletsprojects.com/en/stable/
 
@@ -454,7 +468,7 @@ You don't have to do the tutorials, but just be conscious that whenever you see 
 In conclusion, Jinja is a way for us to create very long `suite.rc` files by looping over input parameters.
 :::
 
-I had to make the following changes to `suite.rc` to make the tutorial work. 
+You will have to make the following changes to `suite.rc` to make the tutorial work. 
 ```
 [jinja2:suite.rc]
     station="camborne", "heathrow", "shetland", "aldergrove","belmullet"
@@ -466,7 +480,7 @@ I had to make the following changes to `suite.rc` to make the tutorial work.
 [FAIL] cylc validate -o /scratch/gb02/pag548/tmp/tmp45a3jD --strict rose-suite-tutorial # return-code=1, stderr=
 [FAIL] ERROR, parameter station out of range: station=belmullet
 ```
-I tracked down the error using the `bash` command `grep` which searches for strings in ASCII (text) files.
+This error can be tracked down using the `bash` command `grep` which searches for strings in ASCII (text) files.
 ```
 $ grep belmullet *
 grep: app: Is a directory
@@ -475,7 +489,7 @@ grep: lib: Is a directory
 grep: meta: Is a directory
 suite.rc:    [[get_observations<station=belmullet>]]
 ```
-This told me that one of the tasks in `suite.rc` expects a station value of `belmullet`. So I added it to the list of station variables defined in `rose-app.conf`. Another solution would be to remove the task `[[get_observations<station=belmullet>]]` from the `suite.rc` file.
+This tells you one of the tasks in `suite.rc` expects a station value of `belmullet`. So you can add it to the list of station variables defined in `rose-app.conf`. Another solution would be to remove the task `[[get_observations<station=belmullet>]]` from the `suite.rc` file.
 
 To check the suite has been installed correctly, your `~/cylc-run/rose-suite-tutorial/` directory should contain the following:
 ```
