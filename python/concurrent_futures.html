@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Parallelism in Python using concurrent futures &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/concurrent_futures';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting started on gadi" href="../gadi/getting-started.html" />
+    <link rel="prev" title="An Introduction to Fast Data Analysis with the Polars Library in Python" href="polars-intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Parallelism in Python using concurrent futures</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Why git?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fpython/concurrent_futures.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/concurrent_futures.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parallelism in Python using concurrent futures</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-concurrent-futures">An example using concurrent futures</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parallelism-in-python-using-concurrent-futures">
+<h1>Parallelism in Python using concurrent futures<a class="headerlink" href="#parallelism-in-python-using-concurrent-futures" title="Link to this heading">#</a></h1>
+<p>The large datasets associated with weather and climate research typically require cutting-edge hardware and software to be analysed efficiently.  Modern computing architecture relies on clusters of Central Processing Units (CPUs) with multiple processing pipelines, or cores. Each core itself may have separate threads. A single standard computational node on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> for example, has 2x24 core CPUs connected to 190 Gb of RAM. Each core has two threads, so a <code class="docutils literal notranslate"><span class="pre">python</span></code> script can actually see 96 separate processing cores.</p>
+<p>You can check this for yourself by logging into an interactive <code class="docutils literal notranslate"><span class="pre">gadi</span></code> compute note, by following <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-InteractiveJobs">these instructions</a>, and launching a simple <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">3.10.14</span> <span class="o">|</span> <span class="n">packaged</span> <span class="n">by</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">|</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Mar</span> <span class="mi">20</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">12.3.0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="mi">96</span>
+</pre></div>
+</div>
+<p>So we can write <code class="docutils literal notranslate"><span class="pre">python</span></code> scripts to run 96 separate processes at once, provided we don’t exceed the total shared memory of the node. The amount of memory at each <code class="docutils literal notranslate"><span class="pre">gadi</span></code> node can be found <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">normal</span></code> queue has 190 Gb available, while the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> and <code class="docutils literal notranslate"><span class="pre">megamem</span></code> have 1.4 Tb and 3.0 Tb (!) respectively.</p>
+<p>So clearly have a lot of scope to use shared-memory programming to speed up our data analysis in <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are two paradigms of distributed computing. In the ‘shared memory’ paradigm, multiple processes have access to a shared pool of memory. In the ‘distributed memory’ paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a ‘shared memory’ example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.</p>
+</div>
+<p>Often, users first encounter parallel processing via the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> module via a <code class="docutils literal notranslate"><span class="pre">dask</span></code> Client. In this way, a single <code class="docutils literal notranslate"><span class="pre">xarray</span></code> data structure can be read, processed and written in parallel ‘chunks’ using <code class="docutils literal notranslate"><span class="pre">dask</span></code> arrays. ‘Chunking’ can occur along any dimension - spatial or temporal.</p>
+<p>There are other ways to exploit parallelism in <code class="docutils literal notranslate"><span class="pre">python</span></code>. If our data arrays are relatively small, but there are many of them (e.g. decades worth of daily data) we can spawn multiple parallel processes to process each file separately. We can analyse each file in parallel and write temporary results to disk. We can then collate this data into a single data structure at the end.</p>
+<p>A good way to spawn multiple parallel processes in <code class="docutils literal notranslate"><span class="pre">python</span></code> is to use the <code class="docutils literal notranslate"><span class="pre">concurrent</span> <span class="pre">futures</span></code> library. The official documentation is <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">here</a>.</p>
+<section id="an-example-using-concurrent-futures">
+<h2>An example using concurrent futures<a class="headerlink" href="#an-example-using-concurrent-futures" title="Link to this heading">#</a></h2>
+<p>In this example, we are processing 10-minute geostationary satellite estimates of solar irradiance over Australia. Originally, the code loaded all 10-minute datasets valid for a single day into a single <code class="docutils literal notranslate"><span class="pre">xarray</span></code> dataset. The code then used a simple for loop to process a range of days. The <code class="docutils literal notranslate"><span class="pre">xarray</span></code> dataset valid for every day was appended to a list, which was  then concatenated into a larger array along the time dimension. Below is a combination of actual code combined with pseudo-code to save space.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
+<span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generate a list of dates</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_dt</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">end_dt</span> <span class="o">-</span> <span class="n">start_dt</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">NEM_performance</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">dir_dt</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span>
+
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">utils_V2</span><span class="o">.</span><span class="n">get_irradiance_day</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;p1s&#39;</span><span class="p">,</span> <span class="n">dir_dt</span><span class="o">=</span><span class="n">dir_dt</span><span class="p">)</span>
+
+    <span class="c1">#( Extract three irradiance variables : global, diffuse and direct from this</span>
+    <span class="c1"># dataset, and apply spatial masks to extract only the gridded areas of </span>
+    <span class="c1"># interest. Then convert the 2-D masked arrays, containing NaNs (empty/missing</span>
+    <span class="c1">#  values i.e. &#39;Not a Number&#39;) into a 1-D array)</span>
+        
+    <span class="c1"># calculate capacity factors using pvlib</span>
+    <span class="c1"># the function defined in utils_V2 is essentially the same as the workflow in </span>
+    <span class="c1"># pv-output-tilting.ipynb</span>
+    <span class="n">actual_ideal_ratio</span> <span class="o">=</span> <span class="n">utils_V2</span><span class="o">.</span><span class="n">tilting_panel_pr</span><span class="p">(</span>
+        <span class="n">pv_model</span> <span class="o">=</span> <span class="s1">&#39;Canadian_Solar_CS5P_220M___2009_&#39;</span><span class="p">,</span>
+        <span class="n">inverter_model</span> <span class="o">=</span> <span class="s1">&#39;ABB__MICRO_0_25_I_OUTD_US_208__208V_&#39;</span><span class="p">,</span>
+        <span class="n">ghi</span><span class="o">=</span><span class="n">ghi_clean</span><span class="p">,</span>
+        <span class="n">dni</span><span class="o">=</span><span class="n">dni_clean</span><span class="p">,</span>
+        <span class="n">dhi</span><span class="o">=</span><span class="n">dhi_clean</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">time_1d_clean</span><span class="p">,</span>
+        <span class="n">lat</span><span class="o">=</span><span class="n">lat_1d_expanded_clean</span><span class="p">,</span>
+        <span class="n">lon</span><span class="o">=</span><span class="n">lon_1d_expanded_clean</span>
+    <span class="p">)</span>  
+
+    <span class="c1">#( Convert the output of this PV function back into a 2-D array )</span>
+    <span class="c1"># Then convert it into a dataset </span>
+
+    <span class="n">ratio_da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">reshaped</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">mask_template</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">mask_template</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+
+    <span class="c1"># Compute the spatial mean in the gridded areas of interest </span>
+
+    <span class="n">mean_daily</span> <span class="o">=</span> <span class="n">ratio_da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">NEM_performance</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_daily</span><span class="p">)</span>
+
+<span class="c1"># Append it to the list of daily dataarrays</span>
+<span class="n">NEM_performance_timeseries</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">NEM_performance</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It takes about three minutes to process a single day. Separate <code class="docutils literal notranslate"><span class="pre">qsub</span></code> scripts were generated for a given month, and submitted to the PBS queue on a single core.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> PBS scheduler, the number of CPUs that you request (i.e. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus</span></code>) is actually the number of <strong>CORES</strong>. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, we need to request <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus=48</span></code>)</p>
+</div>
+<p>The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function <code class="docutils literal notranslate"><span class="pre">utils_V2.get_irradiance_day</span></code> uses <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can processed relatively quickly on a single core. So can we use <code class="docutils literal notranslate"><span class="pre">python</span></code> libraries to exploit the multiple cores that exist on a single CPU?</p>
+<p>The first step is to write a function that encapsulates all our daily computations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_timeseries_clearsky_ratio</span><span class="p">(</span><span class="n">date</span><span class="p">,</span>
+                                      <span class="n">file_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute a timeseries of ratio b/w tilting panel irradiance</span>
+<span class="sd">    relative to clear sky conditions for a given day</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#( Contain all the above code that controls the compution of mean </span>
+    <span class="c1"># irradiance for a single day)#</span>
+    
+    <span class="c1"># In this fuction, we will write a seperate netCDF file for each day</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Writing data for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">mean_daily</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>This function can be saved to a file <code class="docutils literal notranslate"><span class="pre">compute_data.py</span></code> so it can be imported into the main python script as a separate module. Now we can use the <code class="docutils literal notranslate"><span class="pre">concurrent.future</span></code> package so the main python script can send the computation of each day to a separate core in parallel. Let’s compute 10 days in parallel, across 10 cores.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">compute_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_timeseries_clearsky_ratio</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">TIMESERIES_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/gb02/pag548/solar_drought/REZ_tilting/ideal_ratio/NEM_timeseries&#39;</span><span class="p">)</span>
+
+<span class="n">HIMAWARI_SOLAR_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/rv74/satellite-products/arc/der/himawari-ahi/solar/&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">n_procs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># Find the maximum number of available cores</span>
+
+    <span class="c1"># Create the number of parallel branches and fix it and specify the number</span>
+    <span class="c1"># of workers. To begin with, make this less then n_procs to check memory usage</span>
+    <span class="c1"># Each core will have one function submitted to it</span>
+    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  
+
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Serial test</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;1-2-2022&#39;</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;12-2-2022&#39;</span>
+    
+    <span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
+    <span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Generate a list of dates</span>
+    <span class="n">date_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_dt</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">end_dt</span> <span class="o">-</span> <span class="n">start_dt</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+    <span class="c1"># Loop over the dates</span>
+    <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span> 
+
+        <span class="n">date_s</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Computing ratio of tilting to clearsky irradiance for </span><span class="si">{</span><span class="n">date_s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Here we submit each function call to the worker pool. This loop will happen process instantly.</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">worker_pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">compute_timeseries_clearsky_ratio</span><span class="p">,</span>
+            <span class="n">date_s</span><span class="p">,</span> 
+            <span class="n">TIMESERIES_DIR</span><span class="p">)</span>
+
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;The job for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span>
+
+</pre></div>
+</div>
+<p>If this python job is submitted to the PBS job queue, it will take roughly 4:15 seconds to compute 10 days. The total memory usage is 153 Gb, which suggests each parallel process consumes about 15 Gb. So on a <code class="docutils literal notranslate"><span class="pre">normal</span></code> PBS node, we can only use about 13 cores before we risk running out of memory (190/15 = 12.6).</p>
+<p>Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 minutes and consumes about 170 Gb. This is because we can only process 13 days at once. If you attempt to use more cores, you will exceed the shared memory capacity of a <code class="docutils literal notranslate"><span class="pre">normal</span></code> node.</p>
+<p>Of course, you could run the job on a <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> or <code class="docutils literal notranslate"><span class="pre">megamem</span></code> node. This could allow you to use all 96 threads in parallel (remember each <code class="docutils literal notranslate"><span class="pre">gadi</span></code> core contains two threads ). 96 threads times 15 Gb = 1.44 Tb. So the entire job could squeeze into the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> queue, but it would definitely fit in the <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queue.</p>
+<p>Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 cores would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> or <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queue could process a decade of data in under 3 hours.</p>
+<p>To find out more about the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> and <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queues, see <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a>. Note these queues are more expensive than the <code class="docutils literal notranslate"><span class="pre">normal</span></code> queues in terms of charge rates per hour, and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren’t overly repetitive.</p>
+<p>This is a very simple invocation of <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>. If you were submitting thousands of tasks over the course of several hours, a more rigorous application could track the process of each job, and keep a list of jobs that failed etc.</p>
+<p>Another option is to reduce the memory overhead of a single day’s computations, so we can squeeze more processes onto the <code class="docutils literal notranslate"><span class="pre">normal</span></code> node. Simple steps such as</p>
+<ul class="simple">
+<li><p>Only loading the required dataset variables from disk</p></li>
+<li><p>Only loading the spatial subset of data from disk
+will reduce the memory overhead of your process.</p></li>
+</ul>
+<p>Reviewing Scott Wales’ old CLEX posts on how to optimise <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> would be beneficial. See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a> on how to use the <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> argument with <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> ensure you don’t invoke the <code class="docutils literal notranslate"><span class="pre">parallel</span></code> option when using <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>. I’m unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This kind of workflow - submitting individual tasks to a pool of ‘workers’ which then send the task to an individual core - is a gateway to <code class="docutils literal notranslate"><span class="pre">Dask</span></code> itself. <code class="docutils literal notranslate"><span class="pre">Dask</span></code> contains its own <code class="docutils literal notranslate"><span class="pre">futures</span></code> library which is derived from the python built-in library <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>. If you found this example interesting and would like to experiment more, examine this <a class="reference external" href="https://tutorial.dask.org/05_futures.html">tutorial</a></p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="polars-intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">An Introduction to Fast Data Analysis with the Polars Library in Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../gadi/getting-started.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Getting started on gadi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-concurrent-futures">An example using concurrent futures</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
