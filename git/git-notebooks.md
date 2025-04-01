@@ -56,8 +56,84 @@ In this same secction you can add comments, suggestions and commits to the same 
 
 But this is only possible because the file in question is a plain text file. For images for example, git wil replace the old file with the new one, even if the changes in the image are small. And different formats will have different challenges. On the next section will see how to work with git and jupyter notebooks. 
 
+## Traking changes in a jupyter notebook
+
+Notebooks are JSON files under the hood and for that reason, the diff between versions of a file will be very hard to read. Here is an example:
+
+```bash
+diff --git a/analysis.ipynb b/analysis.ipynb
+index d5a4aae..efe708f 100644
+--- a/analysis.ipynb
++++ b/analysis.ipynb
+@@ -30,10 +30,24 @@
+    "metadata": {},
+    "outputs": [],
+    "source": [
+-    "# Load a NetCDF climate dataset\n",
++    "# Load a NetCDF file\n",
+     "ds = xr.open_mfdataset(\"era5_data.nc\")\n",
+     "print(ds)"
+    ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": null,
++   "metadata": {},
++   "outputs": [],
++   "source": [
++    "# Plot a temperature time series\n",
++    "plt.plot(df[\"date\"], df[\"temperature\"])\n",
++    "plt.xlabel(\"Date\")\n",
++    "plt.ylabel(\"Temperature\")\n",
++    "plt.title(\"Temperature Over Time\")\n",
++    "plt.show()"
++   ]
+   }
+  ],
+  "metadata": {
+```
+
+With the last commit we added the code to plot a temperature time series and change a comment from "Load a NetCDF climate dataset" to "Load NetCDF file". But it is hard to read in between all the metadata asociated to each cell. Also, the metadata of a cell can change even if the content stay the same making the task of traking changes challenging. 
+
+One posibility to review changes locally is [nbdime](https://nbdime.readthedocs.io/). By using `nbdiff <commit1 sha> <commit2 sha> <path>` we get this:
+
+```bash
+nbdiff analysis.ipynb (commit1 sha) analysis.ipynb (commit2 sha)
+--- analysis.ipynb (commit1 sha)  (no timestamp)
++++ analysis.ipynb (commit2 sha)  (no timestamp)
+## modified /cells/3/source:
+@@ -1,3 +1,3 @@
+-# Load a NetCDF climate dataset
++# Load a NetCDF file
+ ds = xr.open_mfdataset("era5_data.nc")
+ print(ds)
 
 
+## inserted before /cells/4:
++  code cell:
++    source:
++      # Plot a temperature time series
++      plt.plot(df["date"], df["temperature"])
++      plt.xlabel("Date")
++      plt.ylabel("Temperature")
++      plt.title("Temperature Over Time")
++      plt.show()
 
-The issue with notebooks
-A solution
+```
+
+ndbime is good to work locally but if you or a collegue want to review changes or contributions on PR on GitHub, we'll need a tool like [reviewNB](https://www.reviewnb.com). This is a separete app that alows you to review Jupyter Notebooks and pull request on GitGub. 
+
+```{figure} images/notebook-gh.png
+---
+alt: "Screenshot of github.com, it shows a pull request called add plot in the tab 'Files changed', on the left github show the current version of the file and on the right shows the new version where the new lines are highlighted. Note: the github interface is not accessible to screen readers."
+---
+Files chanched tab on a pull request for a jupyter notebook.
+```
+
+This particular example is simple, we are only changing a few lines in the code and not metadata because we didn't include the output of each cell. But the diff can be more complex and difficult to read. On the other hand, reviewNB present the diff in a tidy way:
+
+Screenshot
+
+How to access 
+
+Links to know more.
