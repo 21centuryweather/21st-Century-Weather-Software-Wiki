@@ -420,6 +420,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-concurrent-futures">An example using concurrent futures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself">Try it yourself</a></li>
 </ul>
             </nav>
         </div>
@@ -531,30 +532,24 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logger</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">compute_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_timeseries_clearsky_ratio</span>
 
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="n">TIMESERIES_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/gb02/pag548/solar_drought/REZ_tilting/ideal_ratio/NEM_timeseries&#39;</span><span class="p">)</span>
-
-<span class="n">HIMAWARI_SOLAR_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/rv74/satellite-products/arc/der/himawari-ahi/solar/&#39;</span><span class="p">)</span>
-
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="n">n_procs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># Find the maximum number of available cores</span>
-
-    <span class="c1"># Create the number of parallel branches and fix it and specify the number</span>
-    <span class="c1"># of workers. To begin with, make this less then n_procs to check memory usage</span>
-    <span class="c1"># Each core will have one function submitted to it</span>
-    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  
+    <span class="n">n_procs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># Find number of seperate CPUs</span>
+    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted</span>
 
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1"># Serial test</span>
     <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;1-2-2022&#39;</span>
-    <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;12-2-2022&#39;</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;10-2-2022&#39;</span>
     
     <span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
     <span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
@@ -562,21 +557,27 @@ document.write(`
     <span class="c1"># Generate a list of dates</span>
     <span class="n">date_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_dt</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">end_dt</span> <span class="o">-</span> <span class="n">start_dt</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
 
-    <span class="c1"># Loop over the dates</span>
-    <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span> 
+    <span class="c1"># Now submit a process for each date</span>
+    <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span>
 
-        <span class="n">date_s</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span>
-
-        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Computing ratio of tilting to clearsky irradiance for </span><span class="si">{</span><span class="n">date_s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="c1"># Here we submit each function call to the worker pool. This loop will happen process instantly.</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Computing ratio of tilting to clearsky irradiance for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">worker_pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">compute_timeseries_clearsky_ratio</span><span class="p">,</span>
-            <span class="n">date_s</span><span class="p">,</span> 
-            <span class="n">TIMESERIES_DIR</span><span class="p">)</span>
+            <span class="n">date</span><span class="p">)</span>
 
         <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;The job for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span>
 
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Submission complete&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Iterate through each result as they are completed</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; COMPLETE : </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="c1"># This could raise if the function failed</span>
+
+        <span class="c1"># Make sure that any data that is produced/returned to the future is</span>
+        <span class="c1"># cleared from memory by removing all references to the future.</span>
+        <span class="n">futures</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If this python job is submitted to the PBS job queue, it will take roughly 4:15 seconds to compute 10 days. The total memory usage is 153 Gb, which suggests each parallel process consumes about 15 Gb. So on a <code class="docutils literal notranslate"><span class="pre">normal</span></code> PBS node, we can only use about 13 cores before we risk running out of memory (190/15 = 12.6).</p>
@@ -595,6 +596,45 @@ will reduce the memory overhead of your process.</p></li>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>When using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> ensure you don’t invoke the <code class="docutils literal notranslate"><span class="pre">parallel</span></code> option when using <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>. I’m unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?</p>
+</div>
+</section>
+<section id="try-it-yourself">
+<h2>Try it yourself<a class="headerlink" href="#try-it-yourself" title="Link to this heading">#</a></h2>
+<p>You can obtain the above code by cloning the repository</p>
+<p><a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos">21centuryweather/software_engineering_demos</a></p>
+<p>To submit a test script to the PBS queue, after cloning the repository to a working directory on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Edit the package ‘environment file’ <code class="docutils literal notranslate"><span class="pre">solar_example/env.sh</span></code> to change the definition of the <code class="docutils literal notranslate"><span class="pre">ROOT</span></code> directory.</p></li>
+<li><p>Edith the package ‘configuration file’ <code class="docutils literal notranslate"><span class="pre">solar_example/config.py</span></code> to specify the input and output directories.</p></li>
+<li><p>Edit the script   <code class="docutils literal notranslate"><span class="pre">solar_example/scripts/concurrent_test.sh.qsub</span></code></p></li>
+</ol>
+<p>You will need substitute your current working directory, and change the location of the standard out and standard error log files (<code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-o</span> <span class="pre">&lt;filename&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-e</span> <span class="pre">&lt;filename&gt;</span></code>)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will have to be a member of project <code class="docutils literal notranslate"><span class="pre">rv74</span></code> to run this code as-is to read the satellite irradiance data.</p>
+</div>
+<p>Then submit the task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="n">solar_example</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">concurrent_test</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">qsub</span> 
+</pre></div>
+</div>
+<p>If you want to run the scripts interactively, execute the following</p>
+<ol class="arabic simple">
+<li><p>Launch an interactive <code class="docutils literal notranslate"><span class="pre">qsub</span></code> command, making sure you specify <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ncpus=48</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">qsub</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">-l</span> <span class="pre">mem=190gb</span> <span class="pre">-P&lt;your-project&gt;</span> <span class="pre">-l</span> <span class="pre">ncpus=48</span> <span class="pre">-q</span> <span class="pre">express</span> <span class="pre">-l</span> <span class="pre">walltime=01:00:00</span> <span class="pre">-l</span> <span class="pre">storage=gdata/&lt;your-project&gt;+gdata/hh5+gdata/rv74</span></code></p></li>
+<li><p>Replicate steps 1-2 above (i.e. edit the <code class="docutils literal notranslate"><span class="pre">env.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">config.py</span></code> files)</p></li>
+<li><p>Source the updated <code class="docutils literal notranslate"><span class="pre">env.sh</span></code> file (i.e. <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">env.sh</span></code>) to load the ‘analysis3’ python environment and add the package python files to your python path.</p></li>
+<li><p>Launch an interactive python session using <code class="docutils literal notranslate"><span class="pre">ipython</span></code></p></li>
+<li><p>Run the script in <code class="docutils literal notranslate"><span class="pre">ipython</span></code> using <code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">scripts/concurrent_test.py</span></code></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When implementing <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> yourself, note the syntax of the <code class="docutils literal notranslate"><span class="pre">worker_pool.submit()</span></code> function, which requires you to list the name of your function to submitted to each process, followed by the list of function arguments.</p>
+<p>So a function <code class="docutils literal notranslate"><span class="pre">test(a,b,c)</span></code> would be submitted as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">worker_pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">test</span><span class="p">,</span>
+                   <span class="n">a</span><span class="p">,</span>
+                   <span class="n">b</span><span class="p">,</span>
+                   <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -668,6 +708,7 @@ will reduce the memory overhead of your process.</p></li>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-concurrent-futures">An example using concurrent futures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself">Try it yourself</a></li>
 </ul>
   </nav></div>
 
