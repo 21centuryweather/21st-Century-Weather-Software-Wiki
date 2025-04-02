@@ -39,6 +39,7 @@ in this case you don't need to use forks.
 In both scenarios we will assume that you will work with branches to separate
 your work from other people's before passing them to the main branch.
 
+(content:git-team:scenario1)=
 ## Scenario 1
 
 This diagram shows the workflow when we **don't** need to do a fork.
