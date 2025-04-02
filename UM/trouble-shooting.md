@@ -59,9 +59,12 @@ User@Host: pag548@gadi-cpu-clx-1296.gadi.nci.org.au
 ```
 Often, you won't find any useful messages in `job.out`. Let's look at the `job.err` file. This file is where `cylc` pipes all standard error (or stderr) message from the PBS scheduler.
 
-> **_TIP:_** If you using the `cylc` GUI to look at the output files, you can select `job.err` from a pull-down menu on the bottom right after you've looked at `job.out`.
+:::{tip}
+
+If you're using the `cylc` GUI to look at the output files, you can select `job.err` from a pull-down menu on the bottom right after you've looked at `job.out`.
 
 ![stderr](images/stderr.png)
+:::
 
 The `job.err` file contains the following.
 ```

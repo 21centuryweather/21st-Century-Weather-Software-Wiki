@@ -18,59 +18,70 @@ If we are running a weather or climate session that will take days (or weeks, or
 
 Hence, NCI has created the persistent sessions capability. It creates a temporary virtual machine which runs indefinitely. This allows us to launch a `rose/cylc` suite without any time limits.
 
-NCI has the following documentation describing how to setup and configure persistent sessions:
-
-https://opus.nci.org.au/pages/viewpage.action?pageId=241927941
-
-https://opus.nci.org.au/display/Help/Persistent+Sessions
+NCI has the following documentation describing how to setup and configure persistent sessions for running `rose/cylc` suites:
 
 https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs
 
-ACCESS-Hive also has the following:
+ACCESS-NRI also has the following guide:
 
 https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session
 
-As you can see, there are a few ways to configure a persistent session. My preferred way is via an `ssh` terminal session.
-
-After starting a session - e.g.
+The above link refers to the ACCESS-CM3 model but it can be applied to any applications run with a `rose/cylc` suite. To follow the ACCESS-NRI guide, start a session at the command line, e.g.
 ```
 $ persistent-sessions start <session-name> -p <project>
 session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
   ssh <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
 ```
-where you substitute your own values of `<session-name>`, `<user-id>` and `<project>`.
-
-I make sure the file `~/.persistent-sessions/cylc-session` contains the session name:
+where you will substitute your own values of `<session-name>`, `<user-id>` and `<project>`, make sure the file `~/.persistent-sessions/cylc-session` contains the session name, i.e.
 ```
 $ more ~/.persistent-sessions/cylc-session 
 <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
 ```
-Then I log into the session.
+Then login to the session.
 ```
 $ ssh -Y <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
 ```
+After logging in, the `bash` login prompt will change from `<user-id.@gadi-login` etc. to` <user-id>@<session-name>`.
 
-As part of my `start_rose` alias, I export the value of the `CYLC_SESSION` environment variable via the following:
+As mentioned [here](../rose-cylc/rose-cylc-intro.md#fourth-cylc-tutorial) in the  previous`rose/cylc` tutorials, you can use an `alias` to help load the `cylc` modules. You can define a `start_rose` `alias` inside your `~/.bash_profile` file,
 ```
 # User specific aliases and functions
-alias start_rose="export CYLC_SESSION=<session-name>.<user-id>.<project>.ps.gadi.nci.org.au;module use /g/data/hr22/modulefiles;module load cylc7/23.09"
+alias start_rose="module use /g/data/hr22/modulefiles;module load cylc7"
+```
+An `alias` allows you to execute multiple commands by typing `start_rose` inside my persistent session:
+```
+$ start_rose
+```
+which will generate output similar to
+```
+Using the cylc session <session-name>.<user-id>.<project>.ps.gadi.nci.org.au
+
+Loading cylc7/24.03
+  Loading requirement: mosrs-setup/2.0.1
 ```
 
-> **_WARNING:_** If you have the `conda/analysis3` module loaded, you **WILL NOT** be able to `ssh` to your persistent session, due to a conflict between the `ssh` installation contained in that module and the global `ssh` configuration used at NCI. The `analysis3` installation cannot access any of the `ssh` options that are needed to access the persistent sessions (such as the port and which `SSHkey` to use). You will need to unload the `analysis3` module from you current environment using 
-```
-module unload conda/analysis3
-```
-> **_WARNING:_** If you are not yet a member of the `access` gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won't be able to complete the next one, or run any ACCESS suites. See [here](../UM/common_problems.md##Persistent-session-cannot-see-files-in-/g/data/access) for more information.
+:::{danger}
 
-> **_NOTE:_** You will have to restart your sessions after quarterly maintenance.
+If you have the `conda/analysis3` module loaded, you **WILL NOT** be able to `ssh` to your persistent session, due to a conflict between the `ssh` installation contained in that module and the global `ssh` configuration used at NCI. The `analysis3` installation cannot access any of the `ssh` options that are needed to access the persistent sessions (such as the port and which `SSHkey` to use). You will need to unload the `analysis3` module from you current environment using 
+```
+$ module unload conda/analysis3
+```
+:::
+:::{warning}
 
+If you are not yet a member of the `access` gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won't be able to complete the next one, or run any ACCESS suites. See [here](../UM/common_problems.md#persistent-session-cannot-see-files-in-gdataaccess) for more information.
+:::
+:::{note}
+
+You will have to restart your sessions after quarterly maintenance.
+:::
 ## MOSRS authentication ##
 
 Once you have connected to your persistent-session, you will have to load the required `rose/cylc` modules and then authenticate with the central MOSRS repository.
 
 A successful authentication will look like.
 ```
- mosrs-auth
+$ mosrs-auth
 INFO: You need to enter your MOSRS credentials here so that GPG can cache your password.
 Please enter the MOSRS password for <username>>: 
 INFO: Checking your credentials using Subversion. Please wait.
@@ -91,7 +102,7 @@ https://github.com/ACCESS-NRI/training-day-2024-regional_model/blob/main/access_
 
 You can check out Paul's suite using the rosie `check out` command,
 ```
-rosie co u-cq161
+$ rosie co u-cq161
 ```
 which creates a local copy of the `rose/cylc` suite at `~/roses/u-cq161`.
 
@@ -144,7 +155,7 @@ Note how the PBS job submission details (where relevant) are included in the `cy
 
 Let's examine the suite output by viewing the contents of the run directory.
 ```
-cd ~/cylc-run/u-cq161/
+$ cd ~/cylc-run/u-cq161/
 ```
 Let's examine the `log` files, noting that `log` is a symbolic link that links to the latest version of the `log.YYYYMMDDTHHMMSSZ` directory - i.e. the timestamp of the directory creation time is appended to the `log` directory name in GMT or 'Zulu' time, hence the 'Z'.
 

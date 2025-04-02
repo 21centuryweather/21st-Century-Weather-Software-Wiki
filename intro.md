@@ -2,17 +2,17 @@
 
 ## The Software Engineering Team
 
-The Software Engineering Team currently consists of 2 members:
+The Software Engineering Team currently consists of 3 members:
 
 - [Paul Gregory](https://www.21centuryweather.org.au/profile/paul-gregory) @ University of Melbourne
 - [Sam Green](https://www.21centuryweather.org.au/profile/sam-green) @ UNSW
-- ANU Coming Soon : [Job Ad](https://jobs.anu.edu.au/jobs/research-software-engineer-canberra-act-act-australia-2113d2be-c449-49d6-be1b-af81b6f7966e)
+- [Paola Corrales](https://paocorrales.github.io) : @ ANU 
 
 ## How to get help from the Software Engineering Team
 
 The Software Engineering team can be contacted for support through:
 
-- The Software Support Category on Cumulus ([Cumulus Software Categry](https://21centuryweather.discourse.group/c/software-support/32)).
+- The Software Support Category on Cumulus ([Cumulus Software Category](https://21centuryweather.discourse.group/c/software-support/32)).
 - One-on-one video call through Microsoft Teams or Zoom.
 - In person meetings with local Software Engineering team members.
 - Code Workshops (coming soon).
