@@ -1,4 +1,4 @@
-# Why git? #
+# Introduction
 
 Do you have something like this in your computer?
 ```
@@ -22,6 +22,8 @@ If you work as a team you can take advantage of all the above and also use versi
 You can include code in a repository, for example as python scripts of jupyter notebooks, but also text documents, data and any other file you need for your project. There are a few consideration in terms of the size of the files that we cover in [a future section](content:git-alone:file-size). 
 
 If you are starting to work with git, we suggests the [Working with Git alone](content:git-alone) section. If you are planning to work as part of a team or you want to contribute to others' people project, the [Working with Git in a team](content:git-team) is the section for you. 
+
+And if you are going to include jupyter notebooks on your repositories and plan to track and review changes, we recommend you also check the [Tracking changes on jupyter notebooks](content:git-notebooks) section. 
 
 ### Before you start
 
