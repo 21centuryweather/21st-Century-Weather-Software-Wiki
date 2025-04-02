@@ -39,6 +39,7 @@ parts:
     - file: git/git-intro
     - file: git/git-alone
     - file: git/git-team
+    - file: git/git-notebooks
   - caption: Feedback
     chapters:
     - file: feedback/feedback
