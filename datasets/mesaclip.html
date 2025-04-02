@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/mesaclip';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Why git?" href="../git/git-intro.html" />
+    <link rel="next" title="MMLEAv2" href="mmleav2.html" />
     <link rel="prev" title="ERA5-based Weather Objects" href="weather_objects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -214,6 +214,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="weather_objects.html">ERA5-based Weather Objects</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">MESACLIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy Demand dataset</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
 <ul class="nav bd-sidenav">
@@ -396,7 +398,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -412,6 +416,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-location">Data location:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-overview">Project Overview:</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -423,8 +436,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mesaclip">
 <h1>MESACLIP<a class="headerlink" href="#mesaclip" title="Link to this heading">#</a></h1>
+<p>Understanding the Role of MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction</p>
+<section id="data-location">
+<h2>Data location:<a class="headerlink" href="#data-location" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">/g/data/su28/MESACLIP</span></code></p>
-<p>Info coming soon…</p>
+</section>
+<section id="project-overview">
+<h2>Project Overview:<a class="headerlink" href="#project-overview" title="Link to this heading">#</a></h2>
+<p>Climate variations on seasonal-to-decadal (S2D) timescales can have enormous social, economic, and environmental impacts, making skillful predictions on these time scales an invaluable tool for policymakers and stakeholders. Such variations modulate the likelihood and intensity of extreme weather events including, tropical cyclones (TCs), heat waves, winter storms, atmospheric rivers (ARs), and floods, which have all been associated with (1) increases in human morbidity and mortality rates; (2) severe impacts on agriculture, energy use, and industrial activity; and (3) economic costs in the billions of dollars. Changes in prevailing climate patterns are also responsible for prolonged droughts, which can have profoundly negative effects on large segments of the world population. Enhancing our foreknowledge of climate variability on S2D time scales and understanding its influence on extreme weather events could help mitigate negative impacts on human and biological populations, making climate predictions an exceptionally important climate and social science frontier.</p>
+<p>Over the past three years, our research team consisting of scientists at Texas A&amp;M University (TAMU) and the U.S. National Science Foundation National Center for Atmospheric Research (NSF NCAR), through collaborations with our international partners, has made major breakthroughs in advancing high-resolution global climate modeling and prediction. Not only have we completed an unprecedented set of TC-permitting (0.25° atmosphere–land resolution) and ocean-mesoscale-eddy-resolving (0.1° ocean–sea-ice resolution) (hereafter simply referred to as high-resolution) historical and future climate simulations (Chang et al. 2020) but we also pioneered the first-ever ensemble of global high-resolution S2D climate prediction simulations. These trailblazing efforts have led to multiple thought-invoking and intriguing discoveries about the potentially important role of mesoscale atmosphere-ocean interactions in climate predictability and prediction at S2D timescales, which are now in need of more in-depth investigation and further scrutiny. Building on these initial efforts, the overall objective of the MESACLIP project is to advance our fundamental knowledge and understanding of the multi-scale dynamical processes underlying S2D predictability by 1) expanding the ensemble size of the existing high-resolution simulations to enable more robust and mechanistic insights into predictable dynamics from meso-to-basin scales, and 2) comparing the high-resolution prediction ensemble directly with the existing low-resolution (∼1° in all components) ensemble to quantify the benefits of increased model resolutions and how such benefits arise.</p>
+<p>Please see <a class="reference external" href="https://project.cgd.ucar.edu/projects/MESACLIP/">MESACLIP Project</a> for more detail about this data.</p>
+<p>Please see <a class="reference external" href="https://www2.cgd.ucar.edu/ccr/strandwg/CESM-CAM5-BGC_LENS_fields.html">CESM-CAM5-BGC LENS fields complete list</a> for a full variable list.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -467,11 +490,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../git/git-intro.html"
+       href="mmleav2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Why git?</p>
+        <p class="prev-next-title">MMLEAv2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -481,6 +504,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-location">Data location:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-overview">Project Overview:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
