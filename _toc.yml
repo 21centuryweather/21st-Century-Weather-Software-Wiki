@@ -27,6 +27,7 @@ parts:
     - file: python/file_formats
     - file: python/polars-intro
     - file: python/concurrent_futures
+    - file: python/testing
   - caption: Working with Gadi
     chapters:
     - file: gadi/getting-started
