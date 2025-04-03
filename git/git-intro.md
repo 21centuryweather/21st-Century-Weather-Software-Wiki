@@ -88,6 +88,23 @@ git config --global init.defaultBranch main
 
 More advance config: [How Core Git Developers Configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git/)
 
+### Choose your own adventure
+
+The next sections will assume you are working from a terminal on Gadi or on your laptop. There are many ways to interact with git, here are a few other options.
+
+#### Working locally
+
+* **Windows:** when you install git on Windows you are also installing git bash and all the commands we use here should work. If you prefer a visual interface there are many options like GitHub desktop and GitKraken. If you use VSCode or Jupyter Lab, there are git extensions you can install to create commits and push/pull from remote repositories. 
+
+* **Linux/Mac:** you already have a working terminal. If you prefer a visual interface there are many options like GitHub desktop and GitKraken. If you use VSCode or Jupyter Lab, there are git extensions you can install to create commits and push/pull from remote repositories. 
+
+#### Working on NCI systems
+
+* **Logging to Gadi from a terminal:** this is the default option.
+
+* **ARE:** If you use a virtual machine, you will have access to a terminal. If your work will Jupyter Lab, there is git extension you can install to create commits and push/pull from remote repositories. If you use RStudio Server, you will find a "git" tab that works as a git interface. 
+
+
 ### References
 
 The materials in this section are inspired on:
