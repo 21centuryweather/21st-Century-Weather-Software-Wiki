@@ -163,7 +163,7 @@ Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 min
 
 Of course, you could run the job on a `hugemem` or `megamem` node. This could allow you to use all 96 threads in parallel (remember each `gadi` core contains two threads ). 96 threads times 15 Gb = 1.44 Tb. So the entire job could squeeze into the `hugemem` queue, but it would definitely fit in the `megamem` queue. 
 
-Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 cores would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the `hugemem` or `megamem` queue could process a decade of data in under 3 hours.
+Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 threads would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the `hugemem` or `megamem` queue could process a decade of data in under 3 hours.
 
 To find out more about the `hugemem` and `megamem` queues, see [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits). Note these queues are more expensive than the `normal` queues in terms of charge rates per hour, and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren't overly repetitive.
 
