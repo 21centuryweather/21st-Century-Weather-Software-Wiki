@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'python/concurrent_futures';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Getting started on gadi" href="../gadi/getting-started.html" />
+    <link rel="next" title="Testing your code" href="testing.html" />
     <link rel="prev" title="An Introduction to Fast Data Analysis with the Polars Library in Python" href="polars-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,6 +203,7 @@
 <li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing your code</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
 <ul class="nav bd-sidenav">
@@ -452,7 +453,7 @@ document.write(`
 <p>So clearly have a lot of scope to use shared-memory programming to speed up our data analysis in <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There are two paradigms of distributed computing. In the ‘shared memory’ paradigm, multiple processes have access to a shared pool of memory. In the ‘distributed memory’ paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a ‘shared memory’ example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.</p>
+<p>There are two paradigms of parallel computing. In the ‘shared memory’ paradigm, multiple processes have access to a shared pool of memory. In the ‘distributed memory’ paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a ‘shared memory’ example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.</p>
 </div>
 <p>Often, users first encounter parallel processing via the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> module via a <code class="docutils literal notranslate"><span class="pre">dask</span></code> Client. In this way, a single <code class="docutils literal notranslate"><span class="pre">xarray</span></code> data structure can be read, processed and written in parallel ‘chunks’ using <code class="docutils literal notranslate"><span class="pre">dask</span></code> arrays. ‘Chunking’ can occur along any dimension - spatial or temporal.</p>
 <p>There are other ways to exploit parallelism in <code class="docutils literal notranslate"><span class="pre">python</span></code>. If our data arrays are relatively small, but there are many of them (e.g. decades worth of daily data) we can spawn multiple parallel processes to process each file separately. We can analyse each file in parallel and write temporary results to disk. We can then collate this data into a single data structure at the end.</p>
@@ -508,9 +509,9 @@ document.write(`
 <p>It takes about three minutes to process a single day. Separate <code class="docutils literal notranslate"><span class="pre">qsub</span></code> scripts were generated for a given month, and submitted to the PBS queue on a single core.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> PBS scheduler, the number of CPUs that you request (i.e. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus</span></code>) is actually the number of <strong>CORES</strong>. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, we need to request <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus=48</span></code>)</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> PBS scheduler, the number of CPUs that you request (i.e. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus</span></code>) is actually the number of <strong>CORES</strong>. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, you need to request <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus=48</span></code>)</p>
 </div>
-<p>The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function <code class="docutils literal notranslate"><span class="pre">utils_V2.get_irradiance_day</span></code> uses <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can processed relatively quickly on a single core. So can we use <code class="docutils literal notranslate"><span class="pre">python</span></code> libraries to exploit the multiple cores that exist on a single CPU?</p>
+<p>The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function <code class="docutils literal notranslate"><span class="pre">utils_V2.get_irradiance_day</span></code> uses <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can be processed relatively quickly on a single core. So can we use <code class="docutils literal notranslate"><span class="pre">python</span></code> libraries to exploit the multiple cores that exist on a single CPU?</p>
 <p>The first step is to write a function that encapsulates all our daily computations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_timeseries_clearsky_ratio</span><span class="p">(</span><span class="n">date</span><span class="p">,</span>
                                       <span class="n">file_path</span><span class="p">):</span>
@@ -592,9 +593,9 @@ document.write(`
 <p>Another option is to reduce the memory overhead of a single day’s computations, so we can squeeze more processes onto the <code class="docutils literal notranslate"><span class="pre">normal</span></code> node. Simple steps such as</p>
 <ul class="simple">
 <li><p>Only loading the required dataset variables from disk</p></li>
-<li><p>Only loading the spatial subset of data from disk
-will reduce the memory overhead of your process.</p></li>
+<li><p>Only loading the spatial subset of data from disk</p></li>
 </ul>
+<p>will reduce the memory overhead of your process.</p>
 <p>Reviewing Scott Wales’ old CLEX posts on how to optimise <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> would be beneficial. See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a> on how to use the <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> argument with <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -608,7 +609,7 @@ will reduce the memory overhead of your process.</p></li>
 <p>To submit a test script to the PBS queue, after cloning the repository to a working directory on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>:</p>
 <ol class="arabic simple">
 <li><p>Edit the package ‘environment file’ <code class="docutils literal notranslate"><span class="pre">solar_example/env.sh</span></code> to change the definition of the <code class="docutils literal notranslate"><span class="pre">ROOT</span></code> directory.</p></li>
-<li><p>Edith the package ‘configuration file’ <code class="docutils literal notranslate"><span class="pre">solar_example/config.py</span></code> to specify the input and output directories.</p></li>
+<li><p>Edit the package ‘configuration file’ <code class="docutils literal notranslate"><span class="pre">solar_example/config.py</span></code> to specify the input and output directories.</p></li>
 <li><p>Edit the script   <code class="docutils literal notranslate"><span class="pre">solar_example/scripts/concurrent_test.sh.qsub</span></code></p></li>
 </ol>
 <p>You will need substitute your current working directory, and change the location of the standard out and standard error log files (<code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-o</span> <span class="pre">&lt;filename&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-e</span> <span class="pre">&lt;filename&gt;</span></code>)</p>
@@ -686,11 +687,11 @@ will reduce the memory overhead of your process.</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="../gadi/getting-started.html"
+       href="testing.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Getting started on gadi</p>
+        <p class="prev-next-title">Testing your code</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

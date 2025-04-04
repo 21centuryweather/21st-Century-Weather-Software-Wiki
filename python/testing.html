@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Testing your code &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/testing';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting started on gadi" href="../gadi/getting-started.html" />
+    <link rel="prev" title="Parallelism in Python using concurrent futures" href="concurrent_futures.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Testing your code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fpython/testing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/testing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Testing your code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-pytest">Examples with pytest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-your-own-functions">Testing your own functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-external-modules">Testing external modules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-concepts-and-reading">Further concepts and reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-vs-smoke-tests-vs-regression-tests">Unit tests vs Smoke tests vs Regression tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage">Code coverage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test driven development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continual-integration">Continual integration</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="testing-your-code">
+<h1>Testing your code<a class="headerlink" href="#testing-your-code" title="Link to this heading">#</a></h1>
+<p>There are many instances in the course of your research where you will have to rely on someone else’s code, or share your own code, e.g. during a hackathon.</p>
+<p>But how can you trust that someone else’s code works? If someone has made modifications to your original code and pushed them back to your <code class="docutils literal notranslate"><span class="pre">git</span></code> repository, how do you ensure it still works?</p>
+<p>This is one of many use-cases for the creation of ‘code tests’. If we use and build automated tests of code we, or others, have developed, this allows us to:</p>
+<ol class="arabic simple">
+<li><p>Install code from other researchers and test it works in our environment</p></li>
+<li><p>Collaborate on developed code with a set of benchmarks that prevents us from accidentally introducing errors.</p></li>
+</ol>
+<p>Testing is also great for your own code development. We’ve all had situations were we accidentally introduced a bug into our own scripts and it took us a day (or longer!) to chase it down. Building and maintaining tests of your code will instantly help identify the source of the error.</p>
+<p>During code development, we naturally start building our algorithm using small test cases. Once we are confident that it works, we usually extend our code to work across larger datasets. Creating a ‘unit test’ (a test on a small function) is just a formalised way of integrating testing and checking into our code.</p>
+<p>Fortunately, <code class="docutils literal notranslate"><span class="pre">python</span></code> has a fantastic integrated testing framework called <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. The official documents are available <a class="reference external" href="https://docs.pytest.org/en/stable/index.html">here</a> and the internet is full of great resources, e.g. <a class="reference external" href="https://pytest-with-eric.com">here</a>.</p>
+<section id="examples-with-pytest">
+<h2>Examples with pytest<a class="headerlink" href="#examples-with-pytest" title="Link to this heading">#</a></h2>
+<p>Let’s return to the sample solar code we created earlier for our parallelization example <a class="reference internal" href="concurrent_futures.html#try-it-yourself"><span class="std std-ref">here</span></a>.</p>
+<section id="testing-your-own-functions">
+<h3>Testing your own functions<a class="headerlink" href="#testing-your-own-functions" title="Link to this heading">#</a></h3>
+<p>The solar data is located across various directories which correspond to different product version numbers. Depending on the day you are analysing, your product version, and hence your input directory, will change.</p>
+<p>The original code contained some simple logic to return the correct version string. All data processed after April 1 2019 corresponds to version 1.1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">valid_date</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">date</span> <span class="o">&lt;</span> <span class="n">valid_date</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;v1.0&#39;</span>
+    <span class="k">elif</span> <span class="n">date</span> <span class="o">&gt;=</span> <span class="n">valid_date</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;v1.1&#39;</span>
+</pre></div>
+</div>
+<p>This simple statement compares two python <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects. It assumes the variable <code class="docutils literal notranslate"><span class="pre">date</span></code> is a valid <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object. However, what will happen if <code class="docutils literal notranslate"><span class="pre">date</span></code> is not a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object? Would you end up in the wrong directory?  Would the script throw an error and stop?</p>
+<p>As this script isn’t mission critical (e.g. nothing will blow up if it stops) we can enforce a simple <code class="docutils literal notranslate"><span class="pre">type</span></code> check of <code class="docutils literal notranslate"><span class="pre">date</span></code>, and then stop the script and send the user a useful error message upon exit. We can add this logic before we conduct the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> comparison.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Check input date is a datetime object</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1"> is not a datetime object&#39;</span><span class="p">)</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span><span class="s1">&#39;Check the processing of datetime objects for irradiance retrieval&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span>
+</pre></div>
+</div>
+<p>The full code is available <a class="reference external" href="https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/solar_example/load_data.py">here</a></p>
+<p>So this function <code class="docutils literal notranslate"><span class="pre">get_version()</span></code> is rather important from a scientific perspective. We don’t want to load the incorrect data for a given day. So a good test of this function would involve:</p>
+<ul class="simple">
+<li><p>Applying a range of dates and checking the returned version string is correct</p></li>
+<li><p>Anticipating possible errors by the user, e.g. entering the date as a string or integer instead of a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object.</p></li>
+</ul>
+<p>A simple test function could look something like this</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">dates</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span>
+             <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">31</span><span class="p">),</span>
+             <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+             <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+
+    <span class="n">versions</span> <span class="o">=</span> <span class="p">[</span> <span class="n">get_version</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates</span> <span class="p">]</span>
+
+    <span class="k">assert</span> <span class="n">versions</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;v1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;v1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;v1.1&#39;</span><span class="p">,</span> <span class="s1">&#39;v1.1&#39;</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<p>So we give the function a range of days across the threshold date of April 1 2019. We expect the version up to March 31 2019 will be <code class="docutils literal notranslate"><span class="pre">v1.0</span></code>, and for subsequent days it will be <code class="docutils literal notranslate"><span class="pre">v1.1</span></code>.  The python <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement will return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the condition is met, or raise an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> if not.</p>
+<p>Once you wrote this simple test function, you can wrap some <code class="docutils literal notranslate"><span class="pre">pytest</span></code> infrastructure around it by building a new function whose name begins with <code class="docutils literal notranslate"><span class="pre">test_</span></code> in a file named <code class="docutils literal notranslate"><span class="pre">test_&lt;function&gt;.py</span></code>. <a class="reference external" href="https://www.skill2lead.com/pytest/pytest-naming-conventions.php">Here</a> is an example of the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> naming conventions. These conventions allow <code class="docutils literal notranslate"><span class="pre">pytest</span></code> to automatically scan files, typically located in a <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory, and run all your test functions.</p>
+<p>If we wanted to test the other functionality of our <code class="docutils literal notranslate"><span class="pre">get_version()</span></code> function, we can use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> functions to check the function exits smoothly when bad inputs are given.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Test the SystemExist for bad values</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">pytest_exit</span><span class="p">:</span>
+        <span class="n">get_version</span><span class="p">(</span><span class="mi">20190401</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">pytest_exit</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="ne">SystemExit</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">SystemExit</span><span class="p">)</span> <span class="k">as</span> <span class="n">pytest_exit</span><span class="p">:</span>
+        <span class="n">get_version</span><span class="p">(</span><span class="s1">&#39;20190401&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">pytest_exit</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="ne">SystemExit</span>
+</pre></div>
+</div>
+<p>The full function <code class="docutils literal notranslate"><span class="pre">test_version()</span></code> can be found <a class="reference external" href="https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/tests/test_data.py">here</a>.</p>
+</section>
+<section id="testing-external-modules">
+<h3>Testing external modules<a class="headerlink" href="#testing-external-modules" title="Link to this heading">#</a></h3>
+<p>We can also use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> to make our code resilient to changes and upgrades of libraries and modules we use in our research. For example you might develop a script which is heavily reliant on <code class="docutils literal notranslate"><span class="pre">pandas</span></code> for data processing, or <code class="docutils literal notranslate"><span class="pre">eofs</span></code> for computing Empirical Orthogonal Functions. You may move onto another task for a six months or a year, and then come back to this script and run it using another, up-to-date <code class="docutils literal notranslate"><span class="pre">python</span></code> environment.</p>
+<p>But what happens if the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> or <code class="docutils literal notranslate"><span class="pre">eofs</span></code> functions you’ve used have changed? Maybe <code class="docutils literal notranslate"><span class="pre">pandas</span></code> or <code class="docutils literal notranslate"><span class="pre">eofs</span></code> have undergone significant upgrades. The functions you previously used may no longer exist. Or, their input arguments may have changed. Are you able to replicate the same <code class="docutils literal notranslate"><span class="pre">python</span></code> environment that existed last year? But is that compatible with the latest module your using for another, related task? If you have to make changes to your code so that it runs in your new environment, can you be sure you got the same answers that you did last year?</p>
+<p>By building tests around functions which rely on imported, external modules, we provide a benchmark that can be referred to in the future. We can also quickly identify the source of any future problems, if our <code class="docutils literal notranslate"><span class="pre">tests</span></code> have sufficient fidelity to test every external function call.</p>
+<p>Looking back at the solar example, it uses a function <code class="docutils literal notranslate"><span class="pre">tilting_panel_pr</span></code> which relies on several functions of the external <code class="docutils literal notranslate"><span class="pre">pvlib</span></code> library. These includes calls to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pvlib.pvsystem.retrieve_sam</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pvlib.solarposition.get_solarposition</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pvlib.tracking.singleaxis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pvlib.irradiance.get_extra_radiation</span></code></p></li>
+</ul>
+<p>etc.</p>
+<p>We can quickly build a test for <code class="docutils literal notranslate"><span class="pre">tilting_panel_pr</span></code>.  In the research script, this is applied to arrays extracted from a large dataset of 10 minute daily data (with dimensions 103 x  1726 x 2214). But we can test the function with a much smaller subset of data and provide it as inputs to <code class="docutils literal notranslate"><span class="pre">tilting_panel_pr</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_tilting_panel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test the module which computes solar PV</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Give the model some known input values</span>
+
+    <span class="n">ghi</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">60.23</span><span class="p">,</span> <span class="mf">60.51</span><span class="p">,</span> <span class="mf">60.81</span><span class="p">,</span> <span class="mf">61.06</span><span class="p">,</span> <span class="mf">61.34</span><span class="p">,</span> <span class="mf">61.58</span><span class="p">,</span> 
+                          <span class="mf">61.83</span><span class="p">,</span> <span class="mf">62.12</span><span class="p">,</span> <span class="mf">62.36</span><span class="p">,</span><span class="mf">62.69</span><span class="p">])</span>
+
+    <span class="n">dhi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">30.66</span><span class="p">,</span> <span class="mf">30.79</span><span class="p">,</span> <span class="mf">30.86</span><span class="p">,</span> <span class="mf">30.93</span><span class="p">,</span> <span class="mf">31.05</span><span class="p">,</span> <span class="mf">31.12</span><span class="p">,</span> 
+                          <span class="mf">31.19</span><span class="p">,</span> <span class="mf">31.25</span><span class="p">,</span> <span class="mf">31.33</span><span class="p">,</span> <span class="mf">31.44</span><span class="p">])</span>
+    
+    <span class="n">dni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">282.75</span><span class="p">,</span> <span class="mf">283.4</span><span class="p">,</span> <span class="mf">284.7</span><span class="p">,</span> <span class="mf">285.57</span><span class="p">,</span> <span class="mf">286.35</span><span class="p">,</span> <span class="mf">287.1</span><span class="p">,</span> 
+                          <span class="mf">287.95</span><span class="p">,</span> <span class="mf">289.32</span><span class="p">,</span> <span class="mf">290.05</span><span class="p">,</span> <span class="mf">291.19</span><span class="p">])</span>
+
+    <span class="n">time_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">)],</span><span class="nb">len</span><span class="p">(</span><span class="n">dni</span><span class="p">))</span>
+
+    <span class="n">lat_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="o">-</span><span class="mf">17.38</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">dni</span><span class="p">))</span>
+
+    <span class="n">lon_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">42.74</span><span class="p">,</span> <span class="mf">142.76</span><span class="p">,</span> <span class="mf">142.78</span><span class="p">,</span> <span class="mf">142.8</span> <span class="p">,</span> <span class="mf">142.82</span><span class="p">,</span> <span class="mf">142.84</span><span class="p">,</span>
+                       <span class="mf">142.86</span><span class="p">,</span> <span class="mf">142.88</span><span class="p">,</span> <span class="mf">142.9</span> <span class="p">,</span> <span class="mf">142.92</span><span class="p">])</span>
+
+    <span class="c1"># Specify the target output values</span>
+    
+    <span class="n">target</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="mf">2.367783</span><span class="p">,</span>
+              <span class="s1">&#39;max&#39;</span> <span class="p">:</span> <span class="mf">2.461892</span><span class="p">,</span>
+              <span class="s1">&#39;min&#39;</span> <span class="p">:</span> <span class="mf">2.279921</span><span class="p">}</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Testing tilting_panel_pr&#39;</span><span class="p">)</span>
+
+    <span class="n">actual_ideal_ratio_t</span> <span class="o">=</span> <span class="n">tilting_panel_pr</span><span class="p">(</span>
+        <span class="n">pv_model</span> <span class="o">=</span> <span class="s1">&#39;Canadian_Solar_CS5P_220M___2009_&#39;</span><span class="p">,</span>
+        <span class="n">inverter_model</span> <span class="o">=</span> <span class="s1">&#39;ABB__MICRO_0_25_I_OUTD_US_208__208V_&#39;</span><span class="p">,</span>
+        <span class="n">ghi</span><span class="o">=</span><span class="n">ghi</span><span class="p">,</span>
+        <span class="n">dni</span><span class="o">=</span><span class="n">dni</span><span class="p">,</span>
+        <span class="n">dhi</span><span class="o">=</span><span class="n">dhi</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">time_1d</span><span class="p">,</span>
+        <span class="n">lat</span><span class="o">=</span><span class="n">lat_1d</span><span class="p">,</span>
+        <span class="n">lon</span><span class="o">=</span><span class="n">lon_1d</span>
+    <span class="p">)</span>  
+
+    <span class="c1"># Check the outputs match the corresponding known values</span>
+    <span class="c1"># Drop the first &#39;nan&#39; values from the output</span>
+    <span class="n">actual_ideal_ratio_t</span> <span class="o">=</span> <span class="n">actual_ideal_ratio_t</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">actual_ideal_ratio_t</span><span class="p">)]</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">actual_ideal_ratio_t</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span> <span class="mf">1e-6</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">actual_ideal_ratio_t</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">],</span> <span class="mf">1e-6</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">actual_ideal_ratio_t</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">],</span> <span class="mf">1e-6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The full test file containing two tests (one for <code class="docutils literal notranslate"><span class="pre">get_version()</span></code> the other for <code class="docutils literal notranslate"><span class="pre">tilting_panel_pr</span></code>) is <a class="reference external" href="https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/tests/test_data.py"><code class="docutils literal notranslate"><span class="pre">test_data.py</span></code></a> inside the <code class="docutils literal notranslate"><span class="pre">solar_example/tests</span></code> directory.  You can run the tests from the <code class="docutils literal notranslate"><span class="pre">solar_example</span></code> directory simply by executing</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">env.sh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest</span></code></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest
+===================================== test session starts ======================================
+platform linux -- Python 3.10.14, pytest-8.3.1, pluggy-1.5.0
+Fugue tests will be initialized with options:
+rootdir: /home/548/pag548/code/software_engineering_demos/solar_example
+plugins: fugue-0.9.0, time-machine-2.14.1, cov-5.0.0, anyio-4.4.0
+collected 2 items                                                                              
+
+tests/test_data.py ..                                                                    [100%]
+
+====================================== 2 passed in 0.89s =======================================
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> is smart enough to search for all the necessary files and run all available tests.</p>
+<p>However, if we want nicer outputs via logging, we can create a <code class="docutils literal notranslate"><span class="pre">pytest.ini</span></code> file and specify logging outputs (by default, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> will suppress logging). Then we can call</p>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">tests</span></code></p></li>
+</ol>
+<p>And this will produce output with more information.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest tests
+===================================== test session starts ======================================
+platform linux -- Python 3.10.14, pytest-8.3.1, pluggy-1.5.0
+Fugue tests will be initialized with options:
+rootdir: /home/548/pag548/code/software_engineering_demos/solar_example/tests
+configfile: pytest.ini
+plugins: fugue-0.9.0, time-machine-2.14.1, cov-5.0.0, anyio-4.4.0
+collected 2 items                                                                              
+
+tests/test_data.py::test_version 
+---------------------------------------- live log call -----------------------------------------
+2025-04-04 17:48:23 [INFO] Testing get_version (test_data.py:24)
+2025-04-04 17:48:23 [CRITICAL] 20190401 is not a datetime object (load_data.py:24)
+2025-04-04 17:48:23 [CRITICAL] Check the processing of datetime objects for irradiance retrieval (load_data.py:25)
+2025-04-04 17:48:23 [CRITICAL] 20190401 is not a datetime object (load_data.py:24)
+2025-04-04 17:48:23 [CRITICAL] Check the processing of datetime objects for irradiance retrieval (load_data.py:25)
+PASSED                                                                                   [ 50%]
+tests/test_data.py::test_tilting_panel 
+---------------------------------------- live log call -----------------------------------------
+2025-04-04 17:48:23 [INFO] Testing tilting_panel_pr (test_data.py:67)
+PASSED                                                                                   [100%]
+
+====================================== 2 passed in 2.88s =======================================
+</pre></div>
+</div>
+<p>In this case, our testing coverage of the <code class="docutils literal notranslate"><span class="pre">pvlib</span></code> function calls is rather coarse. If this library was an early, prototype version (i.e. version number &lt; 1.0) we might increase the granularity our test coverage and build unit tests for every <code class="docutils literal notranslate"><span class="pre">pvlib</span></code> function we call.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A unit test refers to testing a single, irreducible function. i.e. testing the smallest component of code possible.</p>
+</div>
+<p>If we are confident that <code class="docutils literal notranslate"><span class="pre">pvlib</span></code> is stable and that any future changes will be incremental, we can use our above test as a ‘smoke test’ which tests the integration of multiple function calls.</p>
+<p>The creation of these tests now means we have protected ourselves from any accidental changes to these functions. The functions <code class="docutils literal notranslate"><span class="pre">test_version()</span></code> and <code class="docutils literal notranslate"><span class="pre">test_tilting_panel</span></code> do not define any new scientific code. They only import our scientific code from the main package. Any inadvertent changes to the code in the main package will be caught by the tests.</p>
+<p>You can see that a well-maintained scientific code package would benefit from</p>
+<ol class="arabic simple">
+<li><p>Multiple test functions which cover as much of our main package as possible</p></li>
+<li><p>Regularly updating tests to reflect the changing and evolving nature of our science code.</p></li>
+</ol>
+</section>
+</section>
+<section id="further-concepts-and-reading">
+<h2>Further concepts and reading<a class="headerlink" href="#further-concepts-and-reading" title="Link to this heading">#</a></h2>
+<p>This is a very quick review of testing concepts. Testing itself is a whole programming discipline, and <code class="docutils literal notranslate"><span class="pre">pytest</span></code> contains functionality for government agencies and large corporations to maintain mission-critical production code containing millions of lines of code.</p>
+<p>You don’t need to understand or use all of these capabilities, but a simple application of basic testing will serve you well in the long run. It will help you maintain your research code over the life of your project.</p>
+<p>There are other <code class="docutils literal notranslate"><span class="pre">pytest</span></code> features which you may want to use in future, such as <code class="docutils literal notranslate"><span class="pre">fixtures</span></code> and <code class="docutils literal notranslate"><span class="pre">mocks</span></code>. This <a class="reference external" href="https://medium.com/worldsensing-techblog/tips-and-tricks-for-unit-tests-b35af5ba79b1">blog post</a> contains some examples.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Fixtures</span></code> can be used to generate a set of input arguments that can be passed to your suite of test functions so they can in turn, test your functions imported from your main code base directory.</p>
+<section id="unit-tests-vs-smoke-tests-vs-regression-tests">
+<h3>Unit tests vs Smoke tests vs Regression tests<a class="headerlink" href="#unit-tests-vs-smoke-tests-vs-regression-tests" title="Link to this heading">#</a></h3>
+<p>As mentioned before, unit tests apply to the smallest components of code. If we want to test how we combine multiple functions, that is usually referred to as a ‘smoke’ test. A complete end-to-end test of a production workflow is usually referred to as a ‘regression’ test. There are other intermediate steps too, such as ‘acceptance’ tests.</p>
+<p>See <a class="reference external" href="https://dev.to/crazyvaskya/a-beginners-guide-to-testing-unit-smoke-acceptance-4ngh">here</a> and <a class="reference external" href="https://keploy.io/blog/community/developers-guide-to-smoke-testing-ensuring-basic-functionality">here</a> for further discussions.</p>
+</section>
+<section id="code-coverage">
+<h3>Code coverage<a class="headerlink" href="#code-coverage" title="Link to this heading">#</a></h3>
+<p>‘Code coverage’ is an important concept in code testing. Ideally, we want to cover as many lines as code with tests. There are various <code class="docutils literal notranslate"><span class="pre">python</span></code> plugins which can tell us how much of our code has been tested. See this <a class="reference external" href="https://medium.com/&#64;keployio/mastering-python-test-coverage-tools-tips-and-best-practices-11daf699d79b">blog post</a> for details.</p>
+<p>A popular tool for measuring code coverage is <a class="reference external" href="https://coverage.readthedocs.io/en/7.8.0/">https://coverage.readthedocs.io/en/7.8.0/</a></p>
+</section>
+<section id="test-driven-development">
+<h3>Test driven development<a class="headerlink" href="#test-driven-development" title="Link to this heading">#</a></h3>
+<p>At the most extreme example, when building and maintaing production code, you may write the tests before you actually write the code. This is known as ‘test-driven development’. The overheads in using this kind of development may be regarded as excessive when working in a research environment. But its an interesting example of how you can invert a programming paradigm.</p>
+<p>Here is quick <a class="reference external" href="https://medium.com/&#64;muirujackson/python-test-driven-development-6235c479baa2">blog post</a> with <code class="docutils literal notranslate"><span class="pre">python</span></code> examples for ‘test-driven-development’.</p>
+<p>A detailed set of tutorials, along with a discussion on the the pros and cons of ‘test-driven-development’ is available <a class="reference external" href="https://pytest-with-eric.com/tdd/pytest-tdd/#What-You%E2%80%99ll-Learn">here</a>.</p>
+</section>
+</section>
+<section id="continual-integration">
+<h2>Continual integration<a class="headerlink" href="#continual-integration" title="Link to this heading">#</a></h2>
+<p>Production workflow on <code class="docutils literal notranslate"><span class="pre">git</span></code> involves the automation of testing whenever a new change is committed to specific code branches. That way, bugs which break the existing test suite are caught before they are merged back into the main code base.</p>
+<p>You can do this on <code class="docutils literal notranslate"><span class="pre">GitHub</span></code> using a ‘workflow’ See <a class="reference external" href="https://edbennett.github.io/python-testing-ci/06-continuous-integration/index.html">here</a> for a simple example.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="concurrent_futures.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Parallelism in Python using concurrent futures</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../gadi/getting-started.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Getting started on gadi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-pytest">Examples with pytest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-your-own-functions">Testing your own functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-external-modules">Testing external modules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-concepts-and-reading">Further concepts and reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-vs-smoke-tests-vs-regression-tests">Unit tests vs Smoke tests vs Regression tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage">Code coverage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test driven development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continual-integration">Continual integration</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

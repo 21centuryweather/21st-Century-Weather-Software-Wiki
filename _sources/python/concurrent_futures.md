@@ -19,7 +19,7 @@ So clearly have a lot of scope to use shared-memory programming to speed up our 
 
 :::{note}
 
-There are two paradigms of distributed computing. In the 'shared memory' paradigm, multiple processes have access to a shared pool of memory. In the 'distributed memory' paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a 'shared memory' example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.
+There are two paradigms of parallel computing. In the 'shared memory' paradigm, multiple processes have access to a shared pool of memory. In the 'distributed memory' paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a 'shared memory' example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.
 :::
 
 Often, users first encounter parallel processing via the `xarray` module via a `dask` Client. In this way, a single `xarray` data structure can be read, processed and written in parallel 'chunks' using `dask` arrays. 'Chunking' can occur along any dimension - spatial or temporal.
@@ -80,10 +80,10 @@ It takes about three minutes to process a single day. Separate `qsub` scripts we
 
 :::{note}
 
-In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, we need to request `#PBS -l ncpus=48`)
+In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, you need to request `#PBS -l ncpus=48`)
 :::
 
-The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function `utils_V2.get_irradiance_day` uses `xarray.open_mfdataset` to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can processed relatively quickly on a single core. So can we use `python` libraries to exploit the multiple cores that exist on a single CPU?
+The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function `utils_V2.get_irradiance_day` uses `xarray.open_mfdataset` to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can be processed relatively quickly on a single core. So can we use `python` libraries to exploit the multiple cores that exist on a single CPU?
 
 The first step is to write a function that encapsulates all our daily computations.  
 ```python
@@ -172,6 +172,7 @@ This is a very simple invocation of `concurrent.futures`. If you were submitting
 Another option is to reduce the memory overhead of a single day's computations, so we can squeeze more processes onto the `normal` node. Simple steps such as
 - Only loading the required dataset variables from disk 
 - Only loading the spatial subset of data from disk
+
 will reduce the memory overhead of your process.
 
 Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset` would be beneficial. See [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits) on how to use the `preprocess` argument with `open_mfdataset`.
@@ -189,7 +190,7 @@ https://github.com/21centuryweather/software_engineering_demos
 
 To submit a test script to the PBS queue, after cloning the repository to a working directory on `gadi`:
 1. Edit the package 'environment file' `solar_example/env.sh` to change the definition of the `ROOT` directory. 
-2. Edith the package 'configuration file' `solar_example/config.py` to specify the input and output directories.
+2. Edit the package 'configuration file' `solar_example/config.py` to specify the input and output directories.
 3. Edit the script   `solar_example/scripts/concurrent_test.sh.qsub` 
 
 You will need substitute your current working directory, and change the location of the standard out and standard error log files (`#PBS -o <filename>` and `#PBS -e <filename>`)
