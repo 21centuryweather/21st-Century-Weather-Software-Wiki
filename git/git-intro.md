@@ -1,4 +1,4 @@
-# Why git? #
+# Introduction
 
 Do you have something like this in your computer?
 ```
@@ -22,6 +22,8 @@ If you work as a team you can take advantage of all the above and also use versi
 You can include code in a repository, for example as python scripts of jupyter notebooks, but also text documents, data and any other file you need for your project. There are a few consideration in terms of the size of the files that we cover in [a future section](content:git-alone:file-size). 
 
 If you are starting to work with git, we suggests the [Working with Git alone](content:git-alone) section. If you are planning to work as part of a team or you want to contribute to others' people project, the [Working with Git in a team](content:git-team) is the section for you. 
+
+And if you are going to include jupyter notebooks on your repositories and plan to track and review changes, we recommend you also check the [Tracking changes on jupyter notebooks](content:git-notebooks) section. 
 
 ### Before you start
 
@@ -85,6 +87,23 @@ git config --global init.defaultBranch main
 ```
 
 More advance config: [How Core Git Developers Configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git/)
+
+### Choose your own adventure
+
+The next sections will assume you are working from a terminal on Gadi or on your laptop. There are many ways to interact with git, here are a few other options.
+
+#### Working locally
+
+* **Windows:** when you install git on Windows you are also installing git bash and all the commands we use here should work. If you prefer a visual interface there are many options like GitHub desktop and GitKraken. If you use VSCode or Jupyter Lab, there are git extensions you can install to create commits and push/pull from remote repositories. 
+
+* **Linux/Mac:** you already have a working terminal. If you prefer a visual interface there are many options like GitHub desktop and GitKraken. If you use VSCode or Jupyter Lab, there are git extensions you can install to create commits and push/pull from remote repositories. 
+
+#### Working on NCI systems
+
+* **Logging to Gadi from a terminal:** this is the default option.
+
+* **ARE:** If you use a virtual machine, you will have access to a terminal. If your work will Jupyter Lab, there is git extension you can install to create commits and push/pull from remote repositories. If you use RStudio Server, you will find a "git" tab that works as a git interface. 
+
 
 ### References
 

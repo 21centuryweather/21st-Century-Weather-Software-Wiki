@@ -110,30 +110,24 @@ import concurrent.futures
 import os,sys
 from datetime import datetime, timedelta
 from pathlib import Path
+from config import *
 
 import logger
+
 from compute_data import compute_timeseries_clearsky_ratio
 
 LOG = logger.get_logger(__name__)
 
-TIMESERIES_DIR=Path('/g/data/gb02/pag548/solar_drought/REZ_tilting/ideal_ratio/NEM_timeseries')
-
-HIMAWARI_SOLAR_DIR=Path('/g/data/rv74/satellite-products/arc/der/himawari-ahi/solar/')
-
 if __name__ == "__main__":
 
-    n_procs = os.cpu_count() # Find the maximum number of available cores
-
-    # Create the number of parallel branches and fix it and specify the number
-    # of workers. To begin with, make this less then n_procs to check memory usage
-    # Each core will have one function submitted to it
-    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=10)  
+    n_procs = os.cpu_count() # Find number of seperate CPUs
+    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=10)  # Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted
 
     futures = {}
 
     # Serial test
     start_date = '1-2-2022'
-    end_date = '12-2-2022'
+    end_date = '10-2-2022'
     
     start_dt = datetime.strptime(start_date, "%d-%m-%Y")
     end_dt = datetime.strptime(end_date, "%d-%m-%Y")
@@ -141,21 +135,27 @@ if __name__ == "__main__":
     # Generate a list of dates
     date_range = [start_dt + timedelta(days=i) for i in range((end_dt - start_dt).days + 1)]
 
-    # Loop over the dates
-    for date in date_range: 
+    # Now submit a process for each date
+    for date in date_range:
 
-        date_s = date.strftime('%d-%m-%Y')
-
-        LOG.info(f'Computing ratio of tilting to clearsky irradiance for {date_s}')
-
-        # Here we submit each function call to the worker pool. This loop will happen process instantly.
+        LOG.info(f'Computing ratio of tilting to clearsky irradiance for {date}')
         future = worker_pool.submit(
             compute_timeseries_clearsky_ratio,
-            date_s, 
-            TIMESERIES_DIR)
+            date)
 
         futures[future] = f"The job for {date}"
 
+    LOG.info(f'Submission complete')
+
+    # Iterate through each result as they are completed
+    for future in concurrent.futures.as_completed(futures.keys()):
+        message = futures[future]
+        LOG.info(f" COMPLETE : {message}")
+        _ = future.result() # This could raise if the function failed
+
+        # Make sure that any data that is produced/returned to the future is
+        # cleared from memory by removing all references to the future.
+        futures.pop(future)
 ```
 If this python job is submitted to the PBS job queue, it will take roughly 4:15 seconds to compute 10 days. The total memory usage is 153 Gb, which suggests each parallel process consumes about 15 Gb. So on a `normal` PBS node, we can only use about 13 cores before we risk running out of memory (190/15 = 12.6).
 
@@ -199,6 +199,49 @@ The `express` queue is easier to gain access to than the `normal` queue but it c
 :::{warning}
 
 When using `concurrent.futures` for the first time, ensure you don't invoke the `parallel` option when using `open_mfdataset`. I'm unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?
+:::
+
+## Try it yourself
+
+You can obtain the above code by cloning the repository
+
+https://github.com/21centuryweather/software_engineering_demos
+
+To submit a test script to the PBS queue, after cloning the repository to a working directory on `gadi`:
+1. Edit the package 'environment file' `solar_example/env.sh` to change the definition of the `ROOT` directory. 
+2. Edith the package 'configuration file' `solar_example/config.py` to specify the input and output directories.
+3. Edit the script   `solar_example/scripts/concurrent_test.sh.qsub` 
+
+You will need substitute your current working directory, and change the location of the standard out and standard error log files (`#PBS -o <filename>` and `#PBS -e <filename>`)
+
+:::{note}
+
+You will have to be a member of project `rv74` to run this code as-is to read the satellite irradiance data.
+:::
+
+Then submit the task:
+```
+qsub solar_example/scripts/concurrent_test.sh.qsub 
+```
+
+If you want to run the scripts interactively, execute the following
+1. Launch an interactive `qsub` command, making sure you specify `-l ncpus=48`, e.g. `qsub -I -X -l mem=190gb -P<your-project> -l ncpus=48 -q express -l walltime=01:00:00 -l storage=gdata/<your-project>+gdata/hh5+gdata/rv74`
+2. Replicate steps 1-2 above (i.e. edit the `env.sh` and `config.py` files)
+3. Source the updated `env.sh` file (i.e. `$ source env.sh`) to load the 'analysis3' python environment and add the package python files to your python path.
+3. Launch an interactive python session using `ipython`
+4. Run the script in `ipython` using `%run scripts/concurrent_test.py`
+
+:::{note}
+
+When implementing `concurrent.futures` yourself, note the syntax of the `worker_pool.submit()` function, which requires you to list the name of your function to submitted to each process, followed by the list of function arguments.
+
+So a function `test(a,b,c)` would be submitted as
+```python
+worker_pool.submit(test,
+                   a,
+                   b,
+                   c)
+```
 :::
 
 :::{note}
