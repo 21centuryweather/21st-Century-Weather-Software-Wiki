@@ -80,7 +80,7 @@ It takes about three minutes to process a single day. Separate `qsub` scripts we
 
 :::{note}
 
-In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, you need to request `#PBS -l ncpus=48`)
+In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember that, for example on `normal` queue, there are two 24 core CPUs located on each node. If want full access to every core on a node on `normal` queue, you need to request `#PBS -l ncpus=48`)
 :::
 
 The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function `utils_V2.get_irradiance_day` uses `xarray.open_mfdataset` to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can be processed relatively quickly on a single core. So can we use `python` libraries to exploit the multiple cores that exist on a single CPU?
@@ -121,7 +121,7 @@ LOG = logger.get_logger(__name__)
 if __name__ == "__main__":
 
     n_procs = os.cpu_count() # Find number of seperate CPUs
-    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=10)  # Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted
+    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=n_procs)  # Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted
 
     futures = {}
 
@@ -191,13 +191,13 @@ https://github.com/21centuryweather/software_engineering_demos
 To submit a test script to the PBS queue, after cloning the repository to a working directory on `gadi`:
 1. Edit the package 'environment file' `solar_example/env.sh` to change the definition of the `ROOT` directory. 
 2. Edit the package 'configuration file' `solar_example/config.py` to specify the input and output directories.
-3. Edit the script   `solar_example/scripts/concurrent_test.sh.qsub` 
+3. Edit the script `solar_example/scripts/concurrent_test.sh.qsub` 
 
 You will need substitute your current working directory, and change the location of the standard out and standard error log files (`#PBS -o <filename>` and `#PBS -e <filename>`)
 
 :::{note}
 
-You will have to be a member of project `rv74` to run this code as-is to read the satellite irradiance data.
+You need to be a member of NCI project `rv74` to run this code as-is to read the satellite irradiance data.
 :::
 
 Then submit the task:
