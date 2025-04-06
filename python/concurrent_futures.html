@@ -531,7 +531,7 @@ document.write(`
     <span class="k">return</span>
 </pre></div>
 </div>
-<p>This function can be saved to a file <code class="docutils literal notranslate"><span class="pre">compute_data.py</span></code> so it can be imported into the main python script as a separate module. Now we can use the <code class="docutils literal notranslate"><span class="pre">concurrent.future</span></code> package so the main python script can send the computation of each day to a separate core in parallel. Let’s compute 10 days in parallel, across 10 cores.</p>
+<p>This function can be saved to a file <code class="docutils literal notranslate"><span class="pre">compute_data.py</span></code> so it can be imported into the main python script as a separate module. Now we can use the <code class="docutils literal notranslate"><span class="pre">concurrent.future</span></code> package so the main python script can send the computation of each day to a separate core in parallel. Let’s compute 10 days in parallel, across 10 threads.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
@@ -543,11 +543,12 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">compute_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_timeseries_clearsky_ratio</span>
 
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">N_PROCS</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Test with 10 parallel processes to start</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="n">n_procs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># Find number of seperate CPUs</span>
-    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">n_procs</span><span class="p">)</span>  <span class="c1"># Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted</span>
+    <span class="n">n_threads</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># The maximum number of threads this script sees. </span>
+    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">N_PROCS</span><span class="p">)</span>  <span class="c1"># Create the number of parallel processes. </span>
 
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
 
