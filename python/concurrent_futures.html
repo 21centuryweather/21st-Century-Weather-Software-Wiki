@@ -509,7 +509,7 @@ document.write(`
 <p>It takes about three minutes to process a single day. Separate <code class="docutils literal notranslate"><span class="pre">qsub</span></code> scripts were generated for a given month, and submitted to the PBS queue on a single core.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> PBS scheduler, the number of CPUs that you request (i.e. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus</span></code>) is actually the number of <strong>CORES</strong>. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, you need to request <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus=48</span></code>)</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> PBS scheduler, the number of CPUs that you request (i.e. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus</span></code>) is actually the number of <strong>CORES</strong>. Remember that, for example on <code class="docutils literal notranslate"><span class="pre">normal</span></code> queue, there are two 24 core CPUs located on each node. If want full access to every core on a node on <code class="docutils literal notranslate"><span class="pre">normal</span></code> queue, you need to request <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">ncpus=48</span></code>)</p>
 </div>
 <p>The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function <code class="docutils literal notranslate"><span class="pre">utils_V2.get_irradiance_day</span></code> uses <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can be processed relatively quickly on a single core. So can we use <code class="docutils literal notranslate"><span class="pre">python</span></code> libraries to exploit the multiple cores that exist on a single CPU?</p>
 <p>The first step is to write a function that encapsulates all our daily computations.</p>
@@ -547,7 +547,7 @@ document.write(`
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
     <span class="n">n_procs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># Find number of seperate CPUs</span>
-    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted</span>
+    <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">n_procs</span><span class="p">)</span>  <span class="c1"># Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted</span>
 
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -610,12 +610,12 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Edit the package ‘environment file’ <code class="docutils literal notranslate"><span class="pre">solar_example/env.sh</span></code> to change the definition of the <code class="docutils literal notranslate"><span class="pre">ROOT</span></code> directory.</p></li>
 <li><p>Edit the package ‘configuration file’ <code class="docutils literal notranslate"><span class="pre">solar_example/config.py</span></code> to specify the input and output directories.</p></li>
-<li><p>Edit the script   <code class="docutils literal notranslate"><span class="pre">solar_example/scripts/concurrent_test.sh.qsub</span></code></p></li>
+<li><p>Edit the script <code class="docutils literal notranslate"><span class="pre">solar_example/scripts/concurrent_test.sh.qsub</span></code></p></li>
 </ol>
 <p>You will need substitute your current working directory, and change the location of the standard out and standard error log files (<code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-o</span> <span class="pre">&lt;filename&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-e</span> <span class="pre">&lt;filename&gt;</span></code>)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You will have to be a member of project <code class="docutils literal notranslate"><span class="pre">rv74</span></code> to run this code as-is to read the satellite irradiance data.</p>
+<p>You need to be a member of NCI project <code class="docutils literal notranslate"><span class="pre">rv74</span></code> to run this code as-is to read the satellite irradiance data.</p>
 </div>
 <p>Then submit the task:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="n">solar_example</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">concurrent_test</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">qsub</span> 
