@@ -104,7 +104,7 @@ def compute_timeseries_clearsky_ratio(date,
 
     return
 ```
-This function can be saved to a file `compute_data.py` so it can be imported into the main python script as a separate module. Now we can use the `concurrent.future` package so the main python script can send the computation of each day to a separate core in parallel. Let's compute 10 days in parallel, across 10 cores.
+This function can be saved to a file `compute_data.py` so it can be imported into the main python script as a separate module. Now we can use the `concurrent.future` package so the main python script can send the computation of each day to a separate core in parallel. Let's compute 10 days in parallel, across 10 threads.
 ```python
 import concurrent.futures
 import os,sys
@@ -117,11 +117,12 @@ import logger
 from compute_data import compute_timeseries_clearsky_ratio
 
 LOG = logger.get_logger(__name__)
+N_PROCS = 10 # Test with 10 parallel processes to start
 
 if __name__ == "__main__":
 
-    n_procs = os.cpu_count() # Find number of seperate CPUs
-    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=n_procs)  # Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted
+    n_threads = os.cpu_count() # The maximum number of threads this script sees. 
+    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=N_PROCS)  # Create the number of parallel processes. 
 
     futures = {}
 
