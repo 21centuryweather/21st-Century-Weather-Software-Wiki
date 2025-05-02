@@ -1,0 +1,804 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with Git in a team &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'git/git-team2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the 21st Century Weather Software Wiki
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgit/git-team2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/git/git-team2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Working with Git in a team</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-merge-conflicts">Identifying merge conflicts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-first">1. Pull first</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-different-files">2. People work on different files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-takes-turns">3. People takes turns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-branches">4. People work on branches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-1">Collaborative workflow 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-2">Collaborative workflow 2</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-git-in-a-team">
+<span id="content-git-team2"></span><h1>Working with Git in a team<a class="headerlink" href="#working-with-git-in-a-team" title="Link to this heading">#</a></h1>
+<p>In this section we are going to see what it looks like to collaborate with others on gitHub projects. Up to now you were working with git alone using this workflow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Modify</span> <span class="n">a</span> <span class="n">file</span> <span class="o">--&gt;</span> <span class="n">Add</span> <span class="o">--&gt;</span> <span class="n">Commit</span> <span class="o">--&gt;</span> <span class="n">Push</span>
+</pre></div>
+</div>
+<p>So every time you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, git will compare the files in the remote repository with the version you are pushing and update everything. But when working with other people there are instances that can potentially create <em>merge conflicts</em>. While the name suggest otherwise a merge conflict is not necessarily an error, it happens when the version of a file on the local repo is not compatible with its version on the remote repo. Sometimes, Git is able to combine the two sets of changes without any trouble. But sometimes it gets stuck, and requires a human to intervene and decide how multiple changes should be combined, do you keep version A, version B or a combination of both?</p>
+<section id="identifying-merge-conflicts">
+<h2>Identifying merge conflicts<a class="headerlink" href="#identifying-merge-conflicts" title="Link to this heading">#</a></h2>
+<p>Imagine a colleague added a new line in <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> to import the numpy package. The file looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+
+<span class="c1"># Load a NetCDF climate dataset</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;era5_data.nc&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>At the same time, you also added this line but decided that <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> is the right way to go. When you commit and push the new version of the file to the remote repository you get this message:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Auto-merging<span class="w"> </span>read_era5.py
+CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>read_era5.py
+Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
+</pre></div>
+</div>
+<p>The message says that there are conflicts withe the content of <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> and that the automatic merge failed. The good news is that we now which file is the issue. Here, doing small commits with small changes helps a lot.</p>
+<p>Now, if you come back to <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code>, the content has changed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="o">=======</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="mi">318548</span><span class="n">cbe665e65b4dae4a5da8d4eba187a4c6b2</span>
+
+<span class="c1"># Load a NetCDF climate dataset</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;era5_data.nc&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>The funny additions <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">=======</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> were added by git to highlight the merge conflict. Everything between <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> and <code class="docutils literal notranslate"><span class="pre">=======</span></code> correspond to the local version, and the content between <code class="docutils literal notranslate"><span class="pre">=======</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> is the version currently on GitHub. The long string is the commit id.</p>
+<p>If you are using git from the terminal, you can edit this file, remove the arrows and keep the version you prefer. Some GUIs and visual interfaces will let you choose the version you want to keep and take care of editing the file, for example <a class="reference external" href="https://www.youtube.com/watch?v=glB5WTMoR-g">check this short video to see how to solve a merge conflict form an ARE session using the jupyter git extension</a>.</p>
+<p>Thi can also happen if you changed something on GitHub, forgot to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> locally and changed the same file. While merge conflicts comes with git, we’ll try to avoid them as much as possible.</p>
+<section id="pull-first">
+<h3>1. Pull first<a class="headerlink" href="#pull-first" title="Link to this heading">#</a></h3>
+<p>It is a good idea to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> before you start to work with the files in a repository, this way you will start working with the most current version of the repository.</p>
+</section>
+<section id="people-work-on-different-files">
+<h3>2. People work on different files<a class="headerlink" href="#people-work-on-different-files" title="Link to this heading">#</a></h3>
+<p>The easiest way to avoid merge conflicts is to tell people to work in different files and to not edit other’s people files. This work.</p>
+<p>In the long run you may need to work on someone else code and for those situations communication between team members is key.</p>
+</section>
+<section id="people-takes-turns">
+<h3>3. People takes turns<a class="headerlink" href="#people-takes-turns" title="Link to this heading">#</a></h3>
+<p>Maybe more than one person is working on the same file, it could be a script or maybe is documentation. That usually will be a job for many people. One solution is to take turns, you work on the file during the morning, your colleague works on it during the afternoon.</p>
+</section>
+<section id="people-work-on-branches">
+<h3>4. People work on branches<a class="headerlink" href="#people-work-on-branches" title="Link to this heading">#</a></h3>
+<p>Here is when the things get interesting and a little more complicated, but we are taking fully advantage of what git has to offer.</p>
+<p>Branches may be a new concept but actually, you are always working on a branch without noticing. The “default” branch is usually called <em>main</em> because it is the principal, so you were “adding commit to the main” all this time. A <strong>branch</strong> in git is a tag that points to a specific <em>commit</em> in the repository from which other versions of the repository are created.
+Working in a branch allows you to modify files without modifying the same files in other branches, because essentially you are working on a “parallel” set of files.
+When you want to pass the changes from your branch to the main branch, you would have to do a <strong>merge</strong> to combine the branches.</p>
+<figure class="align-default" id="id1">
+<img alt="Diagram of a git tree that shows the main branch with 4 commits and a secondary branch called function that starts from commit 2 in the main branch anas has 2 new commits, independent from the main." src="../_images/branch.png" />
+<figcaption>
+<p><span class="caption-text">Git tree.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>There are different ways to use branches. Maybe every person in the team has one branch and work on that branch until is time to merge everything to the main. Or maybe, and this is more common, each branch represent a new feature added to the project. So if you are adding a new function, you create a branch, develop the code and them merge it.</p>
+<p>Working with branches won’t eliminate merge conflicts, but those will appear once when you merge your branch to the main and will prepare to deal with it.</p>
+<p>Before we revise how the workflow looks like in this case, there is one new concept we need to mention: a <strong>Pull Request</strong> or PR is a GitHub tool that allows you to make changes to a branch and then request to the repo owner or maintainer to merge those changes into the main branch.
+Pull requests can come from forks (will talk about that later) or from independent branches within the repository.
+They allow the maintainers and contributors to the project to review, discuss, request, and approve the changes and merge then to the main branch.</p>
+</section>
+</section>
+<section id="collaborative-workflow-1">
+<span id="content-git-team-scenario1"></span><h2>Collaborative workflow 1<a class="headerlink" href="#collaborative-workflow-1" title="Link to this heading">#</a></h2>
+<p>This diagram shows the workflow when you what to contribute to the repository using branches. Here we assume you have write permissions on the remote repository,</p>
+<figure class="align-default" id="id2">
+<img alt="Concept model of the workflow in scenario 1. The remote repository is copied into a local repository with a &quot;clone&quot;. Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request." src="../_images/no_fork.png" />
+<figcaption>
+<p><span class="caption-text">Collaborative workflow without a fork.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>Clone the repository on your computer.</p></li>
+<li><p>Create a new branch.</p></li>
+<li><p>Edit files, add them and make commits in that branch.</p></li>
+<li><p>When the changes are done and ready, send a pull request to the remote repository to compare your changes in your branch with main branch.</p></li>
+<li><p>The pull request is accepted and merged or you have to make new changes (go back to step 3).</p></li>
+<li><p>Once the PR is accepted and merged, the main branch now has the updated changes and you can delete the branch you were working on.</p></li>
+<li><p>The process can be repeated several times, in parallel or in sequence depending on the size of the team and project.</p></li>
+</ol>
+<p>Let’s try this with a exercise:</p>
+<div class="important dropdown admonition">
+<p class="admonition-title">Exercise</p>
+<ol class="arabic simple">
+<li><p>Choose a repo, it can be a repo you own  or, even better, someone else repo where you are a collaborator. You will need the URL (remember we use SSH option)</p></li>
+</ol>
+<blockquote>
+<div><p>We’ll assume you are working with <a class="reference internal" href="git-alone.html#content-git-alone-new-repo"><span class="std std-ref">this repo</span></a> from now on.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>On the terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;repo</span> <span class="pre">URL&gt;</span></code>. You need to make sure you are in the right folder.</p></li>
+<li><p>Create a new branch with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">suggest-plot</span></code>, it will automatically switch to the new branch.</p></li>
+<li><p>Edit o create a new file. For example, add the necessary code to plot the data in <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code>:</p></li>
+</ol>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>import xarray as xr
+<span class="gi">+import matplotlib.pyplot as plt</span>
+<span class="w"> </span>
+<span class="w"> </span># Load a NetCDF climate dataset
+<span class="w"> </span>ds = xr.open_mfdataset(&quot;era5_data.nc&quot;)
+<span class="w"> </span>print(ds)
+<span class="gi">+</span>
+<span class="gi">+# Plot a temperature time series</span>
+<span class="gi">+plt.plot(df[&quot;date&quot;], df[&quot;temperature&quot;])</span>
+<span class="gi">+plt.xlabel(&quot;Date&quot;)</span>
+<span class="gi">+plt.ylabel(&quot;Temperature&quot;)</span>
+<span class="gi">+plt.title(&quot;Temperature Over Time&quot;)</span>
+<span class="gi">+plt.show()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>here the <code class="docutils literal notranslate"><span class="pre">+</span></code> at the beginning of a line means that we are adding it (or modifying it) to the file. The opposite will be true if we see a <code class="docutils literal notranslate"><span class="pre">-</span></code>. The above results is waht <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">read_era5.py</span></code> returns after to modify the script.</p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>With <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you can check where you are:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>On<span class="w"> </span>branch<span class="w"> </span>suggest-plot
+Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+<span class="w">	</span>modified:<span class="w">   </span>read_era5.py
+
+no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Add and commit the file as usual and send the new version to GitHub with a push. You will get something like this:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="k">done</span>.
+Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">20</span><span class="w"> </span>threads
+Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">468</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">468</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+remote:<span class="w"> </span>
+remote:<span class="w"> </span>Create<span class="w"> </span>a<span class="w"> </span>pull<span class="w"> </span>request<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;suggest-plot&#39;</span><span class="w"> </span>on<span class="w"> </span>GitHub<span class="w"> </span>by<span class="w"> </span>visiting:
+remote:<span class="w">      </span>https://github.com/&lt;username&gt;/new-project/pull/new/suggest-plot
+remote:<span class="w"> </span>
+To<span class="w"> </span>github.com:&lt;username&gt;/new-project.git
+<span class="w"> </span>*<span class="w"> </span><span class="o">[</span>new<span class="w"> </span>branch<span class="o">]</span><span class="w">      </span>suggest-plot<span class="w"> </span>-&gt;<span class="w"> </span>suggest-plot
+branch<span class="w"> </span><span class="s1">&#39;suggest-plot&#39;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>track<span class="w"> </span><span class="s1">&#39;origin/suggest-plot&#39;</span>.
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>To open a pull request you need to go the repo on GitHub. You will see a big “Compare &amp; pull request” green button. Click on that!</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/pr-1.png"><img alt="Screenshot of repo in GitHub.com/username/new-project with a new commit in a branch that is not main. It shows a button that says &quot;Compare &amp; pull request&quot; on the top of the page" src="../_images/pr-1.png" style="width: 95%;" />
+</a>
+</figure>
+<ol class="arabic simple" start="8">
+<li><p>GitHub will compare main and suggest-plot branches to see if the proposed changes are compatible. In this step you will need to add a title and a message to open the PR.</p></li>
+</ol>
+<p>And that’s it. The maintainer of the repo with get an email and with time, revise and hopefully accept your contribution.</p>
+</div>
+<p>Here is a list of the new commands you just used:</p>
+<div class="tip admonition">
+<p class="admonition-title">Commands</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;repo</span> <span class="pre">URL&gt;</span></code> to clone a repository, independently of if is yours or not. This command will download the repository in the folder you are in the terminal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">&lt;name&gt;</span></code> will create a new branch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;name&gt;</span></code> will move you to a different branch.</p></li>
+</ul>
+</div>
+</section>
+<section id="collaborative-workflow-2">
+<h2>Collaborative workflow 2<a class="headerlink" href="#collaborative-workflow-2" title="Link to this heading">#</a></h2>
+<p>If you do not have write permissions on the remote repository, so you will need to use forks. This is very common when you want to collaborate with project that you are not part of.</p>
+<p>A <strong>fork</strong> is a copy of another person’s or team’s repository that will be stored in your GitHub account.
+Both the original and the fork are on GitHub, the difference is that you can modify and update the version that lives in your account.</p>
+<figure class="align-default" id="id3">
+<img alt="Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a &quot;fork&quot;. The remote repository is copied into a local repository with a &quot;clone&quot;. Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request." src="../_images/si_fork.png" />
+<figcaption>
+<p><span class="caption-text">Collaborative workflow with a fork.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>Create a fork of the main repository.</p></li>
+<li><p>Clone the forked repository on your computer.</p></li>
+<li><p>Create a new branch in the forked repository.</p></li>
+<li><p>Make changes to the files and commit them to the branch.</p></li>
+<li><p>When everything is ready, open the pull request. If you need to make new
+changes you will have to go back to step 4.</p></li>
+<li><p>If the PR is accepted and merged, the main branch in the main repository will be updated and the new branch can be deleted.</p></li>
+<li><p>Finally you can synchronize your forked repository with the main repository.</p></li>
+</ol>
+<p>Let’s go through the workflow with a exercise.</p>
+<div class="important dropdown admonition">
+<p class="admonition-title">Exercise</p>
+<p>In this second scenario we assume you don’t have write permission in the repo you want to collaborate. For example, you may want to collaborate with this <a class="reference external" href="https://en.wikipedia.org/wiki/Exquisite_corpse"><em>cadavre exquis</em></a>! The idea is to add a new sentence to the story <a class="reference external" href="https://github.com/paocorrales/cadavre-exquis">here</a>.</p>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://github.com/paocorrales/cadavre-exquis">github.com/paocorrales/cadavre-exquis</a></p></li>
+<li><p>Fork the repository using the “Fork” button on the top right corner. This will create a copy of the repo into your GitHub account.</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/fork.jpeg"><img alt="Screenshot of a forked repo in GitHub.com/username/new-project" src="../_images/fork.jpeg" style="width: 95%;" />
+</a>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Copy the url of the repo and clone it to your computer. On the terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;repo</span> <span class="pre">URL&gt;</span></code>. Remember to use the SSH option.</p></li>
+</ol>
+<p>The repo is very small, it only have a README and a text file called <code class="docutils literal notranslate"><span class="pre">story.txt</span></code>. So, in this cadavre exquis, each collaborator adds a phrase to the story in a new line. The new phrase needs to be some how connected with the previous.</p>
+<ol class="arabic simple" start="4">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">story.txt</span></code> file and add a phrase.</p></li>
+<li><p>Save the file, create a commit and push it to your repo.</p></li>
+<li><p>Push it to your remote repository.</p></li>
+</ol>
+<p>Now, if you go to the remote repo on GitHub, you will see something like this::</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/pr-2.jpeg"><img alt="Screenshot of a forked repo in GitHub.com/username/new-project with a new commit. It shows a button that says &quot;Contribute&quot; on the top of the page" src="../_images/pr-2.jpeg" style="width: 95%;" />
+</a>
+</figure>
+<ol class="arabic simple" start="7">
+<li><p>Click on “Contribute”.</p></li>
+<li><p>And click on “Create pull request”.</p></li>
+<li><p>We are almost there. Complete the pull request with a title and a message and then finish the PR</p></li>
+</ol>
+<p>And that’s it! The owner/s of the repo will receive an email. They can review the pull request, comment on it and eventually accept the contribution. When that happen the changes you made will appear in the rep</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you prefer or need to do everything from the terminal, including forks and PR, GitHub has a command line called <a class="reference external" href="https://github.com/cli/cli">gh</a>.</p>
+<p>So, for example if you what to create a PR, from the terminal run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;Pull request title&quot;</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;Pull request body&quot;</span>
+</pre></div>
+</div>
+<p>Adding a title and a message in the body of the pull request. The Terminal will return the link to the pr in the web. It’s useful to remember the number.</p>
+<p>You can also add comments after opening the pull request with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gh<span class="w"> </span>pr<span class="w"> </span>comment<span class="w"> </span>&lt;number<span class="w"> </span>of<span class="w"> </span>pr&gt;<span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;Some comment&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./git"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-merge-conflicts">Identifying merge conflicts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-first">1. Pull first</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-different-files">2. People work on different files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-takes-turns">3. People takes turns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-branches">4. People work on branches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-1">Collaborative workflow 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-2">Collaborative workflow 2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
