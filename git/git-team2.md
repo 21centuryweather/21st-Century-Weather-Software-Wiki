@@ -22,13 +22,6 @@ import numpy
 ds = xr.open_mfdataset("era5_data.nc")
 print(ds)
 
-# Plot a temperature time series
-plt.plot(df["date"], df["temperature"])
-plt.xlabel("Date")
-plt.ylabel("Temperature")
-plt.title("Temperature Over Time")
-plt.show()
-
 ```
 
 At the same time, you also added this line but decided that `import numpy as np` is the right way to go. When you commit and push the new version of the file to the remote repository you get this message:
@@ -57,12 +50,6 @@ import numpy
 ds = xr.open_mfdataset("era5_data.nc")
 print(ds)
 
-# Plot a temperature time series
-plt.plot(df["date"], df["temperature"])
-plt.xlabel("Date")
-plt.ylabel("Temperature")
-plt.title("Temperature Over Time")
-plt.show()
 ```
 
 The funny additions `<<<<<<<`, `=======` and `>>>>>>>` were added by git to highlight the merge conflict. Everything between `<<<<<<< HEAD` and `=======` correspond to the local version, and the content between `=======` and `>>>>>>>` is the version currently on GitHub. The long string is the commit id. 
@@ -208,4 +195,85 @@ Here is a list of the new commands you just used:
 - `git checkout -b <name>` will create a new branch.
 - `git checkout <name>` will move you to a different branch.
 
+:::
+
+
+## Collaborative workflow 2
+
+If you do not have write permissions on the remote repository, so you will need to use forks. This is very common when you want to collaborate with project that you are not part of. 
+
+A **fork** is a copy of another person's or team's repository that will be stored in your GitHub account.
+Both the original and the fork are on GitHub, the difference is that you can modify and update the version that lives in your account.
+
+
+```{figure} images/si_fork.png
+---
+alt: 'Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a "fork". The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request.'
+---
+Collaborative workflow with a fork.
+```
+
+1. Create a fork of the main repository.
+2. Clone the forked repository on your computer.
+3. Create a new branch in the forked repository.
+4. Make changes to the files and commit them to the branch.
+5. When everything is ready, open the pull request. If you need to make new
+changes you will have to go back to step 4.
+6. If the PR is accepted and merged, the main branch in the main repository will be updated and the new branch can be deleted.
+7. Finally you can synchronize your forked repository with the main repository.
+
+Let's go through the workflow with a exercise.
+
+:::{admonition} Exercise
+:class: important, dropdown
+
+In this second scenario we assume you don't have write permission in the repo you want to collaborate. For example, you may want to collaborate with this [*cadavre exquis*](https://en.wikipedia.org/wiki/Exquisite_corpse)! The idea is to add a new sentence to the story [here](https://github.com/paocorrales/cadavre-exquis).    
+
+1. Go to [github.com/paocorrales/cadavre-exquis](https://github.com/paocorrales/cadavre-exquis)
+2. Fork the repository using the “Fork” button on the top right corner. This will create a copy of the repo into your GitHub account.
+
+
+```{figure} images/fork.jpeg
+:width: 95%
+:alt: 'Screenshot of a forked repo in GitHub.com/username/new-project'
+```
+
+3. Copy the url of the repo and clone it to your computer. On the terminal, run `git clone <repo URL>`. Remember to use the SSH option. 
+
+The repo is very small, it only have a README and a text file called `story.txt`. So, in this cadavre exquis, each collaborator adds a phrase to the story in a new line. The new phrase needs to be some how connected with the previous. 
+
+4. Open the `story.txt` file and add a phrase.
+5. Save the file, create a commit and push it to your repo. 
+6. Push it to your remote repository.
+
+Now, if you go to the remote repo on GitHub, you will see something like this::
+
+```{figure} images/pr-2.jpeg
+:width: 95%
+:alt: 'Screenshot of a forked repo in GitHub.com/username/new-project with a new commit. It shows a button that says "Contribute" on the top of the page'
+
+```
+
+7. Click on “Contribute”.
+8. And click on “Create pull request”.
+10. We are almost there. Complete the pull request with a title and a message and then finish the PR
+
+And that’s it! The owner/s of the repo will receive an email. They can review the pull request, comment on it and eventually accept the contribution. When that happen the changes you made will appear in the rep
+:::
+
+
+:::{tip}
+
+If you prefer or need to do everything from the terminal, including forks and PR, GitHub has a command line called [gh](https://github.com/cli/cli). 
+
+So, for example if you what to create a PR, from the terminal run:
+```bash
+ gh pr create --title "Pull request title" --body "Pull request body"
+```
+Adding a title and a message in the body of the pull request. The Terminal will return the link to the pr in the web. It’s useful to remember the number.
+
+You can also add comments after opening the pull request with:
+```bash 
+gh pr comment <number of pr> --body "Some comment"
+```
 :::
