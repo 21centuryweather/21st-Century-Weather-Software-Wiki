@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Intro to Python for Climate Science &#8212; 21st Century Weather Software Wiki</title>
+    <title>Structuring our Python code &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'python/intro-python';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/package-structure';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data" href="file_formats.html" />
-    <link rel="prev" title="Further Considerations" href="../NRI-RNS/further-considerations.html" />
+    <link rel="next" title="Getting started on gadi" href="../gadi/getting-started.html" />
+    <link rel="prev" title="Testing your code" href="testing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -199,12 +199,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-python.html">Intro to Python for Climate Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing your code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Structuring our Python code</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
 <ul class="nav bd-sidenav">
@@ -300,7 +300,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fpython/intro-python.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fpython/package-structure.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +330,7 @@
       
       
       
-      <li><a href="../_sources/python/intro-python.md" target="_blank"
+      <li><a href="../_sources/python/package-structure.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -414,7 +414,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Intro to Python for Climate Science</h1>
+    <h1>Structuring our Python code</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -424,16 +424,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-python-is-ideal-for-climate-science">Why Python is Ideal for Climate Science</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-libraries-for-climate-science">Essential Libraries for Climate Science</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray-multi-dimensional-arrays-for-climate-data">Xarray: Multi-Dimensional Arrays for Climate Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-scalable-data-processing-for-large-climate-datasets">Dask: Scalable Data Processing for Large Climate Datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-data-manipulation-and-time-series-analysis">Pandas: Data Manipulation and Time Series Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-visualizing-climate-data">Matplotlib: Visualizing Climate Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portability">Portability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-and-configuration-files">Environment and configuration files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-files">Python files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripts">Scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancils">Ancils</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environments-jupyter-notebooks-and-vs-code">Development Environments: Jupyter Notebooks and VS Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-environments-analysis3">Conda Python Environments - analysis3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
 </ul>
             </nav>
         </div>
@@ -445,135 +444,80 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="intro-to-python-for-climate-science">
-<h1>Intro to Python for Climate Science<a class="headerlink" href="#intro-to-python-for-climate-science" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://www.python.org">Python</a> provides a powerful yet accessible toolkit for analyzing vast datasets, performing complex modeling, and visualizing climate patterns. In climate science, data often involves multiple dimensions—like time, latitude, longitude, and depth—making Python’s specialized libraries invaluable for both efficiency and depth of analysis.</p>
-<p>In this introductory post, we’ll walk through the core Python libraries frequently used in climate science: xarray, dask, matplotlib, and pandas. We’ll also touch on popular development environments, Jupyter Notebooks and VS Code, which support interactive, reproducible research workflows ideal for scientific research.</p>
-<section id="why-python-is-ideal-for-climate-science">
-<h2>Why Python is Ideal for Climate Science<a class="headerlink" href="#why-python-is-ideal-for-climate-science" title="Link to this heading">#</a></h2>
-<p>Python’s simplicity and rich ecosystem make it an ideal choice for climate science research:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="structuring-our-python-code">
+<h1>Structuring our Python code<a class="headerlink" href="#structuring-our-python-code" title="Link to this heading">#</a></h1>
+<p>So we’ve started building some <code class="docutils literal notranslate"><span class="pre">python</span></code> code on GitHub to help answer some of your research questions. Perhaps we’ve made a few subdirectories to separate notebooks from scripts, with another directory for <code class="docutils literal notranslate"><span class="pre">qsub</span></code> jobs etc.</p>
+<p>Now, what if we want to share this code with someone else?  Or if we want look at a colleague’s code and import it as modules within our own code?</p>
+<p>Give the interconnectivity of the <code class="docutils literal notranslate"><span class="pre">python</span></code> universe, which encompasses innumerable disciplines and applications (from climate science, machine learning, web development, all the way to embedded logic controllers at the CERN particle accelerators), has the <code class="docutils literal notranslate"><span class="pre">python</span></code> community arrived at common ways to structure <code class="docutils literal notranslate"><span class="pre">python</span></code> code packages?</p>
+<p>The answer, of course, is yes.</p>
+<section id="portability">
+<h2>Portability<a class="headerlink" href="#portability" title="Link to this heading">#</a></h2>
+<p>A key concept of code development is ‘portability’. Portability allows us to</p>
 <ul class="simple">
-<li><p><strong>Multi-Dimensional Data Handling</strong>: Climate data often has multiple dimensions, such as time, location, and variables (e.g., temperature, precipitation). Python’s libraries like xarray and dask can handle these complex data structures effortlessly.</p></li>
-<li><p><strong>Robust Data Analysis and Visualization Tools</strong>: Libraries like pandas for data manipulation and matplotlib for visualization make it easy to process and visualize climate trends.</p></li>
-<li><p><strong>Community and Open Source</strong>: Python has an active scientific community with extensive documentation and resources, allowing researchers to adopt reproducible, open-source methods.</p></li>
+<li><p>Run our code on different computing platforms (e.g. <code class="docutils literal notranslate"><span class="pre">gadi</span></code>, your laptop)</p></li>
+<li><p>Run our code on different environments</p></li>
+<li><p>Share our code with other users who can then run it</p></li>
 </ul>
-<p>Whether you’re analyzing atmospheric data, studying ocean temperature patterns, or modeling climate simulations, Python has the tools needed to support robust and scalable research.</p>
-</section>
-<section id="essential-libraries-for-climate-science">
-<h2>Essential Libraries for Climate Science<a class="headerlink" href="#essential-libraries-for-climate-science" title="Link to this heading">#</a></h2>
-<p>Here’s a closer look at the main libraries used in climate science research.</p>
-<section id="xarray-multi-dimensional-arrays-for-climate-data">
-<h3>Xarray: Multi-Dimensional Arrays for Climate Data<a class="headerlink" href="#xarray-multi-dimensional-arrays-for-climate-data" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://docs.xarray.dev/en/stable/">Xarray</a> provides data structures that make it easy to work with multi-dimensional arrays, such as those found in NetCDF files commonly used in climate science. With xarray, you can work with data that has labeled dimensions, making it simpler to keep track of multiple variables, units, and dimensions.</p>
-<ul class="simple">
-<li><p><strong>Handles NetCDF and GRIB Formats</strong>: Designed for climate science data formats.</p></li>
-<li><p><strong>Metadata Support</strong>: Keeps track of labels for dimensions and coordinates.</p></li>
-<li><p><strong>Integration with Dask</strong>: Easily loads large datasets by leveraging Dask for parallel processing.</p></li>
-</ul>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-
-<span class="c1"># Load a NetCDF climate dataset</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;climate_data.nc&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
-</pre></div>
+<p>When we first build our code, we will often ‘hard code’ segments of code related to directory paths, user directories etc. If we share this code with someone else, they will to scan through every line of code with an explicit path to a directory of file, that is unique to a filesystem on a given platform.</p>
+<p>A better way to manage input and output data flows is by using environment and configuration files.</p>
+<section id="environment-and-configuration-files">
+<h3>Environment and configuration files<a class="headerlink" href="#environment-and-configuration-files" title="Link to this heading">#</a></h3>
+<p>Let’s return to the solar code we discussed in the <a class="reference internal" href="concurrent_futures.html"><span class="std std-doc">parallel python</span></a> examples. The code to to analysis the solar irradiance data is located at</p>
+<p><a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos/tree/main/solar_example">21centuryweather/software_engineering_demos</a></p>
+<p>There are three files sitting in the main project directory <code class="docutils literal notranslate"><span class="pre">solar_example</span></code>:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="http://README.md">README.md</a></p></li>
+<li><p><a class="reference external" href="http://env.sh">env.sh</a></p></li>
+<li><p><a class="reference external" href="http://config.py">config.py</a></p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">README.md</span></code> is a markdown file which is self-explanatory. Anyone who is given your code should be able to view the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file and understand what your code does. The length and complexity of the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> should be appropriate for the complexity of the associated <code class="docutils literal notranslate"><span class="pre">python</span></code> project. Given that our <code class="docutils literal notranslate"><span class="pre">solar_example</span></code> code is very simple, our <code class="docutils literal notranslate"><span class="pre">README.md</span></code> is very succinct.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">env.sh</span></code> file is a <code class="docutils literal notranslate"><span class="pre">bash</span></code> script designed to help with ‘portability’. This file loads the <code class="docutils literal notranslate"><span class="pre">python</span></code> environment <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> and then exports the definition of the project <code class="docutils literal notranslate"><span class="pre">ROOT</span></code> directory, i.e. the location where a user has cloned this repository. When a user clones this code, all they have to do is change the definition of <code class="docutils literal notranslate"><span class="pre">ROOT</span></code> and the all other filepaths used by the <code class="docutils literal notranslate"><span class="pre">python</span></code> modules inside the project will be defined,</p>
+<p>We define the <code class="docutils literal notranslate"><span class="pre">MODULES</span></code> environment (where we store most of our <code class="docutils literal notranslate"><span class="pre">python</span></code> code) and then add this to the <code class="docutils literal notranslate"><span class="pre">python</span></code> <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment, which is a universal environment variable used by all <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreters on Linux/Unix-based machines to search for <code class="docutils literal notranslate"><span class="pre">python</span></code> code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Inside a <code class="docutils literal notranslate"><span class="pre">python</span></code> interactive session or notebook, the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> variable defines the directories where the <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreter searches for modules. All <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreters automatically add the directories defined in <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> to <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>.</p>
 </div>
-</section>
-<section id="dask-scalable-data-processing-for-large-climate-datasets">
-<h3>Dask: Scalable Data Processing for Large Climate Datasets<a class="headerlink" href="#dask-scalable-data-processing-for-large-climate-datasets" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://www.dask.org">Dask</a> extends Python’s data processing capabilities, allowing for parallel computation on large datasets. When working with datasets too big for memory, Dask processes data in chunks and manages parallel operations, allowing you to analyze data on a laptop, cloud server, or HPC.</p>
-<ul class="simple">
-<li><p><strong>Out-of-Core Computation</strong>: Works with datasets that don’t fit in memory.</p></li>
-<li><p><strong>Parallel Processing</strong>: Leverages multi-core processors or distributed systems.</p></li>
-<li><p><strong>Works Seamlessly with Xarray</strong>: Enables efficient loading and computation for xarray DataArrays.</p></li>
-</ul>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
-
-<span class="c1"># Load dataset with Dask for lazy evaluation</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;climate_data.nc&quot;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span> <span class="n">Parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+<p>We then <code class="docutils literal notranslate"><span class="pre">export</span></code> these variables so they are valid across all programs running in this current environment (whether it’s an interactive login session or inside the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> job queue.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">python</span></code> ‘module’ refers to a script (usually containing one or two functions) that can be imported by other sections of <code class="docutils literal notranslate"><span class="pre">python</span></code> code using the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
 </div>
+<p>This <code class="docutils literal notranslate"><span class="pre">env.sh</span></code> file helps any user on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> deploy this package. However, the file itself assumes it will only be run on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>, and all users will have <code class="docutils literal notranslate"><span class="pre">hh5</span></code> project membership.  If you wanted to run this project on other platform (e.g. your laptop) you would need to write separate environment file for that system. You might need to build a new directory (e.g. envs) to store several environment files, one for each computing platform.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">config.py</span></code> file is some <code class="docutils literal notranslate"><span class="pre">python</span></code> code that reads in the environment variables declared earlier in <code class="docutils literal notranslate"><span class="pre">env.sh</span></code> and also defines the location of the input and output data on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+<p>This is designed so that all filepaths are defined in a single location. These filepaths (or more correctly, <code class="docutils literal notranslate"><span class="pre">python</span></code> <code class="docutils literal notranslate"><span class="pre">Path</span></code> objects) are then imported by every <code class="docutils literal notranslate"><span class="pre">python</span></code> script in this package. So any future users will not have to edit multiple files to use this code.</p>
+<p>If your python environment requirements are more complex, you can place <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration or other package requirement files here.</p>
 </section>
-<section id="pandas-data-manipulation-and-time-series-analysis">
-<h3>Pandas: Data Manipulation and Time Series Analysis<a class="headerlink" href="#pandas-data-manipulation-and-time-series-analysis" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://pandas.pydata.org">Pandas</a> is a powerful library for handling tabular and time series data. While not optimized for multi-dimensional data, pandas is still useful for climate science when handling metadata, summaries, and specific data manipulations.</p>
-<ul class="simple">
-<li><p><strong>Data Wrangling</strong>: Effective for cleaning, merging, and reshaping datasets.</p></li>
-<li><p><strong>Time Series Support</strong>: Built-in functionality for time series data.</p></li>
-<li><p><strong>Works with Xarray</strong>: Easily converts between xarray and pandas structures.</p></li>
-</ul>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="c1"># Load time series climate data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;temperature_data.csv&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
+<section id="python-files">
+<h3>Python files<a class="headerlink" href="#python-files" title="Link to this heading">#</a></h3>
+<p>The actual <code class="docutils literal notranslate"><span class="pre">python</span></code> code which defines this project is contained in the subdirectory <code class="docutils literal notranslate"><span class="pre">solar_example</span></code>. This might strike you as strange, as it means we have ‘doubled up’ on the project name, as we now have a local directory structure that looks like <code class="docutils literal notranslate"><span class="pre">/software_engineering_demos/solar_example/solar_example</span></code>. However, there are good reasons for doing this, and they are related to project namespaces and combining multiple packages (or directories) into a single <code class="docutils literal notranslate"><span class="pre">python</span></code> project. Maintaining this fine scale control over which directories we add to the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> or <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> avoids us having to import too many modules, or conflicts occurring between modules which may have the same directory name</p>
+<p>See this <a class="reference external" href="https://www.reddit.com/r/learnpython/comments/12wf3qe/why_have_a_folder_with_the_same_name_as_your_root/">Reddit Post</a> for further discussion.</p>
+<p>In this project, there are three <code class="docutils literal notranslate"><span class="pre">python</span></code> source files, along with a special file <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
+<p>From the <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html">official python docs</a>:</p>
+<p>“The <strong>init</strong>.py files are required to make Python treat directories containing the file as packages (unless using a namespace package, a relatively advanced feature). This prevents directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path.”</p>
+<p>The link explains the contents of the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file for our simple example. Entires in this file help control the scope of files to be imported and manage ‘intra-package’ references when using our package.</p>
 </section>
-<section id="matplotlib-visualizing-climate-data">
-<h3>Matplotlib: Visualizing Climate Data<a class="headerlink" href="#matplotlib-visualizing-climate-data" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://matplotlib.org">matplotlib</a> is the primary library for visualizing climate data in Python, enabling high-quality, customizable visualizations, from simple line plots to complex spatial maps.</p>
-<ul class="simple">
-<li><p><strong>Wide Range of Plot Types</strong>: Line plots, histograms, 2D heatmaps, and more.</p></li>
-<li><p><strong>Highly Customizable</strong>: Perfect for publication-quality figures.</p></li>
-<li><p><strong>Integrates with Xarray and Pandas</strong>: Visualizes data directly from data structures.</p></li>
-</ul>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="c1"># Plot a temperature time series</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature Over Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
+<section id="scripts">
+<h3>Scripts<a class="headerlink" href="#scripts" title="Link to this heading">#</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">/software_engineering_demos/solar_example/scripts/</span></code>, we have files which import the files contained in <code class="docutils literal notranslate"><span class="pre">/software_engineering_demos/solar_example/solar_example</span></code> as a module. We have a python script <code class="docutils literal notranslate"><span class="pre">concurrent_test.py</span></code> which can process the data inside an interactive python session (i.e. <code class="docutils literal notranslate"><span class="pre">iPython</span></code>). This script is discussed <a class="reference internal" href="concurrent_futures.html#an-example-using-concurrent-futures"><span class="std std-ref">here</span></a>.We also have a <code class="docutils literal notranslate"><span class="pre">bash</span></code> script <code class="docutils literal notranslate"><span class="pre">concurrent_test.sh.qsub</span></code> which can be submitted to the <code class="docutils literal notranslate"><span class="pre">PBS</span></code> queue on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
+</section>
+<section id="ancils">
+<h3>Ancils<a class="headerlink" href="#ancils" title="Link to this heading">#</a></h3>
+<p>Sometimes your package requires small ancillary files which are essential to the functioning of the package. In this case, we have a <code class="docutils literal notranslate"><span class="pre">.npz</span></code> file (which is a binary zipped archive of <code class="docutils literal notranslate"><span class="pre">python</span></code> <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays) which defines the location of solar energy zones specific to the package. Small ancillary files (~ 100 Mb&gt;) can be stored within a package directory on GitHub. Typically we want to ensure the package repository itself remains &lt; 1 Gb, so if your package is reliant on larger ancillary files, special data storage repositories outside of GitHub would be required.</p>
+</section>
+<section id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h3>
+<p>As discussed <a class="reference internal" href="testing.html"><span class="std std-doc">here</span></a>, all good packages come with some simple test functions to ensure they are working as expected. These tests can be executed using <code class="docutils literal notranslate"><span class="pre">pytest</span></code> as discussed [here](../python/testing.md#examples-with-pytest. Testing is another component of ‘portability’, i.e. it ensures that shared code is deployed correctly across multiple users and platforms.</p>
+<p>The final directory structure of the <code class="docutils literal notranslate"><span class="pre">solar_example</span></code> package resembles this example, taken from <a class="reference external" href="https://dagster.io/blog/python-project-best-practices">here</a></p>
+<p><img alt="Sample project layout" src="../_images/project.png" /></p>
 </section>
 </section>
-<section id="development-environments-jupyter-notebooks-and-vs-code">
-<h2>Development Environments: Jupyter Notebooks and VS Code<a class="headerlink" href="#development-environments-jupyter-notebooks-and-vs-code" title="Link to this heading">#</a></h2>
-<p><strong>Jupyter Notebooks</strong></p>
-<p><a class="reference external" href="https://jupyter.org">Jupyter Notebooks</a> are highly popular in scientific computing because they allow researchers to combine code, results, and documentation in a single environment. With their interactive nature, Jupyter Notebooks are ideal for data exploration and visualization.</p>
-<ul class="simple">
-<li><p><strong>Interactive Cells</strong>: Run code cell-by-cell, seeing results instantly.</p></li>
-<li><p><strong>Markdown Support</strong>: Add notes, equations, and documentation.</p></li>
-<li><p><strong>Rich Visualization</strong>: View plots and outputs inline, great for iterative analysis.</p></li>
-</ul>
-<p><strong>VS Code</strong>
-<a class="reference external" href="https://code.visualstudio.com">Visual Studio Code (VS Code)</a> is a versatile code editor that supports both traditional coding and interactive notebooks, making it a great alternative to Jupyter Notebooks for climate science.</p>
-<ul class="simple">
-<li><p><strong>Notebook Support</strong>: The Jupyter extension allows you to run notebooks directly in VS Code.</p></li>
-<li><p><strong>Advanced Editing and Debugging</strong>: Ideal for larger projects that need a more comprehensive IDE.</p></li>
-<li><p><strong>Extensions for Data Science</strong>: Customize your environment with extensions for Python, Dask, and more.</p></li>
-</ul>
-<p>Both environments offer unique benefits, allowing researchers to choose based on preference and project requirements.</p>
-</section>
-<section id="conda-python-environments-analysis3">
-<h2>Conda Python Environments - analysis3<a class="headerlink" href="#conda-python-environments-analysis3" title="Link to this heading">#</a></h2>
-<p>An <a class="reference external" href="https://anaconda.org/anaconda/conda">Anaconda</a> is maintained at NCI (created and currently maintaned by the CLEX CMS team), with a wide variety of climate and weather related libraries.</p>
-<p>You can find the most recent list of libraries at the <a class="reference external" href="https://github.com/coecms/conda-envs/blob/analysis3/environment.yml">github repository</a>, or run conda list with an environment loaded.</p>
-<p>To use any of the conda environments:</p>
-<ul class="simple">
-<li><p>Request access to hh5 (do once)</p></li>
-<li><p>You must first run (to do at each session, a qsub job is a new session):
-<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span> <span class="pre">/g/data/hh5/public/modules</span></code></p></li>
-</ul>
-<p>If you need to use the conda environment in a PBS job you will need to add the <a class="reference external" href="https://my.nci.org.au/mancini/login?next=/mancini/project/hh5">hh5 project</a> to your storage flags, e.g. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">storage=gdata/hh5</span></code>. These conda environments will work on gadi login/compute nodes, and in the <a class="reference external" href="https://are-auth.nci.org.au">ARE cloud environment</a>.</p>
-<p><strong>Stable Environment</strong>:
-The stable environment is updated once a quarter, around when NCI do their quarterly maintenance of Gadi. Otherwise everything in the environment stays fixed, packages arent intsalled or updated unless something is very broken.</p>
-<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">conda/analysis3</span></code></p>
-<p><strong>Unstable Environment</strong>:
-The unstable environment gets updated more often, new packages and updated packages are installed here. If you ask for a new package it will be installed here.</p>
-<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">conda/analysis3-unstable</span></code></p>
-<p>When the quarterly update happens the unstable environment becomes the new stable environment.</p>
-<p><strong>ARE</strong>
-To use CLEX Conda in <a class="reference external" href="https://are-auth.nci.org.au">ARE cloud environment</a>, start Jupyter with the advanced options:</p>
-<p><code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">Directories:</span> <span class="pre">/g/data/hh5/public/modules</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">Modules:</span> <span class="pre">conda/analysis3</span></code></p>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading">#</a></h2>
+<p>The simple <code class="docutils literal notranslate"><span class="pre">solar_example</span></code> package provides a useful template for building <code class="docutils literal notranslate"><span class="pre">python</span></code> packages over the course of your research. Over time, you can add extra sub-directories to deal with extra complexity, but this structure is a good starting point.</p>
+<p>You can find more information here :</p>
+<p><a class="reference external" href="https://dagster.io/blog/python-project-best-practices">https://dagster.io/blog/python-project-best-practices</a></p>
+<p>and</p>
+<p><a class="reference external" href="https://docs.python-guide.org/writing/structure/">https://docs.python-guide.org/writing/structure/</a></p>
 </section>
 </section>
 
@@ -608,20 +552,20 @@ To use CLEX Conda in <a class="reference external" href="https://are-auth.nci.or
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../NRI-RNS/further-considerations.html"
+       href="testing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Further Considerations</p>
+        <p class="prev-next-title">Testing your code</p>
       </div>
     </a>
     <a class="right-next"
-       href="file_formats.html"
+       href="../gadi/getting-started.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</p>
+        <p class="prev-next-title">Getting started on gadi</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -641,16 +585,15 @@ To use CLEX Conda in <a class="reference external" href="https://are-auth.nci.or
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-python-is-ideal-for-climate-science">Why Python is Ideal for Climate Science</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-libraries-for-climate-science">Essential Libraries for Climate Science</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray-multi-dimensional-arrays-for-climate-data">Xarray: Multi-Dimensional Arrays for Climate Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-scalable-data-processing-for-large-climate-datasets">Dask: Scalable Data Processing for Large Climate Datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-data-manipulation-and-time-series-analysis">Pandas: Data Manipulation and Time Series Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-visualizing-climate-data">Matplotlib: Visualizing Climate Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portability">Portability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-and-configuration-files">Environment and configuration files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-files">Python files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripts">Scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancils">Ancils</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environments-jupyter-notebooks-and-vs-code">Development Environments: Jupyter Notebooks and VS Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-environments-analysis3">Conda Python Environments - analysis3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
 </ul>
   </nav></div>
 
