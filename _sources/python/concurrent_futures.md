@@ -1,6 +1,6 @@
 # Parallelism in Python using concurrent futures
 
-The large datasets associated with weather and climate research typically require cutting-edge hardware and software to be analysed efficiently.  Modern computing architecture relies on clusters of Central Processing Units (CPUs) with multiple processing pipelines, or cores. Each core itself may have separate threads. A single standard computational node on `gadi` for example, has 2x24 core CPUs connected to 190 Gb of RAM. Each core has two threads, so a `python` script can actually see 96 separate processing cores. 
+The large datasets associated with weather and climate research typically require cutting-edge hardware and software to be analysed efficiently.  Modern computing architecture relies on clusters of Central Processing Units (CPUs) with multiple processing pipelines, or cores. Each core itself may have separate threads. A single standard computational node on `gadi` for example, has 2x24 core CPUs connected to 190 Gb of RAM. Each core has two threads, so a `python` script running on a single node can actually see 96 separate processing cores. 
 
 You can check this for yourself by logging into an interactive `gadi` compute note, by following [these instructions](https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-InteractiveJobs), and launching a simple `python` interpreter.
 ```python
@@ -160,15 +160,15 @@ if __name__ == "__main__":
 ```
 If this python job is submitted to the PBS job queue, it will take roughly 4:15 seconds to compute 10 days. The total memory usage is 153 Gb, which suggests each parallel process consumes about 15 Gb. So on a `normal` PBS node, we can only use about 13 cores before we risk running out of memory (190/15 = 12.6).
 
-Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 minutes and consumes about 170 Gb. This is because we can only process 13 days at once. If you attempt to use more cores, you will exceed the shared memory capacity of a `normal` node.
+Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 minutes, consuming 170 Gb of memory. This is because we can only process 13 days at once. If you attempt to use more cores, you will exceed the shared memory capacity of a `normal` node.
 
 Of course, you could run the job on a `hugemem` or `megamem` node. This could allow you to use all 96 threads in parallel (remember each `gadi` core contains two threads ). 96 threads times 15 Gb = 1.44 Tb. So the entire job could squeeze into the `hugemem` queue, but it would definitely fit in the `megamem` queue. 
 
 Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 threads would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the `hugemem` or `megamem` queue could process a decade of data in under 3 hours.
 
-To find out more about the `hugemem` and `megamem` queues, see [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits). Note these queues are more expensive than the `normal` queues in terms of charge rates per hour, and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren't overly repetitive.
+To find out more about the `hugemem` and `megamem` queues, see [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits). Note these queues are more expensive than the `normal` queues in terms of charge rates per hour (Service Units), and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren't overly repetitive.
 
-This is a very simple invocation of `concurrent.futures`. If you were submitting thousands of tasks over the course of several hours, a more rigorous application could track the process of each job, and keep a list of jobs that failed etc.
+This is a very simple invocation of `concurrent.futures`. If you were submitting thousands of tasks over the course of several hours, a more rigorous application could track the process of each job, and keep a list of jobs that failed etc. For now, the status of each process is contained within the `futures` dictionary. 
 
 Another option is to reduce the memory overhead of a single day's computations, so we can squeeze more processes onto the `normal` node. Simple steps such as
 - Only loading the required dataset variables from disk 
@@ -178,9 +178,29 @@ will reduce the memory overhead of your process.
 
 Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset` would be beneficial. See [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits) on how to use the `preprocess` argument with `open_mfdataset`.
 
+## Try it yourself
+
+Use an interactive `qsub` to login to a `gadi` node and test the parallelisation. The following command will launch an eight hour interactive session requesting all memory on a standard node using the `express` queue. The Service Unit (SU) costs will be billed against the `gb02` project and we will have access to the `gb02, hh5, and rv74` disks.
+
+```
+$ qsub -I -X -l mem=190gb -Pgb02 -q express -l walltime=08:00:00 -l storage=gdata/gb02+gdata/hh5+scratch/gb02+gdata/rv74
+```
+
+:::{note}
+
+If you are using the `conda/analsyis3` environment you will have to load `gdata/hh5` into the session via the `-l storage` flag.
+:::
+
+:::{note}
+
+The `express` queue is easier to gain access to than the `normal` queue but it costs more SU. Use it for testing only, and use the other queues for large data processing.
+:::
+
+
+
 :::{warning}
 
-When using `concurrent.futures` ensure you don't invoke the `parallel` option when using `open_mfdataset`. I'm unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?
+When using `concurrent.futures` for the first time, ensure you don't invoke the `parallel` option when using `open_mfdataset`. I'm unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?
 :::
 
 ## Try it yourself

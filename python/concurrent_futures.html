@@ -426,6 +426,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-concurrent-futures">An example using concurrent futures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself">Try it yourself</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Try it yourself</a></li>
 </ul>
             </nav>
         </div>
@@ -439,7 +440,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="parallelism-in-python-using-concurrent-futures">
 <h1>Parallelism in Python using concurrent futures<a class="headerlink" href="#parallelism-in-python-using-concurrent-futures" title="Link to this heading">#</a></h1>
-<p>The large datasets associated with weather and climate research typically require cutting-edge hardware and software to be analysed efficiently.  Modern computing architecture relies on clusters of Central Processing Units (CPUs) with multiple processing pipelines, or cores. Each core itself may have separate threads. A single standard computational node on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> for example, has 2x24 core CPUs connected to 190 Gb of RAM. Each core has two threads, so a <code class="docutils literal notranslate"><span class="pre">python</span></code> script can actually see 96 separate processing cores.</p>
+<p>The large datasets associated with weather and climate research typically require cutting-edge hardware and software to be analysed efficiently.  Modern computing architecture relies on clusters of Central Processing Units (CPUs) with multiple processing pipelines, or cores. Each core itself may have separate threads. A single standard computational node on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> for example, has 2x24 core CPUs connected to 190 Gb of RAM. Each core has two threads, so a <code class="docutils literal notranslate"><span class="pre">python</span></code> script running on a single node can actually see 96 separate processing cores.</p>
 <p>You can check this for yourself by logging into an interactive <code class="docutils literal notranslate"><span class="pre">gadi</span></code> compute note, by following <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-InteractiveJobs">these instructions</a>, and launching a simple <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreter.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python</span>
 <span class="n">Python</span> <span class="mf">3.10.14</span> <span class="o">|</span> <span class="n">packaged</span> <span class="n">by</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">|</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Mar</span> <span class="mi">20</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">12.3.0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
@@ -587,11 +588,11 @@ document.write(`
 </pre></div>
 </div>
 <p>If this python job is submitted to the PBS job queue, it will take roughly 4:15 seconds to compute 10 days. The total memory usage is 153 Gb, which suggests each parallel process consumes about 15 Gb. So on a <code class="docutils literal notranslate"><span class="pre">normal</span></code> PBS node, we can only use about 13 cores before we risk running out of memory (190/15 = 12.6).</p>
-<p>Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 minutes and consumes about 170 Gb. This is because we can only process 13 days at once. If you attempt to use more cores, you will exceed the shared memory capacity of a <code class="docutils literal notranslate"><span class="pre">normal</span></code> node.</p>
+<p>Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 minutes, consuming 170 Gb of memory. This is because we can only process 13 days at once. If you attempt to use more cores, you will exceed the shared memory capacity of a <code class="docutils literal notranslate"><span class="pre">normal</span></code> node.</p>
 <p>Of course, you could run the job on a <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> or <code class="docutils literal notranslate"><span class="pre">megamem</span></code> node. This could allow you to use all 96 threads in parallel (remember each <code class="docutils literal notranslate"><span class="pre">gadi</span></code> core contains two threads ). 96 threads times 15 Gb = 1.44 Tb. So the entire job could squeeze into the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> queue, but it would definitely fit in the <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queue.</p>
 <p>Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 threads would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> or <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queue could process a decade of data in under 3 hours.</p>
-<p>To find out more about the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> and <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queues, see <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a>. Note these queues are more expensive than the <code class="docutils literal notranslate"><span class="pre">normal</span></code> queues in terms of charge rates per hour, and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren’t overly repetitive.</p>
-<p>This is a very simple invocation of <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>. If you were submitting thousands of tasks over the course of several hours, a more rigorous application could track the process of each job, and keep a list of jobs that failed etc.</p>
+<p>To find out more about the <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> and <code class="docutils literal notranslate"><span class="pre">megamem</span></code> queues, see <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a>. Note these queues are more expensive than the <code class="docutils literal notranslate"><span class="pre">normal</span></code> queues in terms of charge rates per hour (Service Units), and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren’t overly repetitive.</p>
+<p>This is a very simple invocation of <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>. If you were submitting thousands of tasks over the course of several hours, a more rigorous application could track the process of each job, and keep a list of jobs that failed etc. For now, the status of each process is contained within the <code class="docutils literal notranslate"><span class="pre">futures</span></code> dictionary.</p>
 <p>Another option is to reduce the memory overhead of a single day’s computations, so we can squeeze more processes onto the <code class="docutils literal notranslate"><span class="pre">normal</span></code> node. Simple steps such as</p>
 <ul class="simple">
 <li><p>Only loading the required dataset variables from disk</p></li>
@@ -599,13 +600,28 @@ document.write(`
 </ul>
 <p>will reduce the memory overhead of your process.</p>
 <p>Reviewing Scott Wales’ old CLEX posts on how to optimise <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset</span></code> would be beneficial. See <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits">here</a> on how to use the <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> argument with <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>When using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> ensure you don’t invoke the <code class="docutils literal notranslate"><span class="pre">parallel</span></code> option when using <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>. I’m unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?</p>
-</div>
 </section>
 <section id="try-it-yourself">
 <h2>Try it yourself<a class="headerlink" href="#try-it-yourself" title="Link to this heading">#</a></h2>
+<p>Use an interactive <code class="docutils literal notranslate"><span class="pre">qsub</span></code> to login to a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> node and test the parallelisation. The following command will launch an eight hour interactive session requesting all memory on a standard node using the <code class="docutils literal notranslate"><span class="pre">express</span></code> queue. The Service Unit (SU) costs will be billed against the <code class="docutils literal notranslate"><span class="pre">gb02</span></code> project and we will have access to the <code class="docutils literal notranslate"><span class="pre">gb02,</span> <span class="pre">hh5,</span> <span class="pre">and</span> <span class="pre">rv74</span></code> disks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qsub -I -X -l mem=190gb -Pgb02 -q express -l walltime=08:00:00 -l storage=gdata/gb02+gdata/hh5+scratch/gb02+gdata/rv74
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using the <code class="docutils literal notranslate"><span class="pre">conda/analsyis3</span></code> environment you will have to load <code class="docutils literal notranslate"><span class="pre">gdata/hh5</span></code> into the session via the <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">storage</span></code> flag.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">express</span></code> queue is easier to gain access to than the <code class="docutils literal notranslate"><span class="pre">normal</span></code> queue but it costs more SU. Use it for testing only, and use the other queues for large data processing.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> for the first time, ensure you don’t invoke the <code class="docutils literal notranslate"><span class="pre">parallel</span></code> option when using <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>. I’m unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?</p>
+</div>
+</section>
+<section id="id1">
+<h2>Try it yourself<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>You can obtain the above code by cloning the repository</p>
 <p><a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos">21centuryweather/software_engineering_demos</a></p>
 <p>To submit a test script to the PBS queue, after cloning the repository to a working directory on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>:</p>
@@ -715,6 +731,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-using-concurrent-futures">An example using concurrent futures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself">Try it yourself</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Try it yourself</a></li>
 </ul>
   </nav></div>
 
