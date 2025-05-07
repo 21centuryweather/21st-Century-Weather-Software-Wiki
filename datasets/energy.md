@@ -35,4 +35,4 @@ The data is located at:
 ### How to cite this dataset:
 If using these data, please cite the original publication, available from https://iopscience.iop.org/article/10.1088/1748-9326/ad9b3b.
 
-A Zenodo repository will be created and also cirted here once available. 
+The dataset is also available in a Zenodo repository: https://zenodo.org/records/15272801

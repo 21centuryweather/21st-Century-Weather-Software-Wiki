@@ -91,14 +91,14 @@ But keep in mind that there are many other ways to work with git.
 
 1. Create the folder for the repo, for example
 
-```
+```bash
 $ mkdir new-project
 $ cd new-project
 ```
 
 2. Initialise the repo
 
-```
+```bash
 $ git init
 ```
 :::
@@ -119,7 +119,7 @@ Let's first check the status of the repo with:
 
 This command will also list the changes and the options you have on what to do with those changes. If you run `git status` you will get this message
 
-```
+```bash
 On branch main
 
 No commits yet
@@ -127,7 +127,7 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-Now is time to create a new file, for example `read_era5.py`. 
+Now is time to create a new file. Let's create `read_era5.py`, it can be an empty file for now.
 
 If you run `git status` again, the message changes to:
 
@@ -142,7 +142,7 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
- ...and is already telling you what to do next. 
+ ...and is already telling you what to do next at the end: `(use "git add" to track)`. 
 
  :::{admonition} Exercise
 :class: important
@@ -174,7 +174,7 @@ Now the `read_era5.py` file is ready to be commited to the repo.
 
 1. Use `git commit -m <"message">` to stage the file
 
-We use the -m flag (for “message”) to record a short and descriptive comment that will help us remember later on what we did and why. Your future you (and your colleges) will thank you later.
+We use the `-m` flag (for “message”) to record a short and descriptive comment that will help us remember later on what we did and why. Your future you (and your colleges) will thank you later.
 
 :::
 
@@ -349,5 +349,35 @@ Most important, adding big files to a commit can make things go slower. For that
 ::: {tip}
 
 To avoid adding file to a repository, maybe because they are to big, maybe because you don't have permission to share them, you can add a `.gitignore` file. This file will include the list of files and folders you want to ignore. [This repo](https://github.com/github/gitignore) includes a collection of gitignore templates you can use. 
+
+:::
+
+## Exercise 
+
+Let's practice the workflow one more time. This time, let's assume you are working with others. Someone else has created the repository and given you permissions to push changes. This is one way to collaborate with others, and in [the next session we talk about other workflows](content:git-team).
+
+To start working, first you need to *clone* the repository to your computer. After that, if you have write access to the repo, you can add files or change the content of the files, commit them and push the changes to the remote repository.
+
+:::{admonition} Commands
+:class: tip
+
+- `git clone <repo URL>` to clone a repository, regardless of whether it is yours or not. This command will download the repository to the current folder in your terminal.
+
+:::
+
+Time to practice everything.
+
+:::{admonition} Exercise
+:class: important
+
+**Note:** You will be able to complete this exercise only if you are a collaborator in [this demo repository](https://github.com/21centuryweather/Demo-project). If you are not, please open an issue in the repo asking to be added. 
+
+1. Clone the repository to your computer.
+2. Create a new text file called `your_name.txt` (e.g. `Lisa_Simpson.txt`). It can be empty or you can write something in it.
+3. Add the file to the staging area.
+4. Commit the file with a descriptive message.
+5. Just in case there are new files in the remote repository, pull remote changes to your local repository.
+6. Push your changes to the remote repository.
+7. Check the repository on GitHub. Is your file there?
 
 :::

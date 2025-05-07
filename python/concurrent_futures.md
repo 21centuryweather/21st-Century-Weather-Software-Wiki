@@ -19,7 +19,7 @@ So clearly have a lot of scope to use shared-memory programming to speed up our 
 
 :::{note}
 
-There are two paradigms of distributed computing. In the 'shared memory' paradigm, multiple processes have access to a shared pool of memory. In the 'distributed memory' paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a 'shared memory' example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.
+There are two paradigms of parallel computing. In the 'shared memory' paradigm, multiple processes have access to a shared pool of memory. In the 'distributed memory' paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a 'shared memory' example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.
 :::
 
 Often, users first encounter parallel processing via the `xarray` module via a `dask` Client. In this way, a single `xarray` data structure can be read, processed and written in parallel 'chunks' using `dask` arrays. 'Chunking' can occur along any dimension - spatial or temporal.
@@ -80,10 +80,10 @@ It takes about three minutes to process a single day. Separate `qsub` scripts we
 
 :::{note}
 
-In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember there are typically two 24 core CPUs located on each node. If want full access to every core on a node, we need to request `#PBS -l ncpus=48`)
+In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember that, for example on `normal` queue, there are two 24 core CPUs located on each node. If want full access to every core on a node on `normal` queue, you need to request `#PBS -l ncpus=48`)
 :::
 
-The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function `utils_V2.get_irradiance_day` uses `xarray.open_mfdataset` to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can processed relatively quickly on a single core. So can we use `python` libraries to exploit the multiple cores that exist on a single CPU?
+The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function `utils_V2.get_irradiance_day` uses `xarray.open_mfdataset` to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can be processed relatively quickly on a single core. So can we use `python` libraries to exploit the multiple cores that exist on a single CPU?
 
 The first step is to write a function that encapsulates all our daily computations.  
 ```python
@@ -104,7 +104,7 @@ def compute_timeseries_clearsky_ratio(date,
 
     return
 ```
-This function can be saved to a file `compute_data.py` so it can be imported into the main python script as a separate module. Now we can use the `concurrent.future` package so the main python script can send the computation of each day to a separate core in parallel. Let's compute 10 days in parallel, across 10 cores.
+This function can be saved to a file `compute_data.py` so it can be imported into the main python script as a separate module. Now we can use the `concurrent.future` package so the main python script can send the computation of each day to a separate core in parallel. Let's compute 10 days in parallel, across 10 threads.
 ```python
 import concurrent.futures
 import os,sys
@@ -117,11 +117,12 @@ import logger
 from compute_data import compute_timeseries_clearsky_ratio
 
 LOG = logger.get_logger(__name__)
+N_PROCS = 10 # Test with 10 parallel processes to start
 
 if __name__ == "__main__":
 
-    n_procs = os.cpu_count() # Find number of seperate CPUs
-    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=10)  # Create the number of parallel branches and fix it equal to the number of cores. Each core will have one job submitted
+    n_threads = os.cpu_count() # The maximum number of threads this script sees. 
+    worker_pool = concurrent.futures.ProcessPoolExecutor(max_workers=N_PROCS)  # Create the number of parallel processes. 
 
     futures = {}
 
@@ -163,7 +164,7 @@ Using 13 cores, 28 days of data (i.e. all of February) can be computed in 10 min
 
 Of course, you could run the job on a `hugemem` or `megamem` node. This could allow you to use all 96 threads in parallel (remember each `gadi` core contains two threads ). 96 threads times 15 Gb = 1.44 Tb. So the entire job could squeeze into the `hugemem` queue, but it would definitely fit in the `megamem` queue. 
 
-Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 cores would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the `hugemem` or `megamem` queue could process a decade of data in under 3 hours.
+Using this strategy could process an entire year of data (365 days) in a matter of minutes. i.e. 96 threads would process 96 days in parallel, so 365 days would take roughly (365/96) = 3.8 * 4 = 15 minutes. So a single job submitted to the `hugemem` or `megamem` queue could process a decade of data in under 3 hours.
 
 To find out more about the `hugemem` and `megamem` queues, see [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits). Note these queues are more expensive than the `normal` queues in terms of charge rates per hour (Service Units), and you may have to wait longer in the queue for your job to process. But they are a useful options for tasks that aren't overly repetitive.
 
@@ -172,7 +173,8 @@ This is a very simple invocation of `concurrent.futures`. If you were submitting
 Another option is to reduce the memory overhead of a single day's computations, so we can squeeze more processes onto the `normal` node. Simple steps such as
 - Only loading the required dataset variables from disk 
 - Only loading the spatial subset of data from disk
-will reduce the memory overhead of each parallel process.
+
+will reduce the memory overhead of your process.
 
 Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset` would be beneficial. See [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits) on how to use the `preprocess` argument with `open_mfdataset`.
 
@@ -209,14 +211,14 @@ https://github.com/21centuryweather/software_engineering_demos
 
 To submit a test script to the PBS queue, after cloning the repository to a working directory on `gadi`:
 1. Edit the package 'environment file' `solar_example/env.sh` to change the definition of the `ROOT` directory. 
-2. Edith the package 'configuration file' `solar_example/config.py` to specify the input and output directories.
-3. Edit the script   `solar_example/scripts/concurrent_test.sh.qsub` 
+2. Edit the package 'configuration file' `solar_example/config.py` to specify the input and output directories.
+3. Edit the script `solar_example/scripts/concurrent_test.sh.qsub` 
 
 You will need substitute your current working directory, and change the location of the standard out and standard error log files (`#PBS -o <filename>` and `#PBS -e <filename>`)
 
 :::{note}
 
-You will have to be a member of project `rv74` to run this code as-is to read the satellite irradiance data.
+You need to be a member of NCI project `rv74` to run this code as-is to read the satellite irradiance data.
 :::
 
 Then submit the task:
