@@ -68,11 +68,11 @@ From the [official python docs](https://docs.python.org/3/tutorial/modules.html)
 
 "The __init__.py files are required to make Python treat directories containing the file as packages (unless using a namespace package, a relatively advanced feature). This prevents directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path."
 
-The link explains the contents of the `__init__.py` file for our simple example. Entires in this file help control the scope of files to be imported and manage 'intra-package' references when using our package.
+The link explains the contents of the `__init__.py` file for our simple example. Entries in this file help control the scope of files to be imported and manage 'intra-package' references when using our package.
 
 ### Scripts ###
 
-In the `/software_engineering_demos/solar_example/scripts/`, we have files which import the files contained in `/software_engineering_demos/solar_example/solar_example` as a module. We have a python script `concurrent_test.py` which can process the data inside an interactive python session (i.e. `iPython`). This script is discussed [here](../python/concurrent_futures.md#an-example-using-concurrent-futures).We also have a `bash` script `concurrent_test.sh.qsub` which can be submitted to the `PBS` queue on `gadi`. 
+In the `/software_engineering_demos/solar_example/scripts/`, we have files which import the files contained in `/software_engineering_demos/solar_example/solar_example` as a module. We have a python script `concurrent_test.py` which can process the data inside an interactive python session (i.e. `iPython`). This script is discussed [here](../python/concurrent_futures.md#an-example-using-concurrent-futures). We also have a `bash` script `concurrent_test.sh.qsub` which can be submitted to the `PBS` queue on `gadi`. 
 
 ### Ancils ###
 
@@ -80,7 +80,7 @@ Sometimes your package requires small ancillary files which are essential to the
 
 ### Tests ##
 
-As discussed [here](../python/testing.md), all good packages come with some simple test functions to ensure they are working as expected. These tests can be executed using `pytest` as discussed [here](../python/testing.md#examples-with-pytest. Testing is another component of 'portability', i.e. it ensures that shared code is deployed correctly across multiple users and platforms.
+As discussed [here](../python/testing.md), all good packages come with some simple test functions to ensure they are working as expected. These tests can be executed using `pytest` as discussed [here](../python/testing.md#examples-with-pytest). Testing is another component of 'portability', i.e. it ensures that shared code is deployed correctly across multiple users and platforms.
 
 The final directory structure of the `solar_example` package resembles this example, taken from [here](https://dagster.io/blog/python-project-best-practices)
 
