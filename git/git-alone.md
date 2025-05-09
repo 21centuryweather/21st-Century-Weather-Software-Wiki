@@ -354,14 +354,14 @@ To avoid adding file to a repository, maybe because they are to big, maybe becau
 
 ## Exercise 
 
-Let's practice the workflow one more time. This time, let's assume you are working with others. Someone else has created the repository and gave you permissions to push changes. This is one way to collaborate with others, in [the next session we talk about other workflows](content:git-team).
+Let's practice the workflow one more time. This time, let's assume you are working with others. Someone else has created the repository and given you permissions to push changes. This is one way to collaborate with others, and in [the next session we talk about other workflows](content:git-team).
 
-To start working, first you need to *clone* the repository in your computer. After that, if you have written access to the repo, you can add files or change the content of the files, commit them and push the changes to the remote repository.
+To start working, first you need to *clone* the repository to your computer. After that, if you have write access to the repo, you can add files or change the content of the files, commit them and push the changes to the remote repository.
 
 :::{admonition} Commands
 :class: tip
 
-- `git clone <repo URL>` to clone a repository, independently of if is yours or not. This command will download the repository in the folder you are in the terminal.
+- `git clone <repo URL>` to clone a repository, regardless of whether it is yours or not. This command will download the repository to the current folder in your terminal.
 
 :::
 
@@ -370,14 +370,14 @@ Time to practice everything.
 :::{admonition} Exercise
 :class: important
 
-**Note:** You will be able to complete this exercise only if you are a collaborator in [this repository](https://github.com/21centuryweather/Demo-project). If you are not, please open an issue in the repo asking to be added. 
+**Note:** You will be able to complete this exercise only if you are a collaborator in [this demo repository](https://github.com/21centuryweather/Demo-project). If you are not, please open an issue in the repo asking to be added. 
 
-1. Close the repository in your computer.
-2. Add a new file called `your_name.txt`. It can be empty or you can add something.
+1. Clone the repository to your computer.
+2. Create a new text file called `your_name.txt` (e.g. `Lisa_Simpson.txt`). It can be empty or you can write something in it.
 3. Add the file to the staging area.
 4. Commit the file with a descriptive message.
-5. Just in case there are new files in the remote repository, run `git pull`.
-6. Push the changes to the remote repository.
-7. Check the repository on GitHub, is your file there?
+5. Just in case there are new files in the remote repository, pull remote changes to your local repository.
+6. Push your changes to the remote repository.
+7. Check the repository on GitHub. Is your file there?
 
 :::
