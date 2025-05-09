@@ -57,7 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'git/git-team2';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'git/git-workflows';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -300,7 +300,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgit/git-team2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgit/git-workflows.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +330,7 @@
       
       
       
-      <li><a href="../_sources/git/git-team2.md" target="_blank"
+      <li><a href="../_sources/git/git-workflows.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -424,15 +424,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-merge-conflicts">Identifying merge conflicts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-first">1. Pull first</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-different-files">2. People work on different files</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-takes-turns">3. People takes turns</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-branches">4. People work on branches</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-1">Collaborative workflow 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-2">Collaborative workflow 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-1">Scenario 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-2">Scenario 2</a></li>
 </ul>
             </nav>
         </div>
@@ -445,67 +438,13 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="working-with-git-in-a-team">
-<span id="content-git-team2"></span><h1>Working with Git in a team<a class="headerlink" href="#working-with-git-in-a-team" title="Link to this heading">#</a></h1>
-<p>In this section we are going to see what it looks like to collaborate with others on gitHub projects. Up to now you were working with git alone using this workflow:</p>
+<span id="content-git-team"></span><h1>Working with Git in a team<a class="headerlink" href="#working-with-git-in-a-team" title="Link to this heading">#</a></h1>
+<p>In this section we are going to see what it looks like to use collaborative workflows to work with other people to do research and software development.
+Previously you were working with git individually using this workflow:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Modify</span> <span class="n">a</span> <span class="n">file</span> <span class="o">--&gt;</span> <span class="n">Add</span> <span class="o">--&gt;</span> <span class="n">Commit</span> <span class="o">--&gt;</span> <span class="n">Push</span>
 </pre></div>
 </div>
-<p>So every time you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, git will compare the files in the remote repository with the version you are pushing and update everything. But when working with other people there are instances that can potentially create <em>merge conflicts</em>. While the name suggest otherwise a merge conflict is not necessarily an error, it happens when the version of a file on the local repo is not compatible with its version on the remote repo. Sometimes, Git is able to combine the two sets of changes without any trouble. But sometimes it gets stuck, and requires a human to intervene and decide how multiple changes should be combined, do you keep version A, version B or a combination of both?</p>
-<section id="identifying-merge-conflicts">
-<h2>Identifying merge conflicts<a class="headerlink" href="#identifying-merge-conflicts" title="Link to this heading">#</a></h2>
-<p>Imagine a colleague added a new line in <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> to import the numpy package. The file looks like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
-
-<span class="c1"># Load a NetCDF climate dataset</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;era5_data.nc&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
-
-</pre></div>
-</div>
-<p>At the same time, you also added this line but decided that <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> is the right way to go. When you commit and push the new version of the file to the remote repository you get this message:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Auto-merging<span class="w"> </span>read_era5.py
-CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>read_era5.py
-Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
-</pre></div>
-</div>
-<p>The message says that there are conflicts withe the content of <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code> and that the automatic merge failed. The good news is that we now which file is the issue. Here, doing small commits with small changes helps a lot.</p>
-<p>Now, if you come back to <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code>, the content has changed:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="o">=======</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
-<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="mi">318548</span><span class="n">cbe665e65b4dae4a5da8d4eba187a4c6b2</span>
-
-<span class="c1"># Load a NetCDF climate dataset</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;era5_data.nc&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
-
-</pre></div>
-</div>
-<p>The funny additions <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">=======</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> were added by git to highlight the merge conflict. Everything between <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> and <code class="docutils literal notranslate"><span class="pre">=======</span></code> correspond to the local version, and the content between <code class="docutils literal notranslate"><span class="pre">=======</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> is the version currently on GitHub. The long string is the commit id.</p>
-<p>If you are using git from the terminal, you can edit this file, remove the arrows and keep the version you prefer. Some GUIs and visual interfaces will let you choose the version you want to keep and take care of editing the file, for example <a class="reference external" href="https://www.youtube.com/watch?v=glB5WTMoR-g">check this short video to see how to solve a merge conflict form an ARE session using the jupyter git extension</a>.</p>
-<p>Thi can also happen if you changed something on GitHub, forgot to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> locally and changed the same file. While merge conflicts comes with git, we’ll try to avoid them as much as possible.</p>
-<section id="pull-first">
-<h3>1. Pull first<a class="headerlink" href="#pull-first" title="Link to this heading">#</a></h3>
-<p>It is a good idea to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> before you start to work with the files in a repository, this way you will start working with the most current version of the repository.</p>
-</section>
-<section id="people-work-on-different-files">
-<h3>2. People work on different files<a class="headerlink" href="#people-work-on-different-files" title="Link to this heading">#</a></h3>
-<p>The easiest way to avoid merge conflicts is to tell people to work in different files and to not edit other’s people files. This work.</p>
-<p>In the long run you may need to work on someone else code and for those situations communication between team members is key.</p>
-</section>
-<section id="people-takes-turns">
-<h3>3. People takes turns<a class="headerlink" href="#people-takes-turns" title="Link to this heading">#</a></h3>
-<p>Maybe more than one person is working on the same file, it could be a script or maybe is documentation. That usually will be a job for many people. One solution is to take turns, you work on the file during the morning, your colleague works on it during the afternoon.</p>
-</section>
-<section id="people-work-on-branches">
-<h3>4. People work on branches<a class="headerlink" href="#people-work-on-branches" title="Link to this heading">#</a></h3>
-<p>Here is when the things get interesting and a little more complicated, but we are taking fully advantage of what git has to offer.</p>
-<p>Branches may be a new concept but actually, you are always working on a branch without noticing. The “default” branch is usually called <em>main</em> because it is the principal, so you were “adding commit to the main” all this time. A <strong>branch</strong> in git is a tag that points to a specific <em>commit</em> in the repository from which other versions of the repository are created.
+<p>You did all this in a branch of the repository that we usually call <em>main</em> because it is the main one. A <strong>branch</strong> in git is a tag that points to a specific <em>commit</em> in the repository from which other versions of the repository are created.
 Working in a branch allows you to modify files without modifying the same files in other branches, because essentially you are working on a “parallel” set of files.
 When you want to pass the changes from your branch to the main branch, you would have to do a <strong>merge</strong> to combine the branches.</p>
 <figure class="align-default" id="id1">
@@ -514,16 +453,27 @@ When you want to pass the changes from your branch to the main branch, you would
 <p><span class="caption-text">Git tree.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>There are different ways to use branches. Maybe every person in the team has one branch and work on that branch until is time to merge everything to the main. Or maybe, and this is more common, each branch represent a new feature added to the project. So if you are adding a new function, you create a branch, develop the code and them merge it.</p>
-<p>Working with branches won’t eliminate merge conflicts, but those will appear once when you merge your branch to the main and will prepare to deal with it.</p>
-<p>Before we revise how the workflow looks like in this case, there is one new concept we need to mention: a <strong>Pull Request</strong> or PR is a GitHub tool that allows you to make changes to a branch and then request to the repo owner or maintainer to merge those changes into the main branch.
-Pull requests can come from forks (will talk about that later) or from independent branches within the repository.
-They allow the maintainers and contributors to the project to review, discuss, request, and approve the changes and merge then to the main branch.</p>
-</section>
-</section>
-<section id="collaborative-workflow-1">
-<span id="content-git-team-scenario1"></span><h2>Collaborative workflow 1<a class="headerlink" href="#collaborative-workflow-1" title="Link to this heading">#</a></h2>
-<p>This diagram shows the workflow when you what to contribute to the repository using branches. Here we assume you have write permissions on the remote repository,</p>
+<p>Collaborative workflow includes two new concepts: <em>forks</em> and <em>pull requests</em>.</p>
+<ul class="simple">
+<li><p>A <strong>fork</strong> is a copy of another person’s or team’s repository that will be stored in your GitHub account.
+Both the original and the fork are on GitHub, the difference is that you can make modifications to the version that lives in your account.</p></li>
+<li><p><strong>Pull Request</strong> or PR is a GitHub tool that allows you to make changes to a fork or branch and then request to the repo owner or maintainer to merge those changes into the main branch.
+Pull requests can come from forks or from independent branches within the repository.
+They allow the maintainers and contributors to the project to review, discuss, request, and approve the changes and merge then to the main branch.</p></li>
+</ul>
+<p>Learning how to effectively use these tools and concepts can make collaborating with other people much easier.
+You may even be able to use this workflow even on an individual basis.</p>
+<p>When you are collaborating on a project, you may find yourself in one of the following situations:</p>
+<ul class="simple">
+<li><p>Scenario 1: You have write permissions on the remote repository,
+in this case you don’t need to use forks.</p></li>
+<li><p>Scenario 2: You do not have write permissions on the remote repository, so you will need to use forks.</p></li>
+</ul>
+<p>In both scenarios we will assume that you will work with branches to separate
+your work from other people’s before passing them to the main branch.</p>
+<section id="scenario-1">
+<span id="content-git-team-scenario1"></span><h2>Scenario 1<a class="headerlink" href="#scenario-1" title="Link to this heading">#</a></h2>
+<p>This diagram shows the workflow when we <strong>don’t</strong> need to do a fork.</p>
 <figure class="align-default" id="id2">
 <img alt="Concept model of the workflow in scenario 1. The remote repository is copied into a local repository with a &quot;clone&quot;. Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request." src="../_images/no_fork.png" />
 <figcaption>
@@ -569,7 +519,7 @@ They allow the maintainers and contributors to the project to review, discuss, r
 </pre></div>
 </div>
 <blockquote>
-<div><p>here the <code class="docutils literal notranslate"><span class="pre">+</span></code> at the beginning of a line means that we are adding it (or modifying it) to the file. The opposite will be true if we see a <code class="docutils literal notranslate"><span class="pre">-</span></code>. The above results is waht <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">read_era5.py</span></code> returns after to modify the script.</p>
+<div><p>here the <code class="docutils literal notranslate"><span class="pre">+</span></code> at the beginning of a line means that we are adding it (or modifying it) to the file. The opposite will be true if we see a <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li><p>With <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you can check where you are:</p></li>
@@ -623,11 +573,9 @@ branch<span class="w"> </span><span class="s1">&#39;suggest-plot&#39;</span><spa
 </ul>
 </div>
 </section>
-<section id="collaborative-workflow-2">
-<h2>Collaborative workflow 2<a class="headerlink" href="#collaborative-workflow-2" title="Link to this heading">#</a></h2>
-<p>If you do not have write permissions on the remote repository, so you will need to use forks. This is very common when you want to collaborate with project that you are not part of.</p>
-<p>A <strong>fork</strong> is a copy of another person’s or team’s repository that will be stored in your GitHub account.
-Both the original and the fork are on GitHub, the difference is that you can modify and update the version that lives in your account.</p>
+<section id="scenario-2">
+<h2>Scenario 2<a class="headerlink" href="#scenario-2" title="Link to this heading">#</a></h2>
+<p>For fork-based workflows, the process is as follows:</p>
 <figure class="align-default" id="id3">
 <img alt="Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a &quot;fork&quot;. The remote repository is copied into a local repository with a &quot;clone&quot;. Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request." src="../_images/si_fork.png" />
 <figcaption>
@@ -739,15 +687,8 @@ changes you will have to go back to step 4.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-merge-conflicts">Identifying merge conflicts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-first">1. Pull first</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-different-files">2. People work on different files</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-takes-turns">3. People takes turns</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#people-work-on-branches">4. People work on branches</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-1">Collaborative workflow 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaborative-workflow-2">Collaborative workflow 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-1">Scenario 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-2">Scenario 2</a></li>
 </ul>
   </nav></div>
 
