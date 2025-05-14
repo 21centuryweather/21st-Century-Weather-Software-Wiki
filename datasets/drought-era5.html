@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Getting started on gadi &#8212; 21st Century Weather Software Wiki</title>
+    <title>Monthly drought indices from 1940 to present derived from ERA5 reanalysis &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/getting-started';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/drought-era5';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with gadi via your Mac" href="mac-stuff.html" />
-    <link rel="prev" title="Structuring our Python code" href="../python/package-structure.html" />
+    <link rel="next" title="Introduction" href="../git/git-intro.html" />
+    <link rel="prev" title="Energy Demand dataset" href="energy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -207,18 +207,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting started on gadi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
-<li class="toctree-l1"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../datasets/drought-era5.html">Monthly drought indices from 1940 to present derived from ERA5 reanalysis</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Monthly drought indices from 1940 to present derived from ERA5 reanalysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
 <ul class="nav bd-sidenav">
@@ -301,7 +301,7 @@
       
       
       
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fgadi/getting-started.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fdatasets/drought-era5.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -331,7 +331,7 @@
       
       
       
-      <li><a href="../_sources/gadi/getting-started.md" target="_blank"
+      <li><a href="../_sources/datasets/drought-era5.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -415,7 +415,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Getting started on gadi</h1>
+    <h1>Monthly drought indices from 1940 to present derived from ERA5 reanalysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -425,8 +425,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-gadi-via-a-terminal">Accessing <code class="docutils literal notranslate"><span class="pre">gadi</span></code> via a terminal.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-australian-research-environment-are">Using the Australian Research Environment (ARE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location">Location:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-dataset">How to cite this dataset:</a></li>
 </ul>
             </nav>
         </div>
@@ -438,30 +439,31 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-on-gadi">
-<h1>Getting started on gadi<a class="headerlink" href="#getting-started-on-gadi" title="Link to this heading">#</a></h1>
-<p>The National Computing Infrastructure (NCI) hosts the supercomputer <code class="docutils literal notranslate"><span class="pre">gadi</span></code> where you will be conducting most of your research.</p>
-<section id="accessing-gadi-via-a-terminal">
-<h2>Accessing <code class="docutils literal notranslate"><span class="pre">gadi</span></code> via a terminal.<a class="headerlink" href="#accessing-gadi-via-a-terminal" title="Link to this heading">#</a></h2>
-<p>The <a class="reference internal" href="#%5Bhttps://www.access-nri.org.au"><span class="xref myst">ACCESS-NRI</span></a> team have created some handy tutorials to help you get started on <code class="docutils literal notranslate"><span class="pre">gadi</span></code>.</p>
-<p>Click <a class="reference external" href="https://access-hive.org.au/getting_started/set_up_nci_account/">here</a> to find out how to</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="monthly-drought-indices-from-1940-to-present-derived-from-era5-reanalysis">
+<h1>Monthly drought indices from 1940 to present derived from ERA5 reanalysis<a class="headerlink" href="#monthly-drought-indices-from-1940-to-present-derived-from-era5-reanalysis" title="Link to this heading">#</a></h1>
+<p>ERA5–Drought is a global reconstruction of drought indices from 1940 to present.</p>
+<p>The dataset comprises two standardised drought indices:</p>
 <ul class="simple">
-<li><p>Create an account on <code class="docutils literal notranslate"><span class="pre">gadi</span></code></p></li>
-<li><p>Join relevant projects (giving you access to computational and disk storage resources)</p></li>
-<li><p>Configure your ‘Secure Shell Protocol’ (<code class="docutils literal notranslate"><span class="pre">ssh</span></code>) so you can log into <code class="docutils literal notranslate"><span class="pre">gadi</span></code> automatically from your personal computer.</p></li>
+<li><p>the Standardised Precipitation Index (SPI)</p></li>
+<li><p>the Standardised Precipitation-Evapotranspiration Index (SPEI).</p></li>
 </ul>
-<p>Thanks ACCESS-NRI!</p>
+<p><a class="reference external" href="https://xds-preprod.ecmwf.int/datasets/derived-drought-historical-monthly?tab=overview">Find ore information about this data set on the ECMWF cross data store</a></p>
+<section id="data">
+<h2>Data:<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<p>Only SPI data is available on Gadi for 3, 6 ad 12 months as accumulation periods from 1940 to present.</p>
+<p><strong>Standardised precipitation evapotranspiration index</strong></p>
+<p>The standardised precipitation evapotranspiration index is defined as the deviation from the reference climate and expressed in standard deviations. It evaluates the atmospheric water supply (precipitation, P) against the atmospheric water demand (potential evapotranspiration, PET), calculated as (P–PET). Positive values indicate wet conditions, and negative values indicate dry conditions with respect to the reference climate.</p>
 </section>
-<section id="using-the-australian-research-environment-are">
-<h2>Using the Australian Research Environment (ARE)<a class="headerlink" href="#using-the-australian-research-environment-are" title="Link to this heading">#</a></h2>
-<p>NCI have created a set of web-based graphical tools to help perform your computational research. These tools (including a Virtual Desktop and the <code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code> environment) are made available via the ‘Australian Research Environment’ (ARE) on gadi.</p>
-<p>ACCESS-NRI have created a quick tutorial to show you how to start an ARE session.</p>
-<p>Click <a class="reference external" href="https://access-hive.org.au/getting_started/are/">here</a> to find out how to</p>
-<ul class="simple">
-<li><p>create a Virtual Desktop Interface (VDI)</p></li>
-<li><p>launch a <code class="docutils literal notranslate"><span class="pre">JuypterLab</span></code> session</p></li>
-</ul>
-<p>Thanks to ACCESS-NRI once again!</p>
+<section id="location">
+<h2>Location:<a class="headerlink" href="#location" title="Link to this heading">#</a></h2>
+<p>The data is located at:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/g/data/su28/drought_era5
+</pre></div>
+</div>
+</section>
+<section id="how-to-cite-this-dataset">
+<h2>How to cite this dataset:<a class="headerlink" href="#how-to-cite-this-dataset" title="Link to this heading">#</a></h2>
+<p>European Centre for Medium-range Weather Forecast(2025): Monthly drought indices from 1940 to present derived from ERA5 reanalysis. ECMWF Cross Data Store (ECDS). DOI: 10.24381/9bea5e16 (Accessed on 14-May-2025)</p>
 </section>
 </section>
 
@@ -478,7 +480,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./gadi"
+            path: "./datasets"
         },
         predefinedOutput: true
     }
@@ -496,20 +498,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../python/package-structure.html"
+       href="energy.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Structuring our Python code</p>
+        <p class="prev-next-title">Energy Demand dataset</p>
       </div>
     </a>
     <a class="right-next"
-       href="mac-stuff.html"
+       href="../git/git-intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Working with gadi via your Mac</p>
+        <p class="prev-next-title">Introduction</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -529,8 +531,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-gadi-via-a-terminal">Accessing <code class="docutils literal notranslate"><span class="pre">gadi</span></code> via a terminal.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-australian-research-environment-are">Using the Australian Research Environment (ARE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location">Location:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-dataset">How to cite this dataset:</a></li>
 </ul>
   </nav></div>
 
