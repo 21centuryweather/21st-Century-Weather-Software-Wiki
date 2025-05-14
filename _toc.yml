@@ -40,6 +40,7 @@ parts:
     - file: datasets/mesaclip
     - file: datasets/mmleav2
     - file: datasets/energy
+    - file: datasets/drought-era5.md
   - caption: Git
     chapters:
     - file: git/git-intro
