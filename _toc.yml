@@ -36,11 +36,16 @@ parts:
     - file: gadi/moving-data
   - caption: Datasets
     chapters:
-    - file: datasets/weather_objects
-    - file: datasets/mesaclip
-    - file: datasets/mmleav2
-    - file: datasets/energy
-    - file: datasets/drought-era5.md
+    - file: datasets/index
+      sections:
+        - file: datasets/weather_objects
+        - file: datasets/mesaclip
+        - file: datasets/mmleav2
+        - file: datasets/energy
+        - file: datasets/drought-era5.md
+        - file: datasets/daily-era5
+        - file: datasets/gsmap
+        - file: datasets/himawari-ahi
   - caption: Git
     chapters:
     - file: git/git-intro

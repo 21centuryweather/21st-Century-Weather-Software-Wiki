@@ -9,7 +9,10 @@ logo: logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: False
+  execute_notebooks: auto
+  exclude_patterns:
+    - 'ScottWales-RNS/*'
+    - 'NRI-RNS/*'
 
 # Define the name of the latex output file for PDF builds
 latex:
