@@ -2,7 +2,7 @@ jupyter-book
 matplotlib
 numpy
 itables
-yaml
+PyYAML
 pandas
 os
 pathlib
