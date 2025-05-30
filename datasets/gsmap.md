@@ -1,3 +1,9 @@
+---
+title: "GSMaP"
+location: "/g/data/su28/GSMaP/"
+maintainer: "TBD"
+short_description: "Daily averaged precipitation derived from satellite."
+---
 # GSMaP
 
 The Global Satellite Mapping of Precipitation is a dataset of hourly global rainfall maps and a re-analysis version of the Near-Real-Time product by JAXA Global Rainfall Watch for meteorological and climate studies. 

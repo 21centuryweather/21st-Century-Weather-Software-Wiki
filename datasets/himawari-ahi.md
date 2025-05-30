@@ -1,3 +1,9 @@
+---
+title: "Cloud Type from Himawari"
+location: "/g/data/su28/himawari-ahi"
+maintainer: "TBD"
+short_description: "Cloud type product is derived from Himawari AHI"
+---
 # Himawari-AHI cloud type data
 
 The cloud type product is derived from Himawari AHI data using NWC SAF algorithms included in NWC/GEO software package. The CT product contains information on the major cloud classes: fractional clouds, semitransparent clouds, high, medium and low clouds (including fog) for all the pixels identified as cloudy in a scene. 

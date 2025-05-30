@@ -1,3 +1,9 @@
+---
+title: "ERA5 daily"
+location: "/g/data/su28/ERA5/daily"
+maintainer: "TBD"
+short_description: "Reanalysis. Variables in daily frequency remaped to 1 degree"
+---
 # ERA5 daily 
 
 ERA5 is a climate reanalysis dataset, covering the period 1950 to present. This dataset includes 2d and 3d common variables in daily frequency. The data was also remaped from 0.25 degree to 1 degree.
