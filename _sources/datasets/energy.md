@@ -1,3 +1,10 @@
+---
+title: "Energy Demand"
+location: "/g/data/su28/energy_demand"
+maintainer: "TBD"
+short_description: "Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)"
+---
+
 # Energy Demand dataset
 
 This dataset contains predictions of daily energy demand for the Australian National Electricity Market (NEM) and participant States (QLD, NSW, VIC, SA, TAS) between 1940 and 2023.
