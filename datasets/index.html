@@ -60,6 +60,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/index';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ERA5-based Weather Objects" href="weather_objects.html" />
@@ -102,8 +103,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -155,8 +156,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
   
   
 </a></div>
@@ -173,14 +174,6 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome to the 21st Century Weather Software Wiki
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
@@ -279,53 +272,6 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki/issues/new?title=Issue%20on%20page%20%2Fdatasets/index.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -599,7 +545,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.4.0<br>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><!--| quarto-html-table-processing: none -->
-<table id="itables_63dbaedc_363f_48b6_aad8_14e26e489613"><tbody><tr>
+<table id="itables_22478a96_4139_4551_ab8a_25bde5aab8cc"><tbody><tr>
     <td style="vertical-align:middle; text-align:left">
     <a href=https://mwouts.github.io/itables/><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 width="64" viewBox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -697,11 +643,11 @@ width="64" viewBox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
 <script type="module">
     const { ITable, jQuery: $ } = await import(window._datatables_src_for_itables_2_4_0);
 
-    document.querySelectorAll("#itables_63dbaedc_363f_48b6_aad8_14e26e489613:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_22478a96_4139_4551_ab8a_25bde5aab8cc:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
-        let dt_args = {"html": false, "columnDefs": [{"className": "dt-left", "targets": "_all"}], "layout": {"topStart": null, "topEnd": null, "bottomStart": null, "bottomEnd": null}, "text_in_header_can_be_selected": true, "style": {"table-layout": "auto", "width": "auto", "margin": "auto", "caption-side": "bottom"}, "order": [], "classes": ["display", "nowrap"], "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>Name</th>\n      <th>Location on Gadi</th>\n      <th>Mantainer</th>\n      <th>Description</th>\n    </tr>\n  </thead></table>", "data_json": "[[\"<a href='mmleav2.html'>MMLEAv2</a>\", \"/g/data/su28/MMLEAv2\", \"TBD\", \"Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.\"], [\"<a href='weather_objects.html'>ERA5-based Weather Objects</a>\", \"/g/data/su28/weatherfeatures.era5/\", \"Sam Green, Chenhui Jin\", \"Weather objects (anticyclones, cyclones and warm-conveyor belts)\"], [\"<a href='himawari-ahi.html'>Cloud Type from Himawari</a>\", \"/g/data/su28/himawari-ahi\", \"TBD\", \"Cloud type product is derived from Himawari AHI\"], [\"<a href='daily-era5.html'>ERA5 daily</a>\", \"/g/data/su28/ERA5/daily\", \"TBD\", \"Reanalysis. Variables in daily frequency remaped to 1 degree\"], [\"<a href='mesaclip.html'>MESACLIP</a>\", \"/g/data/su28/MESACLIP\", \"TBD\", \"MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction\"], [\"<a href='gsmap.html'>GSMaP</a>\", \"/g/data/su28/GSMaP/\", \"TBD\", \"Daily averaged precipitation derived from satellite.\"], [\"<a href='drought-era5.html'>ERA5 Drought</a>\", \"/g/data/su28/drought_era5\", \"Pao Corrales\", \"Monthly drought indices from 1940 to present derived from ERA5 reanalysis\"], [\"<a href='energy.html'>Energy Demand</a>\", \"/g/data/su28/energy_demand\", \"TBD\", \"Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)\"]]"};
+        let dt_args = {"html": false, "columnDefs": [{"className": "dt-left", "targets": "_all"}], "layout": {"topStart": null, "topEnd": null, "bottomStart": null, "bottomEnd": null}, "order": [], "classes": ["display", "nowrap"], "text_in_header_can_be_selected": true, "style": {"table-layout": "auto", "width": "auto", "margin": "auto", "caption-side": "bottom"}, "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>Name</th>\n      <th>Location on Gadi</th>\n      <th>Mantainer</th>\n      <th>Description</th>\n    </tr>\n  </thead></table>", "data_json": "[[\"<a href='mmleav2.html'>MMLEAv2</a>\", \"/g/data/su28/MMLEAv2\", \"TBD\", \"Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.\"], [\"<a href='weather_objects.html'>ERA5-based Weather Objects</a>\", \"/g/data/su28/weatherfeatures.era5/\", \"Sam Green, Chenhui Jin\", \"Weather objects (anticyclones, cyclones and warm-conveyor belts)\"], [\"<a href='himawari-ahi.html'>Cloud Type from Himawari</a>\", \"/g/data/su28/himawari-ahi\", \"TBD\", \"Cloud type product is derived from Himawari AHI\"], [\"<a href='daily-era5.html'>ERA5 daily</a>\", \"/g/data/su28/ERA5/daily\", \"TBD\", \"Reanalysis. Variables in daily frequency remaped to 1 degree\"], [\"<a href='mesaclip.html'>MESACLIP</a>\", \"/g/data/su28/MESACLIP\", \"TBD\", \"MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction\"], [\"<a href='gsmap.html'>GSMaP</a>\", \"/g/data/su28/GSMaP/\", \"TBD\", \"Daily averaged precipitation derived from satellite.\"], [\"<a href='drought-era5.html'>ERA5 Drought</a>\", \"/g/data/su28/drought_era5\", \"Pao Corrales\", \"Monthly drought indices from 1940 to present derived from ERA5 reanalysis\"], [\"<a href='energy.html'>Energy Demand</a>\", \"/g/data/su28/energy_demand\", \"TBD\", \"Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)\"]]"};
         new ITable(table, dt_args);
     });
 </script>
