@@ -38,6 +38,7 @@ parts:
     chapters:
     - file: datasets/index
       sections:
+        - file: datasets/catalogs
         - file: datasets/weather_objects
         - file: datasets/mesaclip
         - file: datasets/mmleav2
