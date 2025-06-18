@@ -471,6 +471,9 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_esm_datastore</span><span class="p">(</span><span class="s2">&quot;/g/data/rt52/catalog/v2/esm/catalog.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Note: in some cases it may be necessary to include <code class="docutils literal notranslate"><span class="pre">columns_with_iterables</span> <span class="pre">=</span> <span class="pre">['variable']</span></code> when you open a catalog. This is important when a column in the catalog table contains lists.</p>
+</div></blockquote>
 <section id="nci-catalog-incomplete-list">
 <h4>NCI catalog (incomplete) list<a class="headerlink" href="#nci-catalog-incomplete-list" title="Link to this heading">#</a></h4>
 <p>Here is the list of catalog we know exist. If you find any catalog not listed here, please let us know by completing this <a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">form</a>.</p>
@@ -481,44 +484,53 @@ document.write(`
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>ERA5 Single and pressure-levels</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2836_1346_3774_9763">ERA5 Single and pressure-levels</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/rt52/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>CMIP6</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f5194_5909_8003_9216">CMIP6</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/oi10/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>CMIP6 Australian data</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f3154_9976_7262_7595">CMIP6 Australian data</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/fs38/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>CMIP5</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9489_5106_5649_5038">CMIP5</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/al33/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>CMIP5 Australian data</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f1451_9473_6216_4637">CMIP5 Australian data</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/rr3/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>BARPA</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9407_7144_0024_3818">BARPA</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/py18/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>BARRA2</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9057_2475_0540_0329">BARRA2</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/ob53/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>AI/DL reference data</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f6721_2740_5884_1994">AI/DL reference data</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/w00/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>CMIP forcing</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f4756_8918_5098_5424">ESGF Reference datasets</a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/g/data/qv56/catalog/v2/esm/catalog.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2764_6935_0449_3524">CCAM</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/g/data/hq89/catalog/v2/esm/catalog.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f7465_8388_5100_7022">CORDEX</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/g/data/ig45/catalog/v2/esm/catalog.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f7334_2646_2487_9846">NARCLIM2</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/g/data/zz63/catalog/v2/esm/catalog.json</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <blockquote>
-<div><p>Note: you may find that NCI has 2 versions of the same catalog, one uses intake-esm (your example here) and the other uses intake-spark that was specifically developed for very big datasets.</p>
+<div><p>Note: you may find that NCI has 2 versions of the same catalog, one uses intake-esm (the example used here) and the other uses intake-spark that was specifically developed for very big datasets.</p>
 </div></blockquote>
 </section>
 </section>
 <section id="access-nri-catalog">
 <h3>ACCESS-NRI catalog<a class="headerlink" href="#access-nri-catalog" title="Link to this heading">#</a></h3>
-<p>The ACCESS-NRI Intake catalog provides a way for Python users to peruse, search and load ACCESS and ACCESS-related climate data available on Gadi. If you have access to <code class="docutils literal notranslate"><span class="pre">xp65</span></code> you already have access to the catalog:</p>
+<p>The ACCESS-NRI Intake catalog provides a way for Python users to use, search and load ACCESS and ACCESS-related climate data available on Gadi. If you have access to <code class="docutils literal notranslate"><span class="pre">xp65</span></code> you already have access to the catalog:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">access_nri</span>
 </pre></div>
 </div>
@@ -529,7 +541,9 @@ document.write(`
 <section id="cataloging-your-own-datasets">
 <h2>Cataloging your own datasets<a class="headerlink" href="#cataloging-your-own-datasets" title="Link to this heading">#</a></h2>
 <p>Catalogs are not only used to share datasets with others. If you’ve produced a dataset, it may be useful to create a catalog to easily access the data for your personal use. This is particularly important if is it includes many files.</p>
-<p>The process of creating a catalog is very easy, the only challenge will be to list all the files and extract the necessary information to create a table with attributes or parameters. If you need support doing this, contact the RSE team!</p>
+<p>The process of creating a catalog is very easy, the only challenge will be to list all the files and extract the necessary information to create a table with attributes or parameters.</p>
+<p>If you want to catalog the output from an ACCESS model, the <code class="docutils literal notranslate"><span class="pre">access-nri-intake</span></code> Python package provides catalog <a class="reference external" href="https://access-nri-intake-catalog.readthedocs.io/en/latest/datastores/builders.html">builders</a> tailored for the different models. You can follow a tutorial on how to do it <a class="reference external" href="https://access-nri-intake-catalog.readthedocs.io/en/latest/datastores/quickstart.html">here</a>.</p>
+<p>As always, if you need help with your datasets, contact the RSE team!</p>
 </section>
 </section>
 
