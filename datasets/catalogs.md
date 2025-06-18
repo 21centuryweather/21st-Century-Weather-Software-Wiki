@@ -75,6 +75,8 @@ NCI catalogs can be access using `open_esm_datastore` as these are intake-esm ca
 catalog = intake.open_esm_datastore("/g/data/rt52/catalog/v2/esm/catalog.json")
 ```
 
+> Note: in some cases it may be necessary to include `columns_with_iterables = ['variable']` when you open a catalog. This is important when a column in the catalog table contains lists. 
+
 #### NCI catalog (incomplete) list
 
 Here is the list of catalog we know exist. If you find any catalog not listed here, please let us know by completing this [form](https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8).
