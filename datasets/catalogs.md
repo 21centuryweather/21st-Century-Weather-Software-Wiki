@@ -114,4 +114,8 @@ Also, if you've run an ACCESS model ad you want to make the simulations availabl
 
 Catalogs are not only used to share datasets with others. If you've produced a dataset, it may be useful to create a catalog to easily access the data for your personal use. This is particularly important if is it includes many files. 
 
-The process of creating a catalog is very easy, the only challenge will be to list all the files and extract the necessary information to create a table with attributes or parameters. If you need support doing this, contact the RSE team!
+The process of creating a catalog is very easy, the only challenge will be to list all the files and extract the necessary information to create a table with attributes or parameters. 
+
+If you want to catalog the output from an ACCESS model, the `access-nri-intake` Python package provides catalog [builders](https://access-nri-intake-catalog.readthedocs.io/en/latest/datastores/builders.html) tailored for the different models. You can follow a tutorial on how to do it [here](https://access-nri-intake-catalog.readthedocs.io/en/latest/datastores/quickstart.html). 
+
+As always, if you need help with your datasets, contact the RSE team!
