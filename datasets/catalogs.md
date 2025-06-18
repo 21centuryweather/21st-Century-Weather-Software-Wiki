@@ -106,9 +106,9 @@ The ACCESS-NRI Intake catalog provides a way for Python users to use, search and
 catalog = intake.cat.access_nri
 ```
 
-You can find a comprehensive tutorial [here](https://access-nri-intake-catalog.readthedocs.io/en/latest/usage/quickstart.html).
+You can find a comprehensive tutorial [here](https://access-nri-intake-catalog.readthedocs.io/en/latest/usage/quickstart.html) and latest news about the catalog and datasets included [here](https://forum.access-hive.org.au/t/access-nri-intake-catalog-a-way-to-find-load-and-share-data-on-gadi/1659/8).
 
-Also, if you've run an ACCESS model ad you want to make the simulations available to people, contributing to the ACCESS-NRI catalog is a great way to do it. [This section of the documentation explains how to do it](https://access-nri-intake-catalog.readthedocs.io/en/latest/datastores/index.html#datastore-create) and you can contact the RSE team if you need help. 
+Also, if you've run an ACCESS model and you want to make the simulations available to people, contributing to the ACCESS-NRI catalog is a great way to do it. [This section of the documentation explains how to do it](https://access-nri-intake-catalog.readthedocs.io/en/latest/datastores/index.html#datastore-create) and you can contact the RSE team if you need help. 
 
 ## Cataloging your own datasets
 
