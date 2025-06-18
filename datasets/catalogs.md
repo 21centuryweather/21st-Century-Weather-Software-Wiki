@@ -81,21 +81,24 @@ Here is the list of catalog we know exist. If you find any catalog not listed he
 
 | Dataset | path on Gadi |
 |---------|--------------------------------------------|
-| ERA5 Single and pressure-levels   | `/g/data/rt52/catalog/v2/esm/catalog.json` |
-| CMIP6   | `/g/data/oi10/catalog/v2/esm/catalog.json` |
-| CMIP6 Australian data | `/g/data/fs38/catalog/v2/esm/catalog.json` |
-| CMIP5   | `/g/data/al33/catalog/v2/esm/catalog.json` |
-| CMIP5 Australian data | `/g/data/rr3/catalog/v2/esm/catalog.json` |
-| BARPA   | `/g/data/py18/catalog/v2/esm/catalog.json` |
-| BARRA2  | `/g/data/ob53/catalog/v2/esm/catalog.json` |
-| AI/DL reference data | `/g/data/w00/catalog/v2/esm/catalog.json` |
-| CMIP forcing | `/g/data/qv56/catalog/v2/esm/catalog.json` |
+| [ERA5 Single and pressure-levels](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2836_1346_3774_9763)   | `/g/data/rt52/catalog/v2/esm/catalog.json` |
+| [CMIP6](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f5194_5909_8003_9216) | `/g/data/oi10/catalog/v2/esm/catalog.json` |
+| [CMIP6 Australian data](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f3154_9976_7262_7595) | `/g/data/fs38/catalog/v2/esm/catalog.json` |
+| [CMIP5](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9489_5106_5649_5038)   | `/g/data/al33/catalog/v2/esm/catalog.json` |
+| [CMIP5 Australian data](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f1451_9473_6216_4637) | `/g/data/rr3/catalog/v2/esm/catalog.json` |
+| [BARPA](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9407_7144_0024_3818)   | `/g/data/py18/catalog/v2/esm/catalog.json` |
+| [BARRA2](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9057_2475_0540_0329)  | `/g/data/ob53/catalog/v2/esm/catalog.json` |
+| [AI/DL reference data](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f6721_2740_5884_1994) | `/g/data/w00/catalog/v2/esm/catalog.json` |
+| [ESGF Reference datasets](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f4756_8918_5098_5424) | `/g/data/qv56/catalog/v2/esm/catalog.json` |
+| [CCAM](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2764_6935_0449_3524) | `/g/data/hq89/catalog/v2/esm/catalog.json` | 
+| [CORDEX](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f7465_8388_5100_7022) | `/g/data/ig45/catalog/v2/esm/catalog.json` |
+| [NARCLIM2](https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f7334_2646_2487_9846) | `/g/data/zz63/catalog/v2/esm/catalog.json` |
 
-> Note: you may find that NCI has 2 versions of the same catalog, one uses intake-esm (your example here) and the other uses intake-spark that was specifically developed for very big datasets. 
+> Note: you may find that NCI has 2 versions of the same catalog, one uses intake-esm (the example used here) and the other uses intake-spark that was specifically developed for very big datasets. 
 
 ### ACCESS-NRI catalog
 
-The ACCESS-NRI Intake catalog provides a way for Python users to peruse, search and load ACCESS and ACCESS-related climate data available on Gadi. If you have access to `xp65` you already have access to the catalog:
+The ACCESS-NRI Intake catalog provides a way for Python users to use, search and load ACCESS and ACCESS-related climate data available on Gadi. If you have access to `xp65` you already have access to the catalog:
 
 ```python
 catalog = intake.cat.access_nri
