@@ -29,6 +29,7 @@ parts:
     - file: python/concurrent_futures
     - file: python/testing
     - file: python/package-structure
+    - file: python/netcdf_zarr_storage_best_practices
   - caption: Working with Gadi
     chapters:
     - file: gadi/getting-started
