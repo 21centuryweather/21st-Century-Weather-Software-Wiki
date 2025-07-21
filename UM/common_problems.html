@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -386,7 +386,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-suite-files-doesn-t-update-the-suite-behaviour">Editing suite files doesn’t update the suite behaviour</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-login-to-a-persistent-session">Cannot login to a persistent session</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-session-cannot-see-files-in-g-data-access">Persistent session cannot see files in /g/data/access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-locate-files-when-running-a-rose-cylc-suite">Cannot locate files when running a rose/cylc suite</a></li>
 </ul>
             </nav>
         </div>
@@ -462,10 +462,13 @@ document.write(`
 <p>If you can’t login to your persistent session, you may have conflicting modules which don’t use the standard <code class="docutils literal notranslate"><span class="pre">ssh</span></code> environment at NCI. Often the cause of this conflict is the <code class="docutils literal notranslate"><span class="pre">conda/analysis</span></code> module developed by CLEX and maintained by ACCESS-NRI.  You will have to unload any conflicting modules.</p>
 <p>See <a class="reference internal" href="../mosrs/mosrs-intro.html#persistent-sessions"><span class="std std-ref">this link</span></a> for more information.</p>
 </section>
-<section id="persistent-session-cannot-see-files-in-g-data-access">
-<h2>Persistent session cannot see files in /g/data/access<a class="headerlink" href="#persistent-session-cannot-see-files-in-g-data-access" title="Link to this heading">#</a></h2>
-<p>If you are using a persistent session created before you were a member of the <code class="docutils literal notranslate"><span class="pre">access</span></code> project, your ACCESS suite will be unable to locate any files on <code class="docutils literal notranslate"><span class="pre">/g/data/access</span></code> and hence will fail.</p>
-<p>The solution to his problem is to delete your persistent session and create a new one, after you have joined the <code class="docutils literal notranslate"><span class="pre">access</span></code> project.</p>
+<section id="cannot-locate-files-when-running-a-rose-cylc-suite">
+<h2>Cannot locate files when running a rose/cylc suite<a class="headerlink" href="#cannot-locate-files-when-running-a-rose-cylc-suite" title="Link to this heading">#</a></h2>
+<p>If you are having trouble accessing files within tasks triggered by a <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite, and you can view those files from a standard <code class="docutils literal notranslate"><span class="pre">gadi</span></code> login session, the problem is likely caused by the persistent sessions having insufficient <code class="docutils literal notranslate"><span class="pre">gadi</span></code> permissions.</p>
+<p>E.g. If you are using a persistent session created before you were a member of the <code class="docutils literal notranslate"><span class="pre">access</span></code> project, your <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> suite will be unable to locate any files on <code class="docutils literal notranslate"><span class="pre">/g/data/access</span></code> and hence will fail.</p>
+<p>The persistent session can’t automatically update your project permissions. It can only access the projects that were active when it was created.</p>
+<p>The solution to this problem is to delete your persistent session and create a new one, after you have joined the <code class="docutils literal notranslate"><span class="pre">access</span></code> project.</p>
+<p>This applies to any new <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project you have joined. You will have to restart your persistent session for these new project permissions to take effect.</p>
 </section>
 </section>
 
@@ -539,7 +542,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-submitted-but-not-running">Jobs submitted but not running</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editing-suite-files-doesn-t-update-the-suite-behaviour">Editing suite files doesn’t update the suite behaviour</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-login-to-a-persistent-session">Cannot login to a persistent session</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-session-cannot-see-files-in-g-data-access">Persistent session cannot see files in /g/data/access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-locate-files-when-running-a-rose-cylc-suite">Cannot locate files when running a rose/cylc suite</a></li>
 </ul>
   </nav></div>
 
