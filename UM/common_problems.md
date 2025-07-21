@@ -77,8 +77,12 @@ If you can't login to your persistent session, you may have conflicting modules 
 
 See [this link](../mosrs/mosrs-intro.md#persistent-sessions) for more information.
 
-## Persistent session cannot see files in /g/data/access
+## Cannot locate files when running a rose/cylc suite
 
-If you are using a persistent session created before you were a member of the `access` project, your ACCESS suite will be unable to locate any files on `/g/data/access` and hence will fail.
+If you are having trouble accessing files within tasks triggered by a `rose/cylc` suite, and you can view those files from a standard `gadi` login session, the problem is probably insufficient `gadi` permissions within the persistence session itself.
 
-The solution to his problem is to delete your persistent session and create a new one, after you have joined the `access` project.
+E.g. If you are using a persistent session created before you were a member of the `access` project, your `rose/cylc` suite will be unable to locate any files on `/g/data/access` and hence will fail.
+
+The solution to his problem is to delete your persistent session and create a new one, after you have joined the `access` project. 
+
+This applies to any new `gadi` project you have joined. You will have to restart your persistent session for these new project permissions to take effect.
