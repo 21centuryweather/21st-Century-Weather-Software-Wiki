@@ -20,14 +20,13 @@ Remote - SSH is particularly important for working with Gadi, as it allows you t
 
 You could connect to a login node if you are only editing code or documentation. But if you want to run code, you will need to spin up a ARE session and connect to it using the Remote - SSH extension in VS Code.
 
-* 1. Start a ARE session
+### 1. Start a ARE session
 
 Once it has started you need to take note of the name of the compute node:
 
-<screeshot>
+![](images/are-session.png)
 
-
-* 2. Configure SSH (only once)
+### 2. Configure SSH (only once)
 
 Config SSH to connect to the compute node by adding the following lines to your `~/.ssh/config` file (in your local machine):
 
@@ -47,12 +46,19 @@ You probably already have something similar to the first block, but you need to 
 
 The `ProxyJump` directive indicates that the connection to this host should go through the “gadi” host. This configuration is useful when there is an intermediate jump host required to connect to the final destination. 
 
-* 3. Connect to the ARE session
+### 3. Connect to the ARE session
 
 On VS Code, open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type "Remote-SSH: Connect to Host...". Select the compute node you copied when the ARE session started. Follow the instructions. VS Code will then connect to the compute node, and you will be able to open files and folders on Gadi.
 
-## 3. Use a conda environment
+## 3. Use a analysis3 conda environment
 
-To use a specific conda environment in VS Code, you need to select the interpreter for that environment. At first, the `conda/analysis3` environments 
+To use a specific conda environment in VS Code, you need to select the interpreter for that environment. 
+
+1. Open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
+2. You will see a list of available interpreters, including those from your conda environments. Most probably the `analysis3` won't be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. The path to the `analysis3` conda environment will be `/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin/python` but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06.
+3. This will now be available in the jupyter kernel.
+
+![alt text](images/interpreter.png)
+
 
 Instructions adapted from the [CLEX CMS Blog](https://coecms.github.io/index.html).
