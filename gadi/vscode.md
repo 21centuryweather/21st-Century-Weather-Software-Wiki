@@ -55,7 +55,7 @@ On VS Code, open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and ty
 To use a specific conda environment in VS Code, you need to select the interpreter for that environment. 
 
 1. Open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
-2. You will see a list of available interpreters, including those from your conda environments. Most probably the `analysis3` won't be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. The path to the `analysis3` conda environment will be `/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin/python` but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06.
+2. You will see a list of available interpreters, including those from your conda environments. Most probably the `analysis3` won't be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. So, select "Enter interpreter path..." and copy the path. The path to the `analysis3` conda environment will be `/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin` but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06.
 3. This will now be available in the jupyter kernel.
 
 ![alt text](images/interpreter.png)
