@@ -63,5 +63,30 @@ After that, you should be able to run the code chunks in your `.qmd` (the result
 
 To preview the rendered output you can use the command `quarto preview <name of the file>` or the shortcut `Ctrl/Command + Shift + K`. You can also render the file with `quarto render <name of the file>` from the terminal in VSCode. Make sure to load the `xp65` and `conda/analysis3` modules before running the command.
 
-Make sure you use the same conda environment every time. Add it to the YAML. 
+```bash
+module use /g/data/xp65/public/modules
+module load conda/analysis3-XX.XX
+```
+
+If you want to make sure you are always using the same conda environment when you render the file (for reproducibility or maybe because your code only works with specif versions of the modules) you can add the following line to the YAML header:
+
+```yaml
+---
+title: "Example Quarto Document"
+format: html
+jupyter: 
+  kernelspec:
+    name: "analysis3-XX.XX"
+    language: "python"
+    display_name: "analysis3-XX.XX"
+---
+```
+
+Replacing XX.XX by the corresponding version of the environment you want to use.
+
+For this to work, it requires to install the kernel for the conda environment. You can do this by running the following command in the terminal after you loaded the `conda/analysis3-XX.XX` module:
+
+```bash
+python -m ipykernel install --user --name=analysis3-XX.XX
+```
 
