@@ -1,7 +1,7 @@
 ---
 title: "Energy Demand"
 location: "/g/data/su28/energy_demand"
-maintainer: "TBD"
+maintainer: "Sam Green, Doug Richardson"
 short_description: "Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)"
 ---
 
