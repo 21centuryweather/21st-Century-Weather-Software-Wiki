@@ -1,7 +1,7 @@
 ---
 title: "GSMaP"
 location: "/g/data/su28/GSMaP/"
-maintainer: "TBD"
+maintainer: "Sam Green"
 short_description: "Daily averaged precipitation derived from satellite."
 ---
 # GSMaP
