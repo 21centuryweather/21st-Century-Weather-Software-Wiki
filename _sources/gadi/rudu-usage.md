@@ -1,8 +1,8 @@
-# Rudu: Basic Usage & Core Functionality
+# Rudu: Basic Usage
 
 This guide covers the fundamental usage patterns and core functionality of `rudu`, including invocation syntax, default behavior, and key features.
 
-## Invocation Syntax
+## Syntax
 
 ```bash
 rudu [PATH] [OPTIONS]
