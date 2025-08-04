@@ -1,0 +1,948 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rudu: Basic Usage &amp; Core Functionality &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/rudu-usage';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Datasets" href="../datasets/index.html" />
+    <link rel="prev" title="Transferring data" href="moving-data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Rudu: Basic Usage &amp; Core Functionality</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/gadi/rudu-usage.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rudu: Basic Usage & Core Functionality</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invocation-syntax">Invocation Syntax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-options">Command-Line Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-behavior">Default Behavior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-directory-structure">Sample Directory Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-scan">Basic Scan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-functionality">Core Functionality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-scanning">1. Recursive Scanning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size-units">2. Size Units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labels-and-output-format">3. Labels and Output Format</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-examples">Usage Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depth-control">Depth Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-options">Sorting Options</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-visibility-control">File Visibility Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-exclusion">Pattern Exclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#owner-information">Owner Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-and-threading">Performance and Threading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-features">Caching Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-export">CSV Export</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-profiling">Performance Profiling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-platform-notes">Cross-Platform Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-platforms">Supported Platforms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-specific-considerations">Platform-Specific Considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-safety">Memory Safety</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-characteristics">Performance Characteristics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-rudu">When to Use <code class="docutils literal notranslate"><span class="pre">rudu</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-benefits">Performance Benefits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="rudu-basic-usage-core-functionality">
+<h1>Rudu: Basic Usage &amp; Core Functionality<a class="headerlink" href="#rudu-basic-usage-core-functionality" title="Link to this heading">#</a></h1>
+<p>This guide covers the fundamental usage patterns and core functionality of <code class="docutils literal notranslate"><span class="pre">rudu</span></code>, including invocation syntax, default behavior, and key features.</p>
+<section id="invocation-syntax">
+<h2>Invocation Syntax<a class="headerlink" href="#invocation-syntax" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span><span class="o">[</span>PATH<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">[PATH]</span></code></strong>: The directory path to scan. Defaults to current directory (<code class="docutils literal notranslate"><span class="pre">.</span></code>) if not specified.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">[OPTIONS]</span></code></strong>: Command-line options to control scanning behavior, output format, and filtering.</p></li>
+</ul>
+</section>
+<section id="command-line-options">
+<h2>Command-Line Options<a class="headerlink" href="#command-line-options" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--depth</span> <span class="pre">&lt;N&gt;</span></code></p></td>
+<td><p>Limit output to directories up to N levels deep</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--sort</span> <span class="pre">&lt;name|size&gt;</span></code></p></td>
+<td><p>Sort output by name or size (default: name)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--show-files</span> <span class="pre">&lt;true|false&gt;</span></code></p></td>
+<td><p>Show individual files at target depth (default: true)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--exclude</span> <span class="pre">&lt;PATTERN&gt;</span></code></p></td>
+<td><p>Exclude entries matching patterns (e.g., ‘.git’, ‘node_modules’)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--show-owner</span></code></p></td>
+<td><p>Show owner (username) of each file/directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">&lt;FILE&gt;</span></code></p></td>
+<td><p>Write output to CSV file instead of stdout</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">&lt;N&gt;</span></code></p></td>
+<td><p>Limit number of CPU threads used</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--show-inodes</span></code></p></td>
+<td><p>Show inode usage (number of files/subdirectories)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--no-cache</span></code></p></td>
+<td><p>Disable caching and force full rescan</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--cache-ttl</span> <span class="pre">&lt;SECONDS&gt;</span></code></p></td>
+<td><p>Cache TTL in seconds (default: 604800 = 7 days)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--profile</span></code></p></td>
+<td><p>Enable performance profiling and show timing summary</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="default-behavior">
+<h2>Default Behavior<a class="headerlink" href="#default-behavior" title="Link to this heading">#</a></h2>
+<section id="sample-directory-structure">
+<h3>Sample Directory Structure<a class="headerlink" href="#sample-directory-structure" title="Link to this heading">#</a></h3>
+<p>For demonstration purposes, consider this sample project structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rudu_demo_project/
+├── config/
+│   └── settings.toml
+├── data/
+│   ├── cache/
+│   │   └── cache.dat
+│   ├── logs/
+│   │   └── app.log
+│   └── temp/
+│       └── temp_file.tmp
+├── docs/
+│   └── README.md
+└── src/
+    ├── main/
+    │   └── main.rs
+    ├── tests/
+    │   └── unit_tests.rs
+    └── utils/
+        └── helpers.rs
+</pre></div>
+</div>
+</section>
+<section id="basic-scan">
+<h3>Basic Scan<a class="headerlink" href="#basic-scan" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/tmp/rudu_demo_project
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------------------
+        .______       __    __   _______   __    __  
+        |   _  \     |  |  |  | |       \ |  |  |  | 
+        |  |_)  |    |  |  |  | |  .--.  ||  |  |  | 
+        |      /     |  |  |  | |  |  |  ||  |  |  | 
+        |  |\  \----.|  `--&#39;  | |  &#39;--&#39;  ||  `--&#39;  | 
+        | _| `._____| \______/  |_______/  \______/
+                    Rust-based du tool
+------------------------------------------------------------------            
+
+🔧 Using default thread pool strategy (10 threads)
+📦 No cache found, performing full scan
+⠏ Incremental scan in progress... [0s]
+
+[DIR]  28.67 kB                0      
+[DIR]  4.10 kB                 0      config
+[FILE] 4.10 kB                 config/settings.toml
+[DIR]  8.19 kB                 0      data
+[DIR]  4.10 kB                 0      data/cache
+[FILE] 4.10 kB                 data/cache/cache.dat
+[DIR]  4.10 kB                 0      data/logs
+[FILE] 4.10 kB                 data/logs/app.log
+[DIR]  0 B                     0      data/temp
+[FILE] 0 B                     data/temp/temp_file.tmp
+[DIR]  4.10 kB                 0      docs
+[FILE] 4.10 kB                 docs/README.md
+[DIR]  12.29 kB                0      src
+[DIR]  4.10 kB                 0      src/main
+[FILE] 4.10 kB                 src/main/main.rs
+[DIR]  4.10 kB                 0      src/tests
+[FILE] 4.10 kB                 src/tests/unit_tests.rs
+[DIR]  4.10 kB                 0      src/utils
+[FILE] 4.10 kB                 src/utils/helpers.rs
+</pre></div>
+</div>
+</section>
+</section>
+<section id="core-functionality">
+<h2>Core Functionality<a class="headerlink" href="#core-functionality" title="Link to this heading">#</a></h2>
+<section id="recursive-scanning">
+<h3>1. Recursive Scanning<a class="headerlink" href="#recursive-scanning" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">rudu</span></code> performs <strong>recursive directory traversal</strong> by default, scanning all subdirectories and files to calculate disk usage. The tool uses multithreading (via Rust’s <code class="docutils literal notranslate"><span class="pre">rayon</span></code> crate) to parallelize the scanning process for improved performance on large directory structures.</p>
+</section>
+<section id="size-units">
+<h3>2. Size Units<a class="headerlink" href="#size-units" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Default unit</strong>: Kilobytes (kB)</p></li>
+<li><p><strong>Calculation method</strong>: Reports actual disk usage via <code class="docutils literal notranslate"><span class="pre">st_blocks</span> <span class="pre">*</span> <span class="pre">512</span></code>, similar to the traditional <code class="docutils literal notranslate"><span class="pre">du</span></code> command</p></li>
+<li><p><strong>Precision</strong>: Shows bytes (B) for very small files</p></li>
+</ul>
+</section>
+<section id="labels-and-output-format">
+<h3>3. Labels and Output Format<a class="headerlink" href="#labels-and-output-format" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">[DIR]</span></code></strong>: Indicates directory entries</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">[FILE]</span></code></strong>: Indicates individual files</p></li>
+<li><p><strong>Size column</strong>: Shows disk usage in human-readable format</p></li>
+<li><p><strong>Owner column</strong>: Shows when <code class="docutils literal notranslate"><span class="pre">--show-owner</span></code> is used</p></li>
+<li><p><strong>Inode column</strong>: Shows file/directory count when <code class="docutils literal notranslate"><span class="pre">--show-inodes</span></code> is used</p></li>
+<li><p><strong>Path column</strong>: Relative path from the scanned root</p></li>
+</ul>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">#</a></h2>
+<section id="depth-control">
+<h3>Depth Control<a class="headerlink" href="#depth-control" title="Link to this heading">#</a></h3>
+<p><strong>Limit to top-level directories only:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/path/to/scan<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p><strong>Show directories up to 2 levels deep:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/path/to/scan<span class="w"> </span>--depth<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</section>
+<section id="sorting-options">
+<h3>Sorting Options<a class="headerlink" href="#sorting-options" title="Link to this heading">#</a></h3>
+<p><strong>Sort by size (largest first):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/tmp/rudu_demo_project<span class="w"> </span>--sort<span class="w"> </span>size
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>[DIR]  28.67 kB                0      
+[DIR]  12.29 kB                0      src
+[DIR]  8.19 kB                 0      data
+[DIR]  4.10 kB                 0      config
+[FILE] 4.10 kB                 config/settings.toml
+[DIR]  4.10 kB                 0      docs
+[FILE] 4.10 kB                 docs/README.md
+[DIR]  4.10 kB                 0      data/cache
+[FILE] 4.10 kB                 data/cache/cache.dat
+[DIR]  4.10 kB                 0      data/logs
+[FILE] 4.10 kB                 data/logs/app.log
+[DIR]  4.10 kB                 0      src/tests
+[FILE] 4.10 kB                 src/tests/unit_tests.rs
+[DIR]  4.10 kB                 0      src/utils
+[FILE] 4.10 kB                 src/utils/helpers.rs
+[DIR]  4.10 kB                 0      src/main
+[FILE] 4.10 kB                 src/main/main.rs
+[DIR]  0 B                     0      data/temp
+[FILE] 0 B                     data/temp/temp_file.tmp
+</pre></div>
+</div>
+</section>
+<section id="file-visibility-control">
+<h3>File Visibility Control<a class="headerlink" href="#file-visibility-control" title="Link to this heading">#</a></h3>
+<p><strong>Hide individual files, show only directories:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/path/to/scan<span class="w"> </span>--show-files<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+</section>
+<section id="pattern-exclusion">
+<h3>Pattern Exclusion<a class="headerlink" href="#pattern-exclusion" title="Link to this heading">#</a></h3>
+<p><strong>Exclude common build/cache directories:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/project<span class="w"> </span>--exclude<span class="w"> </span>.git<span class="w"> </span>--exclude<span class="w"> </span>node_modules<span class="w"> </span>--exclude<span class="w"> </span>target
+</pre></div>
+</div>
+<p><strong>Exclude temporary files:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/data<span class="w"> </span>--exclude<span class="w"> </span>temp<span class="w"> </span>--exclude<span class="w"> </span>cache
+</pre></div>
+</div>
+</section>
+<section id="owner-information">
+<h3>Owner Information<a class="headerlink" href="#owner-information" title="Link to this heading">#</a></h3>
+<p><strong>Display file owners:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/tmp/rudu_demo_project<span class="w"> </span>--show-owner
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>[DIR]  28.67 kB     green      0      
+[DIR]  4.10 kB      green      0      config
+[FILE] 4.10 kB      green      config/settings.toml
+[DIR]  8.19 kB      green      0      data
+[DIR]  4.10 kB      green      0      data/cache
+[FILE] 4.10 kB      green      data/cache/cache.dat
+[DIR]  4.10 kB      green      0      data/logs
+[FILE] 4.10 kB      green      data/logs/app.log
+[DIR]  0 B          green      0      data/temp
+[FILE] 0 B          green      data/temp/temp_file.tmp
+[DIR]  4.10 kB      green      0      docs
+[FILE] 4.10 kB      green      docs/README.md
+[DIR]  12.29 kB     green      0      src
+[DIR]  4.10 kB      green      0      src/main
+[FILE] 4.10 kB      green      src/main/main.rs
+[DIR]  4.10 kB      green      0      src/tests
+[FILE] 4.10 kB      green      src/tests/unit_tests.rs
+[DIR]  4.10 kB      green      0      src/utils
+[FILE] 4.10 kB      green      src/utils/helpers.rs
+</pre></div>
+</div>
+</section>
+<section id="performance-and-threading">
+<h3>Performance and Threading<a class="headerlink" href="#performance-and-threading" title="Link to this heading">#</a></h3>
+<p><strong>Use specific number of threads:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/large/directory<span class="w"> </span>--threads<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p><strong>Single-threaded operation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/data<span class="w"> </span>--threads<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="caching-features">
+<h3>Caching Features<a class="headerlink" href="#caching-features" title="Link to this heading">#</a></h3>
+<p><strong>Disable caching for fresh scan:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/path/to/scan<span class="w"> </span>--no-cache
+</pre></div>
+</div>
+<p><strong>Set custom cache TTL (1 hour):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/data<span class="w"> </span>--cache-ttl<span class="w"> </span><span class="m">3600</span>
+</pre></div>
+</div>
+</section>
+<section id="csv-export">
+<h3>CSV Export<a class="headerlink" href="#csv-export" title="Link to this heading">#</a></h3>
+<p><strong>Export results to CSV:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/data<span class="w"> </span>--output<span class="w"> </span>analysis.csv
+</pre></div>
+</div>
+</section>
+<section id="performance-profiling">
+<h3>Performance Profiling<a class="headerlink" href="#performance-profiling" title="Link to this heading">#</a></h3>
+<p><strong>Enable detailed timing information:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rudu<span class="w"> </span>/large/directory<span class="w"> </span>--profile
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cross-platform-notes">
+<h2>Cross-Platform Notes<a class="headerlink" href="#cross-platform-notes" title="Link to this heading">#</a></h2>
+<section id="supported-platforms">
+<h3>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>macOS</strong>: Full support with native file system optimizations</p></li>
+<li><p><strong>Linux</strong>: Full support across all major distributions</p></li>
+<li><p><strong>BSD variants</strong>: Compatible with FreeBSD, OpenBSD, NetBSD</p></li>
+</ul>
+</section>
+<section id="platform-specific-considerations">
+<h3>Platform-Specific Considerations<a class="headerlink" href="#platform-specific-considerations" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>File System Differences</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rudu</span></code> automatically adapts to different file systems (ext4, APFS, ZFS, etc.)</p></li>
+<li><p>Block size calculations are handled transparently across platforms</p></li>
+</ul>
+</li>
+<li><p><strong>Permission Handling</strong>:</p>
+<ul class="simple">
+<li><p>Gracefully handles permission-denied scenarios</p></li>
+<li><p>Owner information display depends on system user database availability</p></li>
+</ul>
+</li>
+<li><p><strong>Thread Pool Optimization</strong>:</p>
+<ul class="simple">
+<li><p>Automatically detects available CPU cores</p></li>
+<li><p>Adjusts thread pool size based on system capabilities</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="memory-safety">
+<h3>Memory Safety<a class="headerlink" href="#memory-safety" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Zero segfaults</strong>: Rust’s memory safety guarantees prevent crashes</p></li>
+<li><p><strong>No memory leaks</strong>: Automatic memory management ensures efficient resource usage</p></li>
+<li><p><strong>Safe concurrency</strong>: Thread-safe operations without data races</p></li>
+</ul>
+</section>
+</section>
+<section id="performance-characteristics">
+<h2>Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Link to this heading">#</a></h2>
+<section id="when-to-use-rudu">
+<h3>When to Use <code class="docutils literal notranslate"><span class="pre">rudu</span></code><a class="headerlink" href="#when-to-use-rudu" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Large directory structures</strong> (&gt;5,000 files)</p></li>
+<li><p><strong>Complex filtering requirements</strong></p></li>
+<li><p><strong>Repeated scans</strong> (benefits from caching)</p></li>
+<li><p><strong>Safety-critical environments</strong></p></li>
+<li><p><strong>Performance analysis needs</strong></p></li>
+</ul>
+</section>
+<section id="performance-benefits">
+<h3>Performance Benefits<a class="headerlink" href="#performance-benefits" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Parallelization</strong>: Utilizes all available CPU cores</p></li>
+<li><p><strong>Intelligent caching</strong>: Avoids redundant scans of unchanged directories</p></li>
+<li><p><strong>Incremental scanning</strong>: Only rescans modified parts of the directory tree</p></li>
+<li><p><strong>Memory efficiency</strong>: Optimized memory usage patterns</p></li>
+</ul>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">rudu</span></code> provides a modern, safe, and high-performance alternative to the traditional <code class="docutils literal notranslate"><span class="pre">du</span></code> command with enhanced features:</p>
+<ul class="simple">
+<li><p><strong>Flexible depth control</strong> for focused analysis</p></li>
+<li><p><strong>Multiple sorting options</strong> for different use cases</p></li>
+<li><p><strong>Pattern-based exclusion</strong> for filtering unwanted files</p></li>
+<li><p><strong>Owner and inode information</strong> for detailed analysis</p></li>
+<li><p><strong>CSV export capabilities</strong> for data processing</p></li>
+<li><p><strong>Intelligent caching system</strong> for performance optimization</p></li>
+<li><p><strong>Cross-platform compatibility</strong> with consistent behavior</p></li>
+</ul>
+<p>The tool’s Rust implementation ensures memory safety while delivering excellent performance through parallel processing and smart caching mechanisms.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./gadi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="moving-data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Transferring data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../datasets/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invocation-syntax">Invocation Syntax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-options">Command-Line Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-behavior">Default Behavior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-directory-structure">Sample Directory Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-scan">Basic Scan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-functionality">Core Functionality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-scanning">1. Recursive Scanning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size-units">2. Size Units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labels-and-output-format">3. Labels and Output Format</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-examples">Usage Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depth-control">Depth Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-options">Sorting Options</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-visibility-control">File Visibility Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-exclusion">Pattern Exclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#owner-information">Owner Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-and-threading">Performance and Threading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-features">Caching Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-export">CSV Export</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-profiling">Performance Profiling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-platform-notes">Cross-Platform Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-platforms">Supported Platforms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-specific-considerations">Platform-Specific Considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-safety">Memory Safety</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-characteristics">Performance Characteristics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-rudu">When to Use <code class="docutils literal notranslate"><span class="pre">rudu</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-benefits">Performance Benefits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
