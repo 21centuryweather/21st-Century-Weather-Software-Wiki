@@ -53,7 +53,7 @@ The indentation is important, it will not run if there is an extra space or tab 
 
 **Text**: The text is written in markdown, which is a lightweight markup language that allows you to format text using simple syntax. You can use headings, lists, links, images, and other formatting options. In quarto it is also possible to add Latex equations and citations. In the example above, we reference a figure using `@fig-polar`, the label of the figure that is defined in the code chunk. Similarly it is possible to reference tables and equations using their labels. For citations, you will need to add a bibliography file in the YAML header (a `.bib` file), and use the `@citation-key` syntax to reference the citations in the text. Check the quarto documentation about [citations](https://quarto.org/docs/get-started/authoring/vscode.html#citations) and [cross-references](https://quarto.org/docs/get-started/authoring/vscode.html#cross-references) for more details.
 
-There are many VSCode extensions that can help you with markdown syntax, and citation. 
+There are [many VSCode extensions](https://marketplace.visualstudio.com/search?term=markdown&target=VSCode&category=All%20categories&sortBy=Relevance) that can help you with markdown syntax, and citation. 
 
 **Code chunks**: Code chunks are enclosed in triple backticks (```) and start with the language name, such as `python`, `r`, or `julia`. You can insert a new chunk with `Ctrl/Command + Shift + I` and run each chunk with `Ctrl/Command + Enter`. 
 
@@ -63,21 +63,50 @@ The chunk options can be set globally in the YAML header, so you don't have to r
 
 ### Using analysis3 environment in quarto
 
+#### 1. Run the code interactively
+
 Using the analysis3 environment in quarto is similar to using it in Jupyter notebooks. You will need to spin up an ARE session with the corresponding projects and advanced options. Then, you can choose the python interpreter from the analysis3 conda environment in VSCode following the steps:
 
 1. Open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
-2. You will see a list of available interpreters, including those from your conda environments. Most probably the `analysis3` won't be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. So, select "Enter interpreter path..." and copy the path. The path to the `analysis3` conda environment will be `/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin` but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06.
+2. You will see a list of available interpreters, including those from your conda environments. Most probably the `analysis3` won't be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. So, select "Enter interpreter path..." and copy the path. The path to the `analysis3` conda environment will be `/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin` but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06 that correspond to the June, 2025 version of analysis3.
 
 After that, you should be able to run the code chunks in your `.qmd` (the result will show in the interactive window) with that specific environment.
 
-To preview the rendered output you can use the command `quarto preview <name of the file>` or the shortcut `Ctrl/Command + Shift + K`. You can also render the file with `quarto render <name of the file>` from the terminal in VSCode. Make sure to load the `xp65` and `conda/analysis3` modules before running the command.
+:::{admonition} Note
+:class: important
+
+If you try to run a code chunk without selecting the interpreter, it will try to run but probably fail. Close the interactive window and select the interpreter before running the code again.
+
+:::
+
+#### 2. Render the file
+
+If you want to share the results of your analysis, you can render the `.qmd` file to HTML, PDF or other formats. This will execute all the code chunks and include the output in the final document.
+
+To preview the rendered output you can use the command `quarto preview <name of the file>` or the shortcut `Ctrl/Command + Shift + K`. Quarto should use the interpreter you configured for the interactive window. 
+
+You can also render the file with `quarto render <name of the file>` from the terminal in VSCode. Make sure to load the `xp65` and `conda/analysis3` modules before running the command.
 
 ```bash
 module use /g/data/xp65/public/modules
 module load conda/analysis3-XX.XX
 ```
 
-If you want to make sure you are always using the same conda environment when you render the file (for reproducibility or maybe because your code only works with specific versions of the modules) you can add the following line to the YAML header:
+#### 3. An extra step for reproducibility
+
+If you want to make sure you are always using the same conda environment when you render the file (for reproducibility or maybe because your code only works with specific versions of the modules) follow these steps:
+
+1. Install the python kernel for the conda environment. 
+
+You can do this by running the following command in the terminal after you loaded the `conda/analysis3-XX.XX` module:
+
+```bash
+python -m ipykernel install --user --name=analysis3-XX.XX
+```
+
+Replacing XX.XX by the corresponding version of the environment you want to use.
+
+2. Add the kernel to the YAML header in the file:
 
 ```yaml
 ---
@@ -91,11 +120,7 @@ jupyter:
 ---
 ```
 
-Replacing XX.XX by the corresponding version of the environment you want to use.
+3. Render the file
 
-For this to work, it requires to install the kernel for the conda environment. You can do this by running the following command in the terminal after you loaded the `conda/analysis3-XX.XX` module:
-
-```bash
-python -m ipykernel install --user --name=analysis3-XX.XX
-```
+Now you can load `analysis3` on the terminal and render the file with `quarto render <name of the file>`. Quarto will use the kernel you specified in the YAML header, so you can be sure that the code will run with the same environment every time you render the file.
 
