@@ -38,9 +38,9 @@ A `.qmd` file is a plain text file that contains both text and code. The text is
 
 ![alt text](images/quarto-file.png)
 
-**YAML header**: The file starts with a YAML header that contains metadata about the document, such as the title, author, date, and output format. This header is enclosed in `---` lines. For a simple file it might only includes the title and output format but it can also include other options particularly if you are using a journal template.
+**YAML header**: The file starts with a YAML header that contains metadata about the document, such as the title, author, date, and output format. This header is enclosed in `---` lines. For a simple file it might only include the title and output format, but it can also include other options -- particularly if you are using a journal template.
 
-The indentation is important, it will not run if their is a extra space or a tab in the header. 
+The indentation is important, it will not run if there is an extra space or tab in the header. 
 
 **Text**: The text is written in markdown, which is a lightweight markup language that allows you to format text using simple syntax. You can use headings, lists, links, images, and other formatting options. In quarto it is also possible to add Latex equations and citations. In the example above, we reference a figure using `@fig-polar`, the label of the figure that is defined in the code chunk. Similarly it is possible to reference tables and equations using their labels. For citations, you will need to add a bibliography file in the YAML header (a `.bib` file), and use the `@citation-key` syntax to reference the citations in the text. Check the quarto documentation about [citations](https://quarto.org/docs/get-started/authoring/vscode.html#citations) and [cross-references](https://quarto.org/docs/get-started/authoring/vscode.html#cross-references) for more details.
 
@@ -54,7 +54,7 @@ The chunk options can be set globally in the YAML header, so you don't have to r
 
 ### Using analysis3 environment in quarto
 
-Using the analysis3 environment in quarto is similar to using it in Jupyter notebooks. You will need to spin up an ARE session with the corresponding projects and advance options. Then, you can choose the python interpreter from the analysis3 conda environment in VSCode following the steps:
+Using the analysis3 environment in quarto is similar to using it in Jupyter notebooks. You will need to spin up an ARE session with the corresponding projects and advanced options. Then, you can choose the python interpreter from the analysis3 conda environment in VSCode following the steps:
 
 1. Open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type "Python: Select Interpreter".
 2. You will see a list of available interpreters, including those from your conda environments. Most probably the `analysis3` won't be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. So, select "Enter interpreter path..." and copy the path. The path to the `analysis3` conda environment will be `/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin` but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06.
@@ -68,7 +68,7 @@ module use /g/data/xp65/public/modules
 module load conda/analysis3-XX.XX
 ```
 
-If you want to make sure you are always using the same conda environment when you render the file (for reproducibility or maybe because your code only works with specif versions of the modules) you can add the following line to the YAML header:
+If you want to make sure you are always using the same conda environment when you render the file (for reproducibility or maybe because your code only works with specific versions of the modules) you can add the following line to the YAML header:
 
 ```yaml
 ---
