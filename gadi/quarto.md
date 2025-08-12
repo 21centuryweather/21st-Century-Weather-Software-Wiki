@@ -32,9 +32,18 @@ While you can install quarto on your home directory, we recommend using the vers
 
 ![alt text](images/quarto-path.png)
 
+You can add this to your `.bashrc` file to make it permanent:
+
+```bash
+export PATH="/g/data/gb02/pag548/quarto-1.7.29/bin/:$PATH"
+```
+
 ### Elements of a `.qmd` file
 
 A `.qmd` file is a plain text file that contains both text and code. The text is written in markdown, and the code is written in the programming language of your choice (Python, R, Julia, etc.).
+
+With the extension installed, you can create a new `.qmd` file by typing `quarto new file`  in the command palette (Ctrl/Command + Shift + P) or by creating a new file with the `.qmd` extension. 
+The basic structure of a `.qmd` file is as follows:
 
 ![alt text](images/quarto-file.png)
 
