@@ -132,7 +132,7 @@ https://cylc.github.io/cylc-doc/7.9.3/html/tutorial.html
 To launch `cylc` on `gadi` you need to load the `cylc` software into your interactive command-line session. You will also need to specify a 'persistent session' in order to load the `cylc` module. The best way to do this to to execute the following commands from a
 `gadi` terminal:
 ```
-$ persistent-session start cylc-test
+$ persistent-sessions start cylc-test
 ```
 :::{note}
 
