@@ -47,7 +47,7 @@ The basic structure of a `.qmd` file is as follows:
 
 ![alt text](images/quarto-file.png)
 
-**YAML header**: The file starts with a YAML header that contains metadata about the document, such as the title, author, date, and output format. This header is enclosed in `---` lines. For a simple file it might only include the title and output format, but it can also include other options -- particularly if you are using a journal template.
+**YAML header**: The file starts with a YAML header that contains metadata about the document, such as the title, author, date, and output format. This header is enclosed in `---` lines. For a simple file it might only include the title and output format, but it can also include other options, particularly if you are using a journal template.
 
 The indentation is important, it will not run if there is an extra space or tab in the header. 
 
@@ -62,6 +62,8 @@ You can also add options to the code chunks, such as `echo`, `eval`, `fig.width`
 The chunk options can be set globally in the YAML header, so you don't have to repeat them in every chunk. For example, you can set `echo: false` to hide all code chunks by default.
 
 ### Using analysis3 environment in quarto
+
+Quarto will try to find python in the usual places. Working in gadi means that you need to load a module and choose an environment to run your code. Annoyingly, setting the environment to work interactively in a quarto document or even in a Jupyter notebook does not mean it will work also if you run the code in the terminal, you need to activate it in both places. 
 
 #### 1. Run the code interactively
 
