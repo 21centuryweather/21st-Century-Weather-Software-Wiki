@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Literal programming with quarto &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/quarto';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rudu-usage.html">Rudu: Basic Usage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/gadi/quarto.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Literal programming with quarto</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto-in-jupyter-notebooks">Quarto in Jupyter notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto-in-plain-text-files">Quarto in plain text files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elements-of-a-qmd-file">Elements of a <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-analysis3-environment-in-quarto">Using analysis3 environment in quarto</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-interactively">1. Run the code interactively</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#render-the-file">2. Render the file</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#an-extra-step-for-reproducibility">3. An extra step for reproducibility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="literal-programming-with-quarto">
+<h1>Literal programming with quarto<a class="headerlink" href="#literal-programming-with-quarto" title="Link to this heading">#</a></h1>
+<p>Quarto is a an open-source scientific and technical publishing system. It can be used through jupyter notebooks or plain text files with the <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> extension. Quarto supports a variety of programming languages, including Python, R, Julia, and others.</p>
+<p>It can produce a wide range of output formats, including journal articles, presentations, dashboards, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.</p>
+<p>This is very important when writing scientific articles, as it allows you to write your text and code in the same file, and then render the output in the desired format using the template form the journal you’ve chosen. This is known as “literal programming”, where the code is embedded in the text, and the output is generated from the code. By writing everything in the same file, you can ensure that the code and the text are always in sync, and you can easily update the code and the text together. It is a step forward in making your research reproducible and shareable.</p>
+<section id="quarto-in-jupyter-notebooks">
+<h2>Quarto in Jupyter notebooks<a class="headerlink" href="#quarto-in-jupyter-notebooks" title="Link to this heading">#</a></h2>
+<p>Adding quarto to your usual workflow is very straightforward. You only need a to add a yaml header to your notebook to configure the output format. In this example, we set the author name, the format to HTML, and a drop down menu to show-hide code cells.</p>
+<p><img alt="Screenshot of a notebook showing the header, text and a block of python code." src="../_images/jupyter-quarto.png" /></p>
+<p>To generate the HTML file, it is enough to run the command <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">render</span> <span class="pre">&lt;name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file&gt;</span></code> in the terminal. The output will be saved in the same directory as the notebook, with the same name but with a <code class="docutils literal notranslate"><span class="pre">.html</span></code> extension.</p>
+<p>You can also install the <a class="reference external" href="https://quarto.org/docs/tools/jupyter-lab-extension.html">jupyter extension <code class="docutils literal notranslate"><span class="pre">quarto-jupyter</span></code></a> to better visualise the the header and call outs.</p>
+</section>
+<section id="quarto-in-plain-text-files">
+<h2>Quarto in plain text files<a class="headerlink" href="#quarto-in-plain-text-files" title="Link to this heading">#</a></h2>
+<p>Quarto can also be used with plain text files with the <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> extension. The advantage of using plain text files is that they are easier to version control and share with others. The downside of this is that you won’t see the output of your code (figures and results) on GitHub unless you render the file into markdown or html.</p>
+<p>To work with a <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file, you can use any text editor. If you are planning to user R code, RStudio is a great option, as it has built-in support for Quarto. If you are using Python, you can use any text editor or IDE, such as VSCode, check <a class="reference internal" href="vscode.html"><span class="std std-doc">these instructions on how to open an ARE session from VSCode</span></a>.</p>
+<p>On VSCode you will need to install the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto-vscode">Quarto extension</a> to get syntax highlighting and other features. Connect to Gadi using the Remote - SSH extension on the login node to access internet and install the extension.</p>
+<p>While you can install quarto on your home directory, we recommend using the version installed on <code class="docutils literal notranslate"><span class="pre">gb02</span></code>. Add the following path to the extension settings or directly in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/g/data/gb02/pag548/quarto-1.7.29/bin/
+</pre></div>
+</div>
+<p><img alt="alt text" src="../_images/quarto-path.png" /></p>
+<p>You can add this to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file to make it permanent:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/g/data/gb02/pag548/quarto-1.7.29/bin/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<section id="elements-of-a-qmd-file">
+<h3>Elements of a <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file<a class="headerlink" href="#elements-of-a-qmd-file" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file is a plain text file that contains both text and code. The text is written in markdown, and the code is written in the programming language of your choice (Python, R, Julia, etc.).</p>
+<p>With the extension installed, you can create a new <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file by typing <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">new</span> <span class="pre">file</span></code>  in the command palette (Ctrl/Command + Shift + P) or by creating a new file with the <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> extension.
+The basic structure of a <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file is as follows:</p>
+<p><img alt="alt text" src="../_images/quarto-file.png" /></p>
+<p><strong>YAML header</strong>: The file starts with a YAML header that contains metadata about the document, such as the title, author, date, and output format. This header is enclosed in <code class="docutils literal notranslate"><span class="pre">---</span></code> lines. For a simple file it might only include the title and output format, but it can also include other options, particularly if you are using a journal template.</p>
+<p>The indentation is important, it will not run if there is an extra space or tab in the header.</p>
+<p><strong>Text</strong>: The text is written in markdown, which is a lightweight markup language that allows you to format text using simple syntax. You can use headings, lists, links, images, and other formatting options. In quarto it is also possible to add Latex equations and citations. In the example above, we reference a figure using <code class="docutils literal notranslate"><span class="pre">&#64;fig-polar</span></code>, the label of the figure that is defined in the code chunk. Similarly it is possible to reference tables and equations using their labels. For citations, you will need to add a bibliography file in the YAML header (a <code class="docutils literal notranslate"><span class="pre">.bib</span></code> file), and use the <code class="docutils literal notranslate"><span class="pre">&#64;citation-key</span></code> syntax to reference the citations in the text. Check the quarto documentation about <a class="reference external" href="https://quarto.org/docs/get-started/authoring/vscode.html#citations">citations</a> and <a class="reference external" href="https://quarto.org/docs/get-started/authoring/vscode.html#cross-references">cross-references</a> for more details.</p>
+<p>There are <a class="reference external" href="https://marketplace.visualstudio.com/search?term=markdown&amp;amp;target=VSCode&amp;amp;category=All%20categories&amp;amp;sortBy=Relevance">many VSCode extensions</a> that can help you with markdown syntax, and citation.</p>
+<p><strong>Code chunks</strong>: Code chunks are enclosed in triple backticks (```) and start with the language name, such as <code class="docutils literal notranslate"><span class="pre">python</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code>, or <code class="docutils literal notranslate"><span class="pre">julia</span></code>. You can insert a new chunk with <code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">I</span></code> and run each chunk with <code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Enter</span></code>.</p>
+<p>You can also add options to the code chunks, such as <code class="docutils literal notranslate"><span class="pre">echo</span></code>, <code class="docutils literal notranslate"><span class="pre">eval</span></code>, <code class="docutils literal notranslate"><span class="pre">fig.width</span></code>, <code class="docutils literal notranslate"><span class="pre">fig.height</span></code>, and others. These options control how the code is displayed and executed. For example, if you want to hide the code but show the output, you can use <code class="docutils literal notranslate"><span class="pre">echo:</span> <span class="pre">false</span></code>. If you want to include a figure with a specific width and height, you can use <code class="docutils literal notranslate"><span class="pre">fig.width:</span> <span class="pre">6</span></code> and <code class="docutils literal notranslate"><span class="pre">fig.height:</span> <span class="pre">4</span></code>. In the example, 2 options are used: <code class="docutils literal notranslate"><span class="pre">fig.cap</span></code> to add a caption to the figure, and <code class="docutils literal notranslate"><span class="pre">label</span></code> to reference the figure in the text. Check the section about <a class="reference external" href="https://quarto.org/docs/get-started/computations/vscode.html#figures">figures</a> to see other options. Setting the <code class="docutils literal notranslate"><span class="pre">label</span></code> option is very useful in case you get an error during the rendering, as it will show you the name of the chunk that failed.</p>
+<p>The chunk options can be set globally in the YAML header, so you don’t have to repeat them in every chunk. For example, you can set <code class="docutils literal notranslate"><span class="pre">echo:</span> <span class="pre">false</span></code> to hide all code chunks by default.</p>
+</section>
+<section id="using-analysis3-environment-in-quarto">
+<h3>Using analysis3 environment in quarto<a class="headerlink" href="#using-analysis3-environment-in-quarto" title="Link to this heading">#</a></h3>
+<p>Quarto will try to find python in the usual places. Working in gadi means that you need to load a module and choose an environment to run your code. Annoyingly, setting the environment to work interactively in a quarto document or even in a Jupyter notebook does not mean it will work also if you run the code in the terminal, you need to activate it in both places.</p>
+<section id="run-the-code-interactively">
+<h4>1. Run the code interactively<a class="headerlink" href="#run-the-code-interactively" title="Link to this heading">#</a></h4>
+<p>Using the analysis3 environment in quarto is similar to using it in Jupyter notebooks. You will need to spin up an ARE session with the corresponding projects and advanced options. Then, you can choose the python interpreter from the analysis3 conda environment in VSCode following the steps:</p>
+<ol class="arabic simple">
+<li><p>Open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type “Python: Select Interpreter”.</p></li>
+<li><p>You will see a list of available interpreters, including those from your conda environments. Most probably the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> won’t be on the list so you will need to add it manually by typing the path to the interpreter in the command palette. So, select “Enter interpreter path…” and copy the path. The path to the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> conda environment will be <code class="docutils literal notranslate"><span class="pre">/g/data/xp65/public/apps/med_conda_scripts/analysis3-XX.XX.d/bin</span></code> but replacing XX.XX by the corresponding version of the environment you want to use. For example, 25.06 that correspond to the June, 2025 version of analysis3.</p></li>
+</ol>
+<p>After that, you should be able to run the code chunks in your <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> (the result will show in the interactive window) with that specific environment.</p>
+<div class="important admonition">
+<p class="admonition-title">Note</p>
+<p>If you try to run a code chunk without selecting the interpreter, it will try to run but probably fail. Close the interactive window and select the interpreter before running the code again.</p>
+</div>
+</section>
+<section id="render-the-file">
+<h4>2. Render the file<a class="headerlink" href="#render-the-file" title="Link to this heading">#</a></h4>
+<p>If you want to share the results of your analysis, you can render the <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file to HTML, PDF or other formats. This will execute all the code chunks and include the output in the final document.</p>
+<p>To preview the rendered output you can use the command <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">preview</span> <span class="pre">&lt;name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file&gt;</span></code> or the shortcut <code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">K</span></code>. Quarto should use the interpreter you configured for the interactive window.</p>
+<p>You can also render the file with <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">render</span> <span class="pre">&lt;name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file&gt;</span></code> from the terminal in VSCode. Make sure to load the <code class="docutils literal notranslate"><span class="pre">xp65</span></code> and <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> modules before running the command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>use<span class="w"> </span>/g/data/xp65/public/modules
+module<span class="w"> </span>load<span class="w"> </span>conda/analysis3-XX.XX
+</pre></div>
+</div>
+</section>
+<section id="an-extra-step-for-reproducibility">
+<h4>3. An extra step for reproducibility<a class="headerlink" href="#an-extra-step-for-reproducibility" title="Link to this heading">#</a></h4>
+<p>If you want to make sure you are always using the same conda environment when you render the file (for reproducibility or maybe because your code only works with specific versions of the modules) follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Install the python kernel for the conda environment.</p></li>
+</ol>
+<p>You can do this by running the following command in the terminal after you loaded the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-XX.XX</span></code> module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="o">=</span>analysis3-XX.XX
+</pre></div>
+</div>
+<p>Replacing XX.XX by the corresponding version of the environment you want to use.</p>
+<ol class="arabic simple" start="2">
+<li><p>Add the kernel to the YAML header in the file:</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Example</span><span class="nv"> </span><span class="s">Quarto</span><span class="nv"> </span><span class="s">Document&quot;</span>
+<span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">html</span>
+<span class="nt">jupyter</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">kernelspec</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;analysis3-XX.XX&quot;</span>
+<span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python&quot;</span>
+<span class="w">    </span><span class="nt">display_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;analysis3-XX.XX&quot;</span>
+<span class="nn">---</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Render the file</p></li>
+</ol>
+<p>Now you can load <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> on the terminal and render the file with <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">render</span> <span class="pre">&lt;name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file&gt;</span></code>. Quarto will use the kernel you specified in the YAML header, so you can be sure that the code will run with the same environment every time you render the file.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./gadi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto-in-jupyter-notebooks">Quarto in Jupyter notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto-in-plain-text-files">Quarto in plain text files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elements-of-a-qmd-file">Elements of a <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-analysis3-environment-in-quarto">Using analysis3 environment in quarto</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-interactively">1. Run the code interactively</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#render-the-file">2. Render the file</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#an-extra-step-for-reproducibility">3. An extra step for reproducibility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
