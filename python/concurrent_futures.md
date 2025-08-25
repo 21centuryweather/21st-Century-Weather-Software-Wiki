@@ -178,6 +178,7 @@ will reduce the memory overhead of your process.
 
 Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset` would be beneficial. See [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits) on how to use the `preprocess` argument with `open_mfdataset`.
 
+
 ## Try it yourself
 
 Use an interactive `qsub` to login to a `gadi` node and test the parallelisation. The following command will launch an eight hour interactive session requesting all memory on a standard node using the `express` queue. The Service Unit (SU) costs will be billed against the `gb02` project and we will have access to the `gb02, hh5, and rv74` disks.
