@@ -1,7 +1,7 @@
 ---
 title: "MMLEAv2"
 location: "/g/data/su28/MMLEAv2"
-maintainer: "TBD"
+maintainer: "Sam Green, Nicola Maher"
 short_description: "Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid."
 ---
 
