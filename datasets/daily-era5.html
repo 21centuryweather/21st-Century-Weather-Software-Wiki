@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/daily-era5';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -402,28 +404,31 @@ document.write(`
 <p>Variables</p>
 <p>2D:</p>
 <ul class="simple">
-<li><p>2t (2 metre temperature, K)</p></li>
-<li><p>mer (Mean evaporation rate, kg m**-2 s**-1)</p></li>
-<li><p>msl (Mean sea level pressure, Pa)</p></li>
-<li><p>mslhf (Mean surface latent heat flux, W m**-2)</p></li>
-<li><p>msshf (Mean surface sensible heat flux, W m**-2)</p></li>
-<li><p>mtpr (Mean total precipitation rate, kg m**-2 s**-1)</p></li>
-<li><p>mvimd (Mean vertically integrated moisture divergence, kg m**-2 s**-1)</p></li>
-<li><p>viwve (Vertical integral of eastward water vapour flux, kg m**-1 s**-1)</p></li>
-<li><p>viwvn (Vertical integral of northward water vapour flux, kg m**-1 s**-1)</p></li>
-<li><p>vo (Vorticity (relative), s**-1)</p></li>
-<li><p>tp (Total precipitation, m)</p></li>
+<li><p>2t (2 metre temperature, <span class="math notranslate nohighlight">\(K\)</span>)</p></li>
+<li><p>2tmin (2 metre min daily temperature, <span class="math notranslate nohighlight">\(K\)</span>)</p></li>
+<li><p>2tmax (2 metre max daily temperature, <span class="math notranslate nohighlight">\(K\)</span>)</p></li>
+<li><p>mer (Mean evaporation rate, <span class="math notranslate nohighlight">\(kg\; m^{-2} s^{-1}\)</span>)</p></li>
+<li><p>msl (Mean sea level pressure, <span class="math notranslate nohighlight">\(Pa\)</span>)</p></li>
+<li><p>mslhf (Mean surface latent heat flux, <span class="math notranslate nohighlight">\(W\; m^{-2}\)</span>)</p></li>
+<li><p>msshf (Mean surface sensible heat flux, <span class="math notranslate nohighlight">\(W\; m^{-2}\)</span>)</p></li>
+<li><p>mtpr (Mean total precipitation rate, <span class="math notranslate nohighlight">\(kg\; m^{-2} s^{-1}\)</span>)</p></li>
+<li><p>mvimd (Mean vertically integrated moisture divergence, <span class="math notranslate nohighlight">\(kg\; m^{-2} s^{-1}\)</span>)</p></li>
+<li><p>viwve (Vertical integral of eastward water vapour flux, <span class="math notranslate nohighlight">\(kg\; m^{-2} s^{-1}\)</span>)</p></li>
+<li><p>viwvn (Vertical integral of northward water vapour flux, <span class="math notranslate nohighlight">\(kg\; m^{-2} s^{-1}\)</span>)</p></li>
+<li><p>vo (Vorticity (relative), <span class="math notranslate nohighlight">\(s^{-1}\)</span>)</p></li>
+<li><p>tp (Total precipitation, <span class="math notranslate nohighlight">\(m\)</span>)</p></li>
+<li><p>tp-ldmk (Total precipitation on land, <span class="math notranslate nohighlight">\(m\)</span>)</p></li>
 </ul>
 <p>3D:</p>
 <ul class="simple">
-<li><p>q (Specific humidity, kg kg**-1)</p></li>
-<li><p>t (Temperature, K)</p></li>
-<li><p>u (U component of wind, m s**-1)</p></li>
-<li><p>v (V component of wind, m s**-1)</p></li>
-<li><p>w (Vertical velocity, Pa s**-1)</p></li>
-<li><p>z (Geopotential, m<strong>2 s</strong>-2)</p></li>
+<li><p>q (Specific humidity, <span class="math notranslate nohighlight">\(kg\; kg^{-1}\)</span>)</p></li>
+<li><p>t (Temperature, <span class="math notranslate nohighlight">\(K\)</span>)</p></li>
+<li><p>u (U component of wind, <span class="math notranslate nohighlight">\(m\; s^{-1}\)</span>)</p></li>
+<li><p>v (V component of wind, <span class="math notranslate nohighlight">\(m\; s^{-1}\)</span>)</p></li>
+<li><p>w (Vertical velocity, <span class="math notranslate nohighlight">\(Pa\; s^{-1}\)</span>)</p></li>
+<li><p>z (Geopotential, <span class="math notranslate nohighlight">\(m^2 s^{-2}\)</span>)</p></li>
 </ul>
-<p>In 22 pressure levels (10,20,30,50,70,100,150,175,200,225,250,300,400,500,600,700,800,850,900,925,950,1000hPa)</p>
+<p>In 22 pressure levels (10, 20, 30, 50, 70, 100, 150, 175, 200,225, 250, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000 <span class="math notranslate nohighlight">\(hPa\)</span>)</p>
 <section id="data-location">
 <h2>Data location<a class="headerlink" href="#data-location" title="Link to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/g/data/su28/ERA5/daily

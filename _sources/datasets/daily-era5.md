@@ -12,28 +12,31 @@ Variables
 
 2D:
 
-* 2t (2 metre temperature, K)  
-* mer (Mean evaporation rate, kg m**-2 s**-1)  
-* msl (Mean sea level pressure, Pa) 
-* mslhf (Mean surface latent heat flux, W m**-2)
-* msshf (Mean surface sensible heat flux, W m**-2)
-* mtpr (Mean total precipitation rate, kg m**-2 s**-1)
-* mvimd (Mean vertically integrated moisture divergence, kg m**-2 s**-1)
-* viwve (Vertical integral of eastward water vapour flux, kg m**-1 s**-1)
-* viwvn (Vertical integral of northward water vapour flux, kg m**-1 s**-1)
-* vo (Vorticity (relative), s**-1) 
-* tp (Total precipitation, m)
+* 2t (2 metre temperature, $K$) 
+* 2tmin (2 metre min daily temperature, $K$)
+* 2tmax (2 metre max daily temperature, $K$) 
+* mer (Mean evaporation rate, $kg\; m^{-2} s^{-1}$)  
+* msl (Mean sea level pressure, $Pa$) 
+* mslhf (Mean surface latent heat flux, $W\; m^{-2}$)
+* msshf (Mean surface sensible heat flux, $W\; m^{-2}$)
+* mtpr (Mean total precipitation rate, $kg\; m^{-2} s^{-1}$)
+* mvimd (Mean vertically integrated moisture divergence, $kg\; m^{-2} s^{-1}$)
+* viwve (Vertical integral of eastward water vapour flux, $kg\; m^{-2} s^{-1}$)
+* viwvn (Vertical integral of northward water vapour flux, $kg\; m^{-2} s^{-1}$)
+* vo (Vorticity (relative), $s^{-1}$) 
+* tp (Total precipitation, $m$)
+* tp-ldmk (Total precipitation on land, $m$)
 
 3D:
 
-* q (Specific humidity, kg kg**-1) 
-* t (Temperature, K)
-* u (U component of wind, m s**-1)
-* v (V component of wind, m s**-1)
-* w (Vertical velocity, Pa s**-1)
-* z (Geopotential, m**2 s**-2)
+* q (Specific humidity, $kg\; kg^{-1}$) 
+* t (Temperature, $K$)
+* u (U component of wind, $m\; s^{-1}$)
+* v (V component of wind, $m\; s^{-1}$)
+* w (Vertical velocity, $Pa\; s^{-1}$)
+* z (Geopotential, $m^2 s^{-2}$)
 
-In 22 pressure levels (10,20,30,50,70,100,150,175,200,225,250,300,400,500,600,700,800,850,900,925,950,1000hPa) 
+In 22 pressure levels (10, 20, 30, 50, 70, 100, 150, 175, 200,225, 250, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000 $hPa$) 
 
 ## Data location
 
