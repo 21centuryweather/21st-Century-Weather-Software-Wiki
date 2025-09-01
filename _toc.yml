@@ -36,6 +36,8 @@ parts:
     - file: gadi/getting-started
     - file: gadi/mac-stuff
     - file: gadi/moving-data
+    - file: gadi/vscode
+    - file: gadi/quarto
   - caption: Datasets
     chapters:
     - file: datasets/index
