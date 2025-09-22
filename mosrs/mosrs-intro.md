@@ -24,7 +24,7 @@ https://opus.nci.org.au/display/DAE/Persistent+Sessions+For+Cylc+Jobs
 
 ACCESS-NRI also has the following guide:
 
-https://access-hive.org.au/models/run-a-model/run-access-cm/#start-a-new-persistent-session
+https://docs.access-hive.org.au/models/run-a-model/run-access-cm2/#set-up-access-cm-persistent-session
 
 The above link refers to the ACCESS-CM3 model but it can be applied to any applications run with a `rose/cylc` suite. To follow the ACCESS-NRI guide, start a session at the command line, e.g.
 ```
