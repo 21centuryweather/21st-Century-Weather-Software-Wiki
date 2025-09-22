@@ -1,6 +1,13 @@
-# Monthly drought indices from 1940 to present derived from ERA5 reanalysis
+---
+title: "ERA5 Drought"
+location: "/g/data/su28/drought_era5"
+maintainer: "Pao Corrales"
+short_description: "Monthly drought indices from 1940 to present derived from ERA5 reanalysis"
+---
 
-ERA5–Drought is a global reconstruction of drought indices from 1940 to present.
+# ERA5 Drought 
+
+Monthly drought indices from 1940 to present derived from ERA5 reanalysis is a global reconstruction of drought indices from 1940 to present.
 
 The dataset comprises two standardised drought indices:
 

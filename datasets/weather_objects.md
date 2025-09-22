@@ -1,3 +1,10 @@
+---
+title: "ERA5-based Weather Objects"
+location: "/g/data/su28/weatherfeatures.era5/"
+maintainer: "Sam Green, Chenhui Jin"
+short_description: "Weather objects (anticyclones, cyclones and warm-conveyor belts)"
+---
+
 # ERA5-based Weather Objects
 
 There are 3 ERA5-based Weather Objects placed on Gadi in su28, located at:

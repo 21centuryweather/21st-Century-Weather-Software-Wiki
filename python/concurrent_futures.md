@@ -176,7 +176,7 @@ Another option is to reduce the memory overhead of a single day's computations, 
 
 will reduce the memory overhead of your process.
 
-Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset` would be beneficial. See [here](https://opus.nci.org.au/spaces/Help/pages/90308823/Queue+Limits) on how to use the `preprocess` argument with `open_mfdataset`.
+Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset` would be beneficial. See [here](https://coecms.github.io/posts/2023-06-22-mfdataset-preprocess.html) on how to use the `preprocess` argument with `open_mfdataset`.
 
 ## Try it yourself
 

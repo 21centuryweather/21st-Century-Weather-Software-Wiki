@@ -1,7 +1,10 @@
 jupyter-book
 matplotlib
 numpy
+itables
+PyYAML
+pandas
+pathlib
 ghp-import
 jinja2
 sphinx-inline-tabs
-jinja-markdown

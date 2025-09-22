@@ -29,18 +29,29 @@ parts:
     - file: python/concurrent_futures
     - file: python/testing
     - file: python/package-structure
+    - file: python/netcdf_zarr_storage_best_practices
+    - file: python/xarray_zarr
   - caption: Working with Gadi
     chapters:
     - file: gadi/getting-started
     - file: gadi/mac-stuff
     - file: gadi/moving-data
+    - file: gadi/rudu-usage
+    - file: gadi/vscode
+    - file: gadi/quarto
   - caption: Datasets
     chapters:
-    - file: datasets/weather_objects
-    - file: datasets/mesaclip
-    - file: datasets/mmleav2
-    - file: datasets/energy
-    - file: datasets/drought-era5.md
+    - file: datasets/index
+      sections:
+        - file: datasets/catalogs
+        - file: datasets/weather_objects
+        - file: datasets/mesaclip
+        - file: datasets/mmleav2
+        - file: datasets/energy
+        - file: datasets/drought-era5.md
+        - file: datasets/daily-era5
+        - file: datasets/gsmap
+        - file: datasets/himawari-ahi
   - caption: Git
     chapters:
     - file: git/git-intro
