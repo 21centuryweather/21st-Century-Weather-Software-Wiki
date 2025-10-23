@@ -443,6 +443,12 @@ without leaving the editor.</p></li>
 </div>
 <p>You probably already have something similar to the first block, but you need to add the second block to allow VS Code to connect to the ARE session. In the second block, <code class="docutils literal notranslate"><span class="pre">%h</span></code> will be replaced by any host name starting with <code class="docutils literal notranslate"><span class="pre">gadi-cpu-</span></code>. So, when you connect to the compute node in the next step, VS Code will <strong>automatically</strong> add the corresponding host to this file. And you don’t need to manually add a new host everytime.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ProxyJump</span></code> directive indicates that the connection to this host should go through the “gadi” host. This configuration is useful when there is an intermediate jump host required to connect to the final destination.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get the error
+<code class="docutils literal notranslate"><span class="pre">ssh:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">resolve</span> <span class="pre">hostname</span> <span class="pre">gadi-cpu-clx-xxxx.gadi.nci.org.au:</span> <span class="pre">nodename</span> <span class="pre">nor</span> <span class="pre">servname</span> <span class="pre">provided,</span> <span class="pre">or</span> <span class="pre">not</span> <span class="pre">known</span></code>
+try modifying the <code class="docutils literal notranslate"><span class="pre">ProxyJump</span></code> field to <code class="docutils literal notranslate"><span class="pre">&lt;your_username&gt;&#64;gadi.nci.org.au</span></code></p>
+</div>
 </section>
 <section id="connect-to-the-are-session">
 <h3>3. Connect to the ARE session<a class="headerlink" href="#connect-to-the-are-session" title="Link to this heading">#</a></h3>
