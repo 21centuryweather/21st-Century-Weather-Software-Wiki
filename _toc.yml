@@ -24,7 +24,7 @@ parts:
   - caption: Interactive coding with VSCode 
     chapters:
     - file : vscode/intro-ipython
-    - file : vscode/intro-vscode
+    - file : vscode/debugging-python
   - caption: Python
     chapters:
     - file: python/intro-python
