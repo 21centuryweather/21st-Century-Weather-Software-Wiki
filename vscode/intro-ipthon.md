@@ -185,7 +185,10 @@ In [13]: %run mean_air_temp.py
 ```
 But we can also execute this function **inside the VSCode IDE**!.
 
-Firstly, we can highlight every line of code with our mouse, right-click, and the selection `Run Python`-> `Run Python File in Terminal`.
+Firstly, we can click on the 'Play' button in the top-right of the VSCode window.
+![Run](images/Run.png)
+
+Or, we can highlight every line of code with our mouse, right-click, and the selection `Run Python`-> `Run Python File in Terminal`.
 ![Pop-Up menu](images/Run_terminal.png)
 
 This will open a Python terminal in the lower section of the VSCode window, which will activate your Python interpreter you chose earlier, and then execute the script. 
@@ -194,6 +197,8 @@ This will open a Python terminal in the lower section of the VSCode window, whic
 Note - we can also execute select lines of code. Let's highlight the first few lines of code and then hit `Shift->Enter` from your keyboard. An **interactive** Python terminal will then open in the lower half of the VSCode window.
 
 Wonderful! You now have an integrated development environment, where you can write and execute code in the same application window.
+
+See the official [docs](https://code.visualstudio.com/docs/python/run}) for further examples.
 
 :::{note}
 
@@ -262,6 +267,4 @@ Now if you exit and re-launch VSCode, you should be able to interactively execut
 
 Success!
 
-## Debugging code with VSCode
-
-To do.
+If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official [Python Interactive](https://code.visualstudio.com/docs/python/jupyter-support-py) docs here.
