@@ -46,6 +46,14 @@ You probably already have something similar to the first block, but you need to 
 
 The `ProxyJump` directive indicates that the connection to this host should go through the “gadi” host. This configuration is useful when there is an intermediate jump host required to connect to the final destination. 
 
+:::{note}
+
+If you get the error
+`ssh: Could not resolve hostname gadi-cpu-clx-xxxx.gadi.nci.org.au: nodename nor servname provided, or not known`
+try modifying the `ProxyJump` field to `<your_username>@gadi.nci.org.au`
+
+:::
+
 ### 3. Connect to the ARE session
 
 On VS Code, open the command palette (Ctrl+Shift+P or Cmd+Shift+P on Mac) and type "Remote-SSH: Connect to Host...". Select the compute node you copied when the ARE session started. Follow the instructions. VS Code will then connect to the compute node, and you will be able to open files and folders on Gadi.
