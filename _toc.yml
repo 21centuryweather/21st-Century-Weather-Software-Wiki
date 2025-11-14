@@ -21,6 +21,10 @@ parts:
       - file: NRI-RNS/outputs
       - file: NRI-RNS/evaluating
       - file: NRI-RNS/further-considerations
+  - caption: Interactive coding with VSCode 
+    chapters:
+    - file : vscode/intro-ipython
+    - file : vscode/intro-vscode
   - caption: Python
     chapters:
     - file: python/intro-python
