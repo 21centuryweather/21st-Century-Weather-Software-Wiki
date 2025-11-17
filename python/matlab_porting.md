@@ -134,3 +134,24 @@ array([[ 1.4834, 10.445 , 11.2884, 12.7587, 14.33  ],
 
 The next task is to apply a user-input threshold value of IVT to the data. In MATLAB this is done using
 ```
+% Transpose inputs
+lat=lat'
+lon=lon'
+
+dataset=dataset';
+%it flips it back to col,rows at the end. Algorthim was designed in Matlab hence rows,col
+mask_temp=zeros(size(dataset));
+
+%create binary mask based on input threshold
+IVT_threshold=250;
+A1=ones(size(dataset));
+A2=dataset;
+    for i=1:1:length(dataset(:,1))
+        for j=1:1:length(dataset(1,:))
+            if  dataset(i,j)<IVT_threshold
+                A2(i,j)=NaN;
+                A1(i,j)=0;
+            end
+        end
+    end
+```
