@@ -32,4 +32,24 @@ Key concepts involved in debugging:
 
 ## First steps, using Pdb
 
-Python comes with its own debugging module - [`pdb`](https://docs.python.org/3/library/pdb.html). This runs inside a terminal so it doesn't have all the visualisation tools that an IDE debugger would. But it's a good place to start.
+Python comes with its own debugging module - [`pdb`](https://docs.python.org/3/library/pdb.html). This runs inside a terminal so it doesn't have all the nice visualisation tools that an IDE debugger would (such as array and dictionary viewers). But it's a good place to start.
+
+Insert the following in `mean_air_temp.py` where you want to put the first breakpoint.
+```python
+breakpoint()
+```
+This imports the `pdb` module, halts the current execution of the script and gives us access to the values of all variables, the **call stack** (the sequence of function calls that led to this point) and he scope of the current function.
+
+Let's put the breakpoint in `main()`, just before we compute the `subset` of the input DataSet. Now run the script inside an IPython console. It should produce this.
+```python
+In [3]: %run mean_air_temp.py
+2025-11-17 17:02:18,228:__main__:INFO: PROJECT_ROOT_DIR = /Users/PGREGORY/code/software_engineering_demos/CoE_workshop_2025
+2025-11-17 17:02:18,228:__main__:INFO: DATA_DIR = /Users/PGREGORY/code/software_engineering_demos/CoE_workshop_2025/data
+2025-11-17 17:02:18,228:__main__:INFO: Loading /Users/PGREGORY/code/software_engineering_demos/CoE_workshop_2025/data/sample_air_temp.nc
+> /Users/PGREGORY/code/software_engineering_demos/CoE_workshop_2025/scripts/mean_air_temp.py(74)main()
+-> subset = ds.sel(lat=slice(75,50),lon=slice(200,225),time=slice('2013-01-01','2013-01-10')).air
+(Pdb) 
+```
+The program has halted 
+
+There are loads of `pdb` 'cheat-sheets' available. Here is an [example](https://ugoproto.github.io/ugo_py_doc/pdf/Python-Debugger-Cheatsheet.pdf).
