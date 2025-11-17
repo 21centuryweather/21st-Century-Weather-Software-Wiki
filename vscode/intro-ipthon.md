@@ -135,7 +135,7 @@ Your choice of Python interpreter will now be active on bottom-right.
 Let's have a look at the pretty syntax highlighting in the source. If your scroll down to Line 68, you'll see the `sys.exit` has a small yellow squiggle underneath it. The 'Linter' which is present in your VSCode Python extension has automatically spotted an error in this code! 
 
 If you hover your cursor over the yellow squiggle, a Pylance pop-up menu appears. You can click on the `View Problem` portion of the pop-up menu and it will specify the error.
-![Pop-Up menu](images/PopUp.png)
+![Pop-Up menu](images/Popup.png)
 
 If you click on `Quick Fix` portion (or use the suggested keyboard short-cut) you will activate another menu.
 ![Pop-Up menu](images/Bulb.png)
