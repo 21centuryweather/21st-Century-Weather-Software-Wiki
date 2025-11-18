@@ -268,3 +268,17 @@ Now if you exit and re-launch VSCode, you should be able to interactively execut
 Success!
 
 If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official [Python Interactive](https://code.visualstudio.com/docs/python/jupyter-support-py) docs here.
+
+## Viewing git commits inside VSCode
+
+VSCode also comes with an integrated source control viewer which allows you to track the progress of your git project inside the IDE.
+
+Click on the source control button on the right task bask and it will produce a graph of the source showing all branches, merges and commits.
+
+You can also type commit messages inside the `Changes` window (above the `Graph` section ), so you don't need to exit your VSCode session and use a terminal to manage your local repository. 
+
+VSCode also allows you to visually inspect and amend your code when merging conflicts.
+
+See the official docs [here](https://code.visualstudio.com/docs/sourcecontrol/overview) for more information.
+
+![Git source control inside VSCode](images/git.png)

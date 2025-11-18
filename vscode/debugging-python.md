@@ -141,12 +141,6 @@ Let's hit `c` to **continue** to the end of the program.
 
 This confirms the two mean values are different. 
 
-:::{note}
-
-One advantage `pdb` has over the VSCode debugger is the ability to create 'conditional breakpoints'. You can see some examples [here](https://www.w3resource.com/python-interview/what-is-conditional-debugging-and-how-do-you-achieve-it-with-pdb.php#google_vignette) and [here](https://stackoverflow.com/questions/25275410/conditional-breakpoint-using-pdb)
-
-:::
-
 ## Debugging using VSCode
 
 Now that we understand the mechanisms behind debugging, let's use the VSCode debugger.  Remove the `breakpoint()` line from your source code, hover your cursor to the **left** of the line numbers where we define the `subset` data array. You'll notice a dark red circle appear, along with a pop-up window.
@@ -197,13 +191,111 @@ We can then step through the rest of the code until its completion.
 
 Using the debugger and your knowledge of Python loops, have you been able to spot the bug yet? Are you able to change a line of code so that our function `calculate_mean_loop` matches the value of the `xarray` built-in function `mean`?
 
+## Using arguments with the VSCode launch.json file
+
+Often your script will require command-line arguments at runtime. You could hard-wire the values of these arguments when using the VSCode debugger, or you can configure command-line arguments by editing the 'launch.json' file. 
+
+Let's examine the file `args.py` in the https://github.com/21centuryweather/software_engineering_demos/CoE_workshop_2025/scripts directory.
+
+This script is the same as `mean_air_temp.py` except it takes a command-line argument for the number of slices to average along the time dimensions.
+
+You can execute this script in an IPython session as follows:
+```
+In [16]: %run args.py -t 40
+```
+Let's create a launch configuration to run the debugger using this command-line argument.
+
+VSCode provides a number of ways to achieve this. Select `Run and Debug` mode using a `launch.json` file by either
+- Selecting `create a launch.json file` via the left hand taskbar, or
+- Selecting `Python Debugger: Debug using launch.json` via the top right pull-down menu. 
+
+![Customising the debug launcher](images/launch.png)
+
+The selection `Python Debugger` from the pop-up menu.
+
+![Select your debug options](images/debug_options.png)
+
+Select the option to add arguments, which will allow you to enter your arguments interactively.
+
+![Enter your arguments](images/args.png)
+
+You can proceed with debugging as normal.
+
+:::{note}
+
+Don't forget to add a breakpoint, otherwise the code will exit without stopping.
+
+We have now created a debugging configuration which will be active for the remainder of the session. It can be accessed from the `Run and Debug` console as `Python Debugger: Current File with Arguments`
+
+![Repeat the configuration](images/args2.png)
+
+We can do this because we have created an entry in the `launch.json` file which now contains the following:
+```
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python Debugger: Current File with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": "${command:pickArgs}"
+        }
+    ]
+}
+```
+You can view the `launch.json` file by accessing the tool 'cog' or 'gear' on the top right, next to the 'Run and Debug' pull-down menu.
+![Add configuration](images/config.png)
+
+
+More complicated configurations can be created by editing the `launch.json` file. For example, when attempting to debug a Python script associated with the ACCESS-rAM3 ancilliary suite, I created the following launcher configuration to allow the file `ancil_lct.py` to be debugged.
+```
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: debug ancil_lct for u-dg767",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["/home/548/pag548/cylc-run/u-dg767/share/data/etc/ancil_master_ants//vegetation/cover/cci/v3/vegetation_fraction.nc",
+                " --target-grid",
+                "/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/grid.nl",
+                "--transform-path", 
+                "/g/data/access/TIDS/UM/ancil/data/transforms/cci2jules_ra1.json",
+                "-o",
+                "/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/qrparm.veg.frac_cci_pre_c4",
+                "--landseamask-output",
+                "/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5",
+                "--ants-config", 
+                "/home/548/pag548/cylc-run/u-dg767/work/1/Lismore_era5_ancil_lct/rose-app-run.conf"
+            ]"
+        }
+    ]
+}
+```
+
+## Further information
+
+The official VSCode debugging documentation is available [here](https://code.visualstudio.com/docs/debugtest/debugging) (which includes a tutorial video) while extra information to help configure Python scripts for the VSCode debugger can be found [here](https://code.visualstudio.com/docs/python/debugging)
+
 ## Conclusion
 
 Debuggers are powerful tools that allow us to see in forensic detail how the code **actually** functions, as opposed to how we **think** it functions.
 
-There is an overhead associated with configuring them and learning how they work, but for solving hard problems they are unmatched. 
+There is an overhead associated with configuring them and learning how they work, but they are unmatched for solving difficult coding problems.
 
-In particular, the VSCode Debugger allow people used to writing scripts in an IDE (e.g. MATLAB users) a familiar environment. 
+In particular, the VSCode Debugger allow people used to writing scripts in an IDE (e.g. MATLAB users) a familiar development environment. 
 
 Debuggers allow us to move from the realm of guesswork, into methodically and systematically working the problem.
 
