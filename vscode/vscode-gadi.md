@@ -76,6 +76,7 @@ Or, you instead of clicking, you can jump straight the `Command Palette` and sta
 :::{note}
 
 You can also access the `Command Palette` by clicking on the Settings 'Cog' or 'Gear' in the bottom of the left hand vertical taskbar.
+
 :::
 
 Now you should be able to complete all the exercises we did on your local machine, on gadi!
@@ -83,6 +84,7 @@ Now you should be able to complete all the exercises we did on your local machin
 :::{note}
 
 Remember to alter your `launch.json` file if you want your VSCode interactive Python session to use IPython.
+
 :::
 
 ## Further information
