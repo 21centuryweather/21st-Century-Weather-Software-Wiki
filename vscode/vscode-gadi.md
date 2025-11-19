@@ -87,6 +87,9 @@ Remember to alter your `launch.json` file if you want your VSCode interactive Py
 
 :::
 
+
+What differences did you notice between the VSCode behaviour on your local machine, and working remotely from `gadi`?
+
 ## Further information
 
 The official documentation for the VSCode Remote SSH extensions is [here](https://code.visualstudio.com/docs/remote/ssh)

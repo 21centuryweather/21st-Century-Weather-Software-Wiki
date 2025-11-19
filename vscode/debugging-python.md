@@ -224,6 +224,7 @@ You can proceed with debugging as normal.
 :::{note}
 
 Don't forget to add a breakpoint, otherwise the code will exit without stopping.
+:::
 
 We have now created a debugging configuration which will be active for the remainder of the session. It can be accessed from the `Run and Debug` console as `Python Debugger: Current File with Arguments`
 

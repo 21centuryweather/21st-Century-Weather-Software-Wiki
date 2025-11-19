@@ -25,6 +25,8 @@ parts:
     chapters:
     - file : vscode/intro-ipython
     - file : vscode/debugging-python
+    - file : vscode/vscode-gadi
+    - file : vscode/vscode-compute-node
   - caption: Python
     chapters:
     - file: python/intro-python
