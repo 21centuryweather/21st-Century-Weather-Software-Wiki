@@ -45,7 +45,7 @@ If we want to have access to the `xp65` conda environment, we have to add `gdata
 NCI has instructions on how to configure interactive `qsub` sessions [here](https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-InteractiveJobs)
 :::
 
-When your interactive qsub has completed, you command-line prompt will tell you the ID of the compute node, e.g.
+When your interactive `qsub` has completed, you command-line prompt will tell you the ID of the compute node, e.g.
 ```
 [<username>@gadi-cpu-clx-2592 ~]$
 ```
@@ -55,7 +55,7 @@ Select your `gadi` compute node. If it is not active, use the option to `+ Add N
 ```
 ssh <user-id>@gadi-cpu-clx-<you gadi compute node ID>
 ```
-Hit `accept` if prompted to accept external connections.
+Hit `Contine` if prompted to accept the fingerprint of the compute node after you have checked the compute node ID is correct.
 
 A successful connection will result in the `gadi` compute node showing in the bottom-left corner, and in your Remote Explorer.
 

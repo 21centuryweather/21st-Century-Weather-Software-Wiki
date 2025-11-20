@@ -93,12 +93,6 @@ If so - this [ACCESS-Hive](https://forum.access-hive.org.au/t/python-and-fortran
 
 The `Pylance` extension can consume a lot of resources as it walks through the file system finding the definitions of all functions in your project. This can create a significant load on the `gadi` login node. So some VSCode processes on `gadi` are restricted. 
 
-## Connecting to an ARE session
-
-Everything we did above was on a `gadi` login node. If you want to run code that requires compute power you can either submit a job to the PBS queue or you can start an ARE session and work interactively. Connecting VSCode to an ARE session is similar to what we did to connect to a `gadi` long node. It requires a few more configuration steps but you only need to do that once. 
-
-[This section of the Wiki](/gadi/vscode.md) provides detailed instructions on how to connect VSCode to an ARE session on gadi.
-
 ## Further information
 
 The official documentation for the VSCode Remote SSH extensions is [here](https://code.visualstudio.com/docs/remote/ssh)
