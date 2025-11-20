@@ -87,6 +87,12 @@ Remember to alter your `launch.json` file if you want your VSCode interactive Py
 
 :::
 
+Did you find any difference in how VSCode behaves on your local machine, and on `gadi`?
+
+If so - this [ACCESS-Hive](https://forum.access-hive.org.au/t/python-and-fortran-languages-servers-in-vs-code-not-working-after-using-cylc-rose-persistent-sessions/4651/7) forum post provides some answers. 
+
+The `Pylance` extension can consume a lot of resources as it walks through the file system finding the definitions of all functions in your project. This can create a significant load on the `gadi` login node. So some VSCode processes on `gadi` are restricted. 
+
 ## Further information
 
 The official documentation for the VSCode Remote SSH extensions is [here](https://code.visualstudio.com/docs/remote/ssh)
