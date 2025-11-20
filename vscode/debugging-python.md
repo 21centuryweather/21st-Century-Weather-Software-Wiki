@@ -1,11 +1,13 @@
 # Debugging Python with VSCode
 
-Let's load and run the file `mean_air_temp.py` from the https://github.com/21centuryweather/software_engineering_demos repo.  (It will be in the `CoE_workshop_2025` subdirectory). This is a trivial test script which
+Let's load and run the file `mean_air_temp.py` from the https://github.com/21centuryweather/software_engineering_demos repo. It will be in the `CoE_workshop_2025` subdirectory. This is a trivial test script which
+
 - Loads in some sample air temperature data.
 - Uses a user-defined function `calculate_mean_loop` to compute the temporal average for the first 10 days of the dataset.
 - Then compares it against the `xarray` built-in method `.mean(dim='time')` and outputs the difference.
 
 Your output should be similar to the following:
+
 ```
 2025-11-18 10:35:32,120:__main__:INFO: Calculating Mean Air Temp using explicit time iteration...
 2025-11-18 10:35:32,129:__main__:INFO: Mean Air Temp calculation complete via loop. Check the result's value.
@@ -18,13 +20,14 @@ Ideally these two averages should be the same. Yet the user-defined function dif
 ## What is debugging?
 
 Debugging is simply removing 'bugs' or errors in code. The bugs may caused by:
+
 - syntax errors : we've typed the wrong symbol, or used the wrong order of symbols, so the code functions differently to its intended purpose.
 - logic errors : the code is mechanically correct but it carries out the wrong order of tasks, creating the wrong answer.
 - semantic errors : the code is working correctly but it has incorrect names and labels assigned to it variables or functions.
 
 We have seen previously that a Linter will detect and fix basic syntax errors that will prevent a script from running. But if the script runs, but produces incorrect results, we will need to conduct a forensic investigation to ensure how we **think** the code is executing is the same as how it **actually** executes.
 
-Typically, undergraduate coding involves using lots of 'print' statements to standard output to view the values of parameters and variables as they change throughout the code.
+Typically, undergraduate coding involves using lots of `print` statements to standard output to view the values of parameters and variables as they change throughout the code.
 
 But once our codes grow in complexity, our debugging methods must also grow in sophistication.
 
@@ -43,12 +46,14 @@ Key concepts involved in debugging:
 Python comes with its own debugging module - [`pdb`](https://docs.python.org/3/library/pdb.html). This runs inside a terminal so it doesn't have all the nice visualisation tools that an IDE debugger would (such as array and dictionary viewers). But it's a good place to start.
 
 Insert the following in `mean_air_temp.py` where you want to put the first breakpoint.
+
 ```python
 breakpoint()
 ```
-This imports the `pdb` module, halts the current execution of the script and gives us access to the values of all variables, the **call stack** (the sequence of function calls that led to this point) and he scope of the current function.
+This imports the `pdb` module, halts the current execution of the script and gives us access to the values of all variables, the **call stack** (the sequence of function calls that led to this point) and the scope of the current function.
 
 Let's put the breakpoint in `main()`, just before we compute the `subset` of the input DataSet. Now run the script inside an IPython console. It should produce this.
+
 ```python
 In [3]: %run mean_air_temp.py
 2025-11-17 17:02:18,228:__main__:INFO: PROJECT_ROOT_DIR = /Users/PGREGORY/code/software_engineering_demos/CoE_workshop_2025
@@ -73,7 +78,8 @@ The program has halted at the location of the `breakpoint()` statement. Type `l`
  85  	    mean_loop_built_in = subset.mean(dim='time')
  86  	
 ```
-In this case, we have stopped at line 81. Let's hit `n` to **step over** to the next line.  This means we have now computed `subset`, and we can interrogate the contents of `subset` from the debugger using the `p`, or 'print' command. E.g.
+In this case, we have stopped at line 81. Let's hit `n` to **step over** to the next line. This means we have now computed `subset`, and we can interrogate the contents of `subset` from the debugger using the `p`, or 'print' command. E.g.
+
 ```
 (Pdb) p subset.shape
 (40, 11, 11)
@@ -85,10 +91,12 @@ array([[241.2    , 242.5    , 243.5    , 244.     , 244.09999, 243.89   ,
 etc.
 
 When we are pointing to the line that defines the subroutine `calculate_mean_loop`, e.g.
+
 ```
 -> mean_loop_result = calculate_mean_loop(subset)
 ```
 press `s` to **step into** this line. Now we are inside the function definition of `calculate_mean_loop` and we can keep pressing `n` to traverse through the function until we reach the for loop.
+
 ```
 (Pdb) l
  29  	
@@ -105,7 +113,8 @@ press `s` to **step into** this line. Now we are inside the function definition 
 ```
 We can continue to hit `n` to step through the loop. Note the debugger will skip whitespace and comment lines.
 
-Note this loop will activate 40 times, as 
+Note this loop will activate 40 times, as:
+
 ```
 (Pdb) p num_time_steps
 40
@@ -157,7 +166,7 @@ This will bring up the 'Run and Debug' console. Click on `Run and Debug' and acc
 
 ![Break3](images/Break3.png)
 
-2. Activate the pull-down menu to the right of the 'Run' icon on the top right and select '
+2. Activate the pull-down menu to the right of the 'Run' icon on the top right and select the following option:
 
 ![Break3](images/Break4.png)
 
@@ -211,7 +220,7 @@ VSCode provides a number of ways to achieve this. Select `Run and Debug` mode us
 
 ![Customising the debug launcher](images/launch.png)
 
-The selection `Python Debugger` from the pop-up menu.
+Then select `Python Debugger` from the pop-up menu.
 
 ![Select your debug options](images/debug_options.png)
 
