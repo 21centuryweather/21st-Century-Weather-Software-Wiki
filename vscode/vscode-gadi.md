@@ -16,11 +16,11 @@ To do this, it is recommended to configure your `ssh` on your local machine to c
 
 If you haven't done this before, please read these guidelines.
 
-https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/
+* https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/
 
-https://opus.nci.org.au/spaces/Help/pages/130842757/Using+SSH+keys
+* https://opus.nci.org.au/spaces/Help/pages/130842757/Using+SSH+keys
 
-https://docs.access-hive.org.au/getting_started/set_up_nci_account/
+* https://docs.access-hive.org.au/getting_started/set_up_nci_account/
 
 These steps will create set up a pair of encrypted `ssh` keys between your local machine and `gadi` so that you can transmit data securely.
 
@@ -40,7 +40,7 @@ Once you've completed the following:
 - Installed the `ssh` extensions for VSCode
 - Cloned the https://github.com/21centuryweather/software_engineering_demos repository to a disk on gadi
 
-we can repeat the previous exercises, using the Remote-SSH connection.
+We can repeat the previous exercises, using the Remote-SSH connection.
 
 You can connect to `gadi` via VSCode using a variety of methods.
 
@@ -87,8 +87,11 @@ Remember to alter your `launch.json` file if you want your VSCode interactive Py
 
 :::
 
+Did you find any difference in how VSCode behaves on your local machine, and on `gadi`?
 
-What differences did you notice between the VSCode behaviour on your local machine, and working remotely from `gadi`?
+If so - this [ACCESS-Hive](https://forum.access-hive.org.au/t/python-and-fortran-languages-servers-in-vs-code-not-working-after-using-cylc-rose-persistent-sessions/4651/7) forum post provides some answers. 
+
+The `Pylance` extension can consume a lot of resources as it walks through the file system finding the definitions of all functions in your project. This can create a significant load on the `gadi` login node. So some VSCode processes on `gadi` are restricted. 
 
 ## Further information
 

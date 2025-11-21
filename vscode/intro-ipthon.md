@@ -11,11 +11,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 As straightforward as this is, trying to build complicated scripts and projects purely from a terminal is difficult. Typically, we will start writing our Python script in a text editor, and then execute this script (or sections of it) inside a python session to produce our desired outputs.
 
-To help do this, there is the `IPython' tool
+To help do this, there is the `IPython' tool.
 
 ## IPython - or Interactive Python.
 
-IPython is a powerful interactive shell that also provides the underpinnings of python Jupyter notebooks. While python notebooks are a fantastically powerful tool, they come with require large overheads and can sometimes promote bad programming practises.
+IPython is a powerful interactive shell that also provides the underpinnings of python Jupyter notebooks. While python notebooks are a fantastically powerful tool, they come with require large overheads and can sometimes promote bad programming practices.
 
 Jupyter notebooks are fantastic for visualisation and for creating workflows. But if you are building code from scratch, we recommend using IPython.
 
@@ -29,7 +29,7 @@ The advantages of using IPython over a standard Python session are numerable, an
 - Shell integration using `bash` commands (e.g. `ls`, `pwd`) so you don't have to swap from your python session to a shell terminal.
 - Syntax highlighting and output formatting.
 
-IPython is installed with any of the standard `analysis3` environments on gadi. Just type `ipython` after loading your `xp65` `analysis3` environment.
+IPython is installed with any of the standard `analysis3` environments on gadi. On a terminal type `ipython` after loading your `xp65` `analysis3` environment.
 ```
 $ ipython
 Python 3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]
@@ -124,6 +124,13 @@ Once you can open VSCode on your own machine, you can read the [getting started]
 
 Let's load the file https://github.com/21centuryweather/software_engineering_demos/blob/12-2025-workshop/CoE_workshop_2025/scripts/mean_air_temp.py into VSCode. Typically in VSCode you will want to open the parent directory of your software project, so you can view and access all source code files from the File Explorer at the left of the VSCode window. 
 
+:::{note}
+
+You can open a directory from the menu File -> Open Folder... or you can use short-cut keys `Ctrl+K Ctrl+O` (or `Cmd+K Cmd+O` on Mac). 
+But, the best way to find how to do something in VSCode is to open the Command Palette using `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) and type what you want to do. The Command Palette will provide a list of options that match your search.
+
+:::
+
 So once you've added the `CoE_workshop_2025` folder to VSCode, click on the menus on the left to load `mean_air_temp.py`. Your window should look something like this.
 ![Opening window](images/VS_window1.png)
 Note the warning on the bottom right of the window `! Select Interpreter`. Let's click on that and choose a Python interpreter installed on you machine. VSCode should be clever enough to search your shell PATH for various Python interpreters, depending on which environment and package manager you are using (e.g. `conda`). I will choose the interpreter that corresponds to my `Python 3.10 conda` environment.
@@ -210,7 +217,8 @@ will fail with message
 ```python
 NameError: name '__file__' is not defined. Did you mean: '__name__'?
 ```
-This is because the global variable `__file__` is not defined when we use an interactive shell. It won't work inside a Juypter notebook either. So if you are interactively working on a script which uses this variable, you should substitute a full path for `SCRIPT_DIR`, e.g. enter
+This is because the global variable `__file__` is not defined when we use an interactive shell. It won't work inside a Jupyter notebook either. So if you are interactively working on a script which uses this variable, you should substitute a full path for `SCRIPT_DIR`, e.g. enter:
+
 ```python
 SCRIPT_DIR=Path('/My/Actual/Path')
 ```
@@ -218,7 +226,8 @@ SCRIPT_DIR=Path('/My/Actual/Path')
 
 ## Setting up IPython inside VSCode
 
-Note that VSCode will launch an interactive python session using your interpreter of choice. In my example, VSCode executed
+Note that VSCode will launch an interactive python session using your interpreter of choice. In my example, VSCode executed:
+
 ```
 conda activate py310
 (base) paulgregory@PaulsMacStudio2 CoE_workshop_2025 % conda activate py310
@@ -236,13 +245,14 @@ etc
 But wait, you said earlier that IPython was superior for interactive coding? (It is). Can we get VSCode to launch an interactive **IPython** session instead of a standard Python one?
 
 Yes we can. What we need to do is adjust the Python launch settings inside VSCode. To do this, we can:
+
 - Click on the tool gear/cog on the bottom left of the VSCode window and select `Open Command Palette
 ![Command_Palette](images/Command_Palette.png)
 
 - Or press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
 
-Once the Command Palette is open, type `Preferences: Open User Settings (JSON)` (This should autocomplete.)
-![Prefences](images/Preferences.png)
+Once the Command Palette is open, type `Preferences: Open User Settings (JSON)` (this should autocomplete.)
+![Preferences](images/Preferences.png)
 
 Search for the `"python.terminal.launchArgs"` section and add the following:
 ```
@@ -275,7 +285,7 @@ VSCode also comes with an integrated source control viewer which allows you to t
 
 Click on the source control button on the right task bask and it will produce a graph of the source showing all branches, merges and commits.
 
-You can also type commit messages inside the `Changes` window (above the `Graph` section ), so you don't need to exit your VSCode session and use a terminal to manage your local repository. 
+You can also `add` and `commit` files (with it corresponding message) in the `Changes` panel (above the `Graph` section ), so you don't need to exit your VSCode session and use a terminal to manage your local repository. 
 
 VSCode also allows you to visually inspect and amend your code when merging conflicts.
 
