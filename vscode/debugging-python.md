@@ -297,7 +297,14 @@ More complicated configurations can be created by editing the `launch.json` file
 
 ## Further information
 
-The official VSCode debugging documentation is available [here](https://code.visualstudio.com/docs/debugtest/debugging) (which includes a tutorial video) while extra information to help configure Python scripts for the VSCode debugger can be found [here](https://code.visualstudio.com/docs/python/debugging)
+The official VSCode debugging documentation is available [here](https://code.visualstudio.com/docs/debugtest/debugging) (which includes a tutorial video) while extra information to help configure Python scripts for the VSCode debugger can be found [here](https://code.visualstudio.com/docs/python/debugging).
+
+:::{note}
+
+Jupyter Notebooks also contain their own debugger. If you click on the 'Bug' symbol on the right hand taskbar, it opens up the the built-in graphical debugger with all sorts of options.
+![Notebook debugger](images/ARE_debug.png)
+
+The official JupyterLab debug docs are [here](https://jupyterlab.readthedocs.io/en/stable/user/debugger.html)
 
 ## Conclusion
 

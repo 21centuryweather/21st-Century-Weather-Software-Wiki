@@ -285,10 +285,12 @@ VSCode also comes with an integrated source control viewer which allows you to t
 
 Click on the source control button on the right task bask and it will produce a graph of the source showing all branches, merges and commits.
 
+![Git source control inside VSCode](images/git.png)
+
 You can also `add` and `commit` files (with it corresponding message) in the `Changes` panel (above the `Graph` section ), so you don't need to exit your VSCode session and use a terminal to manage your local repository. 
 
-VSCode also allows you to visually inspect and amend your code when merging conflicts.
+VSCode also allows you to visually inspect and amend your code when merging conflicts, see below for an example.
+
+![Git merge example](images/Git_merge_conflict.png)
 
 See the official docs [here](https://code.visualstudio.com/docs/sourcecontrol/overview) for more information.
-
-![Git source control inside VSCode](images/git.png)

@@ -10,15 +10,53 @@ So, login to https://are.nci.org.au as normal and start your JupyterLab session 
 
 ![SSH-gadi-compute](./images/JupyterLab.png)
 
-Then use the Remote-SSH button on the bottom left corner to connect to a new session, and click `+ Add New SSH Host`
+Then use the Remote-SSH button on the bottom left corner to `Connect to Host` and then type in the ID of you    r ARE session.
 
-In this example I type `ssh <username>@gadi-cpu-bdw-0146.gadi.nci.org.au`
+![SSH-ARE-connect](./images/ARE_connect.png)
 
-![SSH-gadi-compute](./images/ARE_connect.png)
+In this example I type `gadi-cpu-bdw-0004.gadi.nci.org.au`
 
-This will add this host to our `~/.ssh/config` file. Once this has been updated, we can connect to the compute node hosting the JupyterLab session in two ways
-1. Via the Remote-SSH button in the bottom-left, which will provide a list of configured remote hosts in the central pull-down menu, or
-2. Use the Remote Explorer icon in the left vertical taskbar and select the remote host we want from the list in `REMOTE EXPLORER` column.
+![SSH-ARE-connect](./images/ARE_connect2.png)
 
-![SSH-gadi-compute](./images/ARE_connect2.png)
+Hit `Continue` when provided with a Host fingerprint.
 
+:::{note}
+
+The 'pop-up' menu states `Select configured SSH host or enter user@host`. Because we have entered `Host gadi-cpu-*` in our `~/.ssh/config` we **don't** need to enter `user@host`. Any host the begins with `gadi-cpu` will be automatically configured.
+:::
+
+Let's load a notebook into VScode. I'll load https://github.com/21centuryweather/animations/blob/main/workshop_demo/animation_notebook.ipynb.
+
+(If you haven't clone this repository already, you will do so later in this workshop)
+
+Now we need to load the notebook kernel. If we want to use an `xp65 analysis3` kernel, this is a **two-stage** process.
+
+1. Load the `Python Interpreter` first via the `Command Palette`. In this example I'll load `analysis3-25.09` by selecting `Enter Interpreter Path`. I then enter `/g/data/xp65/public/apps/med_conda_scripts/analysis3-25.09.d/bin/python`
+
+![SSH-ARE-connect](./images/ARE_interpreter.png)
+
+![SSH-ARE-connect](./images/ARE_interpreter2.png)
+
+![SSH-ARE-connect](./images/ARE_interpreter3.png)
+
+2. Then click `Select Kernel` and select `Python Environment` and choose the environment associated with the `analysis3` version.
+
+![SSH-ARE-connect](./images/ARE_kernel.png)
+
+![SSH-ARE-connect](./images/ARE_kernel2.png)
+
+If you **don't** do step one, you won't be able to see any of the `analysis3` kernels.
+
+If you want to use any of your own kernels located in `~/.local/share/jupyter/kernels/` you can just click `Select Kernel` and then `Jupyter Kernel` when you connect for the first time. 
+
+![SSH-ARE-connect](./images/local_kernels.png)
+
+Note this list of 'local' kernels matches the same available here:
+
+![SSH-ARE-connect](./images/ARE_kernels.png)
+
+But it appears that if you have already loaded and selected an `analysis3` kernel, you won't be able to load the local kernels without disconnecting and re-connecting again. 
+
+Now you can execute your Juypter notebook inside your VSCode session.
+
+ 

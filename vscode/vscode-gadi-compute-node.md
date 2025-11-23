@@ -16,8 +16,14 @@ By using a neat trick called a 'Proxy Jump'. This will allow us to
 - Connect VSCode to an interactive PBS job running on a compute node that we start ourselves
 - Automatically redirect all I/O traffic (i.e. keyboard and mouse inputs) from a compute node to our local VSCode GUI window **via** a login node.
 
-To start with, amend the following in your local `~/.ssh/config` file:
+![VSCode-SSH-gadi](images/VSCode-gadi-proxy.png)
+
+To start with, amend the following in your local `~/.ssh/config` file so it contains both these entries:
 ```
+Host gadi.nci.org.au
+  HostName gadi.nci.org.au
+  User pag548
+
 Host gadi-cpu-*
   HostName %h
   User <your_username>
@@ -25,7 +31,7 @@ Host gadi-cpu-*
 ```  
 where the `ProxyJump` entry is the designated `Host` field created earlier which refers to the login nodes of `gadi`.  
 
-In this example, the `~/.ssh/config` file would also contain a field
+In this example, the ProxyJump entry in the `~/.ssh/config` file matches the Host definition.
 ```
 Host gadi.nci.org.au
 ```
@@ -53,7 +59,7 @@ Now, click on the bottom-left corner to bring up the `Connect to Host` option in
 
 Select your `gadi` compute node. If it is not active, use the option to `+ Add New SSH Host` and type 
 ```
-ssh <user-id>@gadi-cpu-clx-<you gadi compute node ID>
+gadi-cpu-clx-<you gadi compute node ID>
 ```
 Hit `Contine` if prompted to accept the fingerprint of the compute node after you have checked the compute node ID is correct.
 
