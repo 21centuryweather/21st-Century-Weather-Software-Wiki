@@ -6,6 +6,6 @@ So you can run a script in an `Interactive` window but use cells, combine markdo
 
 ![VSCode interactive](images/Python_interactive.png)
 
-Inside the interactive window, you can type code into cells, and plot in a 'Notebook-like' environment without having to run a Juypter Notebook server.
+Inside the interactive window, you can type code into cells, and plot in a 'Notebook-like' environment without having to run a Jupyter Notebook server.
 
 ![VSCode interactive](images/Python_interactive2.png)
