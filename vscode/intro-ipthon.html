@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developing python code &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vscode/intro-ipthon';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode-gadi.html">Running VSCode on gadi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/vscode/intro-ipthon.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Developing python code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ipython-or-interactive-python">IPython - or Interactive Python.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vscode-as-an-integrated-development-environment">Using VSCode as an Integrated Development Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-ipython-inside-vscode">Setting up IPython inside VSCode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-git-commits-inside-vscode">Viewing git commits inside VSCode</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="developing-python-code">
+<h1>Developing python code<a class="headerlink" href="#developing-python-code" title="Link to this heading">#</a></h1>
+<p>Python is an open-source scripting language that has found huge appeal across a wide range of applications including web and internet development, database management, network programming and education. It has also became the default choice for scientific and numerical programmers all over the world. See <a class="reference external" href="https://www.python.org/about/">here</a> for more information.</p>
+<p>The easiest way to start coding in Python is to simply start at a terminal command line. E.g. from a Mac OS terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">python3</span>
+<span class="n">Python</span> <span class="mf">3.14.0</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">7</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">09</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">52</span><span class="p">)</span> <span class="p">[</span><span class="n">Clang</span> <span class="mf">17.0.0</span> <span class="p">(</span><span class="n">clang</span><span class="o">-</span><span class="mf">1700.0.13.3</span><span class="p">)]</span> <span class="n">on</span> <span class="n">darwin</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As straightforward as this is, trying to build complicated scripts and projects purely from a terminal is difficult. Typically, we will start writing our Python script in a text editor, and then execute this script (or sections of it) inside a python session to produce our desired outputs.</p>
+<p>To help do this, there is the `IPython’ tool.</p>
+<section id="ipython-or-interactive-python">
+<h2>IPython - or Interactive Python.<a class="headerlink" href="#ipython-or-interactive-python" title="Link to this heading">#</a></h2>
+<p>IPython is a powerful interactive shell that also provides the underpinnings of python Jupyter notebooks. While python notebooks are a fantastically powerful tool, they come with require large overheads and can sometimes promote bad programming practices.</p>
+<p>Jupyter notebooks are fantastic for visualisation and for creating workflows. But if you are building code from scratch, we recommend using IPython.</p>
+<p>The advantages of using IPython over a standard Python session are numerable, and include:</p>
+<ul class="simple">
+<li><p>Smart autocompletion and tab completion to find function names, object methods/attributes and file paths within your code</p></li>
+<li><p>‘magic’ commands (prefixed with <code class="docutils literal notranslate"><span class="pre">%</span></code>) that provide extra functionality such as</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</li>
+<li><p>Shell integration using <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands (e.g. <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">pwd</span></code>) so you don’t have to swap from your python session to a shell terminal.</p></li>
+<li><p>Syntax highlighting and output formatting.</p></li>
+</ul>
+<p>IPython is installed with any of the standard <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environments on gadi. On a terminal type <code class="docutils literal notranslate"><span class="pre">ipython</span></code> after loading your <code class="docutils literal notranslate"><span class="pre">xp65</span></code> <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython
+Python 3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]
+Type &#39;copyright&#39;, &#39;credits&#39; or &#39;license&#39; for more information
+IPython 8.37.0 -- An enhanced Interactive Python. Type &#39;?&#39; for help.
+
+In [1]: ls
+logger_test.py  sample.py
+</pre></div>
+</div>
+<p>If you are running on your own laptop or PC, you will need to install IPython yourself.</p>
+<p>Documentation for IPython is available <a class="reference external" href="https://ipython.readthedocs.io/en/stable/index.html">here</a>, which includes some <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/tutorial.html">tutorials</a> and <a class="reference external" href="https://ipython.readthedocs.io/en/stable/install/install.html">installation instructions</a>.</p>
+<p>So we can quickly develop python code by writing a script in a text editor and executing the whole script inside IPython using <code class="docutils literal notranslate"><span class="pre">%run</span></code>, or we can paste multiple blocks of code into IPython and check the values of the variables.</p>
+<p>As an example, you can clone the repository <a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos">21centuryweather/software_engineering_demos</a> and open the file <code class="docutils literal notranslate"><span class="pre">CoE_workshop_2025/scripts/data_processor.py</span></code> in a text editor (or a web browser) and copy the script into an IPython session.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+   <span class="o">...</span><span class="p">:</span> 
+   <span class="o">...</span><span class="p">:</span> <span class="k">def</span><span class="w"> </span><span class="nf">process_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">   ...:     Simulates a data processing task.</span>
+<span class="s2">   ...:     &quot;&quot;&quot;</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="c1"># Simulate a time-consuming operation</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="k">return</span> <span class="n">total</span><span class="p">,</span> <span class="n">average</span>
+   <span class="o">...</span><span class="p">:</span> 
+   <span class="o">...</span><span class="p">:</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">test_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">result_sum</span><span class="p">,</span> <span class="n">result_avg</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+   <span class="o">...</span><span class="p">:</span> 
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data processed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> items&quot;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Sum: </span><span class="si">{</span><span class="n">result_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average: </span><span class="si">{</span><span class="n">result_avg</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution Time (Standard): </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span> 
+<span class="n">Data</span> <span class="n">processed</span><span class="p">:</span> <span class="mi">10000</span> <span class="n">items</span>
+<span class="n">Total</span> <span class="n">Sum</span><span class="p">:</span> <span class="mi">49995000</span>
+<span class="n">Average</span><span class="p">:</span> <span class="mf">4999.50</span>
+<span class="n">Execution</span> <span class="n">Time</span> <span class="p">(</span><span class="n">Standard</span><span class="p">):</span> <span class="mf">0.0126</span> <span class="n">seconds</span>
+</pre></div>
+</div>
+<p>Or you can execute the entire script by providing the path to the <code class="docutils literal notranslate"><span class="pre">%run</span></code> magic command, e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">run</span> <span class="o">~/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">data_processor</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Data</span> <span class="n">processed</span><span class="p">:</span> <span class="mi">10000</span> <span class="n">items</span>
+<span class="n">Total</span> <span class="n">Sum</span><span class="p">:</span> <span class="mi">49995000</span>
+<span class="n">Average</span><span class="p">:</span> <span class="mf">4999.50</span>
+<span class="n">Execution</span> <span class="n">Time</span> <span class="p">(</span><span class="n">Standard</span><span class="p">):</span> <span class="mf">0.0102</span> <span class="n">seconds</span>
+</pre></div>
+</div>
+<p>We can run other ‘magic’ functions, e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">test_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">process_data</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="mf">10.3</span> <span class="n">ms</span> <span class="err">±</span> <span class="mf">10.3</span> <span class="n">μs</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">100</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And inspect the variables in the script, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="nb">list</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">test_data</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>But is there a way to improve this workflow further? Can we integrate our script editing with a current python session?</p>
+</section>
+<section id="using-vscode-as-an-integrated-development-environment">
+<h2>Using VSCode as an Integrated Development Environment<a class="headerlink" href="#using-vscode-as-an-integrated-development-environment" title="Link to this heading">#</a></h2>
+<p>The Software Engineering community has developed ‘Integrated Development Environments’ (IDEs) for decades. Typically these are software packages that include</p>
+<ul class="simple">
+<li><p>A text editor for writing code</p></li>
+<li><p>File explorers to track files and libraries required for a software projects</p></li>
+<li><p>A command line terminal for executing code</p></li>
+<li><p>A graphical debugger, for interrogating code in a forensic, line-by-line method.</p></li>
+</ul>
+<p>If you’ve ever used MATLAB, such an IDE will be familiar to you.</p>
+<p>For Python, there are various options available (e.g. <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a>) but for this Wiki entry, we are going to cover the popular Microsoft <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code (VSCode)</a>.</p>
+<p>VSCode has become very popular as</p>
+<ul class="simple">
+<li><p>It’s free</p></li>
+<li><p>Can run on Windows, Linux or Mac</p></li>
+<li><p>Is open source, so the software community has written a huge array of plug-ins and add-ons to customise VSCode for any application (e.g. spell checkers, LaTeX plug-ins to build .pdf documents etc.)</p></li>
+</ul>
+<p>To download and install VSCode, visit <a class="reference external" href="https://code.visualstudio.com/Download">this link</a>. You will also want to install this <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> to give you lots of nice Python features which we will discuss below.</p>
+<p>Once you can open VSCode on your own machine, you can read the <a class="reference external" href="https://code.visualstudio.com/docs/getstarted/getting-started">getting started</a> documents, and <a class="reference external" href="https://code.visualstudio.com/docs/getstarted/extensions">this link</a> if you are having trouble installing the Python extension. VSCode also contains its own set of <a class="reference external" href="https://code.visualstudio.com/docs/python/python-quick-start">Python docs and tutorials</a> to help you use some of its features.</p>
+<p>Let’s load the file <a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos/blob/12-2025-workshop/CoE_workshop_2025/scripts/mean_air_temp.py">21centuryweather/software_engineering_demos</a> into VSCode. Typically in VSCode you will want to open the parent directory of your software project, so you can view and access all source code files from the File Explorer at the left of the VSCode window.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can open a directory from the menu File -&gt; Open Folder… or you can use short-cut keys <code class="docutils literal notranslate"><span class="pre">Ctrl+K</span> <span class="pre">Ctrl+O</span></code> (or <code class="docutils literal notranslate"><span class="pre">Cmd+K</span> <span class="pre">Cmd+O</span></code> on Mac).
+But, the best way to find how to do something in VSCode is to open the Command Palette using <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code> (or <code class="docutils literal notranslate"><span class="pre">Cmd+Shift+P</span></code> on Mac) and type what you want to do. The Command Palette will provide a list of options that match your search.</p>
+</div>
+<p>So once you’ve added the <code class="docutils literal notranslate"><span class="pre">CoE_workshop_2025</span></code> folder to VSCode, click on the menus on the left to load <code class="docutils literal notranslate"><span class="pre">mean_air_temp.py</span></code>. Your window should look something like this.
+<img alt="Opening window" src="../_images/VS_window1.png" />
+Note the warning on the bottom right of the window <code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">Select</span> <span class="pre">Interpreter</span></code>. Let’s click on that and choose a Python interpreter installed on you machine. VSCode should be clever enough to search your shell PATH for various Python interpreters, depending on which environment and package manager you are using (e.g. <code class="docutils literal notranslate"><span class="pre">conda</span></code>). I will choose the interpreter that corresponds to my <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.10</span> <span class="pre">conda</span></code> environment.
+<img alt="Select Interpreter" src="../_images/Interpreter.png" />
+Your choice of Python interpreter will now be active on bottom-right.</p>
+</section>
+<section id="linting">
+<h2>Linting<a class="headerlink" href="#linting" title="Link to this heading">#</a></h2>
+<p>Let’s have a look at the pretty syntax highlighting in the source. If your scroll down to Line 68, you’ll see the <code class="docutils literal notranslate"><span class="pre">sys.exit</span></code> has a small yellow squiggle underneath it. The ‘Linter’ which is present in your VSCode Python extension has automatically spotted an error in this code!</p>
+<p>If you hover your cursor over the yellow squiggle, a Pylance pop-up menu appears. You can click on the <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">Problem</span></code> portion of the pop-up menu and it will specify the error.
+<img alt="Pop-Up menu" src="../_images/Popup.png" /></p>
+<p>If you click on <code class="docutils literal notranslate"><span class="pre">Quick</span> <span class="pre">Fix</span></code> portion (or use the suggested keyboard short-cut) you will activate another menu.
+<img alt="Pop-Up menu" src="../_images/Bulb.png" /></p>
+<p>Note you can jump straight to the <code class="docutils literal notranslate"><span class="pre">Quick</span> <span class="pre">Fix</span></code> menu by clicking on the yellow squiggle, which will activate the yellow flashbulb next to the column numbers.</p>
+<p>If you click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">&quot;import.sys&quot;</span></code> inside the <code class="docutils literal notranslate"><span class="pre">Quick</span> <span class="pre">Fix</span></code> menu, the Linter will automatically add <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sys</span></code> to line 4 of the source file.</p>
+<p>Linting is an automated, interactive analysis of your source code to identify errors. It will work as you type, which is fantastic when you are writing code in a rush. See this Microsoft <a class="reference external" href="https://www.youtube.com/watch?v=dF1wWo2aJCo">Linting Video</a> for further information.</p>
+<p>Let’s try writing a new function in our code to see how linting works in realtime.
+<img alt="Pop-Up menu" src="../_images/Lint1.png" /></p>
+<p>If we forget to place a <code class="docutils literal notranslate"><span class="pre">:</span></code> at the end of the function name, a red squiggle will appear. We can click on this to use the menus to diagnose the problem, or just insert the <code class="docutils literal notranslate"><span class="pre">:</span></code> ourselves.</p>
+<p>I want to write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and use the <code class="docutils literal notranslate"><span class="pre">range</span></code> command to provide an iterator. Note the linter will provide auto-completions for Python built-ins functions and provides on-the-fly docstrings if you need to access it.
+<img alt="Pop-Up menu" src="../_images/Range.png" /></p>
+<p>Note as you type</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>       <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The linter will:</p>
+<ul class="simple">
+<li><p>provide a <code class="docutils literal notranslate"><span class="pre">tab</span></code> autocomplete option for the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement.</p></li>
+<li><p>Automatically provides pop-up docstrings for <code class="docutils literal notranslate"><span class="pre">print</span></code></p></li>
+<li><p>Automatically provides matching pairs of brackets <code class="docutils literal notranslate"><span class="pre">()</span></code>, braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> and single quotes <code class="docutils literal notranslate"><span class="pre">''</span></code>.</p></li>
+</ul>
+<p>If you eliminate any of these pairs of syntax, the linter will highlight the offending item in red. Hovering over the red squiggle will generate the Pylance diagnosis and suggested fix.</p>
+<p>Another handy function of linting is the ability to quickly navigate your code. In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function we call a function <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code>. If you hover over the function name, the linter will bring up the function docstring in a pop-up menu.
+<img alt="Pop-Up menu" src="../_images/Func_doc.png" /></p>
+<p>If we want to see the definition of this function without scrolling, simply right-click on the name of the function and select <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">to</span> <span class="pre">Definition</span></code>. The Python extension will automatically take you the section of the source file where <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code> is defined. Imagine how useful this is for navigating a long text file. And imagine how useful this is when working in software project with multiple source files, as this function works across your entire filesystem!</p>
+<p>As an example, go the line where we call the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> function <code class="docutils literal notranslate"><span class="pre">open_dataset</span></code> and use the same functionality to find the definition. A new source code file will appear which represents the underlying <code class="docutils literal notranslate"><span class="pre">xarray</span></code> source code!</p>
+<p>Finally, let’s run the example file. Firstly, let’s do this inside an IPython session. Your output should resemble this.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="o">%</span><span class="n">run</span> <span class="n">mean_air_temp</span><span class="o">.</span><span class="n">py</span>
+
+<span class="o">....</span>
+
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">475</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Calculating</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">using</span> <span class="n">explicit</span> <span class="n">time</span> <span class="n">iteration</span><span class="o">...</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">488</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">calculation</span> <span class="n">complete</span> <span class="n">via</span> <span class="n">loop</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">result</span><span class="s1">&#39;s value.</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">493</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">delta</span> <span class="n">b</span><span class="o">/</span><span class="n">w</span> <span class="n">two</span> <span class="n">methods</span> <span class="o">=</span> <span class="mf">6.6442790031433105</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">493</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Check</span> <span class="n">your</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="n">function</span> <span class="n">calculate_mean_loop</span>
+</pre></div>
+</div>
+<p>But we can also execute this function <strong>inside the VSCode IDE</strong>!.</p>
+<p>Firstly, we can click on the ‘Play’ button in the top-right of the VSCode window.
+<img alt="Run" src="../_images/Run.png" /></p>
+<p>Or, we can highlight every line of code with our mouse, right-click, and the selection <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Python</span></code>-&gt; <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Python</span> <span class="pre">File</span> <span class="pre">in</span> <span class="pre">Terminal</span></code>.
+<img alt="Pop-Up menu" src="../_images/Run_terminal.png" /></p>
+<p>This will open a Python terminal in the lower section of the VSCode window, which will activate your Python interpreter you chose earlier, and then execute the script.
+<img alt="Pop-Up menu" src="../_images/Run_terminal2.png" /></p>
+<p>Note - we can also execute select lines of code. Let’s highlight the first few lines of code and then hit <code class="docutils literal notranslate"><span class="pre">Shift-&gt;Enter</span></code> from your keyboard. An <strong>interactive</strong> Python terminal will then open in the lower half of the VSCode window.</p>
+<p>Wonderful! You now have an integrated development environment, where you can write and execute code in the same application window.</p>
+<p>See the official <a class="reference external" href="https://code.visualstudio.com/docs/python/run%7D">docs</a> for further examples.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Attempting to execute the following line in the interactive terminal</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SCRIPT_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>will fail with message</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;__file__&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span><span class="o">.</span> <span class="n">Did</span> <span class="n">you</span> <span class="n">mean</span><span class="p">:</span> <span class="s1">&#39;__name__&#39;</span><span class="err">?</span>
+</pre></div>
+</div>
+<p>This is because the global variable <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is not defined when we use an interactive shell. It won’t work inside a Jupyter notebook either. So if you are interactively working on a script which uses this variable, you should substitute a full path for <code class="docutils literal notranslate"><span class="pre">SCRIPT_DIR</span></code>, e.g. enter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SCRIPT_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/My/Actual/Path&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="setting-up-ipython-inside-vscode">
+<h2>Setting up IPython inside VSCode<a class="headerlink" href="#setting-up-ipython-inside-vscode" title="Link to this heading">#</a></h2>
+<p>Note that VSCode will launch an interactive python session using your interpreter of choice. In my example, VSCode executed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">py310</span>
+<span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="n">paulgregory</span><span class="nd">@PaulsMacStudio2</span> <span class="n">CoE_workshop_2025</span> <span class="o">%</span> <span class="n">conda</span> <span class="n">activate</span> <span class="n">py310</span>
+<span class="p">(</span><span class="n">py310</span><span class="p">)</span> <span class="n">paulgregory</span><span class="nd">@PaulsMacStudio2</span> <span class="n">CoE_workshop_2025</span> <span class="o">%</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">paulgregory</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">py310</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span>
+<span class="n">Python</span> <span class="mf">3.10.14</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">May</span>  <span class="mi">6</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">14</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">37</span><span class="p">)</span> <span class="p">[</span><span class="n">Clang</span> <span class="mf">14.0.6</span> <span class="p">]</span> <span class="n">on</span> <span class="n">darwin</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="n">Cmd</span> <span class="n">click</span> <span class="n">to</span> <span class="n">launch</span> <span class="n">VS</span> <span class="n">Code</span> <span class="n">Native</span> <span class="n">REPL</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="o">..</span>
+<span class="n">etc</span>
+</pre></div>
+</div>
+<p>But wait, you said earlier that IPython was superior for interactive coding? (It is). Can we get VSCode to launch an interactive <strong>IPython</strong> session instead of a standard Python one?</p>
+<p>Yes we can. What we need to do is adjust the Python launch settings inside VSCode. To do this, we can:</p>
+<ul class="simple">
+<li><p>Click on the tool gear/cog on the bottom left of the VSCode window and select `Open Command Palette
+<img alt="Command_Palette" src="../_images/Command_Palette.png" /></p></li>
+<li><p>Or press <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code> (or <code class="docutils literal notranslate"><span class="pre">Cmd+Shift+P</span></code> on Mac)</p></li>
+</ul>
+<p>Once the Command Palette is open, type <code class="docutils literal notranslate"><span class="pre">Preferences:</span> <span class="pre">Open</span> <span class="pre">User</span> <span class="pre">Settings</span> <span class="pre">(JSON)</span></code> (this should autocomplete.)
+<img alt="Preferences" src="../_images/Preferences.png" /></p>
+<p>Search for the <code class="docutils literal notranslate"><span class="pre">&quot;python.terminal.launchArgs&quot;</span></code> section and add the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="s2">&quot;python.terminal.launchArgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;-m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;IPython&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;--no-autoindent&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+</pre></div>
+</div>
+<p>While you are there, you can insert the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="s2">&quot;ipython.startupCommands&quot;</span><span class="p">:</span> <span class="p">[</span>
+    
+        <span class="s2">&quot;</span><span class="si">%lo</span><span class="s2">ad_ext autoreload&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;</span><span class="si">%a</span><span class="s2">utoreload 2&quot;</span>
+    <span class="p">],</span>
+</pre></div>
+</div>
+<p>This <a class="reference external" href="https://ipython.readthedocs.io/en/9.0.2/config/extensions/autoreload.html">link</a> explains the benefit of using these commands.</p>
+<p>Now if you exit and re-launch VSCode, you should be able to interactively execute lines of your script using an IPython window.
+<img alt="VSCode with IPython" src="../_images/IPython.png" /></p>
+<p>Success!</p>
+<p>If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official <a class="reference external" href="https://code.visualstudio.com/docs/python/jupyter-support-py">Python Interactive</a> docs here.</p>
+</section>
+<section id="viewing-git-commits-inside-vscode">
+<h2>Viewing git commits inside VSCode<a class="headerlink" href="#viewing-git-commits-inside-vscode" title="Link to this heading">#</a></h2>
+<p>VSCode also comes with an integrated source control viewer which allows you to track the progress of your git project inside the IDE.</p>
+<p>Click on the source control button on the right task bask and it will produce a graph of the source showing all branches, merges and commits.</p>
+<p><img alt="Git source control inside VSCode" src="../_images/git.png" /></p>
+<p>You can also <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">commit</span></code> files (with it corresponding message) in the <code class="docutils literal notranslate"><span class="pre">Changes</span></code> panel (above the <code class="docutils literal notranslate"><span class="pre">Graph</span></code> section ), so you don’t need to exit your VSCode session and use a terminal to manage your local repository.</p>
+<p>VSCode also allows you to visually inspect and amend your code when merging conflicts, see below for an example.</p>
+<p><img alt="Git merge example" src="../_images/Git_merge_conflict.png" /></p>
+<p>See the official docs <a class="reference external" href="https://code.visualstudio.com/docs/sourcecontrol/overview">here</a> for more information.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./vscode"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ipython-or-interactive-python">IPython - or Interactive Python.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vscode-as-an-integrated-development-environment">Using VSCode as an Integrated Development Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-ipython-inside-vscode">Setting up IPython inside VSCode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-git-commits-inside-vscode">Viewing git commits inside VSCode</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

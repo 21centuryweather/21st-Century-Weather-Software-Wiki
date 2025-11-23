@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Debugging Python with VSCode &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vscode/debugging-python';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running VSCode on gadi" href="vscode-gadi.html" />
+    <link rel="prev" title="Further Considerations" href="../NRI-RNS/further-considerations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode-gadi.html">Running VSCode on gadi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/vscode/debugging-python.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Debugging Python with VSCode</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-debugging">What is debugging?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-debugger">What is a debugger?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-using-pdb">Debugging using Pdb</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-using-vscode">Debugging using VSCode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-arguments-with-the-vscode-launch-json-file">Using arguments with the VSCode launch.json file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further information</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="debugging-python-with-vscode">
+<h1>Debugging Python with VSCode<a class="headerlink" href="#debugging-python-with-vscode" title="Link to this heading">#</a></h1>
+<p>Let’s load and run the file <code class="docutils literal notranslate"><span class="pre">mean_air_temp.py</span></code> from the <a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos">21centuryweather/software_engineering_demos</a> repo. It will be in the <code class="docutils literal notranslate"><span class="pre">CoE_workshop_2025</span></code> subdirectory. This is a trivial test script which</p>
+<ul class="simple">
+<li><p>Loads in some sample air temperature data.</p></li>
+<li><p>Uses a user-defined function <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code> to compute the temporal average for the first 10 days of the dataset.</p></li>
+<li><p>Then compares it against the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> built-in method <code class="docutils literal notranslate"><span class="pre">.mean(dim='time')</span></code> and outputs the difference.</p></li>
+</ul>
+<p>Your output should be similar to the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">120</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Calculating</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">using</span> <span class="n">explicit</span> <span class="n">time</span> <span class="n">iteration</span><span class="o">...</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">129</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">calculation</span> <span class="n">complete</span> <span class="n">via</span> <span class="n">loop</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">result</span><span class="s1">&#39;s value.</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">134</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">delta</span> <span class="n">b</span><span class="o">/</span><span class="n">w</span> <span class="n">two</span> <span class="n">methods</span> <span class="o">=</span> <span class="mf">6.6442790031433105</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">134</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Check</span> <span class="n">your</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="n">function</span> <span class="n">calculate_mean_loop</span>
+</pre></div>
+</div>
+<p>Ideally these two averages should be the same. Yet the user-defined function differs. Why? Let’s use a debugger to find out.</p>
+<section id="what-is-debugging">
+<h2>What is debugging?<a class="headerlink" href="#what-is-debugging" title="Link to this heading">#</a></h2>
+<p>Debugging is simply removing ‘bugs’ or errors in code. The bugs may caused by:</p>
+<ul class="simple">
+<li><p>syntax errors : we’ve typed the wrong symbol, or used the wrong order of symbols, so the code functions differently to its intended purpose.</p></li>
+<li><p>logic errors : the code is mechanically correct but it carries out the wrong order of tasks, creating the wrong answer.</p></li>
+<li><p>semantic errors : the code is working correctly but it has incorrect names and labels assigned to it variables or functions.</p></li>
+</ul>
+<p>We have seen previously that a Linter will detect and fix basic syntax errors that will prevent a script from running. But if the script runs, but produces incorrect results, we will need to conduct a forensic investigation to ensure how we <strong>think</strong> the code is executing is the same as how it <strong>actually</strong> executes.</p>
+<p>Typically, undergraduate coding involves using lots of <code class="docutils literal notranslate"><span class="pre">print</span></code> statements to standard output to view the values of parameters and variables as they change throughout the code.</p>
+<p>But once our codes grow in complexity, our debugging methods must also grow in sophistication.</p>
+</section>
+<section id="what-is-a-debugger">
+<h2>What is a debugger?<a class="headerlink" href="#what-is-a-debugger" title="Link to this heading">#</a></h2>
+<p>A debugger is a module or executable that allows the code to be executed, line-by-line, and will display the value of a variables at each line.</p>
+<p>Key concepts involved in debugging:</p>
+<ul class="simple">
+<li><p><strong>Breakpoints</strong> : A long script may involve thousands of lines spread across multiple files. We don’t want to examine every one. So we place a breakpoint at a specific line number, which tells the debugger to ‘stop the program at this point’</p></li>
+<li><p><strong>Step Over</strong> : Once we have stopped program execution at a breakpoint, we will ‘step over’ individual lines of code, one-at-a-time. If we encounter any function calls at a single line, we will ‘step over’ them.</p></li>
+<li><p><strong>Step Into</strong> : If we encounter a function call on a single line, we will ‘step into’ that function and proceed with a line-by-line analysis.</p></li>
+<li><p><strong>Continue</strong> : Cease our line-by-line analysis, and continue to the next breakpoint, or until the program ends (successfully or otherwise).</p></li>
+</ul>
+</section>
+<section id="debugging-using-pdb">
+<h2>Debugging using Pdb<a class="headerlink" href="#debugging-using-pdb" title="Link to this heading">#</a></h2>
+<p>Python comes with its own debugging module - <a class="reference external" href="https://docs.python.org/3/library/pdb.html"><code class="docutils literal notranslate"><span class="pre">pdb</span></code></a>. This runs inside a terminal so it doesn’t have all the nice visualisation tools that an IDE debugger would (such as array and dictionary viewers). But it’s a good place to start.</p>
+<p>Insert the following in <code class="docutils literal notranslate"><span class="pre">mean_air_temp.py</span></code> where you want to put the first breakpoint.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">breakpoint</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This imports the <code class="docutils literal notranslate"><span class="pre">pdb</span></code> module, halts the current execution of the script and gives us access to the values of all variables, the <strong>call stack</strong> (the sequence of function calls that led to this point) and the scope of the current function.</p>
+<p>Let’s put the breakpoint in <code class="docutils literal notranslate"><span class="pre">main()</span></code>, just before we compute the <code class="docutils literal notranslate"><span class="pre">subset</span></code> of the input DataSet. Now run the script inside an IPython console. It should produce this.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">%</span><span class="n">run</span> <span class="n">mean_air_temp</span><span class="o">.</span><span class="n">py</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">17</span> <span class="mi">17</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">228</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">PROJECT_ROOT_DIR</span> <span class="o">=</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">17</span> <span class="mi">17</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">228</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">data</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">17</span> <span class="mi">17</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">228</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Loading</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sample_air_temp</span><span class="o">.</span><span class="n">nc</span>
+<span class="o">&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">mean_air_temp</span><span class="o">.</span><span class="n">py</span><span class="p">(</span><span class="mi">74</span><span class="p">)</span><span class="n">main</span><span class="p">()</span>
+<span class="o">-&gt;</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">225</span><span class="p">),</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2013-01-10&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">air</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>The program has halted at the location of the <code class="docutils literal notranslate"><span class="pre">breakpoint()</span></code> statement. Type <code class="docutils literal notranslate"><span class="pre">l</span></code> to ‘list’ the lines of code around our current position, in the context of the whole script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">l</span>
+ <span class="mi">76</span>  	        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+ <span class="mi">77</span>  	
+ <span class="mi">78</span>  	    <span class="nb">breakpoint</span><span class="p">()</span>
+ <span class="mi">79</span>  	    <span class="c1"># The data is 6-hourly. Let&#39;s compute a mean over the first 10 days for a spatial subset</span>
+ <span class="mi">80</span>  	    <span class="c1"># so we can easily debug it</span>
+ <span class="mi">81</span>  <span class="o">-&gt;</span>	    <span class="n">subset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">225</span><span class="p">),</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2013-01-10&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">air</span>
+ <span class="mi">82</span>  	    <span class="n">mean_loop_result</span> <span class="o">=</span> <span class="n">calculate_mean_loop</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
+ <span class="mi">83</span>  	
+ <span class="mi">84</span>  	    <span class="c1"># Check against the built-in method</span>
+ <span class="mi">85</span>  	    <span class="n">mean_loop_built_in</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+ <span class="mi">86</span>  	
+</pre></div>
+</div>
+<p>In this case, we have stopped at line 81. Let’s hit <code class="docutils literal notranslate"><span class="pre">n</span></code> to <strong>step over</strong> to the next line. This means we have now computed <code class="docutils literal notranslate"><span class="pre">subset</span></code>, and we can interrogate the contents of <code class="docutils literal notranslate"><span class="pre">subset</span></code> from the debugger using the <code class="docutils literal notranslate"><span class="pre">p</span></code>, or ‘print’ command. E.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">subset</span><span class="o">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">subset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">array</span><span class="p">([[</span><span class="mf">241.2</span>    <span class="p">,</span> <span class="mf">242.5</span>    <span class="p">,</span> <span class="mf">243.5</span>    <span class="p">,</span> <span class="mf">244.</span>     <span class="p">,</span> <span class="mf">244.09999</span><span class="p">,</span> <span class="mf">243.89</span>   <span class="p">,</span>
+        <span class="mf">243.59999</span><span class="p">,</span> <span class="mf">243.09999</span><span class="p">,</span> <span class="mf">242.5</span>    <span class="p">,</span> <span class="mf">241.89</span>   <span class="p">,</span> <span class="mf">241.2</span>    <span class="p">],</span>
+       <span class="p">[</span><span class="mf">243.79999</span><span class="p">,</span> <span class="mf">244.5</span>    <span class="p">,</span> <span class="mf">244.7</span>    <span class="p">,</span> <span class="mf">244.2</span>    <span class="p">,</span> <span class="mf">243.39</span>   <span class="p">,</span> <span class="mf">242.39</span>   <span class="p">,</span>
+</pre></div>
+</div>
+<p>etc.</p>
+<p>When we are pointing to the line that defines the subroutine <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code>, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;</span> <span class="n">mean_loop_result</span> <span class="o">=</span> <span class="n">calculate_mean_loop</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>press <code class="docutils literal notranslate"><span class="pre">s</span></code> to <strong>step into</strong> this line. Now we are inside the function definition of <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code> and we can keep pressing <code class="docutils literal notranslate"><span class="pre">n</span></code> to traverse through the function until we reach the for loop.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">l</span>
+ <span class="mi">29</span>  	
+ <span class="mi">30</span>  	    <span class="c1"># Initialize the accumulator array (2D map)</span>
+ <span class="mi">31</span>  	    <span class="c1"># We start the accumulator with the first map&#39;s values to simplify the loop logic.</span>
+ <span class="mi">32</span>  	    <span class="n">spatial_data_accumulator</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_array</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+ <span class="mi">33</span>  	
+ <span class="mi">34</span>  <span class="o">-&gt;</span>	    <span class="k">for</span> <span class="n">t_step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_time_steps</span><span class="p">):</span>
+ <span class="mi">35</span>  	        <span class="c1"># Select the 2D map (lat, lon) for the current time step</span>
+ <span class="mi">36</span>  	        <span class="c1"># This is the line we will step through repeatedly!</span>
+ <span class="mi">37</span>  	
+ <span class="mi">38</span>  	
+ <span class="mi">39</span>  	        <span class="c1"># Add the current map to the accumulator</span>
+</pre></div>
+</div>
+<p>We can continue to hit <code class="docutils literal notranslate"><span class="pre">n</span></code> to step through the loop. Note the debugger will skip whitespace and comment lines.</p>
+<p>Note this loop will activate 40 times, as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">num_time_steps</span>
+<span class="mi">40</span>
+</pre></div>
+</div>
+<p>We can skip to the end of the loop, by setting another <strong>breakpoint</strong> at the line where we compute our mean</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">42</span>  	    <span class="c1"># Compute the mean</span>
+<span class="mi">43</span>  	    <span class="n">mean_map_values</span> <span class="o">=</span> <span class="n">spatial_data_accumulator</span> <span class="o">/</span> <span class="n">num_time_steps</span>
+<span class="mi">44</span>  	
+</pre></div>
+</div>
+<p>In this case, I type <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">43</span></code>. The debugger confirm it’s created a breakpoint at the current file and line number. You can type <code class="docutils literal notranslate"><span class="pre">b</span></code> to list all current breakpoints.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are loads of <code class="docutils literal notranslate"><span class="pre">pdb</span></code> ‘cheat-sheets’ available. Here is an <a class="reference external" href="https://ugoproto.github.io/ugo_py_doc/pdf/Python-Debugger-Cheatsheet.pdf">example</a>.</p>
+</div>
+<p>Now we can hit <code class="docutils literal notranslate"><span class="pre">c</span></code> to <strong>continue</strong> stepping through every state of the loop until we nit the computation of the mean, where we divide every value in our array <code class="docutils literal notranslate"><span class="pre">spatial_data_accumulator</span></code> by the number of time steps.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;</span> <span class="n">mean_map_values</span> <span class="o">=</span> <span class="n">spatial_data_accumulator</span> <span class="o">/</span> <span class="n">num_time_steps</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">t_step</span>
+<span class="mi">39</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">n</span>
+<span class="o">-&gt;</span> <span class="n">mean_da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">mean_map_values</span>
+<span class="n">array</span><span class="p">([[</span><span class="mf">252.74326</span><span class="p">,</span> <span class="mf">252.99825</span><span class="p">,</span> <span class="mf">253.08052</span><span class="p">,</span> <span class="mf">253.01326</span><span class="p">,</span> <span class="mf">252.86826</span><span class="p">,</span> <span class="mf">252.78824</span><span class="p">,</span>
+        <span class="mf">252.84802</span><span class="p">,</span> <span class="mf">253.12149</span><span class="p">,</span> <span class="mf">253.50826</span><span class="p">,</span> <span class="mf">253.9073</span> <span class="p">,</span> <span class="mf">254.1705</span> <span class="p">],</span>
+       <span class="p">[</span><span class="mf">255.57622</span><span class="p">,</span> <span class="mf">255.6365</span> <span class="p">,</span> <span class="mf">255.38577</span><span class="p">,</span> <span class="mf">254.86075</span><span class="p">,</span> <span class="mf">254.21646</span><span class="p">,</span> <span class="mf">253.68326</span><span class="p">,</span>
+        <span class="mf">253.3757</span> <span class="p">,</span> <span class="mf">253.34525</span><span class="p">,</span> <span class="mf">253.49832</span><span class="p">,</span> <span class="mf">253.63924</span><span class="p">,</span> <span class="mf">253.58247</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">258.28824</span><span class="p">,</span> <span class="mf">257.6735</span> <span class="p">,</span> <span class="mf">256.7273</span> <span class="p">,</span> <span class="mf">255.60127</span><span class="p">,</span> <span class="mf">254.51578</span><span class="p">,</span> <span class="mf">253.68999</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Let’s hit <code class="docutils literal notranslate"><span class="pre">c</span></code> to <strong>continue</strong> to the end of the program.</p>
+<p>This confirms the two mean values are different.</p>
+</section>
+<section id="debugging-using-vscode">
+<h2>Debugging using VSCode<a class="headerlink" href="#debugging-using-vscode" title="Link to this heading">#</a></h2>
+<p>Now that we understand the mechanisms behind debugging, let’s use the VSCode debugger.  Remove the <code class="docutils literal notranslate"><span class="pre">breakpoint()</span></code> line from your source code, hover your cursor to the <strong>left</strong> of the line numbers where we define the <code class="docutils literal notranslate"><span class="pre">subset</span></code> data array. You’ll notice a dark red circle appear, along with a pop-up window.
+<img alt="Break1" src="../_images/Break1.png" /></p>
+<p>Click on the line number you want, to the left of the line number. A solid bright red circle will now appear.
+<img alt="Break2" src="../_images/Break2.png" /></p>
+<p>You’ve now created the first <strong>breakpoint</strong> for the VSCode debugger. There are two way to launch the debugger.</p>
+<ol class="arabic simple">
+<li><p>Click on the Debug symbol on the taskbar on the far left.</p></li>
+</ol>
+<p>This will bring up the ‘Run and Debug’ console. Click on `Run and Debug’ and accept all defaults.</p>
+<p><img alt="Break3" src="../_images/Break3.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>Activate the pull-down menu to the right of the ‘Run’ icon on the top right and select the following option:</p></li>
+</ol>
+<p><img alt="Break3" src="../_images/Break4.png" /></p>
+<p>We have now entered the VSCode graphical debugger!  On right hand side is your variable explorer, where you can click to interrogate the data structures and contents of all local and global variables currently in scope at the current line of code.</p>
+<p>On the bottom, you can click on the <code class="docutils literal notranslate"><span class="pre">DEBUG</span> <span class="pre">CONSOLE</span></code> to type Python expressions to evaluate the values of all current variables. Think of this as being similar to a <code class="docutils literal notranslate"><span class="pre">pdb</span></code> command line.</p>
+<p><img alt="Break3" src="../_images/Break5.png" /></p>
+<p>Above the source code are six control buttons in a detachable window which we use to control program flow. These buttons are (from L to R):</p>
+<ul class="simple">
+<li><p>Continue (F5)</p></li>
+<li><p>Step Over (F10)</p></li>
+<li><p>Step Into (F11)</p></li>
+<li><p>Step Out (Shift+F11)</p></li>
+<li><p>Restart (Shift+Cmd+F5)</p></li>
+<li><p>Stop (Shift+F5)</p></li>
+</ul>
+<p>Each button comes with a function-key short-cut. These buttons are similar to those we used in <code class="docutils literal notranslate"><span class="pre">pdb</span></code>. The ‘Step Out’ button allows us to move directly from function back into its parent code.</p>
+<p>Let’s use these buttons to step over to the next line of code (line 81 in this example) and then step into the function <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code>.</p>
+<p>Now you can use the ‘Step Over’ button to cycle through the loop. In this example, the code will bounce between lines 34 and 40 as the loop iterates. Note how the value of <code class="docutils literal notranslate"><span class="pre">t_step</span></code> and the values of <code class="docutils literal notranslate"><span class="pre">spatial_data_accumulator</span></code> will change in the variable browser.</p>
+<p>If you click on <code class="docutils literal notranslate"><span class="pre">spatial_data_accumulator</span></code> you will be able to see the first 11 values, and the max and min of the array. At every step in the loop, these values will update with a blue flash every time they change.</p>
+<p><img alt="Break3" src="../_images/Break6.png" /></p>
+<p>We can place another breakpoint in the code (line 43 in this example) by using the mouse to create a red circle to the left of line 43, and then hit the ‘Continue’ control button to skip to this point.</p>
+<p>We can then step through the rest of the code until its completion.</p>
+<p>Using the debugger and your knowledge of Python loops, have you been able to spot the bug yet? Are you able to change a line of code so that our function <code class="docutils literal notranslate"><span class="pre">calculate_mean_loop</span></code> matches the value of the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> built-in function <code class="docutils literal notranslate"><span class="pre">mean</span></code>?</p>
+</section>
+<section id="using-arguments-with-the-vscode-launch-json-file">
+<h2>Using arguments with the VSCode launch.json file<a class="headerlink" href="#using-arguments-with-the-vscode-launch-json-file" title="Link to this heading">#</a></h2>
+<p>Often your script will require command-line arguments at runtime. You could hard-wire the values of these arguments when using the VSCode debugger, or you can configure command-line arguments by editing the ‘launch.json’ file.</p>
+<p>Let’s examine the file <code class="docutils literal notranslate"><span class="pre">args.py</span></code> in the <a class="github reference external" href="https://github.com/21centuryweather/software_engineering_demos/CoE_workshop_2025/scripts">21centuryweather/software_engineering_demos</a> directory.</p>
+<p>This script is the same as <code class="docutils literal notranslate"><span class="pre">mean_air_temp.py</span></code> except it takes a command-line argument for the number of slices to average along the time dimensions.</p>
+<p>You can execute this script in an IPython session as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="o">%</span><span class="n">run</span> <span class="n">args</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">t</span> <span class="mi">40</span>
+</pre></div>
+</div>
+<p>Let’s create a launch configuration to run the debugger using this command-line argument.</p>
+<p>VSCode provides a number of ways to achieve this. Select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> mode using a <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file by either</p>
+<ul class="simple">
+<li><p>Selecting <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">a</span> <span class="pre">launch.json</span> <span class="pre">file</span></code> via the left hand taskbar, or</p></li>
+<li><p>Selecting <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debugger:</span> <span class="pre">Debug</span> <span class="pre">using</span> <span class="pre">launch.json</span></code> via the top right pull-down menu.</p></li>
+</ul>
+<p><img alt="Customising the debug launcher" src="../_images/launch.png" /></p>
+<p>Then select <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debugger</span></code> from the pop-up menu.</p>
+<p><img alt="Select your debug options" src="../_images/debug_options.png" /></p>
+<p>Select the option to add arguments, which will allow you to enter your arguments interactively.</p>
+<p><img alt="Enter your arguments" src="../_images/args.png" /></p>
+<p>You can proceed with debugging as normal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Don’t forget to add a breakpoint, otherwise the code will exit without stopping.</p>
+</div>
+<p>We have now created a debugging configuration which will be active for the remainder of the session. It can be accessed from the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> console as <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debugger:</span> <span class="pre">Current</span> <span class="pre">File</span> <span class="pre">with</span> <span class="pre">Arguments</span></code></p>
+<p><img alt="Repeat the configuration" src="../_images/args2.png" /></p>
+<p>We can do this because we have created an entry in the <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file which now contains the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        
+        {
+            &quot;name&quot;: &quot;Python Debugger: Current File with Arguments&quot;,
+            &quot;type&quot;: &quot;debugpy&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${file}&quot;,
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;args&quot;: &quot;${command:pickArgs}&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+<p>You can view the <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file by accessing the tool ‘cog’ or ‘gear’ on the top right, next to the ‘Run and Debug’ pull-down menu.
+<img alt="Add configuration" src="../_images/config.png" /></p>
+<p>More complicated configurations can be created by editing the <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file. For example, when attempting to debug a Python script associated with the ACCESS-rAM3 ancilliary suite, I created the following launcher configuration to allow the file <code class="docutils literal notranslate"><span class="pre">ancil_lct.py</span></code> to be debugged.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+
+        {
+            &quot;name&quot;: &quot;Python Debugger: debug ancil_lct for u-dg767&quot;,
+            &quot;type&quot;: &quot;debugpy&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${file}&quot;,
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;args&quot;: [&quot;/home/548/pag548/cylc-run/u-dg767/share/data/etc/ancil_master_ants//vegetation/cover/cci/v3/vegetation_fraction.nc&quot;,
+                &quot; --target-grid&quot;,
+                &quot;/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/grid.nl&quot;,
+                &quot;--transform-path&quot;, 
+                &quot;/g/data/access/TIDS/UM/ancil/data/transforms/cci2jules_ra1.json&quot;,
+                &quot;-o&quot;,
+                &quot;/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/qrparm.veg.frac_cci_pre_c4&quot;,
+                &quot;--landseamask-output&quot;,
+                &quot;/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5&quot;,
+                &quot;--ants-config&quot;, 
+                &quot;/home/548/pag548/cylc-run/u-dg767/work/1/Lismore_era5_ancil_lct/rose-app-run.conf&quot;
+            ]&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+</section>
+<section id="further-information">
+<h2>Further information<a class="headerlink" href="#further-information" title="Link to this heading">#</a></h2>
+<p>The official VSCode debugging documentation is available <a class="reference external" href="https://code.visualstudio.com/docs/debugtest/debugging">here</a> (which includes a tutorial video) while extra information to help configure Python scripts for the VSCode debugger can be found <a class="reference external" href="https://code.visualstudio.com/docs/python/debugging">here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jupyter Notebooks also contain their own debugger. If you click on the ‘Bug’ symbol on the right hand taskbar, it opens up the the built-in graphical debugger with all sorts of options.
+<img alt="Notebook debugger" src="../_images/ARE_debug.png" /></p>
+<p>The official JupyterLab debug docs are <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/debugger.html">here</a></p>
+<h2 class="rubric" id="conclusion">Conclusion</h2>
+<p>Debuggers are powerful tools that allow us to see in forensic detail how the code <strong>actually</strong> functions, as opposed to how we <strong>think</strong> it functions.</p>
+<p>There is an overhead associated with configuring them and learning how they work, but they are unmatched for solving difficult coding problems.</p>
+<p>In particular, the VSCode Debugger allow people used to writing scripts in an IDE (e.g. MATLAB users) a familiar development environment.</p>
+<p>Debuggers allow us to move from the realm of guesswork, into methodically and systematically working the problem.</p>
+<p><img alt="Gene Kranz" src="../_images/Gene.jpg" /></p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./vscode"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../NRI-RNS/further-considerations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Further Considerations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="vscode-gadi.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Running VSCode on gadi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-debugging">What is debugging?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-debugger">What is a debugger?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-using-pdb">Debugging using Pdb</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-using-vscode">Debugging using VSCode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-arguments-with-the-vscode-launch-json-file">Using arguments with the VSCode launch.json file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
