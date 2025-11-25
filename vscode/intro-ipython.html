@@ -423,16 +423,16 @@ document.write(`
 <section id="ipython-or-interactive-python">
 <h2>IPython - or Interactive Python.<a class="headerlink" href="#ipython-or-interactive-python" title="Link to this heading">#</a></h2>
 <p>IPython is a powerful interactive shell that also provides the underpinnings of python Jupyter notebooks. While python notebooks are a fantastically powerful tool, they come with require large overheads and can sometimes promote bad programming practices.</p>
-<p>Jupyter notebooks are fantastic for visualisation and for creating workflows. But if you are building code from scratch, we recommend using IPython.</p>
+<p>Jupyter notebooks are fantastic for visualisation and for creating workflows. But if you are building code from scratch, IPython is a quick way to get started.</p>
 <p>The advantages of using IPython over a standard Python session are numerable, and include:</p>
 <ul class="simple">
 <li><p>Smart autocompletion and tab completion to find function names, object methods/attributes and file paths within your code</p></li>
 <li><p>‘magic’ commands (prefixed with <code class="docutils literal notranslate"><span class="pre">%</span></code>) that provide extra functionality such as</p>
 <ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">script.py</span></code>: Execute a Python script in your interactive session.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code> expression: Benchmark the execution time of a line of code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%paste</span></code>: Paste multi-line code blocks without indentation issues.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%env</span></code>: View/set environment variables.</p></li>
 </ul>
 </li>
 <li><p>Shell integration using <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands (e.g. <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">pwd</span></code>) so you don’t have to swap from your python session to a shell terminal.</p></li>
@@ -649,12 +649,12 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
 <p>Now if you exit and re-launch VSCode, you should be able to interactively execute lines of your script using an IPython window.
 <img alt="VSCode with IPython" src="../_images/IPython.png" /></p>
 <p>Success!</p>
-<p>If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official <a class="reference external" href="https://code.visualstudio.com/docs/python/jupyter-support-py">Python Interactive</a> docs here.</p>
+<p>If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official <a class="reference external" href="https://code.visualstudio.com/docs/python/jupyter-support-py">Python Interactive</a> docs here. (We will briefly cover these features later in the Wiki <a class="reference internal" href="vscode-interactive.html"><span class="std std-doc">here</span></a>)</p>
 </section>
 <section id="viewing-git-commits-inside-vscode">
 <h2>Viewing git commits inside VSCode<a class="headerlink" href="#viewing-git-commits-inside-vscode" title="Link to this heading">#</a></h2>
 <p>VSCode also comes with an integrated source control viewer which allows you to track the progress of your git project inside the IDE.</p>
-<p>Click on the source control button on the right task bask and it will produce a graph of the source showing all branches, merges and commits.</p>
+<p>Click on the source control button on the right task bar and it will produce a graph of the source showing all branches, merges and commits.</p>
 <p><img alt="Git source control inside VSCode" src="../_images/git.png" /></p>
 <p>You can also <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">commit</span></code> files (with it corresponding message) in the <code class="docutils literal notranslate"><span class="pre">Changes</span></code> panel (above the <code class="docutils literal notranslate"><span class="pre">Graph</span></code> section ), so you don’t need to exit your VSCode session and use a terminal to manage your local repository.</p>
 <p>VSCode also allows you to visually inspect and amend your code when merging conflicts, see below for an example.</p>
