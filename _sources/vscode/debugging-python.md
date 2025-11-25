@@ -306,6 +306,8 @@ Jupyter Notebooks also contain their own debugger. If you click on the 'Bug' sym
 
 The official JupyterLab debug docs are [here](https://jupyterlab.readthedocs.io/en/stable/user/debugger.html)
 
+:::
+
 ## Conclusion
 
 Debuggers are powerful tools that allow us to see in forensic detail how the code **actually** functions, as opposed to how we **think** it functions.
