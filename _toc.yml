@@ -18,7 +18,7 @@ parts:
     - file: NRI-RNS/intro
       sections:
       - file: NRI-RNS/ancillaries
-      - file: NRI-RNS/outputs
+      - file: NRI-RNS/outputs 
       - file: NRI-RNS/evaluating
       - file: NRI-RNS/further-considerations
   - caption: Interactive coding with VSCode 
