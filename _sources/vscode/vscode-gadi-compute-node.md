@@ -22,7 +22,7 @@ To start with, amend the following in your local `~/.ssh/config` file so it cont
 ```
 Host gadi.nci.org.au
   HostName gadi.nci.org.au
-  User pag548
+  User <your username>
 
 Host gadi-cpu-*
   HostName %h
