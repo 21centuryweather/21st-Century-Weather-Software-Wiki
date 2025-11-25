@@ -17,15 +17,15 @@ To help do this, there is the `IPython' tool.
 
 IPython is a powerful interactive shell that also provides the underpinnings of python Jupyter notebooks. While python notebooks are a fantastically powerful tool, they come with require large overheads and can sometimes promote bad programming practices.
 
-Jupyter notebooks are fantastic for visualisation and for creating workflows. But if you are building code from scratch, we recommend using IPython.
+Jupyter notebooks are fantastic for visualisation and for creating workflows. But if you are building code from scratch, IPython is a quick way to get started.
 
 The advantages of using IPython over a standard Python session are numerable, and include:
 - Smart autocompletion and tab completion to find function names, object methods/attributes and file paths within your code
 - 'magic' commands (prefixed with `%`) that provide extra functionality such as
-    -  %run script.py: Execute a Python script in your interactive session.
-    -  %timeit expression: Benchmark the execution time of a line of code.
-    - %paste: Paste multi-line code blocks without indentation issues.
-    - %env: View/set environment variables.
+    -  `%run script.py`: Execute a Python script in your interactive session.
+    -  `%timeit` expression: Benchmark the execution time of a line of code.
+    - `%paste`: Paste multi-line code blocks without indentation issues.
+    - `%env`: View/set environment variables.
 - Shell integration using `bash` commands (e.g. `ls`, `pwd`) so you don't have to swap from your python session to a shell terminal.
 - Syntax highlighting and output formatting.
 
@@ -277,13 +277,13 @@ Now if you exit and re-launch VSCode, you should be able to interactively execut
 
 Success!
 
-If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official [Python Interactive](https://code.visualstudio.com/docs/python/jupyter-support-py) docs here.
+If you are interested in running further down rabbit warren of integrated, interactive Python coding inside VSCode, have a read of the official [Python Interactive](https://code.visualstudio.com/docs/python/jupyter-support-py) docs here. (We will briefly cover these features later in the Wiki [here](./vscode-interactive.md))
 
 ## Viewing git commits inside VSCode
 
 VSCode also comes with an integrated source control viewer which allows you to track the progress of your git project inside the IDE.
 
-Click on the source control button on the right task bask and it will produce a graph of the source showing all branches, merges and commits.
+Click on the source control button on the right task bar and it will produce a graph of the source showing all branches, merges and commits.
 
 ![Git source control inside VSCode](images/git.png)
 
