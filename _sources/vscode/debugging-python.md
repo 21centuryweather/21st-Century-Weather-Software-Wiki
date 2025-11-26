@@ -235,7 +235,7 @@ You can proceed with debugging as normal.
 Don't forget to add a breakpoint, otherwise the code will exit without stopping.
 :::
 
-We have now created a debugging configuration which will be active for the remainder of the session. It can be accessed from the `Run and Debug` console as `Python Debugger: Current File with Arguments`
+We have now created a debugging configuration which will be active for the remainder of project. It can be accessed from the `Run and Debug` console as `Python Debugger: Current File with Arguments`
 
 ![Repeat the configuration](images/args2.png)
 
@@ -262,6 +262,7 @@ We can do this because we have created an entry in the `launch.json` file which 
 You can view the `launch.json` file by accessing the tool 'cog' or 'gear' on the top right, next to the 'Run and Debug' pull-down menu.
 ![Add configuration](images/config.png)
 
+The `launch.json` file is written to your local filesystem. In my example, it was written to `CoE_workshop_2025/.vscode`
 
 More complicated configurations can be created by editing the `launch.json` file. For example, when attempting to debug a Python script associated with the ACCESS-rAM3 ancilliary suite, I created the following launcher configuration to allow the file `ancil_lct.py` to be debugged.
 ```

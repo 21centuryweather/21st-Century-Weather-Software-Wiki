@@ -607,7 +607,7 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Don’t forget to add a breakpoint, otherwise the code will exit without stopping.</p>
 </div>
-<p>We have now created a debugging configuration which will be active for the remainder of the session. It can be accessed from the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> console as <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debugger:</span> <span class="pre">Current</span> <span class="pre">File</span> <span class="pre">with</span> <span class="pre">Arguments</span></code></p>
+<p>We have now created a debugging configuration which will be active for the remainder of project. It can be accessed from the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> console as <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debugger:</span> <span class="pre">Current</span> <span class="pre">File</span> <span class="pre">with</span> <span class="pre">Arguments</span></code></p>
 <p><img alt="Repeat the configuration" src="../_images/args2.png" /></p>
 <p>We can do this because we have created an entry in the <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file which now contains the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
@@ -631,6 +631,7 @@ document.write(`
 </div>
 <p>You can view the <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file by accessing the tool ‘cog’ or ‘gear’ on the top right, next to the ‘Run and Debug’ pull-down menu.
 <img alt="Add configuration" src="../_images/config.png" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file is written to your local filesystem. In my example, it was written to <code class="docutils literal notranslate"><span class="pre">CoE_workshop_2025/.vscode</span></code></p>
 <p>More complicated configurations can be created by editing the <code class="docutils literal notranslate"><span class="pre">launch.json</span></code> file. For example, when attempting to debug a Python script associated with the ACCESS-rAM3 ancilliary suite, I created the following launcher configuration to allow the file <code class="docutils literal notranslate"><span class="pre">ancil_lct.py</span></code> to be debugged.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
     // Use IntelliSense to learn about possible attributes.
