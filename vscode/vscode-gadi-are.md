@@ -47,6 +47,12 @@ Now we need to load the notebook kernel. If we want to use an `xp65 analysis3` k
 
 If you **don't** do step one, you won't be able to see any of the `analysis3` kernels.
 
+:::{tip}
+
+Make sure you are using the latest update of VSCode, as older versions have different layouts for Python interpreter and Kernel selection menus.
+
+:::
+
 If you want to use any of your own kernels located in `~/.local/share/jupyter/kernels/` you can just click `Select Kernel` and then `Jupyter Kernel` when you connect for the first time. 
 
 ![SSH-ARE-connect](./images/local_kernels.png)

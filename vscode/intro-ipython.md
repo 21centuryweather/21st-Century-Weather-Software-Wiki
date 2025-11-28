@@ -137,6 +137,12 @@ Note the warning on the bottom right of the window `! Select Interpreter`. Let's
 ![Select Interpreter](images/Interpreter.png)
 Your choice of Python interpreter will now be active on bottom-right.
 
+:::{note}
+
+In order to run this script locally, your python environment will need the `xarray` module and its `netCDF4` dependency. The official `xarray` installation docs are [here](https://docs.xarray.dev/en/latest/getting-started-guide/installing.html). 
+
+:::
+
 ## Linting
 
 Let's have a look at the pretty syntax highlighting in the source. If your scroll down to Line 68, you'll see the `sys.exit` has a small yellow squiggle underneath it. The 'Linter' which is present in your VSCode Python extension has automatically spotted an error in this code! 
