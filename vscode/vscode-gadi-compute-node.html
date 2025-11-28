@@ -421,6 +421,7 @@ document.write(`
 <li><p>Connect VSCode to an interactive PBS job running on a compute node that we start ourselves</p></li>
 <li><p>Automatically redirect all I/O traffic (i.e. keyboard and mouse inputs) from a compute node to our local VSCode GUI window <strong>via</strong> a login node.</p></li>
 </ul>
+<p>Essentially we will use the login node to ‘redirect’ all traffic from our local machine to the compute node.</p>
 <p><img alt="VSCode-SSH-gadi" src="../_images/VSCode-gadi-proxy.png" /></p>
 <p>To start with, amend the following in your local <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file so it contains both these entries:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
@@ -438,9 +439,10 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">gadi</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">au</span>
 </pre></div>
 </div>
+<p>So we have configured our remote compute node e.g. <code class="docutils literal notranslate"><span class="pre">gadi-cpu-clx-XXXX</span></code> as the <strong>TargetHost</strong> and <code class="docutils literal notranslate"><span class="pre">gadi.nci.org.au</span></code> as the <strong>JumpHost</strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The entry next to <code class="docutils literal notranslate"><span class="pre">ProxyJump</span></code> <strong>must</strong> match the <code class="docutils literal notranslate"><span class="pre">Host</span></code> field! See <a class="reference external" href="https://serverfault.com/questions/1076460/unable-to-ssh-using-proxyjump-but-it-works-with-ssh-j">this example</a></p>
+<p>The entry next to <code class="docutils literal notranslate"><span class="pre">ProxyJump</span></code> in the TargetHost <strong>must</strong> match the <code class="docutils literal notranslate"><span class="pre">Host</span></code> field on the JumpHost. See <a class="reference external" href="https://serverfault.com/questions/1076460/unable-to-ssh-using-proxyjump-but-it-works-with-ssh-j">this example</a></p>
 </div>
 <p>The use of wild cards <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">%h</span></code> allows us to connect to <strong>any</strong> compute node that begins with <code class="docutils literal notranslate"><span class="pre">gadi-cpu-</span></code>, via a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> login node. We won’t know the exact ID of the <code class="docutils literal notranslate"><span class="pre">gadi</span></code> compute node until we submit our interactive PBS job, and typically this will change every time we do so. So, the use of these wild card characters avoids clogging up our <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file.</p>
 <p>Now, let’s connect to a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> login node and launch an interactive <code class="docutils literal notranslate"><span class="pre">qsub</span></code> session on a compute node, e.g. type the following on a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> <strong>login node</strong>.</p>
