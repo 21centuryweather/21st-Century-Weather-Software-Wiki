@@ -36,11 +36,17 @@ In this example, the ProxyJump entry in the `~/.ssh/config` file matches the Hos
 Host gadi.nci.org.au
 ```
 
+:::{warning}
+
+The entry next to `ProxyJump` **must** match the `Host` field! See [this example](https://serverfault.com/questions/1076460/unable-to-ssh-using-proxyjump-but-it-works-with-ssh-j)
+
+:::
+
 The use of wild cards `*` and `%h` allows us to connect to **any** compute node that begins with `gadi-cpu-`, via a `gadi` login node. We won't know the exact ID of the `gadi` compute node until we submit our interactive PBS job, and typically this will change every time we do so. So, the use of these wild card characters avoids clogging up our `~/.ssh/config` file.
 
-Now, let's connect to a `gadi` login node and launch an interactive `qsub` session on a compute node, e.g.
+Now, let's connect to a `gadi` login node and launch an interactive `qsub` session on a compute node, e.g. type the following on a `gadi` **login node**.
 ```
-qsub -I -X -l mem=96gb -Pgb02 -q normal -l walltime=04:00:00 -l storage=gdata/gb02+gdata/xp65
+]$ qsub -I -l mem=96gb -Pgb02 -q normal -l walltime=04:00:00 -l storage=gdata/gb02+gdata/xp65
 ```
 :::{note}
 
