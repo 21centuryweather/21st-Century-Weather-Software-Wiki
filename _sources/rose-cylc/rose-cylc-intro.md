@@ -156,7 +156,7 @@ $ cat > ~/.persistent-sessions/cylc-session <<< cylc-test.<user-id>.<project>.ps
 Make sure you insert your values of `<user-id>` and `<project`> into the above command. i.e replicate the output generated from your earlier `persistent-session start cylc-test` command.
 :::
 
-These commands use the `bash` program `cat` (short for 'catalogue') to create a text file called `cylc-session` in the directory `~/.persistent-sessions/` which will contain the text `DUMMY`.
+These commands use the `bash` program `cat` (short for 'catalogue') to create a text file called `cylc-session` in the directory `~/.persistent-sessions/` which will contain the text `cylc-test.<user-id>.<project>.ps.gadi.nci.org.au`.
 
 Remember `~` is a `bash` short-cut which refers to your home directory on `gadi`.
 
