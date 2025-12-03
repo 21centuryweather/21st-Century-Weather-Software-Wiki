@@ -62,6 +62,11 @@ Note the blue status bar in the bottom left corner will change when you have suc
 
 3. You skip straight to the central pull-down menu (which is actually the `Command Palette`) by typing `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) and type `“Remote-SSH: Connect to Host…”` The `Command Palette` will auto-complete any command once you start the first few characters.
 
+:::{tip}
+
+VSCode rarely connects to `gadi` the first time. It often takes a few tries to successfully configure the server ports. Just keep hitting 'retry' until you succeed. It usually works after three-four attempts.
+
+:::
 
 Once you've loaded the `CoE_Workshop_2025` folder you will need to load a Python environment. As before, click on the Python interpreter menu in the bottom right, and then select `Enter interpreter path`. Typically you will enter the path to one of the `xp65` `analysis` packages, e.g. `/g/data/xp65/public/apps/med_conda_scripts/analysis3-25.09.d/bin`. (You can of course, choose any Python interpreter you like.)
 
