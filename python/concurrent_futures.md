@@ -180,10 +180,10 @@ Reviewing Scott Wales' old CLEX posts on how to optimise `xarray.open_mfdataset`
 
 ## Try it yourself
 
-Use an interactive `qsub` to login to a `gadi` node and test the parallelisation. The following command will launch an eight hour interactive session requesting all memory on a standard node using the `express` queue. The Service Unit (SU) costs will be billed against the `gb02` project and we will have access to the `gb02, hh5, and rv74` disks.
+Use an interactive `qsub` to login to a `gadi` node and test the parallelisation. The following command will launch an eight hour interactive session requesting all memory and CPUs on a standard node using the `express` queue. The Service Unit (SU) costs will be billed against the `gb02` project and we will have access to the `gb02, hh5, and rv74` disks.
 
 ```
-$ qsub -I -X -l mem=190gb -Pgb02 -q express -l walltime=08:00:00 -l storage=gdata/gb02+gdata/hh5+scratch/gb02+gdata/rv74
+$ qsub -I -X -l mem=190gb -P gb02 -l ncpus=48 -q express -l walltime=08:00:00 -l storage=gdata/gb02+gdata/hh5+scratch/gb02+gdata/rv74
 ```
 
 :::{note}
