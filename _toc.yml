@@ -7,6 +7,16 @@ parts:
 #  - caption: Getting Started 
 #    chapters:
 #    - file: starting/nci
+  - caption: Working with Gadi
+    chapters:
+    - file: gadi/index
+      sections:
+      - file: gadi/getting-started
+      - file: gadi/mac-stuff
+      - file: gadi/moving-data
+      - file: gadi/rudu-usage
+      - file: gadi/vscode
+      - file: gadi/quarto
   - caption: Running atmospheric simulations using ACCESS
     chapters:
     - file: rose-cylc/rose-cylc-intro
@@ -39,14 +49,6 @@ parts:
     - file: python/package-structure
     - file: python/netcdf_zarr_storage_best_practices
     - file: python/xarray_zarr
-  - caption: Working with Gadi
-    chapters:
-    - file: gadi/getting-started
-    - file: gadi/mac-stuff
-    - file: gadi/moving-data
-    - file: gadi/rudu-usage
-    - file: gadi/vscode
-    - file: gadi/quarto
   - caption: Datasets
     chapters:
     - file: datasets/index
