@@ -1,3 +1,4 @@
+(content:debugging-python)=
 # Debugging Python with VSCode
 
 Let's load and run the file `mean_air_temp.py` from the https://github.com/21centuryweather/software_engineering_demos repo. It will be in the `CoE_workshop_2025` subdirectory. This is a trivial test script which

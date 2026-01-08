@@ -1,3 +1,4 @@
+(content:getting-started)=
 # Getting started on gadi
 
 The National Computing Infrastructure ([NCI](https://www.nci.org.au/)) hosts the supercomputer `gadi` where you will be conducting most of your research. Through NCI, you will have access to high-performance computing (HPC) resources and large-scale data storage, including some of the most
