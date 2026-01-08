@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -64,7 +65,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Data catalogs" href="catalogs.html" />
-    <link rel="prev" title="Literal programming with quarto" href="../gadi/quarto.html" />
+    <link rel="prev" title="Using Zarr with Xarray for Scalable Scientific Data" href="../python/xarray_zarr.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,7 +175,19 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
@@ -211,15 +224,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
 <ul class="current nav bd-sidenav">
@@ -587,7 +591,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.6.2<br>
 </pre></div>
 </div>
 <div class="output text_html"><!--| quarto-html-table-processing: none -->
-<table id="itables_683d0558_3652_4a03_8d7a_8f07f78e7b5b"><tbody><tr>
+<table id="itables_06bc0efb_fc45_4903_a430_66a338b432e9"><tbody><tr>
     <td style="vertical-align:middle; text-align:left">
     <a href=https://mwouts.github.io/itables/><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 width="64" viewBox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -687,11 +691,11 @@ width="64" viewBox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_6_2;
 
-            document.querySelectorAll("#itables_683d0558_3652_4a03_8d7a_8f07f78e7b5b:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_06bc0efb_fc45_4903_a430_66a338b432e9:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
-                let dt_args = {"html": false, "columnDefs": [{"className": "dt-left", "targets": "_all"}], "layout": {"topStart": null, "topEnd": null, "bottomStart": null, "bottomEnd": null}, "classes": ["display", "nowrap"], "order": [], "text_in_header_can_be_selected": true, "style": {"table-layout": "auto", "width": "auto", "margin": "auto", "caption-side": "bottom"}, "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>Name</th>\n      <th>Location on Gadi</th>\n      <th>Mantainer</th>\n      <th>Description</th>\n    </tr>\n  </thead></table>", "data_json": "[[\"<a href='drought-era5.html'>ERA5 Drought</a>\", \"/g/data/su28/drought_era5\", \"Pao Corrales\", \"Monthly drought indices from 1940 to present derived from ERA5 reanalysis\"], [\"<a href='himawari-ahi.html'>Cloud Type from Himawari</a>\", \"/g/data/su28/himawari-ahi\", \"Sam Green\", \"Cloud type product is derived from Himawari AHI\"], [\"<a href='daily-era5.html'>ERA5 daily</a>\", \"/g/data/su28/ERA5/daily\", \"TBD\", \"Reanalysis. Variables in daily frequency remaped to 1 degree\"], [\"<a href='weather_objects.html'>ERA5-based Weather Objects</a>\", \"/g/data/su28/weatherfeatures.era5/\", \"Sam Green, Chenhui Jin\", \"Weather objects (anticyclones, cyclones and warm-conveyor belts)\"], [\"<a href='mesaclip.html'>MESACLIP</a>\", \"/g/data/su28/MESACLIP\", \"Sam Green\", \"MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction\"], [\"<a href='mmleav2.html'>MMLEAv2</a>\", \"/g/data/su28/MMLEAv2\", \"Sam Green, Nicola Maher\", \"Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.\"], [\"<a href='gsmap.html'>GSMaP</a>\", \"/g/data/su28/GSMaP/\", \"Sam Green\", \"Daily averaged precipitation derived from satellite.\"], [\"<a href='energy.html'>Energy Demand</a>\", \"/g/data/su28/energy_demand\", \"Sam Green, Doug Richardson\", \"Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)\"]]"};
+                let dt_args = {"html": false, "columnDefs": [{"className": "dt-left", "targets": "_all"}], "layout": {"topStart": null, "topEnd": null, "bottomStart": null, "bottomEnd": null}, "style": {"table-layout": "auto", "width": "auto", "margin": "auto", "caption-side": "bottom"}, "order": [], "text_in_header_can_be_selected": true, "classes": ["display", "nowrap"], "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>Name</th>\n      <th>Location on Gadi</th>\n      <th>Mantainer</th>\n      <th>Description</th>\n    </tr>\n  </thead></table>", "data_json": "[[\"<a href='drought-era5.html'>ERA5 Drought</a>\", \"/g/data/su28/drought_era5\", \"Pao Corrales\", \"Monthly drought indices from 1940 to present derived from ERA5 reanalysis\"], [\"<a href='himawari-ahi.html'>Cloud Type from Himawari</a>\", \"/g/data/su28/himawari-ahi\", \"Sam Green\", \"Cloud type product is derived from Himawari AHI\"], [\"<a href='daily-era5.html'>ERA5 daily</a>\", \"/g/data/su28/ERA5/daily\", \"TBD\", \"Reanalysis. Variables in daily frequency remaped to 1 degree\"], [\"<a href='weather_objects.html'>ERA5-based Weather Objects</a>\", \"/g/data/su28/weatherfeatures.era5/\", \"Sam Green, Chenhui Jin\", \"Weather objects (anticyclones, cyclones and warm-conveyor belts)\"], [\"<a href='mesaclip.html'>MESACLIP</a>\", \"/g/data/su28/MESACLIP\", \"Sam Green\", \"MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction\"], [\"<a href='mmleav2.html'>MMLEAv2</a>\", \"/g/data/su28/MMLEAv2\", \"Sam Green, Nicola Maher\", \"Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.\"], [\"<a href='gsmap.html'>GSMaP</a>\", \"/g/data/su28/GSMaP/\", \"Sam Green\", \"Daily averaged precipitation derived from satellite.\"], [\"<a href='energy.html'>Energy Demand</a>\", \"/g/data/su28/energy_demand\", \"Sam Green, Doug Richardson\", \"Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)\"]]"};
                 new ITable(table, dt_args);
             });
         }
@@ -742,12 +746,12 @@ width="64" viewBox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../gadi/quarto.html"
+       href="../python/xarray_zarr.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Literal programming with quarto</p>
+        <p class="prev-next-title">Using Zarr with Xarray for Scalable Scientific Data</p>
       </div>
     </a>
     <a class="right-next"

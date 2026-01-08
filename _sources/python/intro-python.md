@@ -1,3 +1,4 @@
+(content:intro-python)=
 # Intro to Python for Climate Science
 
 [Python](https://www.python.org) provides a powerful yet accessible toolkit for analyzing vast datasets, performing complex modeling, and visualizing climate patterns. In climate science, data often involves multiple dimensions—like time, latitude, longitude, and depth—making Python’s specialized libraries invaluable for both efficiency and depth of analysis.
