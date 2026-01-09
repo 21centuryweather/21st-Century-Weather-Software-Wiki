@@ -34,7 +34,7 @@
 
 * Why python?
 * Essential Libraries for Climate Science
-* Conda environments
+* Conda environments in gadi
 :::
 
 :::{card} > Side quest: create your own conda environment
