@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Building custom python environments on top of conda/analysis3 &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/conda-environments';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/conda-environments.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Building custom python environments on top of conda/analysis3</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual environments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <script src="https://cdn.jsdelivr.net/gh/atteggiani/animated-terminal/animated-terminal.min.js" defer></script>
+<section class="tex2jax_ignore mathjax_ignore" id="building-custom-python-environments-on-top-of-conda-analysis3">
+<h1>Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code><a class="headerlink" href="#building-custom-python-environments-on-top-of-conda-analysis3" title="Link to this heading">#</a></h1>
+<p>This section will guide you through the steps to create a conda environment on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> and is based on the materials developed byt the CLEX team. If you are interested in learning how to use the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment, please refer to the <a class="reference internal" href="intro-python.html#content-intro-python"><span class="std std-ref">Intro to Python</span></a> section.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The conda analysis environments in the <code class="docutils literal notranslate"><span class="pre">xp65</span></code> project are a community-led approach to create a central
+python environment specifically for the analysis of climate and weather data. As such, these environments
+contain a wide range of packages curated by ACCESS-NRI that can fulfil the requirements of most
+analysis workflows.</p>
+<p>You can request ACCESS-NRI to install additional packages (<a class="reference external" href="https://forum.access-hive.org.au/t/requesting-new-software-packages-on-nci-systems/2834">check this post for more details</a>). Adding or not new packages will depend on the compatibility with the existing packages.</p>
+<p>If they are unable to include the package you need in the conda environment, that doesn’t mean that you need to create a new conda environment
+from scratch to use that package.</p>
+</section>
+<section id="pip-install-user">
+<h2><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code><a class="headerlink" href="#pip-install-user" title="Link to this heading">#</a></h2>
+<p>Lets use the <a class="reference external" href="https://github.com/hdrake/xwmb">xWMB</a> package as an example.
+There is no conda distribution for this package, it can only be installed by <code class="docutils literal notranslate"><span class="pre">pip</span></code> from a git repository. This
+package also has an extensive list of dependencies, most of which are available in the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment, so using the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code>
+environment as a base will save quite a lot of disk space.</p>
+<p>The simplest approach is to load the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> the xWMB package.
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
+<terminal-line data="input">module load conda/analysis3</terminal-line>
+<terminal-line data="input">pip install --user git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>Collecting git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>  Cloning <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  Running command git clone --filter=blob:none --quiet <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  …</terminal-line>
+<terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
+</terminal-window></p>
+<p>This is sufficient in certain cases, for instance, quickly testing user code, or when long-term
+reproducibility is not necessary. The downside with this approach is that it can lead to problems in the future. First of all, everything will be installed in your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory, which has a small quota and can easily be filled by local <code class="docutils literal notranslate"><span class="pre">pip</span></code> installations. Another consideration is that the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module
+is updated every month as new environments are released. For example, if you load <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> today,
+you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-26.01</span></code> environment. If you were to load the same module a couple of months from
+now, you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-26.04</span></code> environment. As time goes on, your
+locally installed package will get further and further out of date, and could potentially conflict with newer
+packages installed in updated analysis environments.</p>
+<p>In our advice to users, we recommend the following Advanced Settings for ARE environments:</p>
+<p><img alt="ARE recommended settings" src="../_images/ARE-recommended.png" /></p>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">PYTHONNOUSERSITE=1</span></code> environment variable. This will have the effect of preventing anything installed with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> from loading at all. This setting also works in the terminal and can be used as a first step to diagnosing any issues with python package imports.</p>
+</section>
+<section id="virtual-environments">
+<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Link to this heading">#</a></h2>
+<p>What we recommend is creating a <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>. A virtual environment is a self-contained Python
+environment built on top of an existing Python installation. The self-contained
+nature of a virtual environment means that any issues due to conflicting
+dependencies can be avoided entirely. Being able to base the environment on top of
+an existing <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment means that the installation can be kept
+small, as most of the dependencies will have already been satisfied.</p>
+<p>There are only two additional commands required to install <code class="docutils literal notranslate"><span class="pre">xWMB</span></code> into a virtual environment, as shown below:
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
+<terminal-line data="input">module load conda/analysis3</terminal-line>
+<terminal-line data="input">python3 -m venv xwmb_venv --system-site-packages</terminal-line>
+<terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+<terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>Collecting git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>  Cloning <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  Running command git clone --filter=blob:none --quiet <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  …</terminal-line>
+<terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
+</terminal-window></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> here, as this will result in the packages being installed in your <code class="docutils literal notranslate"><span class="pre">~/.local</span></code> directory, leaving the virtual environment empty</p>
+</div>
+<p>And that’s it. We now have a fully self-contained environment with a custom
+package built on top of the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment. It is important to note
+that this virtual environment is tied to the version of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> that was loaded
+at the time of its creation, so it avoids the out-of-date dependencies issue mentioned earlier.
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input" inputChar="(xwmb_venv) $">which python3</terminal-line>
+<terminal-line>~/xwmb_venv/bin/python3</terminal-line>
+<terminal-line data="input" inputChar="(xwmb_venv) $">ls -l ~/xwmb_venv/bin/python3</terminal-line>
+<terminal-line>lrwxrwxrwx 1 dr4292 v45 67 Jun  5 14:43 /home/563/dr4292/xwmb_venv/bin/python3 -&gt; /g/data/xp65/public/apps/med_conda_scripts/analysis3-25.08.d/bin/python3</terminal-line>
+</terminal-window></p>
+<p>Immediately after loading the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> module, you can run
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">xwmb_venv/bin/activate</span></code> and any <code class="docutils literal notranslate"><span class="pre">python</span></code> command or script will now run under the new virtual environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+<span class="c1">#PBS -l walltime=1:00:00,mem=4GB,ncpus=1,storage=gdata/xp65</span>
+
+<span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">xp65</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span>
+<span class="n">source</span> <span class="n">xwmb_venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="n">python3</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>If you’re running a script directly, you can
+change the path in the <a class="reference external" href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> line to the path to the <code class="docutils literal notranslate"><span class="pre">python</span></code> symlink in the virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/home/563/dr4292/xwmb_venv/bin/python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">xwmb</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<p>Virtual environments are designed to be disposable, so if something goes wrong, instead of trying
+to fix the environment in place, it is safe to simply delete the environment and start again.
+There are many reasons this might need to happen, for example, you’re installing an old
+package that is not compatible with e.g. <code class="docutils literal notranslate"><span class="pre">numpy</span></code> installed in the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment.
+In that case, you could simply delete the environment, load an older <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment
+and re-create it.</p>
+<terminal-window typingDelay=30 lineDelay=200>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">deactivate</terminal-line>
+    <terminal-line data="input">rm -rf xwmb_venv</terminal-line>
+    <terminal-line data="input">module unload conda</terminal-line>
+    <terminal-line data="input">module load conda/analysis3-25.08</terminal-line>
+    <terminal-line data="input">python3 -m venv xwmb_venv --system-site-packages</terminal-line>
+    <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+</terminal-window>
+<p>In a similar vein, if you’re installing more packages into a virtual environment and they
+begin to conflict with each other, the best course of action is to create a new virtual environment.
+Virtual environments are isolated from each other, so rather than creating large, monolithic
+environments, it is common practice to create virtual environments for a single package, and have
+multiple virtual environments depending on your immediate requirements.</p>
+<p>In general, if anything in the environment doesn’t work for whatever reason, the best course of action
+is to delete it and try again. You may need to try different <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environments, or, if none of those
+work, use one of the NCI installed Python modules as your base.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NCI’s Python modules do not have <code class="docutils literal notranslate"><span class="pre">dask</span></code>, <code class="docutils literal notranslate"><span class="pre">xarray</span></code>, etc. installed, so the resultant virtual environments could be quite large.</p>
+</div>
+</section>
+<section id="jupyter-kernel">
+<h2>Jupyter Kernel<a class="headerlink" href="#jupyter-kernel" title="Link to this heading">#</a></h2>
+<p>There is one more step necessary to have your new virtual environment usable as a kernel in an ARE JupyterLab session.
+You’ll need to call <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span></code> while the virtual environment is activated.
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
+<terminal-line data="input">module load conda/analysis3</terminal-line>
+<terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+<terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install --user --name xwmb-venv --display-name “xWMB + conda/analysis3”</terminal-line>
+</terminal-window></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since this virtual environment is built on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code>, you do not need to install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> in it, as this is already present in the conda environment.</p>
+</div>
+<p>Now, when
+you launch a new ARE JupyterLab instance, you will be able to see your new environment,
+launch a notebook and import the <code class="docutils literal notranslate"><span class="pre">xWMB</span></code> package</p>
+<p><img alt="Jupyterlab launch" src="../_images/notebook_virtualenv_launch.gif" /></p>
+<p>You only have to do this once. If you delete the environment and recreate it at the same path,
+Jupyterlab will still be able to use it.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>By creating a virtual environment using the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code>
+environment as your base,
+its possible to add in packages ACCESS-NRI can’t install, without having the overhead of maintaining
+your own large conda environment. Furthermore, using a virtual environment  is more stable and easier to maintain and reuse than installing software using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code>. Virtual environments are simple to
+install, and simple to delete and re-create as necessary. Virtual environments can also be seamlessly integrated into
+ARE JupyterLab sessions, allowing you to use it anywhere you would use an <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> conda environment.</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h2>
+<p>Thanks to Davide Marchegiani for <a class="reference external" href="https://github.com/atteggiani/animated-terminal.js">animated-terminal.js</a>.
+Thanks to the CLEX CMS team for the original materials this section is based on.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual environments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
