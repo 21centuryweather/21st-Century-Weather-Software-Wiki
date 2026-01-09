@@ -42,6 +42,7 @@ parts:
   - caption: Python
     chapters:
     - file: python/intro-python
+    - file: python/conda-environments
     - file: python/file_formats
     - file: python/polars-intro
     - file: python/concurrent_futures
