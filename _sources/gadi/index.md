@@ -37,7 +37,7 @@
 * Conda environments in gadi
 :::
 
-:::{card} > Side quest: create your own conda environment
+:::{card} > Side quest: create your conda environment
 :class-card: side-card
 :width: 100% 
 :margin: 0 2 0 auto 
