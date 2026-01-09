@@ -405,7 +405,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environments-jupyter-notebooks-and-vs-code">Development Environments: Jupyter Notebooks and VS Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-environments-analysis3">Conda Python Environments - analysis3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-environments-analysis3">Conda Python Environments - analysis3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-the-packages-i-need-are-not-in-analysis3">What if the packages I need are not in analysis3?</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -526,26 +529,39 @@ document.write(`
 </section>
 <section id="conda-python-environments-analysis3">
 <h2>Conda Python Environments - analysis3<a class="headerlink" href="#conda-python-environments-analysis3" title="Link to this heading">#</a></h2>
-<p>An <a class="reference external" href="https://anaconda.org/anaconda/conda">Anaconda</a> is maintained at NCI (created and currently maintaned by the CLEX CMS team), with a wide variety of climate and weather related libraries.</p>
-<p>You can find the most recent list of libraries at the <a class="reference external" href="https://github.com/coecms/conda-envs/blob/analysis3/environment.yml">github repository</a>, or run conda list with an environment loaded.</p>
+<p>ACCESS-NRI maintains several conda environments, including the analysis3 environment created and previously maintained by the CLEX CMS team. These environment includes a wide variety of climate and weather related libraries.</p>
+<p>You can find all the information about each configuration in this <a class="reference external" href="https://forum.access-hive.org.au/t/access-nri-analysis3-conda-environments-new-release-announcement/4377">Hive post</a> along with updates. The Hive is also a good place to ask questions or support using these environments.</p>
 <p>To use any of the conda environments:</p>
 <ul class="simple">
-<li><p>Request access to hh5 (do once)</p></li>
-<li><p>You must first run (to do at each session, a qsub job is a new session):
-<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span> <span class="pre">/g/data/hh5/public/modules</span></code></p></li>
+<li><p>Request access to <a class="reference external" href="https://my.nci.org.au/mancini/login?next=/mancini/project/xp54">xp65 project</a> (do once)</p></li>
+<li><p>You must first run (to do at each session, a qsub job is a new session):</p></li>
 </ul>
-<p>If you need to use the conda environment in a PBS job you will need to add the <a class="reference external" href="https://my.nci.org.au/mancini/login?next=/mancini/project/hh5">hh5 project</a> to your storage flags, e.g. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">storage=gdata/hh5</span></code>. These conda environments will work on gadi login/compute nodes, and in the <a class="reference external" href="https://are-auth.nci.org.au">ARE cloud environment</a>.</p>
-<p><strong>Stable Environment</strong>:
-The stable environment is updated once a quarter, around when NCI do their quarterly maintenance of Gadi. Otherwise everything in the environment stays fixed, packages arent intsalled or updated unless something is very broken.</p>
-<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">conda/analysis3</span></code></p>
-<p><strong>Unstable Environment</strong>:
-The unstable environment gets updated more often, new packages and updated packages are installed here. If you ask for a new package it will be installed here.</p>
-<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">conda/analysis3-unstable</span></code></p>
-<p>When the quarterly update happens the unstable environment becomes the new stable environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">xp65</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
+</pre></div>
+</div>
+<p>If you need to use the conda environment in a PBS job you will need to add the <a class="reference external" href="https://my.nci.org.au/mancini/login?next=/mancini/project/xp54">xp65 project</a> to your storage flags, e.g. <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-l</span> <span class="pre">storage=gdata/xp65</span></code>. These conda environments will work on gadi login/compute nodes, and in the <a class="reference external" href="https://are-auth.nci.org.au">ARE cloud environment</a>.</p>
+<p><strong>Analysis3</strong>:
+The environment is updated once a month, it is a stable environment designed for long-term usability with well-tested, reliable package versions.
+You can load it with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span>
+</pre></div>
+</div>
+<p>Or (recommended) by specifying the version <code class="docutils literal notranslate"><span class="pre">conda/analysis3-YY.MM</span></code>, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span><span class="o">-</span><span class="mf">23.06</span>
+</pre></div>
+</div>
+<p><strong>Analysis3-Edge</strong>:
+A cutting-edge environment with the latest available packages, ideal for those needing the most up-to-date software and features. analysis3-edge is also updated monthly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span><span class="o">-</span><span class="n">edge</span>
+</pre></div>
+</div>
 <p><strong>ARE</strong>
-To use CLEX Conda in <a class="reference external" href="https://are-auth.nci.org.au">ARE cloud environment</a>, start Jupyter with the advanced options:</p>
-<p><code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">Directories:</span> <span class="pre">/g/data/hh5/public/modules</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">Modules:</span> <span class="pre">conda/analysis3</span></code></p>
+When using Australian Research Environment (ARE), add <code class="docutils literal notranslate"><span class="pre">gdata/xp65</span></code> to “Storage”, <code class="docutils literal notranslate"><span class="pre">/g/data/xp65/public/modules/</span></code> to “Module directories” (under “Advanced options”), and add <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> to “Modules”. Again, you can specify a version if needed.</p>
+<section id="what-if-the-packages-i-need-are-not-in-analysis3">
+<h3>What if the packages I need are not in analysis3?<a class="headerlink" href="#what-if-the-packages-i-need-are-not-in-analysis3" title="Link to this heading">#</a></h3>
+<p>You can request ACCESS-NRI to install additional packages (<a class="reference external" href="https://forum.access-hive.org.au/t/requesting-new-software-packages-on-nci-systems/2834">check this post for more details</a>). Adding or not new packages will depend on the compatibility with the existing packages.</p>
+<p>Additionally you can create your onw conda environment on top of analysis3 and install the packages you need. Check the sections <a class="reference internal" href="#content:conda-env"><span class="xref myst">Conda environments</span></a> for more details.</p>
+</section>
 </section>
 </section>
 
@@ -622,7 +638,10 @@ To use CLEX Conda in <a class="reference external" href="https://are-auth.nci.or
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environments-jupyter-notebooks-and-vs-code">Development Environments: Jupyter Notebooks and VS Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-environments-analysis3">Conda Python Environments - analysis3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-environments-analysis3">Conda Python Environments - analysis3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-the-packages-i-need-are-not-in-analysis3">What if the packages I need are not in analysis3?</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
