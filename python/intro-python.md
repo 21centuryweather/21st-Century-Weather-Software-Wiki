@@ -105,34 +105,49 @@ Both environments offer unique benefits, allowing researchers to choose based on
 
 ## Conda Python Environments - analysis3
 
-An [Anaconda](https://anaconda.org/anaconda/conda) is maintained at NCI (created and currently maintaned by the CLEX CMS team), with a wide variety of climate and weather related libraries.
+ACCESS-NRI maintains several conda environments, including the analysis3 environment created and previously maintained by the CLEX CMS team. These environment includes a wide variety of climate and weather related libraries.
 
-You can find the most recent list of libraries at the [github repository](https://github.com/coecms/conda-envs/blob/analysis3/environment.yml), or run conda list with an environment loaded.
+You can find all the information about each configuration in this [Hive post](https://forum.access-hive.org.au/t/access-nri-analysis3-conda-environments-new-release-announcement/4377) along with updates. The Hive is also a good place to ask questions or support using these environments.
 
 To use any of the conda environments:
 
-- Request access to hh5 (do once)
+- Request access to [xp65 project](https://my.nci.org.au/mancini/login?next=/mancini/project/xp54) (do once)
 - You must first run (to do at each session, a qsub job is a new session):
-```module use /g/data/hh5/public/modules```
+
+```
+module use /g/data/xp65/public/modules
+```
 
 
-If you need to use the conda environment in a PBS job you will need to add the [hh5 project](https://my.nci.org.au/mancini/login?next=/mancini/project/hh5) to your storage flags, e.g. `#PBS -l storage=gdata/hh5`. These conda environments will work on gadi login/compute nodes, and in the [ARE cloud environment](https://are-auth.nci.org.au). 
+If you need to use the conda environment in a PBS job you will need to add the [xp65 project](https://my.nci.org.au/mancini/login?next=/mancini/project/xp54) to your storage flags, e.g. `#PBS -l storage=gdata/xp65`. These conda environments will work on gadi login/compute nodes, and in the [ARE cloud environment](https://are-auth.nci.org.au). 
 
-**Stable Environment**: 
-The stable environment is updated once a quarter, around when NCI do their quarterly maintenance of Gadi. Otherwise everything in the environment stays fixed, packages arent intsalled or updated unless something is very broken.
+**Analysis3**: 
+The environment is updated once a month, it is a stable environment designed for long-term usability with well-tested, reliable package versions.
+You can load it with:
 
-`module load conda/analysis3`
+```
+module load conda/analysis3
+```
 
-**Unstable Environment**: 
-The unstable environment gets updated more often, new packages and updated packages are installed here. If you ask for a new package it will be installed here.
+Or (recommended) by specifying the version `conda/analysis3-YY.MM`, for example:
 
-`module load conda/analysis3-unstable`
+```
+module load conda/analysis3-23.06
+``` 
 
-When the quarterly update happens the unstable environment becomes the new stable environment.
+**Analysis3-Edge**: 
+A cutting-edge environment with the latest available packages, ideal for those needing the most up-to-date software and features. analysis3-edge is also updated monthly.
+
+```
+module load conda/analysis3-edge
+```
+
 
 **ARE**
-To use CLEX Conda in [ARE cloud environment](https://are-auth.nci.org.au), start Jupyter with the advanced options:
+When using Australian Research Environment (ARE), add `gdata/xp65` to “Storage”, `/g/data/xp65/public/modules/` to “Module directories” (under “Advanced options”), and add `conda/analysis3` to “Modules”. Again, you can specify a version if needed.
 
-```Module Directories: /g/data/hh5/public/modules```
+### What if the packages I need are not in analysis3?
 
-```Modules: conda/analysis3```
+You can request ACCESS-NRI to install additional packages ([check this post for more details](https://forum.access-hive.org.au/t/requesting-new-software-packages-on-nci-systems/2834)). Adding or not new packages will depend on the compatibility with the existing packages. 
+
+Additionally you can create your onw conda environment on top of analysis3 and install the packages you need. Check the sections [Conda environments](content:conda-env) for more details.
