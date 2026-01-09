@@ -1,7 +1,8 @@
 (content:conda-env)=
+# Building custom python environments on top of `conda/analysis3`
+
 <script src="https://cdn.jsdelivr.net/gh/atteggiani/animated-terminal/animated-terminal.min.js" defer></script>
 
-# Building custom python environments on top of `conda/analysis3`
 
 This section will guide you through the steps to create a conda environment on top of `conda/analysis3` and is based on the materials developed byt the CLEX team. If you are interested in learning how to use the `conda/analysis3` environment, please refer to the [Intro to Python](content:intro-python) section.
 
