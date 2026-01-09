@@ -43,7 +43,7 @@
 :margin: 0 2 0 auto 
 :text-align: right
 :shadow: none
-:link: content:conda-env
+:link: content:mac
 :link-type: ref
 :::
 
