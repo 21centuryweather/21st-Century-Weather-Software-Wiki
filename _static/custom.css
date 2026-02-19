@@ -1,0 +1,33 @@
+
+ :root {
+  --pink-light: #F4857F; 
+  --pink-dark: #B7533D;
+  --grey: #FAFAFA;
+  --grey-light: #C9C9CA;
+  --grey-dark: #96989A;
+}
+
+.main-card {
+  border: 3px solid var(--pink-dark) !important;
+  border-radius: 0.5rem !important;
+}
+
+.main-card .sd-card-title {
+  color: var(--pink-dark) !important;
+}
+
+
+.side-card {
+  border: 0px solid  var(--grey-dark) !important;
+  border-radius: 0.5rem !important;
+
+}
+
+.side-card .sd-card-title {
+  color: var(--grey-dark) !important;
+}
+
+.side-card .sd-card-body {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.25rem !important;
+}

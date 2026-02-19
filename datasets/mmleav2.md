@@ -26,6 +26,7 @@ NetCDF output from the Climate Variability Diagnostics Package version 6 (CVDP v
 - Sea Surface Height
 - Sea Surface Temperature
 - Wind Stress
+- Depth of 20°C isotherm
 
 ### Location:
 
@@ -45,7 +46,7 @@ The data is then divided up into sub-categories with the following options:
 
 **frequency** - monthly, daily
 
-**variable** - evspsbl, pr, psl, tas, tauu, tauv, zg500, ts, Rx1day, TNn, TXx, mlotst, sos, tos, zos, siconc, observations
+**variable** - evspsbl, pr, psl, tas, tauu, tauv, zg500, ts, Rx1day, TNn, TXx, mlotst, sos, tos, zos, z20, siconc, observations
 
 **model** - ACCESS-ESM1-5, CanESM5, CESM2, E3SM-1-0, EC-Earth3, IPSL-CM6A-LR, MIROC-ES2L, UKESM1-0-LL, CanESM2, CESM1-CAM5, CSIRO-Mk3-6-0, E3SMv2, GFDL-ESM2M, MIROC6, MPI-ESM
 
@@ -54,7 +55,7 @@ Each domain type has thje following variables:
 
 - atm_mon = ['evspsbl', 'pr', 'psl', 'tas', 'tauu', 'tauv', 'zg500', 'ts']
 - atm_daily = ['Rx1day', 'TNn', 'TXx']
-- ocn_mon = ['mlotst', 'sos', 'tos', 'zos']
+- ocn_mon = ['mlotst', 'sos', 'tos', 'zos', 'z20']
 - seaice_mon = ['siconc']
 - obs = ['observations']
 
@@ -68,7 +69,7 @@ UCAR/NCAR/CGD
 
 ### Publication:
 
-Maher, N., A. S. Phillips, C. Deser, R. C. J. Wills, F. Lehner, J. Fasullo, J. M. Caron, L. Brunner, and U. Beyerle, 2024: [The updated Multi-Model Large Ensemble Archive and the Climate Variability Diagnostics Package: New tools for the study of climate variability and change](https://egusphere.copernicus.org/preprints/2024/egusphere-2024-3684/). EGUsphere, 2024, 3684 (DOI: 10.5194/egusphere-2024-3684).
+Maher, N., Phillips, A. S., Deser, C., Wills, R. C. J., Lehner, F., Fasullo, J., Caron, J. M., Brunner, L., Beyerle, U., and Jeffree, J.: The updated Multi-Model Large Ensemble Archive and the Climate Variability Diagnostics Package: new tools for the study of climate variability and change, Geosci. Model Dev., 18, 6341–6365, https://doi.org/10.5194/gmd-18-6341-2025, 2025.
 
 
 ### Extra:

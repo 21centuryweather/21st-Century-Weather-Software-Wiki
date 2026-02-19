@@ -1,6 +1,7 @@
+(content:mac)=
 # Working with gadi via your Mac
 
-Mac OS interfaces very well with Unix/Linux systems (like gadi), because Mac OS is itself based on an old version of Unix called 'BSD'.
+Mac OS interfaces work very well with Unix/Linux systems (like gadi), because Mac OS is itself based on an old version of Unix called 'BSD'.
 
 However, there are a few tricks you need to know before you can seamlessly work with gadi on your Mac desktop.
 

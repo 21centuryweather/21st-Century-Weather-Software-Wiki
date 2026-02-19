@@ -1,3 +1,4 @@
+(content:vscode)=
 # Working with VS Code on Gadi
 
 VS Code, short for Visual Studio Code, is an incredibly useful code editor. Its versatility and feature-rich environment make it a go-to tool for programmers across different programming languages and platforms. VS Code boasts a user-friendly interface and has powerful editing capabilities, including syntax highlighting, code completion, and intelligent debugging. Additionally, VS Code supports a vast range of extensions, enabling developers to customize their environment with functionalities specific to their needs. The integrated source control management and collaboration features further streamline the development workflow, making it easy to work on projects individually or as part of a team. Furthermore, VS Code’s lightweight nature and cross-platform compatibility ensure that developers can work effortlessly on different operating systems.
