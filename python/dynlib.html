@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dependencies &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/dynlib';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Datasets" href="../datasets/index.html" />
+    <link rel="prev" title="Using Zarr with Xarray for Scalable Scientific Data" href="xarray_zarr.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dependencies</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/dynlib.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dependencies</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dependencies</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-you-must-now-commit-your-local-changes-to-your-local-copy-of-repository-before-attempting-install">NOTE : You must now commit your local changes to your local copy of repository before attempting install!</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-module">Loading the module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-parameters">Other Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returns">Returns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Other Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Returns</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-scripts">Test scripts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workarounds">Workarounds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#depedency-on-basemap">Depedency on basemap</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Dynlib is meteorological analysis libary developed at University of Bergen. The central github repository is here : <a class="reference external" href="https://git.app.uib.no/Clemens.Spensberger/dynlib">https://git.app.uib.no/Clemens.Spensberger/dynlib</a></p>
+<p>Documentation for the library is available here : <a class="reference external" href="https://folk.uib.no/csp001/dynlib_doc/intro.html">https://folk.uib.no/csp001/dynlib_doc/intro.html</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="dependencies">
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h1>
+<p>A list of dependencies to build the library is available here : <a class="reference external" href="https://folk.uib.no/csp001/dynlib_doc/pkg.html">https://folk.uib.no/csp001/dynlib_doc/pkg.html</a></p>
+<p>Some of the analysis tools are compiled in Fortran, and the python tool <code class="docutils literal notranslate"><span class="pre">f2py</span></code> is used to link the Fortran modules to a python wrapper. Details about <code class="docutils literal notranslate"><span class="pre">f2py</span></code> are available at : <a class="reference external" href="https://numpy.org/doc/stable/f2py/">https://numpy.org/doc/stable/f2py/</a></p>
+<p>The main Fortran dependencies are:</p>
+<ul class="simple">
+<li><p>LAPACK (<a class="reference external" href="https://netlib.org/lapack/">https://netlib.org/lapack/</a>) -  libraries to solve linear equations.</p></li>
+<li><p>BLAS (<a class="reference external" href="https://www.netlib.org/blas/">https://www.netlib.org/blas/</a>) - libraries for linear algebra.</p></li>
+</ul>
+<p>These two libraries are available on NCI/gadi, see <a class="reference external" href="https://opus.nci.org.au/pages/viewpage.action?pageId=248840668">https://opus.nci.org.au/pages/viewpage.action?pageId=248840668</a></p>
+<p>By loading the appropriate modules specified in that link, we can compile the <code class="docutils literal notranslate"><span class="pre">dynlib</span></code> fortran source.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
+<p>From a directory on gadi, type</p>
+<p>{% highlight bash %}
+$ git clone <a class="reference external" href="https://git.app.uib.no/Clemens.Spensberger/dynlib.git">https://git.app.uib.no/Clemens.Spensberger/dynlib.git</a>
+Cloning into ‘dynlib’…
+remote: Enumerating objects: 4471, done.
+remote: Counting objects: 100% (274/274), done.
+remote: Compressing objects: 100% (105/105), done.
+remote: Total 4471 (delta 224), reused 169 (delta 169), pack-reused 4197 (from 1)
+Receiving objects: 100% (4471/4471), 1.86 MiB | 1010.00 KiB/s, done.
+Resolving deltas: 100% (3055/3055), done.
+Updating files: 100% (286/286), done.
+{% endhighlight %}</p>
+<p>You have now downloaded the latest version of the dynlib source files.</p>
+<p>These instructions will install dynlib using a standard NCI python environment, as I had problems linking the fortran modules with python using the CLEX <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> conda environment.</p>
+<p>Let’s load the required modules.
+{% highlight bash %}
+$ module load python3/3.10.0
+Loading python3/3.10.0
+Loading requirement: intel-mkl/2021.4.0
+{% endhighlight %}
+Loading later python3 versions (e.g. python3.12.1) will fail because the library uses the deprecated <code class="docutils literal notranslate"><span class="pre">disutils</span></code> package for installation.</p>
+<p>Note this loads the required intel libraries required to compile the required fortran modules. You will need to upgrade the default version <code class="docutils literal notranslate"><span class="pre">gfortan</span></code> at NCI/gadi (8.5.0) so that it recognises the <code class="docutils literal notranslate"><span class="pre">-fallow-argument-mismatch</span></code> compiler argument provided in the file <code class="docutils literal notranslate"><span class="pre">/ext/spherepack3.2/make.inc</span></code> which passes parameters to the <code class="docutils literal notranslate"><span class="pre">spherepack</span></code> <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.
+{% highlight bash %}
+module load gcc/10.3.0
+{% endhighlight %}
+Now we need to edit the <code class="docutils literal notranslate"><span class="pre">compile</span></code> script to</p>
+<ul class="simple">
+<li><p>Provide the python version (3)</p></li>
+<li><p>follow the NCI guidelines to load the LAPACK and BLAS libraries.</p></li>
+</ul>
+<p>Edit line 13 of <code class="docutils literal notranslate"><span class="pre">compile</span></code> from
+{% highlight bash %}
+PY_VER=””
+{% endhighlight %}</p>
+<p>to
+{% highlight bash %}
+PY_VER=”3”
+{% endhighlight %}</p>
+<p>Edit line 60 from
+{% highlight bash %}
+LIBS=”-L/usr/lib -L/usr/local/lib -L<span class="math notranslate nohighlight">\((pwd)/ext/spherepack3.2/lib -lblas -llapack -lspherepack
+{% endhighlight %}
+to
+{% highlight bash %}
+LIBS=&quot;-L/usr/lib -L/usr/local/lib -L\)</span>(pwd)/ext/spherepack3.2/lib -lmkl_gf_lp64 -lmkl_core -lmkl_gnu_thread -lgomp -lm -lspherepack”
+{% endhighlight %}</p>
+<section id="note-you-must-now-commit-your-local-changes-to-your-local-copy-of-repository-before-attempting-install">
+<h2>NOTE : You must now commit your local changes to your local copy of repository before attempting install!<a class="headerlink" href="#note-you-must-now-commit-your-local-changes-to-your-local-copy-of-repository-before-attempting-install" title="Link to this heading">#</a></h2>
+<p>{% highlight bash %}
+$ git commit .
+{% endhighlight %}</p>
+<p>Once you have committed your local changes, you can then begin compiling and installing the libraries.</p>
+<p>This python file <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> will run the <code class="docutils literal notranslate"><span class="pre">compile</span></code> script that we just edited previously. This script will autocompile the <code class="docutils literal notranslate"><span class="pre">spherepack</span></code> modules, before it compiles and links the rest of the fortran code. Because we are using are standard NCI python environment, we will have to provide an install location as we don’t have write permissions to <code class="docutils literal notranslate"><span class="pre">/apps/python3/3.10.0/lib/python3.10/site-packages/</span></code>. We can specify the install location using the ‘user’ or <code class="docutils literal notranslate"><span class="pre">prefix</span></code> command-line argument,e.g.
+{% highlight bash %}
+<span class="math notranslate nohighlight">\( python3 setup.py install --user
+{% endhighlight %} 
+or
+{% highlight bash %} 
+\)</span> python3 <a class="reference external" href="http://setup.py">setup.py</a> install –prefix=FULL_PATH_TO_YOUR_LIBRARY_INSTALL
+{% endhighlight %}</p>
+<p>For testing, you might want to use <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> to specify a path on <code class="docutils literal notranslate"><span class="pre">/g/data/gb02</span></code>. The <code class="docutils literal notranslate"><span class="pre">--user</span></code> argument will install in the default location <code class="docutils literal notranslate"><span class="pre">~/.local/lib/python3.10/site-packages/</span></code>.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="loading-the-module">
+<h1>Loading the module<a class="headerlink" href="#loading-the-module" title="Link to this heading">#</a></h1>
+<p>To load the module within a python session (e.g. using the python3/3.10.0 environment we used to compile and install <code class="docutils literal notranslate"><span class="pre">dynlib</span></code> library) we can use the following (assuming we installed it with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> option):
+{% highlight python %}
+Python 3.10.0 (default, Nov 16 2021, 09:41:50) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)] on linux
+Type “help”, “copyright”, “credits” or “license” for more information.</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>import dynlib
+from dynlib import dynfor
+dir(dynfor)
+[’<strong>doc</strong>’, ‘<strong>f2py_numpy_version</strong>’, ‘<strong>file</strong>’, ‘<strong>loader</strong>’, ‘<strong>name</strong>’, ‘<strong>package</strong>’, ‘<strong>spec</strong>’, ‘<strong>version</strong>’, ‘_dynfor_error’, ‘config’, ‘consts’, ‘derivatives’, ‘detect’, ‘detect_lines’, ‘detect_rwb_contour’, ‘diag’, ‘diag_tend’, ‘ellipse’, ‘interpol’, ‘sphere’, ‘stat’, ‘tend’, ‘thermodyn’, ‘utils’]
+print(dynfor.derivatives.ddx.<strong>doc</strong>)
+res = ddx(dat,dx,dy,[nx,ny,nz])</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p>Wrapper for <code class="docutils literal notranslate"><span class="pre">ddx</span></code>.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<p>dat : input rank-3 array(‘d’) with bounds (nz,ny,nx)
+dx : input rank-2 array(‘d’) with bounds (ny,nx)
+dy : input rank-2 array(‘d’) with bounds (ny,nx)</p>
+</section>
+<section id="other-parameters">
+<h2>Other Parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">#</a></h2>
+<p>nx : input int, optional
+Default: shape(dat,2)
+ny : input int, optional
+Default: shape(dat,1)
+nz : input int, optional
+Default: shape(dat,0)</p>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
+<p>res : rank-3 array(‘d’) with bounds (nz,ny,nx)
+{% endhighlight %}</p>
+<p>If we used the <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> option we will have to tell python where to find our libraries. One way to do this is:
+{% highlight python %}</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>import sys
+sys.path.append(‘FULL_PATH_TO_YOUR_LIBRARY_INSTALL’)
+sys.path
+[‘’, ‘/apps/python3/3.10.0/lib/python310.zip’, ‘/apps/python3/3.10.0/lib/python3.10’, ‘/apps/python3/3.10.0/lib/python3.10/lib-dynload’, ‘/home/548/pag548/.local/lib/python3.10/site-packages’, ‘/apps/python3/3.10.0/lib/python3.10/site-packages’, ‘/apps/python3/3.10.0/lib/python3.10/site-packages/numpy-1.21.4-py3.10-linux-x86_64.egg’, ‘FULL_PATH_TO_YOUR_LIBRARY_INSTALL’]
+{% endhighlight %}</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p>Note python will search for <code class="docutils literal notranslate"><span class="pre">dynlib</span></code> according to the order of the paths in the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list. If you wish to add a new path to the start of this list (index 0) so it is searched first, you can use
+{% highlight python %}</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>sys.path.insert(0,’FULL_PATH_TO_YOUR_LIBRARY_INSTALL’)
+{% endhighlight %}</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p>Or you can insert your new path at the beginning of command-line environment variable <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, e.g
+{% highlight bash %}
+<span class="math notranslate nohighlight">\( export PYTHONPATH=&quot;FULL_PATH_TO_YOUR_LIBRARY_INSTALL:\)</span>PYTHONPATH”
+{% endhighlight %}</p>
+<p>You can also load the module from within the CLEX <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment.
+{% highlight bash %}
+<span class="math notranslate nohighlight">\( module use /g/data/hh5/public/modules
+\)</span> module load conda/analysis3
+$ ipython
+{% endhighlight %}
+{% highlight python %}
+Python 3.10.14 | packaged by conda-forge | (main, Mar 20 2024, 12:45:18) [GCC 12.3.0]
+Type ‘copyright’, ‘credits’ or ‘license’ for more information
+IPython 8.26.0 – An enhanced Interactive Python. Type ‘?’ for help.</p>
+<p>In [1]: import dynlib</p>
+<p>In [2]: from dynlib import metio</p>
+<p>In [3]: ?dynlib
+Type:        module
+String form: &lt;module ‘dynlib’ from ‘/home/548/pag548/.local/lib/python3.10/site-packages/dynlib/<strong>init</strong>.py’&gt;
+File:        ~/.local/lib/python3.10/site-packages/dynlib/<strong>init</strong>.py
+Docstring:   <no docstring></p>
+<p>In [4]: dynlib.dynfor.derivatives.ddx
+Out[4]: <fortran object></p>
+<p>In [5]: ?dynlib.dynfor.derivatives.ddx
+Call signature: dynlib.dynfor.derivatives.ddx(*args, **kwargs)
+Type:           fortran
+String form:    <fortran object>
+Docstring:<br />
+res = ddx(dat,dx,dy,[nx,ny,nz])</p>
+<p>Wrapper for <code class="docutils literal notranslate"><span class="pre">ddx</span></code>.</p>
+</section>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>dat : input rank-3 array(‘d’) with bounds (nz,ny,nx)
+dx : input rank-2 array(‘d’) with bounds (ny,nx)
+dy : input rank-2 array(‘d’) with bounds (ny,nx)</p>
+</section>
+<section id="id2">
+<h2>Other Parameters<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>nx : input int, optional
+Default: shape(dat,2)
+ny : input int, optional
+Default: shape(dat,1)
+nz : input int, optional
+Default: shape(dat,0)</p>
+</section>
+<section id="id3">
+<h2>Returns<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>res : rank-3 array(‘d’) with bounds (nz,ny,nx)</p>
+<p>In [7]: from dynlib.metio import datasource
+{% endhighlight %}</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="test-scripts">
+<h1>Test scripts<a class="headerlink" href="#test-scripts" title="Link to this heading">#</a></h1>
+<p>The repository comes with a variety of unit tests (located in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory) and example-scripts (located in `examples’). For a variety of reasons, these tests and examples will not work out of the box on gadi:</p>
+<ul class="simple">
+<li><p>Sample data paths are assumed to exist on a drive somewhere in Bergen, e.g.
+{% highlight python %}
+$ python test_dynlib.py
+Traceback (most recent call last):
+File “/g/data/gb02/pag548/dynlib/test_dynlib.py”, line 17, in <module>
+dat, grid = get_instantaneous([(plev, ‘u’), (plev,’v’), ], timeinterval)
+File “/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py”, line 939, in get_instantaneous
+grid = get_static(<em><em>static_kwargs)
+File “/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/erainterim.py”, line 111, in get_static
+fo, oro = metopen(conf.staticfile, ‘oro’, verbose=verbose, no_dtype_conversion=no_dtype_conversion,
+File “/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py”, line 473, in metopen
+raise ValueError(‘%s.</em> not found in any data location. \n’
+ValueError: ei.ans.static.</em> not found in any data location.
+Tried the following (in order):
+      .
+      /Data/gfi/share/Reanalyses/ERA_INTERIM/6HOURLY
+      /Data/gfi/users/local/share
+      /Data/gfi/users/csp001/share
+{% endhighlight %}</p></li>
+<li><p>It assumes that functions exist in some of the source files. (e.g. <code class="docutils literal notranslate"><span class="pre">lib/settings.py</span></code> doesn’t appear to contain a function <code class="docutils literal notranslate"><span class="pre">get_active_context</span></code>)  Also, the requirement for <code class="docutils literal notranslate"><span class="pre">pygrib</span></code> isn’t in the documentation), e.g.
+{% highlight python %}
+(dynlib_env) [pag548&#64;gadi-login-05 dynlib]<span class="math notranslate nohighlight">\( python tests/test_plot.py 
+Traceback (most recent call last):
+File &quot;/g/data/gb02/pag548/dynlib/tests/test_plot.py&quot;, line 11, in &lt;module&gt;
+  from create_ref_plots import path, gfile, obfile, odfile, req_levs, ofile as reffile, conf, make_plot_list
+File &quot;/g/data/gb02/pag548/dynlib/tests/create_ref_plots.py&quot;, line 7, in &lt;module&gt;
+  from lib.settings import get_active_context
+ImportError: cannot import name 'get_active_context' from 'lib.settings' (/g/data/gb02/pag548/dynlib/tests/lib/settings.py)
+(dynlib_env) [pag548&#64;gadi-login-05 dynlib]\)</span> python tests/test_func.py
+Traceback (most recent call last):
+File “/g/data/gb02/pag548/dynlib/tests/test_func.py”, line 9, in <module>
+from create_ref_data import path, gfile, obfile, odfile, diagnostics, _prepare_args
+File “/g/data/gb02/pag548/dynlib/tests/create_ref_data.py”, line 4, in <module>
+import pygrib
+ModuleNotFoundError: No module named ‘pygrib’
+{% endhighlight %}</p></li>
+<li><p>Missing files and functions altogether, e.g.
+{% highlight bash %}
+python tests/test_func.py
+Traceback (most recent call last):
+File “/g/data/gb02/pag548/dynlib/tests/test_func.py”, line 9, in <module>
+from create_ref_data import path, gfile, obfile, odfile, diagnostics, _prepare_args
+File “/g/data/gb02/pag548/dynlib/tests/create_ref_data.py”, line 12, in <module>
+import lib.humidity
+ModuleNotFoundError: No module named ‘lib.humidity’
+{% endhighlight %}</p></li>
+</ul>
+<section id="workarounds">
+<h2>Workarounds<a class="headerlink" href="#workarounds" title="Link to this heading">#</a></h2>
+<p>The location of sample data used for the tests and examples scripts can be found in the following scripts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lib/settings.py</span></code> : See the default configuration for the class <code class="docutils literal notranslate"><span class="pre">settings_obj</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lib/metio/erainterim.py</span></code> : See the values of <code class="docutils literal notranslate"><span class="pre">'datapath'</span></code> in the <code class="docutils literal notranslate"><span class="pre">settings_obj</span></code> configuration class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/example_attribute.py</span></code> : Several data paths are hard-coded in the example scripts.</p></li>
+</ul>
+</section>
+<section id="depedency-on-basemap">
+<h2>Depedency on basemap<a class="headerlink" href="#depedency-on-basemap" title="Link to this heading">#</a></h2>
+<p>The python module <code class="docutils literal notranslate"><span class="pre">basemap</span></code> is required by many of the <code class="docutils literal notranslate"><span class="pre">dynlib</span></code> plotting routines. The user will have to install this module themselves as it is not included in the standard NCI/gadi environments, or in the CLEX <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environments.</p>
+<p>A recommended way to install <code class="docutils literal notranslate"><span class="pre">basemap</span></code> is to install it on top of your existing <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environment using a <em>virtual environment</em>, following the process available here : <a class="reference external" href="https://climate-cms.org/posts/2024-06-05-mixing-python-envs.html">https://climate-cms.org/posts/2024-06-05-mixing-python-envs.html</a>.</p>
+<p>To replicate this example for <code class="docutils literal notranslate"><span class="pre">basemap</span></code> using a virtual environment named <em>dynlib_env</em> created from inside the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environment, execute the following:
+{% highlight bash %}
+<span class="math notranslate nohighlight">\( python3 -m venv dynlib_env --system-site-packages
+\)</span> source dynlib_env/bin/activate
+{% endhighlight %}</p>
+<p>The new environment <code class="docutils literal notranslate"><span class="pre">dynlib_env</span></code> will contain all the existing <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> modules as well as <code class="docutils literal notranslate"><span class="pre">basemap</span></code>.
+{% highlight bash %}
+(dynlib_env) $ ipython
+{% endhighlight %}
+{% highlight python %}
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-24.04/lib/python3.10/site-packages/IPython/core/interactiveshell.py:937: UserWarning: Attempting to work in a virtualenv. If you encounter problems, please install IPython inside the virtualenv.
+warn(
+Python 3.10.14 | packaged by conda-forge | (main, Mar 20 2024, 12:45:18) [GCC 12.3.0]
+Type ‘copyright’, ‘credits’ or ‘license’ for more information
+IPython 8.26.0 – An enhanced Interactive Python. Type ‘?’ for help.</p>
+<p>In [1]: import xarray as xr</p>
+<p>In [3]: import pygrib</p>
+<p>In [4]: import metpy.calc as mpcalc</p>
+<p>In [5]: from mpl_toolkits.basemap import Basemap</p>
+<p>In [6]: import netCDF4
+{% endhighlight %}</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="xarray_zarr.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Zarr with Xarray for Scalable Scientific Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../datasets/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dependencies</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-you-must-now-commit-your-local-changes-to-your-local-copy-of-repository-before-attempting-install">NOTE : You must now commit your local changes to your local copy of repository before attempting install!</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-module">Loading the module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-parameters">Other Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returns">Returns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Other Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Returns</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-scripts">Test scripts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workarounds">Workarounds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#depedency-on-basemap">Depedency on basemap</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
