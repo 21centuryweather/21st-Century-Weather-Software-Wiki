@@ -80,7 +80,7 @@ $ git commit .
 
 Once you have committed your local changes, you can then begin compiling and installing the libraries.
 
-This python file `setup.py` will run the `compile` script that we just edited previously. This script will autocompile the `spherepack` modules, before it compiles and links the rest of the fortran code. Because we are using are standard NCI python environment, we will have to provide an install location as we don't have write permissions to `/apps/python3/3.10.0/lib/python3.10/site-packages/`. We can specify the install location using the 'user' or `prefix` command-line argument,e.g.
+This python file `setup.py` will run the `compile` script that we just edited previously. This script will autocompile the `spherepack` modules, before it compiles and links the rest of the fortran code. Because we are using are standard NCI python environment, we will have to provide an install location as we don't have write permissions to `/apps/python3/3.11.0/lib/python3.11/site-packages/`. We can specify the install location using the 'user' or `prefix` command-line argument,e.g.
 ```
 $ python3 setup.py install --user
 ```
@@ -89,7 +89,7 @@ or
 $ python3 setup.py install --prefix=FULL_PATH_TO_YOUR_LIBRARY_INSTALL
 ```
 
-For testing, you might want to use `--prefix` to specify a path on `/g/data/gb02`. The `--user` argument will install in the default location `~/.local/lib/python3.10/site-packages/`.
+For testing, you might want to use `--prefix` to specify a path on `/g/data/gb02`. The `--user` argument will install in the default location `~/.local/lib/python3.11/site-packages/`.
 
 ## Loading the module
 
@@ -290,11 +290,10 @@ The new environment `dynlib_env` will contain all the existing `analysis3` modul
 (dynlib_env) $ ipython
 ```
 ```python
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-24.04/lib/python3.10/site-packages/IPython/core/interactiveshell.py:937: UserWarning: Attempting to work in a virtualenv. If you encounter problems, please install IPython inside the virtualenv.
-  warn(
-Python 3.10.14 | packaged by conda-forge | (main, Mar 20 2024, 12:45:18) [GCC 12.3.0]
+Python 3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:46:25) [GCC 14.3.0]
 Type 'copyright', 'credits' or 'license' for more information
-IPython 8.26.0 -- An enhanced Interactive Python. Type '?' for help.
+IPython 8.37.0 -- An enhanced Interactive Python. Type '?' for help.
+Intake telemetry extension loaded
 
 In [1]: import xarray as xr
 
