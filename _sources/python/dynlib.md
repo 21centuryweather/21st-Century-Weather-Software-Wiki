@@ -40,8 +40,8 @@ These instructions will install dynlib using a standard NCI python environment, 
 
 Let's load the required modules. 
 ```
-$ module load python3/3.10.0
-Loading python3/3.10.0
+$ module load python3/3.11.0
+Loading python3/3.11.0
   Loading requirement: intel-mkl/2021.4.0
 ```
 Loading later python3 versions (e.g. python3.12.1) will fail because the library uses the deprecated `disutils` package for installation. 
@@ -93,9 +93,9 @@ For testing, you might want to use `--prefix` to specify a path on `/g/data/gb02
 
 ## Loading the module
 
-To load the module within a python session (e.g. using the python3/3.10.0 environment we used to compile and install `dynlib` library) we can use the following (assuming we installed it with the `--user` option):
+To load the module within a python session (e.g. using the python3/3.11.0 environment we used to compile and install `dynlib` library) we can use the following (assuming we installed it with the `--user` option):
 ```
-Python 3.10.0 (default, Nov 16 2021, 09:41:50) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)] on linux
+Python 3.11.0 (main, Nov 18 2022, 08:38:34) [GCC 8.5.0 20210514 (Red Hat 8.5.0-10)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import dynlib
 >>> from dynlib import dynfor
@@ -131,7 +131,7 @@ If we used the `--prefix` option we will have to tell python where to find our l
 >>> import sys
 >>> sys.path.append('FULL_PATH_TO_YOUR_LIBRARY_INSTALL')
 >>> sys.path
-['', '/apps/python3/3.10.0/lib/python310.zip', '/apps/python3/3.10.0/lib/python3.10', '/apps/python3/3.10.0/lib/python3.10/lib-dynload', '/home/548/pag548/.local/lib/python3.10/site-packages', '/apps/python3/3.10.0/lib/python3.10/site-packages', '/apps/python3/3.10.0/lib/python3.10/site-packages/numpy-1.21.4-py3.10-linux-x86_64.egg', 'FULL_PATH_TO_YOUR_LIBRARY_INSTALL']
+['', '/apps/python3/3.11.0/lib/python31.zip', '/apps/python3/3.11.0/lib/python3.11', '/apps/python3/3.11.0/lib/python3.11/lib-dynload', '/home/548/pag548/.local/lib/python3.11/site-packages', '/apps/python3/3.11.0/lib/python3.11/site-packages', '/apps/python3/3.11.0/lib/python3.11/site-packages/numpy-1.21.4-py3.11-linux-x86_64.egg', 'FULL_PATH_TO_YOUR_LIBRARY_INSTALL']
 ```
 
 Note python will search for `dynlib` according to the order of the paths in the `sys.path` list. If you wish to add a new path to the start of this list (index 0) so it is searched first, you can use
@@ -144,17 +144,18 @@ Or you can insert your new path at the beginning of command-line environment var
 $ export PYTHONPATH="FULL_PATH_TO_YOUR_LIBRARY_INSTALL:$PYTHONPATH"
 ```
 
-You can also load the module from within the ACCESS-NRI`analysis3` `conda` environment.
+You can also load the module from within the ACCESS-NRI `analysis3` `conda` environment.
 ```
-$ module use /g/data/hh5/public/modules
-$ module load conda/analysis3
+$ module use /g/data/xp65/public/modules
+$ module load conda/analysis3-25.10
 $ ipython
 ```
 
 ```python
-Python 3.10.14 | packaged by conda-forge | (main, Mar 20 2024, 12:45:18) [GCC 12.3.0]
+Python 3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:46:25) [GCC 14.3.0]
 Type 'copyright', 'credits' or 'license' for more information
-IPython 8.26.0 -- An enhanced Interactive Python. Type '?' for help.
+IPython 8.37.0 -- An enhanced Interactive Python. Type '?' for help.
+Intake telemetry extension loaded
 
 In [1]: import dynlib
 
@@ -198,6 +199,21 @@ Returns
 res : rank-3 array('d') with bounds (nz,ny,nx)
 
 In [7]: from dynlib.metio import datasource
+```
+
+## Central installation
+
+`Dynlib` is currently installed at `/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg`. So you can access the module by either
+
+a) Setting your `PYTHONPATH` to point to this location before launching your `python` interpreter, i.e. 
+```
+export PYTHONPATH='/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg':${PYTHONPATH}
+```
+(and type `$ echo $PYTHONPATH` to check its contents ), or 
+
+b) Setting the `sys.path` inside your intepreter as described above, e.g. 
+```
+sys.path.insert(0,'/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg')
 ```
 
 ## Test scripts 
