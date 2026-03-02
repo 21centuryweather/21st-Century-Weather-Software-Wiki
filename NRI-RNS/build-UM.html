@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Custom UM builds for rAM3 &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NRI-RNS/build-UM';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <script>document.write(`<img src="../_static/logo-dark.png" class="logo__image only-dark" alt="21st Century Weather Software Wiki - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/NRI-RNS/build-UM.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Custom UM builds for rAM3</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-build-flag">Setting the build flag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcm-make-um">fcm_make_um</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcm-make2-um">fcm_make2_um</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-your-new-executables">Using your new executables</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="custom-um-builds-for-ram3">
+<h1>Custom UM builds for rAM3<a class="headerlink" href="#custom-um-builds-for-ram3" title="Link to this heading">#</a></h1>
+<p>The Regional Nesting Suite (RNS) contains the ability to build a custom UM executable. Let’s work through the steps required to compile a local exectuable for your own needs.</p>
+<section id="setting-the-build-flag">
+<h2>Setting the build flag<a class="headerlink" href="#setting-the-build-flag" title="Link to this heading">#</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> GUI, change the <code class="docutils literal notranslate"><span class="pre">BUILD_MODE</span></code> option in the <code class="docutils literal notranslate"><span class="pre">General</span> <span class="pre">Run</span> <span class="pre">options</span></code> to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">new</span> <span class="pre">executable</span></code>.</p>
+<p>You can also change</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUILD_MODE</span><span class="o">=</span><span class="s2">&quot;new&quot;</span>
+</pre></div>
+</div>
+<p>in <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code>.</p>
+<p>You may need to check the definition of <code class="docutils literal notranslate"><span class="pre">HPC_HOST</span></code> in <code class="docutils literal notranslate"><span class="pre">~/roses/&lt;suite-id&gt;/site/nci-gadi/suite-adds.rc</span></code>
+from</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{% HPC_HOST = ‘localhost’ % }
+
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{% HPC_HOST = ‘gadi.nci.org.au’ % }
+</pre></div>
+</div>
+<p>Now run your suite hold all tasks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-run -- --hold
+</pre></div>
+</div>
+<p>You will notice a new family of tasks in the GUI: <code class="docutils literal notranslate"><span class="pre">BUILD</span></code>. This task family contains two tasks : <code class="docutils literal notranslate"><span class="pre">fcm_make_um</span></code> and <code class="docutils literal notranslate"><span class="pre">fcm_make2_um</span></code>.</p>
+<p>Let’s see these how tasks work.</p>
+</section>
+<section id="fcm-make-um">
+<h2>fcm_make_um<a class="headerlink" href="#fcm-make-um" title="Link to this heading">#</a></h2>
+<p>If you look at the <code class="docutils literal notranslate"><span class="pre">rose</span></code> application configuration file for this task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more app/fcm_make_um/rose-app.conf 
+meta=um-fcm-make/vn13.5
+
+[env]
+COUPLER=none
+DR_HOOK=false
+casim_rev=um13.5
+casim_sources=fcm:casim.xm/branches/dev/paulfield/vn1.3_drop_agg_limit_and_switch@11187
+compile_atmos=preprocess-atmos build-atmos
+!!compile_createbc=preprocess-createbc build-createbc
+!!compile_crmstyle_coarse_grid=preprocess-crmstyle_coarse_grid build-crmstyle_coarse_grid
+!!compile_pptoanc=preprocess-pptoanc build-pptoanc
+compile_recon=preprocess-recon build-recon
+!!compile_scm=preprocess-scm build-scm
+!!compile_sstpert_lib=preprocess-sstpert_lib build-sstpert_lib
+!!compile_wafccb_lib=preprocess-wafccb_lib build-wafccb_lib
+config_revision=@vn13.5
+config_root_path=fcm:um.xm_tr
+config_type=atmos
+eccodes=true
+extract=extract
+fcflags_overrides=
+gwd_ussp_precision=double
+</pre></div>
+</div>
+<p>etc.</p>
+<p>It contains all the settings required to build version 13.5 of the UM.</p>
+<p>For example, if you wanted to add information to the Fortran compiler flag, you could type something like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcflags_overrides</span><span class="o">=-</span><span class="n">march</span><span class="o">=</span><span class="n">broadwell</span> <span class="o">-</span><span class="n">axSKYLAKE</span><span class="o">-</span><span class="n">AVX512</span><span class="p">,</span><span class="n">CASCADELAKE</span><span class="p">,</span><span class="n">SAPPHIRERAPIDS</span>
+</pre></div>
+</div>
+<p>to give your UM better performance on other Intel architecture.</p>
+<p>You can also access these features in <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code>. Select the <code class="docutils literal notranslate"><span class="pre">fcm_make_um</span></code> task on the left panel, wait for the option menu to appear, and then click <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">-&gt;</span> <span class="pre">Advanced</span> <span class="pre">compilation</span></code></p>
+<p><img alt="compilation" src="../_images/advanced-compilation.png" /></p>
+<p>The task also contains default settings for optimisation levels. These are available in the <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">-&gt;</span> <span class="pre">Basic</span> <span class="pre">Compilation</span></code> menu.</p>
+<p><img alt="optimisation" src="../_images/optimisation.png" /></p>
+<p>Let’s trigger this task.</p>
+<p><img alt="trigger" src="../_images/trigger-fcm-make-um.png" /></p>
+<p>After completion you will notice that your directory <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um</span></code> exists and contains various files and directories.</p>
+<p>The source code for the UM (and its sub components, such as JULES) now lie in <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/extract</span></code></p>
+<p>So if you wish to add or change any files in the UM source tree, make them in
+<code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/extract/um/src</span></code></p>
+<p>So this task does not build the UM, it just downloads source from the external repositories hosted by the UK Met Office.</p>
+<p>Check that your configuration options (e.g. compilation flags) are reflected in the contents of <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/fcm-make2.cfg</span></code>.</p>
+<p>For example, if you selected to compile with <code class="docutils literal notranslate"><span class="pre">debug</span> <span class="pre">(debug)</span></code> optimisation level, the following entries should exist in your <code class="docutils literal notranslate"><span class="pre">fcm-make2.cfg</span></code> file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">build</span><span class="o">.</span><span class="n">prop</span><span class="p">{</span><span class="n">class</span><span class="p">,</span> <span class="n">fc</span><span class="o">.</span><span class="n">flags</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="n">i8</span> <span class="o">-</span><span class="n">r8</span> <span class="o">-</span><span class="n">mcmodel</span><span class="o">=</span><span class="n">medium</span>      <span class="o">-</span><span class="n">std08</span>  <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">traceback</span>  <span class="o">-</span><span class="n">assume</span> <span class="n">nosource_include</span> <span class="o">-</span><span class="n">O2</span> <span class="o">-</span><span class="n">fp</span><span class="o">-</span><span class="n">model</span> <span class="n">precise</span> <span class="o">-</span><span class="n">qopenmp</span>      
+</pre></div>
+</div>
+</section>
+<section id="fcm-make2-um">
+<h2>fcm_make2_um<a class="headerlink" href="#fcm-make2-um" title="Link to this heading">#</a></h2>
+<p>Once you’ve made the required changes to your source files and compilation flags, you can then compile your code by triggering <code class="docutils literal notranslate"><span class="pre">fcm_make2_um</span></code>.</p>
+<p><img alt="trigger_fcm_make2_um" src="../_images/trigger-fcm-make2-um.png" /></p>
+<p>When this task finishes, your <code class="docutils literal notranslate"><span class="pre">job.out</span></code> file should contain output similar to the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">sources</span><span class="p">:</span> <span class="n">total</span><span class="o">=</span><span class="mi">2909</span><span class="p">,</span> <span class="n">analysed</span><span class="o">=</span><span class="mi">2848</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">12.0</span><span class="n">s</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">2.1</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">target</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">analysis</span><span class="p">:</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.1</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">install</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.2</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">process</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2757</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">45.1</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">TOTAL</span>     <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2841</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">8.5</span><span class="n">s</span>
+<span class="p">[</span><span class="n">done</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">preprocess</span><span class="o">-</span><span class="n">atmos</span><span class="c1"># 22.8s</span>
+<span class="p">[</span><span class="n">init</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">build</span><span class="o">-</span><span class="n">atmos</span>  <span class="c1"># 2026-03-02T07:11:19Z</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">sources</span><span class="p">:</span> <span class="n">total</span><span class="o">=</span><span class="mi">2909</span><span class="p">,</span> <span class="n">analysed</span><span class="o">=</span><span class="mi">2909</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">4.9</span><span class="n">s</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">22.8</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">target</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">analysis</span><span class="p">:</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">10.8</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="nb">compile</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2644</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">2910.2</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="nb">compile</span><span class="o">+</span>  <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2609</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">4.8</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">install</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.0</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">link</span>      <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">10.0</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">TOTAL</span>     <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">5256</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">593.8</span><span class="n">s</span>
+<span class="p">[</span><span class="n">done</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">build</span><span class="o">-</span><span class="n">atmos</span>  <span class="c1"># 599.2s</span>
+<span class="p">[</span><span class="n">init</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">preprocess</span><span class="o">-</span><span class="n">recon</span><span class="c1"># 2026-03-02T07:21:18Z</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">sources</span><span class="p">:</span> <span class="n">total</span><span class="o">=</span><span class="mi">2059</span><span class="p">,</span> <span class="n">analysed</span><span class="o">=</span><span class="mi">2011</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">4.6</span><span class="n">s</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">1.5</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">target</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">analysis</span><span class="p">:</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.1</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">install</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">77</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.2</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">process</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">1927</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">39.6</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">TOTAL</span>     <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2004</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">8.6</span><span class="n">s</span>
+<span class="p">[</span><span class="n">done</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">preprocess</span><span class="o">-</span><span class="n">recon</span><span class="c1"># 13.9s</span>
+<span class="p">[</span><span class="n">init</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">build</span><span class="o">-</span><span class="n">recon</span>  <span class="c1"># 2026-03-02T07:21:32Z</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">sources</span><span class="p">:</span> <span class="n">total</span><span class="o">=</span><span class="mi">2059</span><span class="p">,</span> <span class="n">analysed</span><span class="o">=</span><span class="mi">2059</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">4.6</span><span class="n">s</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">15.3</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">target</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">analysis</span><span class="p">:</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">1.6</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="nb">compile</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">595</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">300.4</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="nb">compile</span><span class="o">+</span>  <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">575</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.8</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">install</span>   <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">0.0</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">link</span>      <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">2.2</span><span class="n">s</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">TOTAL</span>     <span class="n">targets</span><span class="p">:</span> <span class="n">modified</span><span class="o">=</span><span class="mi">1173</span><span class="p">,</span> <span class="n">unchanged</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">elapsed</span><span class="o">-</span><span class="n">time</span><span class="o">=</span><span class="mf">60.5</span><span class="n">s</span>
+<span class="p">[</span><span class="n">done</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span> <span class="n">build</span><span class="o">-</span><span class="n">recon</span>  <span class="c1"># 65.5s</span>
+<span class="p">[</span><span class="n">done</span><span class="p">]</span> <span class="n">make</span> <span class="mi">2</span>              <span class="c1"># 702.1s</span>
+<span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">02</span><span class="n">T07</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">40</span><span class="n">Z</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">succeeded</span>
+</pre></div>
+</div>
+<p>This denotes that two UM executables have been built; one each for atmospheric simulations and reconfiguration.</p>
+<p>You can check their location and modified times in these directories:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/build-atmos/bin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/build-recon/bin</span></code></p></li>
+</ul>
+<p>Detailed logging information during the build process is available at <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/fcm-make2.log</span></code>. Check this file to ensure any modifications you made to the standard build process, e.g.</p>
+<ul class="simple">
+<li><p>Altering the compilation flags</p></li>
+<li><p>Including new source files,</p></li>
+</ul>
+<p>have been incorporated into the final build process.  In this example, I can check the compilation flags match those specified in the <code class="docutils literal notranslate"><span class="pre">fcm-make2.cfg</span></code>  file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep std08 ~/cylc-run/u-by395/share/fcm_make_um/fcm-make2.log  | more
+[info] shell(0  1.1) mpif90 -oo/compute_chunk_size_mod.o -c -I./include -i8 -r8 -mcmodel=medium -std08 -g -tr
+aceback -assume nosource_include -O2 -fp-model precise -qopenmp /home/548/pag548/cylc-run/u-by395/share/fcm_m
+ake_um/preprocess-atmos/src/um/src/control/misc/compute_chunk_size_mod.F90
+</pre></div>
+</div>
+<p>Any new source files should have their object files located in  <code class="docutils literal notranslate"><span class="pre">~/cylc-run/&lt;suite-id&gt;/share/fcm_make_um/build-atmos/o</span></code></p>
+</section>
+<section id="using-your-new-executables">
+<h2>Using your new executables<a class="headerlink" href="#using-your-new-executables" title="Link to this heading">#</a></h2>
+<p>You can continue to run the suite to completion if you like, as all UM related jobs now have added the path to your new executables. For example, here is the job command for the UM reconfiguration task.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rose task-run -v --opt-conf-key=&#39;(nci-gadi)&#39;  --path=&quot;share/fcm_make_um/*/bin&quot; ${TASK_RUN_EXTRA_OPTS:-} --command-key=recon
+</pre></div>
+</div>
+<p>And for the UM forecast task.</p>
+<p>Alternatively, you can stop the suite now, and edit the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file value the <code class="docutils literal notranslate"><span class="pre">BUILD_MODE</span></code> to “custom” and specify the location of the new executables to an <code class="docutils literal notranslate"><span class="pre">EXEC_DIR</span></code>.  Or, using the <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> GUI, you can change <code class="docutils literal notranslate"><span class="pre">BUILD_MODE</span></code> to <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">some</span> <span class="pre">other</span> <span class="pre">executable</span> <span class="pre">on</span> <span class="pre">disk</span></code>.</p>
+<p>You can copy the <code class="docutils literal notranslate"><span class="pre">build-atmos</span></code> and <code class="docutils literal notranslate"><span class="pre">build-recon</span></code> directories to another location (e.g <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;/Debug_EXES</span></code>) and set <code class="docutils literal notranslate"><span class="pre">EXEC_DIR</span></code> to this path. This will ensure your executables are not over-written by future build tasks using this suite.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./NRI-RNS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-build-flag">Setting the build flag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcm-make-um">fcm_make_um</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcm-make2-um">fcm_make2_um</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-your-new-executables">Using your new executables</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
