@@ -12,8 +12,8 @@ BUILD_MODE="new"
 ```
 in `rose-suite.conf`.
 
-One other change you will have to make is in `~/roses/<suite-id>/site/nci-gadi/suite-adds.rc`
-change
+You may need to check the definition of `HPC_HOST` in `~/roses/<suite-id>/site/nci-gadi/suite-adds.rc`
+from
 ```
 {% HPC_HOST = ‘localhost’ % }
 
@@ -34,3 +34,11 @@ Let's see these how tasks work.
 
 If you look at the `rose` application configuration file for this task:
 ```
+
+It contains all the settings required to build version 13.5 of the UM.
+
+For example, if you wanted to add information to the Fortran compiler flag, you can add information to 
+
+## fcm_make2_um
+
+If you want to al
