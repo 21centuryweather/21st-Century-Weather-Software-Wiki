@@ -149,7 +149,7 @@ You'll need to call `ipykernel install` while the virtual environment is activat
     <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
     <terminal-line data="input">module load conda/analysis3</terminal-line>
     <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
-    <terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install -\\\-user -\\\-name xwmb-venv -\\\-display-name "xWMB + conda/analysis3"</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install -\\\-user -\\\-name xwmb_venv -\\\-display-name "xWMB + conda/analysis3"</terminal-line>
 </terminal-window>
 
 ```{note}
