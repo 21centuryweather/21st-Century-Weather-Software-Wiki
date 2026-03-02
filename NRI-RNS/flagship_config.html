@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ERA5-based Weather Objects &#8212; 21st Century Weather Software Wiki</title>
+    <title>Configuring an rAM3 `Flagship’ run &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -58,12 +58,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/weather_objects';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NRI-RNS/flagship_config';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="MESACLIP" href="mesaclip.html" />
-    <link rel="prev" title="Data catalogs" href="catalogs.html" />
+    <link rel="next" title="Developing python code" href="../vscode/intro-ipython.html" />
+    <link rel="prev" title="Further Considerations" href="further-considerations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,21 +186,21 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ancillaries.html">Ancillary tools</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Configuring an rAM3 `Flagship’ run</a></li>
 </ul>
 </details></li>
 </ul>
@@ -227,17 +227,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Datasets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalogs.html">Data catalogs</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">ERA5-based Weather Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mesaclip.html">MESACLIP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mmleav2.html">MMLEAv2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="energy.html">Energy Demand dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="drought-era5.html">ERA5 Drought</a></li>
-<li class="toctree-l2"><a class="reference internal" href="daily-era5.html">ERA5 daily</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gsmap.html">GSMaP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
 </ul>
 </details></li>
 </ul>
@@ -305,7 +305,7 @@
       
       
       
-      <li><a href="../_sources/datasets/weather_objects.md" target="_blank"
+      <li><a href="../_sources/NRI-RNS/flagship_config.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ERA5-based Weather Objects</h1>
+    <h1>Configuring an rAM3 `Flagship’ run</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -399,21 +399,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anticyclones-maxcl">1. Anticyclones (MAXCL):</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-source">Data source:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-the-ram3-flagship-suite">Checking out the rAM3 Flagship suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checking out the rAM3 Flagship suite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-the-default-rns-suite-to-a-different-directory-easiest">Copying the default RNS suite to a different directory (easiest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#switching-branches-harder-but-more-interesting">Switching branches (harder but more interesting)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cyclones-mincl">2. Cyclones (MINCL):</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data source:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-conveyor-belts-wcb">3. Warm-Conveyor Belts (WCB)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data source:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-information">Additional information:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact:</a></li>
 </ul>
             </nav>
         </div>
@@ -425,111 +416,131 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="era5-based-weather-objects">
-<h1>ERA5-based Weather Objects<a class="headerlink" href="#era5-based-weather-objects" title="Link to this heading">#</a></h1>
-<p>There are 3 ERA5-based Weather Objects placed on Gadi in su28, located at:</p>
-<p><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/</span></code></p>
-<p>For more indepth details about the following datasets, please see the files in <code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/{model}/docu/</span></code></p>
-<section id="anticyclones-maxcl">
-<h2>1. Anticyclones (MAXCL):<a class="headerlink" href="#anticyclones-maxcl" title="Link to this heading">#</a></h2>
-<p>ERA5-based anticyclones are calculated based on sea-level pressure (SLP). more specifically, closed isobars are identified in the SLP field and labeled as anticyclone areas.
-To exclude artificial anticyclones over height topography (&gt;1500 m), which can result from the pressure reduction to
-sea level, anticyclone centers (SLP minima) are omitted where the topography exceeds 1500 m.
-The most detailed description of the algorithm can be found in Sprenger et al. (2017). There, also differences
-between the current ERA5 algorithm and the original ERA-Interim one in Wernli and Schwierz (2006) is discussed.</p>
-<section id="data-source">
-<h3>Data source:<a class="headerlink" href="#data-source" title="Link to this heading">#</a></h3>
-<p><strong>[1a]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/maxcl/cdf/{year}</span></code></p>
-<p>where {year} is 1950 - 2022.</p>
-<p><code class="docutils literal notranslate"><span class="pre">AYYYY_MM</span></code>: netCDF files with anticyclone masks (areas inside closed isobars). Each file is a month’s worth of data at hourly frequency. The following fields are available on the netCDF files:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="configuring-an-ram3-flagship-run">
+<h1>Configuring an rAM3 `Flagship’ run<a class="headerlink" href="#configuring-an-ram3-flagship-run" title="Link to this heading">#</a></h1>
+<p>The Centre of Excellence for Weather of the 21st Century has a set of `Flagship’ experiments to provide deeper insights into weather phenomenon via hi-resolution modelling experiements.</p>
+<p>These Flagship experiments have a different configuration than the standard NRI rAM3 suite to enable very large domains at high resolutions to be run efficiently.</p>
+<section id="checking-out-the-ram3-flagship-suite">
+<h2>Checking out the rAM3 Flagship suite<a class="headerlink" href="#checking-out-the-ram3-flagship-suite" title="Link to this heading">#</a></h2>
+<p>When you checkout the Regional Nesting suite with the following command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">checkout</span> <span class="n">u</span><span class="o">-</span><span class="n">by395</span><span class="o">/</span><span class="n">nci_access_ram3</span>
+</pre></div>
+</div>
+<p>You are retrieving the branch <code class="docutils literal notranslate"><span class="pre">nci_access_ram3</span></code> from the UK Met Office’s <code class="docutils literal notranslate"><span class="pre">roses</span></code> <code class="docutils literal notranslate"><span class="pre">trac</span></code> repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">trac</span></code> is a version control software manager that predates <code class="docutils literal notranslate"><span class="pre">github</span></code>, but works in a similar way. It was built around the ‘Subversion’ software repository system (or <code class="docutils literal notranslate"><span class="pre">svn</span></code>), which also predates <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+</div>
+<p>You can log into the UK Met Office <code class="docutils literal notranslate"><span class="pre">trac</span></code> repository with your MOSRS credentials and see the suite here:</p>
+<p><a class="reference external" href="https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5">https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5</a></p>
+<p>Note there are many branches of <code class="docutils literal notranslate"><span class="pre">u-by395</span></code>. These are all variants of the UK Met Office Regional Atmosphere Nesting suite, used by UK Met Office partners all over the world.</p>
+<p>The standard NRI suite is here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="o">.</span><span class="n">metoffice</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">roses</span><span class="o">-</span><span class="n">u</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">y</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">/</span><span class="n">nci_access_ram3</span>
+</pre></div>
+</div>
+<p>The Flagship configuration of the <code class="docutils literal notranslate"><span class="pre">nci_access_ram3</span></code> is built on a seperate branch of <code class="docutils literal notranslate"><span class="pre">u-by395</span></code>. You can view it here:</p>
+<p><a class="reference external" href="https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5/Flagship">https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5/Flagship</a></p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">trac</span></code> to view the differences between the Flagship and the standard NRI suite by clicking <a class="reference external" href="https://code.metoffice.gov.uk/trac/roses-u/changeset?old_path=%2Fb%2Fy%2F3%2F9%2F5%2FFlagship&amp;amp;old=348215&amp;amp;new_path=%2Fb%2Fy%2F3%2F9%2F5%2Fnci_access_ram3&amp;amp;new=348215">here</a>.</p>
+<p>These changes include:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FLAG</span></code> unfiltered anticyclone masks (0/1 label)</p></li>
+<li><p>Using a UM executable compiled for NCI’s ‘sapphire rapids’ architecture</p></li>
+<li><p>Open MP multi-threading is enabled.</p></li>
+<li><p>Using the UM’s ‘I/O server’ to enable asynchronous parallel disk reading and writing - essential when deploying large numbers of CPUs across large domains</p></li>
+<li><p>The ability to use additional cloud outputs</p></li>
+<li><p>Submitting jobs to NCI’s ‘sapphire rapids’ queue</p></li>
+<li><p>Setting ‘striping’ on certain output directories to enable parallel writing of individual files.</p></li>
 </ul>
+<p>Note by default the Flagship is configured to use the following configuration:</p>
+<ul class="simple">
+<li><p>A ERA5 atmospheric driving model</p></li>
+<li><p>BARRA land surface initialisations</p></li>
+<li><p>Three seperate atmospheric nests (or resolutions)</p></li>
+</ul>
+<p>You will want to change these configuration in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file (either manually, or graphically using <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code>)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Thanks to Dale Roberts who developed these optimisations for the AUS2200 suite</p>
+</div>
+<p>How do we access these features to run our own experiement?</p>
 </section>
-</section>
-<section id="cyclones-mincl">
-<h2>2. Cyclones (MINCL):<a class="headerlink" href="#cyclones-mincl" title="Link to this heading">#</a></h2>
-<p>ERA5-based cyclones are calculated based on sea-level pressure (SLP). more specifically, closed isobars are identified
-in the SLP field and labeled as cyclone areas. SLP minima within the cyclone areas are also identified and, by connecting the SLP positions (latitude/longitude) over consecutive times, cyclone tracks are determined. The first
-instance (time, lat/lon) of the tracks is saved as the cyclogenesis position, the last instance as the cyclolysis. The
-overall lifetime of a cyclone has to exceed 12 hours, otherwise the cyclone track and the corresponding cyclone area
-is omitted. A cylcone track is allowed to have two ERA5 time instances (2 hours) without SLP minimum, i.e. 2-h gaps
-in the cyclone tracks can be ‘bridged’.</p>
-<p>To exclude artificial cyclones over height topography (&gt;1500 m), which can result from the pressure reduction to sea
-level, cyclone centers (SLP minima) are omitted where the topography exceeds 1500 m. If there are several SLP
-minima located inside a cyclone area, i.e. the SLP minima are enclosed by a common SLP contour, the cyclone mask
-is split among all SLP minima, according to the SLP value (deeper SLP minima cover larger areas of the mask than
-weaker SLP minima).</p>
-<p>The most detailed description of the algorithm can bei found in Sprenger et al. (2017). There, also differences
-between the current ERA5 algorithm and the original ERA-Interim one in Wernli and Schwierz (2006) is discussed.</p>
 <section id="id1">
-<h3>Data source:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p><strong>[2a]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/mincl/cdf/{year}</span></code></p>
-<p>where {year} is 1950 - 2022.</p>
-<p><code class="docutils literal notranslate"><span class="pre">CYYYY_MM</span></code>: netCDF files with cyclone masks (areas inside closed isobars). Each file is a month’s worth of data at hourly frequency. The following fields are available on the netCDF files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">INPUT</span></code> unfiltered cyclone masks (0/1 label), i.e., no lifetime filter applied</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LABEL</span></code> filtered cyclone masks; each cyclone mask gets a unique label that is consistent to
-the label in the cyclone track files (see [2a])</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">AGE</span></code> age (in hours) of the cyclone attributed to LABEL</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LIFETIME</span></code> overall lifetime (in hours) of the cyclone attributed to LABEL</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PMIN</span></code> 0/1 field with 1 at the locations of SLP minima</p></li>
-</ul>
+<h2>Checking out the rAM3 Flagship suite<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Checking out the rAM3 Flagship suite is as easy as typing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosie</span> <span class="n">checkout</span> <span class="n">u</span><span class="o">-</span><span class="n">by395</span><span class="o">/</span><span class="n">Flagship</span>
+</pre></div>
+</div>
+<p>BUT : if you already have the default NRI suite installed, this will fail with the message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">FAIL</span><span class="p">]</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="mi">548</span><span class="o">/</span><span class="n">pag548</span><span class="o">/</span><span class="n">roses</span><span class="o">/</span><span class="n">u</span><span class="o">-</span><span class="n">by395</span><span class="p">:</span> <span class="n">already</span> <span class="n">exists</span>
+</pre></div>
+</div>
+<p>So how can we work around this?  There are several strategies.</p>
+<section id="copying-the-default-rns-suite-to-a-different-directory-easiest">
+<h3>Copying the default RNS suite to a different directory (easiest)<a class="headerlink" href="#copying-the-default-rns-suite-to-a-different-directory-easiest" title="Link to this heading">#</a></h3>
+<p>If we type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv ~/roses/u-by395 ~/roses/u-by395-default
+</pre></div>
+</div>
+<p>(or similar) this will copy your exiting RNS suite configuration to another directory. You can then checkout the <code class="docutils literal notranslate"><span class="pre">u-by395/Flagship</span></code> suite into your <code class="docutils literal notranslate"><span class="pre">~/roses</span></code> directory without any problems.</p>
+<p>This method will also allow you to copy the nesting and resolution settings in your <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file to the Flagship.</p>
+<p>If you want to revert back to your original RNS suite you could then type something like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv ~/roses/u-by395 ~/roses/u-by395-Flagship
+$ mv ~/roses/u-by395-default ~/roses/u-by395
+</pre></div>
+</div>
+<p>Another option could be to set up symbolic links in your <code class="docutils literal notranslate"><span class="pre">~/roses</span></code> directory and have a link called <code class="docutils literal notranslate"><span class="pre">u-by395</span></code> that points to different RNS suites (i.e. the default and a Flagship)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cylc</span></code> engine can only generate one set of ouputs from a given <code class="docutils literal notranslate"><span class="pre">rose</span></code> suite ID. So if you use the above method, note that your outputs from the Flagship branch of <code class="docutils literal notranslate"><span class="pre">u-by395</span></code> will overwrite whatever exists in the <code class="docutils literal notranslate"><span class="pre">~/cylc-run/u-by395</span></code> directory and vice-versa.</p>
+<p>To prevent conflicts between the two different suites, you might want to clean this directory first by typing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-clean
+</pre></div>
+</div>
+<p>before running from a new branch.</p>
+</div>
 </section>
+<section id="switching-branches-harder-but-more-interesting">
+<h3>Switching branches (harder but more interesting)<a class="headerlink" href="#switching-branches-harder-but-more-interesting" title="Link to this heading">#</a></h3>
+<p>We can keep our <code class="docutils literal notranslate"><span class="pre">u-by395/nci_access_ram3</span></code> branch on disk, and use <code class="docutils literal notranslate"><span class="pre">fcm</span></code> (which is the UK Met Offce wrapper for <code class="docutils literal notranslate"><span class="pre">svn</span></code>) to switch between branches. This is similar to using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code>.</p>
+<p>Firstly, submit your MOSRS credentials via the <code class="docutils literal notranslate"><span class="pre">mosrs-auth</span></code> script so you can access the <code class="docutils literal notranslate"><span class="pre">svn</span></code> repositories.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mosrs-auth
+</pre></div>
+</div>
+<p>Then navigate to your <code class="docutils literal notranslate"><span class="pre">u-by395</span></code> directory and type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/roses/u-by395
+$ fcm branch-info
+</pre></div>
+</div>
+<p>You should generate output along the lines of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ fcm branch-info
+URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/nci_access_ram3
+
+&lt;information on the branch author and revision&gt;
+--------------------------------------------------------------------------------
+Branch Parent: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/trunk@325101
+</pre></div>
+</div>
+<p>We can use the above syntax to ‘switch branches’ between the default branch and the Flagship branch by typing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcm</span> <span class="n">sw</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="o">.</span><span class="n">metoffice</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">roses</span><span class="o">-</span><span class="n">u</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">y</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">/</span><span class="n">Flagship</span>
+</pre></div>
+</div>
+<p>This will pull changes from the central UK Met Office <code class="docutils literal notranslate"><span class="pre">roses</span></code> repository and update the local files on disk.</p>
+<p>Let’s check the output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ fcm branch-info
+URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
+Repository Root: https://code.metoffice.gov.uk/svn/roses-u
+Revision: 348215
+</pre></div>
+</div>
+<p>Ok you’ve successfully switched branches.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can find information on how to use <code class="docutils literal notranslate"><span class="pre">fcm</span></code> to manage your <code class="docutils literal notranslate"><span class="pre">rose</span></code> suites here:</p>
+<p><a class="reference external" href="https://metomi.github.io/fcm/doc/user_guide/code_management.html">https://metomi.github.io/fcm/doc/user_guide/code_management.html</a></p>
+<p><a class="reference external" href="https://metomi.github.io/fcm/doc/user_guide/command_ref.html">https://metomi.github.io/fcm/doc/user_guide/command_ref.html</a></p>
+<p><a class="reference external" href="https://jules-lsm.github.io/tutorial/bg_info/tutorial_julesrose/jr_mqrg.html">https://jules-lsm.github.io/tutorial/bg_info/tutorial_julesrose/jr_mqrg.html</a></p>
+<p>The UK Met Office is transitioning from <code class="docutils literal notranslate"><span class="pre">svn</span></code>, <code class="docutils literal notranslate"><span class="pre">fcm</span></code> and <code class="docutils literal notranslate"><span class="pre">trac</span></code> to <code class="docutils literal notranslate"><span class="pre">git</span></code> and <code class="docutils literal notranslate"><span class="pre">github</span></code>. But if you’re an advanced user, you might find it worthwhile learning some basic around the current system. This will give you the ability to merge different revision numbers, build and commit your own branches.</p>
+</div>
 </section>
-<section id="warm-conveyor-belts-wcb">
-<h2>3. Warm-Conveyor Belts (WCB)<a class="headerlink" href="#warm-conveyor-belts-wcb" title="Link to this heading">#</a></h2>
-<p>ERA5-based warm conveyor belts calculated as trajectories ascending from levels below 790 hPa within 48 h by at
-least 600 hPa. The starting positions are set equidistantly (80 km) over the whole globe, and the trajectories are
-started every 6 h. Trajectory positions are saved every hour. The ascent has to occur in the neighborhood of a
-cyclone. The trajectories are clustered into spatially coherent air streams, and if one of the cluster trajectories passes
-across a cyclone mask the whole cluster is kept. The main data sources are [2d], the WCB masks at hourly temporal
-resolution and separating regions affected by a WCB inflow, ascent and outflow. The ERA5 time period 1980-2020 is
-available.</p>
-<section id="id2">
-<h3>Data source:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p><strong>[3a]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/wcb/cdf.1hourly/{year}</span></code></p>
-<p>where {year} is 1980 - 2022.</p>
-<p><code class="docutils literal notranslate"><span class="pre">hit_YYYY_MM</span></code>: netCDF files with WCB masks. Each file is a month’s worth of data at hourly frequency. A 100-km gridding radius is applied (except for <code class="docutils literal notranslate"><span class="pre">PRESSURE</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span></code>). The following fields are available on the netCDF files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">GT800</span></code> 0/1 label for grid points in WCB inflow (p &gt; 800 hPa)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MIDTROP</span></code> 0/1 label for grid points in WCB ascent (400 hPa &lt; p &lt; 800 hPa)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LT400</span></code> 0/1 labels for grid points in WCB outflow (p&lt; 400 hPa, t &lt;= 48 h)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TOTAL</span></code> any of GT800, MIDTROP or LT400</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PRESSURE</span></code> pressure at WCB grid point (no 100-km radius applied)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TIME</span></code> time (in h) at the WCB grid points (no 100-km radius applied)</p></li>
-</ul>
-<p><strong>[3b]</strong><code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/wcb/cdf.6hourly/{year}</span></code></p>
-<p>where {year} is 1980 - 2022.</p>
-<p><code class="docutils literal notranslate"><span class="pre">asc_YYYY_MM</span></code>: netCDF files with the time evolution of the WCB ascent from 00 to 96 h, in steps of 12 h. Time 00 corresponds to the time the trajectory starts ascending. The datetime in the file corresponds to the starting date of the WCB trajectories. A 100-km gridding radius is applied. The following fields are available on the netCDF files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FLAG</span></code> position (0/1 label) of the WCB trajectories</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">hit_YYYY_MM</span></code>: as in <strong>[3a]</strong>.</p>
-</section>
-<section id="additional-information">
-<h3>Additional information:<a class="headerlink" href="#additional-information" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>WCB trajectories would be available on request</p></li>
-<li><p>The cyclone masks used for the filtering can be found at <code class="docutils literal notranslate"><span class="pre">/g/data/su28/weatherfeatures.era5/mincl/cdf/</span></code></p></li>
-</ul>
-</section>
-</section>
-<section id="references">
-<h2>References:<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
-<p>Wernli, H., and Schwierz, C. (2006). Surface Cyclones in the ERA-40 Dataset (1958–2001). Part I: Novel Identification
-Method and Global Climatology, Journal of the Atmospheric Sciences, 63(10), 2486-2507.</p>
-<p>Sprenger, M., Fragkoulidis, G., Binder, H., Croci-Maspoli, M., Graf, P., Grams, C. M., Knippertz, P., Madonna, E.,
-Schemm, S., Škerlak, B., &amp; Wernli, H. (2017). Global Climatologies of Eulerian and Lagrangian Flow Features based on
-ERA-Interim, Bulletin of the American Meteorological Society, 98(8), 1739-1748.</p>
-<p>Madonna, E., Wernli, H., Joos, H., &amp; Martius, O. (2014). Warm Conveyor Belts in the ERA-Interim Dataset (1979–
-2010). Part I: Climatology and Potential Vorticity Evolution, Journal of Climate, 27(1), 3-26.</p>
-</section>
-<section id="contact">
-<h2>Contact:<a class="headerlink" href="#contact" title="Link to this heading">#</a></h2>
-<p>If there are any issues with these datasets please contact:</p>
-<p><a class="reference external" href="https://www.21centuryweather.org.au/profile/sam-green">Sam Green</a><br />
-<a class="reference external" href="https://www.21centuryweather.org.au/profile/chenhui-jin">Chenhui Jin</a></p>
 </section>
 </section>
 
@@ -546,7 +557,7 @@ ERA-Interim, Bulletin of the American Meteorological Society, 98(8), 1739-1748.<
         },
         kernelOptions: {
             name: "python3",
-            path: "./datasets"
+            path: "./NRI-RNS"
         },
         predefinedOutput: true
     }
@@ -564,20 +575,20 @@ ERA-Interim, Bulletin of the American Meteorological Society, 98(8), 1739-1748.<
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="catalogs.html"
+       href="further-considerations.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Data catalogs</p>
+        <p class="prev-next-title">Further Considerations</p>
       </div>
     </a>
     <a class="right-next"
-       href="mesaclip.html"
+       href="../vscode/intro-ipython.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">MESACLIP</p>
+        <p class="prev-next-title">Developing python code</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -597,21 +608,12 @@ ERA-Interim, Bulletin of the American Meteorological Society, 98(8), 1739-1748.<
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anticyclones-maxcl">1. Anticyclones (MAXCL):</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-source">Data source:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-out-the-ram3-flagship-suite">Checking out the rAM3 Flagship suite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checking out the rAM3 Flagship suite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-the-default-rns-suite-to-a-different-directory-easiest">Copying the default RNS suite to a different directory (easiest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#switching-branches-harder-but-more-interesting">Switching branches (harder but more interesting)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cyclones-mincl">2. Cyclones (MINCL):</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data source:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-conveyor-belts-wcb">3. Warm-Conveyor Belts (WCB)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data source:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-information">Additional information:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact:</a></li>
 </ul>
   </nav></div>
 
