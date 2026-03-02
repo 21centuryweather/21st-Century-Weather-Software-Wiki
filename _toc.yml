@@ -31,6 +31,7 @@ parts:
       - file: NRI-RNS/outputs 
       - file: NRI-RNS/evaluating
       - file: NRI-RNS/further-considerations
+      - file : NRI-RNS/flagship_config.md
   - caption: Interactive coding with VSCode 
     chapters:
     - file : vscode/intro-ipython
