@@ -164,9 +164,6 @@ You can continue to run the suite to completion if you like, as all UM related j
 ```
 rose task-run -v --opt-conf-key='(nci-gadi)'  --path="share/fcm_make_um/*/bin" ${TASK_RUN_EXTRA_OPTS:-} --command-key=recon
 ```
-And for the UM forecast task.
-
-
 Alternatively, you can stop the suite now, and edit the `rose-suite.conf` file value the `BUILD_MODE` to "custom" and specify the location of the new executables to an `EXEC_DIR`.  Or, using the `rose edit` GUI, you can change `BUILD_MODE` to `Use some other executable on disk`.
 
 You can copy the `build-atmos` and `build-recon` directories to another location (e.g `<path>/Debug_EXES`) and set `EXEC_DIR` to this path. This will ensure your executables are not over-written by future build tasks using this suite.
