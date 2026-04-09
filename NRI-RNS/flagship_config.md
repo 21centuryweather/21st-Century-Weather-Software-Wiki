@@ -125,7 +125,7 @@ Branch Parent: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/trunk@325101
 ```
 We can use the above syntax to 'switch branches' between the default branch and the Flagship branch by typing
 ```
-fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
+$ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
 ```
 This will pull changes from the central UK Met Office `roses` repository and update the local files on disk.
 
@@ -136,7 +136,12 @@ URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
 Repository Root: https://code.metoffice.gov.uk/svn/roses-u
 Revision: 348215
 ```
-Ok you've successfully switched branches.
+Ok you've successfully switched branches!
+
+To switch back to the default rAM3 branch, just type
+```
+$ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/nci_access_ram3
+```
 
 :::{tip}
 
