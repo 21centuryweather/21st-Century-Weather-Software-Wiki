@@ -33,6 +33,9 @@ parts:
       - file: NRI-RNS/further-considerations
       - file : NRI-RNS/flagship_config.md
       - file : NRI-RNS/build-UM.md
+    - file: AM3/intro.md
+      sections:
+      - file: AM3/main-config.md
   - caption: Interactive coding with VSCode 
     chapters:
     - file : vscode/intro-ipython
