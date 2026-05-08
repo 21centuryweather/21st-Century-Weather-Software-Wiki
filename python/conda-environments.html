@@ -391,10 +391,10 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual environments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
@@ -422,55 +422,31 @@ analysis workflows.</p>
 <p>If they are unable to include the package you need in the conda environment, that doesn’t mean that you need to create a new conda environment
 from scratch to use that package.</p>
 </section>
-<section id="pip-install-user">
-<h2><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code><a class="headerlink" href="#pip-install-user" title="Link to this heading">#</a></h2>
+<section id="virtual-environments">
+<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Link to this heading">#</a></h2>
 <p>Lets use the <a class="reference external" href="https://github.com/hdrake/xwmb">xWMB</a> package as an example.
 There is no conda distribution for this package, it can only be installed by <code class="docutils literal notranslate"><span class="pre">pip</span></code> from a git repository. This
 package also has an extensive list of dependencies, most of which are available in the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment, so using the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code>
-environment as a base will save quite a lot of disk space.</p>
-<p>The simplest approach is to load the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> the xWMB package.
-<terminal-window typingDelay=30 lineDelay=200>
-<terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
-<terminal-line data="input">module load conda/analysis3</terminal-line>
-<terminal-line data="input">pip install --user git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
-<terminal-line>Collecting git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
-<terminal-line>  Cloning <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
-<terminal-line>  Running command git clone --filter=blob:none --quiet <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
-<terminal-line>  …</terminal-line>
-<terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
-</terminal-window></p>
-<p>This is sufficient in certain cases, for instance, quickly testing user code, or when long-term
-reproducibility is not necessary. The downside with this approach is that it can lead to problems in the future. First of all, everything will be installed in your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory, which has a small quota and can easily be filled by local <code class="docutils literal notranslate"><span class="pre">pip</span></code> installations. Another consideration is that the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module
-is updated every month as new environments are released. For example, if you load <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> today,
-you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-26.01</span></code> environment. If you were to load the same module a couple of months from
-now, you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-26.04</span></code> environment. As time goes on, your
-locally installed package will get further and further out of date, and could potentially conflict with newer
-packages installed in updated analysis environments.</p>
-<p>In our advice to users, we recommend the following Advanced Settings for ARE environments:</p>
-<p><img alt="ARE recommended settings" src="../_images/ARE-recommended.png" /></p>
-<p>Note the <code class="docutils literal notranslate"><span class="pre">PYTHONNOUSERSITE=1</span></code> environment variable. This will have the effect of preventing anything installed with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> from loading at all. This setting also works in the terminal and can be used as a first step to diagnosing any issues with python package imports.</p>
-</section>
-<section id="virtual-environments">
-<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Link to this heading">#</a></h2>
-<p>What we recommend is creating a <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>. A virtual environment is a self-contained Python
+environment as a base will save quite a lot of disk space.
+We recommend is creating a <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>. A virtual environment is a self-contained Python
 environment built on top of an existing Python installation. The self-contained
 nature of a virtual environment means that any issues due to conflicting
 dependencies can be avoided entirely. Being able to base the environment on top of
 an existing <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment means that the installation can be kept
 small, as most of the dependencies will have already been satisfied.</p>
-<p>There are only two additional commands required to install <code class="docutils literal notranslate"><span class="pre">xWMB</span></code> into a virtual environment, as shown below:
+<p>There are only two additional commands required to install <code class="docutils literal notranslate"><span class="pre">xWMB</span></code> into a virtual environment, as shown below:</p>
 <terminal-window typingDelay=30 lineDelay=200>
-<terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
-<terminal-line data="input">module load conda/analysis3</terminal-line>
-<terminal-line data="input">python3 -m venv xwmb_venv --system-site-packages</terminal-line>
-<terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
-<terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
-<terminal-line>Collecting git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
-<terminal-line>  Cloning <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
-<terminal-line>  Running command git clone --filter=blob:none --quiet <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
-<terminal-line>  …</terminal-line>
-<terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
-</terminal-window></p>
+    <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
+    <terminal-line data="input">module load conda/analysis3</terminal-line>
+    <terminal-line data="input">python3 -m venv xwmb_venv -\\\-system-site-packages</terminal-line>
+    <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+    <terminal-line>Collecting git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+    <terminal-line>  Cloning https://github.com/hdrake/xwmb.git (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+    <terminal-line>  Running command git clone -\\\-filter=blob:none -\\\-quiet https://github.com/hdrake/xwmb.git /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+    <terminal-line>  ...</terminal-line>
+    <terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
+</terminal-window>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Do not use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> here, as this will result in the packages being installed in your <code class="docutils literal notranslate"><span class="pre">~/.local</span></code> directory, leaving the virtual environment empty</p>
@@ -478,13 +454,13 @@ small, as most of the dependencies will have already been satisfied.</p>
 <p>And that’s it. We now have a fully self-contained environment with a custom
 package built on top of the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment. It is important to note
 that this virtual environment is tied to the version of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> that was loaded
-at the time of its creation, so it avoids the out-of-date dependencies issue mentioned earlier.
+at the time of its creation, so it avoids the out-of-date dependencies issue mentioned earlier.</p>
 <terminal-window typingDelay=30 lineDelay=200>
-<terminal-line data="input" inputChar="(xwmb_venv) $">which python3</terminal-line>
-<terminal-line>~/xwmb_venv/bin/python3</terminal-line>
-<terminal-line data="input" inputChar="(xwmb_venv) $">ls -l ~/xwmb_venv/bin/python3</terminal-line>
-<terminal-line>lrwxrwxrwx 1 dr4292 v45 67 Jun  5 14:43 /home/563/dr4292/xwmb_venv/bin/python3 -&gt; /g/data/xp65/public/apps/med_conda_scripts/analysis3-25.08.d/bin/python3</terminal-line>
-</terminal-window></p>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">which python3</terminal-line>
+    <terminal-line>~/xwmb_venv/bin/python3</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">ls -l ~/xwmb_venv/bin/python3</terminal-line>
+    <terminal-line>lrwxrwxrwx 1 dr4292 v45 67 Jun  5 14:43 /home/563/dr4292/xwmb_venv/bin/python3 -> /g/data/xp65/public/apps/med_conda_scripts/analysis3-25.08.d/bin/python3</terminal-line>
+</terminal-window>
 <p>Immediately after loading the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> module, you can run
 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">xwmb_venv/bin/activate</span></code> and any <code class="docutils literal notranslate"><span class="pre">python</span></code> command or script will now run under the new virtual environment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
@@ -539,13 +515,13 @@ work, use one of the NCI installed Python modules as your base.</p>
 <section id="jupyter-kernel">
 <h2>Jupyter Kernel<a class="headerlink" href="#jupyter-kernel" title="Link to this heading">#</a></h2>
 <p>There is one more step necessary to have your new virtual environment usable as a kernel in an ARE JupyterLab session.
-You’ll need to call <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span></code> while the virtual environment is activated.
+You’ll need to call <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span></code> while the virtual environment is activated.</p>
 <terminal-window typingDelay=30 lineDelay=200>
-<terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
-<terminal-line data="input">module load conda/analysis3</terminal-line>
-<terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
-<terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install --user --name xwmb_venv --display-name “xWMB+conda/analysis3”</terminal-line>
-</terminal-window></p>
+    <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
+    <terminal-line data="input">module load conda/analysis3</terminal-line>
+    <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install -\\\-user -\\\-name xwmb_venv -\\\-display-name "xWMB+conda/analysis3"</terminal-line>
+</terminal-window>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Since this virtual environment is built on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code>, you do not need to install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> in it, as this is already present in the conda environment.</p>
@@ -556,6 +532,31 @@ launch a notebook and import the <code class="docutils literal notranslate"><spa
 <p><img alt="Jupyterlab launch" src="../_images/notebook_virtualenv_launch.gif" /></p>
 <p>You only have to do this once. If you delete the environment and recreate it at the same path,
 Jupyterlab will still be able to use it.</p>
+</section>
+<section id="pip-install-user">
+<h2><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code><a class="headerlink" href="#pip-install-user" title="Link to this heading">#</a></h2>
+<p>A simpler approach, that can work when quickly testing user or when long-term
+reproducibility is not necessary is to load the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment
+and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> the xWMB package.</p>
+<terminal-window typingDelay=30 lineDelay=200>
+    <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
+    <terminal-line data="input">module load conda/analysis3</terminal-line>
+    <terminal-line data="input">pip install -\\\-user git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+    <terminal-line>Collecting git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+    <terminal-line>  Cloning https://github.com/hdrake/xwmb.git (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+    <terminal-line>  Running command git clone -\\\-filter=blob:none -\\\-quiet https://github.com/hdrake/xwmb.git /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+    <terminal-line>  ...</terminal-line>
+    <terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
+</terminal-window>
+<p>The downside with this approach is that it can lead to problems in the future. First of all, everything will be installed in your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory, which has a small quota and can easily be filled by local <code class="docutils literal notranslate"><span class="pre">pip</span></code> installations. Another consideration is that the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module
+is updated every month as new environments are released. For example, if you load <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> today,
+you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-26.01</span></code> environment. If you were to load the same module a couple of months from
+now, you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-26.04</span></code> environment. As time goes on, your
+locally installed package will get further and further out of date, and could potentially conflict with newer
+packages installed in updated analysis environments.</p>
+<p>In our advice to users, we recommend the following Advanced Settings for ARE environments:</p>
+<p><img alt="ARE recommended settings" src="../_images/ARE-recommended.png" /></p>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">PYTHONNOUSERSITE=1</span></code> environment variable. This will have the effect of preventing anything installed with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> from loading at all. This setting also works in the terminal and can be used as a first step to diagnosing any issues with python package imports.</p>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
@@ -640,10 +641,10 @@ Thanks to the CLEX CMS team for the original materials this section is based on.
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual environments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
