@@ -27,13 +27,6 @@ And if you are going to include jupyter notebooks on your repositories and plan 
 
 ### Before you start
 
-
-:::{admonition} Global Hackathon 2025
-:class: warning
-If you are here because of the training sessions for the Global Hackathon, please make sure you install everything locally. NCI systems will be down on May 6th so we'll work locally (from everyone's computers) instead of from Gadi.
-
-:::
-
 Make sure you have:
 
 * git installed in your laptop if you are working locally. If you are planning to work on Gadi, everything is already installed there.
