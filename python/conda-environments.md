@@ -35,12 +35,12 @@ There are only two additional commands required to install `xWMB` into a virtual
 <terminal-window typingDelay=30 lineDelay=200>
     <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
     <terminal-line data="input">module load conda/analysis3</terminal-line>
-    <terminal-line data="input">python3 -m venv xwmb_venv -\\\-system-site-packages</terminal-line>
+    <terminal-line data="input">python3 -m venv xwmb_venv --system-site-packages</terminal-line>
     <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
     <terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git@main</terminal-line>
     <terminal-line>Collecting git+https://github.com/hdrake/xwmb.git@main</terminal-line>
     <terminal-line>  Cloning https://github.com/hdrake/xwmb.git (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
-    <terminal-line>  Running command git clone -\\\-filter=blob:none -\\\-quiet https://github.com/hdrake/xwmb.git /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+    <terminal-line>  Running command git clone --filter=blob:none --quiet https://github.com/hdrake/xwmb.git /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
     <terminal-line>  ...</terminal-line>
     <terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
 </terminal-window>
@@ -124,7 +124,7 @@ You'll need to call `ipykernel install` while the virtual environment is activat
     <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
     <terminal-line data="input">module load conda/analysis3</terminal-line>
     <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
-    <terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install -\\\-user -\\\-name xwmb_venv -\\\-display-name "xWMB+conda/analysis3"</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install --user --name xwmb_venv --display-name "xWMB+conda/analysis3"</terminal-line>
 </terminal-window>
 
 ```{note}
@@ -150,10 +150,10 @@ and `pip install --user` the xWMB package.
 <terminal-window typingDelay=30 lineDelay=200>
     <terminal-line data="input">module use /g/data/xp65/public/modules</terminal-line>
     <terminal-line data="input">module load conda/analysis3</terminal-line>
-    <terminal-line data="input">pip install -\\\-user git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+    <terminal-line data="input">pip install --user git+https://github.com/hdrake/xwmb.git@main</terminal-line>
     <terminal-line>Collecting git+https://github.com/hdrake/xwmb.git@main</terminal-line>
     <terminal-line>  Cloning https://github.com/hdrake/xwmb.git (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
-    <terminal-line>  Running command git clone -\\\-filter=blob:none -\\\-quiet https://github.com/hdrake/xwmb.git /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+    <terminal-line>  Running command git clone --filter=blob:none --quiet https://github.com/hdrake/xwmb.git /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
     <terminal-line>  ...</terminal-line>
     <terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
 </terminal-window>
