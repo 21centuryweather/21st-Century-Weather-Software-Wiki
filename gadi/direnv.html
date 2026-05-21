@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Energy Demand dataset &#8212; 21st Century Weather Software Wiki</title>
+    <title>direnv &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -61,14 +61,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/energy';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/direnv';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ERA5 Drought" href="drought-era5.html" />
-    <link rel="prev" title="MMLEAv2" href="mmleav2.html" />
+    <link rel="next" title="Introduction to Rose/Cylc" href="../rose-cylc/rose-cylc-intro.html" />
+    <link rel="prev" title="Literal programming with quarto" href="quarto.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -165,15 +163,15 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gadi/direnv.html">direnv</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Your gadi adventure starts here!</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quarto.html">Literal programming with quarto</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">direnv</a></li>
 </ul>
 </details></li>
 </ul>
@@ -224,17 +222,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Datasets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalogs.html">Data catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="weather_objects.html">ERA5-based Weather Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mesaclip.html">MESACLIP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mmleav2.html">MMLEAv2</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Energy Demand dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="drought-era5.html">ERA5 Drought</a></li>
-<li class="toctree-l2"><a class="reference internal" href="daily-era5.html">ERA5 daily</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gsmap.html">GSMaP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
 </ul>
 </details></li>
 </ul>
@@ -307,7 +305,7 @@
       
       
       
-      <li><a href="../_sources/datasets/energy.md" target="_blank"
+      <li><a href="../_sources/gadi/direnv.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -383,7 +381,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Energy Demand dataset</h1>
+    <h1>direnv</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -393,9 +391,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location">Location:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-dataset">How to cite this dataset:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-direnv">Using direnv</a></li>
 </ul>
             </nav>
         </div>
@@ -407,39 +404,47 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="energy-demand-dataset">
-<h1>Energy Demand dataset<a class="headerlink" href="#energy-demand-dataset" title="Link to this heading">#</a></h1>
-<p>This dataset contains predictions of daily energy demand for the Australian National Electricity Market (NEM) and participant States (QLD, NSW, VIC, SA, TAS) between 1940 and 2023.</p>
-<p>The predictions were generated using an Extra Trees ensemble machine learning model with meteorological variables based on the ECMWF ERA5 reanalysis as predictors. Predictor data is also included in this repository.</p>
-<p>The model was trained on demand observations from 2010-2016 and tested on observations from 2017-2019. This means the data here reflect how demand varies as a function of the weather according to the 2010-2019 power system.</p>
-<p>The modelling procedure is described in Richardson et al. (2025), doi: 10.1088/1748-9326/ad9b3b. The data differ from those described in the paper because (1) the data length is longer here and (2) in the paper demand predictions are made using detrended predictors. The data here are not detrended.</p>
-<section id="data">
-<h2>Data:<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
-<p>There are six files, one per region. Each file has one column for the date, columns for each of the predictors ordered left to right according to their importance in the model, and one column for predicted demand. Column names are summarised here with units:</p>
-<p>date: yyyy-mm-dd
-t2m: mean daily temperature [K]
-t2m3: 3-day average of daily mean temperature [K]
-t2m4: 4-day average of daily mean temperature [K]
-t2max: maximum daily temperature [K]
-msdwswrf : solar radiation at surface [W <span class="math notranslate nohighlight">\(m^{-2}\)</span>]
-rh: relative humidity [%]
-q: specific humidity [g <span class="math notranslate nohighlight">\(kg^{-1}\)</span>]
-w10: 10m wind speed [m <span class="math notranslate nohighlight">\(s^{-1}\)</span>]
-mtpr: mean total precipitation rate [kg <span class="math notranslate nohighlight">\(m^{-2} s^{-1}\)</span>]
-cdd: cooling degree days [deg C]
-prediction: demand prediction [MWh]</p>
-</section>
-<section id="location">
-<h2>Location:<a class="headerlink" href="#location" title="Link to this heading">#</a></h2>
-<p>The data is located at:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/g/data/su28/energy_demand
+  <section class="tex2jax_ignore mathjax_ignore" id="direnv">
+<h1>direnv<a class="headerlink" href="#direnv" title="Link to this heading">#</a></h1>
+<p>direnv is a small bash program that allows you to modify the environment automatically as you enter a directory.
+This means that if you’ve got a project that uses a particular set of modules you can just add a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file in the root of your project with all the module load commands that you need and never miss them.</p>
+<p>For example, for those running ACCESS models, having a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in the <code class="docutils literal notranslate"><span class="pre">roses/</span></code> folder can be very useful:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>use<span class="w"> </span>/g/data/hr22/modulefiles
+module<span class="w"> </span>load<span class="w"> </span>cylc7
+<span class="nb">export</span><span class="w"> </span><span class="nv">PROJECT</span><span class="o">=</span>gb02
 </pre></div>
 </div>
+<p>So every time you <code class="docutils literal notranslate"><span class="pre">cd</span></code> into your <code class="docutils literal notranslate"><span class="pre">roses/</span></code> folder, <code class="docutils literal notranslate"><span class="pre">cylc7</span></code> will get loaded automatically, giving you access to the <code class="docutils literal notranslate"><span class="pre">rose</span></code> commands, and your default project will be switched to gb02.
+When you leave the directory, everything will be unloaded, making this <em>environment</em> independent of the rest.</p>
+<p>You can use direnv to automatically activate the python environment for the project.
+If you followed <a class="reference internal" href="#(content:conda-env)"><span class="xref myst">our guide to build virtual environments on top of analysis3</span></a>, you can add a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file in the same folder with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>use<span class="w"> </span>/g/data/xp65/public/modules
+module<span class="w"> </span>load<span class="w"> </span>conda/analysis3
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+<p>And if you are just using analysis3, you can omit the last line.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>direnv is already available if you are a member of gb02.
+To use it you’ll need to change your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> to add:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>prepend_path<span class="w"> </span>PATH<span class="w"> </span>/g/data/gb02/public/tools/direnv_bin/
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>direnv<span class="w"> </span>hook<span class="w"> </span>bash<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>After that, run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code> or open a new terminal window and you’re done!</p>
+<p>If you are not a member of <code class="docutils literal notranslate"><span class="pre">gb02</span></code> or you prefer to install direnv in your own home directory, follow <a class="reference external" href="https://direnv.net/">the instructions in the official website.</a></p>
 </section>
-<section id="how-to-cite-this-dataset">
-<h2>How to cite this dataset:<a class="headerlink" href="#how-to-cite-this-dataset" title="Link to this heading">#</a></h2>
-<p>If using these data, please cite the original publication, available from <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1748-9326/ad9b3b">https://iopscience.iop.org/article/10.1088/1748-9326/ad9b3b</a>.</p>
-<p>The dataset is also available in a Zenodo repository: <a class="reference external" href="https://zenodo.org/records/15272801">https://zenodo.org/records/15272801</a></p>
+<section id="using-direnv">
+<h2>Using direnv<a class="headerlink" href="#using-direnv" title="Link to this heading">#</a></h2>
+<p>To use direnv in a project folder you need to create a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file. You can use one of the examples above as a starting point.</p>
+<p>In a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file it is possible to load any module (including <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code>), define system variables and add things to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file inside the project folder</p></li>
+<li><p>Add the modules and variables you need. Save and close the file.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">direnv</span> <span class="pre">allow</span></code> to <em>approve</em> the new environment. You will need to repeat this every time you update the <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file.</p></li>
+<li><p>And done, enjoy your by-project environments!</p></li>
+</ol>
 </section>
 </section>
 
@@ -456,7 +461,7 @@ prediction: demand prediction [MWh]</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./datasets"
+            path: "./gadi"
         },
         predefinedOutput: true
     }
@@ -474,20 +479,20 @@ prediction: demand prediction [MWh]</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="mmleav2.html"
+       href="quarto.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">MMLEAv2</p>
+        <p class="prev-next-title">Literal programming with quarto</p>
       </div>
     </a>
     <a class="right-next"
-       href="drought-era5.html"
+       href="../rose-cylc/rose-cylc-intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ERA5 Drought</p>
+        <p class="prev-next-title">Introduction to Rose/Cylc</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -509,9 +514,8 @@ prediction: demand prediction [MWh]</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location">Location:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-dataset">How to cite this dataset:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-direnv">Using direnv</a></li>
 </ul>
   </nav></div>
 
