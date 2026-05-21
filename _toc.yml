@@ -17,6 +17,7 @@ parts:
       - file: gadi/rudu-usage
       - file: gadi/vscode
       - file: gadi/quarto
+      - file: gadi/direnv
   - caption: Running atmospheric simulations using ACCESS
     chapters:
     - file: rose-cylc/rose-cylc-intro
