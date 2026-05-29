@@ -52,10 +52,10 @@ And answer the questions. Depending on the answers, the project using Python wil
 
 ### Organise your code
 
-`````{tab-set}
-````{tab-item} Python
 When working on a research project, it is important to organise your code in a way that makes it easy to understand and maintain. The template provides a structure for organising your code, with separate folders for analysis, and source code.
 
+`````{tab-set}
+````{tab-item} Python
 What's the difference between the `analysis` and `src` folders? The `analysis` folder is meant for Jupyter notebooks (or scripts) that contain your analysis and figures, while the `src` folder is meant for Python scripts that contain functions and classes that you can reuse across different notebooks.
 
 In the example we have a sample function in `src/sample_fun.py` that we can import and use in a notebook. 
@@ -192,11 +192,93 @@ The only catch is that you need to make sure that the working directory is set t
 
 ### Document your code
 
-TODO
+Documenting your code is an important aspect of making your project reproducible and maintainable. Even if you are not planning to share your code with anyone else, you will be grateful to yourself in the future if you document your code properly. Documentation can be as simple as adding comments to your code to explain what it does and, more importantly, why you are doing it. You can also use docstrings in Python or roxygen2 in R to document your functions and classes, which will make it easier for you and others to understand how to use them.
 
+`````{tab-set}
+````{tab-item} Python
+In Python, functions are usually documented using docstrings, which are string literals that appear right after the function definition. A docstring should describe what the function does, its parameters, its return value and examples. The example in the template includes a bare-bones docstring:
+
+```python
+def add_numbers(x, y):
+    """Returns the sum of x and y."""
+    return x + y
+```
+A better version of the documentation would be:
+
+```python
+def add_numbers(x, y):
+    """
+    Returns the sum of x and y.
+
+    Parameters
+    ----------
+    x: int
+        The first number.
+    y: int
+        The second number.
+
+    Returns
+    -------
+    int
+        The sum of x and y.
+
+    Examples
+    --------
+    >>> add_numbers(2, 3)
+    5
+    """
+    return x + y
+```
+
+This way, you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, having docstrings will make it easier to create the documentation for your package.
+
+````
+
+````{tab-item} R
+
+In R, functions are usually documented using roxygen2, which is a package that allows you to write documentation in the same file as your code. The documentation is written in a special format that starts with `#'` and includes tags such as `@param`, `@return`, and `@examples`. The example in the template includes a bare-bones documentation:
+
+```r
+#' Adds two numbers together. 
+#' 
+#' @param x,y numbers to add up
+#' 
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+A more complete version of the documentation would be:
+
+```r
+#' Add together two numbers
+#' 
+#' @param x A number.
+#' @param y A number.
+#' @return The sum of \code{x} and \code{y}.
+#'
+#' @examples
+#' add_numbers(1, 1)
+#' add_numbers(10, 1)
+#' @export
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+This way, you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, using roxygen2 will make it easier to create the documentation for your package.
+
+````
+`````
 ### Document your project
 
-TODO
+The template provides a `README.md` file where you can write a description of your project, how to run the analysis and get access to the data. This file is meant to be read by other people who want to understand what your project is about and how to use it. If you share your project on Guthub, the README file will be the first thing that people see when they visit your repository, so it is important to make it clear and informative.
+
+You can also include information about how to cite your research project. This can be the citation associated to the paper, if you have one, or you can create a Zenodo record for your project and include the DOI in the README file. This way, people who want to use your code and data can easily find the citation information and give you credit for your work.
+
+Check this examples for inspiration on how to write a good README file:
+
+* [Gradient-boosted equivalent sources](https://github.com/compgeolab/eql-gradient-boosted)
+* [The Importance of Initial Conditions in Seasonal Predictions of Antarctic Sea Ice](https://github.com/eliocamp/access-s2_ice-eval)
+* [Using rapid temperature falls to estimate future strong cold front frequency in CMIP6 climate projections](https://github.com/paocorrales/t-drop-trends/)
 
 ### Manage your dependencies
 
