@@ -79,7 +79,32 @@ This way, we can keep the analysis notebooks clean and focused on the analysis, 
 ````
 
 ````{tab-item} R
-Coming soon!
+When working in an R project, the `analysis` folder is meant for R markdown or Quarto files that contain your analysis and figures, while the `R` folder is meant for R files that contain functions that you can reuse across different Quarto files.
+
+In the example we have a sample function in `src/sample_fun.py` that we can import and use in a notebook. 
+
+`R/functions.R`
+```r
+#' Adds two numbers together. 
+#' 
+#' @param x,y numbers to add up
+#' 
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+And the `analysis/example.ipynb` notebook can import and use this function:
+
+```r
+# Source helper functions
+source(list.files("R", full.names = TRUE))
+```
+
+```r
+add_numbers(1, 1)
+```
+This way, we can keep the quarto file clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different quarto files and to avoid copying and repeating code. Moving forward, you can easily convert your collection of functions into a package, which will make it easier to share and reuse your code across different projects.
+
 ````
 `````
 ### Organise your data
@@ -323,4 +348,4 @@ For all cases, the `data/` folder will be ignored. It's not recommended to track
  ## References
 
 * [An R reproducibility toolkit for the practical researcher](https://reproducibility.rocks/)
-* https://iopscience.iop.org/article/10.3847/2515-5172/ad4da1
+* [A Python Project Template for Healthy Scientific Software](https://iopscience.iop.org/article/10.3847/2515-5172/ad4da1)
