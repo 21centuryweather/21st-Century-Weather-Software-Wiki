@@ -93,6 +93,23 @@ If you create your project on your home directory that only has 10 GB available,
 
 :::
 
+````{dropdown} How to create a symbolic link
+A symbolic link is a special type of file that points to another file or folder. It allows you to access the target file or folder from a different location without having to copy it. For this you need to use the terminal. 
+
+The command is `ln -s /path/to/target /path/to/link`. For instance, if you want to create a symbolic link to /g/data/gb02/$USER/my_project/data into your home directory, you can run this command:
+
+```bash
+ln -s /g/data/gb02/$USER/my_project $HOME/
+```
+If you check with `ls -l` you will see:
+
+```bash
+lrwxrwxrwx  1 pc2687 gb02       30 May 29 15:13 my_project -> /g/data/gb02/pc2687/my_project
+```
+Note: if the link was not created correctly, the previous output will show in red. 
+
+````
+
 * `raw` folder: To store the raw data that you download from the source. You should never edit this data, and it should be kept as a reference for your analysis. This folder is meant to be read-only.
 
 :::{admonition} On gadi
