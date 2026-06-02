@@ -1,6 +1,6 @@
-# Research project template
+# Research Project Template
 
-This section documents the [Research project template](https://github.com/21centuryweather/research-project-template) that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incorporate good practices one by one by automatically organising code, analysis, figures and documentation.
+This section documents the [Research Project Template](https://github.com/21centuryweather/research-project-template) that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incorporate good practices one by one by automatically organising code, analysis, figures and documentation.
 
 Copier is required to use this template. Copier is an open-source tool that hydrates projects from templates. This template was developed using Copier v9.15.0 and older versions haven't been tested.
 
@@ -19,11 +19,13 @@ module load copier
 copier copy --trust gh:21centuryweather/research-project-template .
 ```
 
-You will get prompted to answer a few questions about your project, such as the project name, description, and the NCI project you are working on. You can also choose whether you want to use Python or R as your programming language.
+You will get prompted to answer a few questions about your project: the project name, description, and the NCI project you are working on. You can also choose whether you want to use Python or R as your programming language.
+
+3. Answer the questions. 
 
 ![](images/python_project.gif)
 
-And answer the questions. Depending on the answers, the project using Python will look something like this:
+Depending on the answers, the project using Python may look something like this:
 
 ```bash
 {{project_name}}/
@@ -50,63 +52,6 @@ And answer the questions. Depending on the answers, the project using Python wil
 
 ## Good practices for a research project
 
-### Organise your code
-
-When working on a research project, it is important to organise your code in a way that makes it easy to understand and maintain. The template provides a structure for organising your code, with separate folders for analysis, and source code.
-
-`````{tab-set}
-````{tab-item} Python
-What's the difference between the `analysis` and `src` folders? The `analysis` folder is meant for Jupyter notebooks (or scripts) that contain your analysis and figures, while the `src` folder is meant for Python scripts that contain functions and classes that you can reuse across different notebooks.
-
-In the example we have a sample function in `src/sample_fun.py` that we can import and use in a notebook. 
-
-`src/sample_fun.py`
-```python
-def add_numbers(x, y):
-    """Returns the sum of x and y."""
-    return x + y
-```
-And the `analysis/example.ipynb` notebook can import and use this function:
-
-```python
-import sys
-sys.path.append('../src/python_project')
-from sample_fun import add_numbers
-```
-
-This way, we can keep the analysis notebooks clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different notebooks and to avoid copying and repeating code. Moving forward, you can also add tests for your functions in the `tests` folder, which will help you ensure that your code is working as expected and will make it easier to maintain and update your code in the future.
-
-````
-
-````{tab-item} R
-When working in an R project, the `analysis` folder is meant for R markdown or Quarto files that contain your analysis and figures, while the `R` folder is meant for R files that contain functions that you can reuse across different Quarto files.
-
-In the example we have a sample function in `src/sample_fun.py` that we can import and use in a notebook. 
-
-`R/functions.R`
-```r
-#' Adds two numbers together. 
-#' 
-#' @param x,y numbers to add up
-#' 
-add_numbers <- function(x, y) {
-  x + y
-}
-```
-And the `analysis/example.ipynb` notebook can import and use this function:
-
-```r
-# Source helper functions
-source(list.files("R", full.names = TRUE))
-```
-
-```r
-add_numbers(1, 1)
-```
-This way, we can keep the quarto file clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different quarto files and to avoid copying and repeating code. Moving forward, you can easily convert your collection of functions into a package, which will make it easier to share and reuse your code across different projects.
-
-````
-`````
 ### Organise your data
 
 When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and processed data.
@@ -121,7 +66,7 @@ If you create your project on your home directory that only has 10 GB available,
 ````{dropdown} How to create a symbolic link
 A symbolic link is a special type of file that points to another file or folder. It allows you to access the target file or folder from a different location without having to copy it. For this you need to use the terminal. 
 
-The command is `ln -s /path/to/target /path/to/link`. For instance, if you want to create a symbolic link to /g/data/gb02/$USER/my_project/data into your home directory, you can run this command:
+The command is `ln -s /path/to/target /path/to/link`. For instance, if you want to create a symbolic link from /g/data/gb02/$USER/my_project/ to your home directory, you can run this command:
 
 ```bash
 ln -s /g/data/gb02/$USER/my_project $HOME/
@@ -135,12 +80,16 @@ Note: if the link was not created correctly, the previous output will show in re
 
 ````
 
-* `raw` folder: To store the raw data that you download from the source. You should never edit this data, and it should be kept as a reference for your analysis. This folder is meant to be read-only.
+**`raw` folder**
+
+To store the raw data that you download from the source. You should never edit this data, and it should be kept as a reference for your analysis. This folder is meant to be read-only.
+
+Consider adding a README file inside the `raw` folder to document the source of the data, the date you downloaded it, and any other relevant information about the data. This will help you and others understand where the data came from and how to use it in the future.
 
 :::{admonition} On gadi
 :class: tip
 
-If you are going to work with data that is already available on gadi, you can also **link** the data into the `raw/` folder and then use relative paths to access it. This way you can keep all your code and data organised in the same root folder, which will make it easier to share and reproduce your analysis.
+If you are going to work with data that is already available on gadi (like, ERA5, CMIP6, etc), you can also **link** the data into the `raw/` folder and then use relative paths to access it. This way you can keep all your code and data organised in the same root folder, which will make it easier to share and reproduce your analysis.
 
 Alternatively, you can read the data directly from that specific project using absolute paths but in this case your project won't be portable.
 
@@ -148,15 +97,21 @@ Alternatively, you can read the data directly from that specific project using a
 
 :::
 
-* `temp` folder: In this folder you will save the temporary data that you create when processing the raw data. The data in this folder won't be used for the final analysis, and it can be deleted after you finished processing the raw data.
+**`temp` folder**
+
+In this folder you will save the temporary data that you create when processing the raw data. The data in this folder won't be used for the final analysis, are actually intermediate files needed for more processing. You should delete them after you finished processing the raw data but save any scripts to be able to reproduce the processing.
 
 :::{admonition} On gadi
 :class: tip
 
-Because this is temporal data, the template creates a symbolic link to the `/scratch` folder on gadi. The data in this folder will be automatically deleted after 90 days, so it is a good place to store temporal data that you don't need to keep for a long time. 
+Because this is temporal data, the template creates a symbolic link to the `/scratch` folder on gadi. The data in this folder will be automatically deleted after 90 days, so it is a good place to store data that you don't need to keep for a long time or that you can recreate again by running a script. 
 
 :::
-* `processed` folder: In this folder you will save the data that you have cleaned and transformed for the analysis. 
+
+**`processed` folder**
+
+In this folder you will save the data that you have cleaned and transformed for the analysis and figures. 
+Think about the notebook or script that generates the analysis and figures in your paper. All the data needed, and that you transformed would go to the `processed` folder. 
 
 #### Files you can code with
 
@@ -176,18 +131,28 @@ Finally, try to make your files easily sortable. Put numbers with enough zero-pa
 
 An important aspect of thinking about your project is that all scripts, data, figures, and whatever else is needed to (re)create the analysis is inside the same root folder. That way you can ensure that the only thing you need to give to someone else to successfully run your code is that single folder. 
 
+:::{admonition} On gadi
+:class: tip
+
+Well, this may not be entirely possible if you are working on a project that relies on data that is only available on gadi, but you can still make your project portable by including scripts to download the data from the source or document exactly how to get it. 
+
+So, even if someone doesn't have access to the data on gadi, they can still run your code and reproduce your analysis by downloading the data from the source and processing it using your scripts.
+
+:::
+
+
 One extra step to consider is that you cannot make your work portable if your code is not portable too. Perhaps the main culprit of non-portable code is using absolute paths to manipulate files in your code.
 
 `````{tab-set}
 ````{tab-item} Python
 
-If you use Jupyter labs and set your working directory with `os.chdir()` to the root of your project, you can use relative paths to access your data and figures. The problem with this approach is that your notebook and project won't be portable because no one else will have the same absolute path to the project. 
+If you use Jupyter labs and set your working directory with `os.chdir()` to the root of your project, you can use relative paths to access your data and figures. The problem with this approach is that your notebook and project won't be portable because will need to set a different working directory every time. 
 
 One solution to this is setting the working directory when starting the ARE session:
 
-
-1. Click Show advanced settings.
-2. Write `--notebook-dir=path/to/project` in the “Extra arguments” section.
+1. Configure a Jupyter lab session in ARE.
+2. Click Show advanced settings.
+3. Write `--notebook-dir=path/to/project` in the “Extra arguments” section.
 
 After that, ARE will start a jupyter lab session using the path you specified as working directory. 
 
@@ -200,7 +165,7 @@ Think about this piece of code:
 read.csv("/home/dorothy/Documents/research/black-hole/data/data.csv")
 ```
 
-Even if you correctly downloaded the myresearch folder, this code wouldn’t run because it is unlikely that you saved that folder inside Documents/research and that your username is "dorothy".
+Even if you correctly downloaded the black-hole folder, this code wouldn’t run because it is unlikely that you saved that folder inside Documents/research and that your username is "dorothy".
 
 Instead, you can use a relative path such as
 
@@ -215,9 +180,72 @@ The only catch is that you need to make sure that the working directory is set t
 ````
 `````
 
+### Organise your code
+
+When working on a research project, it is important to organise your code in a way that makes it easy to understand and maintain. The template provides a structure for organising your code, with separate folders for analysis, and source code.
+
+`````{tab-set}
+````{tab-item} Python
+What's the difference between the `analysis` and `src` folders? The `analysis` folder is meant for Jupyter notebooks (or scripts) that contain your analysis and figures, while the `src` folder is meant for Python scripts that contain functions and classes that you can reuse across different notebooks.
+
+If you said yes to adding an example when creating the project structure you will find a sample function in:
+
+`src/sample_fun.py`
+```python
+def add_numbers(x, y):
+    """Returns the sum of x and y."""
+    return x + y
+```
+And a notebook `analysis/example.ipynb` that shows how to import and use this function:
+
+```python
+import sys
+sys.path.append('../src/python_project')
+from sample_fun import add_numbers
+```
+
+The idea here is to keep the notebooks clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different notebooks and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only. 
+
+Moving forward, you can also add tests for your functions in the `tests` folder, which will help you ensure that your code is working as expected and will make it easier to maintain and update your code in the future.
+
+````
+
+````{tab-item} R
+When working in an R project, the `analysis` folder is meant for R markdown or Quarto files that contain your analysis and figures, while the `R` folder is meant for R files that contain functions that you can reuse across different Quarto files.
+
+If you said yes to adding an example when creating the project structure you will find a sample function in:
+
+`R/functions.R`
+```r
+#' Adds two numbers together. 
+#' 
+#' @param x,y numbers to add up
+#' 
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+And the `analysis/manuscript/manuscript.qmd` notebook can import and use this function:
+
+```r
+# Source helper functions
+source(list.files("R", full.names = TRUE))
+```
+
+```r
+add_numbers(1, 1)
+```
+The idea is to keep the quarto file clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different quarto files and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only. 
+
+Moving forward, you can easily convert your collection of functions into a package, which will make it easier to share and reuse your code across different projects.
+
+````
+`````
 ### Document your code
 
-Documenting your code is an important aspect of making your project reproducible and maintainable. Even if you are not planning to share your code with anyone else, you will be grateful to yourself in the future if you document your code properly. Documentation can be as simple as adding comments to your code to explain what it does and, more importantly, why you are doing it. You can also use docstrings in Python or roxygen2 in R to document your functions and classes, which will make it easier for you and others to understand how to use them.
+Documenting your code is an important aspect of making your project reproducible and maintainable. Even if you are not planning to share your code with anyone else, you will be grateful to yourself in the future if you document your code properly. 
+
+Documentation can be as simple as adding comments to your code to explain what it does and, more importantly, why you are doing it. You can also use docstrings in Python or roxygen2 in R to document your functions and classes, which will make it easier for you and others to understand how to use them.
 
 `````{tab-set}
 ````{tab-item} Python
@@ -255,7 +283,7 @@ def add_numbers(x, y):
     return x + y
 ```
 
-This way, you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, having docstrings will make it easier to create the documentation for your package.
+With this structure you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, having docstrings will make it easier to create the documentation for your package.
 
 ````
 
@@ -289,15 +317,15 @@ add_numbers <- function(x, y) {
   x + y
 }
 ```
-This way, you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, using roxygen2 will make it easier to create the documentation for your package.
+While roxigen2 syntax can be hard to remember, rstudio has an option to insert the skeleton automatically. This structure will help you to add all the necessary details so you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, using roxygen2 will make it easier to create the documentation for your package.
 
 ````
 `````
 ### Document your project
 
-The template provides a `README.md` file where you can write a description of your project, how to run the analysis and get access to the data. This file is meant to be read by other people who want to understand what your project is about and how to use it. If you share your project on Guthub, the README file will be the first thing that people see when they visit your repository, so it is important to make it clear and informative.
+The template provides a `README.md` file where you can write a description of your project, how to run the analysis and get access to the data. This file is meant to be read by other people who want to understand what your project is about and how to use it. If you share your project on GitHub, the README file will be the first thing that people see when they visit your repository, so it is important to make it clear and informative.
 
-You can also include information about how to cite your research project. This can be the citation associated to the paper, if you have one, or you can create a Zenodo record for your project and include the DOI in the README file. This way, people who want to use your code and data can easily find the citation information and give you credit for your work.
+You can also include information about how to cite your research project. This can be the citation associated to the paper, if you have one, or you can create a Zenodo record for your project (everything in the repository) and include the DOI in the README file. This way, people who want to use your code and data can easily find the citation information and give you credit for your work.
 
 Check this examples for inspiration on how to write a good README file:
 
@@ -310,7 +338,7 @@ Check this examples for inspiration on how to write a good README file:
 `````{tab-set}
 ````{tab-item} Python
 
-If if you rely on `conda/analysis3` environments, it's important to keep track of the dependencies you are using in your project. The template provides a `requirements.txt` file where you can list all the packages you are using in your project. This way, you can easily recreate the environment in another machine or share it with someone else.
+If if you rely on `conda/analysis3` environments, it's still important to keep track of the dependencies you are using in your project. The template provides a `requirements.txt` file where you can list all the packages you are using in your project. This way, you can easily recreate the environment in another machine or share it with someone else.
 
 When you are ready to create this file, load your environment and run this in the terminal after activating your environment:
 
