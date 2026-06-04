@@ -1,8 +1,8 @@
 # Research Project Template
 
-This section documents the [Research Project Template](https://github.com/21centuryweather/research-project-template) that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incorporate good practices one by one by automatically organising code, analysis, figures and documentation.
+This section documents the [Research Project Template](https://github.com/21centuryweather/research-project-template) that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incrementally incorporate good practices by automatically organising code, analysis, figures and documentation.
 
-Copier is required to use this template. Copier is an open-source tool that hydrates projects from templates. This template was developed using Copier v9.15.0 and older versions haven't been tested.
+Copier is required to use this template. Copier is an open-source tool that creates projects from templates. This template was developed using Copier v9.15.0 and older versions haven't been tested.
 
 ## Getting started
 
@@ -19,7 +19,7 @@ module load copier
 copier copy --trust gh:21centuryweather/research-project-template .
 ```
 
-You will get prompted to answer a few questions about your project: the project name, description, and the NCI project you are working on. You can also choose whether you want to use Python or R as your programming language.
+You will be prompted to answer a few questions about your project: the project name, description, and the NCI project you are working on. You can also choose whether you want to use Python or R as your programming language.
 
 3. Answer the questions. 
 
@@ -59,7 +59,7 @@ When working on a research project, it is important to organise your data in a w
 :::{admonition} On gadi
 :class: tip
 
-If you create your project on your home directory that only has 10 GB available, the template will automatically create a symbolic link to the `/g/data/{{nci_project}}/$USER/{{project_name}}/data` folder on gadi. This way you can work with large data without worrying about running out of space on your home directory.
+If you create your project on your home directory, which only has 10 Gb available, the template will automatically create a symbolic link to the `/g/data/{{nci_project}}/$USER/{{project_name}}/data` folder on gadi. This way you can work with large data without worrying about running out of space on your home directory.
 
 :::
 
@@ -91,7 +91,7 @@ Consider adding a README file inside the `raw` folder to document the source of 
 
 If you are going to work with data that is already available on gadi (like, ERA5, CMIP6, etc), you can also **link** the data into the `raw/` folder and then use relative paths to access it. This way you can keep all your code and data organised in the same root folder, which will make it easier to share and reproduce your analysis.
 
-Alternatively, you can read the data directly from that specific project using absolute paths but in this case your project won't be portable.
+Alternatively, you can read the data directly from that specific project using absolute paths. To make your project portable, you can specify absolute paths on gadi into a project-specific config file. See [here](https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/python/package-structure.html#environment-and-configuration-files) for further discussions and [here](https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/config.py) for an example.
 
 **Never copy data available on gadi into your project folder**. This will duplicate data and use extra storage space without reason. 
 
@@ -99,7 +99,7 @@ Alternatively, you can read the data directly from that specific project using a
 
 **`temp` folder**
 
-In this folder you will save the temporary data that you create when processing the raw data. The data in this folder won't be used for the final analysis, are actually intermediate files needed for more processing. You should delete them after you finished processing the raw data but save any scripts to be able to reproduce the processing.
+In this folder you will save the temporary data that you create when processing the raw data. The data in this folder won't be used for the final analysis, they are often intermediate files needed for more processing. You should delete them after you finished processing the raw data but save any scripts to be able to reproduce the processing.
 
 :::{admonition} On gadi
 :class: tip
