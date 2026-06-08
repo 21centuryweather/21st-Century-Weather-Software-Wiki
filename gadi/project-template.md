@@ -43,7 +43,7 @@ Depending on the answers, the project using Python may look something like this:
 │       └── .figures
 ├── .copier-answers.yml
 ├── data -> /g/data/{{nci_project}}/$USER/{{project_name}}/data
-│   ├── processed
+│   ├── derived
 │   │   └── DO_NOT_EDIT
 │   └── temp -> /scratch/{{nci_project}}/$USER/{{project_name}}/data/temp
 ├── .envrc
@@ -62,7 +62,7 @@ Depending on the answers, the project using Python may look something like this:
 
 ### Organise your data
 
-When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and processed data.
+When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and derived data.
 
 :::{admonition} On gadi
 :class: tip
@@ -116,10 +116,10 @@ Because this is temporal data, the template creates a symbolic link to the `/scr
 
 :::
 
-**`processed` folder**
+**`derived` folder**
 
 In this folder you will save the data that you have cleaned and transformed for the analysis and figures. 
-Think about the notebook or script that generates the analysis and figures in your paper. All the data needed, and that you transformed would go to the `processed` folder. 
+Think about the notebook or script that generates the analysis and figures in your paper. All the data needed, and that you transformed would go to the `derived` folder. 
 
 #### Files you can code with
 
