@@ -372,6 +372,12 @@ If you choose to use git in your project, the template will create a `.gitignore
 
 For all cases, the `data/` folder will be ignored. It's not recommended to track this folder on git because usually include big files that cannot be added to GitHub. Data usually have specific licenses and you need to check if you are allowed to share it. If that's the case, we recommend sharing the data through a data repository such as [Zenodo](https://zenodo.org/) and then adding the link to the data in your README file. 21st Century Weather has a Zenodo community where you can share your data and code: https://zenodo.org/communities/21stcenturyweather.
 
+### Testing our code
+
+The template provides a `tests` folder where you can add tests for your functions. Testing your code is an important aspect of making sure that your code is working as expected and that you can maintain and update it in the future without breaking it.
+
+If you are interested in learning more about testing your python code, check the section [Testing your code](content:testing-code) of the wiki.
+
 
  ## References
 
