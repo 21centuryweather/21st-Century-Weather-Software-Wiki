@@ -12,6 +12,7 @@ parts:
     - file: gadi/index
       sections:
       - file: gadi/getting-started
+      - file: gadi/project-template
       - file: gadi/mac-stuff
       - file: gadi/moving-data
       - file: gadi/rudu-usage
