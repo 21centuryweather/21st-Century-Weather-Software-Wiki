@@ -1,3 +1,4 @@
+(content:project-template)=
 # Research Project Template
 
 This section documents the [Research Project Template](https://github.com/21centuryweather/research-project-template) that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incrementally incorporate good practices by automatically organising code, analysis, figures and documentation.
@@ -23,7 +24,14 @@ You will be prompted to answer a few questions about your project: the project n
 
 3. Answer the questions. 
 
+````{tab-set}
+```{tab-item} Python
 ![](images/python_project.gif)
+```
+```{tab-item} R
+![](images/r_project.gif)
+```
+````
 
 Depending on the answers, the project using Python may look something like this:
 

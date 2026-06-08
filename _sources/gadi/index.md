@@ -24,7 +24,30 @@
 
 :::
 
-:::{card} 2. Intro to python
+:::{card} 2. Organise your research project 
+:class-card: main-card
+:width: 100% 
+:margin: 0 2 0 0 
+:text-align: left
+:link: content:project-template
+:link-type: ref
+
+* Create your research project using the template 
+* Organise and document your code and data
+* Manage dependencies and version control
+:::
+
+:::{card} > Side quest: use git a GitHub to share your code and collaborate with others
+:class-card: side-card
+:width: 100% 
+:margin: 0 2 0 auto 
+:text-align: right
+:shadow: none
+:link: content:git-intro
+:link-type: ref
+:::
+
+:::{card} 3. Intro to python
 :class-card: main-card
 :width: 100% 
 :margin: 0 2 0 0 
@@ -57,7 +80,7 @@
 :link-type: ref
 :::
 
-:::{card} 3. Using VS Code with gadi
+:::{card} 4. Using VS Code with gadi
 :class-card: main-card
 :width: 100% 
 :margin: 0 2 0 0 
@@ -79,7 +102,7 @@ Connect to gadi via VS Code.
 
 :::
 
-:::{card} 4. Moving data on gadi
+:::{card} 5. Moving data on gadi
 :class-card: main-card
 :width: 100% 
 :margin: 0 2 0 0 

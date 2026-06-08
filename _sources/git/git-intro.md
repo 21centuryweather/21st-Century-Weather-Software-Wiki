@@ -1,3 +1,4 @@
+(content:git-intro)=
 # Introduction
 
 Do you have something like this in your computer?

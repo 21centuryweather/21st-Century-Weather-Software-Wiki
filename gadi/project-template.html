@@ -65,6 +65,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with gadi via your Mac" href="mac-stuff.html" />
+    <link rel="prev" title="Getting started on gadi" href="getting-started.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -163,9 +163,10 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Your gadi adventure starts here!</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Research Project Template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rudu-usage.html">Rudu: Basic Usage</a></li>
@@ -426,7 +427,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="research-project-template">
-<h1>Research Project Template<a class="headerlink" href="#research-project-template" title="Link to this heading">#</a></h1>
+<span id="content-project-template"></span><h1>Research Project Template<a class="headerlink" href="#research-project-template" title="Link to this heading">#</a></h1>
 <p>This section documents the <a class="reference external" href="https://github.com/21centuryweather/research-project-template">Research Project Template</a> that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incrementally incorporate good practices by automatically organising code, analysis, figures and documentation.</p>
 <p>Copier is required to use this template. Copier is an open-source tool that creates projects from templates. This template was developed using Copier v9.15.0 and older versions haven’t been tested.</p>
 <section id="getting-started">
@@ -448,7 +449,18 @@ module<span class="w"> </span>load<span class="w"> </span>copier
 <ol class="arabic simple" start="3">
 <li><p>Answer the questions.</p></li>
 </ol>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Python</label><div class="sd-tab-content docutils">
 <p><img alt="" src="../_images/python_project.gif" /></p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
+<p><img alt="" src="../_images/r_project.gif" /></p>
+</div>
+</div>
 <p>Depending on the answers, the project using Python may look something like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{{</span>project_name<span class="o">}}</span>/
 ├──<span class="w"> </span>analysis
@@ -533,8 +545,8 @@ Think about the notebook or script that generates the analysis and figures in yo
 </div>
 <p>One extra step to consider is that you cannot make your work portable if your code is not portable too. Perhaps the main culprit of non-portable code is using absolute paths to manipulate files in your code.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-0">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
 Python</label><div class="sd-tab-content docutils">
 <p>If you use Jupyter labs and set your working directory with <code class="docutils literal notranslate"><span class="pre">os.chdir()</span></code> to the root of your project, you can use relative paths to access your data and figures. The problem with this approach is that your notebook and project won’t be portable because will need to set a different working directory every time.</p>
 <p>One solution to this is setting the working directory when starting the ARE session:</p>
@@ -545,8 +557,8 @@ Python</label><div class="sd-tab-content docutils">
 </ol>
 <p>After that, ARE will start a jupyter lab session using the path you specified as working directory.</p>
 </div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-1">
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
 R</label><div class="sd-tab-content docutils">
 <p>Think about this piece of code:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;/home/dorothy/Documents/research/black-hole/data/data.csv&quot;</span><span class="p">)</span>
@@ -567,8 +579,8 @@ R</label><div class="sd-tab-content docutils">
 <h3>Organise your code<a class="headerlink" href="#organise-your-code" title="Link to this heading">#</a></h3>
 <p>When working on a research project, it is important to organise your code in a way that makes it easy to understand and maintain. The template provides a structure for organising your code, with separate folders for analysis, and source code.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-2">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
 Python</label><div class="sd-tab-content docutils">
 <p>What’s the difference between the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> and <code class="docutils literal notranslate"><span class="pre">src</span></code> folders? The <code class="docutils literal notranslate"><span class="pre">analysis</span></code> folder is meant for Jupyter notebooks (or scripts) that contain your analysis and figures, while the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder is meant for Python scripts that contain functions and classes that you can reuse across different notebooks.</p>
 <p>If you said yes to adding an example when creating the project structure you will find a sample function in:</p>
@@ -587,8 +599,8 @@ Python</label><div class="sd-tab-content docutils">
 <p>The idea here is to keep the notebooks clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different notebooks and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only.</p>
 <p>Moving forward, you can also add tests for your functions in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder, which will help you ensure that your code is working as expected and will make it easier to maintain and update your code in the future.</p>
 </div>
-<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-3">
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
 R</label><div class="sd-tab-content docutils">
 <p>When working in an R project, the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> folder is meant for R markdown or Quarto files that contain your analysis and figures, while the <code class="docutils literal notranslate"><span class="pre">R</span></code> folder is meant for R files that contain functions that you can reuse across different Quarto files.</p>
 <p>If you said yes to adding an example when creating the project structure you will find a sample function in:</p>
@@ -620,8 +632,8 @@ R</label><div class="sd-tab-content docutils">
 <p>Documenting your code is an important aspect of making your project reproducible and maintainable. Even if you are not planning to share your code with anyone else, you will be grateful to yourself in the future if you document your code properly.</p>
 <p>Documentation can be as simple as adding comments to your code to explain what it does and, more importantly, why you are doing it. You can also use docstrings in Python or roxygen2 in R to document your functions and classes, which will make it easier for you and others to understand how to use them.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
 Python</label><div class="sd-tab-content docutils">
 <p>In Python, functions are usually documented using docstrings, which are string literals that appear right after the function definition. A docstring should describe what the function does, its parameters, its return value and examples. The example in the template includes a bare-bones docstring:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -656,8 +668,8 @@ Python</label><div class="sd-tab-content docutils">
 </div>
 <p>With this structure you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, having docstrings will make it easier to create the documentation for your package.</p>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-5">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
 R</label><div class="sd-tab-content docutils">
 <p>In R, functions are usually documented using roxygen2, which is a package that allows you to write documentation in the same file as your code. The documentation is written in a special format that starts with <code class="docutils literal notranslate"><span class="pre">#'</span></code> and includes tags such as <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;return</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;examples</span></code>. The example in the template includes a bare-bones documentation:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Adds two numbers together. </span>
@@ -703,8 +715,8 @@ R</label><div class="sd-tab-content docutils">
 <section id="manage-your-dependencies">
 <h3>Manage your dependencies<a class="headerlink" href="#manage-your-dependencies" title="Link to this heading">#</a></h3>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
 Python</label><div class="sd-tab-content docutils">
 <p>If if you rely on <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environments, it’s still important to keep track of the dependencies you are using in your project. The template provides a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file where you can list all the packages you are using in your project. This way, you can easily recreate the environment in another machine or share it with someone else.</p>
 <p>When you are ready to create this file, load your environment and run this in the terminal after activating your environment:</p>
@@ -714,8 +726,8 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 </div>
 <p>If you are interested in learning more about how to manage a python environment or how to create your own, check the section <a class="reference internal" href="../python/conda-environments.html#content-conda-env"><span class="std std-ref">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></span></a>.</p>
 </div>
-<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-7">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
 R</label><div class="sd-tab-content docutils">
 <p>The best tool to manage dependencies in R is the <code class="docutils literal notranslate"><span class="pre">renv</span></code> package. This package allows you record the dependencies in your project, which can be easily shared and reproduced. If you said yes to using renv when creating the project, the template will install and initialise renv. Check that you have an <code class="docutils literal notranslate"><span class="pre">renv.lock</span></code> file and <code class="docutils literal notranslate"><span class="pre">renv/</span></code> folder inside your project.</p>
 <p>To learn more about how to use renv, check the <a class="reference external" href="https://rstudio.github.io/renv/">package documentation</a> or <a class="reference external" href="https://reproducibility.rocks/materials/day3/01-renv/">this tutorial from reproducibility.rocks</a>.</p>
@@ -790,6 +802,24 @@ R</label><div class="sd-tab-content docutils">
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="getting-started.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting started on gadi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mac-stuff.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working with gadi via your Mac</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
