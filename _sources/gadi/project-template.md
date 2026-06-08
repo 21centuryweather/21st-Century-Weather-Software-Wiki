@@ -208,8 +208,7 @@ And a notebook `analysis/example.ipynb` that shows how to import and use this fu
 
 ```python
 import sys
-sys.path.append('../src/python_project')
-from sample_fun import add_numbers
+from src.sample_fun import add_numbers
 ```
 
 The idea here is to keep the notebooks clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different notebooks and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only. 

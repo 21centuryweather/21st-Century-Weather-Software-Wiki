@@ -592,8 +592,7 @@ Python</label><div class="sd-tab-content docutils">
 </div>
 <p>And a notebook <code class="docutils literal notranslate"><span class="pre">analysis/example.ipynb</span></code> that shows how to import and use this function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../src/python_project&#39;</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sample_fun</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_numbers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.sample_fun</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_numbers</span>
 </pre></div>
 </div>
 <p>The idea here is to keep the notebooks clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different notebooks and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only.</p>
