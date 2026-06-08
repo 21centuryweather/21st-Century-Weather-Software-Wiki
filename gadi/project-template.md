@@ -91,7 +91,7 @@ Consider adding a README file inside the `raw` folder to document the source of 
 
 If you are going to work with data that is already available on gadi (like, ERA5, CMIP6, etc), you can also **link** the data into the `raw/` folder and then use relative paths to access it. This way you can keep all your code and data organised in the same root folder, which will make it easier to share and reproduce your analysis.
 
-Alternatively, you can read the data directly from that specific project using absolute paths. To make your project portable, you can specify absolute paths on gadi into a project-specific config file. See [here](https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/python/package-structure.html#environment-and-configuration-files) for further discussions and [here](https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/config.py) for an example.
+Alternatively, you can read the data directly from that specific project using absolute paths. Absolute path won't work outside gadi, but if you do, we recommend using a project-specific config file (`config.py`) to specify absolute paths and to make it easier to adapt to a different machine. See [here](https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/python/package-structure.html#environment-and-configuration-files) for further discussions and [here](https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/config.py) for an example.
 
 **Never copy data available on gadi into your project folder**. This will duplicate data and use extra storage space without reason. 
 
