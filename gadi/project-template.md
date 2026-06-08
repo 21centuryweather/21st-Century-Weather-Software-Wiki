@@ -153,6 +153,7 @@ One extra step to consider is that you cannot make your work portable if your co
 
 `````{tab-set}
 ````{tab-item} Python
+**Jupyter lab session in ARE**
 
 If you use Jupyter labs and set your working directory with `os.chdir()` to the root of your project, you can use relative paths to access your data and figures. The problem with this approach is that your notebook and project won't be portable because will need to set a different working directory every time. 
 
@@ -163,6 +164,15 @@ One solution to this is setting the working directory when starting the ARE sess
 3. Write `--notebook-dir=path/to/project` in the “Extra arguments” section.
 
 After that, ARE will start a jupyter lab session using the path you specified as working directory. 
+
+**VS Code**
+To set the working directory in VS Code, you can change the "Notebook File Root" setting  to `${workspaceFolder}`. This will set the working directory to the root of your project when you open a notebook in VS Code. 
+
+````
+
+````{tab-item} R
+
+```json
 
 ````
 
