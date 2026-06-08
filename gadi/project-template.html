@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Research Project Template &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/project-template';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quarto.html">Literal programming with quarto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="direnv.html">direnv</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/gadi/project-template.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Research Project Template</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-practices-for-a-research-project">Good practices for a research project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organise-your-data">Organise your data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#files-you-can-code-with">Files you can code with</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-it-portable">Making it portable</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organise-your-code">Organise your code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-your-code">Document your code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-your-project">Document your project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-your-dependencies">Manage your dependencies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-dependencies">System dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gitignore">.gitignore</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-our-code">Testing our code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-reports">Reproducible reports</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="research-project-template">
+<h1>Research Project Template<a class="headerlink" href="#research-project-template" title="Link to this heading">#</a></h1>
+<p>This section documents the <a class="reference external" href="https://github.com/21centuryweather/research-project-template">Research Project Template</a> that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incrementally incorporate good practices by automatically organising code, analysis, figures and documentation.</p>
+<p>Copier is required to use this template. Copier is an open-source tool that creates projects from templates. This template was developed using Copier v9.15.0 and older versions haven’t been tested.</p>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Load the copier module:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>use<span class="w"> </span>/g/data/gb02/public/modules
+module<span class="w"> </span>load<span class="w"> </span>copier
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Copy the template:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>copier<span class="w"> </span>copy<span class="w"> </span>--trust<span class="w"> </span>gh:21centuryweather/research-project-template<span class="w"> </span>.
+</pre></div>
+</div>
+<p>You will be prompted to answer a few questions about your project: the project name, description, and the NCI project you are working on. You can also choose whether you want to use Python or R as your programming language.</p>
+<ol class="arabic simple" start="3">
+<li><p>Answer the questions.</p></li>
+</ol>
+<p><img alt="" src="../_images/python_project.gif" /></p>
+<p>Depending on the answers, the project using Python may look something like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{{</span>project_name<span class="o">}}</span>/
+├──<span class="w"> </span>analysis
+│<span class="w">   </span>├──<span class="w"> </span>example.ipynb
+│<span class="w">   </span>└──<span class="w"> </span>figures
+│<span class="w">       </span>└──<span class="w"> </span>.figures
+├──<span class="w"> </span>.copier-answers.yml
+├──<span class="w"> </span>data<span class="w"> </span>-&gt;<span class="w"> </span>/g/data/<span class="o">{{</span>nci_project<span class="o">}}</span>/<span class="nv">$USER</span>/<span class="o">{{</span>project_name<span class="o">}}</span>/data
+│<span class="w">   </span>├──<span class="w"> </span>processed
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>DO_NOT_EDIT
+│<span class="w">   </span>└──<span class="w"> </span>temp<span class="w"> </span>-&gt;<span class="w"> </span>/scratch/<span class="o">{{</span>nci_project<span class="o">}}</span>/<span class="nv">$USER</span>/<span class="o">{{</span>project_name<span class="o">}}</span>/data/temp
+├──<span class="w"> </span>.envrc
+├──<span class="w"> </span>.git
+├──<span class="w"> </span>.gitignore
+├──<span class="w"> </span>README.md
+├──<span class="w"> </span>requirements.txt
+├──<span class="w"> </span>src
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>└──<span class="w"> </span>sample_fun.py
+└──<span class="w"> </span>tests
+<span class="w">    </span>└──<span class="w"> </span>test_sample_fun.py
+</pre></div>
+</div>
+</section>
+<section id="good-practices-for-a-research-project">
+<h2>Good practices for a research project<a class="headerlink" href="#good-practices-for-a-research-project" title="Link to this heading">#</a></h2>
+<section id="organise-your-data">
+<h3>Organise your data<a class="headerlink" href="#organise-your-data" title="Link to this heading">#</a></h3>
+<p>When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and processed data.</p>
+<div class="tip admonition">
+<p class="admonition-title">On gadi</p>
+<p>If you create your project on your home directory, which only has 10 Gb available, the template will automatically create a symbolic link to the <code class="docutils literal notranslate"><span class="pre">/g/data/{{nci_project}}/$USER/{{project_name}}/data</span></code> folder on gadi. This way you can work with large data without worrying about running out of space on your home directory.</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">How to create a symbolic link</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">A symbolic link is a special type of file that points to another file or folder. It allows you to access the target file or folder from a different location without having to copy it. For this you need to use the terminal.</p>
+<p class="sd-card-text">The command is <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">/path/to/target</span> <span class="pre">/path/to/link</span></code>. For instance, if you want to create a symbolic link from /g/data/gb02/$USER/my_project/ to your home directory, you can run this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-s<span class="w"> </span>/g/data/gb02/<span class="nv">$USER</span>/my_project<span class="w"> </span><span class="nv">$HOME</span>/
+</pre></div>
+</div>
+<p class="sd-card-text">If you check with <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> you will see:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lrwxrwxrwx<span class="w">  </span><span class="m">1</span><span class="w"> </span>pc2687<span class="w"> </span>gb02<span class="w">       </span><span class="m">30</span><span class="w"> </span>May<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">15</span>:13<span class="w"> </span>my_project<span class="w"> </span>-&gt;<span class="w"> </span>/g/data/gb02/pc2687/my_project
+</pre></div>
+</div>
+<p class="sd-card-text">Note: if the link was not created correctly, the previous output will show in red.</p>
+</div>
+</details><p><strong><code class="docutils literal notranslate"><span class="pre">raw</span></code> folder</strong></p>
+<p>To store the raw data that you download from the source. You should never edit this data, and it should be kept as a reference for your analysis. This folder is meant to be read-only.</p>
+<p>Consider adding a README file inside the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder to document the source of the data, the date you downloaded it, and any other relevant information about the data. This will help you and others understand where the data came from and how to use it in the future.</p>
+<div class="tip admonition">
+<p class="admonition-title">On gadi</p>
+<p>If you are going to work with data that is already available on gadi (like, ERA5, CMIP6, etc), you can also <strong>link</strong> the data into the <code class="docutils literal notranslate"><span class="pre">raw/</span></code> folder and then use relative paths to access it. This way you can keep all your code and data organised in the same root folder, which will make it easier to share and reproduce your analysis.</p>
+<p>Alternatively, you can read the data directly from that specific project using absolute paths. Absolute path won’t work outside gadi, but if you do, we recommend using a project-specific config file (<code class="docutils literal notranslate"><span class="pre">config.py</span></code>) to specify absolute paths and to make it easier to adapt to a different machine. See <a class="reference external" href="https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/python/package-structure.html#environment-and-configuration-files">here</a> for further discussions and <a class="reference external" href="https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/config.py">here</a> for an example.</p>
+<p><strong>Never copy data available on gadi into your project folder</strong>. This will duplicate data and use extra storage space without reason.</p>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">temp</span></code> folder</strong></p>
+<p>In this folder you will save the temporary data that you create when processing the raw data. The data in this folder won’t be used for the final analysis, they are often intermediate files needed for more processing. You should delete them after you finished processing the raw data but save any scripts to be able to reproduce the processing.</p>
+<div class="tip admonition">
+<p class="admonition-title">On gadi</p>
+<p>Because this is temporal data, the template creates a symbolic link to the <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> folder on gadi. The data in this folder will be automatically deleted after 90 days, so it is a good place to store data that you don’t need to keep for a long time or that you can recreate again by running a script.</p>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">processed</span></code> folder</strong></p>
+<p>In this folder you will save the data that you have cleaned and transformed for the analysis and figures.
+Think about the notebook or script that generates the analysis and figures in your paper. All the data needed, and that you transformed would go to the <code class="docutils literal notranslate"><span class="pre">processed</span></code> folder.</p>
+<section id="files-you-can-code-with">
+<h4>Files you can code with<a class="headerlink" href="#files-you-can-code-with" title="Link to this heading">#</a></h4>
+<p>When saving files, always remember that machines are quite dumb, so be gentle and use file names machines can easily understand.</p>
+<p>In some cases, file names with spaces confuse machines, so in general is much easier to code if file names use underscores and hyphens to split words. Similarly, some machines can’t handle “special characters” such as “ñ” or tildes. Some symbols (“.”, “*”, an others) are also best avoided because they have special meaning in regular expressions.</p>
+<p>Some file systems are case insensitive, so Madrid-Temperature.csv and madrid-temperature.csv might be the same file!</p>
+<p>To avoid any headaches, it is best to be conservative and just use lower-case latin characters, numbers and hyphens (“_” and “-“).</p>
+<p>Use hyphens as separators. You can use “-” to separate words that are part of the same concept and “_” to separate concepts. For instance <code class="docutils literal notranslate"><span class="pre">buenos-aires_minimum-temperature.csv</span></code>. We recommend this convention and not the other way around, because it’s compatible with the ISO date format (“YYYY-MM-DD”).</p>
+<p>Finally, try to make your files easily sortable. Put numbers with enough zero-padding and, if relevant, use dates in YYYY-MM-DD format at the beginning of the file name so that sorting by name coincide with sorting by date.</p>
+</section>
+<section id="making-it-portable">
+<h4>Making it portable<a class="headerlink" href="#making-it-portable" title="Link to this heading">#</a></h4>
+<p>An important aspect of thinking about your project is that all scripts, data, figures, and whatever else is needed to (re)create the analysis is inside the same root folder. That way you can ensure that the only thing you need to give to someone else to successfully run your code is that single folder.</p>
+<div class="tip admonition">
+<p class="admonition-title">On gadi</p>
+<p>Well, this may not be entirely possible if you are working on a project that relies on data that is only available on gadi, but you can still make your project portable by including scripts to download the data from the source or document exactly how to get it.</p>
+<p>So, even if someone doesn’t have access to the data on gadi, they can still run your code and reproduce your analysis by downloading the data from the source and processing it using your scripts.</p>
+</div>
+<p>One extra step to consider is that you cannot make your work portable if your code is not portable too. Perhaps the main culprit of non-portable code is using absolute paths to manipulate files in your code.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Python</label><div class="sd-tab-content docutils">
+<p>If you use Jupyter labs and set your working directory with <code class="docutils literal notranslate"><span class="pre">os.chdir()</span></code> to the root of your project, you can use relative paths to access your data and figures. The problem with this approach is that your notebook and project won’t be portable because will need to set a different working directory every time.</p>
+<p>One solution to this is setting the working directory when starting the ARE session:</p>
+<ol class="arabic simple">
+<li><p>Configure a Jupyter lab session in ARE.</p></li>
+<li><p>Click Show advanced settings.</p></li>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">--notebook-dir=path/to/project</span></code> in the “Extra arguments” section.</p></li>
+</ol>
+<p>After that, ARE will start a jupyter lab session using the path you specified as working directory.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
+<p>Think about this piece of code:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;/home/dorothy/Documents/research/black-hole/data/data.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Even if you correctly downloaded the black-hole folder, this code wouldn’t run because it is unlikely that you saved that folder inside Documents/research and that your username is “dorothy”.</p>
+<p>Instead, you can use a relative path such as</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/data.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And this will run no matter where the root folder is located.</p>
+<p>The only catch is that you need to make sure that the working directory is set to the root of the project. A a simple solution to make sure that R finds all the files needed is to use the <a class="reference external" href="https://reproducibility.rocks/materials/day2/01-here/">here package</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="organise-your-code">
+<h3>Organise your code<a class="headerlink" href="#organise-your-code" title="Link to this heading">#</a></h3>
+<p>When working on a research project, it is important to organise your code in a way that makes it easy to understand and maintain. The template provides a structure for organising your code, with separate folders for analysis, and source code.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Python</label><div class="sd-tab-content docutils">
+<p>What’s the difference between the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> and <code class="docutils literal notranslate"><span class="pre">src</span></code> folders? The <code class="docutils literal notranslate"><span class="pre">analysis</span></code> folder is meant for Jupyter notebooks (or scripts) that contain your analysis and figures, while the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder is meant for Python scripts that contain functions and classes that you can reuse across different notebooks.</p>
+<p>If you said yes to adding an example when creating the project structure you will find a sample function in:</p>
+<p><code class="docutils literal notranslate"><span class="pre">src/sample_fun.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the sum of x and y.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>And a notebook <code class="docutils literal notranslate"><span class="pre">analysis/example.ipynb</span></code> that shows how to import and use this function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../src/python_project&#39;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sample_fun</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_numbers</span>
+</pre></div>
+</div>
+<p>The idea here is to keep the notebooks clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different notebooks and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only.</p>
+<p>Moving forward, you can also add tests for your functions in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder, which will help you ensure that your code is working as expected and will make it easier to maintain and update your code in the future.</p>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+R</label><div class="sd-tab-content docutils">
+<p>When working in an R project, the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> folder is meant for R markdown or Quarto files that contain your analysis and figures, while the <code class="docutils literal notranslate"><span class="pre">R</span></code> folder is meant for R files that contain functions that you can reuse across different Quarto files.</p>
+<p>If you said yes to adding an example when creating the project structure you will find a sample function in:</p>
+<p><code class="docutils literal notranslate"><span class="pre">R/functions.R</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Adds two numbers together. </span>
+<span class="c1">#&#39; </span>
+<span class="c1">#&#39; @param x,y numbers to add up</span>
+<span class="c1">#&#39; </span>
+<span class="n">add_numbers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And the <code class="docutils literal notranslate"><span class="pre">analysis/manuscript/manuscript.qmd</span></code> notebook can import and use this function:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Source helper functions</span>
+<span class="nf">source</span><span class="p">(</span><span class="nf">list.files</span><span class="p">(</span><span class="s">&quot;R&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">full.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">add_numbers</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The idea is to keep the quarto file clean and focused on the analysis, while keeping functions organised. This structure will also allow you to reuse the functions across different quarto files and to avoid copying and repeating code. The code will be more easy to maintain. If you need to update a function or add a new feature, you will need to make the changes in one place only.</p>
+<p>Moving forward, you can easily convert your collection of functions into a package, which will make it easier to share and reuse your code across different projects.</p>
+</div>
+</div>
+</section>
+<section id="document-your-code">
+<h3>Document your code<a class="headerlink" href="#document-your-code" title="Link to this heading">#</a></h3>
+<p>Documenting your code is an important aspect of making your project reproducible and maintainable. Even if you are not planning to share your code with anyone else, you will be grateful to yourself in the future if you document your code properly.</p>
+<p>Documentation can be as simple as adding comments to your code to explain what it does and, more importantly, why you are doing it. You can also use docstrings in Python or roxygen2 in R to document your functions and classes, which will make it easier for you and others to understand how to use them.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+Python</label><div class="sd-tab-content docutils">
+<p>In Python, functions are usually documented using docstrings, which are string literals that appear right after the function definition. A docstring should describe what the function does, its parameters, its return value and examples. The example in the template includes a bare-bones docstring:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the sum of x and y.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>A better version of the documentation would be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_numbers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the sum of x and y.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: int</span>
+<span class="sd">        The first number.</span>
+<span class="sd">    y: int</span>
+<span class="sd">        The second number.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        The sum of x and y.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; add_numbers(2, 3)</span>
+<span class="sd">    5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>With this structure you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, having docstrings will make it easier to create the documentation for your package.</p>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+R</label><div class="sd-tab-content docutils">
+<p>In R, functions are usually documented using roxygen2, which is a package that allows you to write documentation in the same file as your code. The documentation is written in a special format that starts with <code class="docutils literal notranslate"><span class="pre">#'</span></code> and includes tags such as <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;return</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;examples</span></code>. The example in the template includes a bare-bones documentation:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Adds two numbers together. </span>
+<span class="c1">#&#39; </span>
+<span class="c1">#&#39; @param x,y numbers to add up</span>
+<span class="c1">#&#39; </span>
+<span class="n">add_numbers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A more complete version of the documentation would be:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Add together two numbers</span>
+<span class="c1">#&#39; </span>
+<span class="c1">#&#39; @param x A number.</span>
+<span class="c1">#&#39; @param y A number.</span>
+<span class="c1">#&#39; @return The sum of \code{x} and \code{y}.</span>
+<span class="c1">#&#39;</span>
+<span class="c1">#&#39; @examples</span>
+<span class="c1">#&#39; add_numbers(1, 1)</span>
+<span class="c1">#&#39; add_numbers(10, 1)</span>
+<span class="c1">#&#39; @export</span>
+<span class="n">add_numbers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While roxigen2 syntax can be hard to remember, rstudio has an option to insert the skeleton automatically. This structure will help you to add all the necessary details so you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, using roxygen2 will make it easier to create the documentation for your package.</p>
+</div>
+</div>
+</section>
+<section id="document-your-project">
+<h3>Document your project<a class="headerlink" href="#document-your-project" title="Link to this heading">#</a></h3>
+<p>The template provides a <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file where you can write a description of your project, how to run the analysis and get access to the data. This file is meant to be read by other people who want to understand what your project is about and how to use it. If you share your project on GitHub, the README file will be the first thing that people see when they visit your repository, so it is important to make it clear and informative.</p>
+<p>You can also include information about how to cite your research project. This can be the citation associated to the paper, if you have one, or you can create a Zenodo record for your project (everything in the repository) and include the DOI in the README file. This way, people who want to use your code and data can easily find the citation information and give you credit for your work.</p>
+<p>Check this examples for inspiration on how to write a good README file:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/compgeolab/eql-gradient-boosted">Gradient-boosted equivalent sources</a></p></li>
+<li><p><a class="reference external" href="https://github.com/eliocamp/access-s2_ice-eval">The Importance of Initial Conditions in Seasonal Predictions of Antarctic Sea Ice</a></p></li>
+<li><p><a class="reference external" href="https://github.com/paocorrales/t-drop-trends/">Using rapid temperature falls to estimate future strong cold front frequency in CMIP6 climate projections</a></p></li>
+</ul>
+</section>
+<section id="manage-your-dependencies">
+<h3>Manage your dependencies<a class="headerlink" href="#manage-your-dependencies" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
+Python</label><div class="sd-tab-content docutils">
+<p>If if you rely on <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environments, it’s still important to keep track of the dependencies you are using in your project. The template provides a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file where you can list all the packages you are using in your project. This way, you can easily recreate the environment in another machine or share it with someone else.</p>
+<p>When you are ready to create this file, load your environment and run this in the terminal after activating your environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/project
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>If you are interested in learning more about how to manage a python environment or how to create your own, check the section <a class="reference internal" href="../python/conda-environments.html#content-conda-env"><span class="std std-ref">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></span></a>.</p>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
+R</label><div class="sd-tab-content docutils">
+<p>The best tool to manage dependencies in R is the <code class="docutils literal notranslate"><span class="pre">renv</span></code> package. This package allows you record the dependencies in your project, which can be easily shared and reproduced. If you said yes to using renv when creating the project, the template will install and initialise renv. Check that you have an <code class="docutils literal notranslate"><span class="pre">renv.lock</span></code> file and <code class="docutils literal notranslate"><span class="pre">renv/</span></code> folder inside your project.</p>
+<p>To learn more about how to use renv, check the <a class="reference external" href="https://rstudio.github.io/renv/">package documentation</a> or <a class="reference external" href="https://reproducibility.rocks/materials/day3/01-renv/">this tutorial from reproducibility.rocks</a>.</p>
+</div>
+</div>
+<section id="system-dependencies">
+<h4>System dependencies<a class="headerlink" href="#system-dependencies" title="Link to this heading">#</a></h4>
+<p>Controlling system dependencies is a bit more tricky and the ultimate solution is to use containers (Docker, for example). However working with containers on gadi is not straightforward and add an extra layer of complexity. We recommend to keep track of the system dependencies in the README file. This way, if someone wants to run your code and they don’t have access to the same system as you, they can check the README file and install the necessary dependencies.</p>
+<p>You can also use direnv to manage system dependencies inside your project. direnv is a small bash program that allows you to modify the environment automatically as you enter a directory. This means that if you’ve got a project that uses a particular set of modules you can just add a .envrc file in the root of your project with all the module load commands that you need and never miss them. Check the <a class="reference internal" href="#content:direnv"><span class="xref myst">direnv section</span></a> for more information on how to use it.</p>
+</section>
+</section>
+<section id="version-control">
+<h3>Version control<a class="headerlink" href="#version-control" title="Link to this heading">#</a></h3>
+<p>The template gives you the option to use git for version control. If you choose to use git, the template will automatically initialise a repository and you will see a <code class="docutils literal notranslate"><span class="pre">.git</span></code> folder for you, which is where git stores all the information about your commits and branches. git (and Github) is key to share your code and collaborate with other people, so we highly recommend using it for your projects.</p>
+<p>If you are new to git, check the <a class="reference internal" href="../git/git-alone.html#content-git-alone"><span class="std std-ref">Working with Git alone</span></a> and <a class="reference internal" href="../git/git-team.html#content-git-team2"><span class="std std-ref">Working with Git in a team</span></a> sections of the wiki.</p>
+<section id="gitignore">
+<h4>.gitignore<a class="headerlink" href="#gitignore" title="Link to this heading">#</a></h4>
+<p>If you choose to use git in your project, the template will create a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file for you. This file is used to tell git which files and folders to ignore when you commit your changes. The template includes some common files and folders that you should ignore depending on the programming language you are using.</p>
+<p>For all cases, the <code class="docutils literal notranslate"><span class="pre">data/</span></code> folder will be ignored. It’s not recommended to track this folder on git because usually include big files that cannot be added to GitHub. Data usually have specific licenses and you need to check if you are allowed to share it. If that’s the case, we recommend sharing the data through a data repository such as <a class="reference external" href="https://zenodo.org/">Zenodo</a> and then adding the link to the data in your README file. 21st Century Weather has a Zenodo community where you can share your data and code: <a class="reference external" href="https://zenodo.org/communities/21stcenturyweather">https://zenodo.org/communities/21stcenturyweather</a>.</p>
+</section>
+</section>
+<section id="testing-our-code">
+<h3>Testing our code<a class="headerlink" href="#testing-our-code" title="Link to this heading">#</a></h3>
+<p>The template provides a <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder where you can add tests for your functions. Testing your code is an important aspect of making sure that your code is working as expected and that you can maintain and update it in the future without breaking it.</p>
+<p>If you are interested in learning more about testing your python code, check the section <a class="reference internal" href="../python/testing.html#content-testing-code"><span class="std std-ref">Testing your code</span></a> of the wiki.</p>
+</section>
+<section id="reproducible-reports">
+<h3>Reproducible reports<a class="headerlink" href="#reproducible-reports" title="Link to this heading">#</a></h3>
+<p>Usually, when writing a paper or a report, you will create figures and results on a jupyter notebook or a script and then copy and paste those figures and results into a word document or a overleaf latex document.</p>
+<p>This workflow is not ideal because it is not reproducible. If you need to update a figure or a result, you will need to go back to the notebook, make the changes, and then copy and paste the updated figure or result into the document again. This can be time-consuming and error-prone.</p>
+<p>A better workflow is to use a tool that allows you to create reproducible reports, such as Quarto or R markdown. These tools allow you to write your report in a single file and include code chunks that generate the figures and results. This way, if you need to update a figure or a result, you can simply run the code chunk again and the figure or result will be updated automatically in the report.</p>
+<p>These type of documents can handle formatting, citations, and cross-references, which will make it easier to write and maintain your report. They also play well with version control because they are plain text files, so you can easily track changes and collaborate with other people using git.</p>
+<p>Check the <a class="reference internal" href="quarto.html#content-quarto"><span class="std std-ref">Quarto section</span></a> for more information on how to use it.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://reproducibility.rocks/">An R reproducibility toolkit for the practical researcher</a></p></li>
+<li><p><a class="reference external" href="https://iopscience.iop.org/article/10.3847/2515-5172/ad4da1">A Python Project Template for Healthy Scientific Software</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./gadi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-practices-for-a-research-project">Good practices for a research project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organise-your-data">Organise your data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#files-you-can-code-with">Files you can code with</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-it-portable">Making it portable</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organise-your-code">Organise your code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-your-code">Document your code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-your-project">Document your project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-your-dependencies">Manage your dependencies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-dependencies">System dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gitignore">.gitignore</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-our-code">Testing our code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-reports">Reproducible reports</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

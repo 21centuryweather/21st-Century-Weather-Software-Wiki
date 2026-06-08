@@ -1,3 +1,4 @@
+(content:quarto)=
 # Literal programming with quarto  
 
 Quarto is a an open-source scientific and technical publishing system. It can be used through jupyter notebooks or plain text files with the `.qmd` extension. Quarto supports a variety of programming languages, including Python, R, Julia, and others.
