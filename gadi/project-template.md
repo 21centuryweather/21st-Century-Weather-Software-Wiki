@@ -385,6 +385,17 @@ The template provides a `tests` folder where you can add tests for your function
 
 If you are interested in learning more about testing your python code, check the section [Testing your code](content:testing-code) of the wiki.
 
+### Reproducible reports
+
+Usually, when writing a paper or a report, you will create figures and results on a jupyter notebook or a script and then copy and paste those figures and results into a word document or a overleaf latex document. 
+
+This workflow is not ideal because it is not reproducible. If you need to update a figure or a result, you will need to go back to the notebook, make the changes, and then copy and paste the updated figure or result into the document again. This can be time-consuming and error-prone.
+
+A better workflow is to use a tool that allows you to create reproducible reports, such as Quarto or R markdown. These tools allow you to write your report in a single file and include code chunks that generate the figures and results. This way, if you need to update a figure or a result, you can simply run the code chunk again and the figure or result will be updated automatically in the report.
+
+These type of documents can handle formatting, citations, and cross-references, which will make it easier to write and maintain your report. They also play well with version control because they are plain text files, so you can easily track changes and collaborate with other people using git.
+
+Check the [Quarto section](content:quarto) for more information on how to use it.
 
  ## References
 
