@@ -359,6 +359,13 @@ To learn more about how to use renv, check the [package documentation](https://r
 
 ````
 `````
+#### System dependencies
+
+Controlling system dependencies is a bit more tricky and the ultimate solution is to use containers (Docker, for example). However working with containers on gadi is not straightforward and add an extra layer of complexity. We recommend to keep track of the system dependencies in the README file. This way, if someone wants to run your code and they don't have access to the same system as you, they can check the README file and install the necessary dependencies.
+
+You can also use direnv to manage system dependencies inside your project. direnv is a small bash program that allows you to modify the environment automatically as you enter a directory. This means that if you’ve got a project that uses a particular set of modules you can just add a .envrc file in the root of your project with all the module load commands that you need and never miss them. Check the [direnv section](content:direnv) for more information on how to use it.
+
+
 ### Version control
 
 The template gives you the option to use git for version control. If you choose to use git, the template will automatically initialise a repository and you will see a `.git` folder for you, which is where git stores all the information about your commits and branches. git (and Github) is key to share your code and collaborate with other people, so we highly recommend using it for your projects. 
