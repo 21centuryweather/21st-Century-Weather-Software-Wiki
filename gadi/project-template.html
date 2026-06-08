@@ -469,7 +469,7 @@ R</label><div class="sd-tab-content docutils">
 │<span class="w">       </span>└──<span class="w"> </span>.figures
 ├──<span class="w"> </span>.copier-answers.yml
 ├──<span class="w"> </span>data<span class="w"> </span>-&gt;<span class="w"> </span>/g/data/<span class="o">{{</span>nci_project<span class="o">}}</span>/<span class="nv">$USER</span>/<span class="o">{{</span>project_name<span class="o">}}</span>/data
-│<span class="w">   </span>├──<span class="w"> </span>processed
+│<span class="w">   </span>├──<span class="w"> </span>derived
 │<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>DO_NOT_EDIT
 │<span class="w">   </span>└──<span class="w"> </span>temp<span class="w"> </span>-&gt;<span class="w"> </span>/scratch/<span class="o">{{</span>nci_project<span class="o">}}</span>/<span class="nv">$USER</span>/<span class="o">{{</span>project_name<span class="o">}}</span>/data/temp
 ├──<span class="w"> </span>.envrc
@@ -489,7 +489,7 @@ R</label><div class="sd-tab-content docutils">
 <h2>Good practices for a research project<a class="headerlink" href="#good-practices-for-a-research-project" title="Link to this heading">#</a></h2>
 <section id="organise-your-data">
 <h3>Organise your data<a class="headerlink" href="#organise-your-data" title="Link to this heading">#</a></h3>
-<p>When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and processed data.</p>
+<p>When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and derived data.</p>
 <div class="tip admonition">
 <p class="admonition-title">On gadi</p>
 <p>If you create your project on your home directory, which only has 10 Gb available, the template will automatically create a symbolic link to the <code class="docutils literal notranslate"><span class="pre">/g/data/{{nci_project}}/$USER/{{project_name}}/data</span></code> folder on gadi. This way you can work with large data without worrying about running out of space on your home directory.</p>
@@ -523,9 +523,9 @@ R</label><div class="sd-tab-content docutils">
 <p class="admonition-title">On gadi</p>
 <p>Because this is temporal data, the template creates a symbolic link to the <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> folder on gadi. The data in this folder will be automatically deleted after 90 days, so it is a good place to store data that you don’t need to keep for a long time or that you can recreate again by running a script.</p>
 </div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">processed</span></code> folder</strong></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">derived</span></code> folder</strong></p>
 <p>In this folder you will save the data that you have cleaned and transformed for the analysis and figures.
-Think about the notebook or script that generates the analysis and figures in your paper. All the data needed, and that you transformed would go to the <code class="docutils literal notranslate"><span class="pre">processed</span></code> folder.</p>
+Think about the notebook or script that generates the analysis and figures in your paper. All the data needed, and that you transformed would go to the <code class="docutils literal notranslate"><span class="pre">derived</span></code> folder.</p>
 <section id="files-you-can-code-with">
 <h4>Files you can code with<a class="headerlink" href="#files-you-can-code-with" title="Link to this heading">#</a></h4>
 <p>When saving files, always remember that machines are quite dumb, so be gentle and use file names machines can easily understand.</p>
