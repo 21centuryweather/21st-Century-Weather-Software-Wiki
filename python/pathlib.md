@@ -100,7 +100,7 @@ from config import *
 
 :::{note}
 
-You will need to set your `sys.path` inside any python script so it knows where to find `config.py` (unless you are working the same directory)
+You will need to set your `sys.path` inside any python script so it knows where to find `config.py` (unless you are working in the same directory)
 :::
 
 The use of configuration files is standard practise for python programming. See [here](./package-structure.md) for more discussion. In that example, a bash environment variable `ROOT` is used to define the location of the project directory instead of a `pathlib` `__file__` attribute.
