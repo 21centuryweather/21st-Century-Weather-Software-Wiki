@@ -6,7 +6,7 @@ path='/some_folder_name/a_random_subdirectory_name/another_subdirectory/filename
 ```
 While this may suffice when writing simple test scripts, such practices create several problems. 
 
-1. Such strings are **platform dependent!** Windows machines use backslashes "\" while Mac/Linux uses forwardslashes "/". So a user would have to edit every filepath string when using code across different platforms.
+1. Such strings are **platform dependent!** Windows machines use backslashes "\\" while Mac/Linux uses forwardslashes "/". So a user would have to edit every filepath string when using code across different platforms.
 
 2. Even if you are migrating between common platforms, the filestructure could be completely different from one machine to the next. So data could be sitting on a Linux directory at `gadi` for example at:
 ```
