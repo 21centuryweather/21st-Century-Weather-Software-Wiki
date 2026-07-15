@@ -58,6 +58,7 @@ parts:
     - file: python/netcdf_zarr_storage_best_practices
     - file: python/xarray_zarr
     - file: python/dynlib
+    - file: python/pathlib
   - caption: Datasets
     chapters:
     - file: datasets/index
