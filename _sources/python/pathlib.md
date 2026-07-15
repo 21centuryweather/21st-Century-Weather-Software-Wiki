@@ -91,7 +91,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 print(f"Project Root is anchored at: {PROJECT_ROOT}")
 ```
-So we have created python objects for every directory that exits in the project template. For all subsequent code written for the project, you would use these `pathlib` objects (i.e. `TEMP_DIR`,`ANALYSIS_DIR` etc.) instead of using text strings.
+So we have created python objects for every directory that exists in the project template. For all subsequent code written for the project, you would use these `pathlib` objects (i.e. `TEMP_DIR`,`ANALYSIS_DIR` etc.) instead of using text strings.
 
 The values of these `pathlib` objects can be imported into any script via the command
 ```python
@@ -147,7 +147,7 @@ print("\n--- JSONs in All Subfolders ---")
 for json_file in data_folder.rglob("*.json"):
     print(json_file.relative_to(data_folder))  # Prints path relative to data_folder
 ```
-Because we all the filenames we generate are python objects, we can working with the python `datetime` module to easily filter filenames according to specified date criteria. Suppose I have directory full of netCDF files. Each file contains a `<YYYYMMDD>` string and I want to find files valid between a given range of dates.
+Because all the filenames we generate are python objects, we can work with the python `datetime` module to easily filter filenames according to specified date criteria. Suppose I have a directory full of netCDF files. Each file contains a `<YYYYMMDD>` string and I want to find files valid between a given range of dates.
 
 In this example, the filenames have the format `maq5_tasmax_<YYYYMMDD>_e01.nc`
 
@@ -170,8 +170,8 @@ for file_path in data_directory.rglob("maq5*.nc"):
     # 1. Extract the filename without the full path or extension (.stem fetches '<filename_YYYYMMDD>')
     filename_stem = file_path.stem
     
-    # 2. Extract the date portion string ('20260315'). Note the value of [1]
-    #.   will depend on how many underscore '_' characters are in your actual files
+    # 2. Extract the date portion string ('20260315'). Note the value of [2]
+    #    used here depends on how many underscore '_' characters are the filename
     date_string = filename_stem.split("_")[2]
     
     try:
@@ -219,7 +219,7 @@ def load_era(ERA_PRESSURE_DIR,
     # Construct matching patterns relative to ERA_DIR
     pressure_patterns = [f'{var}/{year}/*{start_date}*.nc' for var in pressure_vars ]
 
-    # Extract list of required files for this start_date and ensemble
+    # Extract list of required files for this start_date 
     matched = list(
         itertools.chain.from_iterable(
             ERA_PRESSURE_DIR.glob(pattern) for pattern in pressure_patterns
