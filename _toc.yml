@@ -19,6 +19,9 @@ parts:
       - file: gadi/vscode
       - file: gadi/quarto
       - file: gadi/direnv
+    - file: storage.md
+    - file: inodes.md
+    - file: su.md
   - caption: Running atmospheric simulations using ACCESS
     chapters:
     - file: rose-cylc/rose-cylc-intro
