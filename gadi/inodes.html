@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Where Did My Inodes Go? &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/inodes';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project-template.html">Research Project Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quarto.html">Literal programming with quarto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="direnv.html">direnv</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pathlib.html">Using the Python pathlib module</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/gadi/inodes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Where Did My Inodes Go?</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-re-actually-being-charged-for">What you’re actually being charged for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-nci-rations-them-at-all">Why NCI rations them at all</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-offender">Finding the offender</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gotcha-nobody-warns-you-about-group-vs-project-quotas">The gotcha nobody warns you about: group vs project quotas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-usual-suspects">The usual suspects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr-is-not-automatically-the-answer">Zarr is not automatically the answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-it">Fixing it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-triage">Quick triage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr">tl;dr</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="where-did-my-inodes-go">
+<h1>Where Did My Inodes Go?<a class="headerlink" href="#where-did-my-inodes-go" title="Link to this heading">#</a></h1>
+<p>You have 12 TB free on <code class="docutils literal notranslate"><span class="pre">/g/data</span></code> and your jobs won’t start. <code class="docutils literal notranslate"><span class="pre">lquota</span></code> says you’re at 2.1 million of 2 million. Somewhere in a project space that six people have been writing to for three years, something has quietly produced a million files, and now nobody can run anything.</p>
+<p>Inode exhaustion is the storage failure that catches people out, because it’s invisible right up until it isn’t. Disk space you can feel filling up. Inodes just run out.</p>
+<section id="what-you-re-actually-being-charged-for">
+<h2>What you’re actually being charged for<a class="headerlink" href="#what-you-re-actually-being-charged-for" title="Link to this heading">#</a></h2>
+<p>An inode is a filesystem object: <strong>a file, a directory, or a symlink</strong>. Not bytes — <em>things</em>. A 4 KB <code class="docutils literal notranslate"><span class="pre">README</span></code> and a 40 GB ERA5 file each cost you exactly one.</p>
+<p>Gadi applies an <strong>iQuota</strong> alongside the size quota, on both <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> and <code class="docutils literal notranslate"><span class="pre">/g/data</span></code>. <code class="docutils literal notranslate"><span class="pre">lquota</span></code> shows both:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------------------------
+<span class="w">       </span>fs<span class="w">       </span>Usage<span class="w">    </span>Quota<span class="w">    </span>Limit<span class="w">   </span>iUsage<span class="w">    </span>iQuota<span class="w">    </span>iLimit
+------------------------------------------------------------------------
+su28<span class="w">   </span>scratch<span class="w">  </span><span class="m">438</span>.76GB<span class="w">  </span><span class="m">1</span>.0TB<span class="w">    </span><span class="m">2</span>.0TB<span class="w">    </span><span class="m">204000</span><span class="w">    </span><span class="m">202000</span><span class="w">    </span><span class="m">404000</span><span class="w">   </span>Over<span class="w"> </span>inode<span class="w"> </span>limit
+su28<span class="w">   </span>gdata<span class="w">     </span><span class="m">18</span>.36TB<span class="w">  </span><span class="m">20</span>.0TB<span class="w">  </span><span class="m">21</span>.5TB<span class="w">   </span><span class="m">4453467</span><span class="w">   </span><span class="m">6000000</span><span class="w">   </span><span class="m">6300000</span>
+------------------------------------------------------------------------
+</pre></div>
+</div>
+<p>Read the columns carefully, because there are two thresholds and they do different things:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">iQuota</span></code></strong> is your allocation. Cross it and a <strong>one-week grace clock</strong> starts.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">iLimit</span></code></strong> is typically 2× the quota — a hard ceiling you cannot exceed.</p></li>
+</ul>
+<p>Stay over <code class="docutils literal notranslate"><span class="pre">iQuota</span></code> for a week and <strong>jobs from that project go to <code class="docutils literal notranslate"><span class="pre">H</span></code> (held)</strong> until you get back under. Same as exceeding your block quota. Nothing fails loudly; jobs simply stop starting, and if you weren’t the one who blew the quota, the cause is not obvious from where you’re sitting.</p>
+</section>
+<section id="why-nci-rations-them-at-all">
+<h2>Why NCI rations them at all<a class="headerlink" href="#why-nci-rations-them-at-all" title="Link to this heading">#</a></h2>
+<p>It isn’t arbitrary bookkeeping. Every inode is an entry in Lustre’s <strong>metadata servers</strong> — the shared namespace layer I wrote about in the <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> vs <code class="docutils literal notranslate"><span class="pre">/g/data</span></code> post. A handful of MDS targets serve every user on the system, and each <code class="docutils literal notranslate"><span class="pre">open</span></code>, <code class="docutils literal notranslate"><span class="pre">stat</span></code>, or <code class="docutils literal notranslate"><span class="pre">readdir</span></code> is a round trip to them.</p>
+<p>Millions of small files don’t just consume your allocation; they degrade the filesystem <strong>for everyone</strong>. This is why requests for more inodes get more scrutiny than requests for more terabytes, and why “just ask NCI to raise it” is usually the wrong first move. Clean up first — you’ll be asked whether you did.</p>
+</section>
+<section id="finding-the-offender">
+<h2>Finding the offender<a class="headerlink" href="#finding-the-offender" title="Link to this heading">#</a></h2>
+<p>The tools disagree with each other, and knowing why saves you an afternoon.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">lquota</span></code></strong> — live, per-project totals for <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> and <code class="docutils literal notranslate"><span class="pre">/g/data</span></code>. Start here.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">nci_account</span> <span class="pre">-P</span> <span class="pre">ng72</span></code></strong> — shows <code class="docutils literal notranslate"><span class="pre">iGrant</span></code>, <code class="docutils literal notranslate"><span class="pre">iUsage</span></code>, <code class="docutils literal notranslate"><span class="pre">iAvail</span></code>. If <code class="docutils literal notranslate"><span class="pre">iAvail</span></code> goes negative, batch access is on hold.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">nci-files-report</span></code></strong> — the good one. Breaks usage down <em>by user</em>, which is how you find who to talk to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nci-files-report<span class="w"> </span>--project<span class="w"> </span>ng72<span class="w"> </span>--filesystem<span class="w"> </span>gdata
+nci-files-report<span class="w"> </span>--group<span class="w">   </span>ng72<span class="w"> </span>--filesystem<span class="w"> </span>scratch
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--project</span></code> / <code class="docutils literal notranslate"><span class="pre">--group</span></code> distinction matters more than it looks — see the next section.</p>
+<p><strong>Important caveat:</strong> <code class="docutils literal notranslate"><span class="pre">nci_account</span></code> and <code class="docutils literal notranslate"><span class="pre">nci-files-report</span></code> query an <strong>accounting database populated by a periodic filesystem crawl</strong>. They are as fresh as the last crawl. Delete a million files and the report may not notice for hours. <code class="docutils literal notranslate"><span class="pre">lquota</span></code> is live. If the two disagree, that’s usually why — not a bug.</p>
+<p><strong>Don’t trust <code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">--inodes</span></code>.</strong> It’s convenient and it <strong>under-reports</strong>. A crude <code class="docutils literal notranslate"><span class="pre">find</span></code> is more honest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># file+dir count per top-level subdirectory</span>
+<span class="k">for</span><span class="w"> </span>d<span class="w"> </span><span class="k">in</span><span class="w"> </span>*/<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;%10d  %s\n&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$d</span><span class="s2">&quot;</span>
+<span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</pre></div>
+</div>
+<p>On a Lustre directory with millions of entries, that <code class="docutils literal notranslate"><span class="pre">find</span></code> is itself a metadata hammering — run it in a job, not on a login node, and expect it to take a while.</p>
+<p>This is exactly the itch that led me to write <strong><a class="reference external" href="https://zenodo.org/records/15347728"><code class="docutils literal notranslate"><span class="pre">rudu</span></code></a></strong>, a parallel Rust replacement for <code class="docutils literal notranslate"><span class="pre">du</span></code> — it uses rayon to fan traversal across threads and reports true allocated blocks rather than apparent sizes, which makes walking a deep <code class="docutils literal notranslate"><span class="pre">/g/data</span></code> tree survivable rather than an overnight job.</p>
+</section>
+<section id="the-gotcha-nobody-warns-you-about-group-vs-project-quotas">
+<h2>The gotcha nobody warns you about: group vs project quotas<a class="headerlink" href="#the-gotcha-nobody-warns-you-about-group-vs-project-quotas" title="Link to this heading">#</a></h2>
+<p>Gadi runs <strong>two different quota models depending on which filesystem your project sits on</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Where</p></th>
+<th class="head"><p>Charged to</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Project quota</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/scratch</span></code>, <code class="docutils literal notranslate"><span class="pre">gdata5</span></code>, <code class="docutils literal notranslate"><span class="pre">gdata6</span></code></p></td>
+<td><p>The project owning the <strong>directory</strong> the file sits in</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Group quota</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gdata1a</span></code>, <code class="docutils literal notranslate"><span class="pre">gdata1b</span></code>, <code class="docutils literal notranslate"><span class="pre">gdata4</span></code></p></td>
+<td><p>The <strong>Unix group owner</strong> of the file, wherever it lives</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>On a group-quota filesystem, a file’s location is irrelevant — its <strong>group ownership</strong> decides whose quota it hits. So someone can <code class="docutils literal notranslate"><span class="pre">chgrp</span></code> files, or write with the wrong primary group, and charge inodes to a project whose directories don’t contain a single one of those files.</p>
+<p>This is the classic “our numbers don’t add up” case: <code class="docutils literal notranslate"><span class="pre">du</span></code> on your directories shows nothing like what <code class="docutils literal notranslate"><span class="pre">lquota</span></code> reports, because the files being charged to you are <em>somewhere else entirely</em>. <code class="docutils literal notranslate"><span class="pre">nci-files-report</span> <span class="pre">--group</span></code> finds them; <code class="docutils literal notranslate"><span class="pre">--project</span></code> won’t.</p>
+<p>Check which model applies to you with <code class="docutils literal notranslate"><span class="pre">nci_account</span></code> before you start hunting in the wrong place.</p>
+</section>
+<section id="the-usual-suspects">
+<h2>The usual suspects<a class="headerlink" href="#the-usual-suspects" title="Link to this heading">#</a></h2>
+<p>In rough order of how often they turn out to be the culprit:</p>
+<p><strong>1. <code class="docutils literal notranslate"><span class="pre">conda</span></code>.</strong> NCI names it explicitly, and it deserves the callout. A single environment can be 100,000+ files, mostly tiny. Half a dozen environments across a project and you’ve spent your entire allocation on Python packaging. Options: use <code class="docutils literal notranslate"><span class="pre">pip</span></code> and Gadi’s pre-tuned modules; use the shared <code class="docutils literal notranslate"><span class="pre">hh5</span></code> analysis environments rather than rolling your own; or put the environment <strong>inside a Singularity/Apptainer image</strong>, which collapses the whole tree into one inode. That last one is the trick worth knowing — the container is a single file to Lustre.</p>
+<p><strong>2. Untarred reference datasets.</strong> Someone downloads an archive, extracts it “temporarily” to look at one file, and 400,000 inodes stay there for two years.</p>
+<p><strong>3. Per-timestep model output.</strong> One NetCDF per timestep per variable is the default of a lot of workflows and it scales exactly the wrong way. Concatenate along time.</p>
+<p><strong>4. <code class="docutils literal notranslate"><span class="pre">.git</span></code> object stores.</strong> A repo with a long history on <code class="docutils literal notranslate"><span class="pre">/g/data</span></code> is tens of thousands of small objects. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">gc</span> <span class="pre">--aggressive</span></code> helps; keeping code in <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (backed up, separate quota) helps more.</p>
+<p><strong>5. Pip/Torch caches.</strong> <code class="docutils literal notranslate"><span class="pre">~/.cache</span></code> grows without limit and nobody looks. Point <code class="docutils literal notranslate"><span class="pre">TORCH_HOME</span></code>, <code class="docutils literal notranslate"><span class="pre">PIP_CACHE_DIR</span></code> somewhere deliberate, or clear them.</p>
+<p><strong>6. Dead job scratch.</strong> Failed runs leave temp trees behind. The <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> purge eventually gets them but <strong>quarantined files still count against your inode quota</strong> while they sit there, so purging doesn’t relieve pressure as fast as you’d hope.</p>
+</section>
+<section id="zarr-is-not-automatically-the-answer">
+<h2>Zarr is not automatically the answer<a class="headerlink" href="#zarr-is-not-automatically-the-answer" title="Link to this heading">#</a></h2>
+<p>This one bites climate people specifically, and it’s worth being blunt about because Zarr gets recommended as the fix for everything.</p>
+<p><strong>Zarr solves file-internal metadata. It can make your inode problem dramatically worse.</strong> Every chunk is a separate file on disk. Chunk an ERA5 array too finely and a single “file” becomes a store with hundreds of thousands of inodes.</p>
+<p>The arithmetic is worth doing before you convert anything:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inodes<span class="w"> </span>≈<span class="w"> </span><span class="o">(</span>array<span class="w"> </span>elements<span class="w"> </span>/<span class="w"> </span>elements<span class="w"> </span>per<span class="w"> </span>chunk<span class="o">)</span><span class="w"> </span>×<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>variables
+</pre></div>
+</div>
+<p>An hourly ERA5 field at 0.25° chunked as <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">721,</span> <span class="pre">1440)</span></code> — one timestep per chunk — is <strong>8,760 inodes per variable per year</strong>. Forty years, ten variables: <strong>3.5 million inodes</strong> for one dataset. That’s an entire project allocation, gone, in a conversion you ran because someone said Zarr was faster.</p>
+<p>Mitigations, roughly in order of preference:</p>
+<ul class="simple">
+<li><p><strong>Chunk coarsely along time.</strong> <code class="docutils literal notranslate"><span class="pre">(168,</span> <span class="pre">721,</span> <span class="pre">1440)</span></code> — a week per chunk — cuts inode count by 168× versus per-timestep. Aim for chunks in the tens-to-hundreds of MB, not single-digit MB.</p></li>
+<li><p><strong>Use consolidated metadata</strong> so you’re not paying an inode and an MDS round trip per <code class="docutils literal notranslate"><span class="pre">.zarray</span></code>.</p></li>
+<li><p><strong>Prefer Kerchunk/virtual Zarr over conversion.</strong> Leave the NetCDF where it is and generate references — you get Zarr-style access with <em>zero</em> new data inodes.</p></li>
+<li><p><strong>If you do use Kerchunk, write Parquet references, not JSON.</strong> A per-file JSON reference tree is itself an inode swarm — the exact problem you were solving. Parquet collapses it.</p></li>
+<li><p><strong>Consider a sharded layout</strong> (Zarr v3) if you need fine chunks for read performance but can’t afford the file count.</p></li>
+</ul>
+<p>The general principle: <strong>file count is a design parameter, not an implementation detail.</strong> Decide it before you write 40 years of data, because fixing it afterwards means rewriting the whole store.</p>
+</section>
+<section id="fixing-it">
+<h2>Fixing it<a class="headerlink" href="#fixing-it" title="Link to this heading">#</a></h2>
+<p><strong><code class="docutils literal notranslate"><span class="pre">tar</span></code> the cold stuff.</strong> The blunt instrument, and it works:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-cf<span class="w"> </span>archive.tar<span class="w"> </span>directory/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>directory/
+</pre></div>
+</div>
+<p>400,000 inodes → 1. Do it in a <code class="docutils literal notranslate"><span class="pre">copyq</span></code> job, not on a login node.</p>
+<p><strong>Archive to <code class="docutils literal notranslate"><span class="pre">massdata</span></code>.</strong> Anything you’re keeping but not reading belongs on tape. But <strong>tar first</strong> — massdata is explicitly not designed for small files, and pushing thousands of them there gives terrible performance for everyone.</p>
+<p><strong>Use <code class="docutils literal notranslate"><span class="pre">$PBS_JOBFS</span></code> for anything transient.</strong> Files created on node-local NVMe <strong>never touch your inode quota</strong> — they don’t exist on Lustre at all. If a job creates 50,000 temp files and keeps 10, do the work on jobfs and copy back only the keepers. This is the single highest-leverage habit change, and it makes your jobs faster for the same reason.</p>
+<p><strong>Containerise environments.</strong> One SIF file instead of 100,000 conda files (This is waht the conda envs in analysis3 do).</p>
+</section>
+<section id="quick-triage">
+<h2>Quick triage<a class="headerlink" href="#quick-triage" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lquota<span class="w">                                        </span><span class="c1"># who&#39;s over, live</span>
+nci_account<span class="w"> </span>-P<span class="w"> </span>&lt;proj&gt;<span class="w">                         </span><span class="c1"># iGrant / iUsage / iAvail</span>
+nci-files-report<span class="w"> </span>--project<span class="w"> </span>&lt;proj&gt;<span class="w"> </span>--filesystem<span class="w"> </span>gdata<span class="w">   </span><span class="c1"># by user, by location</span>
+nci-files-report<span class="w"> </span>--group<span class="w">   </span>&lt;proj&gt;<span class="w"> </span>--filesystem<span class="w"> </span>gdata<span class="w">   </span><span class="c1"># by group ownership</span>
+</pre></div>
+</div>
+</section>
+<section id="tl-dr">
+<h2>tl;dr<a class="headerlink" href="#tl-dr" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Over <code class="docutils literal notranslate"><span class="pre">iQuota</span></code>? The one-week clock is already running.</p></li>
+<li><p>Numbers don’t reconcile? Check group-vs-project quota model, and crawl staleness.</p></li>
+<li><p>Hunt with <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">rudu</span></code> — not <code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">--inodes</span></code>.</p></li>
+<li><p>Suspect conda first. Then untarred archives. Then <code class="docutils literal notranslate"><span class="pre">.git</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span></code> cold directories; push to <code class="docutils literal notranslate"><span class="pre">massdata</span></code> <em>after</em> tarring.</p></li>
+<li><p>Move transient file creation to <code class="docutils literal notranslate"><span class="pre">$PBS_JOBFS</span></code>.</p></li>
+<li><p>Before converting anything to Zarr, compute the chunk count.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./gadi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-re-actually-being-charged-for">What you’re actually being charged for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-nci-rations-them-at-all">Why NCI rations them at all</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-offender">Finding the offender</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gotcha-nobody-warns-you-about-group-vs-project-quotas">The gotcha nobody warns you about: group vs project quotas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-usual-suspects">The usual suspects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr-is-not-automatically-the-answer">Zarr is not automatically the answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-it">Fixing it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-triage">Quick triage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr">tl;dr</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

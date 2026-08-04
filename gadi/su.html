@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Where Your SUs Actually Go: Right-Sizing PBS Jobs on Gadi &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gadi/su';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project-template.html">Research Project Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quarto.html">Literal programming with quarto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="direnv.html">direnv</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pathlib.html">Using the Python pathlib module</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/gadi/su.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Where Your SUs Actually Go: Right-Sizing PBS Jobs on Gadi</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formula">The formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-memory-trap">The memory trap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#know-your-queue-s-charge-rate">Know your queue’s charge rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whole-nodes-the-rounding-tax">Whole nodes: the rounding tax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walltime-request-generously-but-not-absurdly">Walltime: request generously, but not absurdly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measure-what-you-actually-used">Measure what you actually used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-five-most-expensive-habits">The five most expensive habits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-worked-right-sizing">A worked right-sizing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-before-you-submit-a-campaign">Checklist before you submit a campaign</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="where-your-sus-actually-go-right-sizing-pbs-jobs-on-gadi">
+<h1>Where Your SUs Actually Go: Right-Sizing PBS Jobs on Gadi<a class="headerlink" href="#where-your-sus-actually-go-right-sizing-pbs-jobs-on-gadi" title="Link to this heading">#</a></h1>
+<p>Most people learn the Gadi cost model the same way: someone asks why the project burned a quarter’s allocation in three weeks, and you go digging. The answer is almost never “we did too much science.” It’s usually a handful of jobs requesting resources they never used, and one specific mistake that can cost you <strong>12× more SU than you expect</strong> without a single warning.</p>
+<p>Here’s how charging actually works, and how to stop leaking allocation.</p>
+<section id="the-formula">
+<h2>The formula<a class="headerlink" href="#the-formula" title="Link to this heading">#</a></h2>
+<p>Every job on Gadi is charged by the same equation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Job<span class="w"> </span>Cost<span class="w"> </span><span class="o">(</span>SU<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Queue<span class="w"> </span>Charge<span class="w"> </span>Rate<span class="w"> </span>×<span class="w"> </span>Resource<span class="w"> </span>Requested<span class="w"> </span>×<span class="w"> </span>Walltime<span class="w"> </span>Used<span class="w"> </span><span class="o">(</span>hours<span class="o">)</span>
+</pre></div>
+</div>
+<p>where the middle term is the part that surprises people:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Resource<span class="w"> </span><span class="nv">Requested</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Max<span class="o">(</span>NCPUs<span class="w"> </span>Requested,
+<span class="w">                         </span><span class="o">(</span>Memory<span class="w"> </span>Requested<span class="w"> </span>/<span class="w"> </span>Max<span class="w"> </span>Memory<span class="w"> </span>Per<span class="w"> </span>Node<span class="o">)</span><span class="w"> </span>×<span class="w"> </span>Max<span class="w"> </span>NCPUs<span class="w"> </span>Per<span class="w"> </span>Node<span class="o">)</span>
+</pre></div>
+</div>
+<p>Three things follow immediately, and they’re worth internalising before anything else:</p>
+<ol class="arabic simple">
+<li><p><strong>You’re charged on what you <em>request</em>, not what you <em>use</em>.</strong> Ask for 48 cores and use 4, you pay for 48. PBS reserves the resources; the scheduler doesn’t care that your code was single-threaded.</p></li>
+<li><p><strong>Walltime is the exception</strong> — you’re charged for walltime <em>used</em>, not requested. A job that asks for 10 hours and finishes in 2 is charged for 2. (The full 10 is <em>reserved</em> against your grant while it runs, so it still affects what else you can submit.)</p></li>
+<li><p><strong>CPUs and memory don’t add up — they compete.</strong> You pay for whichever is larger. This is the whole game.</p></li>
+</ol>
+</section>
+<section id="the-memory-trap">
+<h2>The memory trap<a class="headerlink" href="#the-memory-trap" title="Link to this heading">#</a></h2>
+<p>That <code class="docutils literal notranslate"><span class="pre">Max()</span></code> is where allocations quietly die.</p>
+<p>On the <code class="docutils literal notranslate"><span class="pre">normal</span></code> queue, a node has 48 cores and 192 GiB. So memory is charged as <em>the fraction of the node’s RAM you took, expressed in core-equivalents</em>. Request a lot of memory with few cores, and you’ve made the rest of the node unusable for everyone else — so you’re billed as if you’d taken it all.</p>
+<p>Watch the same 8-core job get more expensive purely through the <code class="docutils literal notranslate"><span class="pre">mem</span></code> flag, over 5 hours on <code class="docutils literal notranslate"><span class="pre">normal</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">ncpus</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">mem</span></code></p></th>
+<th class="head"><p>Charged on</p></th>
+<th class="head"><p>Cost</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>16 GB</p></td>
+<td><p>CPUs — <code class="docutils literal notranslate"><span class="pre">Max(8,</span> <span class="pre">4)</span></code></p></td>
+<td><p><strong>80 SU</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>128 GB</p></td>
+<td><p>Memory — <code class="docutils literal notranslate"><span class="pre">Max(8,</span> <span class="pre">32)</span></code></p></td>
+<td><p><strong>320 SU</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>190 GB</p></td>
+<td><p>Memory — <code class="docutils literal notranslate"><span class="pre">Max(8,</span> <span class="pre">47.5)</span></code></p></td>
+<td><p><strong>475 SU</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Same cores. Same walltime. <strong>Nearly 6× the cost</strong>, entirely from memory you may not have needed. The 190 GB case is the pathological one: you asked for 8 cores and got billed for 47.5, because 190 of 192 GiB is effectively the whole node.</p>
+<p><strong>The breakeven is your node’s memory-per-core ratio.</strong> On <code class="docutils literal notranslate"><span class="pre">normal</span></code> that’s 4 GB/core (192 ÷ 48). Stay at or under <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">×</span> <span class="pre">ncpus</span></code> GB and CPUs dominate your bill; go above it and memory takes over. On <code class="docutils literal notranslate"><span class="pre">normalsr</span></code> (Sapphire Rapids) the ratio is ~4.8 GB/core (500 ÷ 104); on <code class="docutils literal notranslate"><span class="pre">normalbw</span></code> it’s ~4.6 (128 ÷ 28).</p>
+<p>So: <strong><code class="docutils literal notranslate"><span class="pre">mem=190GB</span></code> is not a safe default.</strong> It’s the single most expensive thing you can casually type into a PBS script. If your job needs 30 GB, ask for 30 GB.</p>
+</section>
+<section id="know-your-queue-s-charge-rate">
+<h2>Know your queue’s charge rate<a class="headerlink" href="#know-your-queue-s-charge-rate" title="Link to this heading">#</a></h2>
+<p>Rates vary by more than 4× across CPU queues. Current rates (per resource-hour):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Queue</p></th>
+<th class="head"><p>Hardware</p></th>
+<th class="head"><p>Charge rate</p></th>
+<th class="head"><p>Cores/node</p></th>
+<th class="head"><p>Mem/node</p></th>
+<th class="head"><p>Mem/core</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normalbw</span></code></p></td>
+<td><p>Broadwell</p></td>
+<td><p><strong>1.25 SU</strong></p></td>
+<td><p>28</p></td>
+<td><p>128 / 256 GB</p></td>
+<td><p>~4.6 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">normalsl</span></code></p></td>
+<td><p>Skylake</p></td>
+<td><p><strong>1.5 SU</strong></p></td>
+<td><p>32</p></td>
+<td><p>192 GB</p></td>
+<td><p>6 GB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normal</span></code></p></td>
+<td><p>Cascade Lake</p></td>
+<td><p><strong>2 SU</strong></p></td>
+<td><p>48</p></td>
+<td><p>190 GB</p></td>
+<td><p>~4 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">normalsr</span></code></p></td>
+<td><p>Sapphire Rapids</p></td>
+<td><p><strong>2 SU</strong></p></td>
+<td><p>104</p></td>
+<td><p>500 GB</p></td>
+<td><p>~4.8 GB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hugemem</span></code></p></td>
+<td><p>Cascade Lake</p></td>
+<td><p><strong>3 SU</strong></p></td>
+<td><p>48</p></td>
+<td><p>1470 GB</p></td>
+<td><p>~30 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hugemembw</span></code></p></td>
+<td><p>Broadwell</p></td>
+<td><p><strong>1.25 SU</strong></p></td>
+<td><p>28</p></td>
+<td><p>1020 GB</p></td>
+<td><p>~36 GB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">megamem</span></code></p></td>
+<td><p>Cascade Lake</p></td>
+<td><p><strong>5 SU</strong></p></td>
+<td><p>48</p></td>
+<td><p>2990 GB</p></td>
+<td><p>~62 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">express</span></code></p></td>
+<td><p>Cascade Lake</p></td>
+<td><p><strong>6 SU</strong></p></td>
+<td><p>48</p></td>
+<td><p>190 GB</p></td>
+<td><p>~4 GB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gpuvolta</span></code></p></td>
+<td><p>V100</p></td>
+<td><p><strong>3 SU</strong></p></td>
+<td><p>12/GPU</p></td>
+<td><p>382 GB</p></td>
+<td><p>~8 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dgxa100</span></code></p></td>
+<td><p>A100</p></td>
+<td><p><strong>4.5 SU</strong></p></td>
+<td><p>16/GPU</p></td>
+<td><p>2000 GB</p></td>
+<td><p>~15 GB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gpuhopper</span></code></p></td>
+<td><p>H200</p></td>
+<td><p><strong>7.5 SU</strong></p></td>
+<td><p>12/GPU</p></td>
+<td><p>1024 GB</p></td>
+<td><p>~21 GB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A few consequences worth acting on:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">express</span></code> costs 3× <code class="docutils literal notranslate"><span class="pre">normal</span></code>.</strong> It buys queue priority, not speed — identical hardware. If you’re not genuinely blocked waiting, you’re paying triple for nothing. Debug on <code class="docutils literal notranslate"><span class="pre">express</span></code> with tiny jobs; run production on <code class="docutils literal notranslate"><span class="pre">normal</span></code>.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">normalbw</span></code> is 1.25 SU vs <code class="docutils literal notranslate"><span class="pre">normal</span></code> at 2 SU.</strong> Broadwell is older and slower per core, but at 62% of the price. If your job isn’t wall-clock-critical and doesn’t scale beautifully, benchmark it — for a lot of embarrassingly parallel analysis work, the older nodes are the cheaper answer.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">hugemembw</span></code> (1.25 SU) vs <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> (3 SU)</strong> is the sleeper. Need 400 GB for a modest core count? <code class="docutils literal notranslate"><span class="pre">hugemembw</span></code> gives you <em>more</em> memory per core (~36 vs ~30 GB) at <strong>less than half the charge rate</strong>. Slower silicon, but if you’re memory-bound rather than compute-bound — which describes a lot of large-array climate analysis — that’s the trade you want. The catch: cores come in multiples of 7 on <code class="docutils literal notranslate"><span class="pre">hugemembw</span></code>.</p>
+<p><strong>Don’t reach for <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> reflexively.</strong> A memory-hungry job on <code class="docutils literal notranslate"><span class="pre">normal</span></code> charged at <code class="docutils literal notranslate"><span class="pre">Max(ncpus,</span> <span class="pre">mem_proportion)</span></code> may still beat a <code class="docutils literal notranslate"><span class="pre">hugemem</span></code> job at 3 SU. Do the arithmetic both ways.</p>
+</section>
+<section id="whole-nodes-the-rounding-tax">
+<h2>Whole nodes: the rounding tax<a class="headerlink" href="#whole-nodes-the-rounding-tax" title="Link to this heading">#</a></h2>
+<p>Any job larger than one node <strong>must request CPUs in multiples of the full node</strong>. On <code class="docutils literal notranslate"><span class="pre">normal</span></code> that’s multiples of 48; on <code class="docutils literal notranslate"><span class="pre">normalsr</span></code>, 104; on <code class="docutils literal notranslate"><span class="pre">normalbw</span></code>, 28.</p>
+<p>So a job asking for 20,000 cores on <code class="docutils literal notranslate"><span class="pre">normal</span></code> actually requests <strong>20,016</strong> — you round up to 417 nodes and pay for all of it. If your decomposition lands at 50 cores, you’re paying for 96 and wasting 46. Choose core counts that land on node boundaries, or shrink to fit one node.</p>
+<p>This is also why <code class="docutils literal notranslate"><span class="pre">ncpus=1,</span> <span class="pre">mem=190GB</span></code> is such a trap: you didn’t request a node, but you priced one.</p>
+</section>
+<section id="walltime-request-generously-but-not-absurdly">
+<h2>Walltime: request generously, but not absurdly<a class="headerlink" href="#walltime-request-generously-but-not-absurdly" title="Link to this heading">#</a></h2>
+<p>Since you’re billed on walltime <em>used</em>, over-requesting walltime doesn’t directly cost SU. But it isn’t free either:</p>
+<ul class="simple">
+<li><p>The <strong>full requested walltime is reserved</strong> against your grant while the job runs, cutting what else you can submit. <code class="docutils literal notranslate"><span class="pre">nci_account</span></code> shows this under <code class="docutils literal notranslate"><span class="pre">Reserved</span></code>.</p></li>
+<li><p><strong>Shorter walltime requests schedule sooner.</strong> PBS backfills — a 2-hour job slots into gaps a 48-hour job can’t.</p></li>
+<li><p>Walltime limits <strong>tighten as core count rises</strong>: on <code class="docutils literal notranslate"><span class="pre">normal</span></code>, 48 hours up to 672 cores, but only 5 hours at 3024+ cores. Scaling up shortens your ceiling.</p></li>
+<li><p>If the job <strong>doesn’t have enough SU available</strong> for the requested walltime at submission, it goes straight to <code class="docutils literal notranslate"><span class="pre">H</span></code> (held). That’s a <code class="docutils literal notranslate"><span class="pre">nci_account</span></code> problem, not a code problem.</p></li>
+</ul>
+<p>Rule of thumb: request ~1.3× your benchmarked runtime. Enough headroom to survive a slow node, not so much that you never get scheduled.</p>
+</section>
+<section id="measure-what-you-actually-used">
+<h2>Measure what you actually used<a class="headerlink" href="#measure-what-you-actually-used" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">.o</span></code> file at job end tells you everything. Read it every time:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>Service<span class="w"> </span>Units:<span class="w"> </span><span class="m">96</span>.00
+<span class="w">   </span>NCPUs<span class="w"> </span>Requested:<span class="w"> </span><span class="m">48</span><span class="w">          </span>NCPUs<span class="w"> </span>Used:<span class="w"> </span><span class="m">48</span>
+<span class="w">   </span>CPU<span class="w"> </span>Time<span class="w"> </span>Used:<span class="w"> </span><span class="m">09</span>:12:33
+<span class="w">   </span>Memory<span class="w"> </span>Requested:<span class="w"> </span><span class="m">190</span>.0GB<span class="w">    </span>Memory<span class="w"> </span>Used:<span class="w"> </span><span class="m">31</span>.4GB<span class="w">      </span>&lt;--<span class="w"> </span>!!
+<span class="w">   </span>Walltime<span class="w"> </span>requested:<span class="w"> </span><span class="m">02</span>:00:00<span class="w"> </span>Walltime<span class="w"> </span>Used:<span class="w"> </span><span class="m">01</span>:00:12
+<span class="w">   </span>JobFS<span class="w"> </span>requested:<span class="w"> </span><span class="m">100</span>.0MB<span class="w">     </span>JobFS<span class="w"> </span>used:<span class="w"> </span>0B
+</pre></div>
+</div>
+<p>That job paid 190 GB rates and touched 31 GB. Requesting <code class="docutils literal notranslate"><span class="pre">mem=40GB</span></code> would have dropped it from ~96 SU to ~48 SU — half, for a one-line change.</p>
+<p>The diagnostic to compute is <strong>CPU efficiency</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">efficiency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>CPU<span class="w"> </span>Time<span class="w"> </span>Used<span class="w"> </span>/<span class="w"> </span><span class="o">(</span>NCPUs<span class="w"> </span>Used<span class="w"> </span>×<span class="w"> </span>Walltime<span class="w"> </span>Used<span class="o">)</span>
+</pre></div>
+</div>
+<p>Here: <code class="docutils literal notranslate"><span class="pre">9:12:33</span> <span class="pre">/</span> <span class="pre">(48</span> <span class="pre">×</span> <span class="pre">1:00:12)</span></code> ≈ <strong>19%</strong>. You’re paying for 48 cores and using the equivalent of about 9. Something is serial, I/O-blocked, or badly threaded. NCI’s guidance is to target the sweet spot where you’re <strong>using at least 80%</strong> of what you reserved.</p>
+<p>Check your balance before submitting a campaign:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nci_account<span class="w"> </span>-P<span class="w"> </span>gb02<span class="w">          </span><span class="c1"># grant, used, reserved, available</span>
+nqstat<span class="w"> </span>-P<span class="w"> </span>gb02<span class="w">               </span><span class="c1"># what&#39;s running and queued</span>
+</pre></div>
+</div>
+</section>
+<section id="the-five-most-expensive-habits">
+<h2>The five most expensive habits<a class="headerlink" href="#the-five-most-expensive-habits" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mem=190GB</span></code> by default.</strong> Costs up to 6× on identical work. Set memory to your measured high-water mark plus ~20%.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">express</span></code> for production runs.</strong> 3× the rate for priority you don’t need.</p></li>
+<li><p><strong>Requesting cores a serial script can’t use.</strong> 48 cores at 19% efficiency is 39 cores of pure waste. Profile first.</p></li>
+<li><p><strong>Ignoring <code class="docutils literal notranslate"><span class="pre">normalbw</span></code> / <code class="docutils literal notranslate"><span class="pre">hugemembw</span></code>.</strong> Often 40–60% cheaper for work that isn’t clock-critical.</p></li>
+<li><p><strong>Never reading the <code class="docutils literal notranslate"><span class="pre">.o</span></code> file.</strong> Every job hands you a free audit and most people delete it unread.</p></li>
+</ol>
+</section>
+<section id="a-worked-right-sizing">
+<h2>A worked right-sizing<a class="headerlink" href="#a-worked-right-sizing" title="Link to this heading">#</a></h2>
+<p>Before — a Dask analysis job someone wrote in a hurry:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -q express</span>
+<span class="c1">#PBS -l ncpus=48</span>
+<span class="c1">#PBS -l mem=190GB</span>
+<span class="c1">#PBS -l walltime=10:00:00</span>
+<span class="c1">#PBS -l storage=gdata/gb02+scratch/gb02</span>
+</pre></div>
+</div>
+<p>Ran in 3 hours, peaked at 45 GB, and the <code class="docutils literal notranslate"><span class="pre">.o</span></code> file showed 12 of 48 cores meaningfully busy (Lustre metadata was the bottleneck, not CPU).</p>
+<p>Cost: <code class="docutils literal notranslate"><span class="pre">6</span> <span class="pre">SU</span> <span class="pre">×</span> <span class="pre">Max(48,</span> <span class="pre">47.5)</span> <span class="pre">×</span> <span class="pre">3h</span></code> = <strong>864 SU</strong>.</p>
+<p>After:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -q normal</span>
+<span class="c1">#PBS -l ncpus=12</span>
+<span class="c1">#PBS -l mem=48GB</span>
+<span class="c1">#PBS -l jobfs=100GB</span>
+<span class="c1">#PBS -l walltime=4:00:00</span>
+<span class="c1">#PBS -l storage=gdata/gb02+scratch/gb02</span>
+</pre></div>
+</div>
+<p>Cost: <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">SU</span> <span class="pre">×</span> <span class="pre">Max(12,</span> <span class="pre">12)</span> <span class="pre">×</span> <span class="pre">3h</span></code> = <strong>72 SU</strong>.</p>
+<p><strong>12× cheaper, same science, same wall-clock.</strong> Nothing exotic — just matching the request to the measurement. (The <code class="docutils literal notranslate"><span class="pre">jobfs</span></code> line is separate from cost: it’s not charged, but the default is only <strong>100 MB</strong>, so any real temp I/O needs it declared. Keeping spill on node-local NVMe is what let the core count drop honestly.)</p>
+</section>
+<section id="checklist-before-you-submit-a-campaign">
+<h2>Checklist before you submit a campaign<a class="headerlink" href="#checklist-before-you-submit-a-campaign" title="Link to this heading">#</a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Ran one job first and read the <code class="docutils literal notranslate"><span class="pre">.o</span></code> file — cores, memory, walltime <em>used</em>.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">mem</span></code> ≤ <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">×</span> <span class="pre">ncpus</span></code> GB on <code class="docutils literal notranslate"><span class="pre">normal</span></code>? If not, is the memory genuinely needed?</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> CPU efficiency ≥ 80%? If not, cut <code class="docutils literal notranslate"><span class="pre">ncpus</span></code> rather than hoping.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Checked whether <code class="docutils literal notranslate"><span class="pre">normalbw</span></code> / <code class="docutils literal notranslate"><span class="pre">hugemembw</span></code> does the job at 1.25 SU.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> On <code class="docutils literal notranslate"><span class="pre">express</span></code> only for genuine debugging.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Multi-node core count lands on a node boundary.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Walltime ≈ 1.3× benchmark, not a round 48.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">jobfs</span></code> requested if you use more than 100 MB of temp space.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">nci_account</span> <span class="pre">-P</span> <span class="pre">&lt;proj&gt;</span></code> has room before you queue 500 jobs.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./gadi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formula">The formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-memory-trap">The memory trap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#know-your-queue-s-charge-rate">Know your queue’s charge rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whole-nodes-the-rounding-tax">Whole nodes: the rounding tax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walltime-request-generously-but-not-absurdly">Walltime: request generously, but not absurdly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measure-what-you-actually-used">Measure what you actually used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-five-most-expensive-habits">The five most expensive habits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-worked-right-sizing">A worked right-sizing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-before-you-submit-a-campaign">Checklist before you submit a campaign</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
