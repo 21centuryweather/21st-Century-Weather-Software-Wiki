@@ -12,11 +12,13 @@ parts:
     - file: gadi/index
       sections:
       - file: gadi/getting-started
+      - file: gadi/project-template
       - file: gadi/mac-stuff
       - file: gadi/moving-data
       - file: gadi/rudu-usage
       - file: gadi/vscode
       - file: gadi/quarto
+      - file: gadi/direnv
   - caption: Running atmospheric simulations using ACCESS
     chapters:
     - file: rose-cylc/rose-cylc-intro
@@ -31,6 +33,11 @@ parts:
       - file: NRI-RNS/outputs 
       - file: NRI-RNS/evaluating
       - file: NRI-RNS/further-considerations
+      - file : NRI-RNS/flagship_config.md
+      - file : NRI-RNS/build-UM.md
+    - file: AM3/intro.md
+      sections:
+      - file: AM3/main-config.md
   - caption: Interactive coding with VSCode 
     chapters:
     - file : vscode/intro-ipython
@@ -50,6 +57,8 @@ parts:
     - file: python/package-structure
     - file: python/netcdf_zarr_storage_best_practices
     - file: python/xarray_zarr
+    - file: python/dynlib
+    - file: python/pathlib
   - caption: Datasets
     chapters:
     - file: datasets/index

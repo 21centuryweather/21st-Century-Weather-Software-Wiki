@@ -71,7 +71,15 @@ Select your `gadi` compute node. If it is not active, use the option to `+ Add N
 ```
 gadi-cpu-clx-<you gadi compute node ID>
 ```
-Hit `Contine` if prompted to accept the fingerprint of the compute node after you have checked the compute node ID is correct.
+A VSCode pop-up window will ask you about the authenticity of host `gadi-cpu-clx-<you gadi compute node ID>`. Type `yes` into the window and hit `Enter`.
+
+![authenticate](images/authenticity_yes.png)
+
+:::{note}
+
+The connection might fail the first time. It will usually succeed after three attempts.
+
+:::
 
 A successful connection will result in the `gadi` compute node showing in the bottom-left corner, and in your Remote Explorer.
 

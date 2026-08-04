@@ -1,0 +1,307 @@
+# Installing dynlib at NCI/gadi
+
+Dynlib is meteorological analysis libary developed at University of Bergen. The central github repository is here : <https://git.app.uib.no/Clemens.Spensberger/dynlib>
+
+Documentation for the library is available here : <https://folk.uib.no/csp001/dynlib_doc/intro.html>
+
+## Dependencies
+
+A list of dependencies to build the library is available here : <https://folk.uib.no/csp001/dynlib_doc/pkg.html>
+
+Some of the analysis tools are compiled in Fortran, and the python tool `f2py` is used to link the Fortran modules to a python wrapper. Details about `f2py` are available at : <https://numpy.org/doc/stable/f2py/>
+
+The main Fortran dependencies are:
+- LAPACK (<https://netlib.org/lapack/>) -  libraries to solve linear equations.
+- BLAS (<https://www.netlib.org/blas/>) - libraries for linear algebra.
+
+These two libraries are available on NCI/gadi, see <https://opus.nci.org.au/pages/viewpage.action?pageId=248840668>
+
+By loading the appropriate modules specified in that link, we can compile the `dynlib` fortran source. 
+
+##  Installation
+
+From a directory on gadi, type
+
+```
+$ git clone https://git.app.uib.no/Clemens.Spensberger/dynlib.git
+Cloning into 'dynlib'...
+remote: Enumerating objects: 4471, done.
+remote: Counting objects: 100% (274/274), done.
+remote: Compressing objects: 100% (105/105), done.
+remote: Total 4471 (delta 224), reused 169 (delta 169), pack-reused 4197 (from 1)
+Receiving objects: 100% (4471/4471), 1.86 MiB | 1010.00 KiB/s, done.
+Resolving deltas: 100% (3055/3055), done.
+Updating files: 100% (286/286), done.
+```
+
+You have now downloaded the latest version of the dynlib source files.  
+
+These instructions will install dynlib using a standard NCI python environment, as I had problems linking the fortran modules with python using the CLEX ```analysis3``` conda environment.
+
+Let's load the required modules. 
+```
+$ module load python3/3.11.0
+Loading python3/3.11.0
+  Loading requirement: intel-mkl/2021.4.0
+```
+Loading later python3 versions (e.g. python3.12.1) will fail because the library uses the deprecated `disutils` package for installation. 
+
+Note this loads the required intel libraries required to compile the required fortran modules. You will need to upgrade the default version `gfortan` at NCI/gadi (8.5.0) so that it recognises the `-fallow-argument-mismatch` compiler argument provided in the file `/ext/spherepack3.2/make.inc` which passes parameters to the `spherepack` `Makefile`.
+```
+module load gcc/10.3.0
+```
+Now we need to edit the `compile` script to 
+- Provide the python version (3)
+- follow the NCI guidelines to load the LAPACK and BLAS libraries.
+
+Edit line 13 of `compile` from
+```
+PY_VER=""
+```
+
+to 
+```
+PY_VER="3"
+```
+
+Edit line 60 from
+```
+LIBS="-L/usr/lib -L/usr/local/lib -L$(pwd)/ext/spherepack3.2/lib -lblas -llapack -lspherepack
+```
+to
+```
+LIBS="-L/usr/lib -L/usr/local/lib -L$(pwd)/ext/spherepack3.2/lib -lmkl_gf_lp64 -lmkl_core -lmkl_gnu_thread -lgomp -lm -lspherepack"
+``````
+
+###  NOTE : You must now commit your local changes to your local copy of repository before attempting install!
+```
+$ git commit .
+```
+
+Once you have committed your local changes, you can then begin compiling and installing the libraries.
+
+This python file `setup.py` will run the `compile` script that we just edited previously. This script will autocompile the `spherepack` modules, before it compiles and links the rest of the fortran code. Because we are using are standard NCI python environment, we will have to provide an install location as we don't have write permissions to `/apps/python3/3.11.0/lib/python3.11/site-packages/`. We can specify the install location using the 'user' or `prefix` command-line argument,e.g.
+```
+$ python3 setup.py install --user
+```
+or
+```
+$ python3 setup.py install --prefix=FULL_PATH_TO_YOUR_LIBRARY_INSTALL
+```
+
+For testing, you might want to use `--prefix` to specify a path on `/g/data/gb02`. The `--user` argument will install in the default location `~/.local/lib/python3.11/site-packages/`.
+
+## Loading the module
+
+To load the module within a python session (e.g. using the python3/3.11.0 environment we used to compile and install `dynlib` library) we can use the following (assuming we installed it with the `--user` option):
+```
+Python 3.11.0 (main, Nov 18 2022, 08:38:34) [GCC 8.5.0 20210514 (Red Hat 8.5.0-10)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import dynlib
+>>> from dynlib import dynfor
+>>> dir(dynfor)
+['__doc__', '__f2py_numpy_version__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', '_dynfor_error', 'config', 'consts', 'derivatives', 'detect', 'detect_lines', 'detect_rwb_contour', 'diag', 'diag_tend', 'ellipse', 'interpol', 'sphere', 'stat', 'tend', 'thermodyn', 'utils']
+>>> print(dynfor.derivatives.ddx.__doc__)
+res = ddx(dat,dx,dy,[nx,ny,nz])
+
+Wrapper for ``ddx``.
+
+Parameters
+----------
+dat : input rank-3 array('d') with bounds (nz,ny,nx)
+dx : input rank-2 array('d') with bounds (ny,nx)
+dy : input rank-2 array('d') with bounds (ny,nx)
+
+Other Parameters
+----------------
+nx : input int, optional
+    Default: shape(dat,2)
+ny : input int, optional
+    Default: shape(dat,1)
+nz : input int, optional
+    Default: shape(dat,0)
+
+Returns
+-------
+res : rank-3 array('d') with bounds (nz,ny,nx)
+```
+
+If we used the `--prefix` option we will have to tell python where to find our libraries. One way to do this is:
+```
+>>> import sys
+>>> sys.path.append('FULL_PATH_TO_YOUR_LIBRARY_INSTALL')
+>>> sys.path
+['', '/apps/python3/3.11.0/lib/python31.zip', '/apps/python3/3.11.0/lib/python3.11', '/apps/python3/3.11.0/lib/python3.11/lib-dynload', '/home/548/pag548/.local/lib/python3.11/site-packages', '/apps/python3/3.11.0/lib/python3.11/site-packages', '/apps/python3/3.11.0/lib/python3.11/site-packages/numpy-1.21.4-py3.11-linux-x86_64.egg', 'FULL_PATH_TO_YOUR_LIBRARY_INSTALL']
+```
+
+Note python will search for `dynlib` according to the order of the paths in the `sys.path` list. If you wish to add a new path to the start of this list (index 0) so it is searched first, you can use
+```
+>>> sys.path.insert(0,'FULL_PATH_TO_YOUR_LIBRARY_INSTALL')
+```
+
+Or you can insert your new path at the beginning of command-line environment variable `PYTHONPATH`, e.g
+```
+$ export PYTHONPATH="FULL_PATH_TO_YOUR_LIBRARY_INSTALL:$PYTHONPATH"
+```
+
+You can also load the module from within the ACCESS-NRI `analysis3` `conda` environment.
+```
+$ module use /g/data/xp65/public/modules
+$ module load conda/analysis3-25.10
+$ ipython
+```
+
+```python
+Python 3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:46:25) [GCC 14.3.0]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.37.0 -- An enhanced Interactive Python. Type '?' for help.
+Intake telemetry extension loaded
+
+In [1]: import dynlib
+
+In [2]: from dynlib import metio
+
+In [3]: ?dynlib
+Type:        module
+String form: <module 'dynlib' from '/home/548/pag548/.local/lib/python3.10/site-packages/dynlib/__init__.py'>
+File:        ~/.local/lib/python3.10/site-packages/dynlib/__init__.py
+Docstring:   <no docstring>
+
+In [4]: dynlib.dynfor.derivatives.ddx
+Out[4]: <fortran object>
+
+In [5]: ?dynlib.dynfor.derivatives.ddx
+Call signature: dynlib.dynfor.derivatives.ddx(*args, **kwargs)
+Type:           fortran
+String form:    <fortran object>
+Docstring:     
+res = ddx(dat,dx,dy,[nx,ny,nz])
+
+Wrapper for ``ddx``.
+
+Parameters
+----------
+dat : input rank-3 array('d') with bounds (nz,ny,nx)
+dx : input rank-2 array('d') with bounds (ny,nx)
+dy : input rank-2 array('d') with bounds (ny,nx)
+
+Other Parameters
+----------------
+nx : input int, optional
+    Default: shape(dat,2)
+ny : input int, optional
+    Default: shape(dat,1)
+nz : input int, optional
+    Default: shape(dat,0)
+
+Returns
+-------
+res : rank-3 array('d') with bounds (nz,ny,nx)
+
+In [7]: from dynlib.metio import datasource
+```
+
+## Central installation
+
+`Dynlib` is currently installed at `/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg`. So you can access the module by either
+
+a) Setting your `PYTHONPATH` to point to this location before launching your `python` interpreter, i.e. 
+```
+export PYTHONPATH='/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg':${PYTHONPATH}
+```
+(and type `$ echo $PYTHONPATH` to check its contents ), or 
+
+b) Setting the `sys.path` inside your intepreter as described above, e.g. 
+```
+sys.path.insert(0,'/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg')
+```
+
+## Test scripts 
+
+The repository comes with a variety of unit tests (located in the `tests` directory) and example-scripts (located in `examples'). For a variety of reasons, these tests and examples will not work out of the box on gadi:
+-  Sample data paths are assumed to exist on a drive somewhere in Bergen, e.g. 
+```
+$ python test_dynlib.py 
+Traceback (most recent call last):
+  File "/g/data/gb02/pag548/dynlib/test_dynlib.py", line 17, in <module>
+    dat, grid = get_instantaneous([(plev, 'u'), (plev,'v'), ], timeinterval)
+  File "/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py", line 939, in get_instantaneous
+    grid = get_static(**static_kwargs)
+  File "/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/erainterim.py", line 111, in get_static
+    fo, oro = metopen(conf.staticfile, 'oro', verbose=verbose, no_dtype_conversion=no_dtype_conversion, 
+  File "/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py", line 473, in metopen
+    raise ValueError('%s.* not found in any data location. \n'
+ValueError: ei.ans.static.* not found in any data location. 
+Tried the following (in order):
+      .
+      /Data/gfi/share/Reanalyses/ERA_INTERIM/6HOURLY
+      /Data/gfi/users/local/share
+      /Data/gfi/users/csp001/share
+```
+- It assumes that functions exist in some of the source files. (e.g. `lib/settings.py` doesn't appear to contain a function `get_active_context`)  Also, the requirement for `pygrib` isn't in the documentation), e.g.
+```
+(dynlib_env) [pag548@gadi-login-05 dynlib]$ python tests/test_plot.py 
+Traceback (most recent call last):
+  File "/g/data/gb02/pag548/dynlib/tests/test_plot.py", line 11, in <module>
+    from create_ref_plots import path, gfile, obfile, odfile, req_levs, ofile as reffile, conf, make_plot_list
+  File "/g/data/gb02/pag548/dynlib/tests/create_ref_plots.py", line 7, in <module>
+    from lib.settings import get_active_context
+ImportError: cannot import name 'get_active_context' from 'lib.settings' (/g/data/gb02/pag548/dynlib/tests/lib/settings.py)
+(dynlib_env) [pag548@gadi-login-05 dynlib]$ python tests/test_func.py 
+Traceback (most recent call last):
+  File "/g/data/gb02/pag548/dynlib/tests/test_func.py", line 9, in <module>
+    from create_ref_data import path, gfile, obfile, odfile, diagnostics, _prepare_args
+  File "/g/data/gb02/pag548/dynlib/tests/create_ref_data.py", line 4, in <module>
+    import pygrib
+ModuleNotFoundError: No module named 'pygrib'
+```
+- Missing files and functions altogether, e.g.
+```
+ python tests/test_func.py 
+Traceback (most recent call last):
+  File "/g/data/gb02/pag548/dynlib/tests/test_func.py", line 9, in <module>
+    from create_ref_data import path, gfile, obfile, odfile, diagnostics, _prepare_args
+  File "/g/data/gb02/pag548/dynlib/tests/create_ref_data.py", line 12, in <module>
+    import lib.humidity
+ModuleNotFoundError: No module named 'lib.humidity'
+```
+
+## Workarounds
+
+The location of sample data used for the tests and examples scripts can be found in the following scripts:
+- `lib/settings.py` : See the default configuration for the class `settings_obj`
+- `lib/metio/erainterim.py` : See the values of `'datapath'` in the `settings_obj` configuration class.
+- `examples/example_attribute.py` : Several data paths are hard-coded in the example scripts.
+
+## Depedency on basemap
+
+The python module `basemap` is required by many of the `dynlib` plotting routines. The user will have to install this module themselves as it is not included in the standard NCI/gadi environments, or in the ACCESS-NRI `analysis3` environments.
+
+A recommended way to install `basemap` is to install it on top of your existing `analysis3` environment using a *virtual environment*, following the process available here : https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/python/conda-environments.html.
+
+To replicate this example for `basemap` using a virtual environment named *dynlib_env* created from inside the `analysis3` environment, execute the following:
+```
+$ python3 -m venv dynlib_env --system-site-packages
+$ source dynlib_env/bin/activate
+```
+
+The new environment `dynlib_env` will contain all the existing `analysis3` modules as well as `basemap`.
+```
+(dynlib_env) $ ipython
+```
+```python
+Python 3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:46:25) [GCC 14.3.0]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.37.0 -- An enhanced Interactive Python. Type '?' for help.
+Intake telemetry extension loaded
+
+In [1]: import xarray as xr
+
+In [3]: import pygrib
+
+In [4]: import metpy.calc as mpcalc
+
+In [5]: from mpl_toolkits.basemap import Basemap
+
+In [6]: import netCDF4
+```

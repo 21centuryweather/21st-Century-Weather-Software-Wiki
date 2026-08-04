@@ -18,12 +18,12 @@ In this example I type `gadi-cpu-bdw-0004.gadi.nci.org.au`
 
 ![SSH-ARE-connect](./images/ARE_connect2.png)
 
-Hit `Continue` when provided with a Host fingerprint.
-
 :::{note}
 
 The 'pop-up' menu states `Select configured SSH host or enter user@host`. Because we have entered `Host gadi-cpu-*` in our `~/.ssh/config` we **don't** need to enter `user@host`. Any host the begins with `gadi-cpu` will be automatically configured.
 :::
+
+A VSCode pop-up window will ask you about the authenticity of host `gadi-cpu-<you gadi ARE node ID>`. Type `yes` into the pop-up window and hit `Enter`.
 
 Let's load a notebook into VScode. I'll load https://github.com/21centuryweather/animations/blob/main/workshop_demo/animation_notebook.ipynb.
 
