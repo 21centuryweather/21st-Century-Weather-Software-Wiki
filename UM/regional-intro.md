@@ -22,11 +22,11 @@ In order to run the UM at these resolution, global **ancillaries** need to be ge
 - Sea Surface Temperature values (either prescribed of climatologies)
 etc.
 
-These ancillaries will be created for a fixed resolution and will be stored on disk.
+These ancillaries are unique for each fixed resolution and will be stored on disk.
 
 The processor layout (how the UM is parallelised across multiple cores) will also be tested and fixed for a prescribed resolution.
 
-When running a global experiment, the researcher will generally only perturb one or two parameters. They can leverage off the existing ancillary and configuration files that are stored in a central repository.
+When running a global experiment, the researcher will generally only perturb one or two parameters. They will leverage off the existing ancillary and configuration files that are stored in a central repository.
 
 In conclusion, maintaining and running a global model is very simple once the initial work to create ancillaries and test the stability of the suite has been complete.
 
@@ -34,17 +34,17 @@ Now, consider the case of a regional atmospheric model
 
 ![Regional workflow](images/regional-workflows.png)
 
-Regional models are not 'set and forget' like a global model. Each experiment is essentially a unique instance of the UM and hence they are much harder to develop maintain than a global model.
+Regional models are not 'set and forget' like a global model. Each experiment is essentially a unique instance of the UM and hence regional modeling suites are much harder to develop and maintain than global models.
 
-The additional levels of complexity create many more failure modes compared with a global model run.  
+These additional levels of complexity create many more failure modes compared with a global model run.  
 
-Here are some of the issues that a regional modeler has to content with:
+Some of the issues a regional modeler has to content with include:
 - Selecting the driving model inputs
 - Configuring boundary conditions
 - Selecting the processor layout
 - Ancillary generation in problematic regions (small islands, mountains etc.)
 
-Note that all of these issues also apply to regional ocean modeling (which is done using the MOM6 model). Regional ocean modeling is slightly less complex, as they have a lower number of regional ancillary files to generate. Typically bathymetry is all that is required.
+Note all of these issues apply to regional ocean modeling (which is done using the MOM6 model). Regional ocean modeling is slightly less complex, as they have a lower number of regional ancillary files to generate. Typically bathymetry is all that is required.
 
 When dealing with regional coupled modeling, one has to address the specific domain expertise required to run both the atmospheric component (via the UM) and the ocean component (via MOM6) as the workflows of both these models have significant differences and the nuances to run both components in regional configurations are typically only known to model developers and expert users.
 
