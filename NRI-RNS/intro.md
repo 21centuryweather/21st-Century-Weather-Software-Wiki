@@ -1,9 +1,9 @@
 # Regional Atmospheric Modeling
 
-**ACCESS-rAM**
+The previous UM suite you checked out and ran [here](../UM/UM-intro.md) was a global atmospheric model.
 
-ACCESS-NRI has developed a nested Regional Atmospheric (rAM) suite using the Unified Model for conducting high-resolution experiments over sub-sections of the Australian domain using multiple nested domains.
+For many researchers in the Centre, you will instead be using a **regional** atmospheric model. The main advantage of using a regional model is that we can focus our computational resources to investigate a specific phenomena or case study at very high resolution, without having to resolve the land and atmosphere for the rest of the planet.
 
-The first beta release of ACCESS-rAM is now available. You can find all relevant documentation at the [ACCESS-Hive Docs](https://access-hive.org.au/models/run-a-model/run-access-ram/) website maintained by ACCESS-NRI.
+The disadvantage of regional modelling is that it adds additional layers of complexity. 
 
-Thanks to ACCESS-NRI team for developing and maintaining this suite!
+Consider the figure below.
