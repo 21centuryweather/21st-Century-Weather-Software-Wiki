@@ -27,8 +27,10 @@ parts:
     - file: UM/trouble-shooting
     - file: UM/common_problems
     - file: aus2200/models-aus2200
-    - file: NRI-RNS/intro
+    - file: UM/regional-intro
       sections:
+      - file: UM/regional-primer
+      - file: NRI-RNS/rAM3
       - file: NRI-RNS/ancillaries
       - file: NRI-RNS/outputs 
       - file: NRI-RNS/evaluating
