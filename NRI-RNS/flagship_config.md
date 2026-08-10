@@ -132,9 +132,9 @@ This will pull changes from the central UK Met Office `roses` repository and upd
 Let's check the output.
 ```
 $ fcm branch-info
-URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
+URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/ram3_flagship
 Repository Root: https://code.metoffice.gov.uk/svn/roses-u
-Revision: 348215
+Revision: 363354
 ```
 Ok you've successfully switched branches!
 
