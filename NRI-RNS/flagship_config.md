@@ -61,7 +61,7 @@ How do we access these features to run our own experiement?
 
 Checking out the rAM3 Flagship suite is as easy as typing
 ```
-rosie checkout u-by395/Flagship
+rosie checkout u-by395/ram3_flagship
 ```
 
 BUT : if you already have the default NRI suite installed, this will fail with the message:
@@ -83,7 +83,7 @@ This method will also allow you to copy the nesting and resolution settings in y
 
 If you want to revert back to your original RNS suite you could then type something like
 ```
-$ mv ~/roses/u-by395 ~/roses/u-by395-Flagship
+$ mv ~/roses/u-by395 ~/roses/u-by395-ram3_flagship
 $ mv ~/roses/u-by395-default ~/roses/u-by395
 ```
 Another option could be to set up symbolic links in your `~/roses` directory and have a link called `u-by395` that points to different RNS suites (i.e. the default and a Flagship)
@@ -125,7 +125,7 @@ Branch Parent: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/trunk@325101
 ```
 We can use the above syntax to 'switch branches' between the default branch and the Flagship branch by typing
 ```
-$ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
+$ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/ram3_flagship
 ```
 This will pull changes from the central UK Met Office `roses` repository and update the local files on disk.
 
