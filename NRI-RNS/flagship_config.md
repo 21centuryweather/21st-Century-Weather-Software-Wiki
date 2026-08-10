@@ -77,7 +77,7 @@ If we type
 ```
 $ mv ~/roses/u-by395 ~/roses/u-by395-default
 ```
-(or similar) this will copy your exiting RNS suite configuration to another directory. You can then checkout the `u-by395/Flagship` suite into your `~/roses` directory without any problems.
+(or similar) this will copy your exiting RNS suite configuration to another directory. You can then checkout the `u-by395/ram3_flagship` suite into your `~/roses` directory without any problems.
 
 This method will also allow you to copy the nesting and resolution settings in your `rose-suite.conf` file to the Flagship.
 
