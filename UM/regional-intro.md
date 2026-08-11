@@ -8,7 +8,7 @@ The disadvantage of regional modelling is that it adds additional layers of comp
 
 Consider the figure below.
 
-![Global workflow](images/global-workflows-2.png)
+![Global workflow](images/global-workflows-2.png){width=50%}
 
 If we consider the case of the ACCESS global model AM3 (which is detailed [here](../AM3/intro.md)) this global model has been configured at two fixed resolutions:
 - N96 (~ 135 km resolution)
@@ -32,7 +32,7 @@ In conclusion, maintaining and running a global model is very simple once the in
 
 Now, consider the case of a regional atmospheric model
 
-![Regional workflow](images/regional-workflows.png)
+![Regional workflow](images/regional-workflows.png){width=50%}
 
 Regional models are not 'set and forget' like a global model. Each experiment is essentially a unique instance of the UM and hence regional modeling suites are much harder to develop and maintain than global models.
 
