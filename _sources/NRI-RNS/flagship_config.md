@@ -4,7 +4,7 @@ The Centre of Excellence for Weather of the 21st Century has a set of `Flagship'
 
 These Flagship experiments have a different configuration than the standard NRI rAM3 suite to enable very large domains at high resolutions to be run efficiently.
 
-If you are interested in running this configuration for your own regional modelling experiments, make a post on Cumulus [here](https://21centuryweather.discourse.group/t/officially-launching-the-21st-century-weather-ram3-flagship-collection-eoi/2345/4).
+If you are interested in running this configuration for your own regional modelling experiments, make a post on Cumulus [here](https://21centuryweather.discourse.group/t/officially-launching-the-21st-century-weather-ram3-flagship-collection-eoi/2345/).
 
 ## Checking out the rAM3 Flagship suite
 
