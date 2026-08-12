@@ -34,7 +34,7 @@ The Flagship configuration of the `nci_access_ram3` is built on a seperate branc
 
 https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5/ram3_flagship
 
-You can use `trac` to view the differences between the Flagship and the standard NRI suite by clicking [here](https://code.metoffice.gov.uk/trac/roses-u/changeset?reponame=&new=363182%40b%2Fy%2F3%2F9%2F5%2Fram3_flagship&old=350223%40b%2Fy%2F3%2F9%2F5%2Fnci_access_ram3).
+You can use `trac` to view the differences between the Flagship and the standard NRI suite by clicking [here](https://code.metoffice.gov.uk/trac/roses-u/log/b/y/3/9/5/ram3_flagship) and selecting `View Changes`.
 
 These changes include:
 - Using a UM executable compiled for NCI's 'sapphire rapids' architecture
