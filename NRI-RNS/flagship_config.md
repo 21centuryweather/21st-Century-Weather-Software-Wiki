@@ -4,6 +4,8 @@ The Centre of Excellence for Weather of the 21st Century has a set of `Flagship'
 
 These Flagship experiments have a different configuration than the standard NRI rAM3 suite to enable very large domains at high resolutions to be run efficiently.
 
+If you are interested in running this configuration for your own regional modelling experiments, make a post on Cumulus [here](https://21centuryweather.discourse.group/t/officially-launching-the-21st-century-weather-ram3-flagship-collection-eoi/2345/).
+
 ## Checking out the rAM3 Flagship suite
 
 When you checkout the Regional Nesting suite with the following command
@@ -30,9 +32,9 @@ https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5/nci_access_ram3
 ```
 The Flagship configuration of the `nci_access_ram3` is built on a seperate branch of `u-by395`. You can view it here:
 
-https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5/Flagship
+https://code.metoffice.gov.uk/trac/roses-u/browser/b/y/3/9/5/ram3_flagship
 
-You can use `trac` to view the differences between the Flagship and the standard NRI suite by clicking [here](https://code.metoffice.gov.uk/trac/roses-u/changeset?old_path=%2Fb%2Fy%2F3%2F9%2F5%2FFlagship&old=348215&new_path=%2Fb%2Fy%2F3%2F9%2F5%2Fnci_access_ram3&new=348215).
+You can use `trac` to view the differences between the Flagship and the standard NRI suite by clicking [here](https://code.metoffice.gov.uk/trac/roses-u/log/b/y/3/9/5/ram3_flagship) and selecting `View Changes`.
 
 These changes include:
 - Using a UM executable compiled for NCI's 'sapphire rapids' architecture
@@ -61,7 +63,7 @@ How do we access these features to run our own experiement?
 
 Checking out the rAM3 Flagship suite is as easy as typing
 ```
-rosie checkout u-by395/Flagship
+rosie checkout u-by395/ram3_flagship
 ```
 
 BUT : if you already have the default NRI suite installed, this will fail with the message:
@@ -77,13 +79,13 @@ If we type
 ```
 $ mv ~/roses/u-by395 ~/roses/u-by395-default
 ```
-(or similar) this will copy your exiting RNS suite configuration to another directory. You can then checkout the `u-by395/Flagship` suite into your `~/roses` directory without any problems.
+(or similar) this will copy your exiting RNS suite configuration to another directory. You can then checkout the `u-by395/ram3_flagship` suite into your `~/roses` directory without any problems.
 
 This method will also allow you to copy the nesting and resolution settings in your `rose-suite.conf` file to the Flagship.
 
 If you want to revert back to your original RNS suite you could then type something like
 ```
-$ mv ~/roses/u-by395 ~/roses/u-by395-Flagship
+$ mv ~/roses/u-by395 ~/roses/u-by395-ram3_flagship
 $ mv ~/roses/u-by395-default ~/roses/u-by395
 ```
 Another option could be to set up symbolic links in your `~/roses` directory and have a link called `u-by395` that points to different RNS suites (i.e. the default and a Flagship)
@@ -125,16 +127,16 @@ Branch Parent: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/trunk@325101
 ```
 We can use the above syntax to 'switch branches' between the default branch and the Flagship branch by typing
 ```
-$ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
+$ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/ram3_flagship
 ```
 This will pull changes from the central UK Met Office `roses` repository and update the local files on disk.
 
 Let's check the output.
 ```
 $ fcm branch-info
-URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/Flagship
+URL: https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/ram3_flagship
 Repository Root: https://code.metoffice.gov.uk/svn/roses-u
-Revision: 348215
+Revision: 363354
 ```
 Ok you've successfully switched branches!
 
