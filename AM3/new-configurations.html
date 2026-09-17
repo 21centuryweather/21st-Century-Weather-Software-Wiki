@@ -552,6 +552,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>n512e-1983
 </pre></div>
 </div>
+<p>Because <code class="docutils literal notranslate"><span class="pre">n512e-1983</span></code> is a new branch that only exists on your local repo, you need to set up the same in the remote repository “origin” the first time you push to Github. So, <code class="docutils literal notranslate"><span class="pre">--set-upstream</span></code> will create the branch in the remote repository. After that, for following updates, you can use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> and it will work the same.</p>
 <p>Now you can check your configuration on GitHub and share it with others.</p>
 <div class="tip admonition">
 <p class="admonition-title">Note</p>
