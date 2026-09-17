@@ -35,6 +35,8 @@ parts:
       - file : NRI-RNS/build-UM.md
     - file: AM3/intro.md
       sections:
+      - file: AM3/new-configurations.md
+      - file: AM3/n512e-beta.md
       - file: AM3/main-config.md
   - caption: Interactive coding with VSCode 
     chapters:
