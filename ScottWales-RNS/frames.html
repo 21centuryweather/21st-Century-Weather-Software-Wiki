@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -471,7 +473,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames_a</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-a&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames_a</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-a'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -484,9 +486,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
 </pre></div>
 </div>
@@ -505,9 +507,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames_se</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-se&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
-<span class="n">frames_sw</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-sw&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
-<span class="n">frames_nau</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-nau&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames_se</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-se'</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">frames_sw</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-sw'</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">frames_nau</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'/scratch/hc46/saw562/nri-workshop-tutorial/barra-frames/20200119T1800Z/frame_barra-nau'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -523,21 +525,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
 </pre></div>
 </div>
@@ -579,8 +581,8 @@
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
         
-    <span class="n">draw_bbox</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="n">outer_top</span><span class="p">:</span><span class="n">outer_bot</span><span class="p">,</span> <span class="n">outer_left</span><span class="p">:</span><span class="n">outer_right</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">draw_bbox</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="n">inner_top</span><span class="p">:</span><span class="n">inner_bot</span><span class="p">,</span> <span class="n">inner_left</span><span class="p">:</span><span class="n">inner_right</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">draw_bbox</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="n">outer_top</span><span class="p">:</span><span class="n">outer_bot</span><span class="p">,</span> <span class="n">outer_left</span><span class="p">:</span><span class="n">outer_right</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">draw_bbox</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="n">inner_top</span><span class="p">:</span><span class="n">inner_bot</span><span class="p">,</span> <span class="n">inner_left</span><span class="p">:</span><span class="n">inner_right</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -593,29 +595,29 @@
 <span class="n">iplt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">frames_nau</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
     
-<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_se</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_nau</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_se</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_nau</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;longitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'longitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
-/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate &#39;latitude&#39; is not bounded, guessing contiguous bounds.
+/g/data/hh5/public/apps/miniconda3/envs/analysis3-23.01/lib/python3.9/site-packages/iris/coords.py:2047: UserWarning: Coordinate 'latitude' is not bounded, guessing contiguous bounds.
   warnings.warn(
 </pre></div>
 </div>
@@ -637,7 +639,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">'latitude'</span><span class="p">)</span><span class="o">.</span><span class="n">points</span>
 </pre></div>
 </div>
 </div>
@@ -677,7 +679,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">draw_regn</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">centre</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">centre</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">'x'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     
 <span class="k">def</span><span class="w"> </span><span class="nf">draw_res</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">npts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">mpp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">([</span><span class="n">centre</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">npts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">delta</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">centre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">npts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">delta</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">npts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">delta</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">npts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">delta</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
@@ -686,17 +688,17 @@
 
 <span class="c1"># Draw the region</span>
 <span class="n">centre</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">34.43</span><span class="p">,</span> <span class="mf">147.615</span><span class="p">]</span>
-<span class="n">draw_regn</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;aus2200&#39;</span><span class="p">)</span>
+<span class="n">draw_regn</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'aus2200'</span><span class="p">)</span>
 
 <span class="c1"># Draw the resolutions</span>
-<span class="n">draw_res</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0198</span><span class="p">,</span> <span class="mf">0.0198</span><span class="p">],</span> <span class="n">npts</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;era5&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">draw_res</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0198</span><span class="p">,</span> <span class="mf">0.0198</span><span class="p">],</span> <span class="n">npts</span><span class="o">=</span><span class="p">[</span><span class="mi">450</span><span class="p">,</span> <span class="mi">450</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;d0198&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">draw_res</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0198</span><span class="p">,</span> <span class="mf">0.0198</span><span class="p">],</span> <span class="n">npts</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'era5'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
+<span class="n">draw_res</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0198</span><span class="p">,</span> <span class="mf">0.0198</span><span class="p">],</span> <span class="n">npts</span><span class="o">=</span><span class="p">[</span><span class="mi">450</span><span class="p">,</span> <span class="mi">450</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'d0198'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;10m&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">'10m'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 
 
-<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_se</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">outline_frame</span><span class="p">(</span><span class="n">frames_se</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

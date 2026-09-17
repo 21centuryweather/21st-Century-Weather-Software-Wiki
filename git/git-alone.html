@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -573,7 +575,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>new-p
 
 No<span class="w"> </span>commits<span class="w"> </span>yet
 
-nothing<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>create/copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
+nothing<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>create/copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>use<span class="w"> </span><span class="s2">"git add"</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
 </pre></div>
 </div>
 <p>Now is time to create a new file. Let’s create <code class="docutils literal notranslate"><span class="pre">read_era5.py</span></code>, it can be an empty file for now.</p>
@@ -583,10 +585,10 @@ nothing<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> 
 No<span class="w"> </span>commits<span class="w"> </span>yet
 
 Untracked<span class="w"> </span>files:
-<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
 <span class="w">	</span>read_era5.py
 
-nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span>but<span class="w"> </span>untracked<span class="w"> </span>files<span class="w"> </span>present<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
+nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span>but<span class="w"> </span>untracked<span class="w"> </span>files<span class="w"> </span>present<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add"</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
 </pre></div>
 </div>
 <p>…and is already telling you what to do next at the end: <code class="docutils literal notranslate"><span class="pre">(use</span> <span class="pre">&quot;git</span> <span class="pre">add&quot;</span> <span class="pre">to</span> <span class="pre">track)</span></code>.</p>
@@ -603,7 +605,7 @@ nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> <
 No<span class="w"> </span>commits<span class="w"> </span>yet
 
 Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
-<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git rm --cached &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
 <span class="w">	</span>new<span class="w"> </span>file:<span class="w">   </span>read_era5.py
 </pre></div>
 </div>

@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -501,8 +503,8 @@
 <section id="to-introduce-yourself-to-git">
 <h3>1. To introduce yourself to git<a class="headerlink" href="#to-introduce-yourself-to-git" title="Link to this heading">#</a></h3>
 <p>That is to let it know your name and email you will need to run this on the terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s1">&#39;Mary Stratus&#39;</span>
-<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s1">&#39;mary@example.com&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s1">'Mary Stratus'</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s1">'mary@example.com'</span>
 </pre></div>
 </div>
 </section>
@@ -512,7 +514,7 @@
 <li><p><strong>Create a SSH key</strong></p></li>
 </ul>
 <p>In the terminal on Gadi or your laptop:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">ed25519</span> <span class="o">-</span><span class="n">C</span> <span class="s2">&quot;your_email@example.com&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">ed25519</span> <span class="o">-</span><span class="n">C</span> <span class="s2">"your_email@example.com"</span>
 </pre></div>
 </div>
 <p>you will need to press enter 3 times (to confirm file name and passphrase -people usually leave this empty, but <a class="reference external" href="https://access-hive.org.au/getting_started/set_up_nci_account/#change-default-project-on-gadi">here</a> are better instructions on how to set up a passphrase). This creates 2 files in the <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> folder:</p>
@@ -521,7 +523,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> share this with GitHub</p></li>
 </ul>
 <p>Then add the new key to the ssh agent with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span> <span class="s2">&quot;$(ssh-agent -s)&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span> <span class="s2">"$(ssh-agent -s)"</span>
 </pre></div>
 </div>
 <p>and</p>

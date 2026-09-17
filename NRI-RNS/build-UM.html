@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -469,7 +471,7 @@
 <h2>Setting the build flag<a class="headerlink" href="#setting-the-build-flag" title="Link to this heading">#</a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> GUI, change the <code class="docutils literal notranslate"><span class="pre">BUILD_MODE</span></code> option in the <code class="docutils literal notranslate"><span class="pre">General</span> <span class="pre">Run</span> <span class="pre">options</span></code> to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">new</span> <span class="pre">executable</span></code>.</p>
 <p>You can also change</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUILD_MODE</span><span class="o">=</span><span class="s2">&quot;new&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUILD_MODE</span><span class="o">=</span><span class="s2">"new"</span>
 </pre></div>
 </div>
 <p>in <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code>.</p>
@@ -605,7 +607,7 @@ ake_um/preprocess-atmos/src/um/src/control/misc/compute_chunk_size_mod.F90
 <section id="using-your-new-executables">
 <h2>Using your new executables<a class="headerlink" href="#using-your-new-executables" title="Link to this heading">#</a></h2>
 <p>You can continue to run the suite to completion if you like, as all UM related jobs now have added the path to your new executables. For example, here is the job command for the UM reconfiguration task.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rose task-run -v --opt-conf-key=&#39;(nci-gadi)&#39;  --path=&quot;share/fcm_make_um/*/bin&quot; ${TASK_RUN_EXTRA_OPTS:-} --command-key=recon
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rose task-run -v --opt-conf-key='(nci-gadi)'  --path="share/fcm_make_um/*/bin" ${TASK_RUN_EXTRA_OPTS:-} --command-key=recon
 </pre></div>
 </div>
 <p>Alternatively, you can stop the suite now, and edit the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file value the <code class="docutils literal notranslate"><span class="pre">BUILD_MODE</span></code> to “custom” and specify the location of the new executables to an <code class="docutils literal notranslate"><span class="pre">EXEC_DIR</span></code>.  Or, using the <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> GUI, you can change <code class="docutils literal notranslate"><span class="pre">BUILD_MODE</span></code> to <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">some</span> <span class="pre">other</span> <span class="pre">executable</span> <span class="pre">on</span> <span class="pre">disk</span></code>.</p>

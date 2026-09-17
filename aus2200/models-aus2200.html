@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -547,7 +549,7 @@ and the size of the boundary domain and model domain can be configured in the â€
 <section id="get-lbc-from-archive">
 <h3><code class="docutils literal notranslate"><span class="pre">get_lbc_from_archive</span></code><a class="headerlink" href="#get-lbc-from-archive" title="Link to this heading">#</a></h3>
 <p>This task attempts to retrieve the spatial boundary conditions for the upcoming model run from the directory specified by the following set of jinja2 variables:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHIVE_DIR</span> <span class="o">=</span> <span class="p">{{</span><span class="n">BC_ARCHIVE_DIR</span><span class="p">}}</span><span class="o">/</span><span class="p">{{</span><span class="n">mod</span><span class="p">[</span><span class="s2">&quot;lbc_freq&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]}}</span><span class="o">/</span><span class="p">{{</span><span class="n">NLBC_TIMES</span><span class="p">}}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHIVE_DIR</span> <span class="o">=</span> <span class="p">{{</span><span class="n">BC_ARCHIVE_DIR</span><span class="p">}}</span><span class="o">/</span><span class="p">{{</span><span class="n">mod</span><span class="p">[</span><span class="s2">"lbc_freq"</span><span class="p">][</span><span class="mi">0</span><span class="p">]}}</span><span class="o">/</span><span class="p">{{</span><span class="n">NLBC_TIMES</span><span class="p">}}</span>
 </pre></div>
 </div>
 <p>Where</p>

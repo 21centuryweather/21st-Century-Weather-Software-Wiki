@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -480,17 +482,17 @@
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">intake</span>
 
-<span class="n">data_catalog</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;/g/data/su28/tools/su28_catalog/catalog/su28_catalog.yaml&quot;</span><span class="p">)</span>
+<span class="n">data_catalog</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">"/g/data/su28/tools/su28_catalog/catalog/su28_catalog.yaml"</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">data_catalog</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;daily_era5&#39;</span><span class="p">,</span> <span class="s1">&#39;drought_era5&#39;</span><span class="p">,</span> <span class="s1">&#39;MMLEAv2&#39;</span><span class="p">,</span> <span class="s1">&#39;GSMaP&#39;</span><span class="p">,</span> <span class="s1">&#39;weather_objects&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">'daily_era5'</span><span class="p">,</span> <span class="s1">'drought_era5'</span><span class="p">,</span> <span class="s1">'MMLEAv2'</span><span class="p">,</span> <span class="s1">'GSMaP'</span><span class="p">,</span> <span class="s1">'weather_objects'</span><span class="p">]</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Explore the metadata and the parameters for a specific dataset, these can be variables included, frequency, resolution, date, model, etc.</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">daily_era5</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="p">[</span><span class="s1">&#39;daily_era5&#39;</span><span class="p">]</span> <span class="c1"># data_catalog.daily_era5 gives the same result</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">daily_era5</span> <span class="o">=</span> <span class="n">data_catalog</span><span class="p">[</span><span class="s1">'daily_era5'</span><span class="p">]</span> <span class="c1"># data_catalog.daily_era5 gives the same result</span>
 <span class="n">daily_era5</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -511,13 +513,13 @@
 <ol class="arabic simple" start="3">
 <li><p>Search the dataset using one or more parameters.</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">daily_era5</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="s2">&quot;2t&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">daily_era5</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="s2">"2t"</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li><p>Read the data</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">daily_era5</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="s2">&quot;2t&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_dask</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">daily_era5</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="s2">"2t"</span><span class="p">)</span><span class="o">.</span><span class="n">to_dask</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This is an example using the catalog for the datasets hosted on <code class="docutils literal notranslate"><span class="pre">su28</span></code>. Not all catalogs will work exactly the same way but the idea is the same. Also, each dataset can have different parameters. For that, it is very important to no skip step 2 and take your time to get familiar with each dataset.</p>
@@ -527,8 +529,8 @@
 <section id="su28-catalog">
 <h3><code class="docutils literal notranslate"><span class="pre">su28</span></code> catalog<a class="headerlink" href="#su28-catalog" title="Link to this heading">#</a></h3>
 <p>(almost) all datasets hosted on <code class="docutils literal notranslate"><span class="pre">su28</span></code> and <a class="reference internal" href="#datasets/index.html"><span class="xref myst">documented in this wiki</span></a> are listed in the su28 catalog. The catalog can be access through the url or from Gadi:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">catalog_url</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/21centuryweather/su28_catalog/refs/heads/main/catalog/su28_catalog.yaml&quot;</span><span class="p">)</span>
-<span class="n">catalog_path</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">&quot;/g/data/su28/tools/su28_catalog/catalog/su28_catalog.yaml&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">catalog_url</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/21centuryweather/su28_catalog/refs/heads/main/catalog/su28_catalog.yaml"</span><span class="p">)</span>
+<span class="n">catalog_path</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_catalog</span><span class="p">(</span><span class="s2">"/g/data/su28/tools/su28_catalog/catalog/su28_catalog.yaml"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>An example on how to use this catalog can be found <a class="reference external" href="https://github.com/21centuryweather/su28_catalog/blob/main/docs/how_to_catalog.ipynb">here</a>.</p>
@@ -537,7 +539,7 @@
 <h3>NCI catalogs<a class="headerlink" href="#nci-catalogs" title="Link to this heading">#</a></h3>
 <p>Many of the datasets hosted by NCI have an associated intake catalog (don’t confuse with the <a class="reference external" href="https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/home">online NCI Data Catalogue</a>).</p>
 <p>NCI catalogs can be access using <code class="docutils literal notranslate"><span class="pre">open_esm_datastore</span></code> as these are intake-esm catalogs. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_esm_datastore</span><span class="p">(</span><span class="s2">&quot;/g/data/rt52/catalog/v2/esm/catalog.json&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">intake</span><span class="o">.</span><span class="n">open_esm_datastore</span><span class="p">(</span><span class="s2">"/g/data/rt52/catalog/v2/esm/catalog.json"</span><span class="p">)</span>
 </pre></div>
 </div>
 <blockquote>

@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -488,7 +490,7 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p>From a directory on gadi, type</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://git.app.uib.no/Clemens.Spensberger/dynlib.git
-Cloning into &#39;dynlib&#39;...
+Cloning into 'dynlib'...
 remote: Enumerating objects: 4471, done.
 remote: Counting objects: 100% (274/274), done.
 remote: Compressing objects: 100% (105/105), done.
@@ -517,19 +519,19 @@ Loading python3/3.11.0
 <li><p>follow the NCI guidelines to load the LAPACK and BLAS libraries.</p></li>
 </ul>
 <p>Edit line 13 of <code class="docutils literal notranslate"><span class="pre">compile</span></code> from</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PY_VER</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PY_VER</span><span class="o">=</span><span class="s2">""</span>
 </pre></div>
 </div>
 <p>to</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PY_VER</span><span class="o">=</span><span class="s2">&quot;3&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PY_VER</span><span class="o">=</span><span class="s2">"3"</span>
 </pre></div>
 </div>
 <p>Edit line 60 from</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIBS</span><span class="o">=</span><span class="s2">&quot;-L/usr/lib -L/usr/local/lib -L$(pwd)/ext/spherepack3.2/lib -lblas -llapack -lspherepack</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIBS</span><span class="o">=</span><span class="s2">"-L/usr/lib -L/usr/local/lib -L$(pwd)/ext/spherepack3.2/lib -lblas -llapack -lspherepack</span>
 </pre></div>
 </div>
 <p>to</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIBS</span><span class="o">=</span><span class="s2">&quot;-L/usr/lib -L/usr/local/lib -L$(pwd)/ext/spherepack3.2/lib -lmkl_gf_lp64 -lmkl_core -lmkl_gnu_thread -lgomp -lm -lspherepack&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIBS</span><span class="o">=</span><span class="s2">"-L/usr/lib -L/usr/local/lib -L$(pwd)/ext/spherepack3.2/lib -lmkl_gf_lp64 -lmkl_core -lmkl_gnu_thread -lgomp -lm -lspherepack"</span>
 </pre></div>
 </div>
 <section id="note-you-must-now-commit-your-local-changes-to-your-local-copy-of-repository-before-attempting-install">
@@ -553,11 +555,11 @@ Loading python3/3.11.0
 <h2>Loading the module<a class="headerlink" href="#loading-the-module" title="Link to this heading">#</a></h2>
 <p>To load the module within a python session (e.g. using the python3/3.11.0 environment we used to compile and install <code class="docutils literal notranslate"><span class="pre">dynlib</span></code> library) we can use the following (assuming we installed it with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> option):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Python 3.11.0 (main, Nov 18 2022, 08:38:34) [GCC 8.5.0 20210514 (Red Hat 8.5.0-10)] on linux
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+Type "help", "copyright", "credits" or "license" for more information.
 &gt;&gt;&gt; import dynlib
 &gt;&gt;&gt; from dynlib import dynfor
 &gt;&gt;&gt; dir(dynfor)
-[&#39;__doc__&#39;, &#39;__f2py_numpy_version__&#39;, &#39;__file__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;__version__&#39;, &#39;_dynfor_error&#39;, &#39;config&#39;, &#39;consts&#39;, &#39;derivatives&#39;, &#39;detect&#39;, &#39;detect_lines&#39;, &#39;detect_rwb_contour&#39;, &#39;diag&#39;, &#39;diag_tend&#39;, &#39;ellipse&#39;, &#39;interpol&#39;, &#39;sphere&#39;, &#39;stat&#39;, &#39;tend&#39;, &#39;thermodyn&#39;, &#39;utils&#39;]
+['__doc__', '__f2py_numpy_version__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', '_dynfor_error', 'config', 'consts', 'derivatives', 'detect', 'detect_lines', 'detect_rwb_contour', 'diag', 'diag_tend', 'ellipse', 'interpol', 'sphere', 'stat', 'tend', 'thermodyn', 'utils']
 &gt;&gt;&gt; print(dynfor.derivatives.ddx.__doc__)
 res = ddx(dat,dx,dy,[nx,ny,nz])
 
@@ -565,9 +567,9 @@ Wrapper for ``ddx``.
 
 Parameters
 ----------
-dat : input rank-3 array(&#39;d&#39;) with bounds (nz,ny,nx)
-dx : input rank-2 array(&#39;d&#39;) with bounds (ny,nx)
-dy : input rank-2 array(&#39;d&#39;) with bounds (ny,nx)
+dat : input rank-3 array('d') with bounds (nz,ny,nx)
+dx : input rank-2 array('d') with bounds (ny,nx)
+dy : input rank-2 array('d') with bounds (ny,nx)
 
 Other Parameters
 ----------------
@@ -580,22 +582,22 @@ nz : input int, optional
 
 Returns
 -------
-res : rank-3 array(&#39;d&#39;) with bounds (nz,ny,nx)
+res : rank-3 array('d') with bounds (nz,ny,nx)
 </pre></div>
 </div>
 <p>If we used the <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> option we will have to tell python where to find our libraries. One way to do this is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;FULL_PATH_TO_YOUR_LIBRARY_INSTALL&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'FULL_PATH_TO_YOUR_LIBRARY_INSTALL'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
-<span class="go">[&#39;&#39;, &#39;/apps/python3/3.11.0/lib/python31.zip&#39;, &#39;/apps/python3/3.11.0/lib/python3.11&#39;, &#39;/apps/python3/3.11.0/lib/python3.11/lib-dynload&#39;, &#39;/home/548/pag548/.local/lib/python3.11/site-packages&#39;, &#39;/apps/python3/3.11.0/lib/python3.11/site-packages&#39;, &#39;/apps/python3/3.11.0/lib/python3.11/site-packages/numpy-1.21.4-py3.11-linux-x86_64.egg&#39;, &#39;FULL_PATH_TO_YOUR_LIBRARY_INSTALL&#39;]</span>
+<span class="go">['', '/apps/python3/3.11.0/lib/python31.zip', '/apps/python3/3.11.0/lib/python3.11', '/apps/python3/3.11.0/lib/python3.11/lib-dynload', '/home/548/pag548/.local/lib/python3.11/site-packages', '/apps/python3/3.11.0/lib/python3.11/site-packages', '/apps/python3/3.11.0/lib/python3.11/site-packages/numpy-1.21.4-py3.11-linux-x86_64.egg', 'FULL_PATH_TO_YOUR_LIBRARY_INSTALL']</span>
 </pre></div>
 </div>
 <p>Note python will search for <code class="docutils literal notranslate"><span class="pre">dynlib</span></code> according to the order of the paths in the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list. If you wish to add a new path to the start of this list (index 0) so it is searched first, you can use</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;FULL_PATH_TO_YOUR_LIBRARY_INSTALL&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">'FULL_PATH_TO_YOUR_LIBRARY_INSTALL'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or you can insert your new path at the beginning of command-line environment variable <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, e.g</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PYTHONPATH=&quot;FULL_PATH_TO_YOUR_LIBRARY_INSTALL:$PYTHONPATH&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PYTHONPATH="FULL_PATH_TO_YOUR_LIBRARY_INSTALL:$PYTHONPATH"
 </pre></div>
 </div>
 <p>You can also load the module from within the ACCESS-NRI <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment.</p>
@@ -605,8 +607,8 @@ $ ipython
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.11.14</span> <span class="o">|</span> <span class="n">packaged</span> <span class="n">by</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">|</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Oct</span> <span class="mi">22</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">22</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">25</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">14.3.0</span><span class="p">]</span>
-<span class="n">Type</span> <span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;credits&#39;</span> <span class="ow">or</span> <span class="s1">&#39;license&#39;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
-<span class="n">IPython</span> <span class="mf">8.37.0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">&#39;?&#39;</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
+<span class="n">Type</span> <span class="s1">'copyright'</span><span class="p">,</span> <span class="s1">'credits'</span> <span class="ow">or</span> <span class="s1">'license'</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
+<span class="n">IPython</span> <span class="mf">8.37.0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">'?'</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
 <span class="n">Intake</span> <span class="n">telemetry</span> <span class="n">extension</span> <span class="n">loaded</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">dynlib</span>
@@ -615,7 +617,7 @@ $ ipython
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="err">?</span><span class="n">dynlib</span>
 <span class="n">Type</span><span class="p">:</span>        <span class="n">module</span>
-<span class="n">String</span> <span class="n">form</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;dynlib&#39;</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;/home/548/pag548/.local/lib/python3.10/site-packages/dynlib/__init__.py&#39;</span><span class="o">&gt;</span>
+<span class="n">String</span> <span class="n">form</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'dynlib'</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'/home/548/pag548/.local/lib/python3.10/site-packages/dynlib/__init__.py'</span><span class="o">&gt;</span>
 <span class="n">File</span><span class="p">:</span>        <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">dynlib</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
 <span class="n">Docstring</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
 
@@ -633,9 +635,9 @@ $ ipython
 
 <span class="n">Parameters</span>
 <span class="o">----------</span>
-<span class="n">dat</span> <span class="p">:</span> <span class="nb">input</span> <span class="n">rank</span><span class="o">-</span><span class="mi">3</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">nz</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
-<span class="n">dx</span> <span class="p">:</span> <span class="nb">input</span> <span class="n">rank</span><span class="o">-</span><span class="mi">2</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
-<span class="n">dy</span> <span class="p">:</span> <span class="nb">input</span> <span class="n">rank</span><span class="o">-</span><span class="mi">2</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">dat</span> <span class="p">:</span> <span class="nb">input</span> <span class="n">rank</span><span class="o">-</span><span class="mi">3</span> <span class="n">array</span><span class="p">(</span><span class="s1">'d'</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">nz</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">dx</span> <span class="p">:</span> <span class="nb">input</span> <span class="n">rank</span><span class="o">-</span><span class="mi">2</span> <span class="n">array</span><span class="p">(</span><span class="s1">'d'</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">dy</span> <span class="p">:</span> <span class="nb">input</span> <span class="n">rank</span><span class="o">-</span><span class="mi">2</span> <span class="n">array</span><span class="p">(</span><span class="s1">'d'</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
 
 <span class="n">Other</span> <span class="n">Parameters</span>
 <span class="o">----------------</span>
@@ -648,7 +650,7 @@ $ ipython
 
 <span class="n">Returns</span>
 <span class="o">-------</span>
-<span class="n">res</span> <span class="p">:</span> <span class="n">rank</span><span class="o">-</span><span class="mi">3</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">nz</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">res</span> <span class="p">:</span> <span class="n">rank</span><span class="o">-</span><span class="mi">3</span> <span class="n">array</span><span class="p">(</span><span class="s1">'d'</span><span class="p">)</span> <span class="k">with</span> <span class="n">bounds</span> <span class="p">(</span><span class="n">nz</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">from</span><span class="w"> </span><span class="nn">dynlib.metio</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasource</span>
 </pre></div>
@@ -658,12 +660,12 @@ $ ipython
 <h2>Central installation<a class="headerlink" href="#central-installation" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Dynlib</span></code> is currently installed at <code class="docutils literal notranslate"><span class="pre">/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg</span></code>. So you can access the module by either</p>
 <p>a) Setting your <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> to point to this location before launching your <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreter, i.e.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PYTHONPATH=&#39;/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg&#39;:${PYTHONPATH}
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PYTHONPATH='/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg':${PYTHONPATH}
 </pre></div>
 </div>
 <p>(and type <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">echo</span> <span class="pre">$PYTHONPATH</span></code> to check its contents ), or</p>
 <p>b) Setting the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> inside your intepreter as described above, e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">'/g/data/gb02/public/tools/Wx/dynlib-1.6.1.dev7+g2e093da-py3.11.egg'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -675,14 +677,14 @@ $ ipython
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python test_dynlib.py 
 Traceback (most recent call last):
-  File &quot;/g/data/gb02/pag548/dynlib/test_dynlib.py&quot;, line 17, in &lt;module&gt;
-    dat, grid = get_instantaneous([(plev, &#39;u&#39;), (plev,&#39;v&#39;), ], timeinterval)
-  File &quot;/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py&quot;, line 939, in get_instantaneous
+  File "/g/data/gb02/pag548/dynlib/test_dynlib.py", line 17, in &lt;module&gt;
+    dat, grid = get_instantaneous([(plev, 'u'), (plev,'v'), ], timeinterval)
+  File "/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py", line 939, in get_instantaneous
     grid = get_static(**static_kwargs)
-  File &quot;/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/erainterim.py&quot;, line 111, in get_static
-    fo, oro = metopen(conf.staticfile, &#39;oro&#39;, verbose=verbose, no_dtype_conversion=no_dtype_conversion, 
-  File &quot;/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py&quot;, line 473, in metopen
-    raise ValueError(&#39;%s.* not found in any data location. \n&#39;
+  File "/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/erainterim.py", line 111, in get_static
+    fo, oro = metopen(conf.staticfile, 'oro', verbose=verbose, no_dtype_conversion=no_dtype_conversion, 
+  File "/g/data/gb02/pag548/dynlib/dynlib_env/lib/python3.10/site-packages/dynlib/metio/datasource.py", line 473, in metopen
+    raise ValueError('%s.* not found in any data location. \n'
 ValueError: ei.ans.static.* not found in any data location. 
 Tried the following (in order):
       .
@@ -696,18 +698,18 @@ Tried the following (in order):
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(dynlib_env) [pag548@gadi-login-05 dynlib]$ python tests/test_plot.py 
 Traceback (most recent call last):
-  File &quot;/g/data/gb02/pag548/dynlib/tests/test_plot.py&quot;, line 11, in &lt;module&gt;
+  File "/g/data/gb02/pag548/dynlib/tests/test_plot.py", line 11, in &lt;module&gt;
     from create_ref_plots import path, gfile, obfile, odfile, req_levs, ofile as reffile, conf, make_plot_list
-  File &quot;/g/data/gb02/pag548/dynlib/tests/create_ref_plots.py&quot;, line 7, in &lt;module&gt;
+  File "/g/data/gb02/pag548/dynlib/tests/create_ref_plots.py", line 7, in &lt;module&gt;
     from lib.settings import get_active_context
-ImportError: cannot import name &#39;get_active_context&#39; from &#39;lib.settings&#39; (/g/data/gb02/pag548/dynlib/tests/lib/settings.py)
+ImportError: cannot import name 'get_active_context' from 'lib.settings' (/g/data/gb02/pag548/dynlib/tests/lib/settings.py)
 (dynlib_env) [pag548@gadi-login-05 dynlib]$ python tests/test_func.py 
 Traceback (most recent call last):
-  File &quot;/g/data/gb02/pag548/dynlib/tests/test_func.py&quot;, line 9, in &lt;module&gt;
+  File "/g/data/gb02/pag548/dynlib/tests/test_func.py", line 9, in &lt;module&gt;
     from create_ref_data import path, gfile, obfile, odfile, diagnostics, _prepare_args
-  File &quot;/g/data/gb02/pag548/dynlib/tests/create_ref_data.py&quot;, line 4, in &lt;module&gt;
+  File "/g/data/gb02/pag548/dynlib/tests/create_ref_data.py", line 4, in &lt;module&gt;
     import pygrib
-ModuleNotFoundError: No module named &#39;pygrib&#39;
+ModuleNotFoundError: No module named 'pygrib'
 </pre></div>
 </div>
 <ul class="simple">
@@ -715,11 +717,11 @@ ModuleNotFoundError: No module named &#39;pygrib&#39;
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">python</span> <span class="n">tests</span><span class="o">/</span><span class="n">test_func</span><span class="o">.</span><span class="n">py</span> 
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&quot;/g/data/gb02/pag548/dynlib/tests/test_func.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">"/g/data/gb02/pag548/dynlib/tests/test_func.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">create_ref_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">gfile</span><span class="p">,</span> <span class="n">obfile</span><span class="p">,</span> <span class="n">odfile</span><span class="p">,</span> <span class="n">diagnostics</span><span class="p">,</span> <span class="n">_prepare_args</span>
-  <span class="n">File</span> <span class="s2">&quot;/g/data/gb02/pag548/dynlib/tests/create_ref_data.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">12</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">"/g/data/gb02/pag548/dynlib/tests/create_ref_data.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">12</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">lib.humidity</span>
-<span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;lib.humidity&#39;</span>
+<span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">'lib.humidity'</span>
 </pre></div>
 </div>
 </section>
@@ -746,8 +748,8 @@ $ source dynlib_env/bin/activate
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.11.14</span> <span class="o">|</span> <span class="n">packaged</span> <span class="n">by</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">|</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Oct</span> <span class="mi">22</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">22</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">25</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">14.3.0</span><span class="p">]</span>
-<span class="n">Type</span> <span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;credits&#39;</span> <span class="ow">or</span> <span class="s1">&#39;license&#39;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
-<span class="n">IPython</span> <span class="mf">8.37.0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">&#39;?&#39;</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
+<span class="n">Type</span> <span class="s1">'copyright'</span><span class="p">,</span> <span class="s1">'credits'</span> <span class="ow">or</span> <span class="s1">'license'</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
+<span class="n">IPython</span> <span class="mf">8.37.0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">'?'</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
 <span class="n">Intake</span> <span class="n">telemetry</span> <span class="n">extension</span> <span class="n">loaded</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>

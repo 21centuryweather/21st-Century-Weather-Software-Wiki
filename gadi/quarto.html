@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -492,7 +494,7 @@
 </div>
 <p><img alt="alt text" src="../_images/quarto-path.png" /></p>
 <p>You can add this to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file to make it permanent:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/g/data/gb02/pag548/quarto-1.7.29/bin/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/g/data/gb02/pag548/quarto-1.7.29/bin/:</span><span class="nv">$PATH</span><span class="s2">"</span>
 </pre></div>
 </div>
 <section id="elements-of-a-qmd-file">
@@ -550,13 +552,13 @@ module<span class="w"> </span>load<span class="w"> </span>conda/analysis3-XX.XX
 <li><p>Add the kernel to the YAML header in the file:</p></li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Example</span><span class="nv"> </span><span class="s">Quarto</span><span class="nv"> </span><span class="s">Document&quot;</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"Example</span><span class="nv"> </span><span class="s">Quarto</span><span class="nv"> </span><span class="s">Document"</span>
 <span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">html</span>
 <span class="nt">jupyter</span><span class="p">:</span><span class="w"> </span>
 <span class="w">  </span><span class="nt">kernelspec</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;analysis3-XX.XX&quot;</span>
-<span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python&quot;</span>
-<span class="w">    </span><span class="nt">display_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;analysis3-XX.XX&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"analysis3-XX.XX"</span>
+<span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="s">"python"</span>
+<span class="w">    </span><span class="nt">display_name</span><span class="p">:</span><span class="w"> </span><span class="s">"analysis3-XX.XX"</span>
 <span class="nn">---</span>
 </pre></div>
 </div>

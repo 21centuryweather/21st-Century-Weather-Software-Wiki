@@ -1,4 +1,4 @@
-# Suite configuration
+# Pre-beta configurations
 
 The private repository `https://github.com/21centuryweather/access-am3-configs` includes two branches to run a low (n96) and a high (n512) resolution: 
 

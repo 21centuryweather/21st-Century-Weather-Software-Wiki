@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -661,7 +663,7 @@
 <p>Here: <code class="docutils literal notranslate"><span class="pre">9:12:33</span> <span class="pre">/</span> <span class="pre">(48</span> <span class="pre">×</span> <span class="pre">1:00:12)</span></code> ≈ <strong>19%</strong>. You’re paying for 48 cores and using the equivalent of about 9. Something is serial, I/O-blocked, or badly threaded. NCI’s guidance is to target the sweet spot where you’re <strong>using at least 80%</strong> of what you reserved.</p>
 <p>Check your balance before submitting a campaign:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nci_account<span class="w"> </span>-P<span class="w"> </span>gb02<span class="w">          </span><span class="c1"># grant, used, reserved, available</span>
-nqstat<span class="w"> </span>-P<span class="w"> </span>gb02<span class="w">               </span><span class="c1"># what&#39;s running and queued</span>
+nqstat<span class="w"> </span>-P<span class="w"> </span>gb02<span class="w">               </span><span class="c1"># what's running and queued</span>
 </pre></div>
 </div>
 </section>

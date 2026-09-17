@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -481,8 +483,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">iris</span>
 
-<span class="c1"># Load a single &#39;cube&#39; from the file by stash code</span>
-<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="s1">&#39;~/cylc-run/u-cy369/share/cycle/20200120T0000Z/aus2200/d0198/RA3/um/umnsaa_pvera000&#39;</span><span class="p">,</span> <span class="s1">&#39;m01s03i236&#39;</span><span class="p">)</span>
+<span class="c1"># Load a single 'cube' from the file by stash code</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="s1">'~/cylc-run/u-cy369/share/cycle/20200120T0000Z/aus2200/d0198/RA3/um/umnsaa_pvera000'</span><span class="p">,</span> <span class="s1">'m01s03i236'</span><span class="p">)</span>
 <span class="n">cube</span>
 </pre></div>
 </div>
@@ -645,8 +647,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">mule</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;UMDIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/g/data/access/umdir&#39;</span>
-<span class="n">mf</span> <span class="o">=</span> <span class="n">mule</span><span class="o">.</span><span class="n">load_umfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/cylc-run/u-cy369/share/cycle/20200120T0000Z/aus2200/d0198/RA3/um/umnsaa_pvera000&#39;</span><span class="p">))</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'UMDIR'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'/g/data/access/umdir'</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mule</span><span class="o">.</span><span class="n">load_umfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">'~/cylc-run/u-cy369/share/cycle/20200120T0000Z/aus2200/d0198/RA3/um/umnsaa_pvera000'</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">mf</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">lbuser4</span> <span class="o">==</span> <span class="mi">3236</span><span class="p">:</span> <span class="c1"># Stash code for 1.5m temperature</span>

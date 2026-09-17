@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -482,7 +484,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 
 <span class="c1"># Load a NetCDF climate dataset</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;era5_data.nc&quot;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">"era5_data.nc"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 
 </pre></div>
@@ -504,7 +506,7 @@ Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class=
 <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="mi">318548</span><span class="n">cbe665e65b4dae4a5da8d4eba187a4c6b2</span>
 
 <span class="c1"># Load a NetCDF climate dataset</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">&quot;era5_data.nc&quot;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s2">"era5_data.nc"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 
 </pre></div>
@@ -580,14 +582,14 @@ They allow the maintainers and contributors to the project to review, discuss, r
 <span class="gi">+import matplotlib.pyplot as plt</span>
 <span class="w"> </span>
 <span class="w"> </span># Load a NetCDF climate dataset
-<span class="w"> </span>ds = xr.open_mfdataset(&quot;era5_data.nc&quot;)
+<span class="w"> </span>ds = xr.open_mfdataset("era5_data.nc")
 <span class="w"> </span>print(ds)
 <span class="gi">+</span>
 <span class="gi">+# Plot a temperature time series</span>
-<span class="gi">+plt.plot(df[&quot;date&quot;], df[&quot;temperature&quot;])</span>
-<span class="gi">+plt.xlabel(&quot;Date&quot;)</span>
-<span class="gi">+plt.ylabel(&quot;Temperature&quot;)</span>
-<span class="gi">+plt.title(&quot;Temperature Over Time&quot;)</span>
+<span class="gi">+plt.plot(df["date"], df["temperature"])</span>
+<span class="gi">+plt.xlabel("Date")</span>
+<span class="gi">+plt.ylabel("Temperature")</span>
+<span class="gi">+plt.title("Temperature Over Time")</span>
 <span class="gi">+plt.show()</span>
 </pre></div>
 </div>
@@ -599,11 +601,11 @@ They allow the maintainers and contributors to the project to review, discuss, r
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>On<span class="w"> </span>branch<span class="w"> </span>suggest-plot
 Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
-<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
-<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git restore &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
 <span class="w">	</span>modified:<span class="w">   </span>read_era5.py
 
-no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add"</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">"git commit -a"</span><span class="o">)</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
@@ -616,12 +618,12 @@ Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="
 Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">468</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">468</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
 Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
 remote:<span class="w"> </span>
-remote:<span class="w"> </span>Create<span class="w"> </span>a<span class="w"> </span>pull<span class="w"> </span>request<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;suggest-plot&#39;</span><span class="w"> </span>on<span class="w"> </span>GitHub<span class="w"> </span>by<span class="w"> </span>visiting:
+remote:<span class="w"> </span>Create<span class="w"> </span>a<span class="w"> </span>pull<span class="w"> </span>request<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'suggest-plot'</span><span class="w"> </span>on<span class="w"> </span>GitHub<span class="w"> </span>by<span class="w"> </span>visiting:
 remote:<span class="w">      </span>https://github.com/&lt;username&gt;/new-project/pull/new/suggest-plot
 remote:<span class="w"> </span>
 To<span class="w"> </span>github.com:&lt;username&gt;/new-project.git
 <span class="w"> </span>*<span class="w"> </span><span class="o">[</span>new<span class="w"> </span>branch<span class="o">]</span><span class="w">      </span>suggest-plot<span class="w"> </span>-&gt;<span class="w"> </span>suggest-plot
-branch<span class="w"> </span><span class="s1">&#39;suggest-plot&#39;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>track<span class="w"> </span><span class="s1">&#39;origin/suggest-plot&#39;</span>.
+branch<span class="w"> </span><span class="s1">'suggest-plot'</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>track<span class="w"> </span><span class="s1">'origin/suggest-plot'</span>.
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
@@ -704,12 +706,12 @@ changes you will have to go back to step 4.</p></li>
 <p class="admonition-title">Tip</p>
 <p>If you prefer or need to do everything from the terminal, including forks and PR, GitHub has a command line called <a class="reference external" href="https://github.com/cli/cli">gh</a>.</p>
 <p>So, for example if you what to create a PR, from the terminal run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;Pull request title&quot;</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;Pull request body&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">"Pull request title"</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">"Pull request body"</span>
 </pre></div>
 </div>
 <p>Adding a title and a message in the body of the pull request. The Terminal will return the link to the pr in the web. It’s useful to remember the number.</p>
 <p>You can also add comments after opening the pull request with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gh<span class="w"> </span>pr<span class="w"> </span>comment<span class="w"> </span>&lt;number<span class="w"> </span>of<span class="w"> </span>pr&gt;<span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;Some comment&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gh<span class="w"> </span>pr<span class="w"> </span>comment<span class="w"> </span>&lt;number<span class="w"> </span>of<span class="w"> </span>pr&gt;<span class="w"> </span>--body<span class="w"> </span><span class="s2">"Some comment"</span>
 </pre></div>
 </div>
 </div>

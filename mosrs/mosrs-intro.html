@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -496,7 +498,7 @@ session db78f6e1-aef2-b7ba-03fb-b8768f0a84e1 running - connect using
 <p>After logging in, the <code class="docutils literal notranslate"><span class="pre">bash</span></code> login prompt will change from <code class="docutils literal notranslate"><span class="pre">&lt;user-id.&#64;gadi-login</span></code> etc. to<code class="docutils literal notranslate"> <span class="pre">&lt;user-id&gt;&#64;&lt;session-name&gt;</span></code>.</p>
 <p>As mentioned <a class="reference internal" href="../rose-cylc/rose-cylc-intro.html#fourth-cylc-tutorial"><span class="std std-ref">here</span></a> in the  previous<code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> tutorials, you can use an <code class="docutils literal notranslate"><span class="pre">alias</span></code> to help load the <code class="docutils literal notranslate"><span class="pre">cylc</span></code> modules. You can define a <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> <code class="docutils literal notranslate"><span class="pre">alias</span></code> inside your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># User specific aliases and functions</span>
-<span class="n">alias</span> <span class="n">start_rose</span><span class="o">=</span><span class="s2">&quot;module use /g/data/hr22/modulefiles;module load cylc7&quot;</span>
+<span class="n">alias</span> <span class="n">start_rose</span><span class="o">=</span><span class="s2">"module use /g/data/hr22/modulefiles;module load cylc7"</span>
 </pre></div>
 </div>
 <p>An <code class="docutils literal notranslate"><span class="pre">alias</span></code> allows you to execute multiple commands by typing <code class="docutils literal notranslate"><span class="pre">start_rose</span></code> inside my persistent session:</p>

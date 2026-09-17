@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -620,7 +622,7 @@ script = {{TASK_RUN_COMMAND}}
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">TASK_RUN_COMMAND</span></code> is defined using the <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">TASK_RUN_COMMAND</span> <span class="o">=</span> <span class="s2">&quot;rose task-run --verbose -O &#39;(&quot;</span> <span class="o">+</span> <span class="n">SITE</span> <span class="o">+</span> <span class="s2">&quot;)&#39;&quot;</span> <span class="o">%</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">TASK_RUN_COMMAND</span> <span class="o">=</span> <span class="s2">"rose task-run --verbose -O '("</span> <span class="o">+</span> <span class="n">SITE</span> <span class="o">+</span> <span class="s2">")'"</span> <span class="o">%</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>The use of <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">task-run</span></code> was covered in the third rose tutorial we covered earlier. If you need refresh your memory, you can review the tutorial here:</p>
@@ -691,10 +693,10 @@ $ xconv 20200116T0000Z_engl_t+3_000 &amp;
 <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 
 <span class="c1"># This will return a list of iris cube objects</span>
-<span class="n">dump</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;20200116T0000Z_engl_t+3_000&#39;</span><span class="p">)</span>
+<span class="n">dump</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'20200116T0000Z_engl_t+3_000'</span><span class="p">)</span>
 
 <span class="c1"># This will extract the cube for surface temperature</span>
-<span class="n">temp</span><span class="p">,</span> <span class="o">=</span> <span class="p">[</span> <span class="n">cube</span> <span class="k">for</span> <span class="n">cube</span> <span class="ow">in</span> <span class="n">dump</span> <span class="k">if</span> <span class="n">cube</span><span class="o">.</span><span class="n">standard_name</span> <span class="o">==</span> <span class="s1">&#39;surface_temperature&#39;</span> <span class="p">]</span>
+<span class="n">temp</span><span class="p">,</span> <span class="o">=</span> <span class="p">[</span> <span class="n">cube</span> <span class="k">for</span> <span class="n">cube</span> <span class="ow">in</span> <span class="n">dump</span> <span class="k">if</span> <span class="n">cube</span><span class="o">.</span><span class="n">standard_name</span> <span class="o">==</span> <span class="s1">'surface_temperature'</span> <span class="p">]</span>
 
 <span class="c1"># This will convert the cube into an Xarray object</span>
 <span class="n">temp_da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
@@ -808,7 +810,7 @@ grid complexity =   1.4292 [ lower bound =   1.3125 ]
 <li><p>The output of the the atmospheric model in this suite integrates forward in time in 12 minute intervals.</p></li>
 <li><p>You can use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> app <code class="docutils literal notranslate"><span class="pre">grep</span></code> to search for all the maximum timesteps in <code class="docutils literal notranslate"><span class="pre">job.out</span></code> and then extract the digits of the subsequent line, e.g.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -A 1 w_max job.out | grep -P &#39;(^\d+)&#39;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -A 1 w_max job.out | grep -P '(^\d+)'
 0.225E+01  40    139   64.1deg W    -23.8deg S    0.225E+01   40     0
 0.125E+01  67    325  151.9deg W     57.6deg N    0.225E+01   40     0
 0.148E+01  67    325  151.3deg W     57.9deg N    0.225E+01   40     0
@@ -852,7 +854,7 @@ This task ends by writing the following files in `~/cylc-run/u-dl058/share/cycle
 <section id="viewing-the-outputs">
 <h2>Viewing the outputs<a class="headerlink" href="#viewing-the-outputs" title="Link to this heading">#</a></h2>
 <p>The suite will output the netCDF files to the location defined in <code class="docutils literal notranslate"><span class="pre">ARCHDIR</span></code> in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, which by default is equal to</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHDIR</span><span class="o">=</span><span class="s1">&#39;/scratch/$</span><span class="si">{PROJECT}</span><span class="s1">/$</span><span class="si">{USER}</span><span class="s1">/GC5_runs&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARCHDIR</span><span class="o">=</span><span class="s1">'/scratch/$</span><span class="si">{PROJECT}</span><span class="s1">/$</span><span class="si">{USER}</span><span class="s1">/GC5_runs'</span>
 </pre></div>
 </div>
 <p>A simple python notebook to load the data in this and compare it other suite output is available at</p>

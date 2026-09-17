@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -469,7 +471,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="using-the-python-pathlib-module">
 <h1>Using the Python pathlib module<a class="headerlink" href="#using-the-python-pathlib-module" title="Link to this heading">#</a></h1>
 <p>When using Python, we often fall into the trap of specifying filepaths as a single string, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;/some_folder_name/a_random_subdirectory_name/another_subdirectory/filename.txt&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="o">=</span><span class="s1">'/some_folder_name/a_random_subdirectory_name/another_subdirectory/filename.txt'</span>
 </pre></div>
 </div>
 <p>While this may suffice when writing simple test scripts, such practices create several problems.</p>
@@ -494,8 +496,8 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">]</span>
-<span class="n">dummy_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">home</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;Documents&quot;</span> <span class="o">/</span> <span class="s2">&quot;Projects&quot;</span>
+<span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'HOME'</span><span class="p">]</span>
+<span class="n">dummy_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">home</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"Documents"</span> <span class="o">/</span> <span class="s2">"Projects"</span>
 <span class="nb">print</span> <span class="p">(</span><span class="n">dummy_path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -512,16 +514,16 @@
 </pre></div>
 </div>
 <p>Anytime your pass a filestring to the <code class="docutils literal notranslate"><span class="pre">Path</span></code> function, you will generate a <code class="docutils literal notranslate"><span class="pre">PosixPath</span></code> (on Linux/Mac) or <code class="docutils literal notranslate"><span class="pre">WindowsPath</span></code> object. e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/gb02/&#39;</span><span class="p">)</span>
-<span class="go">PosixPath(&#39;/g/data/gb02&#39;)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">'/g/data/gb02/'</span><span class="p">)</span>
+<span class="go">PosixPath('/g/data/gb02')</span>
 </pre></div>
 </div>
 <p>We can then use the ‘/’ operator to join strings onto this Path object quickly and efficiently, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DATA</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/gb02/&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s1">&#39;file.nc&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DATA</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/g/data/gb02/'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s1">'file.nc'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span> <span class="p">(</span><span class="n">file</span><span class="p">)</span>
 <span class="go"># Or you can type</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span> <span class="p">(</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s1">&#39;file.nc&#39;</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span> <span class="p">(</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s1">'file.nc'</span> <span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -540,16 +542,16 @@
 <span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">CONFIG_PATH</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># 3. Define important subdirectories relative to the root</span>
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
-<span class="n">DERIVED_DIR</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;derived&quot;</span>
-<span class="n">TEMP_DIR</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;temp&quot;</span>
-<span class="n">ANALYSIS_DIR</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s2">&quot;analysis&quot;</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s2">"data"</span>
+<span class="n">DERIVED_DIR</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">"derived"</span>
+<span class="n">TEMP_DIR</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">"temp"</span>
+<span class="n">ANALYSIS_DIR</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s2">"analysis"</span>
 
 <span class="c1"># Ensure directories exist before your scripts try to use them</span>
 <span class="n">DATA_DIR</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">OUTPUT_DIR</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Project Root is anchored at: </span><span class="si">{</span><span class="n">PROJECT_ROOT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Project Root is anchored at: </span><span class="si">{</span><span class="n">PROJECT_ROOT</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>So we have created python objects for every directory that exists in the project template. For all subsequent code written for the project, you would use these <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> objects (i.e. <code class="docutils literal notranslate"><span class="pre">TEMP_DIR</span></code>,<code class="docutils literal notranslate"><span class="pre">ANALYSIS_DIR</span></code> etc.) instead of using text strings.</p>
@@ -568,11 +570,11 @@
 <p>If you need to reference data on filesystems outside of your project directory, you can define them as a full path. Follow the example <a class="reference external" href="https://github.com/21centuryweather/software_engineering_demos/blob/main/solar_example/config.py">here</a>.</p>
 <p>This still helps with portability. If you wanted to run the data analysis on another platform, you would just need to change a single filepath definition in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>, rather than edit every textstring that points to a data file in your code base.</p>
 <p>If your project grows to ingest data from multiple sources on multiple platforms, you can use <strong>different configuration files!</strong>. E.g. you could have a file called <code class="docutils literal notranslate"><span class="pre">config_gadi.py</span></code> which contains</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HIMAWARI_SOLAR_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/rv74/satellite-products/arc/der/himawari-ahi/solar/&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HIMAWARI_SOLAR_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">'/g/data/rv74/satellite-products/arc/der/himawari-ahi/solar/'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and another file called <code class="docutils literal notranslate"><span class="pre">config_mac.py</span></code> which contains</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HIMAWARI_SOLAR_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/Users/schmoopy/Downloads/himawari-ahi/solar&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HIMAWARI_SOLAR_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">'/Users/schmoopy/Downloads/himawari-ahi/solar'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You could commit both configuration files to the project repository, and then use <a class="reference internal" href="../gadi/project-template.html#organise-your-code"><span class="std std-ref">symbolic links</span></a> to create a link called <code class="docutils literal notranslate"><span class="pre">config.py</span></code> that points the relevant configuration file for your current platform.</p>
@@ -589,16 +591,16 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># Assume we are looking inside our raw data directory</span>
-<span class="n">data_folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./data/raw&quot;</span><span class="p">)</span>
+<span class="n">data_folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./data/raw"</span><span class="p">)</span>
 
 <span class="c1"># Example A: Iterate over only CSVs in the immediate directory</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- CSVs in Main Folder ---&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">csv_file</span> <span class="ow">in</span> <span class="n">data_folder</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.csv&quot;</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">csv_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># .name yields just the filename (e.g., &#39;data.csv&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"--- CSVs in Main Folder ---"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">csv_file</span> <span class="ow">in</span> <span class="n">data_folder</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.csv"</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">csv_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># .name yields just the filename (e.g., 'data.csv')</span>
 
 <span class="c1"># Example B: Recursively find ALL JSON files across all subdirectories</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- JSONs in All Subfolders ---&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">json_file</span> <span class="ow">in</span> <span class="n">data_folder</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.json&quot;</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- JSONs in All Subfolders ---"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">json_file</span> <span class="ow">in</span> <span class="n">data_folder</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*.json"</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">json_file</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">data_folder</span><span class="p">))</span>  <span class="c1"># Prints path relative to data_folder</span>
 </pre></div>
 </div>
@@ -608,7 +610,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># Setup mock environment/directory</span>
-<span class="n">data_directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/g/data/xx00/some_data&quot;</span><span class="p">)</span>
+<span class="n">data_directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"/g/data/xx00/some_data"</span><span class="p">)</span>
 
 <span class="c1"># Target Range: We only want files from March 2016 to May 2017</span>
 <span class="n">start_bound</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -617,58 +619,58 @@
 <span class="n">valid_paths</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># We use rglob to catch them even if they are nested in subfolders</span>
-<span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">data_directory</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;maq5*.nc&quot;</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">data_directory</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"maq5*.nc"</span><span class="p">):</span>
     
-    <span class="c1"># 1. Extract the filename without the full path or extension (.stem fetches &#39;&lt;filename_YYYYMMDD&gt;&#39;)</span>
+    <span class="c1"># 1. Extract the filename without the full path or extension (.stem fetches '&lt;filename_YYYYMMDD&gt;')</span>
     <span class="n">filename_stem</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">stem</span>
     
-    <span class="c1"># 2. Extract the date portion string (&#39;20260315&#39;). Note the value of [2]</span>
-    <span class="c1">#    used here depends on how many underscore &#39;_&#39; characters are the filename</span>
-    <span class="n">date_string</span> <span class="o">=</span> <span class="n">filename_stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="c1"># 2. Extract the date portion string ('20260315'). Note the value of [2]</span>
+    <span class="c1">#    used here depends on how many underscore '_' characters are the filename</span>
+    <span class="n">date_string</span> <span class="o">=</span> <span class="n">filename_stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
     
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># 3. Parse the string into a comparable datetime object</span>
-        <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_string</span><span class="p">,</span> <span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_string</span><span class="p">,</span> <span class="s2">"%Y%m</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
         
         <span class="c1"># 4. Check if the file fits neatly within our timeline boundaries</span>
         <span class="k">if</span> <span class="n">start_bound</span> <span class="o">&lt;=</span> <span class="n">file_date</span> <span class="o">&lt;=</span> <span class="n">end_bound</span><span class="p">:</span>
             <span class="n">valid_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
             
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="c1"># Skips files that don&#39;t match the expected date formatting pattern</span>
+        <span class="c1"># Skips files that don't match the expected date formatting pattern</span>
         <span class="k">continue</span>
 
 <span class="c1"># Output the discovered target paths</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid files within the timeframe:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid files within the timeframe:"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">valid_paths</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; -&gt; </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" -&gt; </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="using-pathlib-with-generators-and-iterators">
 <h2>Using pathlib with generators and iterators<a class="headerlink" href="#using-pathlib-with-generators-and-iterators" title="Link to this heading">#</a></h2>
 <p>You can build on this example to create elegant logic to load a subset of ERA5 data. In this example the value of <code class="docutils literal notranslate"><span class="pre">ERA_PRESSURE_DIR</span></code> and <code class="docutils literal notranslate"><span class="pre">ERA_SURFACE_DIR</span></code> were defined in a <code class="docutils literal notranslate"><span class="pre">config.py</span></code> file as</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ERA_PRESSURE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/rt52/era5/pressure-levels/reanalysis/&#39;</span><span class="p">)</span>
-<span class="n">ERA_SURFACE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/g/data/rt52/era5/single-levels/reanalysis/&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ERA_PRESSURE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/g/data/rt52/era5/pressure-levels/reanalysis/'</span><span class="p">)</span>
+<span class="n">ERA_SURFACE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/g/data/rt52/era5/single-levels/reanalysis/'</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_era</span><span class="p">(</span><span class="n">ERA_PRESSURE_DIR</span><span class="p">,</span>
              <span class="n">ERA_SURFACE_DIR</span><span class="p">,</span> 
              <span class="n">start_date</span><span class="p">):</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Load the ERA-5 files from ERA_DIRS. </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1"># Extract the year string from an input date string</span>
     <span class="n">year</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
 
     <span class="c1"># First add pressure-level data</span>
-    <span class="n">pressure_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="s1">&#39;vo&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>  <span class="c1"># List of atmospheric variables on pressure levels </span>
+    <span class="n">pressure_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'u'</span><span class="p">,</span><span class="s1">'v'</span><span class="p">,</span><span class="s1">'vo'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">]</span>  <span class="c1"># List of atmospheric variables on pressure levels </span>
     <span class="n">target_files</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># Create dictionary for files opened</span>
 
     <span class="c1"># Construct matching patterns relative to ERA_DIR</span>
-    <span class="n">pressure_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1">*.nc&#39;</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">pressure_vars</span> <span class="p">]</span>
+    <span class="n">pressure_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1">*.nc'</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">pressure_vars</span> <span class="p">]</span>
 
     <span class="c1"># Extract list of required files for this start_date </span>
     <span class="n">matched</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
@@ -679,14 +681,14 @@
 
     <span class="c1"># Append filename to dictionary</span>
     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">matched</span><span class="p">:</span>
-        <span class="n">var</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39; INFO : Assigning </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1"> for variable </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">' INFO : Assigning </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1"> for variable </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="n">target_files</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">file</span> 
 
     <span class="c1"># Now repeat for surface level data</span>
-    <span class="n">surface_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span>
+    <span class="n">surface_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sst'</span><span class="p">]</span>
 
-    <span class="n">surface_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1">*.nc&#39;</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">surface_vars</span> <span class="p">]</span>
+    <span class="n">surface_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1">*.nc'</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">surface_vars</span> <span class="p">]</span>
 
     <span class="n">matched</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
         <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
@@ -695,8 +697,8 @@
     <span class="p">)</span>
 
     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">matched</span><span class="p">:</span>
-        <span class="n">var</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39; INFO : Assigning </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1"> for variable </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">' INFO : Assigning </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1"> for variable </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="n">target_files</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">file</span> 
 
     <span class="k">return</span> <span class="n">target_files</span>

@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -467,7 +469,7 @@
 <p>You can check this for yourself by logging into an interactive <code class="docutils literal notranslate"><span class="pre">gadi</span></code> compute note, by following <a class="reference external" href="https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-InteractiveJobs">these instructions</a>, and launching a simple <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreter.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python</span>
 <span class="n">Python</span> <span class="mf">3.10.14</span> <span class="o">|</span> <span class="n">packaged</span> <span class="n">by</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">|</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Mar</span> <span class="mi">20</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">12.3.0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
-<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="n">Type</span> <span class="s2">"help"</span><span class="p">,</span> <span class="s2">"copyright"</span><span class="p">,</span> <span class="s2">"credits"</span> <span class="ow">or</span> <span class="s2">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 <span class="mi">96</span>
@@ -486,8 +488,8 @@
 <section id="an-example-using-concurrent-futures">
 <h2>An example using concurrent futures<a class="headerlink" href="#an-example-using-concurrent-futures" title="Link to this heading">#</a></h2>
 <p>In this example, we are processing 10-minute geostationary satellite estimates of solar irradiance over Australia. Originally, the code loaded all 10-minute datasets valid for a single day into a single <code class="docutils literal notranslate"><span class="pre">xarray</span></code> dataset. The code then used a simple for loop to process a range of days. The <code class="docutils literal notranslate"><span class="pre">xarray</span></code> dataset valid for every day was appended to a list, which was  then concatenated into a larger array along the time dimension. Below is a combination of actual code combined with pseudo-code to save space.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
-<span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">-%m-%Y"</span><span class="p">)</span>
+<span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">-%m-%Y"</span><span class="p">)</span>
 
 <span class="c1"># Generate a list of dates</span>
 <span class="n">date_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_dt</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">end_dt</span> <span class="o">-</span> <span class="n">start_dt</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
@@ -496,19 +498,19 @@
 
 <span class="k">for</span> <span class="n">dir_dt</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span>
 
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">utils_V2</span><span class="o">.</span><span class="n">get_irradiance_day</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;p1s&#39;</span><span class="p">,</span> <span class="n">dir_dt</span><span class="o">=</span><span class="n">dir_dt</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">utils_V2</span><span class="o">.</span><span class="n">get_irradiance_day</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">'p1s'</span><span class="p">,</span> <span class="n">dir_dt</span><span class="o">=</span><span class="n">dir_dt</span><span class="p">)</span>
 
     <span class="c1">#( Extract three irradiance variables : global, diffuse and direct from this</span>
     <span class="c1"># dataset, and apply spatial masks to extract only the gridded areas of </span>
     <span class="c1"># interest. Then convert the 2-D masked arrays, containing NaNs (empty/missing</span>
-    <span class="c1">#  values i.e. &#39;Not a Number&#39;) into a 1-D array)</span>
+    <span class="c1">#  values i.e. 'Not a Number') into a 1-D array)</span>
         
     <span class="c1"># calculate capacity factors using pvlib</span>
     <span class="c1"># the function defined in utils_V2 is essentially the same as the workflow in </span>
     <span class="c1"># pv-output-tilting.ipynb</span>
     <span class="n">actual_ideal_ratio</span> <span class="o">=</span> <span class="n">utils_V2</span><span class="o">.</span><span class="n">tilting_panel_pr</span><span class="p">(</span>
-        <span class="n">pv_model</span> <span class="o">=</span> <span class="s1">&#39;Canadian_Solar_CS5P_220M___2009_&#39;</span><span class="p">,</span>
-        <span class="n">inverter_model</span> <span class="o">=</span> <span class="s1">&#39;ABB__MICRO_0_25_I_OUTD_US_208__208V_&#39;</span><span class="p">,</span>
+        <span class="n">pv_model</span> <span class="o">=</span> <span class="s1">'Canadian_Solar_CS5P_220M___2009_'</span><span class="p">,</span>
+        <span class="n">inverter_model</span> <span class="o">=</span> <span class="s1">'ABB__MICRO_0_25_I_OUTD_US_208__208V_'</span><span class="p">,</span>
         <span class="n">ghi</span><span class="o">=</span><span class="n">ghi_clean</span><span class="p">,</span>
         <span class="n">dni</span><span class="o">=</span><span class="n">dni_clean</span><span class="p">,</span>
         <span class="n">dhi</span><span class="o">=</span><span class="n">dhi_clean</span><span class="p">,</span>
@@ -524,11 +526,11 @@
 
     <span class="c1"># Compute the spatial mean in the gridded areas of interest </span>
 
-    <span class="n">mean_daily</span> <span class="o">=</span> <span class="n">ratio_da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mean_daily</span> <span class="o">=</span> <span class="n">ratio_da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">"latitude"</span><span class="p">,</span> <span class="s2">"longitude"</span><span class="p">],</span> <span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">NEM_performance</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_daily</span><span class="p">)</span>
 
 <span class="c1"># Append it to the list of daily dataarrays</span>
-<span class="n">NEM_performance_timeseries</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">NEM_performance</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">NEM_performance_timeseries</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">NEM_performance</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>It takes about three minutes to process a single day. Separate <code class="docutils literal notranslate"><span class="pre">qsub</span></code> scripts were generated for a given month, and submitted to the PBS queue on a single core.</p>
@@ -540,18 +542,18 @@
 <p>The first step is to write a function that encapsulates all our daily computations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_timeseries_clearsky_ratio</span><span class="p">(</span><span class="n">date</span><span class="p">,</span>
                                       <span class="n">file_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Compute a timeseries of ratio b/w tilting panel irradiance</span>
 <span class="sd">    relative to clear sky conditions for a given day</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1">#( Contain all the above code that controls the compution of mean </span>
     <span class="c1"># irradiance for a single day)#</span>
     
     <span class="c1"># In this fuction, we will write a seperate netCDF file for each day</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Writing data for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
-    <span class="n">mean_daily</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Writing data for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc'</span><span class="p">)</span>
+    <span class="n">mean_daily</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">.nc'</span><span class="p">)</span>
 
     <span class="k">return</span>
 </pre></div>
@@ -570,7 +572,7 @@
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">N_PROCS</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Test with 10 parallel processes to start</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
 
     <span class="n">n_threads</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># The maximum number of threads this script sees. </span>
     <span class="n">worker_pool</span> <span class="o">=</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">N_PROCS</span><span class="p">)</span>  <span class="c1"># Create the number of parallel processes. </span>
@@ -578,11 +580,11 @@
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1"># Serial test</span>
-    <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;1-2-2022&#39;</span>
-    <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;10-2-2022&#39;</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="s1">'1-2-2022'</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="s1">'10-2-2022'</span>
     
-    <span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
-    <span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y&quot;</span><span class="p">)</span>
+    <span class="n">start_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">-%m-%Y"</span><span class="p">)</span>
+    <span class="n">end_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">-%m-%Y"</span><span class="p">)</span>
 
     <span class="c1"># Generate a list of dates</span>
     <span class="n">date_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_dt</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">end_dt</span> <span class="o">-</span> <span class="n">start_dt</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
@@ -590,19 +592,19 @@
     <span class="c1"># Now submit a process for each date</span>
     <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span>
 
-        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Computing ratio of tilting to clearsky irradiance for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Computing ratio of tilting to clearsky irradiance for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">worker_pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">compute_timeseries_clearsky_ratio</span><span class="p">,</span>
             <span class="n">date</span><span class="p">)</span>
 
-        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;The job for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"The job for </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">"</span>
 
-    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Submission complete&#39;</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Submission complete'</span><span class="p">)</span>
 
     <span class="c1"># Iterate through each result as they are completed</span>
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
         <span class="n">message</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
-        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; COMPLETE : </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">" COMPLETE : </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">_</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="c1"># This could raise if the function failed</span>
 
         <span class="c1"># Make sure that any data that is produced/returned to the future is</span>

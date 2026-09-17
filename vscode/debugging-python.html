@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -475,7 +477,7 @@
 </ul>
 <p>Your output should be similar to the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">120</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Calculating</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">using</span> <span class="n">explicit</span> <span class="n">time</span> <span class="n">iteration</span><span class="o">...</span>
-<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">129</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">calculation</span> <span class="n">complete</span> <span class="n">via</span> <span class="n">loop</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">result</span><span class="s1">&#39;s value.</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">129</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">calculation</span> <span class="n">complete</span> <span class="n">via</span> <span class="n">loop</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">result</span><span class="s1">'s value.</span>
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">134</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">delta</span> <span class="n">b</span><span class="o">/</span><span class="n">w</span> <span class="n">two</span> <span class="n">methods</span> <span class="o">=</span> <span class="mf">6.6442790031433105</span>
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">134</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Check</span> <span class="n">your</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="n">function</span> <span class="n">calculate_mean_loop</span>
 </pre></div>
@@ -518,7 +520,7 @@
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">17</span> <span class="mi">17</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">228</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">data</span>
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">17</span> <span class="mi">17</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">228</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Loading</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sample_air_temp</span><span class="o">.</span><span class="n">nc</span>
 <span class="o">&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PGREGORY</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">software_engineering_demos</span><span class="o">/</span><span class="n">CoE_workshop_2025</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">mean_air_temp</span><span class="o">.</span><span class="n">py</span><span class="p">(</span><span class="mi">74</span><span class="p">)</span><span class="n">main</span><span class="p">()</span>
-<span class="o">-&gt;</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">225</span><span class="p">),</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2013-01-10&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">air</span>
+<span class="o">-&gt;</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">225</span><span class="p">),</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">'2013-01-01'</span><span class="p">,</span><span class="s1">'2013-01-10'</span><span class="p">))</span><span class="o">.</span><span class="n">air</span>
 <span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> 
 </pre></div>
 </div>
@@ -527,13 +529,13 @@
  <span class="mi">76</span>  	        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
  <span class="mi">77</span>  	
  <span class="mi">78</span>  	    <span class="nb">breakpoint</span><span class="p">()</span>
- <span class="mi">79</span>  	    <span class="c1"># The data is 6-hourly. Let&#39;s compute a mean over the first 10 days for a spatial subset</span>
+ <span class="mi">79</span>  	    <span class="c1"># The data is 6-hourly. Let's compute a mean over the first 10 days for a spatial subset</span>
  <span class="mi">80</span>  	    <span class="c1"># so we can easily debug it</span>
- <span class="mi">81</span>  <span class="o">-&gt;</span>	    <span class="n">subset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">225</span><span class="p">),</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2013-01-10&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">air</span>
+ <span class="mi">81</span>  <span class="o">-&gt;</span>	    <span class="n">subset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">225</span><span class="p">),</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">'2013-01-01'</span><span class="p">,</span><span class="s1">'2013-01-10'</span><span class="p">))</span><span class="o">.</span><span class="n">air</span>
  <span class="mi">82</span>  	    <span class="n">mean_loop_result</span> <span class="o">=</span> <span class="n">calculate_mean_loop</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
  <span class="mi">83</span>  	
  <span class="mi">84</span>  	    <span class="c1"># Check against the built-in method</span>
- <span class="mi">85</span>  	    <span class="n">mean_loop_built_in</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+ <span class="mi">85</span>  	    <span class="n">mean_loop_built_in</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span>
  <span class="mi">86</span>  	
 </pre></div>
 </div>
@@ -555,7 +557,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">l</span>
  <span class="mi">29</span>  	
  <span class="mi">30</span>  	    <span class="c1"># Initialize the accumulator array (2D map)</span>
- <span class="mi">31</span>  	    <span class="c1"># We start the accumulator with the first map&#39;s values to simplify the loop logic.</span>
+ <span class="mi">31</span>  	    <span class="c1"># We start the accumulator with the first map's values to simplify the loop logic.</span>
  <span class="mi">32</span>  	    <span class="n">spatial_data_accumulator</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_array</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
  <span class="mi">33</span>  	
  <span class="mi">34</span>  <span class="o">-&gt;</span>	    <span class="k">for</span> <span class="n">t_step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_time_steps</span><span class="p">):</span>
@@ -669,16 +671,16 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    &quot;version&quot;: &quot;0.2.0&quot;,
-    &quot;configurations&quot;: [
+    "version": "0.2.0",
+    "configurations": [
         
         {
-            &quot;name&quot;: &quot;Python Debugger: Current File with Arguments&quot;,
-            &quot;type&quot;: &quot;debugpy&quot;,
-            &quot;request&quot;: &quot;launch&quot;,
-            &quot;program&quot;: &quot;${file}&quot;,
-            &quot;console&quot;: &quot;integratedTerminal&quot;,
-            &quot;args&quot;: &quot;${command:pickArgs}&quot;
+            "name": "Python Debugger: Current File with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": "${command:pickArgs}"
         }
     ]
 }
@@ -692,27 +694,27 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    &quot;version&quot;: &quot;0.2.0&quot;,
-    &quot;configurations&quot;: [
+    "version": "0.2.0",
+    "configurations": [
 
         {
-            &quot;name&quot;: &quot;Python Debugger: debug ancil_lct for u-dg767&quot;,
-            &quot;type&quot;: &quot;debugpy&quot;,
-            &quot;request&quot;: &quot;launch&quot;,
-            &quot;program&quot;: &quot;${file}&quot;,
-            &quot;console&quot;: &quot;integratedTerminal&quot;,
-            &quot;args&quot;: [&quot;/home/548/pag548/cylc-run/u-dg767/share/data/etc/ancil_master_ants//vegetation/cover/cci/v3/vegetation_fraction.nc&quot;,
-                &quot; --target-grid&quot;,
-                &quot;/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/grid.nl&quot;,
-                &quot;--transform-path&quot;, 
-                &quot;/g/data/access/TIDS/UM/ancil/data/transforms/cci2jules_ra1.json&quot;,
-                &quot;-o&quot;,
-                &quot;/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/qrparm.veg.frac_cci_pre_c4&quot;,
-                &quot;--landseamask-output&quot;,
-                &quot;/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5&quot;,
-                &quot;--ants-config&quot;, 
-                &quot;/home/548/pag548/cylc-run/u-dg767/work/1/Lismore_era5_ancil_lct/rose-app-run.conf&quot;
-            ]&quot;
+            "name": "Python Debugger: debug ancil_lct for u-dg767",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["/home/548/pag548/cylc-run/u-dg767/share/data/etc/ancil_master_ants//vegetation/cover/cci/v3/vegetation_fraction.nc",
+                " --target-grid",
+                "/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/grid.nl",
+                "--transform-path", 
+                "/g/data/access/TIDS/UM/ancil/data/transforms/cci2jules_ra1.json",
+                "-o",
+                "/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5/qrparm.veg.frac_cci_pre_c4",
+                "--landseamask-output",
+                "/home/548/pag548/cylc-run/u-dg767/share/data/ancils/Lismore/era5",
+                "--ants-config", 
+                "/home/548/pag548/cylc-run/u-dg767/work/1/Lismore_era5_ancil_lct/rose-app-run.conf"
+            ]"
         }
     ]
 }

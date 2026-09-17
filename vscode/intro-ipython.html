@@ -67,7 +67,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Debugging Python with VSCode" href="debugging-python.html" />
-    <link rel="prev" title="Suite configuration" href="../AM3/main-config.html" />
+    <link rel="prev" title="Pre-beta configurations" href="../AM3/main-config.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -469,8 +471,8 @@
 <p>The easiest way to start coding in Python is to simply start at a terminal command line. E.g. from a Mac OS terminal.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">python3</span>
 <span class="n">Python</span> <span class="mf">3.14.0</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">7</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">09</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">52</span><span class="p">)</span> <span class="p">[</span><span class="n">Clang</span> <span class="mf">17.0.0</span> <span class="p">(</span><span class="n">clang</span><span class="o">-</span><span class="mf">1700.0.13.3</span><span class="p">)]</span> <span class="n">on</span> <span class="n">darwin</span>
-<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+<span class="n">Type</span> <span class="s2">"help"</span><span class="p">,</span> <span class="s2">"copyright"</span><span class="p">,</span> <span class="s2">"credits"</span> <span class="ow">or</span> <span class="s2">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="s1">'hello world'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As straightforward as this is, trying to build complicated scripts and projects purely from a terminal is difficult. Typically, we will start writing our Python script in a text editor, and then execute this script (or sections of it) inside a python session to produce our desired outputs.</p>
@@ -496,8 +498,8 @@
 <p>IPython is installed with any of the standard <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environments on gadi. On a terminal type <code class="docutils literal notranslate"><span class="pre">ipython</span></code> after loading your <code class="docutils literal notranslate"><span class="pre">xp65</span></code> <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython
 Python 3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]
-Type &#39;copyright&#39;, &#39;credits&#39; or &#39;license&#39; for more information
-IPython 8.37.0 -- An enhanced Interactive Python. Type &#39;?&#39; for help.
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.37.0 -- An enhanced Interactive Python. Type '?' for help.
 
 In [1]: ls
 logger_test.py  sample.py
@@ -510,25 +512,25 @@ logger_test.py  sample.py
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
    <span class="o">...</span><span class="p">:</span> 
    <span class="o">...</span><span class="p">:</span> <span class="k">def</span><span class="w"> </span><span class="nf">process_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">):</span>
-   <span class="o">...</span><span class="p">:</span>     <span class="s2">&quot;&quot;&quot;</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="s2">"""</span>
 <span class="s2">   ...:     Simulates a data processing task.</span>
-<span class="s2">   ...:     &quot;&quot;&quot;</span>
+<span class="s2">   ...:     """</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span>     <span class="c1"># Simulate a time-consuming operation</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span>     <span class="k">return</span> <span class="n">total</span><span class="p">,</span> <span class="n">average</span>
    <span class="o">...</span><span class="p">:</span> 
-   <span class="o">...</span><span class="p">:</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+   <span class="o">...</span><span class="p">:</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">test_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">result_sum</span><span class="p">,</span> <span class="n">result_avg</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span>     <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
    <span class="o">...</span><span class="p">:</span> 
-   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data processed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> items&quot;</span><span class="p">)</span>
-   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Sum: </span><span class="si">{</span><span class="n">result_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average: </span><span class="si">{</span><span class="n">result_avg</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution Time (Standard): </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Data processed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> items"</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total Sum: </span><span class="si">{</span><span class="n">result_sum</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Average: </span><span class="si">{</span><span class="n">result_avg</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Execution Time (Standard): </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
    <span class="o">...</span><span class="p">:</span> 
 <span class="n">Data</span> <span class="n">processed</span><span class="p">:</span> <span class="mi">10000</span> <span class="n">items</span>
 <span class="n">Total</span> <span class="n">Sum</span><span class="p">:</span> <span class="mi">49995000</span>
@@ -612,7 +614,7 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
 <p>I want to write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and use the <code class="docutils literal notranslate"><span class="pre">range</span></code> command to provide an iterator. Note the linter will provide auto-completions for Python built-ins functions and provides on-the-fly docstrings if you need to access it.
 <img alt="Pop-Up menu" src="../_images/Range.png" /></p>
 <p>Note as you type</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>       <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>       <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The linter will:</p>
@@ -632,7 +634,7 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
 <span class="o">....</span>
 
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">475</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Calculating</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">using</span> <span class="n">explicit</span> <span class="n">time</span> <span class="n">iteration</span><span class="o">...</span>
-<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">488</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">calculation</span> <span class="n">complete</span> <span class="n">via</span> <span class="n">loop</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">result</span><span class="s1">&#39;s value.</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">488</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">Air</span> <span class="n">Temp</span> <span class="n">calculation</span> <span class="n">complete</span> <span class="n">via</span> <span class="n">loop</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">result</span><span class="s1">'s value.</span>
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">493</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Mean</span> <span class="n">delta</span> <span class="n">b</span><span class="o">/</span><span class="n">w</span> <span class="n">two</span> <span class="n">methods</span> <span class="o">=</span> <span class="mf">6.6442790031433105</span>
 <span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">14</span> <span class="mi">16</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">493</span><span class="p">:</span><span class="n">__main__</span><span class="p">:</span><span class="n">INFO</span><span class="p">:</span> <span class="n">Check</span> <span class="n">your</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="n">function</span> <span class="n">calculate_mean_loop</span>
 </pre></div>
@@ -654,11 +656,11 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
 </pre></div>
 </div>
 <p>will fail with message</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;__file__&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span><span class="o">.</span> <span class="n">Did</span> <span class="n">you</span> <span class="n">mean</span><span class="p">:</span> <span class="s1">&#39;__name__&#39;</span><span class="err">?</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">'__file__'</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span><span class="o">.</span> <span class="n">Did</span> <span class="n">you</span> <span class="n">mean</span><span class="p">:</span> <span class="s1">'__name__'</span><span class="err">?</span>
 </pre></div>
 </div>
 <p>This is because the global variable <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is not defined when we use an interactive shell. It won’t work inside a Jupyter notebook either. So if you are interactively working on a script which uses this variable, you should substitute a full path for <code class="docutils literal notranslate"><span class="pre">SCRIPT_DIR</span></code>, e.g. enter:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SCRIPT_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/My/Actual/Path&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SCRIPT_DIR</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">'/My/Actual/Path'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -670,7 +672,7 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
 <span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="n">paulgregory</span><span class="nd">@PaulsMacStudio2</span> <span class="n">CoE_workshop_2025</span> <span class="o">%</span> <span class="n">conda</span> <span class="n">activate</span> <span class="n">py310</span>
 <span class="p">(</span><span class="n">py310</span><span class="p">)</span> <span class="n">paulgregory</span><span class="nd">@PaulsMacStudio2</span> <span class="n">CoE_workshop_2025</span> <span class="o">%</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">paulgregory</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">py310</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span>
 <span class="n">Python</span> <span class="mf">3.10.14</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">May</span>  <span class="mi">6</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">14</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">37</span><span class="p">)</span> <span class="p">[</span><span class="n">Clang</span> <span class="mf">14.0.6</span> <span class="p">]</span> <span class="n">on</span> <span class="n">darwin</span>
-<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="n">Type</span> <span class="s2">"help"</span><span class="p">,</span> <span class="s2">"copyright"</span><span class="p">,</span> <span class="s2">"credits"</span> <span class="ow">or</span> <span class="s2">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="n">Cmd</span> <span class="n">click</span> <span class="n">to</span> <span class="n">launch</span> <span class="n">VS</span> <span class="n">Code</span> <span class="n">Native</span> <span class="n">REPL</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
@@ -689,18 +691,18 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
 <p>Once the Command Palette is open, type <code class="docutils literal notranslate"><span class="pre">Preferences:</span> <span class="pre">Open</span> <span class="pre">User</span> <span class="pre">Settings</span> <span class="pre">(JSON)</span></code> (this should autocomplete.)
 <img alt="Preferences" src="../_images/Preferences.png" /></p>
 <p>Search for the <code class="docutils literal notranslate"><span class="pre">&quot;python.terminal.launchArgs&quot;</span></code> section and add the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="s2">&quot;python.terminal.launchArgs&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;-m&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;IPython&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;--no-autoindent&quot;</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="s2">"python.terminal.launchArgs"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">"-m"</span><span class="p">,</span>
+    <span class="s2">"IPython"</span><span class="p">,</span>
+    <span class="s2">"--no-autoindent"</span><span class="p">,</span>
     <span class="p">],</span>
 </pre></div>
 </div>
 <p>While you are there, you can insert the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="s2">&quot;ipython.startupCommands&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="s2">"ipython.startupCommands"</span><span class="p">:</span> <span class="p">[</span>
     
-        <span class="s2">&quot;</span><span class="si">%lo</span><span class="s2">ad_ext autoreload&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;</span><span class="si">%a</span><span class="s2">utoreload 2&quot;</span>
+        <span class="s2">"</span><span class="si">%lo</span><span class="s2">ad_ext autoreload"</span><span class="p">,</span>
+        <span class="s2">"</span><span class="si">%a</span><span class="s2">utoreload 2"</span>
     <span class="p">],</span>
 </pre></div>
 </div>
@@ -758,7 +760,7 @@ Your choice of Python interpreter will now be active on bottom-right.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Suite configuration</p>
+        <p class="prev-next-title">Pre-beta configurations</p>
       </div>
     </a>
     <a class="right-next"

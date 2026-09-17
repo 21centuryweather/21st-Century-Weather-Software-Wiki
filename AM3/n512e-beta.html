@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Energy Demand dataset &#8212; 21st Century Weather Software Wiki</title>
+    <title>ACCESS-AM3 n512e configuration &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -61,15 +61,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'datasets/energy';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'AM3/n512e-beta';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ERA5 Drought" href="drought-era5.html" />
-    <link rel="prev" title="MMLEAv2" href="mmleav2.html" />
+    <link rel="next" title="Pre-beta configurations" href="main-config.html" />
+    <link rel="prev" title="Creating, documenting and running new configurations" href="new-configurations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -233,7 +231,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../gadi/su.html">Where Your SUs Actually Go: Right-Sizing PBS Jobs on Gadi</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
@@ -251,10 +249,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Global Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -282,17 +280,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/pathlib.html">Using the Python pathlib module</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Datasets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalogs.html">Data catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="weather_objects.html">ERA5-based Weather Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mesaclip.html">MESACLIP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mmleav2.html">MMLEAv2</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Energy Demand dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="drought-era5.html">ERA5 Drought</a></li>
-<li class="toctree-l2"><a class="reference internal" href="daily-era5.html">ERA5 daily</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gsmap.html">GSMaP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
 </ul>
 </details></li>
 </ul>
@@ -365,7 +363,7 @@
       
       
       
-      <li><a href="../_sources/datasets/energy.md" target="_blank"
+      <li><a href="../_sources/AM3/n512e-beta.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -441,7 +439,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Energy Demand dataset</h1>
+    <h1>ACCESS-AM3 n512e configuration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -451,9 +449,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location">Location:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-dataset">How to cite this dataset:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancilliaries">Ancilliaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-variables">Output variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">Optimization</a></li>
 </ul>
             </nav>
         </div>
@@ -465,39 +464,89 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="energy-demand-dataset">
-<h1>Energy Demand dataset<a class="headerlink" href="#energy-demand-dataset" title="Link to this heading">#</a></h1>
-<p>This dataset contains predictions of daily energy demand for the Australian National Electricity Market (NEM) and participant States (QLD, NSW, VIC, SA, TAS) between 1940 and 2023.</p>
-<p>The predictions were generated using an Extra Trees ensemble machine learning model with meteorological variables based on the ECMWF ERA5 reanalysis as predictors. Predictor data is also included in this repository.</p>
-<p>The model was trained on demand observations from 2010-2016 and tested on observations from 2017-2019. This means the data here reflect how demand varies as a function of the weather according to the 2010-2019 power system.</p>
-<p>The modelling procedure is described in Richardson et al. (2025), doi: 10.1088/1748-9326/ad9b3b. The data differ from those described in the paper because (1) the data length is longer here and (2) in the paper demand predictions are made using detrended predictors. The data here are not detrended.</p>
-<section id="data">
-<h2>Data:<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
-<p>There are six files, one per region. Each file has one column for the date, columns for each of the predictors ordered left to right according to their importance in the model, and one column for predicted demand. Column names are summarised here with units:</p>
-<p>date: yyyy-mm-dd
-t2m: mean daily temperature [K]
-t2m3: 3-day average of daily mean temperature [K]
-t2m4: 4-day average of daily mean temperature [K]
-t2max: maximum daily temperature [K]
-msdwswrf : solar radiation at surface [W <span class="math notranslate nohighlight">\(m^{-2}\)</span>]
-rh: relative humidity [%]
-q: specific humidity [g <span class="math notranslate nohighlight">\(kg^{-1}\)</span>]
-w10: 10m wind speed [m <span class="math notranslate nohighlight">\(s^{-1}\)</span>]
-mtpr: mean total precipitation rate [kg <span class="math notranslate nohighlight">\(m^{-2} s^{-1}\)</span>]
-cdd: cooling degree days [deg C]
-prediction: demand prediction [MWh]</p>
-</section>
-<section id="location">
-<h2>Location:<a class="headerlink" href="#location" title="Link to this heading">#</a></h2>
-<p>The data is located at:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/g/data/su28/energy_demand
+  <blockquote>
+<div><p>This is a cross post with the <a class="reference external" href="https://access-am3-configs.access-hive.org.au/configs_experiments/n512e/">ACCESS-NRI AM3 documentation</a>.</p>
+</div></blockquote>
+<section class="tex2jax_ignore mathjax_ignore" id="access-am3-n512e-configuration">
+<h1>ACCESS-AM3 n512e configuration<a class="headerlink" href="#access-am3-n512e-configuration" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">release-n512e</span></code> configuration is based on the beta <code class="docutils literal notranslate"><span class="pre">n96e</span></code> configuration with a few changes to accommodate for the higher resolution requirements. The main changes in the <code class="docutils literal notranslate"><span class="pre">release-n512e</span></code> configuration are:</p>
+<ul class="simple">
+<li><p>Uses climatological aerosols instead of prognostic aerosols.</p></li>
+<li><p><a class="reference internal" href="#ancilliaries"><span class="xref myst">The ancillaries uses high resolution data.</span></a></p></li>
+<li><p><a class="reference internal" href="#optimization"><span class="xref myst">IO Server is activated to improve performance.</span></a></p></li>
+<li><p><a class="reference internal" href="#output-variables"><span class="xref myst">Modified list of output variables and frequencies (3- and 6-hourly).</span></a></p></li>
+</ul>
+<p>The configuration uses a 1024x768 grid, with a nominal resolution of ~25 km and 85 vertical levels.</p>
+<p><img alt="ACCESS-AM3 n512e configuration" src="../_images/orography_n96_n512.png" /></p>
+<section id="initial-conditions">
+<h2>Initial conditions<a class="headerlink" href="#initial-conditions" title="Link to this heading">#</a></h2>
+<p>The configuration can be initialise from a <code class="docutils literal notranslate"><span class="pre">n96e</span></code> or <code class="docutils literal notranslate"><span class="pre">n512e</span></code> restart. If there is a change of resolution, the reconfiguration step (<code class="docutils literal notranslate"><span class="pre">RECON</span></code>) will interpolate all the necessary variables.</p>
+<p>The suite also include a <code class="docutils literal notranslate"><span class="pre">fix_cable_restart</span></code> step to populate CABLE variables after the reconfiguration. This is necessary when the model is initialised from low resolution initial conditions.</p>
+<p>The default configuration runs with a <code class="docutils literal notranslate"><span class="pre">n96e</span></code> restart file from January 1, 2007. There may be other restart files available for different dates and resolutions. If you would like to find a restart for your particular purpose, please post in the <a class="reference external" href="https://forum.access-hive.org.au/c/atmosphere/am3/243">AM3 subcategory</a> on the Hive Forum.</p>
+<p>To change the restart used, edit the file <code class="docutils literal notranslate"><span class="pre">site/nci_gadi.rc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">AINITIAL</span> <span class="o">=</span> <span class="s1">'/path/to/restart/file'</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The initial date and experiment length is defined in the <code class="docutils literal notranslate"><span class="pre">rose-suite.conf_nci_gadi</span></code> file. The default configuration runs for 1 month, from January 1, 2007.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPT_BASIS</span><span class="o">=</span><span class="s1">'20070101T0000Z'</span>
+<span class="n">EXPT_RUNLEN</span><span class="o">=</span><span class="s1">'P1M'</span>
 </pre></div>
 </div>
 </section>
-<section id="how-to-cite-this-dataset">
-<h2>How to cite this dataset:<a class="headerlink" href="#how-to-cite-this-dataset" title="Link to this heading">#</a></h2>
-<p>If using these data, please cite the original publication, available from <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1748-9326/ad9b3b">https://iopscience.iop.org/article/10.1088/1748-9326/ad9b3b</a>.</p>
-<p>The dataset is also available in a Zenodo repository: <a class="reference external" href="https://zenodo.org/records/15272801">https://zenodo.org/records/15272801</a></p>
+<section id="ancilliaries">
+<h2>Ancilliaries<a class="headerlink" href="#ancilliaries" title="Link to this heading">#</a></h2>
+<p>The ancillaries <code class="docutils literal notranslate"><span class="pre">n512e</span></code> where generated using 2 different workflows. The suite <code class="docutils literal notranslate"><span class="pre">u-dj813</span></code> was adapted to create the ozone and ESA (sst and sea ice) ancillaries. All the other ancilliaries, including vegetation fraction, vegetation function and soil are generated with the CCI-Ancilliary-Suite and based on the 300m resolution <a class="reference external" href="https://catalogue.ceda.ac.uk/uuid/c19b0914521144ab8c18c91d586c6847/">CCI Land Cover dataset</a>.</p>
+<p>The following is a summary of the ancilliaries that differ from the beta <code class="docutils literal notranslate"><span class="pre">n96e</span></code> configuration.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">aerosols</span></code>: monthly mean climatology based on a previous UM run with prognostic aerosols. The climatology is based on the monthly mean of the prognostic aerosols between years 1989 and 2009.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">veg.frac</span></code> and <code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">veg.func</span></code>: based on ESA Land Cover Climate Change Initiative (Land_Cover_cci): <a class="reference external" href="https://catalogue.ceda.ac.uk/uuid/7e139108035142a9a1ddd96abcdfff36">Water Bodies Map, v4.0</a> and <a class="reference external" href="https://catalogue.ceda.ac.uk/uuid/b382ebe6679d44b8b0e68ea4ef4b701c">Global Land Cover Maps, Version 2.0.7</a>. Centre for Environmental Data Analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ozone</span></code>: monthly mean from 1978 to 2014 based on the CMIP6 dataset: Hegglin, Michaela; Kinnison, Douglas; Lamarque, Jean-Francois; Plummer, David (2016). CCMI ozone in support of CMIP6 - version 1.0. Earth System Grid Federation. <a class="reference external" href="https://doi.org/10.22033/ESGF/input4MIPs.1115">https://doi.org/10.22033/ESGF/input4MIPs.1115</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sst</span></code> and <code class="docutils literal notranslate"><span class="pre">sea</span> <span class="pre">ice</span></code>: daily mean from 1981 to 2022 based on data from the 0.05° European Space Agency SST Climate Change Initiative (CCI) Analysis v3.0 and associated sea ice concentration data from the
+EUMETSAT Ocean and Sea Ice Satellite Application Facility (OSI SAF). See <a class="reference external" href="https://climate.esa.int/en/projects/sea-surface-temperature/">https://climate.esa.int/en/projects/sea-surface-temperature/</a></p></li>
+</ul>
+</section>
+<section id="output-variables">
+<h2>Output variables<a class="headerlink" href="#output-variables" title="Link to this heading">#</a></h2>
+<p>The variables saved are listed <a class="reference external" href="https://docs.google.com/spreadsheets/d/11S5hY54BPHzoi2v6KYZeUeVo-76Q8QLqwKfjJCPuCrI/edit?gid=1519343531#gid=1519343531">in this spreadsheet</a>. The different groups of variables or “Packages” can be activated/deactivated from the gui.</p>
+<ul class="simple">
+<li><p>2D Standard Diagnostics: 2D variables, 3 hourly output</p></li>
+<li><p>Land Diagnostics: Land variables on tiles, 3 hourly output</p></li>
+<li><p>3D ERA5 Diagnostics: 37 pressure levels, 6 hourly and monthly mean output</p></li>
+<li><p>3D Standard Diagnostics: All model levels, 6 hourly and monthly mean output</p></li>
+<li><p>COSP</p></li>
+<li><p>2D Extra: extra 2D variables, 3 hourly output</p></li>
+<li><p>3D Extra: extra 3D variables, 3 hourly output</p></li>
+</ul>
+<blockquote>
+<div><p>Currently the COPS, 2D Extra and 3D Extra packages are not active because they haven’t been fully tested. They can be activated from the GUI in <code class="docutils literal notranslate"><span class="pre">UM/namelist/Model</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output/STASH</span> <span class="pre">Request</span> <span class="pre">and</span> <span class="pre">Profiles/STASH</span> <span class="pre">request</span></code> (upper right corner drop-down menu).</p>
+</div></blockquote>
+<p>Output files are saved in the UM native format in <code class="docutils literal notranslate"><span class="pre">share/data/History_Data/</span></code>. Some of the variables are saved in monthly files, while others are saved in daily files. Check <a class="reference external" href="https://docs.google.com/spreadsheets/d/11S5hY54BPHzoi2v6KYZeUeVo-76Q8QLqwKfjJCPuCrI/edit?gid=1519343531#gid=1519343531">the spreadsheet</a> to see how the variables are saved.</p>
+<p>The output is then converted to netcdf format and saved in <code class="docutils literal notranslate"><span class="pre">share/data/History_Data/netCDF/</span></code>.</p>
+<p>To save space, there is an option to delete the field files after they are converted to netcdf. In <code class="docutils literal notranslate"><span class="pre">app/netcdf_conversion/rose-app.conf</span></code>, set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REMOVE_FF</span><span class="o">=</span><span class="n">true</span>
+</pre></div>
+</div>
+</section>
+<section id="optimization">
+<h2>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">#</a></h2>
+<p>The IO Server is active in the configuration to reduce walltime and SU usage. Usually the UM will read and write files on disk sequentially, but the IO Server gets extra processors to read and write files in parallel. This allows the UM to continue with the simulation while the IO Server is writing files to disk.</p>
+<p>The current IO Server configuration uses 48 processors divided in 8 tasks, each with 6 workers. This means that it will read/write 8 files in parallel.</p>
+<p>The IO Server requires:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rose-suite.cong</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAIN_IOS_NPROC=48</span></code> –&gt; number of processors for the IO Server</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAIN_OMPTHR_ATM=2</span></code> –&gt; number of OpenMP threads</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">app/um/rose-app.conf</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ios_spacing=24</span></code> –&gt; it’s recommended to spread io processors across the nodes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ios_tasks_per_server=6</span></code> –&gt; number of tasks per server.</p></li>
+</ul>
+</li>
+</ul>
+<p>With a decomposition of 36x36 (<code class="docutils literal notranslate"><span class="pre">MAIN_ATM_PROCX=36</span></code>, <code class="docutils literal notranslate"><span class="pre">MAIN_ATM_PROCY=36</span></code>) and the current IO Server configuration, the simulation will use 2688 processors (56 nodes) with a walltime of ~2h 40min per simulated month.</p>
 </section>
 </section>
 
@@ -514,7 +563,7 @@ prediction: demand prediction [MWh]</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./datasets"
+            path: "./AM3"
         },
         predefinedOutput: true
     }
@@ -532,20 +581,20 @@ prediction: demand prediction [MWh]</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="mmleav2.html"
+       href="new-configurations.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">MMLEAv2</p>
+        <p class="prev-next-title">Creating, documenting and running new configurations</p>
       </div>
     </a>
     <a class="right-next"
-       href="drought-era5.html"
+       href="main-config.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ERA5 Drought</p>
+        <p class="prev-next-title">Pre-beta configurations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -567,9 +616,10 @@ prediction: demand prediction [MWh]</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location">Location:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-cite-this-dataset">How to cite this dataset:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ancilliaries">Ancilliaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-variables">Output variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">Optimization</a></li>
 </ul>
   </nav></div>
 

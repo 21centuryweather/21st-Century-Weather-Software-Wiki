@@ -250,7 +250,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Suite configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -510,7 +512,7 @@ nci-files-report<span class="w"> </span>--group<span class="w">   </span>ng72<sp
 <p><strong>Don’t trust <code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">--inodes</span></code>.</strong> It’s convenient and it <strong>under-reports</strong>. A crude <code class="docutils literal notranslate"><span class="pre">find</span></code> is more honest:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># file+dir count per top-level subdirectory</span>
 <span class="k">for</span><span class="w"> </span>d<span class="w"> </span><span class="k">in</span><span class="w"> </span>*/<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">  </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;%10d  %s\n&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$d</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="nb">printf</span><span class="w"> </span><span class="s2">"%10d  %s\n"</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>find<span class="w"> </span><span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span>
 <span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
 </pre></div>
 </div>
@@ -585,7 +587,7 @@ nci-files-report<span class="w"> </span>--group<span class="w">   </span>ng72<sp
 </section>
 <section id="quick-triage">
 <h2>Quick triage<a class="headerlink" href="#quick-triage" title="Link to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lquota<span class="w">                                        </span><span class="c1"># who&#39;s over, live</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lquota<span class="w">                                        </span><span class="c1"># who's over, live</span>
 nci_account<span class="w"> </span>-P<span class="w"> </span>&lt;proj&gt;<span class="w">                         </span><span class="c1"># iGrant / iUsage / iAvail</span>
 nci-files-report<span class="w"> </span>--project<span class="w"> </span>&lt;proj&gt;<span class="w"> </span>--filesystem<span class="w"> </span>gdata<span class="w">   </span><span class="c1"># by user, by location</span>
 nci-files-report<span class="w"> </span>--group<span class="w">   </span>&lt;proj&gt;<span class="w"> </span>--filesystem<span class="w"> </span>gdata<span class="w">   </span><span class="c1"># by group ownership</span>
