@@ -114,6 +114,7 @@ When you are ready, you will need to push the configuration (the new branch) to 
 ```bash
 git push --set-upstream origin n512e-1983
 ```
+Because `n512e-1983` is a new branch that only exists on your local repo, you need to set up the same in the remote repository "origin" the first time you push to Github. So, `--set-upstream` will create the branch in the remote repository. After that, for following updates, you can use `git push` and it will work the same.
 
 Now you can check your configuration on GitHub and share it with others. 
 
