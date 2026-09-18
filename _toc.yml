@@ -29,7 +29,9 @@ parts:
     - file: aus2200/models-aus2200
     - file: UM/regional-intro
       sections:
-      - file: UM/regional-primer
+      - file: UM/regional-ancils
+      - file: UM/RAS_ancils
+      - file: UM/regional-MWE
       - file: NRI-RNS/rAM3
       - file: NRI-RNS/ancillaries
       - file: NRI-RNS/outputs 
