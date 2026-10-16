@@ -165,7 +165,7 @@ ec_grib_202202260600.t+000
 ```
 If you use the suite's notebook mentioned above, you'll notice each file contains 19 variables. The grib files have gobal extent defined on a 0.25 degree grid.
 
-## ec_um_recon
+### ec_um_recon
 
 The next set of tasks fall within the `ec` task family. First we run `install_ec_startdata` which is creates a directory to store regional model's initial conditions. From `suite.rc`
 ```
@@ -213,7 +213,7 @@ inherit = ec_um
 
             ...(skip)...
  {% endfor %}
-
+```
 The contents of `app/glm_um/rose-app.conf` show
 ```
 meta=um-atmos/vn13.5
@@ -272,10 +272,36 @@ For ERA5-land, the grid point locations of your outer domain defined as `rg01_rs
 
 For of BARRA, the grid point locations of your outer domain defined as `rg01_rs01` **MUST MATCH EXCATLY** the grid point locations of the BARRA grid. Hence, you are best examining BARRA data first to find out exactly what these points are. In our example, sample longitude points are 152.06, 152.17, 152.28 etc.
 
-See [here](https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#change-the-nested-regions-nest-configuration) for further confirmatin.
+See [here](https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#change-the-nested-regions-nest-configuration) for further confirmation.
 :::
 
 After running the `nci_hres_eccb` task for our example, the file `ec_cb000` is updated with higher resolution land/surface data.  Only the first hour reconfiguration file is changed, as this forms the initial condition for our first day of simulation. The remaining reconfiguration files (hours 01-24) are used to defined the lateral boundary conditions.
 
-If you run the notebook now, it will copy `ec_cb000` to `ec_cb000_hres` so this original file is stored. This allows us to see the impact of using a higher resolution land/surface data on the soil temperature of our initial condition.
+If you are following along with the notebook, it will copy `ec_cb000` to `ec_cb000_hres` so this original file is stored. This allows us to see the impact of using a higher resolution land/surface data on the soil temperature of our initial condition. This figure is replicated below.
+
+[BARRA soil temp](./images/BARRA_soil_temp.png)
+
+### Region_Resolution_Model_um_recon
+
+All our processing now has involved setting up the initial conditions on the 100x100 'Driving Model' grid. Now we need to run the reconfiguration task to create the initial conditions on the first (and in our case, only) 50x50 forecast model nest. The task `Region_Resolution_Model_um_recon` will regrid the ERA5 data onto our nest mesh, and apply all the ancillary data. The output is a file called `GAL9_astart`, where `GAL9` refers to **G**lobal **A**tmosphere Version 9, i.e. the atmospheric science package used by the UM for lower-resolution, global runs.
+
+Note the task logic from the `suite.rc` file
+```
+ ec_um_recon_000  =>  nci_hres_eccb => Region_Resolution_Model_um_recon
+```
+
+If you are following along with the notebook, it will copy `GAL9_astart` to `GAL9_astart_init` so this original file is stored. This file contais 167 variables!
+
+### nci_hres_ic
+
+This task replicates `nci_hres_eccb` but applies it to our forecast grid, i.e. it will update the land/surface data of forecast net initial condition file with better resolution data.
+
+Note the task logic from the `suite.rc` file
+```
+ ec_um_recon_000  =>  nci_hres_eccb => Region_Resolution_Model_um_recon => nci_hres_ic
+```
+
+If you are following along with the notebook, it will copy the updated `GAL9_astart` to `GAL9_astart_hres` so we can compare the differences in the two ASTART files.  Below are figures taken from the notebook.
+
+### Region_Resolution_Model_LBCS
 
