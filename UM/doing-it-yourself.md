@@ -1,12 +1,6 @@
 # Doing-it-yourself
 
-So you're ready to build your own regional model simulation? Great!  But, bear in mind this is no-easy feet. Taken from the UK Met Office manuals.
-"""
-Setting up the Unified Model for a new limited area domain is relatively straightforward, and will enable you to run higher resolution suites concentrating on your area of interest. However you should at the outset consider the time and effort involved.
-"""
-
-See [here](https://21centuryweather.github.io/UM_summary_docs/using.html#setting-up-a-new-limited-area-model-lam) for further advice.
-
+So you're ready to build your own regional model simulation? 
 Here is a quick checklist of all things we have covered. 
 - Ensure your domains have an even number of grid points.
 - Don’t exceed 60 degrees south along your southern boundary. This is due to the definition SRTM ancilliary files used to define orography. There are work-arounds, but they are complex. See [here](https://forum.access-hive.org.au/t/regional-ancillary-suite-error-srtm-data-not-available-for-regions-above-60-deg/5796/5)

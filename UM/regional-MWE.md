@@ -320,15 +320,30 @@ The values set in `rose-suite.conf` are
 CRUN_LEN=6
 CYCLE_INT_HR=24
 ```
-Which means we are going to run a 6 hourly forecast run and begin a new forecast cycle every 24 hours. Hence, we need four seperate forecast tasks for each daily cycle. Therefore, we need four LBC tasks. The `jinja` macro computes `n_cruns` using
+Which means we are going to run a 6 hourly forecast run and begin a new forecast cycle every 24 hours. Hence, we need four separate forecast tasks for each daily cycle. Therefore, we need four LBC tasks. The `jinja` macro computes `n_cruns` using
 ```
 {# Set the number of UM tasks/day #}
 {% set n_cruns = ( CYCLE_INT_HR/ CRUN_LEN)  | int %}
 ```
-Andn then we have a loop which creates multiple `um_createbc` and `um_fcst` tasks.
+And then we have a loop which creates multiple `um_createbc` and `um_fcst` tasks.
 ```
       {% for cr in range(0,n_cruns) %}
           {% set crp = cr|pad(3,"0") %}
           nci_hres_eccb => Region_Resolution_Model_um_createbc_{{crp}} => Region_Resolution_Model_um_fcst_{{crp}}
       {% endfor %}  
 ```
+
+:::{important}
+
+You must delete the extra `ec_cb000_*` files we created earlier to assess the impacts of the high resolution soil moisture on these reconfigured files. Otherwise, the executable `um-createbc.exe` will create extra duplicates of LBC information for the first six hours and the UM will fail. 
+
+So make sure you execute
+```
+$ rm ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/ec_cb000_*
+```
+before triggering the task `Region_Resolution_Model_um_createbc_000`.
+
+If you are following along with notebook, it contains logic to do this if.
+
+:::
+

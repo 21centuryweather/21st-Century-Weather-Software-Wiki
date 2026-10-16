@@ -32,11 +32,11 @@ parts:
       - file: UM/regional-ancils
       - file: UM/RAS_ancils
       - file: UM/regional-MWE
-      - file: UM/doing-it-yourself
       - file: NRI-RNS/rAM3
       - file: NRI-RNS/ancillaries
       - file: NRI-RNS/outputs 
       - file: NRI-RNS/evaluating
+      - file: NRI-RNS/checklist
       - file: NRI-RNS/further-considerations
       - file : NRI-RNS/flagship_config.md
       - file : NRI-RNS/build-UM.md
