@@ -77,7 +77,9 @@ The table below summarises this mapping between the RAS ancillaries and the RNS 
 For our minimum working example we are only running with N=2 ancillary domains, so we are only running a single forecast domain(N=1)
 
 :::{important}
+
 Keeping track of which ancillary files define your first Forecast model nest will be very important when considering your choice of land-surface dataset set. This will be touched on later.
+
 :::
 
 In the RNS `rose-suite.conf` file, the following definitions are used to define the location of the ancillary files for the driving model and first forecast model nest:
@@ -260,6 +262,7 @@ The other options available for NCI_HRES_ECCB are 'none' (use original ERA5 data
 :::
 
 :::{important}
+
 The type of land/surface dataset determines the outer resolution of your regional model. Here is a summary of the restrictions on the Ancillary suite `rg01_rs01` definition, which correponds to `dm` in the Nesting suite.  
 
 | Data Source| NCI_HRES_ECCB | Required resolution | 
@@ -273,6 +276,7 @@ For ERA5-land, the grid point locations of your outer domain defined as `rg01_rs
 For of BARRA, the grid point locations of your outer domain defined as `rg01_rs01` **MUST MATCH EXCATLY** the grid point locations of the BARRA grid. Hence, you are best examining BARRA data first to find out exactly what these points are. In our example, sample longitude points are 152.06, 152.17, 152.28 etc.
 
 See [here](https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#change-the-nested-regions-nest-configuration) for further confirmation.
+
 :::
 
 After running the `nci_hres_eccb` task for our example, the file `ec_cb000` is updated with higher resolution land/surface data.  Only the first hour reconfiguration file is changed, as this forms the initial condition for our first day of simulation. The remaining reconfiguration files (hours 01-24) are used to defined the lateral boundary conditions.
@@ -301,7 +305,30 @@ Note the task logic from the `suite.rc` file
  ec_um_recon_000  =>  nci_hres_eccb => Region_Resolution_Model_um_recon => nci_hres_ic
 ```
 
-If you are following along with the notebook, it will copy the updated `GAL9_astart` to `GAL9_astart_hres` so we can compare the differences in the two ASTART files.  Below are figures taken from the notebook.
+If you are following along with the notebook, it will copy the updated `GAL9_astart` to `GAL9_astart_hres` so we can compare the differences in the two ASTART files. The figure below is taken from the notebook.
+
+[ASTARTsoil temp](./images/ASTART_soil.png)
 
 ### Region_Resolution_Model_LBCS
 
+Now we move to generate the **L**ateral **B**oundary **C**onditions for our forecast nest. These define the temporal evolution of the flow gradients along the nest boundaries. Because of the temporal nature of the LBCs, we need multiple tasks to span the 24 hour period. So within the `Region_Resolution_Model_LBCS` task family, we will have multiple `Region_Resolution_Model_um_createbc_XXX` tasks. Again, this is done inside `suite.rc` using `jinja` templates.
+
+First we have a `jinja` macro at lines 35-36 of `suite.rc` which takes the variables `CYLC_INT_HR` and `CRUN_LEN` from `rose-suite.conf` to determine how many tasks we need.
+
+The values set in `rose-suite.conf` are
+```
+CRUN_LEN=6
+CYCLE_INT_HR=24
+```
+Which means we are going to run a 6 hourly forecast run and begin a new forecast cycle every 24 hours. Hence, we need four seperate forecast tasks for each daily cycle. Therefore, we need four LBC tasks. The `jinja` macro computes `n_cruns` using
+```
+{# Set the number of UM tasks/day #}
+{% set n_cruns = ( CYCLE_INT_HR/ CRUN_LEN)  | int %}
+```
+Andn then we have a loop which creates multiple `um_createbc` and `um_fcst` tasks.
+```
+      {% for cr in range(0,n_cruns) %}
+          {% set crp = cr|pad(3,"0") %}
+          nci_hres_eccb => Region_Resolution_Model_um_createbc_{{crp}} => Region_Resolution_Model_um_fcst_{{crp}}
+      {% endfor %}  
+```

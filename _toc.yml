@@ -32,6 +32,7 @@ parts:
       - file: UM/regional-ancils
       - file: UM/RAS_ancils
       - file: UM/regional-MWE
+      - file: UM/doing-it-yourself
       - file: NRI-RNS/rAM3
       - file: NRI-RNS/ancillaries
       - file: NRI-RNS/outputs 
