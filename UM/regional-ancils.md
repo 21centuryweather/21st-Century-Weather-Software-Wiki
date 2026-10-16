@@ -84,6 +84,10 @@ rg01_rs02_levset="L70_80km"
 rg01_rs02_name="d1100"
 rg01_rs02_npts=50,50
 ```
+:::{note}
+The number points in each domain for our example is **even**. **ALL** UM regional domains must have an **even** number of data points. This is two allow effective domain decomposition across multiple, parallel processors.
+::: 
+
 ## Running the suite.
 
 We will now run the suite. The tasks tree will unfold and you can watch the tasks execute in realtime. For this example, the whole suite will execute in a manner of minutes.

@@ -14,6 +14,16 @@ Because of this
 - The suite will not render correctly in the `rose edit` GUI, but
 - The `rose-suite.conf` is simple enough that we can examine it directly.
 
+:::{note}
+
+A Jupyter notebook is contained in the suite directory in 
+```
+~/roses/RNS_minimum_working_example/noteboos/UM_RNS_data_flows.ipynb
+```
+ which you can use to visualise all data you are generating.
+
+:::
+
 ## Mapping the ancillary directories to forecast regions
 
 :::{important}
@@ -49,14 +59,14 @@ So the RNS only starts counting resolutions and regions for domains where the UM
 
 The table below summarises this mapping between the RAS ancillaries and the RNS domain definitions. This mapping applies for a single region.
 
-| Ancillary Suite | Nesting suite | Domain type    |   |   |
-|-----------------|---------------|----------------|---|---|
-| rg01_rs01       | dm            | Driving model  |   |   |
+| Ancillary Suite | Nesting suite | Domain type    | 
+|-----------------|---------------|----------------|
+| rg01_rs01       | dm            | Driving model  |  
 | rg01_rs02       | rg01_rs01     | Forecast model nest 1 |
 | rg01_rs03       | rg01_rs02    | Forecast model nest 2 |
 | rg01_rs04       | rg01_rs03    | Forecast model nest 3|
 | ... | ... | ... |
-| rg01_rs0[N] | rg01_rs0[N-1] | Foremost model nest N-1 |
+| rg01_rs0[N] | rg01_rs0[N-1] | Forecast model nest N-1 |
 
 For our minimum working example we are only running with N=2 ancillary domains, so we are only running a single forecast domain(N=1)
 
@@ -77,4 +87,181 @@ These directories should have been created and populated with ancillary data whe
 - The RNS and RAS assume you are running on your default `gadi` project which is specified in the file `~/.config/gadi-login.conf`. If the value of `PROJECT` in this file has changed, you might have to manually alter the definition of the above ancillary directory files.
 - NCI routinely clean the contents of your `/scratch/$USER` directory every 100 days. So your ancillaries may get deleted if you haven't touched that directory recently.
 :::
+
+## Running the suite - task by task
+
+Let's step through each task of the suite step-by-step and discuss the associated `rose/cylc` logic of each task. When we load the suite and hold with the command
+```
+$ rose suite-run -- --hold
+```
+you will see the following.
+
+![Beginning suite](images/RNS-suite-start.png)
+
+Let's compare the graphical task flow on the right of that image to the task flow specified in the `suite.rc` file.
+```
+             graph = """
+            install_cold_hpc
+            install_cold_hpc[^] => install_ec_startdata
+            install_cold_hpc => nci_hres_eccb                      
+            nci_era5grib_parallel => ec_um_recon_000
+```
+So the first tasks to start (i.e. those that have no prior dependencies) are `install_cold_hpc` and `nci_era5grib_parallel`.  
+
+### install_cold_hpc
+
+From the `suite.rc` we can see `install_cold_hpc` installs various links to existing data at NCI. How does it do this? When you trigger this task, you'll see the job script contains the logic
+```
+cylc__job__inst__script() {
+# SCRIPT:
+rose task-run -v --opt-conf-key='(nci-gadi)'
+}
+```
+Recall from the `rose` tutorials that the use of optional configuration keys automatically points to application files located in `app/<task>/opt/rose-app-<key>.conf`. If you look at the contents of `app/install_cold_hpc/opt/rose-app-nci-gadi.conf` you'll see a long list of UM configuration files on `gadi` that are now linked to your `cylc-run` directory. For example, the file `app/install_cold_hpc/opt/rose-app-nci-gadi.conf` contains:
+```
+[file:$ROSE_DATA/etc/um_spectral_ga6]
+mode=symlink
+source=${UMDIR}/vn${UM_VN}/ctldata/spectral/ga3_0
+
+[file:$ROSE_DATA/etc/um_spectral_ga7]
+mode=symlink
+source=${UMDIR}/vn${UM_VN}/ctldata/spectral/ga7
+```
+If you look in `~/cylc-run/share/data/etc/` you'll see the corresponding links now exist.
+```
+lrwxrwxrwx 1 pag548 ce10   66 Oct 16 10:54 um_spectral_ga6 -> /g/data/access/projects/access/umdir/vn13.5/ctldata/spectral/ga3_0
+lrwxrwxrwx 1 pag548 ce10   64 Oct 16 10:54 um_spectral_ga7 -> /g/data/access/projects/access/umdir/vn13.5/ctldata/spectral/ga7
+```
+
+### nci_era5_grib_parallel
+
+This task sets up the initial conditions for your run. It will retrieve grids of the ERA5 global analysis which is created by the European Centre for Medium Range Weather Forecasting (ECMWF), valid at the dates you specify. The task login in `suite.rc`
+```
+    [[nci_era5grib_parallel]]
+        inherit=None, HOST_HPC
+        pre-script = mkdir -p $OUTDIR
+        [[[ environment ]]]
+            OUTDIR={{dm_ec_ic_lbc_dir}}
+``` tells us it will store them in directory specified as `dm_ec_ic_lbc_dir` in our `rose-suite.conf` file. Here, `dm_ec_ic_lbc_dir` is shorthand for `**d*riving **m**odel **E**uropean **Centre** **i**nitial **c**onditions **l**ateral **b**ounday **c**conditions **dir**ectory`. The default setting from `rose-suite.conf` is
+```
+dm_ec_ic_lbc_dir="/scratch/$PROJECT/$USER/EC_GRIB_PARALLEL"
+```
+If you examine this directory you'll find the following files:
+```
+ec_grib_202202260000.t+000  
+ec_grib_202202260100.t+000  
+ec_grib_202202260200.t+000  
+ec_grib_202202260300.t+000  
+ec_grib_202202260400.t+000  
+ec_grib_202202260500.t+000  
+ec_grib_202202260600.t+000
+```
+If you use the suite's notebook mentioned above, you'll notice each file contains 19 variables. The grib files have gobal extent defined on a 0.25 degree grid.
+
+## ec_um_recon
+
+The next set of tasks fall within the `ec` task family. First we run `install_ec_startdata` which is creates a directory to store regional model's initial conditions. From `suite.rc`
+```
+{# Driving model task family #}
+[[ec]]
+    [[install_ec_startdata]]
+        inherit = ec, ARCHIVE
+        pre-script = mkdir -p $ROSE_DATAC/ec/ics/
+```
+Next we run `ec_um_recon`, which spawns one reconfiguration task for every hour for the first day of our simulation.
+The reconfiguration task uses an Fortran executable that is build from the UM source code. The reconfigure task itself is a UM task and we can follow the logic chain in `suite.rc`
+```
+[[ec_um]]
+    # Settings for all DM recon and forecast tasks.
+
+... (skip) ...
+
+    [[[environment]]]
+        DRV_MOD=ec
+        CRUN_LEN = {{CRUN_LEN}}
+        ROSE_APP_OPT_CONF_KEYS = $DUST_OPT $EC_OPT
+        ROSE_TASK_APP = glm_um
+```
+Note the use of a `jinja` loop to define 24 seperate `ec_um_XXX` tasks. First, the `jinja` logic is defined near the top of the `suite.rc` file (lines 38-40)
+```
+{# For EC driving model set up n_lbcs so that can set up correct number of driving model 
+   recon jobs. Our EC data is stored in hourly files. We add '+1' so the jinja loop will run from 00 to 24 #}
+{% set n_lbcs = 24 + 1 %}
+```
+Which allows to specify 24 seperate  `ec_um_XXX` that will each produce an initial condition valid for a specific hour.
+```
+[[ec_um_recon]]
+inherit = ec_um
+{% for lb in range(n_lbcs) %}
+    {% set lbc = lb|pad(3,"0") %}
+    {% set lbin  = ( lb  * dm_ec_cb_freq / 3600 ) |int %}
+    {% set lbint = lbin|pad(3,"0") %}
+        [[ec_um_recon_{{lbc}}]]
+            # Settings for any DM reconfiguration task.
+            inherit = ec_um_recon
+
+            ...(skip)...
+
+            script = {{TASK_RUN_COMMAND}} --path="share/spack_build/*/bin" --command-key=recon
+
+            ...(skip)...
+ {% endfor %}
+
+The contents of `app/glm_um/rose-app.conf` show
+```
+meta=um-atmos/vn13.5
+
+[command]
+default=um-atmos
+recon=um-recon
+```
+So we using the UM to not actually run an atmospheric forecast, but to
+1) Regrid the original ERA5 data onto our regional domain, and
+2) Integrate all the ancillary information we defined previously in the Regional Ancillary Suite into our domain.
+
+The initial conditions are now availabe in your directory `~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/`
+```
+$ ls ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/
+ec_cb000  
+ec_cb001  
+ec_cb002
+ec_cb003
+...
+```  
+If you run the notebook now, it will cp `ec_cb000` to `ec_cb000_init` so this original file is stored.  That's because subsequent tasks will over-write `ec_cb000` with improved land-surface data.
+
+Note these files contain ***116 variables**!  A large increase from the 19 from the original ERA5 data. The data now includes all the additional atmospheric and land-surface data from our ancillaries. Here is a plot of the initial soil temperature taken from the ERA5 data and re-gridded to our regional test domain.
+
+![Initial soil temperature](images/ec_cb000_init.png)
+
+### nci_hres_eccb
+
+The next task in our suite will provide higher-resolution land/surface data. Note the task flow definitions from `suite.rc`
+```
+ec_um_recon_000  =>  nci_hres_eccb => Region_Resolution_Model_um_recon => nci_hres_ic => 
+```
+The value of `NCI_HRES_ECCB` in `rose-suite.conf` will determine the choice of land/surface data. In this example,
+```
+NCI_HRES_ECCB="era5land"
+```
+Which means we will be taking land/surface data from the ERA5-Land reanalysis. This is defined at 0.1 degrees, which provides a significant improvement from the original 0.25 degree data.
+
+:::{note}
+The other options available for NCI_HRES_ECCB are 'none' (use original ERA5 data) or 'barra' (use the Bureau's BARRA Australian re-analysis). If you wish to use BARRA (which is defined at 0.11 degrees), you must have membership of the NCI project `ob53`.
+:::
+
+:::{important}
+The type of land/surface dataset determines the outer resolution of your regional model. Here is a summary of the restrictions on the Ancillary suite `rg01_rs01` definition, which correponds to `dm` in the Nesting suite.  
+
+| Data Source| NCI_HRES_ECCB | Required resolution | 
+| ---------- | --------- | --------- | 
+| default (ERA5)   | none          | No restriction. |
+| ERA5-land | era5land | 0.1 degrees |
+| BARRA | barra | 0.11 degrees |
+
+Note for the case of BARRA, the grid point locations of your outer domain defined as `rg01_rs01` **MUST MATCH EXCATLY** the grid point locations of the BARRA grid. Hence, you are best of examining BARRA data first
+
+See [here](https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#change-the-nested-regions-nest-configuration) for further confirmatin.
+:::
+
 
