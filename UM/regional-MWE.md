@@ -24,6 +24,12 @@ A Jupyter notebook is contained in the suite directory in
 
 :::
 
+:::{important}
+
+You must be a member of NCI project `ob53` to run this example as it uses the Bureau's BARRA reanalysis data.
+
+:::
+
 ## Mapping the ancillary directories to forecast regions
 
 :::{important}
@@ -142,7 +148,8 @@ This task sets up the initial conditions for your run. It will retrieve grids of
         pre-script = mkdir -p $OUTDIR
         [[[ environment ]]]
             OUTDIR={{dm_ec_ic_lbc_dir}}
-``` tells us it will store them in directory specified as `dm_ec_ic_lbc_dir` in our `rose-suite.conf` file. Here, `dm_ec_ic_lbc_dir` is shorthand for `**d*riving **m**odel **E**uropean **Centre** **i**nitial **c**onditions **l**ateral **b**ounday **c**conditions **dir**ectory`. The default setting from `rose-suite.conf` is
+``` 
+tells us it will store them in directory specified as `dm_ec_ic_lbc_dir` in our `rose-suite.conf` file. Here, `dm_ec_ic_lbc_dir` is shorthand for **d**riving **m**odel **E**uropean **Centre** **i**nitial **c**onditions **l**ateral **b**ounday **c**conditions **dir**ectory. The default setting from `rose-suite.conf` is
 ```
 dm_ec_ic_lbc_dir="/scratch/$PROJECT/$USER/EC_GRIB_PARALLEL"
 ```
@@ -230,7 +237,7 @@ ec_cb003
 ```  
 If you run the notebook now, it will cp `ec_cb000` to `ec_cb000_init` so this original file is stored.  That's because subsequent tasks will over-write `ec_cb000` with improved land-surface data.
 
-Note these files contain ***116 variables**!  A large increase from the 19 from the original ERA5 data. The data now includes all the additional atmospheric and land-surface data from our ancillaries. Here is a plot of the initial soil temperature taken from the ERA5 data and re-gridded to our regional test domain.
+Note these files contain **116 variables**!  A large increase from the 19 from the original ERA5 data. The data now includes all the additional atmospheric and land-surface data from our ancillaries. Here is a plot of the initial soil temperature taken from the ERA5 data and re-gridded to our regional test domain.
 
 ![Initial soil temperature](images/ec_cb000_init.png)
 
@@ -242,12 +249,14 @@ ec_um_recon_000  =>  nci_hres_eccb => Region_Resolution_Model_um_recon => nci_hr
 ```
 The value of `NCI_HRES_ECCB` in `rose-suite.conf` will determine the choice of land/surface data. In this example,
 ```
-NCI_HRES_ECCB="era5land"
+NCI_HRES_ECCB="barra"
 ```
-Which means we will be taking land/surface data from the ERA5-Land reanalysis. This is defined at 0.1 degrees, which provides a significant improvement from the original 0.25 degree data.
+Which means we will be using the Bureau's BARRA Australian re-analysis to provide land/surface data at 0.11 degree increments. If you wish to use BARRA you must have membership of the NCI project `ob53`.
 
 :::{note}
-The other options available for NCI_HRES_ECCB are 'none' (use original ERA5 data) or 'barra' (use the Bureau's BARRA Australian re-analysis). If you wish to use BARRA (which is defined at 0.11 degrees), you must have membership of the NCI project `ob53`.
+
+The other options available for NCI_HRES_ECCB are 'none' (use original ERA5 data) or 'era5land' which takes land/surface data from the ERA5-**Land** reanalysis defined at 0.1 degrees resolution. 
+
 :::
 
 :::{important}
@@ -259,9 +268,14 @@ The type of land/surface dataset determines the outer resolution of your regiona
 | ERA5-land | era5land | 0.1 degrees |
 | BARRA | barra | 0.11 degrees |
 
-Note for the case of BARRA, the grid point locations of your outer domain defined as `rg01_rs01` **MUST MATCH EXCATLY** the grid point locations of the BARRA grid. Hence, you are best of examining BARRA data first
+For ERA5-land, the grid point locations of your outer domain defined as `rg01_rs01` **MUST** be defined at 0.1 degree intervals, e.g. 39.4, 39.5, 39.5 etc.
+
+For of BARRA, the grid point locations of your outer domain defined as `rg01_rs01` **MUST MATCH EXCATLY** the grid point locations of the BARRA grid. Hence, you are best examining BARRA data first to find out exactly what these points are. In our example, sample longitude points are 152.06, 152.17, 152.28 etc.
 
 See [here](https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#change-the-nested-regions-nest-configuration) for further confirmatin.
 :::
 
+After running the `nci_hres_eccb` task for our example, the file `ec_cb000` is updated with higher resolution land/surface data.  Only the first hour reconfiguration file is changed, as this forms the initial condition for our first day of simulation. The remaining reconfiguration files (hours 01-24) are used to defined the lateral boundary conditions.
+
+If you run the notebook now, it will copy `ec_cb000` to `ec_cb000_hres` so this original file is stored. This allows us to see the impact of using a higher resolution land/surface data on the soil temperature of our initial condition.
 
