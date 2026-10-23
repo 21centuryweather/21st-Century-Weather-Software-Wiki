@@ -8,7 +8,7 @@ The disadvantage of regional modelling is that it adds additional layers of comp
 
 Consider the figure below.
 
-![Global Workflow](./images/global-workflows-2.png")
+![Global Workflow](./images/global-workflows-2.png)
 
 If we consider the case of the ACCESS global model AM3 (which is detailed [here](../AM3/intro.md)) this global model has been configured at two fixed resolutions:
 - N96 (~ 135 km resolution)
