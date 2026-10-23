@@ -352,7 +352,7 @@ The LBC files will be generated in
 ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/Lismore-Tiny/test/GAL9/lbcs/GAL9_alabc_000.
 ```
 
-Unfortunately these files cannot be viewed with any python tool (that I know of) but you can use them using the `xconv` tool which you can load from a `gadi` terminal using
+Unfortunately these files cannot be easily loaded with any python tool (that I know of) but you can view them using the `xconv` tool which you can use from a `gadi` terminal using
 ```
 $ module use ~access/modules 
 $ module load xconv
