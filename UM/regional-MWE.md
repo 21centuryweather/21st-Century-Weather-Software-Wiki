@@ -241,7 +241,7 @@ If you run the notebook now, it will cp `ec_cb000` to `ec_cb000_init` so this or
 
 Note these files contain **116 variables**!  A large increase from the 19 from the original ERA5 data. The data now includes all the additional atmospheric and land-surface data from our ancillaries. Here is a plot of the initial soil temperature taken from the ERA5 data and re-gridded to our regional test domain.
 
-![Initial soil temperature](images/ec_cb000_init.png)
+![Initial soil temperature](./images/ec_cb000_init.png)
 
 ### nci_hres_eccb
 
@@ -283,7 +283,7 @@ After running the `nci_hres_eccb` task for our example, the file `ec_cb000` is u
 
 If you are following along with the notebook, it will copy `ec_cb000` to `ec_cb000_hres` so this original file is stored. This allows us to see the impact of using a higher resolution land/surface data on the soil temperature of our initial condition. This figure is replicated below.
 
-[BARRA soil temp](./images/BARRA_soil_temp.png)
+![BARRA soil temp](./images/BARRA_soil_temp.png)
 
 ### Region_Resolution_Model_um_recon
 
@@ -307,7 +307,7 @@ Note the task logic from the `suite.rc` file
 
 If you are following along with the notebook, it will copy the updated `GAL9_astart` to `GAL9_astart_hres` so we can compare the differences in the two ASTART files. The figure below is taken from the notebook.
 
-[ASTARTsoil temp](./images/ASTART_soil.png)
+![ASTARTsoil temp](./images/ASTART_soil.png)
 
 ### Region_Resolution_Model_LBCS
 
@@ -343,7 +343,63 @@ $ rm ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/ec_
 ```
 before triggering the task `Region_Resolution_Model_um_createbc_000`.
 
-If you are following along with notebook, it contains logic to do this if.
+If you are following along with notebook, it contains logic to do this.
 
-:::
+The LBC files will be generated in 
+```
+~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/Lismore-Tiny/test/GAL9/lbcs/GAL9_alabc_000.
+```
 
+Unfortunately these files cannot be viewed with any python tool (that I know of) but you can use them using the `xconv` tool which you can load from a `gadi` terminal using
+```
+$ module use ~access/modules 
+$ module load xconv
+$ xconv GAL9_alabc_000
+```
+If you load one of the forecast fields from that file and plot it in `xconv` it will resemble this.
+
+![LBC file](./images/LBC_plot.png)
+
+Note the large spatial extents of the LBCs, necessary to resolve the flow gradients moving into and out of our nest. The LBC file contains different outputs for every hour, e.g. loading the value of specific humidity valid at 2022/02/26 06:00Z will produce the following plot.
+
+![LBC file number 2](./images/LBC_plot2.png)
+
+Now the LBCs are generated, we can finally run a forecast!
+
+### Region_Resolution_Model_um_fcst
+
+As we saw above, the `suite.rc` file uses a `jinja` loop to create as many UM forecast tasks required to span our forecast cycle.
+
+In this case, we will require four `um_fcst` tasks spanning six hours to cover our daily forecast cycle.
+
+After your first forecast task completes (`Region_Resolution_Model_um_fcst_000`) you will have the following files in your forecast output directory:
+```
+$ cd  ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/Lismore-Tiny/test/GAL9/um
+$ ls 
+umnsaa_cb000  umnsaa_cb002  umnsaa_cb004  umnsaa_cb006  umnsaa_pb000     umnsaa_pverb000  umnsaa_pverd000  umnsa.xhist
+umnsaa_cb001  umnsaa_cb003  umnsaa_cb005  umnsaa_pa000  umnsaa_pvera000  umnsaa_pverc000  umnsa.stash
+```
+You will also have a new file in your initial conditions directory.
+```
+~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/Lismore-Tiny/test/GAL9/ics/umnsaa_da006
+```
+which is the initial condition for the next forecast cycle, valid from 06Z.
+
+These are raw UM binary files. These can be loaded using the python `iris` module which can be used to create xarray objects.
+
+This logic is taken from the accompanying notebook.
+```
+UM_NSAA_PB_FILE = GAL9_DIR / 'um/umnsaa_pb000'
+UM_NSAA_PB = iris.load(UM_NSAA_PB_FILE)
+mslp = xr.DataArray.from_iris(UM_NSAA_PB[0])
+```
+
+Note in the rAM3 Regional Nesting Suite, an additional task will convert all of these raw UM files into netCDF files for you.
+
+## Congratulations
+
+You've now ran through a minimum-working-example of Unified Model Regional Nesting Suite. While the rAM3 model is far more complicated that this (it can support multiple UM model types running in multiple regions with multiple nests simultaneously!) hopefully the knowledge you have acquired will help you understand the steps required to run a regional atmospheric modelling simulation and help understand any obstacles or hurdles that you encounter along the way.
+
+Below is a simple flow chart of the tasks and datafiles required to run the Regional Nesting Suite.
+
+![Flowchart](./images/rAM3-data-flow.png)
