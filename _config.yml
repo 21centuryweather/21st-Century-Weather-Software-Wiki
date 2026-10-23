@@ -13,6 +13,7 @@ execute:
   exclude_patterns:
     - 'ScottWales-RNS/*'
     - 'NRI-RNS/*'
+    - 'UM/*'
 
 # Define the name of the latex output file for PDF builds
 latex:
