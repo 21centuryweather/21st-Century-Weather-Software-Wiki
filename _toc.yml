@@ -26,7 +26,6 @@ parts:
     - file: UM/UM-intro
     - file: UM/trouble-shooting
     - file: UM/common_problems
-    - file: aus2200/models-aus2200
     - file: UM/regional-intro
       sections:
       - file: UM/regional-ancils
@@ -40,6 +39,7 @@ parts:
       - file: NRI-RNS/further-considerations
       - file : NRI-RNS/flagship_config.md
       - file : NRI-RNS/build-UM.md
+      - file: aus2200/models-aus2200
     - file: AM3/intro.md
       sections:
       - file: AM3/main-config.md
