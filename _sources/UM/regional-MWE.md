@@ -345,6 +345,8 @@ before triggering the task `Region_Resolution_Model_um_createbc_000`.
 
 If you are following along with notebook, it contains logic to do this.
 
+:::
+
 The LBC files will be generated in 
 ```
 ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/Lismore-Tiny/test/GAL9/lbcs/GAL9_alabc_000.

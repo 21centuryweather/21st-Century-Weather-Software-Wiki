@@ -649,7 +649,8 @@
 </div>
 </div>
 <p>The following flowchart summarises the task flow to generate the vegetation land cover classification ancillaries.</p>
-<img src="images/ancil_lct_flow-2.png"><p>We have now run all the major master, ‘umbrella’ tasks for the ancilliary suite.</p>
+<p><img alt="LCT flow" src="UM/.images/ancil_lct_flow-2.png" /></p>
+<p>We have now run all the major master, ‘umbrella’ tasks for the ancilliary suite.</p>
 <p>Now the final vegetation land cover classification ancillaries have been created, the suite splits and launches many tasks in parallel. Some tasks are grouped into their own subclasses with their own dependencies, such as</p>
 <ul class="simple">
 <li><p>orography</p></li>
@@ -753,7 +754,8 @@ default=rose mpi-launch -v central_ancillary.exe
 </div>
 </div>
 <p>The following flowchart describes the task flows for orography related tasks.</p>
-<img src="images/ancil_orog_flow.png"></section>
+<p><img alt="Orog task flow" src="../_images/ancil_orog_flow.png" /></p>
+</section>
 <section id="step-7-process-soil-characteristics">
 <h2>Step 7. Process soil characteristics<a class="headerlink" href="#step-7-process-soil-characteristics" title="Link to this heading">#</a></h2>
 <p>The next set of multi-step tasks are related to generating soil characteristics. First, we begin with <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_soils_hydr</span></code>. This reads in the global <code class="docutils literal notranslate"><span class="pre">soils_hydrology.nc</span></code> file, regrids it to our target domain and saves it to <code class="docutils literal notranslate"><span class="pre">soil_hydrology</span></code></p>
@@ -846,7 +848,8 @@ and outputs <code class="docutils literal notranslate"><span class="pre">qrparm.
 </div>
 </div>
 <p>The flowchart below describes the dependencies of the above soil-related tasks.</p>
-<img src="images/ancil_soil_flow.png"><p>There are two stand-alone soils tasks.</p>
+<p><img alt="Soil task flow" src="../_images/ancil_soil_flow.png" /></p>
+<p>There are two stand-alone soils tasks.</p>
 <p>The first is<code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_soil_roughness</span></code> which uses the existing <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac.nc</span></code> file along with global MODIS leaf area index data and global soil roughness data to produce <code class="docutils literal notranslate"><span class="pre">qrparm.soil_roughness</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -941,7 +944,8 @@ and outputs <code class="docutils literal notranslate"><span class="pre">qrparm.
 </div>
 </div>
 <p>The flowchart below describes the dependencies of the above soil-related tasks.</p>
-<img src="images/ancil_lai_flow.png"></section>
+<p><img alt="LAI flow" src="../_images/ancil_lai_flow.png" /></p>
+</section>
 <section id="step-9-process-sst-ice-and-snow">
 <h2>Step 9. Process SST/ice and snow<a class="headerlink" href="#step-9-process-sst-ice-and-snow" title="Link to this heading">#</a></h2>
 <p>The last multi-step tasks which contain a chain of dependencies begins with  <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_vegfrac</span></code>. Like the previous <code class="docutils literal notranslate"><span class="pre">ancil_cap</span></code> task, this uses an older FORTRAN binary and is independent of the python-based <code class="docutils literal notranslate"><span class="pre">ants</span></code> workflow.</p>
@@ -1106,7 +1110,7 @@ To opt-in to future behavior, set `decode_timedelta=False`.
 </div>
 </div>
 <p>The flowchart below shows the task dependencies for all <code class="docutils literal notranslate"><span class="pre">cap</span></code> related tasks.</p>
-<img src="images/ancil_cap_flow.png">
+<p><img alt="Cap flow" src="../_images/ancil_cap_flow.png" /></p>
 </section>
 <section id="step-10-process-remaining-stand-alone-tasks">
 <h2>Step 10. Process remaining stand-alone tasks.<a class="headerlink" href="#step-10-process-remaining-stand-alone-tasks" title="Link to this heading">#</a></h2>

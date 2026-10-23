@@ -463,8 +463,10 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-um-recon">Region_Resolution_Model_um_recon</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-hres-ic">nci_hres_ic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-lbcs">Region_Resolution_Model_LBCS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-um-fcst">Region_Resolution_Model_um_fcst</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations">Congratulations</a></li>
 </ul>
             </nav>
         </div>
@@ -834,6 +836,7 @@ ec_cb003
 </div>
 <p>before triggering the task <code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_um_createbc_000</span></code>.</p>
 <p>If you are following along with notebook, it contains logic to do this.</p>
+</div>
 <p>The LBC files will be generated in</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">RNS_minimum_working_example</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">cycle</span><span class="o">/</span><span class="mi">20220226</span><span class="n">T0000Z</span><span class="o">/</span><span class="n">Lismore</span><span class="o">-</span><span class="n">Tiny</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">GAL9</span><span class="o">/</span><span class="n">lbcs</span><span class="o">/</span><span class="n">GAL9_alabc_000</span><span class="o">.</span>
 </pre></div>
@@ -849,7 +852,9 @@ $ xconv GAL9_alabc_000
 <p>Note the large spatial extents of the LBCs, necessary to resolve the flow gradients moving into and out of our nest. The LBC file contains different outputs for every hour, e.g. loading the value of specific humidity valid at 2022/02/26 06:00Z will produce the following plot.</p>
 <p><img alt="LBC file number 2" src="../_images/LBC_plot2.png" /></p>
 <p>Now the LBCs are generated, we can finally run a forecast!</p>
-<h3 class="rubric" id="region-resolution-model-um-fcst">Region_Resolution_Model_um_fcst</h3>
+</section>
+<section id="region-resolution-model-um-fcst">
+<h3>Region_Resolution_Model_um_fcst<a class="headerlink" href="#region-resolution-model-um-fcst" title="Link to this heading">#</a></h3>
 <p>As we saw above, the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file uses a <code class="docutils literal notranslate"><span class="pre">jinja</span></code> loop to create as many UM forecast tasks required to span our forecast cycle.</p>
 <p>In this case, we will require four <code class="docutils literal notranslate"><span class="pre">um_fcst</span></code> tasks spanning six hours to cover our daily forecast cycle.</p>
 <p>After your first forecast task completes (<code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_um_fcst_000</span></code>) you will have the following files in your forecast output directory:</p>
@@ -872,12 +877,13 @@ umnsaa_cb001  umnsaa_cb003  umnsaa_cb005  umnsaa_pa000  umnsaa_pvera000  umnsaa_
 </pre></div>
 </div>
 <p>Note in the rAM3 Regional Nesting Suite, an additional task will convert all of these raw UM files into netCDF files for you.</p>
-<h2 class="rubric" id="congratulations">Congratulations</h2>
+</section>
+</section>
+<section id="congratulations">
+<h2>Congratulations<a class="headerlink" href="#congratulations" title="Link to this heading">#</a></h2>
 <p>You’ve now ran through a minimum-working-example of Unified Model Regional Nesting Suite. While the rAM3 model is far more complicated that this (it can support multiple UM model types running in multiple regions with multiple nests simultaneously!) hopefully the knowledge you have acquired will help you understand the steps required to run a regional atmospheric modelling simulation and help understand any obstacles or hurdles that you encounter along the way.</p>
 <p>Below is a simple flow chart of the tasks and datafiles required to run the Regional Nesting Suite.</p>
 <p><img alt="Flowchart" src="../_images/rAM3-data-flow.png" /></p>
-</div>
-</section>
 </section>
 </section>
 
@@ -956,8 +962,10 @@ umnsaa_cb001  umnsaa_cb003  umnsaa_cb005  umnsaa_pa000  umnsaa_pvera000  umnsaa_
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-um-recon">Region_Resolution_Model_um_recon</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-hres-ic">nci_hres_ic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-lbcs">Region_Resolution_Model_LBCS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-um-fcst">Region_Resolution_Model_um_fcst</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations">Congratulations</a></li>
 </ul>
   </nav></div>
 
