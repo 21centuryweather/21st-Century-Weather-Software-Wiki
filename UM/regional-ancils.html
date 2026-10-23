@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Regional Atmospheric Modeling &#8212; 21st Century Weather Software Wiki</title>
+    <title>Regional ancillary generation for atmospheric modeling &#8212; 21st Century Weather Software Wiki</title>
   
   
   
@@ -61,13 +61,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'NRI-RNS/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/regional-ancils';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Ancillary tools" href="ancillaries.html" />
-    <link rel="prev" title="AUS2200 - A complete guide" href="../aus2200/models-aus2200.html" />
+    <link rel="next" title="Regional Ancillary Suite workflow" href="RAS_ancils.html" />
+    <link rel="prev" title="Regional Atmospheric Modeling" href="regional-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -155,6 +155,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -230,19 +234,24 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="ancillaries.html">Ancillary tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regional-intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Regional ancillary generation for atmospheric modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RAS_ancils.html">Regional Ancillary Suite workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regional-MWE.html">Running the Regional Nesting Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/rAM3.html">ACCESS-rAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="outputs.html">Model Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluating.html">Evaluating the Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="further-considerations.html">Further Considerations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="build-UM.html">Custom UM builds for rAM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/checklist.html">Checklist before running your own regional experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -359,7 +368,7 @@
       
       
       
-      <li><a href="../_sources/NRI-RNS/intro.md" target="_blank"
+      <li><a href="../_sources/UM/regional-ancils.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -422,7 +431,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -433,11 +444,24 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Regional Atmospheric Modeling</h1>
+    <h1>Regional ancillary generation for atmospheric modeling</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nesting">Nesting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-two-resolutions">Why two resolutions?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-a-simple-test-run">Configuring a simple test run.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-suite">Running the suite.</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -447,14 +471,102 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="regional-atmospheric-modeling">
-<h1>Regional Atmospheric Modeling<a class="headerlink" href="#regional-atmospheric-modeling" title="Link to this heading">#</a></h1>
-<p><strong>ACCESS-rAM</strong></p>
-<p>ACCESS-NRI has developed a nested Regional Atmospheric (rAM) suite using the Unified Model for conducting high-resolution experiments over sub-sections of the Australian domain using multiple nested domains.</p>
-<p>The first beta release of ACCESS-rAM is now available. You can find all relevant documentation at the <a class="reference external" href="https://docs.access-hive.org.au/models/access_models/access-ram/">ACCESS-Hive Docs</a> website maintained by ACCESS-NRI.</p>
-<p>Thanks to ACCESS-NRI team for developing and maintaining this suite!</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="regional-ancillary-generation-for-atmospheric-modeling">
+<h1>Regional ancillary generation for atmospheric modeling<a class="headerlink" href="#regional-ancillary-generation-for-atmospheric-modeling" title="Link to this heading">#</a></h1>
+<p>In order to run the UM for a specified region, we have to generate files of orography, vegetation, soil and atmospheric parameters (e.g. dust, ozone) that are valid for the specified resolution within our region of interest.</p>
+<p>ACCESS NRI maintain a <a class="reference external" href="https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#ras">Regional Ancillary Suite</a> which uses global datasets of vegetation cover, orography etc. to generate the necessary ancillary inputs for your regional simulation.</p>
+<p>The Regional Ancillary Suite must be successfully completed before the regional model can run.</p>
+<p>The regional model is run inside the <strong>Regional Nesting Suite</strong>. We will get to that later.</p>
+<section id="nesting">
+<h2>Nesting<a class="headerlink" href="#nesting" title="Link to this heading">#</a></h2>
+<p>A regional model has to be ‘nested’ inside an atmospheric dataset which provided initial and boundary conditions for the region of interest. This dataset can take the form of</p>
+<ul class="simple">
+<li><p>Global re-analyses (e.g. ERA5)</p></li>
+<li><p>Regional re-analyses (e.g BARRA)</p></li>
+<li><p>Global Numerical Weather Prediction forecasts (e.g. ACCESS-G)</p></li>
+<li><p>CMIP model projects (e.g. ACCESS-ESM)</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In UM parlance, we call this dataset the <strong>driving model</strong>. It provides external information to drive the flow into, and out of, our region.</p>
 </div>
+<p>A UM regional model (sometimes called a local area model) must have a <strong>minimum</strong> of <strong>two</strong> nests. Within the UM, these rests are called ‘resolutions’. The UM has the ability to run multiple, spatially disconnected nests simultaneously inside separate regions. This is important for operational weather forecasting, but is not required for our research needs.</p>
+<p>For all UM regional modeling tasks, we will only ever run a single ‘region’ with a minimum of two ‘resolutions’.</p>
+<section id="why-two-resolutions">
+<h3>Why two resolutions?<a class="headerlink" href="#why-two-resolutions" title="Link to this heading">#</a></h3>
+<p>To define a UM regional model, we need to define boundary conditions that define the fluxes into, and out of, our domain. In the UM, these boundary conditions take the form of a ‘frame’ with specific thickness, i.e. they have a preset number of latitude and longitude points so gradients can be computed at the boundaries. See <a class="reference external" href="https://21centuryweather.github.io/UM_summary_docs/lbc.html">here</a> for a schematic taken from the UM documentation, where the ‘External Halo Points’ define the spatial thickness of the lateral boundary conditions.</p>
+<p>So the <strong>first</strong> resolution or ‘nest’ defines the spatial resolution of the lateral boundary conditions. It also defines the resolution of the initial condition, i.e. the values of meteorological variables, taken from the external atmospheric dataset that are regridded to our region of interest to initalise the model.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <strong>first</strong> resolution defined in the Ancillary Suite will be used by the <strong>driving model</strong> in the Regional Nesting Suite.</p>
+</div>
+<p>The <strong>second</strong> resolution or ‘nest’ defines the spatial resolution of our actual local area model. This is the region where the UM atmospheric forecast will run.</p>
+</section>
+</section>
+<section id="configuring-a-simple-test-run">
+<h2>Configuring a simple test run.<a class="headerlink" href="#configuring-a-simple-test-run" title="Link to this heading">#</a></h2>
+<p>Let’s configure a simple test domain and define the minimum number of resolutions (two) for a single region.</p>
+<p>We can checkout a minimal working example of the Regional Ancillary Suite here : <a class="github reference external" href="https://github.com/21centuryweather/RAS_minimum_working_example">21centuryweather/RAS_minimum_working_example</a> by typing the following at the command line from your <code class="docutils literal notranslate"><span class="pre">~/roses/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/roses
+$ git clone git@github.com:21centuryweather/RAS_minimum_working_example.git
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This assumes you can access the Centre’s GitHub repository via ssh. If that command doesn’t work, visit the Centre’s Wiki <a class="reference external" href="https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/git/git-intro.html#configure-the-permissions-between-git-and-github">here</a></p>
+</div>
+<p>You can open the <code class="docutils literal notranslate"><span class="pre">rose</span></code> GUI as you have before and click on <code class="docutils literal notranslate"><span class="pre">suite</span> <span class="pre">conf</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Regional</span> <span class="pre">Ancillary</span> <span class="pre">Suite</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Nested</span> <span class="pre">region</span> <span class="pre">1</span> <span class="pre">setup</span></code> to view the definition of Region 1.</p>
+<p><img alt="RAS region" src="../_images/RAS_region.png" /></p>
+<p>Clicking on <code class="docutils literal notranslate"><span class="pre">Resolution</span> <span class="pre">1</span> <span class="pre">setup</span></code> and <code class="docutils literal notranslate"><span class="pre">Resolution</span> <span class="pre">2</span> <span class="pre">setup</span></code> shows the definitions of our two Resolutions.</p>
+<p><img alt="RAS region" src="../_images/RAS_res1.png" />
+<img alt="RAS region" src="../_images/RAS_res2.png" /></p>
+<p>Note how these values are stored in the suite’s <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the number of regions</span>
+<span class="n">nregns</span><span class="o">=</span><span class="mi">1</span>
+<span class="c1">#Define define the regions</span>
+<span class="n">rg01_centre</span><span class="o">=-</span><span class="mf">28.49</span><span class="p">,</span><span class="mf">153.45</span>
+<span class="n">rg01_igbp_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">rg01_name</span><span class="o">=</span><span class="s2">"Lismore-tiny"</span>
+<span class="c1"># Define the number of resolutions</span>
+<span class="n">rg01_nreslns</span><span class="o">=</span><span class="mi">2</span>
+<span class="o">...</span>
+<span class="c1"># Define the first outer resolution that is used by the 'driving model'</span>
+<span class="n">rg01_rs01_delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span>
+<span class="n">rg01_rs01_levset</span><span class="o">=</span><span class="s2">"L70_80km"</span>
+<span class="o">...</span>
+<span class="n">rg01_rs01_name</span><span class="o">=</span><span class="s2">"era5"</span>
+<span class="n">rg01_rs01_npts</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span>
+<span class="o">...</span>
+<span class="c1"># Define the second inner resolution that is used by the</span>
+<span class="o">...</span>
+<span class="n">rg01_rs02_delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span>
+<span class="n">rg01_rs02_levset</span><span class="o">=</span><span class="s2">"L70_80km"</span>
+<span class="o">...</span>
+<span class="n">rg01_rs02_name</span><span class="o">=</span><span class="s2">"d1100"</span>
+<span class="n">rg01_rs02_npts</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The number points in each domain for our example is <strong>even</strong>. <strong>ALL</strong> UM regional domains must have an <strong>even</strong> number of data points. This is two allow effective domain decomposition across multiple, parallel processors.</p>
+</div>
+</section>
+<section id="running-the-suite">
+<h2>Running the suite.<a class="headerlink" href="#running-the-suite" title="Link to this heading">#</a></h2>
+<p>We will now run the suite. The tasks tree will unfold and you can watch the tasks execute in realtime. For this example, the whole suite will execute in a manner of minutes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-run
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Jupyter notebook is contained in the suite directory in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">roses</span><span class="o">/</span><span class="n">RAS_minimum_working_example</span><span class="o">/</span><span class="n">RAS_ancils</span><span class="o">.</span><span class="n">ipynb</span>
+</pre></div>
+</div>
+<p>which you can use to visualise all the ancillaries you have generated.
+The notebook also contains more information on the taskflows within the ancillary suite and their dependencies. Useful when you hit problems building ancillaries for your own experiments!</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -470,7 +582,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./NRI-RNS"
+            path: "./UM"
         },
         predefinedOutput: true
     }
@@ -488,20 +600,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../aus2200/models-aus2200.html"
+       href="regional-intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">AUS2200 - A complete guide</p>
+        <p class="prev-next-title">Regional Atmospheric Modeling</p>
       </div>
     </a>
     <a class="right-next"
-       href="ancillaries.html"
+       href="RAS_ancils.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ancillary tools</p>
+        <p class="prev-next-title">Regional Ancillary Suite workflow</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -511,6 +623,28 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nesting">Nesting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-two-resolutions">Why two resolutions?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-a-simple-test-run">Configuring a simple test run.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-suite">Running the suite.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

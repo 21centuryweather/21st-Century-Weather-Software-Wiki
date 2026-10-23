@@ -235,16 +235,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../UM/UM-intro.html">The Unified Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/trouble-shooting.html">Trouble Shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UM/common_problems.html">Common rose/cylc problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../NRI-RNS/intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../UM/regional-intro.html">Regional Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../UM/regional-ancils.html">Regional ancillary generation for atmospheric modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../UM/RAS_ancils.html">Regional Ancillary Suite workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../UM/regional-MWE.html">Running the Regional Nesting Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/rAM3.html">ACCESS-rAM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/checklist.html">Checklist before running your own regional experiment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -633,14 +638,14 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.9.1<br>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/itables/typing.py:308: SyntaxWarning: These arguments are not documented in ITableOptions: {'html'}. You can silence this warning by setting `itables.options.warn_on_undocumented_option=False`. If you believe ITableOptions should be updated, please make a PR or open an issue at https://github.com/mwouts/itables
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/itables/typing.py:308: SyntaxWarning: These arguments are not documented in ITableOptions: {'html'}. You can silence this warning by setting `itables.options.warn_on_undocumented_option=False`. If you believe ITableOptions should be updated, please make a PR or open an issue at https://github.com/mwouts/itables
   warnings.warn(
-/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/itables/typing.py:308: SyntaxWarning: These arguments are not documented in DTForITablesOptions: {'html'}. You can silence this warning by setting `itables.options.warn_on_undocumented_option=False`. If you believe ITableOptions should be updated, please make a PR or open an issue at https://github.com/mwouts/itables
+/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/itables/typing.py:308: SyntaxWarning: These arguments are not documented in DTForITablesOptions: {'html'}. You can silence this warning by setting `itables.options.warn_on_undocumented_option=False`. If you believe ITableOptions should be updated, please make a PR or open an issue at https://github.com/mwouts/itables
   warnings.warn(
 </pre></div>
 </div>
 <div class="output text_html"><!--| quarto-html-table-processing: none -->
-<table id="itables_526c16b9_78a7_4610_a713_4188d2f6531a" hidden="hidden">
+<table id="itables_b9e1a080_6d8c_45a8_a05e_c49eac0312a7" hidden="hidden">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href=https://itables.org/><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -739,34 +744,34 @@ width="64" viewBox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
     </tr>
   </tbody>
 </table>
-<div id="itables_526c16b9_78a7_4610_a713_4188d2f6531a_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+<div id="itables_b9e1a080_6d8c_45a8_a05e_c49eac0312a7_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
       <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href=https://itables.org/fallbacks/static_preview.html title="ITables v2.9.1 static preview">ⓘ</a></sup>Name</th>
       <th style="border:1px solid #ddd;padding:8px">Location on Gadi</th>
       <th style="border:1px solid #ddd;padding:8px">Mantainer</th>
       <th style="border:1px solid #ddd;padding:8px">Description</th>
     </tr></thead><tbody>
-<tr><td style="border:1px solid #ddd;padding:8px"><a href='mmleav2.html'>MMLEAv2</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/MMLEAv2</td><td style="border:1px solid #ddd;padding:8px">Sam Green, Nicola Maher</td><td style="border:1px solid #ddd;padding:8px">Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px"><a href='gsmap.html'>GSMaP</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/GSMaP/</td><td style="border:1px solid #ddd;padding:8px">Sam Green</td><td style="border:1px solid #ddd;padding:8px">Daily averaged precipitation derived from satellite.</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px"><a href='mesaclip.html'>MESACLIP</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/MESACLIP</td><td style="border:1px solid #ddd;padding:8px">Sam Green</td><td style="border:1px solid #ddd;padding:8px">MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction</td></tr>
 <tr><td style="border:1px solid #ddd;padding:8px"><a href='weather_objects.html'>ERA5-based Weather Objects</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/weatherfeatures.era5/</td><td style="border:1px solid #ddd;padding:8px">Sam Green, Chenhui Jin</td><td style="border:1px solid #ddd;padding:8px">Weather objects (anticyclones, cyclones and warm-conveyor belts)</td></tr>
 <tr><td style="border:1px solid #ddd;padding:8px"><a href='energy.html'>Energy Demand</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/energy_demand</td><td style="border:1px solid #ddd;padding:8px">Sam Green, Doug Richardson</td><td style="border:1px solid #ddd;padding:8px">Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px"><a href='mesaclip.html'>MESACLIP</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/MESACLIP</td><td style="border:1px solid #ddd;padding:8px">Sam Green</td><td style="border:1px solid #ddd;padding:8px">MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px"><a href='himawari-ahi.html'>Cloud Type from Himawari</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/himawari-ahi</td><td style="border:1px solid #ddd;padding:8px">Sam Green</td><td style="border:1px solid #ddd;padding:8px">Cloud type product is derived from Himawari AHI</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px"><a href='gsmap.html'>GSMaP</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/GSMaP/</td><td style="border:1px solid #ddd;padding:8px">Sam Green</td><td style="border:1px solid #ddd;padding:8px">Daily averaged precipitation derived from satellite.</td></tr>
 <tr><td style="border:1px solid #ddd;padding:8px"><a href='daily-era5.html'>ERA5 daily</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/ERA5/daily</td><td style="border:1px solid #ddd;padding:8px">TBD</td><td style="border:1px solid #ddd;padding:8px">Reanalysis. Variables in daily frequency remaped to 1 degree</td></tr>
 <tr><td style="border:1px solid #ddd;padding:8px"><a href='drought-era5.html'>ERA5 Drought</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/drought_era5</td><td style="border:1px solid #ddd;padding:8px">Pao Corrales</td><td style="border:1px solid #ddd;padding:8px">Monthly drought indices from 1940 to present derived from ERA5 reanalysis</td></tr>
-</tbody></table></div><script>document.getElementById("itables_526c16b9_78a7_4610_a713_4188d2f6531a")?.removeAttribute("hidden");document.getElementById("itables_526c16b9_78a7_4610_a713_4188d2f6531a_fallback")?.setAttribute("hidden", "hidden");</script>
+<tr><td style="border:1px solid #ddd;padding:8px"><a href='himawari-ahi.html'>Cloud Type from Himawari</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/himawari-ahi</td><td style="border:1px solid #ddd;padding:8px">Sam Green</td><td style="border:1px solid #ddd;padding:8px">Cloud type product is derived from Himawari AHI</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px"><a href='mmleav2.html'>MMLEAv2</a></td><td style="border:1px solid #ddd;padding:8px">/g/data/su28/MMLEAv2</td><td style="border:1px solid #ddd;padding:8px">Sam Green, Nicola Maher</td><td style="border:1px solid #ddd;padding:8px">Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.</td></tr>
+</tbody></table></div><script>document.getElementById("itables_b9e1a080_6d8c_45a8_a05e_c49eac0312a7")?.removeAttribute("hidden");document.getElementById("itables_b9e1a080_6d8c_45a8_a05e_c49eac0312a7_fallback")?.setAttribute("hidden", "hidden");</script>
 <script type="module">
     (async () => {
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_9_1;
 
-            document.querySelectorAll("#itables_526c16b9_78a7_4610_a713_4188d2f6531a:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_b9e1a080_6d8c_45a8_a05e_c49eac0312a7:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
                 let dt_args = {
           "classes": ["display", "nowrap", "compact"],
           "columnDefs": [{"className": "dt-left", "targets": "_all"}],
-          "data_json": "[[\"<a href='mmleav2.html'>MMLEAv2</a>\", \"/g/data/su28/MMLEAv2\", \"Sam Green, Nicola Maher\", \"Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.\"], [\"<a href='weather_objects.html'>ERA5-based Weather Objects</a>\", \"/g/data/su28/weatherfeatures.era5/\", \"Sam Green, Chenhui Jin\", \"Weather objects (anticyclones, cyclones and warm-conveyor belts)\"], [\"<a href='energy.html'>Energy Demand</a>\", \"/g/data/su28/energy_demand\", \"Sam Green, Doug Richardson\", \"Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)\"], [\"<a href='mesaclip.html'>MESACLIP</a>\", \"/g/data/su28/MESACLIP\", \"Sam Green\", \"MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction\"], [\"<a href='himawari-ahi.html'>Cloud Type from Himawari</a>\", \"/g/data/su28/himawari-ahi\", \"Sam Green\", \"Cloud type product is derived from Himawari AHI\"], [\"<a href='gsmap.html'>GSMaP</a>\", \"/g/data/su28/GSMaP/\", \"Sam Green\", \"Daily averaged precipitation derived from satellite.\"], [\"<a href='daily-era5.html'>ERA5 daily</a>\", \"/g/data/su28/ERA5/daily\", \"TBD\", \"Reanalysis. Variables in daily frequency remaped to 1 degree\"], [\"<a href='drought-era5.html'>ERA5 Drought</a>\", \"/g/data/su28/drought_era5\", \"Pao Corrales\", \"Monthly drought indices from 1940 to present derived from ERA5 reanalysis\"]]",
+          "data_json": "[[\"<a href='gsmap.html'>GSMaP</a>\", \"/g/data/su28/GSMaP/\", \"Sam Green\", \"Daily averaged precipitation derived from satellite.\"], [\"<a href='mesaclip.html'>MESACLIP</a>\", \"/g/data/su28/MESACLIP\", \"Sam Green\", \"MESoscale Atmosphere-Ocean Interactions in Seasonal-to-Decadal CLImate Prediction\"], [\"<a href='weather_objects.html'>ERA5-based Weather Objects</a>\", \"/g/data/su28/weatherfeatures.era5/\", \"Sam Green, Chenhui Jin\", \"Weather objects (anticyclones, cyclones and warm-conveyor belts)\"], [\"<a href='energy.html'>Energy Demand</a>\", \"/g/data/su28/energy_demand\", \"Sam Green, Doug Richardson\", \"Predictions of daily energy demand for the Australian National Electricity Market (1940-2023)\"], [\"<a href='daily-era5.html'>ERA5 daily</a>\", \"/g/data/su28/ERA5/daily\", \"TBD\", \"Reanalysis. Variables in daily frequency remaped to 1 degree\"], [\"<a href='drought-era5.html'>ERA5 Drought</a>\", \"/g/data/su28/drought_era5\", \"Pao Corrales\", \"Monthly drought indices from 1940 to present derived from ERA5 reanalysis\"], [\"<a href='himawari-ahi.html'>Cloud Type from Himawari</a>\", \"/g/data/su28/himawari-ahi\", \"Sam Green\", \"Cloud type product is derived from Himawari AHI\"], [\"<a href='mmleav2.html'>MMLEAv2</a>\", \"/g/data/su28/MMLEAv2\", \"Sam Green, Nicola Maher\", \"Multi-Model Large Ensemble Archive version 2 includes 18 models from the CMIP project in a 2.5 degree grid.\"]]",
           "html": false,
           "layout": {"bottomEnd": null, "bottomStart": null, "topEnd": null, "topStart": null},
           "order": [],

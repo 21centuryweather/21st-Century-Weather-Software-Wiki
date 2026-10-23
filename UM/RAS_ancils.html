@@ -1,0 +1,1533 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Regional Ancillary Suite workflow &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/RAS_ancils';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running the Regional Nesting Suite" href="regional-MWE.html" />
+    <link rel="prev" title="Regional ancillary generation for atmospheric modeling" href="regional-ancils.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/project-template.html">Research Project Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/direnv.html">direnv</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/storage.html"><code class="docutils literal notranslate"><span class="pre">/scratch</span></code> vs <code class="docutils literal notranslate"><span class="pre">/g/data</span></code> vs <code class="docutils literal notranslate"><span class="pre">$PBS_JOBFS</span></code> on Gadi: An I/O Performance View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/inodes.html">Where Did My Inodes Go?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/su.html">Where Your SUs Actually Go: Right-Sizing PBS Jobs on Gadi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regional-intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="regional-ancils.html">Regional ancillary generation for atmospheric modeling</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Regional Ancillary Suite workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regional-MWE.html">Running the Regional Nesting Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/rAM3.html">ACCESS-rAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/checklist.html">Checklist before running your own regional experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pathlib.html">Using the Python pathlib module</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/UM/RAS_ancils.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Regional Ancillary Suite workflow</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-the-grid-definition-namelists">Step 1. Install the grid definition namelists.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-generate-the-land-sea-mask-and-vegetation-ancillaries-on-the-defined-grid">Step 2. Generate the land-sea mask and vegetation ancillaries on the defined grid.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-include-world-cover-data-optional">Step 3. Include World Cover data (optional).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-install-c4-land-cover-data">Step 4. Install C4 land cover data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-orography">Step 5. Generate orography.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-process-soil-characteristics">Step 7. Process soil characteristics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-process-leaf-and-canopy-data">Step 8. Process leaf and canopy data.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-process-sst-ice-and-snow">Step 9. Process SST/ice and snow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10-process-remaining-stand-alone-tasks">Step 10. Process remaining stand-alone tasks.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-check-the-validity-of-the-ancillaries">How do I check the validity of the ancillaries?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="regional-ancillary-suite-workflow">
+<h1>Regional Ancillary Suite workflow<a class="headerlink" href="#regional-ancillary-suite-workflow" title="Link to this heading">#</a></h1>
+<p>A notebook to document and check the outputs of the Regional Ancillary Suite (RAS).</p>
+<p>This notebook is located at</p>
+<p><a class="github reference external" href="https://github.com/21centuryweather/RAS_minimum_working_example/blob/main/notebooks/RAS_ancils.ipynb">21centuryweather/RAS_minimum_working_example</a></p>
+<p>Here we breakdown the (complicated) ancillary workflow to help provide insights when things go wrong.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> task graph for the RAS is quite complex (see below), but in this notebook we will step through each task separately and document its outputs.  This will help you understand the dependencies and help you trace any errors if they occur when you create new ancillaries for your own experiments</p>
+<img src="images/Graph.png" width="900"><p>The firsts tasks that run in this suite are <code class="docutils literal notranslate"><span class="pre">INSTALL_COLD</span></code>, <code class="docutils literal notranslate"><span class="pre">ANCIL_ANTS</span></code> and<code class="docutils literal notranslate"><span class="pre">ANCIL_ANTS</span></code>. These install a local version of the <code class="docutils literal notranslate"><span class="pre">ants</span></code> python module in your <code class="docutils literal notranslate"><span class="pre">~/cylc-run/RAS_minimum_working_example</span></code> directory, along with various global ancillary datasets required to genreate regional information.</p>
+<p>Once these set-up tasks have been complete, the suite will begin to generate ancillaries for every designed region and resolution defined in the suite’s <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file.</p>
+<p>Our <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> contains one region:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rg01_name</span><span class="o">=</span><span class="s2">"Lismore-tiny"</span>
+</pre></div>
+</div>
+<p>which contains two resolutions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rg01_rs01_name</span><span class="o">=</span><span class="s2">"era5"</span>
+<span class="n">rg01_rs02_name</span><span class="o">=</span><span class="s2">"d1100"</span>
+</pre></div>
+</div>
+<p>You can see from the above image that the suite has generated a seperate task family for each resolution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lismore</span><span class="o">-</span><span class="n">tiny_era5_ancil</span>
+<span class="n">Lismore</span><span class="o">-</span><span class="n">tiny_d1100_ancil</span>
+</pre></div>
+</div>
+<p>Both task families contain and identical set of tasks. In this workbook we will step through the second task family, <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil</span></code></p>
+<section id="step-1-install-the-grid-definition-namelists">
+<h2>Step 1. Install the grid definition namelists.<a class="headerlink" href="#step-1-install-the-grid-definition-namelists" title="Link to this heading">#</a></h2>
+<p>Running the task <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_top</span></code> installs the following files into <code class="docutils literal notranslate"><span class="pre">~cylc-run/RAS_minimum_working_example/share/data/ancils/Lismore-tiny/d1100</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grid.nl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grid_eg.nl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L70_80km</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vertlevs.nl</span></code></p></li>
+</ul>
+<p>The first two files are Fortran ‘namelist’ files that contain information of the horizontal latitute/longitude grid (i.e. its bounds, number of points and grid spacing). The latter two files provide the vertical information of the grid.</p>
+</section>
+<section id="step-2-generate-the-land-sea-mask-and-vegetation-ancillaries-on-the-defined-grid">
+<h2>Step 2. Generate the land-sea mask and vegetation ancillaries on the defined grid.<a class="headerlink" href="#step-2-generate-the-land-sea-mask-and-vegetation-ancillaries-on-the-defined-grid" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_lct</span></code> task generates the land-sea mask and vegetation ancillaries that are consistent with the grid definition contained in the grid namelist files.</p>
+<p>This task generates the following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.mask_cci</span></code> (the land-sea binary mask in UM ancillary binary format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.mask_cci.nc</span></code>(as above, but in netCDF format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.landfrac</span></code> (the land fraction mask in UM ancillary binary format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.landfrac.nc</span></code>(as above, but in netCDF format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.mask_sea</span></code>(another land-sea binary mask using different coastline defintion in UM ancillary binary format - not used by the standard RAS suite)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.mask_sea.nc</span></code>(as above, but in netCDF format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci_pre_c4</span></code> (9 level vegetation grids in UM ancillary binary format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci_pre_c4.nc</span></code> (as above, but in netCDF format)</p></li>
+</ul>
+<p>It also generates a symbolic link to <code class="docutils literal notranslate"><span class="pre">qrparm.mask</span></code> to point to<code class="docutils literal notranslate"><span class="pre">qrparm.mask_cci</span></code>. This is done to track providence of the mask generation (i.e. using CCI datasets).</p>
+<p>Let’s examine the binary land-sea mask and the vegetation grids.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">iris</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s2">"xarray"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">home_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'HOME'</span><span class="p">]</span>
+<span class="n">HOME</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">home_dir</span><span class="p">)</span>
+<span class="n">ANCIL_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span> <span class="n">HOME</span> <span class="o">/</span> <span class="s1">'cylc-run/RAS_minimum_working_example/share/data/ancils/Lismore-tiny/d1100'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsm</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.mask'</span><span class="p">)</span>
+<span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">lsm</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d315bbba40&gt;
+</pre></div>
+</div>
+<img alt="../_images/c1063d4ecc8f87381d62327bb4272de2e6d667ea4bd64d3248fcce7004438c66.png" src="../_images/c1063d4ecc8f87381d62327bb4272de2e6d667ea4bd64d3248fcce7004438c66.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veg_frac_pre_c4</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.veg.frac_cci_pre_c4'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">veg_frac_pre_c4</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d3150df500&gt;
+</pre></div>
+</div>
+<img alt="../_images/2c3d872d50a09eaace335c0dc27c3075c012dc6a3f903c3c700c05ccc7bf59d8.png" src="../_images/2c3d872d50a09eaace335c0dc27c3075c012dc6a3f903c3c700c05ccc7bf59d8.png" />
+</div>
+</div>
+</section>
+<section id="step-3-include-world-cover-data-optional">
+<h2>Step 3. Include World Cover data (optional).<a class="headerlink" href="#step-3-include-world-cover-data-optional" title="Link to this heading">#</a></h2>
+<p>This task will run if you have set <code class="docutils literal notranslate"><span class="pre">WC_URBAN=True</span></code> in your <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file.</p>
+<p>If applicable, this tasks modifies the vegetation ancillaries to include the lastest ‘World Cover’ data. This step allows better representation of urban areas. This step uses the task <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_lct_postproc_wc_urban</span></code> and will update the files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci_pre_c4</span></code>, <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci_pre_c4.nc</span></code>,</p></li>
+</ul>
+<p>and generate the files</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci_pre_c4_pre_wc</span></code>, <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci_pre_c4_pre_wc.nc</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veg_frac_pre_c4_wc</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.veg.frac_cci_pre_c4_pre_wc'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">veg_frac_pre_c4_wc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d314f97500&gt;
+</pre></div>
+</div>
+<img alt="../_images/5956a39127a5b0f1d5f6d493dd40f1dab7a678400284dd4517e81b0c25a92f5e.png" src="../_images/5956a39127a5b0f1d5f6d493dd40f1dab7a678400284dd4517e81b0c25a92f5e.png" />
+</div>
+</div>
+</section>
+<section id="step-4-install-c4-land-cover-data">
+<h2>Step 4. Install C4 land cover data<a class="headerlink" href="#step-4-install-c4-land-cover-data" title="Link to this heading">#</a></h2>
+<p>The vegetation processing is completed with the task <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_lct_postproc_c4</span></code>. This injects ‘C4’ data into the land cover type fraction dataset, and produces the output files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci</span></code>, <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_cci.nc</span></code></p></li>
+</ul>
+<p>A symbolic link is created to both of these files which removes the last suffix, i.e.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac</span> <span class="pre">-&gt;</span> <span class="pre">qrparm.veg.frac_cci</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac.nc</span> <span class="pre">-&gt;</span> <span class="pre">qrparm.veg.frac_cci.nc</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veg_frac</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.veg.frac_cci'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">veg_frac</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d314f974a0&gt;
+</pre></div>
+</div>
+<img alt="../_images/bdd5843a5afdc80af85b4782fc04efef40bc8a509730b4f971e29898d81a27d2.png" src="../_images/bdd5843a5afdc80af85b4782fc04efef40bc8a509730b4f971e29898d81a27d2.png" />
+</div>
+</div>
+<p>The following flowchart summarises the task flow to generate the vegetation land cover classification ancillaries.</p>
+<img src="images/ancil_lct_flow-2.png"><p>We have now run all the major master, ‘umbrella’ tasks for the ancilliary suite.</p>
+<p>Now the final vegetation land cover classification ancillaries have been created, the suite splits and launches many tasks in parallel. Some tasks are grouped into their own subclasses with their own dependencies, such as</p>
+<ul class="simple">
+<li><p>orography</p></li>
+<li><p>soil characteristics</p></li>
+<li><p>leaf areas and canopy heights</p></li>
+<li><p>ice and snow</p></li>
+<li><p>moruses</p></li>
+</ul>
+<p>Let’s review the orography set of tasks first.</p>
+<p>The first orography task is <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_cap_orog</span></code>. Any tasks that contain <code class="docutils literal notranslate"><span class="pre">cap</span></code> in their task name do not use the python <code class="docutils literal notranslate"><span class="pre">ants</span></code> library. Rather they use the older UM binary. E.g. this task is launched with the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ more app/ancil_cap_orog/rose-app.conf 
+meta=ancilOrog
+
+[command]
+default=rose mpi-launch -v central_ancillary.exe
+</pre></div>
+</div>
+</section>
+<section id="step-5-generate-orography">
+<h2>Step 5. Generate orography.<a class="headerlink" href="#step-5-generate-orography" title="Link to this heading">#</a></h2>
+<p>Triggering the task <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_cap_orog</span></code> will generate the file <code class="docutils literal notranslate"><span class="pre">qrparm.orog</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orog</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.orog'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">orog</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d314d3f500&gt;
+</pre></div>
+</div>
+<img alt="../_images/25677b7856a63cb97fa10306f9d6b79b83aaeebb7a39882cf55d85be8d58cf22.png" src="../_images/25677b7856a63cb97fa10306f9d6b79b83aaeebb7a39882cf55d85be8d58cf22.png" />
+</div>
+</div>
+<p>The co-ordinates of <code class="docutils literal notranslate"><span class="pre">qrparm.orog</span></code> are produced by an older Fortan CAP exe and are 32-bit co-ordinates by default.</p>
+<p>The next orography task is <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_mean_orog</span></code>. This is two-step task that firstly</p>
+<ul class="simple">
+<li><p>produces a concatentated SRTM orography file <code class="docutils literal notranslate"><span class="pre">orog_srtm/SRTM_concat.nc</span></code> (which is a global dataset)</p></li>
+<li><p>then produces the file <code class="docutils literal notranslate"><span class="pre">orog_srtm/qrparm.orog.srtm.nc</span></code></p></li>
+</ul>
+<p><strong>NOTE!</strong> The file <code class="docutils literal notranslate"><span class="pre">orog_srtm/qrparm.orog.srtm.nc</span></code> is a temporary file that will be deleted when the next task, Lismore-tiny_d1100_ancil_mean_orog_smooth,is executed. It will only be visible if you trigger the task <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_mean_orog</span></code> manually and hold the subsequent <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_mean_orog_smooth</span></code> task.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orog_srtm</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'orog_srtm/qrparm.orog.srtm.nc'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">orog_srtm</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d3003d48c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/0680c5fadf3e85e38227ccaca7a5a7b7d62629b83d07fda13bd8f43d8d4291a4.png" src="../_images/0680c5fadf3e85e38227ccaca7a5a7b7d62629b83d07fda13bd8f43d8d4291a4.png" />
+</div>
+</div>
+<p><strong>IMPORTANT!!</strong> The SRTM orography dataset is not defined beyond +/- 60 latitude!! If you want to run an experiment close to the poles, you’ll need to change the default suite behaviour. See here for more details:</p>
+<p><a class="reference external" href="https://forum.access-hive.org.au/t/regional-ancillary-suite-error-srtm-data-not-available-for-regions-above-60-deg/">https://forum.access-hive.org.au/t/regional-ancillary-suite-error-srtm-data-not-available-for-regions-above-60-deg/</a></p>
+<p>The final orography task is <code class="docutils literal notranslate"><span class="pre">Lismore-tiny_d1100_ancil_mean_orog_smooth</span></code>, which smooths the SRTM data according to a variety of algorithms. This produces the folowing files in <code class="docutils literal notranslate"><span class="pre">./orog_srtm/</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x1</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x10</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x100</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x20</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x35</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x5</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x50</span>
+<span class="n">qrparm</span><span class="o">.</span><span class="n">orog</span><span class="o">.</span><span class="n">srtm</span><span class="mf">.121</span><span class="n">x75</span>
+</pre></div>
+</div>
+<p>In the main ancilliary directory, a symbolic link <code class="docutils literal notranslate"><span class="pre">qrparm.orog.mn</span></code> links to <code class="docutils literal notranslate"><span class="pre">orog_srtm/qrparm.orog.srtm.121x1</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orog_smooth</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.orog.mn'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">orog_smooth</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d31492c8c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/931f14c947e3063d29cb39dc908383e17f562127678f5a08c6ddb9566068ca82.png" src="../_images/931f14c947e3063d29cb39dc908383e17f562127678f5a08c6ddb9566068ca82.png" />
+</div>
+</div>
+<p>The following flowchart describes the task flows for orography related tasks.</p>
+<img src="images/ancil_orog_flow.png"></section>
+<section id="step-7-process-soil-characteristics">
+<h2>Step 7. Process soil characteristics<a class="headerlink" href="#step-7-process-soil-characteristics" title="Link to this heading">#</a></h2>
+<p>The next set of multi-step tasks are related to generating soil characteristics. First, we begin with <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_soils_hydr</span></code>. This reads in the global <code class="docutils literal notranslate"><span class="pre">soils_hydrology.nc</span></code> file, regrids it to our target domain and saves it to <code class="docutils literal notranslate"><span class="pre">soil_hydrology</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hydro</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'soil_hydrology'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">hydro</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d31506e6f0&gt;
+</pre></div>
+</div>
+<img alt="../_images/ffc4e2e5e87a2984096653baf84d81b7e7cf4503d67fce119a95732f84cc3aa2.png" src="../_images/ffc4e2e5e87a2984096653baf84d81b7e7cf4503d67fce119a95732f84cc3aa2.png" />
+</div>
+</div>
+<p>Next we process the soil albedo with the task <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_soil_albedo</span></code>. This reads in the global dataset <code class="docutils literal notranslate"><span class="pre">soil_albedo.nc</span></code> along with the existing files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">soil_hydrology</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac.nc</span></code>
+and outputs <code class="docutils literal notranslate"><span class="pre">qrparm.soil_cci</span></code></p></li>
+</ul>
+<p>The global albedo dataset may require manual inputs to provide data for small islands. It is defined on 0.05 degree grid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albedo</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">'/home/548/pag548/cylc-run/rCM3-ancil-suite/share/data/etc/ancil_master_ants/soil_albedo/classic/v3/soil_albedo.nc'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albedo</span><span class="o">.</span><span class="n">soil_albedo</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">26</span><span class="p">,</span><span class="o">-</span><span class="mi">32</span><span class="p">),</span><span class="n">longitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">156</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d301a9c8c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/6b91dbd3ccfb8d7c83775c063d80a409c391cf5437559eb0c2d7217592b36c0b.png" src="../_images/6b91dbd3ccfb8d7c83775c063d80a409c391cf5437559eb0c2d7217592b36c0b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soil</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.soil_cci'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">soil</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d301a348c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/bdfa92e974abeb939b9027a3b7dd82c91bfb5b02e240069f03105ec8d14ad199.png" src="../_images/bdfa92e974abeb939b9027a3b7dd82c91bfb5b02e240069f03105ec8d14ad199.png" />
+</div>
+</div>
+<p>The last task in this dependency is <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_soil_dust</span></code>. This processes the <code class="docutils literal notranslate"><span class="pre">qrparm.soil_cci</span></code> and <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac</span></code> ancillary files and generates the ancillary <code class="docutils literal notranslate"><span class="pre">qrparm.soil.dust</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dust</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.soil.dust'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">dust</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d301a34710&gt;
+</pre></div>
+</div>
+<img alt="../_images/241835258c8f7a607dbe846dc18a2c6e3659b34dee6e023ef4a52eadf12848a2.png" src="../_images/241835258c8f7a607dbe846dc18a2c6e3659b34dee6e023ef4a52eadf12848a2.png" />
+</div>
+</div>
+<p>The flowchart below describes the dependencies of the above soil-related tasks.</p>
+<img src="images/ancil_soil_flow.png"><p>There are two stand-alone soils tasks.</p>
+<p>The first is<code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_soil_roughness</span></code> which uses the existing <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac.nc</span></code> file along with global MODIS leaf area index data and global soil roughness data to produce <code class="docutils literal notranslate"><span class="pre">qrparm.soil_roughness</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rough</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.soil_roughness'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/_ff.py:737: _WarnComboLoadingDefaulting: The stash code m01s00i097 is on a grid 0 which has not been explicitly handled by the fieldsfile loader. Assuming the data is on a P grid.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">rough</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d3018948c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/339a0fa265f4ea843604769242f7841eb011325b7a6a795c2ce5c73352952d8f.png" src="../_images/339a0fa265f4ea843604769242f7841eb011325b7a6a795c2ce5c73352952d8f.png" />
+</div>
+</div>
+<p>The second task is related to soil hydrology and is called<code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_topographic_index</span></code>. It also uses <code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac.nc</span></code> file along with global topographic wetness index data to produce <code class="docutils literal notranslate"><span class="pre">qrparm.hydtop</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topo</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.hydtop'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">topo</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d300b87500&gt;
+</pre></div>
+</div>
+<img alt="../_images/613c0da18cdfbfbd5c4586a3eeef345444c134dc462af5bc80438852aee8c143.png" src="../_images/613c0da18cdfbfbd5c4586a3eeef345444c134dc462af5bc80438852aee8c143.png" />
+</div>
+</div>
+</section>
+<section id="step-8-process-leaf-and-canopy-data">
+<h2>Step 8. Process leaf and canopy data.<a class="headerlink" href="#step-8-process-leaf-and-canopy-data" title="Link to this heading">#</a></h2>
+<p>We need to populate the vegetation with leaf and canopy data. The first task is <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_lai</span></code> which processes ‘Leaf Area Index’ and produces a temporary file <code class="docutils literal notranslate"><span class="pre">lai</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lai</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'lai'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">lai</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d300abe300&gt;
+</pre></div>
+</div>
+<img alt="../_images/28bcab265e356647a93986f33d970719b724514124a54399de0cbd0e7446a3db.png" src="../_images/28bcab265e356647a93986f33d970719b724514124a54399de0cbd0e7446a3db.png" />
+</div>
+</div>
+<p>The next task <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_canopy_heights</span></code> combines the <code class="docutils literal notranslate"><span class="pre">lai</span></code> ancillary with tree data and canopy height factors and writes the data to <code class="docutils literal notranslate"><span class="pre">qrparm.veg.func</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lai_canopy</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.veg.func'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">lai_canopy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d300827620&gt;
+</pre></div>
+</div>
+<img alt="../_images/38dbaddeb32d31c055d4ca2e20250b4dfb39bd1d70b56fdb327d608a55db4c9f.png" src="../_images/38dbaddeb32d31c055d4ca2e20250b4dfb39bd1d70b56fdb327d608a55db4c9f.png" />
+</div>
+</div>
+<p>The flowchart below describes the dependencies of the above soil-related tasks.</p>
+<img src="images/ancil_lai_flow.png"></section>
+<section id="step-9-process-sst-ice-and-snow">
+<h2>Step 9. Process SST/ice and snow<a class="headerlink" href="#step-9-process-sst-ice-and-snow" title="Link to this heading">#</a></h2>
+<p>The last multi-step tasks which contain a chain of dependencies begins with  <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_vegfrac</span></code>. Like the previous <code class="docutils literal notranslate"><span class="pre">ancil_cap</span></code> task, this uses an older FORTRAN binary and is independent of the python-based <code class="docutils literal notranslate"><span class="pre">ants</span></code> workflow.</p>
+<p>This task outputs</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.func_igbp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.frac_igbp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.veg.dist</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrparm.soil.dust_igbp</span></code></p></li>
+</ul>
+<p>And it updates <code class="docutils literal notranslate"><span class="pre">qrparm.soil</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veg_frac_igbp</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.veg.frac_igbp'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">veg_frac_igbp</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d30082de80&gt;
+</pre></div>
+</div>
+<img alt="../_images/6ff5803ac43a7c90cb30c85c499aa6130c946afb02046ba9c983c0a124305ace.png" src="../_images/6ff5803ac43a7c90cb30c85c499aa6130c946afb02046ba9c983c0a124305ace.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soil_dust</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.soil.dust_igbp'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">soil_dust</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d3008451f0&gt;
+</pre></div>
+</div>
+<img alt="../_images/a71e9353b6d463dc7d8a1b20a285e1d595e6aa85d1801d823549e57f7dba717d.png" src="../_images/a71e9353b6d463dc7d8a1b20a285e1d595e6aa85d1801d823549e57f7dba717d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soil</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.soil'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">soil_dust</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d30184a270&gt;
+</pre></div>
+</div>
+<img alt="../_images/2e70f134f0da5fdb15280271b161eff204da8c10dff978018e853970b0b710c6.png" src="../_images/2e70f134f0da5fdb15280271b161eff204da8c10dff978018e853970b0b710c6.png" />
+</div>
+</div>
+<p>There are two tasks downstream of <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_vegfrac</span></code>. One is <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_sstice</span></code>. This task processes global climatologies for seaice and SSTs</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qrclim.sst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qrclim.seaice</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaice</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrclim.seaice'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">seaice</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/jobfs/179310500.gadi-pbs/ipykernel_848699/979677363.py:1: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(seaice[1][0]).plot(edgecolor='grey',linewidth=0.5)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d300b6e630&gt;
+</pre></div>
+</div>
+<img alt="../_images/3d88fb7214a3ba37125598d32c6d1faaecc1c5ab1ac7d03e2b1f9c026bd1f2a7.png" src="../_images/3d88fb7214a3ba37125598d32c6d1faaecc1c5ab1ac7d03e2b1f9c026bd1f2a7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrclim.sst'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">sst</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/jobfs/179310500.gadi-pbs/ipykernel_848699/1747977962.py:1: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(sst[0][0]).plot(edgecolor='grey',linewidth=0.5)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d3005743e0&gt;
+</pre></div>
+</div>
+<img alt="../_images/f3766326985c99555ac4da8eaa7f0af270e089a484d57d1801de3bf595e93895.png" src="../_images/f3766326985c99555ac4da8eaa7f0af270e089a484d57d1801de3bf595e93895.png" />
+</div>
+</div>
+<p>The other task is <code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_smcsnow</span></code>. This task processes global climatologies for soil moisture content and snow. The output is <code class="docutils literal notranslate"><span class="pre">qrclim.smow</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smow</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrclim.smow'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/pp.py:1490: CFWarning: this date/calendar/year zero convention is not supported by CF
+  self._t1 = cftime.datetime(
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/pp.py:1523: CFWarning: this date/calendar/year zero convention is not supported by CF
+  self._t2 = cftime.datetime(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">smow</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/jobfs/179310500.gadi-pbs/ipykernel_848699/217714727.py:1: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(smow[6][0]).plot(edgecolor='grey',linewidth=0.5)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d300399fd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/127ee12e1420e69867e5b4a1fc31de647fd15d652ea162e453babce16b494459.png" src="../_images/127ee12e1420e69867e5b4a1fc31de647fd15d652ea162e453babce16b494459.png" />
+</div>
+</div>
+<p>The flowchart below shows the task dependencies for all <code class="docutils literal notranslate"><span class="pre">cap</span></code> related tasks.</p>
+<img src="images/ancil_cap_flow.png">
+</section>
+<section id="step-10-process-remaining-stand-alone-tasks">
+<h2>Step 10. Process remaining stand-alone tasks.<a class="headerlink" href="#step-10-process-remaining-stand-alone-tasks" title="Link to this heading">#</a></h2>
+<p>The last stand-alone tasks can be divided into three sections. The first is ozone processing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_ozone</span></code></p></li>
+</ul>
+<p>which uses the FORTRAN exectuable. The next group of tasks compute aerosol climatologies as specified in the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">AERO_CLIMS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"biog"</span><span class="p">,</span> <span class="s2">"biom"</span><span class="p">,</span> <span class="s2">"blck"</span><span class="p">,</span> <span class="s2">"dust"</span><span class="p">,</span> <span class="s2">"ocff"</span><span class="p">,</span> <span class="s2">"sslt"</span><span class="p">,</span> <span class="s2">"sulp"</span><span class="p">]</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_ocff</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_biog</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_biom</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_blck</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_sslt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_sulp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_dust</span></code></p></li>
+</ul>
+<p>They simply regrid the global climatologies of these quantities onto the local lat/lon grid and the specified vertical levels. They output both UM ancillary format and netCDF files.</p>
+<p>These are the remaining tasks that use the python <code class="docutils literal notranslate"><span class="pre">ants</span></code> workflows.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_topographic_index</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_clim_sea</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_lake</span></code></p></li>
+</ul>
+<p>Let’s examine the outputs of these tasks.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_cap_ozone</span></code> produces the local ozone climatology <code class="docutils literal notranslate"><span class="pre">qrclim.ozone.unfix</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ozone</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrclim.ozone.unfix'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/_ff.py:737: _WarnComboLoadingDefaulting: The stash code m01s00i060 is on a grid 22 which has not been explicitly handled by the fieldsfile loader. Assuming the data is on a P grid.
+  warnings.warn(
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridPressureFactory. The source data contains no field(s) for 'surface_air_pressure'.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">ozone</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/jobfs/179310500.gadi-pbs/ipykernel_848699/2504981220.py:1: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(ozone[0]).plot(edgecolor='grey',linewidth=0.5)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d30081c8c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/62cab4063b6861163da6114fec36b2fa2cf3a0c88c88f92fd93c549abd06cc2b.png" src="../_images/62cab4063b6861163da6114fec36b2fa2cf3a0c88c88f92fd93c549abd06cc2b.png" />
+</div>
+</div>
+<p>Let’s now examine the aerosol climatologies:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_ocff</span></code> produces dry aerosol climatologies of organic carbon from fossil fuels and is stored in <code class="docutils literal notranslate"><span class="pre">qrclim.ocff</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_sulp</span></code> produces dry aerosol climatologies of sulfate and is stored in <code class="docutils literal notranslate"><span class="pre">qrclim.sulp</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_biog</span></code> produces aerosol climatologies of biogenic Non-Methane Volatile Organic Compounds and is stored in <code class="docutils literal notranslate"><span class="pre">qrclim.biog</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_blk</span></code> produces aerosol climatologies of black carbon and are stored in <code class="docutils literal notranslate"><span class="pre">qrclim.blck</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_biom</span></code> produces aerosol climatologies of fresh burning biomass and is stored in <code class="docutils literal notranslate"><span class="pre">qrclim.biom</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_sslt</span></code> produces aerosol climatologies of sea salt particles and is stored in <code class="docutils literal notranslate"><span class="pre">qrclim.sslt</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_dust</span></code> produces aerosol climatologies of dust and is stored in <code class="docutils literal notranslate"><span class="pre">qrclim.dust</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AERO_CLIMS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"biog"</span><span class="p">,</span> <span class="s2">"biom"</span><span class="p">,</span> <span class="s2">"blck"</span><span class="p">,</span> <span class="s2">"dust"</span><span class="p">,</span> <span class="s2">"ocff"</span><span class="p">,</span> <span class="s2">"sslt"</span><span class="p">,</span> <span class="s2">"sulp"</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">num_rows</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">num_columns</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">Position</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">AERO_CLIMS</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">CLIM</span> <span class="ow">in</span> <span class="n">AERO_CLIMS</span><span class="p">:</span>
+    <span class="n">clim</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">'qrclim.</span><span class="si">{</span><span class="n">CLIM</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="n">num_columns</span><span class="p">,</span> <span class="n">Position</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">clim</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">CLIM</span><span class="p">)</span>
+    <span class="n">k</span><span class="o">+=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+/home/548/pag548/.local/lib/python3.12/site-packages/iris/fileformats/rules.py:376: IrisUserWarning: Unable to create instance of HybridHeightFactory. The source data contains no field(s) for 'orography'.
+  warnings.warn(
+/jobfs/179310500.gadi-pbs/ipykernel_848699/2672610593.py:11: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(clim[0][0,0]).plot(ax=ax)
+</pre></div>
+</div>
+<img alt="../_images/6aa670f710cb6479947779864918dd09396a2dc9e60dd6eb62a77a395f6a4498.png" src="../_images/6aa670f710cb6479947779864918dd09396a2dc9e60dd6eb62a77a395f6a4498.png" />
+</div>
+</div>
+<p>The remainings tasks are :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_clim_sea</span></code> which produces climatology of ocean chlorophyll concentrations which are stored in <code class="docutils literal notranslate"><span class="pre">qrclim.sea</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sea</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrclim.sea'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">sea</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/jobfs/179310500.gadi-pbs/ipykernel_848699/3069948462.py:1: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(sea[0]).plot(edgecolor='grey',linewidth=0.5)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d2fbff4710&gt;
+</pre></div>
+</div>
+<img alt="../_images/bf74837dd5e9db65ee3eb8867356c567e8ede1d2d91d6132dd314ee311e604a6.png" src="../_images/bf74837dd5e9db65ee3eb8867356c567e8ede1d2d91d6132dd314ee311e604a6.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_lake</span></code> which regrids the global lake mask dataset and produces the local ancillary file <code class="docutils literal notranslate"><span class="pre">qrparm.lake</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">global_lake_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/home/548/pag548/cylc-run/rCM3-ancil-suite/share/data/etc/ancil_master_ants//lake/ARClake/v2/qrdata.mask.nc'</span><span class="p">)</span>
+<span class="n">global_lake</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">global_lake_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">global_lake</span><span class="o">.</span><span class="n">lake_mask</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d2fbff64b0&gt;
+</pre></div>
+</div>
+<img alt="../_images/7a8ecc0c1c33f05d41fa4a6c772a3707554584556c7dd020317ce2db69cf38ba.png" src="../_images/7a8ecc0c1c33f05d41fa4a6c772a3707554584556c7dd020317ce2db69cf38ba.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lake</span><span class="p">,</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.lake'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">lake</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d2fbde3f50&gt;
+</pre></div>
+</div>
+<img alt="../_images/5e405422e31675b0fcb49dbaa2b4f9fadfc448e19a4e13cd8e373119780b5230.png" src="../_images/5e405422e31675b0fcb49dbaa2b4f9fadfc448e19a4e13cd8e373119780b5230.png" />
+</div>
+</div>
+<p>The global lake dataset identifies large inland lakes (e.g. Caspian Sea, The Great Lakes) and sets a mask value of -128 everywhere else</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_lct_postproc_moruses</span></code> performs a two-type urban fraction and urban morphology post-processor to implement the Met Office–Reading Urban Surface Exchange Scheme (MORUSES). The intermediate output file is <code class="docutils literal notranslate"><span class="pre">qrparm.MORUSES.morph</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moru</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrparm.MORUSES.morph'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">moru</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d2fbfac8c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/1e0b0209b959c7bdccc89937959d590b702ad8b08d8843f3bfae62208d08e88b.png" src="../_images/1e0b0209b959c7bdccc89937959d590b702ad8b08d8843f3bfae62208d08e88b.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Region&gt;_&lt;Resolution&gt;_ancil_lct_land</span></code> runs the application <code class="docutils literal notranslate"><span class="pre">app/ancil_snowfree_albedo/rose-app.conf</span></code>. The suite logic in <code class="docutils literal notranslate"><span class="pre">suite-runtime/ants.rc</span></code> states:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[[{{</span><span class="n">ancil</span><span class="p">(</span><span class="n">regn</span><span class="p">,</span> <span class="n">resln</span><span class="p">)}}</span><span class="n">_land</span><span class="p">]]</span>
+        <span class="c1"># SW snow-free surface albedo.</span>
+        <span class="n">inherit</span> <span class="o">=</span> <span class="p">{{</span><span class="n">ancil</span><span class="p">(</span><span class="n">regn</span><span class="p">,</span> <span class="n">resln</span><span class="p">)}},</span><span class="n">ANCIL_SNOWFREE_ALBEDO</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[[</span><span class="n">ANCIL_SNOWFREE_ALBEDO</span><span class="p">]]</span>
+        <span class="n">inherit</span> <span class="o">=</span> <span class="n">ANCIL_ANTS</span><span class="p">,</span> <span class="n">HOST_ANTS_MPP</span>
+        <span class="p">[[[</span><span class="n">environment</span><span class="p">]]]</span>
+            <span class="n">ROSE_TASK_APP</span><span class="o">=</span><span class="n">ancil_snowfree_albedo</span>
+</pre></div>
+</div>
+<p>The output of this task is <code class="docutils literal notranslate"><span class="pre">qrclim.land</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">land</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">ANCIL_DIR</span> <span class="o">/</span> <span class="s1">'qrclim.land'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">land</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">'grey'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/jobfs/179310500.gadi-pbs/ipykernel_848699/2023900724.py:1: FutureWarning: In a future version, xarray will not decode the variable 'forecast_period' into a timedelta64 dtype based on the presence of a timedelta-like 'units' attribute by default. Instead it will rely on the presence of a timedelta64 'dtype' attribute, which is now xarray's default way of encoding timedelta64 values.
+To continue decoding into a timedelta64 dtype, either set `decode_timedelta=True` when opening this dataset, or add the attribute `dtype='timedelta64[ns]'` to this variable on disk.
+To opt-in to future behavior, set `decode_timedelta=False`.
+  xr.DataArray.from_iris(land[0][0]).plot(edgecolor='grey',linewidth=0.5)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x14d2fbdaaea0&gt;
+</pre></div>
+</div>
+<img alt="../_images/bff07dbc9b3f0858e0312ba4cb0d385c761554bdc195128592352846e25b40fa.png" src="../_images/bff07dbc9b3f0858e0312ba4cb0d385c761554bdc195128592352846e25b40fa.png" />
+</div>
+</div>
+</section>
+<section id="how-do-i-check-the-validity-of-the-ancillaries">
+<h2>How do I check the validity of the ancillaries?<a class="headerlink" href="#how-do-i-check-the-validity-of-the-ancillaries" title="Link to this heading">#</a></h2>
+<p>Now run the notebook ‘Check_UM_ancils.ipynb’ to confirm:</p>
+<ul class="simple">
+<li><p>Your ancillaries generated with the python <code class="docutils literal notranslate"><span class="pre">ants</span></code> and Fortran <code class="docutils literal notranslate"><span class="pre">cap</span></code> workflows have the same co-ordinates (to within reasonable precision).</p></li>
+<li><p>There are no empty (or NaN values) over the land area defined by the land-sea mask</p></li>
+</ul>
+<p>You can access the notebook here : <a class="github reference external" href="https://github.com/21centuryweather/UM_configuration_tools/blob/main/notebooks/Check_UM_ancillaries.ipynb">21centuryweather/UM_configuration_tools</a></p>
+<p>and in Cell 7, set</p>
+<p><code class="docutils literal notranslate"><span class="pre">ROSE=RAS_minimum_working_example</span></code></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-26.04-py"
+        },
+        kernelOptions: {
+            name: "conda-env-analysis3-26.04-py",
+            path: "./UM"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-26.04-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="regional-ancils.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Regional ancillary generation for atmospheric modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="regional-MWE.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Running the Regional Nesting Suite</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-the-grid-definition-namelists">Step 1. Install the grid definition namelists.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-generate-the-land-sea-mask-and-vegetation-ancillaries-on-the-defined-grid">Step 2. Generate the land-sea mask and vegetation ancillaries on the defined grid.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-include-world-cover-data-optional">Step 3. Include World Cover data (optional).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-install-c4-land-cover-data">Step 4. Install C4 land cover data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-generate-orography">Step 5. Generate orography.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-process-soil-characteristics">Step 7. Process soil characteristics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-process-leaf-and-canopy-data">Step 8. Process leaf and canopy data.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-process-sst-ice-and-snow">Step 9. Process SST/ice and snow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10-process-remaining-stand-alone-tasks">Step 10. Process remaining stand-alone tasks.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-check-the-validity-of-the-ancillaries">How do I check the validity of the ancillaries?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

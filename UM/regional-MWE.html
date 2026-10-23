@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Running the Regional Nesting Suite &#8212; 21st Century Weather Software Wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3496bc6d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UM/regional-MWE';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ACCESS-rAM" href="../NRI-RNS/rAM3.html" />
+    <link rel="prev" title="Regional Ancillary Suite workflow" href="RAS_ancils.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-light.png" class="logo__image only-light" alt="21st Century Weather Software Wiki - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="21st Century Weather Software Wiki - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Gadi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gadi/index.html">Your gadi adventure starts here!</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/getting-started.html">Getting started on gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/project-template.html">Research Project Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/mac-stuff.html">Working with gadi via your Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/moving-data.html">Transferring data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/rudu-usage.html">Rudu: Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/vscode.html">Working with VS Code on Gadi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/quarto.html">Literal programming with quarto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gadi/direnv.html">direnv</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/storage.html"><code class="docutils literal notranslate"><span class="pre">/scratch</span></code> vs <code class="docutils literal notranslate"><span class="pre">/g/data</span></code> vs <code class="docutils literal notranslate"><span class="pre">$PBS_JOBFS</span></code> on Gadi: An I/O Performance View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/inodes.html">Where Did My Inodes Go?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gadi/su.html">Where Your SUs Actually Go: Right-Sizing PBS Jobs on Gadi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Running atmospheric simulations using ACCESS</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rose-cylc/rose-cylc-intro.html">Introduction to Rose/Cylc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mosrs/mosrs-intro.html">MOSRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UM-intro.html">The Unified Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trouble-shooting.html">Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_problems.html">Common rose/cylc problems</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regional-intro.html">Regional Atmospheric Modeling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="regional-ancils.html">Regional ancillary generation for atmospheric modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RAS_ancils.html">Regional Ancillary Suite workflow</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Running the Regional Nesting Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/rAM3.html">ACCESS-rAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/ancillaries.html">Ancillary tools</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/outputs.html">Model Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/evaluating.html">Evaluating the Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/checklist.html">Checklist before running your own regional experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/further-considerations.html">Further Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/flagship_config.html">Configuring an rAM3 `Flagship’ run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NRI-RNS/build-UM.html">Custom UM builds for rAM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aus2200/models-aus2200.html">AUS2200 - A complete guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../AM3/intro.html">Global Atmospheric Modeling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/new-configurations.html">Creating, documenting and running new configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/n512e-beta.html">ACCESS-AM3 n512e configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AM3/main-config.html">Pre-beta configurations</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interactive coding with VSCode</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../vscode/intro-ipython.html">Developing python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/debugging-python.html">Debugging Python with VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi.html">Running VSCode on gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-compute-node.html">Running VSCode on a gadi compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-gadi-are.html">Running VSCode on gadi ARE session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vscode/vscode-interactive.html">Python VSCode Interactive</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro-python.html">Intro to Python for Climate Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/conda-environments.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/file_formats.html">CSV vs TXT vs Parquet: Choosing the Right File Format in Python for Tabular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/polars-intro.html">An Introduction to Fast Data Analysis with the Polars Library in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/concurrent_futures.html">Parallelism in Python using concurrent futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/testing.html">Testing your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/package-structure.html">Structuring our Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/netcdf_zarr_storage_best_practices.html">Best Practices for Storing NetCDF and Zarr Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/xarray_zarr.html">Using Zarr with Xarray for Scalable Scientific Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/dynlib.html">Installing dynlib at NCI/gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pathlib.html">Using the Python pathlib module</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/index.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/catalogs.html">Data catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/weather_objects.html">ERA5-based Weather Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mesaclip.html">MESACLIP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/mmleav2.html">MMLEAv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/energy.html">Energy Demand dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/drought-era5.html">ERA5 Drought</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/daily-era5.html">ERA5 daily</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/gsmap.html">GSMaP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/himawari-ahi.html">Himawari-AHI cloud type data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/git-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-alone.html">Working with Git alone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-team.html">Working with Git in a team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/git-notebooks.html">Tracking changes on jupyter notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feedback</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8">Feedback</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/UM/regional-MWE.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Running the Regional Nesting Suite</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-the-ancillary-directories-to-forecast-regions">Mapping the ancillary directories to forecast regions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-suite-task-by-task">Running the suite - task by task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-cold-hpc">install_cold_hpc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-era5-grib-parallel">nci_era5_grib_parallel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ec-um-recon">ec_um_recon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-hres-eccb">nci_hres_eccb</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-um-recon">Region_Resolution_Model_um_recon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-hres-ic">nci_hres_ic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-lbcs">Region_Resolution_Model_LBCS</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="running-the-regional-nesting-suite">
+<h1>Running the Regional Nesting Suite<a class="headerlink" href="#running-the-regional-nesting-suite" title="Link to this heading">#</a></h1>
+<p>Now we have generated some ancillaries, we can run the UM forecast model!</p>
+<p>Let’s checkout a ‘minimum working example’ for the Regional Nesting suite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/roses/
+$ git clone git@github.com:21centuryweather/RNS_minimum_working_example.git
+</pre></div>
+</div>
+<p>This is a specially-developed suite designed to run with the Regional Ancillary suite we ran before. All extra logic and features related to operational forecasting, UM source code compilation, atmospheric chemistry, UK-specific features etc. have been removed.</p>
+<p>Because of this</p>
+<ul class="simple">
+<li><p>The suite will not render correctly in the <code class="docutils literal notranslate"><span class="pre">rose</span> <span class="pre">edit</span></code> GUI, but</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> is simple enough that we can examine it directly.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Jupyter notebook is contained in the suite directory in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">roses</span><span class="o">/</span><span class="n">RNS_minimum_working_example</span><span class="o">/</span><span class="n">noteboos</span><span class="o">/</span><span class="n">UM_RNS_data_flows</span><span class="o">.</span><span class="n">ipynb</span>
+</pre></div>
+</div>
+<p>which you can use to visualise all data you are generating.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You must be a member of NCI project <code class="docutils literal notranslate"><span class="pre">ob53</span></code> to run this example as it uses the Bureau’s BARRA reanalysis data.</p>
+</div>
+<section id="mapping-the-ancillary-directories-to-forecast-regions">
+<h2>Mapping the ancillary directories to forecast regions<a class="headerlink" href="#mapping-the-ancillary-directories-to-forecast-regions" title="Link to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The following is a very important concept within the UM Regional Modelling suites.</p>
+</div>
+<p>Recall for the RAS we defined</p>
+<ul class="simple">
+<li><p>One ancillary region (Lismore-Tiny)</p></li>
+<li><p>Two resolutions nested in this region</p>
+<ul>
+<li><p>The outer resolution ‘era5’</p></li>
+<li><p>An inner resolution ‘d1100’</p></li>
+</ul>
+</li>
+</ul>
+<p>These are labelled in the RAS <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rg01_name</span><span class="o">=</span><span class="s2">"Lismore-tiny"</span>
+<span class="o">...</span>
+<span class="n">rg01_rs01_name</span><span class="o">=</span><span class="s2">"era5"</span>
+<span class="o">...</span>
+<span class="n">rg01_rs02_name</span><span class="o">=</span><span class="s2">"d1100"</span>
+</pre></div>
+</div>
+<p>Now if let’s examine the RNS <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code>. It contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dm_nregns</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">dm_name</span><span class="o">=</span><span class="s2">"ec"</span>
+<span class="o">..</span>
+<span class="n">rg01_name</span><span class="o">=</span><span class="s2">"Lismore-Tiny"</span>
+<span class="o">..</span>
+<span class="n">rg01_nreslns</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>In the RNS (i.e. the forecasting suite) the ‘driving model’ ancillaries are a separate category from the forecast regions. Remember our ‘driving model’ is used to provide lateral boundary conditions and initial conditions <strong>ONLY!</strong>.</p>
+<p>So the RNS only starts counting resolutions and regions for domains where the UM forecast model is run.</p>
+<p>The table below summarises this mapping between the RAS ancillaries and the RNS domain definitions. This mapping applies for a single region.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ancillary Suite</p></th>
+<th class="head"><p>Nesting suite</p></th>
+<th class="head"><p>Domain type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rg01_rs01</p></td>
+<td><p>dm</p></td>
+<td><p>Driving model</p></td>
+</tr>
+<tr class="row-odd"><td><p>rg01_rs02</p></td>
+<td><p>rg01_rs01</p></td>
+<td><p>Forecast model nest 1</p></td>
+</tr>
+<tr class="row-even"><td><p>rg01_rs03</p></td>
+<td><p>rg01_rs02</p></td>
+<td><p>Forecast model nest 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>rg01_rs04</p></td>
+<td><p>rg01_rs03</p></td>
+<td><p>Forecast model nest 3</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>rg01_rs0[N]</p></td>
+<td><p>rg01_rs0[N-1]</p></td>
+<td><p>Forecast model nest N-1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For our minimum working example we are only running with N=2 ancillary domains, so we are only running a single forecast domain(N=1)</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Keeping track of which ancillary files define your first Forecast model nest will be very important when considering your choice of land-surface dataset set. This will be touched on later.</p>
+</div>
+<p>In the RNS <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file, the following definitions are used to define the location of the ancillary files for the driving model and first forecast model nest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dm_ec_lam_ancil_dir</span><span class="o">=</span><span class="s2">"/scratch/$PROJECT/$USER/cylc-run/RAS_minimum_working_example/share/data/ancils/Lismore-tiny/era5"</span>
+<span class="n">rg01_rs01_ancil_dir</span><span class="o">=</span><span class="s2">"/scratch/$PROJECT/$USER/cylc-run/RAS_minimum_working_example/share/data/ancils/Lismore-tiny/d1100"</span>
+</pre></div>
+</div>
+<p>These directories should have been created and populated with ancillary data when you ran the RAS suite.</p>
+<p><strong>Make sure they still have data in them!</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The RNS and RAS assume you are running on your default <code class="docutils literal notranslate"><span class="pre">gadi</span></code> project which is specified in the file <code class="docutils literal notranslate"><span class="pre">~/.config/gadi-login.conf</span></code>. If the value of <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> in this file has changed, you might have to manually alter the definition of the above ancillary directory files.</p></li>
+<li><p>NCI routinely clean the contents of your <code class="docutils literal notranslate"><span class="pre">/scratch/$USER</span></code> directory every 100 days. So your ancillaries may get deleted if you haven’t touched that directory recently.</p></li>
+</ul>
+</div>
+</section>
+<section id="running-the-suite-task-by-task">
+<h2>Running the suite - task by task<a class="headerlink" href="#running-the-suite-task-by-task" title="Link to this heading">#</a></h2>
+<p>Let’s step through each task of the suite step-by-step and discuss the associated <code class="docutils literal notranslate"><span class="pre">rose/cylc</span></code> logic of each task. When we load the suite and hold with the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rose suite-run -- --hold
+</pre></div>
+</div>
+<p>you will see the following.</p>
+<p><img alt="Beginning suite" src="../_images/RNS-suite-start.png" /></p>
+<p>Let’s compare the graphical task flow on the right of that image to the task flow specified in the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="n">graph</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            install_cold_hpc</span>
+<span class="s2">            install_cold_hpc[^] =&gt; install_ec_startdata</span>
+<span class="s2">            install_cold_hpc =&gt; nci_hres_eccb                      </span>
+<span class="s2">            nci_era5grib_parallel =&gt; ec_um_recon_000</span>
+</pre></div>
+</div>
+<p>So the first tasks to start (i.e. those that have no prior dependencies) are <code class="docutils literal notranslate"><span class="pre">install_cold_hpc</span></code> and <code class="docutils literal notranslate"><span class="pre">nci_era5grib_parallel</span></code>.</p>
+<section id="install-cold-hpc">
+<h3>install_cold_hpc<a class="headerlink" href="#install-cold-hpc" title="Link to this heading">#</a></h3>
+<p>From the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> we can see <code class="docutils literal notranslate"><span class="pre">install_cold_hpc</span></code> installs various links to existing data at NCI. How does it do this? When you trigger this task, you’ll see the job script contains the logic</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cylc__job__inst__script</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1"># SCRIPT:</span>
+<span class="n">rose</span> <span class="n">task</span><span class="o">-</span><span class="n">run</span> <span class="o">-</span><span class="n">v</span> <span class="o">--</span><span class="n">opt</span><span class="o">-</span><span class="n">conf</span><span class="o">-</span><span class="n">key</span><span class="o">=</span><span class="s1">'(nci-gadi)'</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Recall from the <code class="docutils literal notranslate"><span class="pre">rose</span></code> tutorials that the use of optional configuration keys automatically points to application files located in <code class="docutils literal notranslate"><span class="pre">app/&lt;task&gt;/opt/rose-app-&lt;key&gt;.conf</span></code>. If you look at the contents of <code class="docutils literal notranslate"><span class="pre">app/install_cold_hpc/opt/rose-app-nci-gadi.conf</span></code> you’ll see a long list of UM configuration files on <code class="docutils literal notranslate"><span class="pre">gadi</span></code> that are now linked to your <code class="docutils literal notranslate"><span class="pre">cylc-run</span></code> directory. For example, the file <code class="docutils literal notranslate"><span class="pre">app/install_cold_hpc/opt/rose-app-nci-gadi.conf</span></code> contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[file:$ROSE_DATA/etc/um_spectral_ga6]
+mode=symlink
+source=${UMDIR}/vn${UM_VN}/ctldata/spectral/ga3_0
+
+[file:$ROSE_DATA/etc/um_spectral_ga7]
+mode=symlink
+source=${UMDIR}/vn${UM_VN}/ctldata/spectral/ga7
+</pre></div>
+</div>
+<p>If you look in <code class="docutils literal notranslate"><span class="pre">~/cylc-run/share/data/etc/</span></code> you’ll see the corresponding links now exist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lrwxrwxrwx</span> <span class="mi">1</span> <span class="n">pag548</span> <span class="n">ce10</span>   <span class="mi">66</span> <span class="n">Oct</span> <span class="mi">16</span> <span class="mi">10</span><span class="p">:</span><span class="mi">54</span> <span class="n">um_spectral_ga6</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">umdir</span><span class="o">/</span><span class="n">vn13</span><span class="mf">.5</span><span class="o">/</span><span class="n">ctldata</span><span class="o">/</span><span class="n">spectral</span><span class="o">/</span><span class="n">ga3_0</span>
+<span class="n">lrwxrwxrwx</span> <span class="mi">1</span> <span class="n">pag548</span> <span class="n">ce10</span>   <span class="mi">64</span> <span class="n">Oct</span> <span class="mi">16</span> <span class="mi">10</span><span class="p">:</span><span class="mi">54</span> <span class="n">um_spectral_ga7</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">umdir</span><span class="o">/</span><span class="n">vn13</span><span class="mf">.5</span><span class="o">/</span><span class="n">ctldata</span><span class="o">/</span><span class="n">spectral</span><span class="o">/</span><span class="n">ga7</span>
+</pre></div>
+</div>
+</section>
+<section id="nci-era5-grib-parallel">
+<h3>nci_era5_grib_parallel<a class="headerlink" href="#nci-era5-grib-parallel" title="Link to this heading">#</a></h3>
+<p>This task sets up the initial conditions for your run. It will retrieve grids of the ERA5 global analysis which is created by the European Centre for Medium Range Weather Forecasting (ECMWF), valid at the dates you specify. The task login in <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    [[nci_era5grib_parallel]]
+        inherit=None, HOST_HPC
+        pre-script = mkdir -p $OUTDIR
+        [[[ environment ]]]
+            OUTDIR={{dm_ec_ic_lbc_dir}}
+</pre></div>
+</div>
+<p>tells us it will store them in directory specified as <code class="docutils literal notranslate"><span class="pre">dm_ec_ic_lbc_dir</span></code> in our <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> file. Here, <code class="docutils literal notranslate"><span class="pre">dm_ec_ic_lbc_dir</span></code> is shorthand for <strong>d</strong>riving <strong>m</strong>odel <strong>E</strong>uropean <strong>Centre</strong> <strong>i</strong>nitial <strong>c</strong>onditions <strong>l</strong>ateral <strong>b</strong>ounday <strong>c</strong>conditions <strong>dir</strong>ectory. The default setting from <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dm_ec_ic_lbc_dir</span><span class="o">=</span><span class="s2">"/scratch/$PROJECT/$USER/EC_GRIB_PARALLEL"</span>
+</pre></div>
+</div>
+<p>If you examine this directory you’ll find the following files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ec_grib_202202260000</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>  
+<span class="n">ec_grib_202202260100</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>  
+<span class="n">ec_grib_202202260200</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>  
+<span class="n">ec_grib_202202260300</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>  
+<span class="n">ec_grib_202202260400</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>  
+<span class="n">ec_grib_202202260500</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>  
+<span class="n">ec_grib_202202260600</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="mi">000</span>
+</pre></div>
+</div>
+<p>If you use the suite’s notebook mentioned above, you’ll notice each file contains 19 variables. The grib files have gobal extent defined on a 0.25 degree grid.</p>
+</section>
+<section id="ec-um-recon">
+<h3>ec_um_recon<a class="headerlink" href="#ec-um-recon" title="Link to this heading">#</a></h3>
+<p>The next set of tasks fall within the <code class="docutils literal notranslate"><span class="pre">ec</span></code> task family. First we run <code class="docutils literal notranslate"><span class="pre">install_ec_startdata</span></code> which is creates a directory to store regional model’s initial conditions. From <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{# Driving model task family #}
+[[ec]]
+    [[install_ec_startdata]]
+        inherit = ec, ARCHIVE
+        pre-script = mkdir -p $ROSE_DATAC/ec/ics/
+</pre></div>
+</div>
+<p>Next we run <code class="docutils literal notranslate"><span class="pre">ec_um_recon</span></code>, which spawns one reconfiguration task for every hour for the first day of our simulation.
+The reconfiguration task uses an Fortran executable that is build from the UM source code. The reconfigure task itself is a UM task and we can follow the logic chain in <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[[ec_um]]
+    # Settings for all DM recon and forecast tasks.
+
+... (skip) ...
+
+    [[[environment]]]
+        DRV_MOD=ec
+        CRUN_LEN = {{CRUN_LEN}}
+        ROSE_APP_OPT_CONF_KEYS = $DUST_OPT $EC_OPT
+        ROSE_TASK_APP = glm_um
+</pre></div>
+</div>
+<p>Note the use of a <code class="docutils literal notranslate"><span class="pre">jinja</span></code> loop to define 24 seperate <code class="docutils literal notranslate"><span class="pre">ec_um_XXX</span></code> tasks. First, the <code class="docutils literal notranslate"><span class="pre">jinja</span></code> logic is defined near the top of the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file (lines 38-40)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="c1"># For EC driving model set up n_lbcs so that can set up correct number of driving model </span>
+   <span class="n">recon</span> <span class="n">jobs</span><span class="o">.</span> <span class="n">Our</span> <span class="n">EC</span> <span class="n">data</span> <span class="ow">is</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">hourly</span> <span class="n">files</span><span class="o">.</span> <span class="n">We</span> <span class="n">add</span> <span class="s1">'+1'</span> <span class="n">so</span> <span class="n">the</span> <span class="n">jinja</span> <span class="n">loop</span> <span class="n">will</span> <span class="n">run</span> <span class="kn">from</span><span class="w"> </span><span class="mi">00</span> <span class="n">to</span> <span class="mi">24</span> <span class="c1">#}</span>
+<span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">n_lbcs</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Which allows to specify 24 seperate  <code class="docutils literal notranslate"><span class="pre">ec_um_XXX</span></code> that will each produce an initial condition valid for a specific hour.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">ec_um_recon</span><span class="p">]]</span>
+<span class="n">inherit</span> <span class="o">=</span> <span class="n">ec_um</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">lb</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lbcs</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+    <span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">lbc</span> <span class="o">=</span> <span class="n">lb</span><span class="o">|</span><span class="n">pad</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s2">"0"</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+    <span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">lbin</span>  <span class="o">=</span> <span class="p">(</span> <span class="n">lb</span>  <span class="o">*</span> <span class="n">dm_ec_cb_freq</span> <span class="o">/</span> <span class="mi">3600</span> <span class="p">)</span> <span class="o">|</span><span class="nb">int</span> <span class="o">%</span><span class="p">}</span>
+    <span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">lbint</span> <span class="o">=</span> <span class="n">lbin</span><span class="o">|</span><span class="n">pad</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s2">"0"</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">[[</span><span class="n">ec_um_recon_</span><span class="p">{{</span><span class="n">lbc</span><span class="p">}}]]</span>
+            <span class="c1"># Settings for any DM reconfiguration task.</span>
+            <span class="n">inherit</span> <span class="o">=</span> <span class="n">ec_um_recon</span>
+
+            <span class="o">...</span><span class="p">(</span><span class="n">skip</span><span class="p">)</span><span class="o">...</span>
+
+            <span class="n">script</span> <span class="o">=</span> <span class="p">{{</span><span class="n">TASK_RUN_COMMAND</span><span class="p">}}</span> <span class="o">--</span><span class="n">path</span><span class="o">=</span><span class="s2">"share/spack_build/*/bin"</span> <span class="o">--</span><span class="n">command</span><span class="o">-</span><span class="n">key</span><span class="o">=</span><span class="n">recon</span>
+
+            <span class="o">...</span><span class="p">(</span><span class="n">skip</span><span class="p">)</span><span class="o">...</span>
+ <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The contents of <code class="docutils literal notranslate"><span class="pre">app/glm_um/rose-app.conf</span></code> show</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">=</span><span class="n">um</span><span class="o">-</span><span class="n">atmos</span><span class="o">/</span><span class="n">vn13</span><span class="mf">.5</span>
+
+<span class="p">[</span><span class="n">command</span><span class="p">]</span>
+<span class="n">default</span><span class="o">=</span><span class="n">um</span><span class="o">-</span><span class="n">atmos</span>
+<span class="n">recon</span><span class="o">=</span><span class="n">um</span><span class="o">-</span><span class="n">recon</span>
+</pre></div>
+</div>
+<p>So we using the UM to not actually run an atmospheric forecast, but to</p>
+<ol class="arabic simple">
+<li><p>Regrid the original ERA5 data onto our regional domain, and</p></li>
+<li><p>Integrate all the ancillary information we defined previously in the Regional Ancillary Suite into our domain.</p></li>
+</ol>
+<p>The initial conditions are now availabe in your directory <code class="docutils literal notranslate"><span class="pre">~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/
+ec_cb000  
+ec_cb001  
+ec_cb002
+ec_cb003
+...
+</pre></div>
+</div>
+<p>If you run the notebook now, it will cp <code class="docutils literal notranslate"><span class="pre">ec_cb000</span></code> to <code class="docutils literal notranslate"><span class="pre">ec_cb000_init</span></code> so this original file is stored.  That’s because subsequent tasks will over-write <code class="docutils literal notranslate"><span class="pre">ec_cb000</span></code> with improved land-surface data.</p>
+<p>Note these files contain <strong>116 variables</strong>!  A large increase from the 19 from the original ERA5 data. The data now includes all the additional atmospheric and land-surface data from our ancillaries. Here is a plot of the initial soil temperature taken from the ERA5 data and re-gridded to our regional test domain.</p>
+<p><img alt="Initial soil temperature" src="../_images/ec_cb000_init.png" /></p>
+</section>
+<section id="nci-hres-eccb">
+<h3>nci_hres_eccb<a class="headerlink" href="#nci-hres-eccb" title="Link to this heading">#</a></h3>
+<p>The next task in our suite will provide higher-resolution land/surface data. Note the task flow definitions from <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ec_um_recon_000</span>  <span class="o">=&gt;</span>  <span class="n">nci_hres_eccb</span> <span class="o">=&gt;</span> <span class="n">Region_Resolution_Model_um_recon</span> <span class="o">=&gt;</span> <span class="n">nci_hres_ic</span> <span class="o">=&gt;</span> 
+</pre></div>
+</div>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">NCI_HRES_ECCB</span></code> in <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> will determine the choice of land/surface data. In this example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NCI_HRES_ECCB</span><span class="o">=</span><span class="s2">"barra"</span>
+</pre></div>
+</div>
+<p>Which means we will be using the Bureau’s BARRA Australian re-analysis to provide land/surface data at 0.11 degree increments. If you wish to use BARRA you must have membership of the NCI project <code class="docutils literal notranslate"><span class="pre">ob53</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The other options available for NCI_HRES_ECCB are ‘none’ (use original ERA5 data) or ‘era5land’ which takes land/surface data from the ERA5-<strong>Land</strong> reanalysis defined at 0.1 degrees resolution.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The type of land/surface dataset determines the outer resolution of your regional model. Here is a summary of the restrictions on the Ancillary suite <code class="docutils literal notranslate"><span class="pre">rg01_rs01</span></code> definition, which correponds to <code class="docutils literal notranslate"><span class="pre">dm</span></code> in the Nesting suite.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Source</p></th>
+<th class="head"><p>NCI_HRES_ECCB</p></th>
+<th class="head"><p>Required resolution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>default (ERA5)</p></td>
+<td><p>none</p></td>
+<td><p>No restriction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERA5-land</p></td>
+<td><p>era5land</p></td>
+<td><p>0.1 degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>BARRA</p></td>
+<td><p>barra</p></td>
+<td><p>0.11 degrees</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For ERA5-land, the grid point locations of your outer domain defined as <code class="docutils literal notranslate"><span class="pre">rg01_rs01</span></code> <strong>MUST</strong> be defined at 0.1 degree intervals, e.g. 39.4, 39.5, 39.5 etc.</p>
+<p>For of BARRA, the grid point locations of your outer domain defined as <code class="docutils literal notranslate"><span class="pre">rg01_rs01</span></code> <strong>MUST MATCH EXCATLY</strong> the grid point locations of the BARRA grid. Hence, you are best examining BARRA data first to find out exactly what these points are. In our example, sample longitude points are 152.06, 152.17, 152.28 etc.</p>
+<p>See <a class="reference external" href="https://docs.access-hive.org.au/models/run_a_model/run_access-ram3/#change-the-nested-regions-nest-configuration">here</a> for further confirmation.</p>
+</div>
+<p>After running the <code class="docutils literal notranslate"><span class="pre">nci_hres_eccb</span></code> task for our example, the file <code class="docutils literal notranslate"><span class="pre">ec_cb000</span></code> is updated with higher resolution land/surface data.  Only the first hour reconfiguration file is changed, as this forms the initial condition for our first day of simulation. The remaining reconfiguration files (hours 01-24) are used to defined the lateral boundary conditions.</p>
+<p>If you are following along with the notebook, it will copy <code class="docutils literal notranslate"><span class="pre">ec_cb000</span></code> to <code class="docutils literal notranslate"><span class="pre">ec_cb000_hres</span></code> so this original file is stored. This allows us to see the impact of using a higher resolution land/surface data on the soil temperature of our initial condition. This figure is replicated below.</p>
+<p><img alt="BARRA soil temp" src="../_images/BARRA_soil_temp.png" /></p>
+</section>
+<section id="region-resolution-model-um-recon">
+<h3>Region_Resolution_Model_um_recon<a class="headerlink" href="#region-resolution-model-um-recon" title="Link to this heading">#</a></h3>
+<p>All our processing now has involved setting up the initial conditions on the 100x100 ‘Driving Model’ grid. Now we need to run the reconfiguration task to create the initial conditions on the first (and in our case, only) 50x50 forecast model nest. The task <code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_um_recon</span></code> will regrid the ERA5 data onto our nest mesh, and apply all the ancillary data. The output is a file called <code class="docutils literal notranslate"><span class="pre">GAL9_astart</span></code>, where <code class="docutils literal notranslate"><span class="pre">GAL9</span></code> refers to <strong>G</strong>lobal <strong>A</strong>tmosphere Version 9, i.e. the atmospheric science package used by the UM for lower-resolution, global runs.</p>
+<p>Note the task logic from the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ec_um_recon_000</span>  <span class="o">=&gt;</span>  <span class="n">nci_hres_eccb</span> <span class="o">=&gt;</span> <span class="n">Region_Resolution_Model_um_recon</span>
+</pre></div>
+</div>
+<p>If you are following along with the notebook, it will copy <code class="docutils literal notranslate"><span class="pre">GAL9_astart</span></code> to <code class="docutils literal notranslate"><span class="pre">GAL9_astart_init</span></code> so this original file is stored. This file contais 167 variables!</p>
+</section>
+<section id="nci-hres-ic">
+<h3>nci_hres_ic<a class="headerlink" href="#nci-hres-ic" title="Link to this heading">#</a></h3>
+<p>This task replicates <code class="docutils literal notranslate"><span class="pre">nci_hres_eccb</span></code> but applies it to our forecast grid, i.e. it will update the land/surface data of forecast net initial condition file with better resolution data.</p>
+<p>Note the task logic from the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ec_um_recon_000</span>  <span class="o">=&gt;</span>  <span class="n">nci_hres_eccb</span> <span class="o">=&gt;</span> <span class="n">Region_Resolution_Model_um_recon</span> <span class="o">=&gt;</span> <span class="n">nci_hres_ic</span>
+</pre></div>
+</div>
+<p>If you are following along with the notebook, it will copy the updated <code class="docutils literal notranslate"><span class="pre">GAL9_astart</span></code> to <code class="docutils literal notranslate"><span class="pre">GAL9_astart_hres</span></code> so we can compare the differences in the two ASTART files. The figure below is taken from the notebook.</p>
+<p><img alt="ASTARTsoil temp" src="../_images/ASTART_soil.png" /></p>
+</section>
+<section id="region-resolution-model-lbcs">
+<h3>Region_Resolution_Model_LBCS<a class="headerlink" href="#region-resolution-model-lbcs" title="Link to this heading">#</a></h3>
+<p>Now we move to generate the <strong>L</strong>ateral <strong>B</strong>oundary <strong>C</strong>onditions for our forecast nest. These define the temporal evolution of the flow gradients along the nest boundaries. Because of the temporal nature of the LBCs, we need multiple tasks to span the 24 hour period. So within the <code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_LBCS</span></code> task family, we will have multiple <code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_um_createbc_XXX</span></code> tasks. Again, this is done inside <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> using <code class="docutils literal notranslate"><span class="pre">jinja</span></code> templates.</p>
+<p>First we have a <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro at lines 35-36 of <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> which takes the variables <code class="docutils literal notranslate"><span class="pre">CYLC_INT_HR</span></code> and <code class="docutils literal notranslate"><span class="pre">CRUN_LEN</span></code> from <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> to determine how many tasks we need.</p>
+<p>The values set in <code class="docutils literal notranslate"><span class="pre">rose-suite.conf</span></code> are</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CRUN_LEN</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">CYCLE_INT_HR</span><span class="o">=</span><span class="mi">24</span>
+</pre></div>
+</div>
+<p>Which means we are going to run a 6 hourly forecast run and begin a new forecast cycle every 24 hours. Hence, we need four separate forecast tasks for each daily cycle. Therefore, we need four LBC tasks. The <code class="docutils literal notranslate"><span class="pre">jinja</span></code> macro computes <code class="docutils literal notranslate"><span class="pre">n_cruns</span></code> using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="c1"># Set the number of UM tasks/day #}</span>
+<span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">n_cruns</span> <span class="o">=</span> <span class="p">(</span> <span class="n">CYCLE_INT_HR</span><span class="o">/</span> <span class="n">CRUN_LEN</span><span class="p">)</span>  <span class="o">|</span> <span class="nb">int</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And then we have a loop which creates multiple <code class="docutils literal notranslate"><span class="pre">um_createbc</span></code> and <code class="docutils literal notranslate"><span class="pre">um_fcst</span></code> tasks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">cr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n_cruns</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+          <span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">crp</span> <span class="o">=</span> <span class="n">cr</span><span class="o">|</span><span class="n">pad</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s2">"0"</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+          <span class="n">nci_hres_eccb</span> <span class="o">=&gt;</span> <span class="n">Region_Resolution_Model_um_createbc_</span><span class="p">{{</span><span class="n">crp</span><span class="p">}}</span> <span class="o">=&gt;</span> <span class="n">Region_Resolution_Model_um_fcst_</span><span class="p">{{</span><span class="n">crp</span><span class="p">}}</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>  
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You must delete the extra <code class="docutils literal notranslate"><span class="pre">ec_cb000_*</span></code> files we created earlier to assess the impacts of the high resolution soil moisture on these reconfigured files. Otherwise, the executable <code class="docutils literal notranslate"><span class="pre">um-createbc.exe</span></code> will create extra duplicates of LBC information for the first six hours and the UM will fail.</p>
+<p>So make sure you execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/ec/um/ec_cb000_*
+</pre></div>
+</div>
+<p>before triggering the task <code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_um_createbc_000</span></code>.</p>
+<p>If you are following along with notebook, it contains logic to do this.</p>
+<p>The LBC files will be generated in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">RNS_minimum_working_example</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">cycle</span><span class="o">/</span><span class="mi">20220226</span><span class="n">T0000Z</span><span class="o">/</span><span class="n">Lismore</span><span class="o">-</span><span class="n">Tiny</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">GAL9</span><span class="o">/</span><span class="n">lbcs</span><span class="o">/</span><span class="n">GAL9_alabc_000</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Unfortunately these files cannot be viewed with any python tool (that I know of) but you can use them using the <code class="docutils literal notranslate"><span class="pre">xconv</span></code> tool which you can load from a <code class="docutils literal notranslate"><span class="pre">gadi</span></code> terminal using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module use ~access/modules 
+$ module load xconv
+$ xconv GAL9_alabc_000
+</pre></div>
+</div>
+<p>If you load one of the forecast fields from that file and plot it in <code class="docutils literal notranslate"><span class="pre">xconv</span></code> it will resemble this.</p>
+<p><img alt="LBC file" src="../_images/LBC_plot.png" /></p>
+<p>Note the large spatial extents of the LBCs, necessary to resolve the flow gradients moving into and out of our nest. The LBC file contains different outputs for every hour, e.g. loading the value of specific humidity valid at 2022/02/26 06:00Z will produce the following plot.</p>
+<p><img alt="LBC file number 2" src="../_images/LBC_plot2.png" /></p>
+<p>Now the LBCs are generated, we can finally run a forecast!</p>
+<h3 class="rubric" id="region-resolution-model-um-fcst">Region_Resolution_Model_um_fcst</h3>
+<p>As we saw above, the <code class="docutils literal notranslate"><span class="pre">suite.rc</span></code> file uses a <code class="docutils literal notranslate"><span class="pre">jinja</span></code> loop to create as many UM forecast tasks required to span our forecast cycle.</p>
+<p>In this case, we will require four <code class="docutils literal notranslate"><span class="pre">um_fcst</span></code> tasks spanning six hours to cover our daily forecast cycle.</p>
+<p>After your first forecast task completes (<code class="docutils literal notranslate"><span class="pre">Region_Resolution_Model_um_fcst_000</span></code>) you will have the following files in your forecast output directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd  ~/cylc-run/RNS_minimum_working_example/share/cycle/20220226T0000Z/Lismore-Tiny/test/GAL9/um
+$ ls 
+umnsaa_cb000  umnsaa_cb002  umnsaa_cb004  umnsaa_cb006  umnsaa_pb000     umnsaa_pverb000  umnsaa_pverd000  umnsa.xhist
+umnsaa_cb001  umnsaa_cb003  umnsaa_cb005  umnsaa_pa000  umnsaa_pvera000  umnsaa_pverc000  umnsa.stash
+</pre></div>
+</div>
+<p>You will also have a new file in your initial conditions directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">cylc</span><span class="o">-</span><span class="n">run</span><span class="o">/</span><span class="n">RNS_minimum_working_example</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">cycle</span><span class="o">/</span><span class="mi">20220226</span><span class="n">T0000Z</span><span class="o">/</span><span class="n">Lismore</span><span class="o">-</span><span class="n">Tiny</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">GAL9</span><span class="o">/</span><span class="n">ics</span><span class="o">/</span><span class="n">umnsaa_da006</span>
+</pre></div>
+</div>
+<p>which is the initial condition for the next forecast cycle, valid from 06Z.</p>
+<p>These are raw UM binary files. These can be loaded using the python <code class="docutils literal notranslate"><span class="pre">iris</span></code> module which can be used to create xarray objects.</p>
+<p>This logic is taken from the accompanying notebook.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UM_NSAA_PB_FILE</span> <span class="o">=</span> <span class="n">GAL9_DIR</span> <span class="o">/</span> <span class="s1">'um/umnsaa_pb000'</span>
+<span class="n">UM_NSAA_PB</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">UM_NSAA_PB_FILE</span><span class="p">)</span>
+<span class="n">mslp</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="o">.</span><span class="n">from_iris</span><span class="p">(</span><span class="n">UM_NSAA_PB</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Note in the rAM3 Regional Nesting Suite, an additional task will convert all of these raw UM files into netCDF files for you.</p>
+<h2 class="rubric" id="congratulations">Congratulations</h2>
+<p>You’ve now ran through a minimum-working-example of Unified Model Regional Nesting Suite. While the rAM3 model is far more complicated that this (it can support multiple UM model types running in multiple regions with multiple nests simultaneously!) hopefully the knowledge you have acquired will help you understand the steps required to run a regional atmospheric modelling simulation and help understand any obstacles or hurdles that you encounter along the way.</p>
+<p>Below is a simple flow chart of the tasks and datafiles required to run the Regional Nesting Suite.</p>
+<p><img alt="Flowchart" src="../_images/rAM3-data-flow.png" /></p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./UM"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="RAS_ancils.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Regional Ancillary Suite workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../NRI-RNS/rAM3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ACCESS-rAM</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-the-ancillary-directories-to-forecast-regions">Mapping the ancillary directories to forecast regions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-suite-task-by-task">Running the suite - task by task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-cold-hpc">install_cold_hpc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-era5-grib-parallel">nci_era5_grib_parallel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ec-um-recon">ec_um_recon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-hres-eccb">nci_hres_eccb</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-um-recon">Region_Resolution_Model_um_recon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nci-hres-ic">nci_hres_ic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-resolution-model-lbcs">Region_Resolution_Model_LBCS</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 21st Century Weather Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
