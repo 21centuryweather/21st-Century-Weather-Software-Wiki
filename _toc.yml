@@ -29,15 +29,20 @@ parts:
     - file: UM/UM-intro
     - file: UM/trouble-shooting
     - file: UM/common_problems
-    - file: aus2200/models-aus2200
-    - file: NRI-RNS/intro
+    - file: UM/regional-intro
       sections:
+      - file: UM/regional-ancils
+      - file: UM/RAS_ancils
+      - file: UM/regional-MWE
+      - file: NRI-RNS/rAM3
       - file: NRI-RNS/ancillaries
       - file: NRI-RNS/outputs 
       - file: NRI-RNS/evaluating
+      - file: NRI-RNS/checklist
       - file: NRI-RNS/further-considerations
       - file : NRI-RNS/flagship_config.md
       - file : NRI-RNS/build-UM.md
+      - file: aus2200/models-aus2200
     - file: AM3/intro.md
       sections:
       - file: AM3/new-configurations.md
