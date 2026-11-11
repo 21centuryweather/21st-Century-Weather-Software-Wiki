@@ -56,7 +56,7 @@ This is an example using the catalog for the datasets hosted on `su28`. Not all 
 
 ### `su28` catalog
 
-(almost) all datasets hosted on `su28` and [documented in this wiki](datasets/index.html) are listed in the su28 catalog. The catalog can be access through the url or from Gadi:
+(almost) all datasets hosted on `su28` and [documented in this wiki](index.qmd) are listed in the su28 catalog. The catalog can be access through the url or from Gadi:
 
 ```python
 catalog_url = intake.open_catalog("https://raw.githubusercontent.com/21centuryweather/su28_catalog/refs/heads/main/catalog/su28_catalog.yaml")

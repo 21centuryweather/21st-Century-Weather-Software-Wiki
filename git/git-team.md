@@ -1,4 +1,3 @@
-(content:git-team2)=
 # Working with Git in a team
 
 In this section we are going to see what it looks like to collaborate with others on gitHub projects. Up to now you were working with git alone using this workflow:
@@ -81,12 +80,7 @@ Branches may be a new concept but actually, you are always working on a branch w
 Working in a branch allows you to modify files without modifying the same files in other branches, because essentially you are working on a “parallel” set of files.
 When you want to pass the changes from your branch to the main branch, you would have to do a **merge** to combine the branches.
 
-```{figure} images/branch.png
----
-alt: "Diagram of a git tree that shows the main branch with 4 commits and a secondary branch called function that starts from commit 2 in the main branch anas has 2 new commits, independent from the main."
----
-Git tree.
-```
+![Git tree.](images/branch.png){fig-alt="Diagram of a git tree that shows the main branch with 4 commits and a secondary branch called function that starts from commit 2 in the main branch anas has 2 new commits, independent from the main."}
 
 There are different ways to use branches. Maybe every person in the team has one branch and work on that branch until is time to merge everything to the main. Or maybe, and this is more common, each branch represent a new feature added to the project. So if you are adding a new function, you create a branch, develop the code and them merge it. 
 
@@ -96,17 +90,11 @@ Before we revise how the workflow looks like in this case, there is one new conc
 Pull requests can come from forks (will talk about that later) or from independent branches within the repository. 
 They allow the maintainers and contributors to the project to review, discuss, request, and approve the changes and merge then to the main branch.
 
-(content:git-team:scenario1)=
-## Collaborative workflow 1
+## Collaborative workflow 1 {#scenario1}
 
 This diagram shows the workflow when you what to contribute to the repository using branches. Here we assume you have write permissions on the remote repository,
 
-```{figure} images/no_fork.png
----
-alt: 'Concept model of the workflow in scenario 1. The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request.'
----
-Collaborative workflow without a fork.
-```
+![Collaborative workflow without a fork.](images/no_fork.png){fig-alt="Concept model of the workflow in scenario 1. The remote repository is copied into a local repository with a \"clone\". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request."}
 
 1. Clone the repository on your computer.
 2. Create a new branch.
@@ -118,11 +106,10 @@ Collaborative workflow without a fork.
 
 Let's try this with a exercise:
 
-:::{admonition} Exercise
-:class: important, dropdown
+::: {.callout-important title="Exercise" collapse="true"}
 
 1. Choose a repo, it can be a repo you own  or, even better, someone else repo where you are a collaborator. You will need the URL (remember we use SSH option)
-> We'll assume you are working with [this repo](content:git-alone:new-repo) from now on.
+> We'll assume you are working with [this repo](git-alone.md#new-repo) from now on.
 2. On the terminal, run `git clone <repo URL>`. You need to make sure you are in the right folder.
 3. Create a new branch with `git checkout -b suggest-plot`, it will automatically switch to the new branch.
 4. Edit o create a new file. For example, add the necessary code to plot the data in `read_era5.py`:
@@ -174,11 +161,7 @@ branch 'suggest-plot' set up to track 'origin/suggest-plot'.
 ```
 7. To open a pull request you need to go the repo on GitHub. You will see a big "Compare & pull request" green button. Click on that!
 
-```{figure} images/pr-1.png
-:width: 95%
-:alt: 'Screenshot of repo in GitHub.com/username/new-project with a new commit in a branch that is not main. It shows a button that says "Compare & pull request" on the top of the page'
-
-```
+![Screenshot of repo in GitHub.com/username/new-project with a new commit in a branch that is not main. It shows a button that says "Compare & pull request" on the top of the page](images/pr-1.png){width=95%}
 
 8. GitHub will compare main and suggest-plot branches to see if the proposed changes are compatible. In this step you will need to add a title and a message to open the PR. 
 
@@ -188,8 +171,7 @@ And that's it. The maintainer of the repo with get an email and with time, revis
 
 Here is a list of the new commands you just used:
 
-:::{admonition} Commands
-:class: tip
+::: {.callout-tip title="Commands"}
 
 - `git clone <repo URL>` to clone a repository, independently of if is yours or not. This command will download the repository in the folder you are in the terminal.
 - `git checkout -b <name>` will create a new branch.
@@ -206,12 +188,7 @@ A **fork** is a copy of another person's or team's repository that will be store
 Both the original and the fork are on GitHub, the difference is that you can modify and update the version that lives in your account.
 
 
-```{figure} images/si_fork.png
----
-alt: 'Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a "fork". The remote repository is copied into a local repository with a "clone". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request.'
----
-Collaborative workflow with a fork.
-```
+![Collaborative workflow with a fork.](images/si_fork.png){fig-alt="Concept model of the workflow in scenario 2. A foreign remote repository can be forked to an owned remote repository with a \"fork\". The remote repository is copied into a local repository with a \"clone\". Files inside the local repository and the remote repository are synced with push and pull. The owned remote repository can be merged into the foreign remote repository with a pull request."}
 
 1. Create a fork of the main repository.
 2. Clone the forked repository on your computer.
@@ -224,8 +201,7 @@ changes you will have to go back to step 4.
 
 Let's go through the workflow with a exercise.
 
-:::{admonition} Exercise
-:class: important, dropdown
+::: {.callout-important title="Exercise" collapse="true"}
 
 In this second scenario we assume you don't have write permission in the repo you want to collaborate. For example, you may want to collaborate with this [*cadavre exquis*](https://en.wikipedia.org/wiki/Exquisite_corpse)! The idea is to add a new sentence to the story [here](https://github.com/paocorrales/cadavre-exquis).    
 
@@ -233,10 +209,7 @@ In this second scenario we assume you don't have write permission in the repo yo
 2. Fork the repository using the “Fork” button on the top right corner. This will create a copy of the repo into your GitHub account.
 
 
-```{figure} images/fork.jpeg
-:width: 95%
-:alt: 'Screenshot of a forked repo in GitHub.com/username/new-project'
-```
+![Screenshot of a forked repo in GitHub.com/username/new-project](images/fork.jpeg){width=95%}
 
 3. Copy the url of the repo and clone it to your computer. On the terminal, run `git clone <repo URL>`. Remember to use the SSH option. 
 
@@ -248,21 +221,18 @@ The repo is very small, it only have a README and a text file called `story.txt`
 
 Now, if you go to the remote repo on GitHub, you will see something like this::
 
-```{figure} images/pr-2.jpeg
-:width: 95%
-:alt: 'Screenshot of a forked repo in GitHub.com/username/new-project with a new commit. It shows a button that says "Contribute" on the top of the page'
-
-```
+![Screenshot of a forked repo in GitHub.com/username/new-project with a new commit. It shows a button that says "Contribute" on the top of the page](images/pr-2.jpeg){width=95%}
 
 7. Click on “Contribute”.
 8. And click on “Create pull request”.
 10. We are almost there. Complete the pull request with a title and a message and then finish the PR
 
 And that’s it! The owner/s of the repo will receive an email. They can review the pull request, comment on it and eventually accept the contribution. When that happen the changes you made will appear in the rep
+
 :::
 
 
-:::{tip}
+::: {.callout-tip}
 
 If you prefer or need to do everything from the terminal, including forks and PR, GitHub has a command line called [gh](https://github.com/cli/cli). 
 
@@ -276,4 +246,5 @@ You can also add comments after opening the pull request with:
 ```bash 
 gh pr comment <number of pr> --body "Some comment"
 ```
+
 :::

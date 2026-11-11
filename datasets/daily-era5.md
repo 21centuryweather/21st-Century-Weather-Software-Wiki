@@ -48,4 +48,4 @@ For hourly and monthly data check NCI project `rt52`.
 
 ## Acknowledgment  
 
-When using this dataset, please acknowledge [Linyuan Sun](https://www.21centuryweather.org.au/profile/linyuan-sun) for processing ERA5 hourly data to daily. 
+When using this dataset, please acknowledge [Linyuan Sun](https://www.21centuryweather.org.au/profile/linyuan-sun) for processing ERA5 hourly data to daily.

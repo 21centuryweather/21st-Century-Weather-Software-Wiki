@@ -18,9 +18,10 @@ In this example I type `gadi-cpu-bdw-0004.gadi.nci.org.au`
 
 ![SSH-ARE-connect](./images/ARE_connect2.png)
 
-:::{note}
+::: {.callout-note}
 
 The 'pop-up' menu states `Select configured SSH host or enter user@host`. Because we have entered `Host gadi-cpu-*` in our `~/.ssh/config` we **don't** need to enter `user@host`. Any host the begins with `gadi-cpu` will be automatically configured.
+
 :::
 
 A VSCode pop-up window will ask you about the authenticity of host `gadi-cpu-<you gadi ARE node ID>`. Type `yes` into the pop-up window and hit `Enter`.
@@ -47,7 +48,7 @@ Now we need to load the notebook kernel. If we want to use an `xp65 analysis3` k
 
 If you **don't** do step one, you won't be able to see any of the `analysis3` kernels.
 
-:::{tip}
+::: {.callout-tip}
 
 Make sure you are using the latest update of VSCode, as older versions have different layouts for Python interpreter and Kernel selection menus.
 
@@ -65,4 +66,4 @@ But it appears that if you have already loaded and selected an `analysis3` kerne
 
 Now you can execute your Juypter notebook inside your VSCode session.
 
- 
+

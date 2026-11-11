@@ -37,6 +37,7 @@ In order to start running AUS2200, the user must have access to the UKMO Shared 
 ### Ancillary files
 The ancillary suite has the ID `u-cp145`. This suite determines the domain and resolution of the model. The suite produces two sets of ancillaries, one for the primary model domain and a second for the region encapsulating the frames used as the spatial boundary conditions. The centre of the model domain can be set in the "Nested region 1 setup" section of the rose config editor
 ![region centre](images/region-centre.png)
+
 and the size of the boundary domain and model domain can be configured in the "Resolution 1" and "Resolution 2" respectively.
 ![model resolution](images/region-resolution.png)
 
@@ -193,17 +194,18 @@ There have been three different driving model configurations used in AUS2200 exp
 
 ### ERA5Land + ERA5
 
-Typically, ERA5Land + ERA5 data will be used as the driving model. This is facilitated by the `nci_era5grib` task, which combines ERA5Land and ERA5 data into GRIB forecast fields which can then be read by the [driving model reconfiguration tasks](#nci-era5grib).
+Typically, ERA5Land + ERA5 data will be used as the driving model. This is facilitated by the `nci_era5grib` task, which combines ERA5Land and ERA5 data into GRIB forecast fields which can then be read by the [driving model reconfiguration tasks](#nci_era5grib).
 
 ### ERA5Land + BARRA2 soil
 
 Initialising with ERA5Land + BARRA2 soil is currently a fairly non-trivial process. The first step is to request the level 0A BARRA2 data for the starting day of the simulation spinup. Typically, this will be 3 days before the beginning of the output window to allow 2 days to spinup the soil moisture, and a further day to spinup the atmosphere. Once downloaded, configure the suite copy as follows:
 ![barra2 soil config](images/barra2-soil-init.png)
+
 The key settings are:
  * `dm_name` : UM global model
  * `dm_ic_file`: Set this to the path to the downloaded BARRA2 data, note that the downloaded data will come in a directory with a name corresponding to the ISO timestamp of the data. This ISO data must be replaced with `YYmmddTHHMMZ`
  * It is not necessary to modify `dm_lbc_files` for this configuration.
- * Disable the `1`, `2` and `3` entries under 'Configure ancils and initialise dump fields' as per the [`create_soil_moisture_ancil`](#create-soil-moisture-ancil) section.
+ * Disable the `1`, `2` and `3` entries under 'Configure ancils and initialise dump fields' as per the [`create_soil_moisture_ancil`](#create_soil_moisture_ancil) section.
 
  Start the suite as follows:
 
@@ -215,7 +217,7 @@ The suite in its current state fails strict validation, and only 4 tasks within 
 
 ![barra2 release tasks](images/start-barra-smc.gif)
 
-In order to have the spinup suite automatically create the soil moisture ancil, use the soil moisture carryover machinery. In a new copy of the original suite, enable `SOIL_MOISTURE_CARRYOVER` as per the [`create_soil_moisture_ancil`](#create-soil-moisture-ancil) section and create the following symlinks. Note that the dates are carried over from the [Typical restart workflow](#typical-restart-workflow) section (2-9 June 2016)
+In order to have the spinup suite automatically create the soil moisture ancil, use the soil moisture carryover machinery. In a new copy of the original suite, enable `SOIL_MOISTURE_CARRYOVER` as per the [`create_soil_moisture_ancil`](#create_soil_moisture_ancil) section and create the following symlinks. Note that the dates are carried over from the [Typical restart workflow](#typical-restart-workflow) section (2-9 June 2016)
 
  <terminal-window lineDelay=0>
     <terminal-line data="output"><span style="color:#A6CE39">cylc-run</span><span style="color:#FAA619">$&nbsp;</span>cd u-cs142-barraic/share/cycle/20160530T0000Z/aus2200/d0198/RA3/ics</terminal-line>
@@ -241,7 +243,7 @@ Once this command is complete, clone the git repository at github.com/coecms/AUS
     <terminal-line data="output"><span style="color:#A6CE39">AUS2200_postprocessing</span><span style="color:#FAA619">\$&nbsp;</span>./separate_ancil.py</terminal-line>
 </terminal-window>
 
-Once this is complete disable soil moisture carry over, the `1`, `2` and `3` entries under 'Configure ancils and initialise dump fields' as per the [`create_soil_moisture_ancil`](#create-soil-moisture-ancil) section and ensure the that the driving model section of the suite has the following settings:
+Once this is complete disable soil moisture carry over, the `1`, `2` and `3` entries under 'Configure ancils and initialise dump fields' as per the [`create_soil_moisture_ancil`](#create_soil_moisture_ancil) section and ensure the that the driving model section of the suite has the following settings:
 
 ![barra2 driving model](images/barra2-dm-setup.png)
 

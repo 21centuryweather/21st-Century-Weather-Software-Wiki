@@ -14,7 +14,7 @@ So every time you `cd` into your `roses/` folder, `cylc7` will get loaded automa
 When you leave the directory, everything will be unloaded, making this *environment* independent of the rest.
 
 You can use direnv to automatically activate the python environment for the project. 
-If you followed [our guide to build virtual environments on top of analysis3]((content:conda-env)), you can add a `.envrc` file in the same folder with
+If you followed [our guide to build virtual environments on top of analysis3](../python/conda-environments.md), you can add a `.envrc` file in the same folder with
 
 ```bash
 module use /g/data/xp65/public/modules

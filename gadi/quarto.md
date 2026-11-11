@@ -1,4 +1,3 @@
-(content:quarto)=
 # Literal programming with quarto  
 
 Quarto is a an open-source scientific and technical publishing system. It can be used through jupyter notebooks or plain text files with the `.qmd` extension. Quarto supports a variety of programming languages, including Python, R, Julia, and others.
@@ -21,7 +20,7 @@ You can also install the [jupyter extension `quarto-jupyter`](https://quarto.org
 
 Quarto can also be used with plain text files with the `.qmd` extension. The advantage of using plain text files is that they are easier to version control and share with others. The downside of this is that you won't see the output of your code (figures and results) on GitHub unless you render the file into markdown or html.
 
-To work with a `.qmd` file, you can use any text editor. If you are planning to user R code, RStudio is a great option, as it has built-in support for Quarto. If you are using Python, you can use any text editor or IDE, such as VSCode, check [these instructions on how to open an ARE session from VSCode](/gadi/vscode.md).
+To work with a `.qmd` file, you can use any text editor. If you are planning to user R code, RStudio is a great option, as it has built-in support for Quarto. If you are using Python, you can use any text editor or IDE, such as VSCode, check [these instructions on how to open an ARE session from VSCode](vscode.md).
 
 On VSCode you will need to install the [Quarto extension](https://marketplace.visualstudio.com/items?itemName=quarto.quarto-vscode) to get syntax highlighting and other features. Connect to Gadi using the Remote - SSH extension on the login node to access internet and install the extension. 
 
@@ -75,8 +74,7 @@ Using the analysis3 environment in quarto is similar to using it in Jupyter note
 
 After that, you should be able to run the code chunks in your `.qmd` (the result will show in the interactive window) with that specific environment.
 
-:::{admonition} Note
-:class: important
+::: {.callout-important title="Note"}
 
 If you try to run a code chunk without selecting the interpreter, it will try to run but probably fail. Close the interactive window and select the interpreter before running the code again.
 

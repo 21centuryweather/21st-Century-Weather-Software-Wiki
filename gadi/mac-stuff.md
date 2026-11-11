@@ -1,4 +1,3 @@
-(content:mac)=
 # Working with gadi via your Mac
 
 Mac OS interfaces work very well with Unix/Linux systems (like gadi), because Mac OS is itself based on an old version of Unix called 'BSD'.

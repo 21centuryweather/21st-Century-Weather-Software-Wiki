@@ -74,11 +74,12 @@ This contains a list of `bash` environment variables which describe the followin
 - `xios_path` : Directory of `xios` libraries used by intel compilers. XIOS is an XML input/output server used to handle coupling between the UM atmosphere and the NEMO ocean model.
 - `oasis3_mct_path` : Directory of intel libraries to compile this version of the UM which supports the `oasis3` coupler.
 
-:::{warning}
+::: {.callout-warning}
 
 The default value of `ARCHDIR` is `/scratch/${PROJECT}/${USER}/GC5_runs`. This directory `/scratch/${PROJECT}/${USER}/` must exist and you must have write permissions to it, otherwise your outputs won't be saved. The value of the `bash` environment variable `PROJECT` is set in the `.config/gadi-login.conf` file in your home directory. This is your 'default' `gadi` project. See [here](https://opus.nci.org.au/spaces/Help/pages/230490489/FAQ...#FAQ...-'Permissiondenied'messagewhenworkingonanewproject.1) for more information.
 
 You can always manually edit the value of `ARCHIDIR` to override the value of `PROJECT` if you want. Just remember to `reload` the `rose` suite again to update the definitions used in the `~/cylc-run` directory.
+
 :::
 
 ### Task flow ###
@@ -135,9 +136,10 @@ $ rose suite-run -- --mode=simulation
 ```
 from your `~/roses/u-dl058` directory. This command will run through each task in a 'simulated mode' without actually submitting a PBS job. 
 
-:::{note}
+::: {.callout-note}
 
 Make sure you log into into your persistent session and load your `cylc` modules first before trying to run a `rose/cylc` suite!
+
 :::
 
 The graph of the suite looks like this.
@@ -188,12 +190,13 @@ You can right-click on the task again (which will turn grey after it has success
 
 ![Job output](images/job.png)
 
-:::{note}
+::: {.callout-note}
 
 Remember you can also look at the job outputs manually. The latest output for this task will be located at
 `
 ~/cylc-run/u-dl058/log/job/20200116T0000Z/install_ancil/NN/job.out 
 `
+
 :::
 
 Let's follow the same method and trigger all the remaining tasks in sequence.
@@ -280,9 +283,11 @@ So the same configuration file can be used to run two different executables depe
 If you want to know more about the UM reconfiguration process, you click here: https://21centuryweather.github.io/UM_summary_docs/using.html#reconfiguration
 
 The standard output (or 'stdout' for short) of the UM reconfigure executable is long and rather interesting. You can scroll through the stdout contained in the `um_recon` by accessing the `um_recon` `job.out` file, either via the `cylc` gui or using a file editor of choice. It is very common for `um_recon` to fail when running a new suite configuration for the first time. 
-:::{tip}
+
+::: {.callout-tip}
 
 Knowing where to find error messages in the `um_recon` task is very important, as reconfiguration errors are one of the most common sources of problems when building a new suite (especially a regional model) with the UM.
+
 :::
 
 Note how the reconfigure executable:
@@ -314,10 +319,13 @@ Note `n320` refers to a spectral representation of global resolution. Some data 
 #### um_forecast
 
 This task initialises the atmospheric forecast, using the same `app/um` files used by `um_recon`. Let's look through the stdout of the atmospheric forecast task, either via the `cylc` gui or using a file editor. It is very common when running a new suite configuration for the first time that the atmospheric forecast task may fail.
-:::{tip}
+
+::: {.callout-tip}
 
 Knowing where to find error messages in the `um_forecast` task is very important, as numerical errors encountered in the atmospheric forecast step are a common sources of problems when running the UM. 
+
 :::
+
 Note the atmospheric executable:
 -  opens the `.astart` file.
 ```

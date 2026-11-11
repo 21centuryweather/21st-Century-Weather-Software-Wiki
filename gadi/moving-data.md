@@ -1,4 +1,3 @@
-(content:moving-data)=
 # Transferring data
 
 When working on `gadi`, often you'll have to transfer large amounts of data (gigabytes or terabytes) between different disks to deal with changing project quotas.
@@ -16,7 +15,9 @@ To guard against these problems, NCI recommend the following steps.
  
 :::note
 You cannot remotely login to a 'data-mover' node. It can only be used for securely copying files using `scp`
+
 :::
+
 2. Use the `rsync` command instead of the `cp` copy command. This gives your the ability to resume an interrupted transfer.
 3. For larger tasks that may take more than 30 minutes, use the `copyq` `PBS` queue and submit a batch job.
 
@@ -86,14 +87,18 @@ rsync -vP -r ${source_dir} ${target_dir}
 ```
 :::note
 I have to specify the disks I want to transfer the data from using the `#PBS storage` flag.
+
 :::
+
 I can then submit this task to the `copyq` job queue using
 ```
 $ qsub copy_directory.sh
 ```
 :::note
 Make sure `copy_directory.sh` has user executable permissions, i.e. it is coloured <span style="color:green">green</span> in your terminal, or has the user permissions `-rwx` when you use a 'long list' (i.e. `$ ls -l copy_directory.sh`). To make a `bash` script executable by a user, type `chmod u+x <filename>`
+
 :::
+
 You can check the progress of the job by typing
 ```
 $ qstat

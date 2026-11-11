@@ -33,4 +33,4 @@ Anyone using this product should register with the [JAXA GSMaP products portal](
 Kubota T. et al. (2020) Global Satellite Mapping of Precipitation (GSMaP) Products in the GPM Era. In: Levizzani V., Kidd C., Kirschbaum D., Kummerow C., Nakamura K., Turk F. (eds) Satellite Precipitation Measurement. Advances in Global Change Research, vol 67. Springer, Cham DOI: 10.1007/978-3-030-24568-9_20 
 
 
-The documentation for this dataset derived from [CLEX - ARC Centre of Excellence for Climate Extremes wiki page](http://climate-cms.wikis.unsw.edu.au/GSMaP). 
+The documentation for this dataset derived from [CLEX - ARC Centre of Excellence for Climate Extremes wiki page](http://climate-cms.wikis.unsw.edu.au/GSMaP).

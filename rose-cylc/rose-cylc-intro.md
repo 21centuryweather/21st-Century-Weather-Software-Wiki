@@ -87,9 +87,10 @@ https://opus.nci.org.au/pages/viewpage.action?pageId=236880320
 
 Note that documentation contains information on how to run an 'interactive' PBS job session on a gadi compute node, which will allow you to interactively edit files and run programs that exceed the capacity of the gadi login nodes. 
 
-:::{tip}
+::: {.callout-tip}
 
 The gadi compute nodes are not externally connected to the internet, so you won't be able to connect to gitlab or copy files from external sources when logged into a compute note.
+
 :::
 
 But, what if we have a complex set of tasks that must run in a particular sequence? Can we create a scheduler which processes `PBS` jobs in a user-specified workflow?  
@@ -134,13 +135,16 @@ To launch `cylc` on `gadi` you need to load the `cylc` software into your intera
 ```
 $ persistent-sessions start cylc-test
 ```
-:::{note}
+
+::: {.callout-note}
 
 Type everything after the `$` into your terminal's command line, i.e. don't include the `$`. In this document the `$` is used to distinguish commands you need to type (or copy from your browser) from contents of text files etc. You will notice that a `gadi` command line usually ends with a `$`, e.g.
 ```
 <username>@gadi-login-01]$
 ```
+
 :::
+
 This should generate output containing the following:
 ```
 session <random text string> running - connect using
@@ -151,9 +155,11 @@ We then need to add the name of this session to the contents of a text file `/.p
 $ mkdir -p ~/.persistent-sessions
 $ cat > ~/.persistent-sessions/cylc-session <<< cylc-test.<user-id>.<project>.ps.gadi.nci.org.au
 ```
-:::{warning}
+
+::: {.callout-warning}
 
 Make sure you insert your values of `<user-id>` and `<project`> into the above command. i.e replicate the output generated from your earlier `persistent-session start cylc-test` command.
+
 :::
 
 These commands use the `bash` program `cat` (short for 'catalogue') to create a text file called `cylc-session` in the directory `~/.persistent-sessions/` which will contain the text `cylc-test.<user-id>.<project>.ps.gadi.nci.org.au`.
@@ -228,9 +234,10 @@ Ok, let's run this from the command line by executing the following:
 $ cylc run
 ```
 
-:::{note}
+::: {.callout-note}
 
 Make sure you are in the current working directory containing your `suite.rc` file, i.e. `~/cylc-run/examples/7.9.7/tutorial/oneoff/basic` to run a `cylc` suite.
+
 :::
 
 Your output should contain the following.
@@ -263,14 +270,16 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/graphing.h
 
 Let's follow the practical section at the bottom of that page.
 
-:::{tip}
+::: {.callout-tip}
 
 In you are starting this tutorial from a fresh login session, remember to login to your specified 'persistent session'. We have to use the following `module use` and `module load` commands to add `rose` and `cylc` to our paths on gadi inside the specific session.
 ```
 $ module use /g/data/hr22/modulefiles
 $ module load cylc7
 ```
+
 :::
+
 Back to the tutorial:
 ```
 $ mkdir ~/cylc-run/graph-introduction
@@ -286,10 +295,11 @@ the results show match the below image.
 
 Remember the '.' in a `bash` command means 'the current directory'. So the above command means `create a graph of the suite that exists in the current directory'.  
 
-:::{tip}
+::: {.callout-tip}
 
 Here is a web-link containing a review of all 'special characters' in `bash`:
 https://www.howtogeek.com/439199/15-special-characters-you-need-to-know-for-bash/
+
 :::
 
 ### Third cylc tutorial ###
@@ -316,7 +326,7 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/scheduling/datetime-c
 
 Remember to load the `rose` and `cylc` executables into your current `gadi` environment using the `module load` commands.
 
-:::{tip}
+::: {.callout-tip}
 
 You can use the `bash` `alias` function to write a simple macro to load the `rose/cylc` environment with a simple command.
  e.g. in my `~/.bash_profile` file I declare the following:
@@ -328,6 +338,7 @@ You can use the `bash` `alias` function to write a simple macro to load the `ros
    Loading cylc7
       Loading requirement: mosrs-setup/2.0.1
 ```
+
 :::
 
 Work your way through the practical exercise, which in this case is a simple taskflow for weather forecasting.
@@ -335,7 +346,9 @@ Work your way through the practical exercise, which in this case is a simple tas
 Your final `cylc` graph should include the following sections:
 
 ![Simple cylc NWP graph 1](images/cylc-datetime1.png)
+
 ![Simple cylc NWP graph 2](images/cylc-datetime2.png)
+
 ![Simple cylc NWP graph 3](images/cylc-datetime3.png)
 
 ### Fifth cylc tutorial ###
@@ -367,9 +380,11 @@ User@Host: pag548@pgregory.pag548.gb02.ps.gadi.nci.org.au
 2024-10-28T05:54:42Z INFO - started
 2024-10-28T05:54:43Z INFO - succeeded
 ```
-:::{note}
+
+::: {.callout-note}
 
 In the `cylc` directory structure, the subdirectory `NN` will always point to the latest job submission number. Logfiles from previous job submission attempts are retained to help keep track of earlier failures. Keep this in mind when you have to repeat a job submission because earlier jobs failed because of an error. 
+
 :::
 
 ### Sixth cylc tutorial ###
@@ -382,7 +397,7 @@ https://metomi.github.io/rose/2019.01.8/html/tutorial/cylc/runtime/runtime-confi
 
 This tutorial is broken and will not run under `cylc7`. 
 
-As mentioned earlier in the section on [running jobs on Linux](#shell-scripts-and-running-jobs-on-Linux) running on gadi, `cylc` is configured to use the `PBS` batch system to schedule jobs.
+As mentioned earlier in the section on [running jobs on Linux](#shell-scripts-and-running-jobs-on-linux) running on gadi, `cylc` is configured to use the `PBS` batch system to schedule jobs.
 
 This tutorial describes how we can pass `PBS` job directives using `cylc` and discusses how to start, stop and restart `cylc` suites and individual `cylc` tasks. 
 
@@ -437,9 +452,10 @@ In the next `rose` tutorial you will learn how to add metadata to a rose suite. 
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/metadata.html
 
-:::{note}
+::: {.callout-note}
 
 In this tutorial the command `rose config-edit &` is used to edit the rose suite. In most of the 21stCenturyWeather and ACCESS-NRI documentation, the short-cut `rose edit &` is used instead.
+
 :::
 
 At the conclusion of this tutorial, your `rose edit` window should look like this.
@@ -456,7 +472,7 @@ Follow the exercises contained in this link:
 
 https://metomi.github.io/rose/2019.01.8/html/tutorial/rose/suites.html
 
-:::{note}
+::: {.callout-note}
 
 This exercise refers to `Jinja2`. Jinja is a templating language, i.e. a way to create extensive ASCII (text) documents by using logic to loop over variables or parameters to prevent repetitive typing of repeated strings or text. The homepage for the Jinja project is here:
  
@@ -466,6 +482,7 @@ There is short review of how `Jinja` works here : https://metomi.github.io/rose/
 
 You don't have to do the tutorials, but just be conscious that whenever you see braces such as `{{ }}` in a `suite.rc` file, those braces surround a variable that will be replaced with Jinja. Likewise, Jinja logic such as `{% if ... %}` or `{% for ... }` within the `suite.rc` will be processed to produce the final `suite.rc.processed` file executed by `cylc` which is created in your `~/cylc-run/<rose-id>` runtime directory.
 In conclusion, Jinja is a way for us to create very long `suite.rc` files by looping over input parameters.
+
 :::
 
 You will have to make the following changes to `suite.rc` to make the tutorial work. 

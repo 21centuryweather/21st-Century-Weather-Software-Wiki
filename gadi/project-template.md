@@ -1,4 +1,3 @@
-(content:project-template)=
 # Research Project Template
 
 This section documents the [Research Project Template](https://github.com/21centuryweather/research-project-template) that follows responsible practices for research projects in climate and weather using Python or R as a programming language. It is meant to help users incrementally incorporate good practices by automatically organising code, analysis, figures and documentation.
@@ -24,14 +23,17 @@ You will be prompted to answer a few questions about your project: the project n
 
 3. Answer the questions. 
 
-````{tab-set}
-```{tab-item} Python
+::: {.panel-tabset}
+
+## Python
+
 ![](images/python_project.gif)
-```
-```{tab-item} R
+
+## R
+
 ![](images/r_project.gif)
-```
-````
+
+:::
 
 Depending on the answers, the project using Python may look something like this:
 
@@ -64,14 +66,14 @@ Depending on the answers, the project using Python may look something like this:
 
 When working on a research project, it is important to organise your data in a way that makes it easy to understand and maintain. The template provides a structure for organising your data, with separate folders for raw, temporal and derived data.
 
-:::{admonition} On gadi
-:class: tip
+::: {.callout-tip title="On gadi"}
 
 If you create your project on your home directory, which only has 10 Gb available, the template will automatically create a symbolic link to the `/g/data/{{nci_project}}/$USER/{{project_name}}/data` folder on gadi. This way you can work with large data without worrying about running out of space on your home directory.
 
 :::
 
-````{dropdown} How to create a symbolic link
+::: {.callout-tip collapse="true" title="How to create a symbolic link"}
+
 A symbolic link is a special type of file that points to another file or folder. It allows you to access the target file or folder from a different location without having to copy it. For this you need to use the terminal. 
 
 The command is `ln -s /path/to/target /path/to/link`. For instance, if you want to create a symbolic link from /g/data/gb02/$USER/my_project/ to your home directory, you can run this command:
@@ -86,7 +88,7 @@ lrwxrwxrwx  1 pc2687 gb02       30 May 29 15:13 my_project -> /g/data/gb02/pc268
 ```
 Note: if the link was not created correctly, the previous output will show in red. 
 
-````
+:::
 
 **`raw` folder**
 
@@ -94,8 +96,7 @@ To store the raw data that you download from the source. You should never edit t
 
 Consider adding a README file inside the `raw` folder to document the source of the data, the date you downloaded it, and any other relevant information about the data. This will help you and others understand where the data came from and how to use it in the future.
 
-:::{admonition} On gadi
-:class: tip
+::: {.callout-tip title="On gadi"}
 
 If you are going to work with data that is already available on gadi (like, ERA5, CMIP6, etc), you can also **link** the data into the `raw/` folder and then use relative paths to access it. This way you can keep all your code and data organised in the same root folder, which will make it easier to share and reproduce your analysis.
 
@@ -109,8 +110,7 @@ Alternatively, you can read the data directly from that specific project using a
 
 In this folder you will save the temporary data that you create when processing the raw data. The data in this folder won't be used for the final analysis, they are often intermediate files needed for more processing. You should delete them after you finished processing the raw data but save any scripts to be able to reproduce the processing.
 
-:::{admonition} On gadi
-:class: tip
+::: {.callout-tip title="On gadi"}
 
 Because this is temporal data, the template creates a symbolic link to the `/scratch` folder on gadi. The data in this folder will be automatically deleted after 90 days, so it is a good place to store data that you don't need to keep for a long time or that you can recreate again by running a script. 
 
@@ -139,8 +139,7 @@ Finally, try to make your files easily sortable. Put numbers with enough zero-pa
 
 An important aspect of thinking about your project is that all scripts, data, figures, and whatever else is needed to (re)create the analysis is inside the same root folder. That way you can ensure that the only thing you need to give to someone else to successfully run your code is that single folder. 
 
-:::{admonition} On gadi
-:class: tip
+::: {.callout-tip title="On gadi"}
 
 Well, this may not be entirely possible if you are working on a project that relies on data that is only available on gadi, but you can still make your project portable by including scripts to download the data from the source or document exactly how to get it. 
 
@@ -151,8 +150,11 @@ So, even if someone doesn't have access to the data on gadi, they can still run 
 
 One extra step to consider is that you cannot make your work portable if your code is not portable too. Perhaps the main culprit of non-portable code is using absolute paths to manipulate files in your code.
 
-`````{tab-set}
-````{tab-item} Python
+::: {.panel-tabset}
+
+
+## Python
+
 **Jupyter lab session in ARE**
 
 If you use Jupyter labs and set your working directory with `os.chdir()` to the root of your project, you can use relative paths to access your data and figures. The problem with this approach is that your notebook and project won't be portable because will need to set a different working directory every time. 
@@ -168,15 +170,10 @@ After that, ARE will start a jupyter lab session using the path you specified as
 **VS Code**
 To set the working directory in VS Code, you can change the "Notebook File Root" setting  to `${workspaceFolder}`. This will set the working directory to the root of your project when you open a notebook in VS Code. 
 
-````
 
-````{tab-item} R
 
-```json
+## R
 
-````
-
-````{tab-item} R
 Think about this piece of code:
 
 ```r
@@ -195,15 +192,18 @@ And this will run no matter where the root folder is located.
 
 The only catch is that you need to make sure that the working directory is set to the root of the project. A a simple solution to make sure that R finds all the files needed is to use the [here package](https://reproducibility.rocks/materials/day2/01-here/).
 
-````
-`````
+
+:::
 
 ### Organise your code
 
 When working on a research project, it is important to organise your code in a way that makes it easy to understand and maintain. The template provides a structure for organising your code, with separate folders for analysis, and source code.
 
-`````{tab-set}
-````{tab-item} Python
+::: {.panel-tabset}
+
+
+## Python
+
 What's the difference between the `analysis` and `src` folders? The `analysis` folder is meant for Jupyter notebooks (or scripts) that contain your analysis and figures, while the `src` folder is meant for Python scripts that contain functions and classes that you can reuse across different notebooks.
 
 If you said yes to adding an example when creating the project structure you will find a sample function in:
@@ -225,9 +225,10 @@ The idea here is to keep the notebooks clean and focused on the analysis, while 
 
 Moving forward, you can also add tests for your functions in the `tests` folder, which will help you ensure that your code is working as expected and will make it easier to maintain and update your code in the future.
 
-````
 
-````{tab-item} R
+
+## R
+
 When working in an R project, the `analysis` folder is meant for R markdown or Quarto files that contain your analysis and figures, while the `R` folder is meant for R files that contain functions that you can reuse across different Quarto files.
 
 If you said yes to adding an example when creating the project structure you will find a sample function in:
@@ -256,16 +257,20 @@ The idea is to keep the quarto file clean and focused on the analysis, while kee
 
 Moving forward, you can easily convert your collection of functions into a package, which will make it easier to share and reuse your code across different projects.
 
-````
-`````
+
+:::
+
 ### Document your code
 
 Documenting your code is an important aspect of making your project reproducible and maintainable. Even if you are not planning to share your code with anyone else, you will be grateful to yourself in the future if you document your code properly. 
 
 Documentation can be as simple as adding comments to your code to explain what it does and, more importantly, why you are doing it. You can also use docstrings in Python or roxygen2 in R to document your functions and classes, which will make it easier for you and others to understand how to use them.
 
-`````{tab-set}
-````{tab-item} Python
+::: {.panel-tabset}
+
+
+## Python
+
 In Python, functions are usually documented using docstrings, which are string literals that appear right after the function definition. A docstring should describe what the function does, its parameters, its return value and examples. The example in the template includes a bare-bones docstring:
 
 ```python
@@ -302,9 +307,10 @@ def add_numbers(x, y):
 
 With this structure you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, having docstrings will make it easier to create the documentation for your package.
 
-````
 
-````{tab-item} R
+
+## R
+
 
 In R, functions are usually documented using roxygen2, which is a package that allows you to write documentation in the same file as your code. The documentation is written in a special format that starts with `#'` and includes tags such as `@param`, `@return`, and `@examples`. The example in the template includes a bare-bones documentation:
 
@@ -336,8 +342,9 @@ add_numbers <- function(x, y) {
 ```
 While roxigen2 syntax can be hard to remember, rstudio has an option to insert the skeleton automatically. This structure will help you to add all the necessary details so you can easily understand what the function does and how to use it. Moving forward, you ever want to convert your collection of functions into a package, using roxygen2 will make it easier to create the documentation for your package.
 
-````
-`````
+
+:::
+
 ### Document your project
 
 The template provides a `README.md` file where you can write a description of your project, how to run the analysis and get access to the data. This file is meant to be read by other people who want to understand what your project is about and how to use it. If you share your project on GitHub, the README file will be the first thing that people see when they visit your repository, so it is important to make it clear and informative.
@@ -352,8 +359,11 @@ Check this examples for inspiration on how to write a good README file:
 
 ### Manage your dependencies
 
-`````{tab-set}
-````{tab-item} Python
+::: {.panel-tabset}
+
+
+## Python
+
 
 If if you rely on `conda/analysis3` environments, it's still important to keep track of the dependencies you are using in your project. The template provides a `requirements.txt` file where you can list all the packages you are using in your project. This way, you can easily recreate the environment in another machine or share it with someone else.
 
@@ -363,31 +373,33 @@ When you are ready to create this file, load your environment and run this in th
 cd /path/to/project
 python3 -m pip freeze > requirements.txt
 ```
-If you are interested in learning more about how to manage a python environment or how to create your own, check the section [Building custom python environments on top of `conda/analysis3`](content:conda-env).
+If you are interested in learning more about how to manage a python environment or how to create your own, check the section [Building custom python environments on top of `conda/analysis3`](../python/conda-environments.md).
 
 
-````
-````{tab-item} R
+
+## R
+
 
 The best tool to manage dependencies in R is the `renv` package. This package allows you record the dependencies in your project, which can be easily shared and reproduced. If you said yes to using renv when creating the project, the template will install and initialise renv. Check that you have an `renv.lock` file and `renv/` folder inside your project. 
 
 To learn more about how to use renv, check the [package documentation](https://rstudio.github.io/renv/) or [this tutorial from reproducibility.rocks](https://reproducibility.rocks/materials/day3/01-renv/).
 
 
-````
-`````
+
+:::
+
 #### System dependencies
 
 Controlling system dependencies is a bit more tricky and the ultimate solution is to use containers (Docker, for example). However working with containers on gadi is not straightforward and add an extra layer of complexity. We recommend to keep track of the system dependencies in the README file. This way, if someone wants to run your code and they don't have access to the same system as you, they can check the README file and install the necessary dependencies.
 
-You can also use direnv to manage system dependencies inside your project. direnv is a small bash program that allows you to modify the environment automatically as you enter a directory. This means that if you’ve got a project that uses a particular set of modules you can just add a .envrc file in the root of your project with all the module load commands that you need and never miss them. Check the [direnv section](content:direnv) for more information on how to use it.
+You can also use direnv to manage system dependencies inside your project. direnv is a small bash program that allows you to modify the environment automatically as you enter a directory. This means that if you’ve got a project that uses a particular set of modules you can just add a .envrc file in the root of your project with all the module load commands that you need and never miss them. Check the [direnv section](direnv.md) for more information on how to use it.
 
 
 ### Version control
 
 The template gives you the option to use git for version control. If you choose to use git, the template will automatically initialise a repository and you will see a `.git` folder for you, which is where git stores all the information about your commits and branches. git (and Github) is key to share your code and collaborate with other people, so we highly recommend using it for your projects. 
 
-If you are new to git, check the [Working with Git alone](content:git-alone) and [Working with Git in a team](content:git-team2) sections of the wiki. 
+If you are new to git, check the [Working with Git alone](../git/git-alone.md) and [Working with Git in a team](../git/git-team.md) sections of the wiki.
 
 
 #### .gitignore
@@ -400,7 +412,7 @@ For all cases, the `data/` folder will be ignored. It's not recommended to track
 
 The template provides a `tests` folder where you can add tests for your functions. Testing your code is an important aspect of making sure that your code is working as expected and that you can maintain and update it in the future without breaking it.
 
-If you are interested in learning more about testing your python code, check the section [Testing your code](content:testing-code) of the wiki.
+If you are interested in learning more about testing your python code, check the section [Testing your code](../python/testing.md) of the wiki.
 
 ### Reproducible reports
 
@@ -412,7 +424,7 @@ A better workflow is to use a tool that allows you to create reproducible report
 
 These type of documents can handle formatting, citations, and cross-references, which will make it easier to write and maintain your report. They also play well with version control because they are plain text files, so you can easily track changes and collaborate with other people using git.
 
-Check the [Quarto section](content:quarto) for more information on how to use it.
+Check the [Quarto section](quarto.md) for more information on how to use it.
 
  ## References
 

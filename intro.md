@@ -1,5 +1,33 @@
 # Welcome to the 21st Century Weather Software Wiki
 
+## Explore the wiki
+
+::: {.home-topic-grid}
+::: {.home-topic-card}
+### [Gadi](gadi/index.md)
+
+Get started on Gadi, manage storage, and work with data and compute nodes.
+:::
+
+::: {.home-topic-card}
+### [ACCESS modelling](UM/UM-intro.md)
+
+Find Unified Model workflows, configurations, and troubleshooting guides.
+:::
+
+::: {.home-topic-card}
+### [Python](python/intro-python.md)
+
+Explore environments, data formats, testing, and practical tools.
+:::
+
+::: {.home-topic-card}
+### [Datasets](datasets/index.qmd)
+
+Browse datasets, their locations on Gadi, and their maintainers.
+:::
+:::
+
 ## The Software Engineering Team
 
 The Software Engineering Team currently consists of 3 members:
@@ -25,7 +53,4 @@ The Software Support Category on Cumulus is the *preferred contact method* as it
 
 Coming Soon - Fortnightly Code Workshops. This will be an hour long session where you can bring your code in for help/ideas/review.
 
-## WIKI Table of Contents
-
-```{tableofcontents}
-```
+Browse topics using the navigation menu.

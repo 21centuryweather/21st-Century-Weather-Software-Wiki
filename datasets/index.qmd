@@ -1,0 +1,26 @@
+---
+title: Datasets
+listing:
+  type: table
+  contents:
+    - weather_objects.md
+    - mesaclip.md
+    - mmleav2.md
+    - energy.md
+    - drought-era5.md
+    - daily-era5.md
+    - gsmap.md
+    - himawari-ahi.md
+  fields: [title, location, maintainer, short_description]
+  field-display-names:
+    title: Name
+    location: Location on Gadi
+    maintainer: Maintainer
+    short_description: Description
+  field-links: [title]
+  sort: title
+---
+
+21st Century Weather hosts a series of datasets on `su28`. Browse their documentation below.
+
+If you need to store a dataset, please contact the Research Software Engineering team through Cumulus.

@@ -1,10 +1,9 @@
-(content:getting-started)=
 # Getting started on gadi
 
 The National Computing Infrastructure ([NCI](https://www.nci.org.au/)) hosts the supercomputer `gadi` where you will be conducting most of your research. Through NCI, you will have access to high-performance computing (HPC) resources and large-scale data storage, including some of the most
 used datasets like ERA5 and CMIP6 data.
 
-In this section, we will guide you through the steps to get started on `gadi` using some handy tutorials developed by [ACCESS-NRI]([https://www.access-nri.org.au).
+In this section, we will guide you through the steps to get started on `gadi` using some handy tutorials developed by [ACCESS-NRI](https://www.access-nri.org.au).
 
 ## 1. Setting up an account on `gadi`
 
@@ -49,7 +48,7 @@ Follow the [instructions in the ACCESS-NRI documentation](https://docs.access-hi
 
 but there are other option available too.
 
-:::{note}
+::: {.callout-note}
 
 Any ARE session will use service units or SUs, which are the currency used on `gadi` to allocate computational resources. Each project you join will have a certain number of SUs allocated to it per quarter. Small JupyterLab sessions will use very few SUs, but it can add up over time during the quarter. Please always check your SU usage via the [Computational Resource Dashboard](https://21centuryweather.github.io/nci_resource_tools/dashboard.html) and stop any ARE sessions you are not using.
 

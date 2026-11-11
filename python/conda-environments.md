@@ -1,9 +1,8 @@
-(content:conda-env)=
 # Building custom python environments on top of `conda/analysis3`
 
 <script src="https://cdn.jsdelivr.net/gh/atteggiani/animated-terminal/animated-terminal.min.js" defer></script>
 
-This section will guide you through the steps to create a conda environment on top of `conda/analysis3` and is based on the materials developed byt the CLEX team. If you are interested in learning how to use the `conda/analysis3` environment, please refer to the [Intro to Python](content:intro-python) section.
+This section will guide you through the steps to create a conda environment on top of `conda/analysis3` and is based on the materials developed byt the CLEX team. If you are interested in learning how to use the `conda/analysis3` environment, please refer to the [Intro to Python](intro-python.md) section.
 
 ## Introduction
 
@@ -45,9 +44,11 @@ There are only two additional commands required to install `xWMB` into a virtual
     <terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
 </terminal-window>
 
-```{warning}
+::: {.callout-warning}
+
 Do not use `pip install --user` here, as this will result in the packages being installed in your `~/.local` directory, leaving the virtual environment empty
-```
+
+:::
 
 And that's it. We now have a fully self-contained environment with a custom 
 package built on top of the `conda/analysis3` environment. It is important to note
@@ -111,9 +112,12 @@ multiple virtual environments depending on your immediate requirements.
 In general, if anything in the environment doesn't work for whatever reason, the best course of action
 is to delete it and try again. You may need to try different `conda/analysis3` environments, or, if none of those
 work, use one of the NCI installed Python modules as your base. 
-```{note}
+
+::: {.callout-note}
+
 NCI's Python modules do not have `dask`, `xarray`, etc. installed, so the resultant virtual environments could be quite large.
-```
+
+:::
 
 ## Jupyter Kernel
 
@@ -127,9 +131,11 @@ You'll need to call `ipykernel install` while the virtual environment is activat
     <terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install --user --name xwmb_venv --display-name "xWMB+conda/analysis3"</terminal-line>
 </terminal-window>
 
-```{note}
-Since this virtual environment is built on top of `conda/analysis3`, you do not need to install `ipykernel` in it, as this is already present in the conda environment. 
-```
+::: {.callout-note}
+
+Since this virtual environment is built on top of `conda/analysis3`, you do not need to install `ipykernel` in it, as this is already present in the conda environment.
+
+:::
 
 Now, when
 you launch a new ARE JupyterLab instance, you will be able to see your new environment,

@@ -1,4 +1,3 @@
-(content:intro-python)=
 # Intro to Python for Climate Science
 
 [Python](https://www.python.org) provides a powerful yet accessible toolkit for analyzing vast datasets, performing complex modeling, and visualizing climate patterns. In climate science, data often involves multiple dimensions—like time, latitude, longitude, and depth—making Python’s specialized libraries invaluable for both efficiency and depth of analysis.
@@ -150,4 +149,4 @@ When using Australian Research Environment (ARE), add `gdata/xp65` to “Storage
 
 You can request ACCESS-NRI to install additional packages ([check this post for more details](https://forum.access-hive.org.au/t/requesting-new-software-packages-on-nci-systems/2834)). Adding or not new packages will depend on the compatibility with the existing packages. 
 
-Additionally you can create your onw conda environment on top of analysis3 and install the packages you need. Check the sections [Conda environments](content:conda-env) for more details.
+Additionally you can create your onw conda environment on top of analysis3 and install the packages you need. Check the sections [Conda environments](conda-environments.md) for more details.

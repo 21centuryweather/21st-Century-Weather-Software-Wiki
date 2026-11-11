@@ -14,7 +14,7 @@ Because of this
 - The suite will not render correctly in the `rose edit` GUI, but
 - The `rose-suite.conf` is simple enough that we can examine it directly.
 
-:::{note}
+::: {.callout-note}
 
 A Jupyter notebook is contained in the suite directory in 
 ```
@@ -24,7 +24,7 @@ A Jupyter notebook is contained in the suite directory in
 
 :::
 
-:::{important}
+::: {.callout-important}
 
 You must be a member of NCI project `ob53` to run this example as it uses the Bureau's BARRA reanalysis data.
 
@@ -32,8 +32,10 @@ You must be a member of NCI project `ob53` to run this example as it uses the Bu
 
 ## Mapping the ancillary directories to forecast regions
 
-:::{important}
+::: {.callout-important}
+
 The following is a very important concept within the UM Regional Modelling suites.
+
 :::
 
 Recall for the RAS we defined
@@ -76,7 +78,7 @@ The table below summarises this mapping between the RAS ancillaries and the RNS 
 
 For our minimum working example we are only running with N=2 ancillary domains, so we are only running a single forecast domain(N=1)
 
-:::{important}
+::: {.callout-important}
 
 Keeping track of which ancillary files define your first Forecast model nest will be very important when considering your choice of land-surface dataset set. This will be touched on later.
 
@@ -91,9 +93,11 @@ These directories should have been created and populated with ancillary data whe
 
 **Make sure they still have data in them!**
 
-:::{note}
+::: {.callout-note}
+
 - The RNS and RAS assume you are running on your default `gadi` project which is specified in the file `~/.config/gadi-login.conf`. If the value of `PROJECT` in this file has changed, you might have to manually alter the definition of the above ancillary directory files.
 - NCI routinely clean the contents of your `/scratch/$USER` directory every 100 days. So your ancillaries may get deleted if you haven't touched that directory recently.
+
 :::
 
 ## Running the suite - task by task
@@ -255,13 +259,13 @@ NCI_HRES_ECCB="barra"
 ```
 Which means we will be using the Bureau's BARRA Australian re-analysis to provide land/surface data at 0.11 degree increments. If you wish to use BARRA you must have membership of the NCI project `ob53`.
 
-:::{note}
+::: {.callout-note}
 
 The other options available for NCI_HRES_ECCB are 'none' (use original ERA5 data) or 'era5land' which takes land/surface data from the ERA5-**Land** reanalysis defined at 0.1 degrees resolution. 
 
 :::
 
-:::{important}
+::: {.callout-important}
 
 The type of land/surface dataset determines the outer resolution of your regional model. Here is a summary of the restrictions on the Ancillary suite `rg01_rs01` definition, which correponds to `dm` in the Nesting suite.  
 
@@ -333,7 +337,7 @@ And then we have a loop which creates multiple `um_createbc` and `um_fcst` tasks
       {% endfor %}  
 ```
 
-:::{important}
+::: {.callout-important}
 
 You must delete the extra `ec_cb000_*` files we created earlier to assess the impacts of the high resolution soil moisture on these reconfigured files. Otherwise, the executable `um-createbc.exe` will create extra duplicates of LBC information for the first six hours and the UM will fail. 
 

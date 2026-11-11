@@ -14,7 +14,7 @@ rosie checkout u-by395/nci_access_ram3
 ```
 You are retrieving the branch `nci_access_ram3` from the UK Met Office's `roses` `trac` repository.
 
-:::{note}
+::: {.callout-note}
 
 `trac` is a version control software manager that predates `github`, but works in a similar way. It was built around the 'Subversion' software repository system (or `svn`), which also predates `git`.  
 
@@ -51,7 +51,7 @@ Note by default the Flagship is configured to use the following configuration:
 
 You will want to change these configuration in the `rose-suite.conf` file (either manually, or graphically using `rose edit`) 
 
-:::{note}
+::: {.callout-note}
 
 Thanks to Dale Roberts who developed these optimisations for the AUS2200 suite
 
@@ -90,7 +90,7 @@ $ mv ~/roses/u-by395-default ~/roses/u-by395
 ```
 Another option could be to set up symbolic links in your `~/roses` directory and have a link called `u-by395` that points to different RNS suites (i.e. the default and a Flagship)
 
-:::{warning}
+::: {.callout-warning}
 
 The `cylc` engine can only generate one set of ouputs from a given `rose` suite ID. So if you use the above method, note that your outputs from the Flagship branch of `u-by395` will overwrite whatever exists in the `~/cylc-run/u-by395` directory and vice-versa.
 
@@ -145,7 +145,7 @@ To switch back to the default rAM3 branch, just type
 $ fcm sw https://code.metoffice.gov.uk/svn/roses-u/b/y/3/9/5/nci_access_ram3
 ```
 
-:::{tip}
+::: {.callout-tip}
 
 You can find information on how to use `fcm` to manage your `rose` suites here:
 

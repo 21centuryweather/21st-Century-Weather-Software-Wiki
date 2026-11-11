@@ -1,0 +1,228 @@
+# Quarto website configuration.
+project:
+  type: website
+  output-dir: _site
+  render:
+  - index.qmd
+  - intro.md
+  - gadi/index.md
+  - gadi/getting-started.md
+  - gadi/project-template.md
+  - gadi/mac-stuff.md
+  - gadi/moving-data.md
+  - gadi/rudu-usage.md
+  - gadi/vscode.md
+  - gadi/quarto.md
+  - gadi/direnv.md
+  - gadi/storage.md
+  - gadi/inodes.md
+  - gadi/su.md
+  - rose-cylc/rose-cylc-intro.md
+  - mosrs/mosrs-intro.md
+  - UM/UM-intro.md
+  - UM/trouble-shooting.md
+  - UM/common_problems.md
+  - UM/regional-intro.md
+  - UM/regional-ancils.md
+  - UM/RAS_ancils.ipynb
+  - UM/regional-MWE.md
+  - NRI-RNS/rAM3.md
+  - NRI-RNS/ancillaries.ipynb
+  - NRI-RNS/outputs.ipynb
+  - NRI-RNS/evaluating.ipynb
+  - NRI-RNS/checklist.md
+  - NRI-RNS/further-considerations.md
+  - NRI-RNS/flagship_config.md
+  - NRI-RNS/build-UM.md
+  - aus2200/models-aus2200.md
+  - AM3/intro.md
+  - AM3/new-configurations.md
+  - AM3/n512e-beta.md
+  - AM3/main-config.md
+  - vscode/intro-ipython.md
+  - vscode/debugging-python.md
+  - vscode/vscode-gadi.md
+  - vscode/vscode-gadi-compute-node.md
+  - vscode/vscode-gadi-are.md
+  - vscode/vscode-interactive.md
+  - python/intro-python.md
+  - python/conda-environments.md
+  - python/file_formats.md
+  - python/polars-intro.md
+  - python/concurrent_futures.md
+  - python/testing.md
+  - python/package-structure.md
+  - python/netcdf_zarr_storage_best_practices.md
+  - python/xarray_zarr.md
+  - python/dynlib.md
+  - python/pathlib.md
+  - datasets/index.qmd
+  - datasets/catalogs.md
+  - datasets/weather_objects.md
+  - datasets/mesaclip.md
+  - datasets/mmleav2.md
+  - datasets/energy.md
+  - datasets/drought-era5.md
+  - datasets/daily-era5.md
+  - datasets/gsmap.md
+  - datasets/himawari-ahi.md
+  - git/git-intro.md
+  - git/git-alone.md
+  - git/git-team.md
+  - git/git-notebooks.md
+  resources:
+  - favicon.ico
+  - logo-light.png
+  - logo-dark.png
+website:
+  title: 21st Century Weather Software Wiki
+  site-url: https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/
+  repo-url: https://github.com/21centuryweather/21st-Century-Weather-Software-Wiki
+  repo-actions:
+  - issue
+  favicon: favicon.ico
+  page-navigation: true
+  sidebar:
+    style: docked
+    logo: logo-dark.png
+    logo-alt: 21st Century Weather ARC Centre of Excellence
+    search: true
+    contents:
+    - text: Home
+      href: index.qmd
+    - section: Gadi
+      href: gadi/index.md
+      contents:
+      - text: Getting started
+        href: gadi/getting-started.md
+      - text: Project template
+        href: gadi/project-template.md
+      - text: Using a Mac
+        href: gadi/mac-stuff.md
+      - text: Moving data
+        href: gadi/moving-data.md
+      - text: Disk usage with rudu
+        href: gadi/rudu-usage.md
+      - text: VS Code on Gadi
+        href: gadi/vscode.md
+      - text: Quarto on Gadi
+        href: gadi/quarto.md
+      - text: direnv
+        href: gadi/direnv.md
+      - text: Storage choices
+        href: gadi/storage.md
+      - text: Inode quotas
+        href: gadi/inodes.md
+      - text: Service units
+        href: gadi/su.md
+    - section: ACCESS modelling
+      contents:
+      - text: Rose and Cylc
+        href: rose-cylc/rose-cylc-intro.md
+      - text: MOSRS
+        href: mosrs/mosrs-intro.md
+      - text: Unified Model
+        href: UM/UM-intro.md
+      - text: Troubleshooting
+        href: UM/trouble-shooting.md
+      - text: Common problems
+        href: UM/common_problems.md
+      - section: Regional models
+        href: UM/regional-intro.md
+        contents:
+        - text: Ancillary data
+          href: UM/regional-ancils.md
+        - text: RAS ancillaries
+          href: UM/RAS_ancils.ipynb
+        - text: Minimal working example
+          href: UM/regional-MWE.md
+        - text: rAM3
+          href: NRI-RNS/rAM3.md
+        - text: rAM3 ancillaries
+          href: NRI-RNS/ancillaries.ipynb
+        - text: Model outputs
+          href: NRI-RNS/outputs.ipynb
+        - text: Evaluation
+          href: NRI-RNS/evaluating.ipynb
+        - text: Run checklist
+          href: NRI-RNS/checklist.md
+        - text: Further considerations
+          href: NRI-RNS/further-considerations.md
+        - text: Flagship configuration
+          href: NRI-RNS/flagship_config.md
+        - text: Custom UM builds
+          href: NRI-RNS/build-UM.md
+        - text: AUS2200 guide
+          href: aus2200/models-aus2200.md
+      - section: Global models
+        href: AM3/intro.md
+        contents:
+        - text: New configurations
+          href: AM3/new-configurations.md
+        - text: n512e beta
+          href: AM3/n512e-beta.md
+        - text: Suite configuration
+          href: AM3/main-config.md
+    - section: VS Code
+      contents:
+      - text: Python development
+        href: vscode/intro-ipython.md
+      - text: Debugging
+        href: vscode/debugging-python.md
+      - text: Connect to Gadi
+        href: vscode/vscode-gadi.md
+      - text: Compute node
+        href: vscode/vscode-gadi-compute-node.md
+      - text: ARE session
+        href: vscode/vscode-gadi-are.md
+      - text: Interactive Python
+        href: vscode/vscode-interactive.md
+    - section: Python
+      contents:
+      - text: Introduction
+        href: python/intro-python.md
+      - text: Conda environments
+        href: python/conda-environments.md
+      - text: File formats
+        href: python/file_formats.md
+      - text: Polars
+        href: python/polars-intro.md
+      - text: Concurrent futures
+        href: python/concurrent_futures.md
+      - text: Testing
+        href: python/testing.md
+      - text: Project structure
+        href: python/package-structure.md
+      - text: NetCDF and Zarr storage
+        href: python/netcdf_zarr_storage_best_practices.md
+      - text: Xarray and Zarr
+        href: python/xarray_zarr.md
+      - text: dynlib
+        href: python/dynlib.md
+      - text: pathlib
+        href: python/pathlib.md
+    - section: Datasets
+      href: datasets/index.qmd
+      contents:
+      - text: Data catalogs
+        href: datasets/catalogs.md
+    - section: Git
+      contents:
+      - text: Introduction
+        href: git/git-intro.md
+      - text: Working alone
+        href: git/git-alone.md
+      - text: Working in a team
+        href: git/git-team.md
+      - text: Jupyter notebooks
+        href: git/git-notebooks.md
+    - text: Feedback
+      href: https://creatorapp.zohopublic.com.au/21centuryweather/w21c-clever/form-perma/Wiki_Feedback_Form/dNjCfQET7NjEgyE6GATZgRXhqOUEnHtsANkEZSJ54Cp8ry74xBHQQz6AvfOYhOXmJqdP35fBSjdbdnFx5ySvxFurqPPzBnnXjSw8
+    title: false
+    collapse-level: 1
+format:
+  html:
+    theme: cosmo
+    css: _static/custom.css
+    toc: true
+    code-copy: true

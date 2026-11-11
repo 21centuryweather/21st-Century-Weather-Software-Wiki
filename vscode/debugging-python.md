@@ -1,4 +1,3 @@
-(content:debugging-python)=
 # Debugging Python with VSCode
 
 Let's load and run the file `mean_air_temp.py` from the https://github.com/21centuryweather/software_engineering_demos repo. It will be in the `CoE_workshop_2025` subdirectory. This is a trivial test script which
@@ -128,9 +127,10 @@ We can skip to the end of the loop, by setting another **breakpoint** at the lin
 ```
 In this case, I type `b 43`. The debugger confirm it's created a breakpoint at the current file and line number. You can type `b` to list all current breakpoints.
 
-:::{note}
+::: {.callout-note}
 
 There are loads of `pdb` 'cheat-sheets' available. Here is an [example](https://ugoproto.github.io/ugo_py_doc/pdf/Python-Debugger-Cheatsheet.pdf).
+
 :::
 
 Now we can hit `c` to **continue** stepping through every state of the loop until we nit the computation of the mean, where we divide every value in our array `spatial_data_accumulator` by the number of time steps.
@@ -231,9 +231,10 @@ Select the option to add arguments, which will allow you to enter your arguments
 
 You can proceed with debugging as normal.
 
-:::{note}
+::: {.callout-note}
 
 Don't forget to add a breakpoint, otherwise the code will exit without stopping.
+
 :::
 
 We have now created a debugging configuration which will be active for the remainder of project. It can be accessed from the `Run and Debug` console as `Python Debugger: Current File with Arguments`
@@ -301,7 +302,7 @@ More complicated configurations can be created by editing the `launch.json` file
 
 The official VSCode debugging documentation is available [here](https://code.visualstudio.com/docs/debugtest/debugging) (which includes a tutorial video) while extra information to help configure Python scripts for the VSCode debugger can be found [here](https://code.visualstudio.com/docs/python/debugging).
 
-:::{note}
+::: {.callout-note}
 
 Jupyter Notebooks also contain their own debugger. If you click on the 'Bug' symbol on the right hand taskbar, it opens up the the built-in graphical debugger with all sorts of options.
 ![Notebook debugger](images/ARE_debug.png)

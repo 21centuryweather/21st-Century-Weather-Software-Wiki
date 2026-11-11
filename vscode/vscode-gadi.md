@@ -62,7 +62,7 @@ Note the blue status bar in the bottom left corner will change when you have suc
 
 3. You skip straight to the central pull-down menu (which is actually the `Command Palette`) by typing `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) and type `“Remote-SSH: Connect to Host…”` The `Command Palette` will auto-complete any command once you start the first few characters.
 
-:::{tip}
+::: {.callout-tip}
 
 VSCode rarely connects to `gadi` the first time. It often takes a few tries to successfully configure the server ports. Just keep hitting 'retry' until you succeed. It usually works after three-four attempts.
 
@@ -78,7 +78,7 @@ The Python interpreter menu will update if it has successfully found the path to
 
 Or, you instead of clicking, you can jump straight the `Command Palette` and start typing `"Python: Select Interpreter"`.
 
-:::{note}
+::: {.callout-note}
 
 You can also access the `Command Palette` by clicking on the Settings 'Cog' or 'Gear' in the bottom of the left hand vertical taskbar.
 
@@ -86,7 +86,7 @@ You can also access the `Command Palette` by clicking on the Settings 'Cog' or '
 
 Now you should be able to complete all the exercises we did on your local machine, on gadi!
 
-:::{note}
+::: {.callout-note}
 
 Remember to alter your `launch.json` file if you want your VSCode interactive Python session to use IPython.
 

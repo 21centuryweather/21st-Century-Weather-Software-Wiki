@@ -40,7 +40,7 @@ Host gadi.nci.org.au
 
 So we have configured our remote compute node e.g. `gadi-cpu-clx-XXXX` as the **TargetHost** and `gadi.nci.org.au` as the **JumpHost**.
 
-:::{warning}
+::: {.callout-warning}
 
 The entry next to `ProxyJump` in the TargetHost **must** match the `Host` field on the JumpHost. See [this example](https://serverfault.com/questions/1076460/unable-to-ssh-using-proxyjump-but-it-works-with-ssh-j)
 
@@ -52,13 +52,17 @@ Now, let's connect to a `gadi` login node and launch an interactive `qsub` sessi
 ```
 ]$ qsub -I -l mem=96gb -Pgb02 -q normal -l walltime=04:00:00 -l storage=gdata/gb02+gdata/xp65
 ```
-:::{note}
+
+::: {.callout-note}
 
 If we want to have access to the `xp65` conda environment, we have to add `gdata/xp65` to the storage flag.
+
 :::
 
-:::{tip}
+::: {.callout-tip}
+
 NCI has instructions on how to configure interactive `qsub` sessions [here](https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-InteractiveJobs)
+
 :::
 
 When your interactive `qsub` has completed, you command-line prompt will tell you the ID of the compute node, e.g.
@@ -75,7 +79,7 @@ A VSCode pop-up window will ask you about the authenticity of host `gadi-cpu-clx
 
 ![authenticate](images/authenticity_yes.png)
 
-:::{note}
+::: {.callout-note}
 
 The connection might fail the first time. It will usually succeed after three attempts.
 

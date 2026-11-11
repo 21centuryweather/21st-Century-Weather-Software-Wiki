@@ -60,21 +60,27 @@ Loading cylc7/24.03
   Loading requirement: mosrs-setup/2.0.1
 ```
 
-:::{danger}
+::: {.callout-caution}
 
 If you have the `conda/analysis3` module loaded, you **WILL NOT** be able to `ssh` to your persistent session, due to a conflict between the `ssh` installation contained in that module and the global `ssh` configuration used at NCI. The `analysis3` installation cannot access any of the `ssh` options that are needed to access the persistent sessions (such as the port and which `SSHkey` to use). You will need to unload the `analysis3` module from you current environment using 
 ```
 $ module unload conda/analysis3
 ```
+
 :::
-:::{warning}
+
+::: {.callout-warning}
 
 If you are not yet a member of the `access` gadi project, you will not be able run ACCESS/UM suites using a persistent session. You will be able to complete this tutorial, but you won't be able to complete the next one, or run any ACCESS suites. See [here](../UM/common_problems.md#persistent-session-cannot-see-files-in-gdataaccess) for more information.
+
 :::
-:::{note}
+
+::: {.callout-note}
 
 You will have to restart your sessions after quarterly maintenance.
+
 :::
+
 ## MOSRS authentication ##
 
 Once you have connected to your persistent-session, you will have to load the required `rose/cylc` modules and then authenticate with the central MOSRS repository.

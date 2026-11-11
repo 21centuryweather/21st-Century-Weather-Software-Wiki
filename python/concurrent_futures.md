@@ -17,9 +17,10 @@ The `normal` queue has 190 Gb available, while the `hugemem` and `megamem` have 
 
 So clearly have a lot of scope to use shared-memory programming to speed up our data analysis in `python`.
 
-:::{note}
+::: {.callout-note}
 
 There are two paradigms of parallel computing. In the 'shared memory' paradigm, multiple processes have access to a shared pool of memory. In the 'distributed memory' paradigm, processes are directed to separate pools of memory distributed across a network. Typically, this is how heavy computational tasks (e.g. running a CMIP model) are handled. Often, a combination of distributed and shared-memory techniques can be used. This tutorial is a 'shared memory' example, where we attempt to solve a problem in a single, unified memory space shared by multiple processes.
+
 :::
 
 Often, users first encounter parallel processing via the `xarray` module via a `dask` Client. In this way, a single `xarray` data structure can be read, processed and written in parallel 'chunks' using `dask` arrays. 'Chunking' can occur along any dimension - spatial or temporal.
@@ -78,9 +79,10 @@ NEM_performance_timeseries = xr.concat(NEM_performance, dim='time')
 ```
 It takes about three minutes to process a single day. Separate `qsub` scripts were generated for a given month, and submitted to the PBS queue on a single core.
 
-:::{note}
+::: {.callout-note}
 
 In the `gadi` PBS scheduler, the number of CPUs that you request (i.e. `#PBS -l ncpus`) is actually the number of **CORES**. Remember that, for example on `normal` queue, there are two 24 core CPUs located on each node. If want full access to every core on a node on `normal` queue, you need to request `#PBS -l ncpus=48`)
+
 :::
 
 The solar irradiance dataset is relatively small. The spatial latitude-longitude dimensions are 1726 x 2214. The function `utils_V2.get_irradiance_day` uses `xarray.open_mfdataset` to collate 103 separate files - valid at 10 minute intervals. Clearly this algorithm can be processed relatively quickly on a single core. So can we use `python` libraries to exploit the multiple cores that exist on a single CPU?
@@ -186,21 +188,24 @@ Use an interactive `qsub` to login to a `gadi` node and test the parallelisation
 $ qsub -I -X -l mem=190gb -P gb02 -l ncpus=48 -q express -l walltime=08:00:00 -l storage=gdata/gb02+gdata/hh5+scratch/gb02+gdata/rv74
 ```
 
-:::{note}
+::: {.callout-note}
 
 If you are using the `conda/analsyis3` environment you will have to load `gdata/hh5` into the session via the `-l storage` flag.
+
 :::
 
-:::{note}
+::: {.callout-note}
 
 The `express` queue is easier to gain access to than the `normal` queue but it costs more SU. Use it for testing only, and use the other queues for large data processing.
+
 :::
 
 
 
-:::{warning}
+::: {.callout-warning}
 
 When using `concurrent.futures` for the first time, ensure you don't invoke the `parallel` option when using `open_mfdataset`. I'm unsure how the two libraries would compete for cores. You could always try a small experiment and see what happens?
+
 :::
 
 ## Try it yourself
@@ -216,9 +221,10 @@ To submit a test script to the PBS queue, after cloning the repository to a work
 
 You will need substitute your current working directory, and change the location of the standard out and standard error log files (`#PBS -o <filename>` and `#PBS -e <filename>`)
 
-:::{note}
+::: {.callout-note}
 
 You need to be a member of NCI project `rv74` to run this code as-is to read the satellite irradiance data.
+
 :::
 
 Then submit the task:
@@ -233,7 +239,7 @@ If you want to run the scripts interactively, execute the following
 3. Launch an interactive python session using `ipython`
 4. Run the script in `ipython` using `%run scripts/concurrent_test.py`
 
-:::{note}
+::: {.callout-note}
 
 When implementing `concurrent.futures` yourself, note the syntax of the `worker_pool.submit()` function, which requires you to list the name of your function to submitted to each process, followed by the list of function arguments.
 
@@ -244,13 +250,17 @@ worker_pool.submit(test,
                    b,
                    c)
 ```
+
 :::
 
-:::{note}
+::: {.callout-note}
 
 This kind of workflow - submitting individual tasks to a pool of 'workers' which then send the task to an individual core - is a gateway to `Dask` itself. `Dask` contains its own `futures` library which is derived from the python built-in library `concurrent.futures`. If you found this example interesting and would like to experiment more, examine this [tutorial](https://tutorial.dask.org/05_futures.html)
+
 :::
 
-:::{thanks}
+::: {.callout-note title="Thanks"}
 
 Thanks to Carl Doedens for providing this example.
+
+:::

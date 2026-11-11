@@ -1,4 +1,3 @@
-(content:git-notebooks)=
 # Tracking changes on jupyter notebooks
 
 We already mentioned that one of the great advantages of working using git is that you get the history of changes for the files inside your repository. 
@@ -28,8 +27,7 @@ index bd0c3f6..d92a209 100644
 
 Here, `a/read_era5.py` is the *old* version and `b/read_era5.py` the new version that we'll commit to the repository. The "+" denotes the lines we added or changed and sometimes you will see s "-" for the deleted or changed lines. The second line in the output `index bd0c3f6..d92a209 100644` tells exactly which versions of the file Git is comparing; bd0c3f6 and d92a209 are unique computer-generated labels for those versions.
 
-:::{admonition} Commands
-:class: tip
+::: {.callout-tip title="Commands"}
 
 -   `git diff <file>` will return the difference between the comited version of a file and the modified -or current version.
 -   `git diff --staged` shows you the changes in a file when we already added it to the staging area. 
@@ -44,14 +42,9 @@ git diff HEAD~2 read_era5.py
 
 We get the different between the current version and 2 commits before that. 
 
-Looking at the difference between 2 versions of a file is also useful and important to review pull request. For example, the PR created during the first exercise in the [Scenario 1](content:git-team:scenario1) will look like this when we check the differences between the current version of the file and the one proposed:
+Looking at the difference between 2 versions of a file is also useful and important to review pull request. For example, the PR created during the first exercise in the [Scenario 1](git-team.md#scenario1) will look like this when we check the differences between the current version of the file and the one proposed:
 
-```{figure} images/diff-pr.png
----
-alt: "Screenshot of github.com, it shows a pull request called add plot in the tab 'Files changed', on the left github show the current version of the file and on the right shows the new version where the new lines are highlighted. Note: the github interface is not accessible to screen readers."
----
-Files changed tab on a pull request in the GitHub interface.
-```
+![Files changed tab on a pull request in the GitHub interface.](images/diff-pr.png){fig-alt="Screenshot of github.com, it shows a pull request called add plot in the tab 'Files changed', on the left github show the current version of the file and on the right shows the new version where the new lines are highlighted. Note: the github interface is not accessible to screen readers."}
 
 In this same section you can add comments, suggestions and commits to the same branch. 
 
@@ -124,21 +117,11 @@ nbdiff analysis.ipynb (commit1 sha) analysis.ipynb (commit2 sha)
 
 ndbime is good to work locally but if you or a college want to review changes or contributions on PR on GitHub, we'll need a tool like [reviewNB](https://www.reviewnb.com). This is a separate app that allows you to review Jupyter Notebooks and pull request on GitGub. 
 
-```{figure} images/notebook-gh.png
----
-alt: "Screenshot of github.com, it shows a pull request called change plot in the tab 'Files changed', on the left github show the current version of the file and on the right shows the new version where the new lines are highlighted. Note: the github interface is not accessible to screen readers."
----
-Files changed tab on a pull request for a jupyter notebook.
-```
+![Files changed tab on a pull request for a jupyter notebook.](images/notebook-gh.png){fig-alt="Screenshot of github.com, it shows a pull request called change plot in the tab 'Files changed', on the left github show the current version of the file and on the right shows the new version where the new lines are highlighted. Note: the github interface is not accessible to screen readers."}
 
 This particular example is simple, we are only changing a few lines in the code and not metadata because we didn't include the output of each cell. But the diff can be more complex and difficult to read. For those cases there are different tools and solutions, for example reviewNB, This app present the diff in a tidy way:
 
-```{figure} images/notebook-nb.png
----
-alt: "Screenshot of app.reviewnb.com, it shows a pull request called change plot, on the left it show the current version of the file and highlights the parts changed and on the right shows the new version where the new lines are also highlighted. Note: accessibility has not being tested for this website."
----
-Files reviewNB interface showing a pull request for a jupyter notebook.
-```
+![Files reviewNB interface showing a pull request for a jupyter notebook.](images/notebook-nb.png){fig-alt="Screenshot of app.reviewnb.com, it shows a pull request called change plot, on the left it show the current version of the file and highlights the parts changed and on the right shows the new version where the new lines are also highlighted. Note: accessibility has not being tested for this website."}
 
 To be able to use reviewNB you will need to logging on [reviewnb.com](https://www.reviewnb.com/) with your GitHub account and give reviewNB permissions to access your repositories (o or more). Then, you can navigate to the commits or pull request you want to review. You will also get an email from reviewNB every time someone opens a new pull request. Notice that here we are using the reviewNB interface instead of the GitHub website. 
 

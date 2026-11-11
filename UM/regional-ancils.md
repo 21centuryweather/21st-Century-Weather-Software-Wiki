@@ -16,8 +16,10 @@ A regional model has to be 'nested' inside an atmospheric dataset which provided
 - Global Numerical Weather Prediction forecasts (e.g. ACCESS-G)
 - CMIP model projects (e.g. ACCESS-ESM)
 
-:::{important}
+::: {.callout-important}
+
 In UM parlance, we call this dataset the **driving model**. It provides external information to drive the flow into, and out of, our region.
+
 :::
 
 A UM regional model (sometimes called a local area model) must have a **minimum** of **two** nests. Within the UM, these rests are called 'resolutions'. The UM has the ability to run multiple, spatially disconnected nests simultaneously inside separate regions. This is important for operational weather forecasting, but is not required for our research needs.
@@ -30,8 +32,10 @@ To define a UM regional model, we need to define boundary conditions that define
 
 So the **first** resolution or 'nest' defines the spatial resolution of the lateral boundary conditions. It also defines the resolution of the initial condition, i.e. the values of meteorological variables, taken from the external atmospheric dataset that are regridded to our region of interest to initalise the model.
 
-:::{important}
+::: {.callout-important}
+
 The **first** resolution defined in the Ancillary Suite will be used by the **driving model** in the Regional Nesting Suite.
+
 :::
 
 The **second** resolution or 'nest' defines the spatial resolution of our actual local area model. This is the region where the UM atmospheric forecast will run.
@@ -45,8 +49,11 @@ We can checkout a minimal working example of the Regional Ancillary Suite here :
 $ cd ~/roses
 $ git clone git@github.com:21centuryweather/RAS_minimum_working_example.git
 ```
-:::{note}
+
+::: {.callout-note}
+
 This assumes you can access the Centre's GitHub repository via ssh. If that command doesn't work, visit the Centre's Wiki [here](https://21centuryweather.github.io/21st-Century-Weather-Software-Wiki/git/git-intro.html#configure-the-permissions-between-git-and-github)
+
 :::
 
 You can open the `rose` GUI as you have before and click on `suite conf` -> `Regional Ancillary Suite` -> `Nested region 1 setup` to view the definition of Region 1.
@@ -56,6 +63,7 @@ You can open the `rose` GUI as you have before and click on `suite conf` -> `Reg
 Clicking on `Resolution 1 setup` and `Resolution 2 setup` shows the definitions of our two Resolutions.
 
 ![RAS region](./images/RAS_res1.png)
+
 ![RAS region](./images/RAS_res2.png)
 
 Note how these values are stored in the suite's `rose-suite.conf` file:
@@ -84,7 +92,9 @@ rg01_rs02_levset="L70_80km"
 rg01_rs02_name="d1100"
 rg01_rs02_npts=50,50
 ```
-:::{note}
+
+::: {.callout-note}
+
 The number points in each domain for our example is **even**. **ALL** UM regional domains must have an **even** number of data points. This is two allow effective domain decomposition across multiple, parallel processors.
 ::: 
 
@@ -95,7 +105,8 @@ We will now run the suite. The tasks tree will unfold and you can watch the task
 ```
 $ rose suite-run
 ```
-:::{note}
+
+::: {.callout-note}
 
 A Jupyter notebook is contained in the suite directory in 
 ```
@@ -103,5 +114,6 @@ A Jupyter notebook is contained in the suite directory in
 ```
  which you can use to visualise all the ancillaries you have generated. 
  The notebook also contains more information on the taskflows within the ancillary suite and their dependencies. Useful when you hit problems building ancillaries for your own experiments!
+
 :::
 

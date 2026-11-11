@@ -36,16 +36,18 @@ The `env.sh` file is a `bash` script designed to help with 'portability'. This f
 
 We define the `MODULES` environment (where we store most of our `python` code) and then add this to the `python` `PATH` environment, which is a universal environment variable used by all `python` interpreters on Linux/Unix-based machines to search for `python` code.
 
-:::{note}
+::: {.callout-note}
 
 Inside a `python` interactive session or notebook, the `sys.path` variable defines the directories where the `python` interpreter searches for modules. All `python` interpreters automatically add the directories defined in `PYTHONPATH` to `sys.path`.
+
 :::
 
 We then `export` these variables so they are valid across all programs running in this current environment (whether it's an interactive login session or inside the `PBS` job queue.)
 
-:::{note}
+::: {.callout-note}
 
 A `python` 'module' refers to a script (usually containing one or two functions) that can be imported by other sections of `python` code using the `import` statement.  
+
 :::
 
 This `env.sh` file helps any user on `gadi` deploy this package. However, the file itself assumes it will only be run on `gadi`, and all users will have `hh5` project membership.  If you wanted to run this project on other platform (e.g. your laptop) you would need to write separate environment file for that system. You might need to build a new directory (e.g. envs) to store several environment files, one for each computing platform.

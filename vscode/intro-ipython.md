@@ -1,4 +1,3 @@
-(content:intro-ipython)=
 # Developing python code
 
 Python is an open-source scripting language that has found huge appeal across a wide range of applications including web and internet development, database management, network programming and education. It has also became the default choice for scientific and numerical programmers all over the world. See [here](https://www.python.org/about/) for more information.
@@ -125,7 +124,7 @@ Once you can open VSCode on your own machine, you can read the [getting started]
 
 Let's load the file https://github.com/21centuryweather/software_engineering_demos/blob/12-2025-workshop/CoE_workshop_2025/scripts/mean_air_temp.py into VSCode. Typically in VSCode you will want to open the parent directory of your software project, so you can view and access all source code files from the File Explorer at the left of the VSCode window. 
 
-:::{note}
+::: {.callout-note}
 
 You can open a directory from the menu File -> Open Folder... or you can use short-cut keys `Ctrl+K Ctrl+O` (or `Cmd+K Cmd+O` on Mac). 
 But, the best way to find how to do something in VSCode is to open the Command Palette using `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) and type what you want to do. The Command Palette will provide a list of options that match your search.
@@ -134,11 +133,13 @@ But, the best way to find how to do something in VSCode is to open the Command P
 
 So once you've added the `CoE_workshop_2025` folder to VSCode, click on the menus on the left to load `mean_air_temp.py`. Your window should look something like this.
 ![Opening window](images/VS_window1.png)
+
 Note the warning on the bottom right of the window `! Select Interpreter`. Let's click on that and choose a Python interpreter installed on you machine. VSCode should be clever enough to search your shell PATH for various Python interpreters, depending on which environment and package manager you are using (e.g. `conda`). I will choose the interpreter that corresponds to my `Python 3.10 conda` environment.
 ![Select Interpreter](images/Interpreter.png)
+
 Your choice of Python interpreter will now be active on bottom-right.
 
-:::{note}
+::: {.callout-note}
 
 In order to run this script locally, your python environment will need the `xarray` module and its `netCDF4` dependency. The official `xarray` installation docs are [here](https://docs.xarray.dev/en/latest/getting-started-guide/installing.html). 
 
@@ -214,7 +215,7 @@ Wonderful! You now have an integrated development environment, where you can wri
 
 See the official [docs](https://code.visualstudio.com/docs/python/run}) for further examples.
 
-:::{note}
+::: {.callout-note}
 
 Attempting to execute the following line in the interactive terminal
 ```python
@@ -229,6 +230,7 @@ This is because the global variable `__file__` is not defined when we use an int
 ```python
 SCRIPT_DIR=Path('/My/Actual/Path')
 ```
+
 :::
 
 ## Setting up IPython inside VSCode

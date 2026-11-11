@@ -1,4 +1,3 @@
-(content:git-intro)=
 # Introduction
 
 Do you have something like this in your computer?
@@ -20,11 +19,11 @@ If you work alone, git is great to track changes and recover previous version of
 
 If you work as a team you can take advantage of all the above and also use version control as a tool to collaborate and organize the various versions of the same file present in the multiple computers you and they use.
 
-You can include code in a repository, for example as python scripts of jupyter notebooks, but also text documents, data and any other file you need for your project. There are a few consideration in terms of the size of the files that we cover in [a future section](content:git-alone:file-size). 
+You can include code in a repository, for example as python scripts of jupyter notebooks, but also text documents, data and any other file you need for your project. There are a few consideration in terms of the size of the files that we cover in [a future section](git-alone.md).
 
-If you are starting to work with git, we suggests the [Working with Git alone](content:git-alone) section. If you are planning to work as part of a team or you want to contribute to others' people project, the [Working with Git in a team](content:git-team) is the section for you. 
+If you are starting to work with git, we suggests the [Working with Git alone](git-alone.md) section. If you are planning to work as part of a team or you want to contribute to others' people project, the [Working with Git in a team](git-team.md) is the section for you.
 
-And if you are going to include jupyter notebooks on your repositories and plan to track and review changes, we recommend you also check the [Tracking changes on jupyter notebooks](content:git-notebooks) section. 
+And if you are going to include jupyter notebooks on your repositories and plan to track and review changes, we recommend you also check the [Tracking changes on jupyter notebooks](git-notebooks.md) section.
 
 ### Before you start
 
@@ -80,7 +79,7 @@ Now you can copy the public key (the content of `.ssh/id_ed25519.pub`) to add it
 
 #### 3. Extra configuration that will make your life easier
 
-We mention this to things [Working with Git alone](content:git-alone), in the mean time we recommend to run this on the terminal:
+We mention this to things [Working with Git alone](git-alone.md), in the mean time we recommend to run this on the terminal:
 
 ```
 git config --global push.autoSetupRemote true

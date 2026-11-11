@@ -1,4 +1,3 @@
-(content:new-configurations)=
 # Creating, documenting and running new configurations
 
 This section is intended to document the process of creating new configurations for ACCESS-AM3 in the context of the 21st Century Weather Centre. It's not intended to replace the ACCESS-NRI documentation, if you are interested in learning how to run ACCESS-AM3, please refer to the [ACCESS-NRI documentation](https://docs.access-hive.org.au/models/run_a_model/run_access-am3/).
@@ -25,14 +24,14 @@ To clone the specific configuration:
 git -C ~/roses clone git@github.com:21centuryweather/access-am3-configs.git -b release-n512e-aeroclim
 ```
 
-:::{admonition} Note
-:class: tip
+::: {.callout-tip title="Note"}
 
 If you plan to use more than one configuration or want to explore them, you can clone the entire repository and switch between branches. 
 
 ```bash
 git -C ~/roses clone git@github.com:21centuryweather/access-am3-configs.git
 ``` 
+
 :::
 
 If you already have the repository cloned, you can update any branch (bring any changes from the remote repository) with `git pull` or fetch a new branch from the remote repository with `git fetch origin <branch-name>`.
@@ -53,8 +52,7 @@ git checkout -b n512e-1983
 This will switch the repository to the `release-n512e-aeroclim` branch and create a new branch called `n512e-1983`. At this point both branches are identical.
 
 
-:::{admonition} Note 
-:class: tip
+::: {.callout-tip title="Note"}
 
 Check the current branch you are using and any new changes with `git status`.
 
@@ -100,8 +98,7 @@ git commit -m "Changed initial conditions to use restart from 1983 and run for 1
 
 The changes, now are being tracked by git in your local repository. You can test the configuration and run experiments. If you need to do further changes, maybe something went wrong, it's crucial to repeat the steps to track **all** the changes in the configuration. 
 
-:::{admonition} Note 
-:class: tip
+::: {.callout-tip title="Note"}
 
 If you want to see the changes you have made to a file, you can use `git diff <file>`. This will show you the differences between the current version of the file and the last committed version. It is a good practice to do this before committing the changes, to make sure you are not committing any unwanted changes.
 
@@ -118,8 +115,7 @@ Because `n512e-1983` is a new branch that only exists on your local repo, you ne
 
 Now you can check your configuration on GitHub and share it with others. 
 
-:::{admonition} Note 
-:class: tip
+::: {.callout-tip title="Note"}
 
 You can do as many commits and update (push) the branch to the remote repository as many times as you need until the configuration is ready to go. Always be sure to:
 

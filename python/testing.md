@@ -1,4 +1,3 @@
-(content:testing-code)=
 # Testing your code
 
 There are many instances in the course of your research where you will have to rely on someone else's code, or share your own code, e.g. during a hackathon. 
@@ -197,9 +196,10 @@ PASSED                                                                          
 ```
 In this case, our testing coverage of the `pvlib` function calls is rather coarse. If this library was an early, prototype version (i.e. version number < 1.0) we might increase the granularity our test coverage and build unit tests for every `pvlib` function we call. 
 
-:::{note}
+::: {.callout-note}
 
 A unit test refers to testing a single, irreducible function. i.e. testing the smallest component of code possible.
+
 :::
 
 If we are confident that `pvlib` is stable and that any future changes will be incremental, we can use our above test as a 'smoke test' which tests the integration of multiple function calls.
